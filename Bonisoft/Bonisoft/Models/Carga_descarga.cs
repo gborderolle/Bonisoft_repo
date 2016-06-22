@@ -6,12 +6,12 @@ using System.Web;
 
 namespace Bonisoft.Models
 {
-    public class Chofer
+    public class Carga_descarga
     {
         [Key]
-        public int Chofer_ID { get; set; }
-        public int Persona_ID { get; set; }
-        public int Empresa_pertenece_ID { get; set; }
+        public int Carga_descarga_ID { get; set; }
+        public string Lugar { get; set; }
+        public DateTime Fecha { get; set; }
         public string Comentarios { get; set; }
     }
 }

@@ -6,12 +6,11 @@ using System.Web;
 
 namespace Bonisoft.Models
 {
-    public class Chofer
+    public class Lena_tipo
     {
         [Key]
-        public int Chofer_ID { get; set; }
-        public int Persona_ID { get; set; }
-        public int Empresa_pertenece_ID { get; set; }
+        public int Lena_tipo_ID { get; set; }
+        public string Tipo { get; set; }
         public string Comentarios { get; set; }
     }
 }

@@ -6,19 +6,20 @@ using System.Web;
 
 namespace Bonisoft.Models
 {
-    public class Persona
+    public class Empresa
     {
         [Key]
-        public int Persona_ID { get; set; }
+        public int Empresa_ID { get; set; }
         public int Contacto_medio_1_ID { get; set; }
         public int Contacto_medio_2_ID { get; set; }
-        public string Apellidos { get; set; }
-        public string Nombres { get; set; }
-        public DateTime Fecha_nacimiento { get; set; }
-        public string CI { get; set; }
+        public int Contacto_persona_1_ID { get; set; }
+        public int Contacto_persona_2_ID { get; set; }
+        public int Banco_ID { get; set; }
+        public string Nombre_fantasia { get; set; }
+        public string Nombre_real{ get; set; }
+        public string RUT{ get; set; }
         public string Ciudad { get; set; }
         public string Departamento { get; set; }
         public string Comentarios { get; set; }
-
     }
 }

@@ -49,13 +49,13 @@ namespace Bonisoft.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Usuario / Email")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Clave")]
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]
