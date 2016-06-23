@@ -47,5 +47,6 @@ namespace Bonisoft_1
         public virtual DbSet<viaje> viajes { get; set; }
         public virtual DbSet<viaje_mercaderia> viaje_mercaderia { get; set; }
         public virtual DbSet<cliente_preferencias_cliente> cliente_preferencias_cliente { get; set; }
+        public virtual DbSet<usuario> usuarios { get; set; }
     }
 }

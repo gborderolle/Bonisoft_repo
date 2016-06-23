@@ -262,5 +262,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="usuarios">
+      <EntityTypeMapping TypeName="bonisoft_dbModel.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="Ultima_conexion" ColumnName="Ultima_conexion" />
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+          <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
+          <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

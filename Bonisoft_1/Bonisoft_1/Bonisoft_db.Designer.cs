@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\GBORDEROLLE-PC\documents\visual studio 2015\Projects\Bonisoft_1\Bonisoft_1\Bonisoft_db.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_1\Bonisoft_1\Bonisoft_db.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

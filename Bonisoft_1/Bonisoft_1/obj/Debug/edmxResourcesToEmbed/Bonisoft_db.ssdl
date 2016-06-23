@@ -216,6 +216,18 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
     <Property Name="Proveedor_ID" Type="int" Nullable="false" />
     <Property Name="Mercaderia_ID" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="Usuario_ID" />
+    </Key>
+    <Property Name="Usuario_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Interno_ID" Type="int" Nullable="false" />
+    <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Nombres" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Clave" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Ultima_conexion" Type="date" Nullable="false" />
+  </EntityType>
   <EntityType Name="viaje">
     <Key>
       <PropertyRef Name="Viaje_ID" />
@@ -265,6 +277,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
     <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="proveedor_mercaderia" EntityType="Self.proveedor_mercaderia" Schema="bonisoft_db" store:Type="Tables" />
+    <EntitySet Name="usuario" EntityType="Self.usuario" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="viaje" EntityType="Self.viaje" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="viaje_mercaderia" EntityType="Self.viaje_mercaderia" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="cliente_preferencias_cliente" EntityType="Self.cliente_preferencias_cliente" store:Type="Tables" store:Schema="bonisoft_db">

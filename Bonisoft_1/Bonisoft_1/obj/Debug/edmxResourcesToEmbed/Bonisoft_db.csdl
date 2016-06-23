@@ -266,5 +266,18 @@
     <EntitySet Name="viajes" EntityType="Self.viaje" />
     <EntitySet Name="viaje_mercaderia" EntityType="Self.viaje_mercaderia" />
     <EntitySet Name="cliente_preferencias_cliente" EntityType="Self.cliente_preferencias_cliente" />
+    <EntitySet Name="usuarios" EntityType="bonisoft_dbModel.usuario" />
   </EntityContainer>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="Usuario_ID" />
+    </Key>
+    <Property Name="Usuario_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Interno_ID" Type="Int32" Nullable="false" />
+    <Property Name="Usuario1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Nombres" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Clave" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Ultima_conexion" Type="DateTime" Nullable="false" />
+  </EntityType>
 </Schema>

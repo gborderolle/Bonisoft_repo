@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="bonisoft_dbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="bonisoft_dbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="banco">
           <Key>
             <PropertyRef Name="Banco_ID" />
@@ -221,6 +221,18 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Proveedor_ID" Type="int" Nullable="false" />
           <Property Name="Mercaderia_ID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="Usuario_ID" />
+          </Key>
+          <Property Name="Usuario_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Interno_ID" Type="int" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Ultima_conexion" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="viaje">
           <Key>
             <PropertyRef Name="Viaje_ID" />
@@ -270,6 +282,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="proveedor_mercaderia" EntityType="Self.proveedor_mercaderia" Schema="bonisoft_db" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="viaje" EntityType="Self.viaje" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="viaje_mercaderia" EntityType="Self.viaje_mercaderia" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="cliente_preferencias_cliente" EntityType="Self.cliente_preferencias_cliente" store:Type="Tables" store:Schema="bonisoft_db">
@@ -279,8 +292,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
 FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="bonisoft_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -550,7 +562,20 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySet Name="viajes" EntityType="Self.viaje" />
           <EntitySet Name="viaje_mercaderia" EntityType="Self.viaje_mercaderia" />
           <EntitySet Name="cliente_preferencias_cliente" EntityType="Self.cliente_preferencias_cliente" />
+          <EntitySet Name="usuarios" EntityType="bonisoft_dbModel.usuario" />
         </EntityContainer>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="Usuario_ID" />
+          </Key>
+          <Property Name="Usuario_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Interno_ID" Type="Int32" Nullable="false" />
+          <Property Name="Usuario1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Nombres" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Clave" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Ultima_conexion" Type="DateTime" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -815,6 +840,19 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
               <MappingFragment StoreEntitySet="cliente_preferencias_cliente">
                 <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
                 <ScalarProperty Name="Cliente_Preferencias_cliente_ID" ColumnName="Cliente_Preferencias_cliente_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="bonisoft_dbModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="Ultima_conexion" ColumnName="Ultima_conexion" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
+                <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

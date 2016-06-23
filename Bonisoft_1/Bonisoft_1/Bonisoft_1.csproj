@@ -264,6 +264,7 @@
     <Compile Include="Controllers\proveedoresController.cs" />
     <Compile Include="Controllers\proveedor_cargaController.cs" />
     <Compile Include="Controllers\proveedor_mercaderiaController.cs" />
+    <Compile Include="Controllers\usuariosController.cs" />
     <Compile Include="Controllers\viajesController.cs" />
     <Compile Include="Controllers\viaje_mercaderiaController.cs" />
     <Compile Include="cuadrilla_descarga.cs">
@@ -313,6 +314,9 @@
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="usuario.cs">
+      <DependentUpon>Bonisoft_db.tt</DependentUpon>
+    </Compile>
     <Compile Include="viaje.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
@@ -492,6 +496,11 @@
     <Content Include="Views\viaje_mercaderia\Details.cshtml" />
     <Content Include="Views\viaje_mercaderia\Edit.cshtml" />
     <Content Include="Views\viaje_mercaderia\Index.cshtml" />
+    <Content Include="Views\usuarios\Create.cshtml" />
+    <Content Include="Views\usuarios\Delete.cshtml" />
+    <Content Include="Views\usuarios\Details.cshtml" />
+    <Content Include="Views\usuarios\Edit.cshtml" />
+    <Content Include="Views\usuarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
