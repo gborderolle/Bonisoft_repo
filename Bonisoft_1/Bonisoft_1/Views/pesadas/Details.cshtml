@@ -1,0 +1,58 @@
+﻿@model Bonisoft_1.pesada
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>pesada</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Lugar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lugar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_balanza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_balanza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor_pesada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor_pesada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comentarios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comentarios)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Pesada_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,138 @@
+﻿@model Bonisoft_1.viaje
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>viaje</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio_compra_por_tonelada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio_compra_por_tonelada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio_valor_total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio_valor_total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Importe_viaje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Importe_viaje)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Saldo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Saldo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Forma_de_pago_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Forma_de_pago_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Carga_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Carga_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descarga_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descarga_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pesada_origen_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pesada_origen_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pesada_destino_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pesada_destino_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empresa_de_carga_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa_de_carga_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_partida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_partida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_llegada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_llegada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Camion_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Camion_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Chofer_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Chofer_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comentarios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comentarios)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Viaje_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

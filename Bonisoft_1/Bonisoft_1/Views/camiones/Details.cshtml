@@ -1,0 +1,90 @@
+﻿@model Bonisoft_1.camion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>camion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Matricula_camion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Matricula_camion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Matricula_zorra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Matricula_zorra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero_ejes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero_ejes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Peso_Tara_origen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Peso_Tara_origen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Peso_Tara_destino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Peso_Tara_destino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comentarios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comentarios)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Peso_Neto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Peso_Neto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Camion_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

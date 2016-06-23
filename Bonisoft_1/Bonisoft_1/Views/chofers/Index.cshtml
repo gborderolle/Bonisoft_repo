@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Bonisoft_1.chofer>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Persona_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empresa_pertenece_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comentarios)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Persona_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa_pertenece_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comentarios)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Chofer_ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Chofer_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Chofer_ID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
