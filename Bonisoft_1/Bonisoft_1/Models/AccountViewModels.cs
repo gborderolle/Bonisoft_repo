@@ -49,7 +49,7 @@ namespace Bonisoft_1.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Usuario")]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -66,7 +66,7 @@ namespace Bonisoft_1.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Usuario")]
         public string Email { get; set; }
 
         [Required]
