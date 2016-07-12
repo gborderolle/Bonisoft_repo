@@ -395,6 +395,7 @@
     <Content Include="assets\dist\js\app.js" />
     <Content Include="assets\dist\js\app.min.js" />
     <Content Include="assets\dist\js\demo.js" />
+    <Content Include="assets\dist\js\pages\datos.js" />
     <Content Include="assets\dist\js\pages\dashboard.js" />
     <Content Include="assets\dist\js\pages\dashboard2.js" />
     <Content Include="Bonisoft_db.Context.tt">
