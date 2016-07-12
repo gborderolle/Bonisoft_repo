@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Bonisoft_1.interno>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Agregar", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Persona_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha_ingreso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha_egreso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cargo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comentarios)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Persona_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_ingreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_egreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cargo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comentarios)
+        </td>
+        <td>
+            @Html.ActionLink("Modificar", "Edit", new { id=item.Interno_ID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Interno_ID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Interno_ID })
+        </td>
+    </tr>
+}
+
+</table>

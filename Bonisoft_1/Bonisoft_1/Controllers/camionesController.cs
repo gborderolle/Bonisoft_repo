@@ -17,7 +17,7 @@ namespace Bonisoft_1.Controllers
         // GET: camiones
         public ActionResult Index()
         {
-            return View(db.camions.ToList());
+            return PartialView(db.camiones.ToList());
         }
 
         // GET: camiones/Details/5
@@ -27,7 +27,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            camion camion = db.camions.Find(id);
+            camion camion = db.camiones.Find(id);
             if (camion == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace Bonisoft_1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.camions.Add(camion);
+                db.camiones.Add(camion);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            camion camion = db.camions.Find(id);
+            camion camion = db.camiones.Find(id);
             if (camion == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            camion camion = db.camions.Find(id);
+            camion camion = db.camiones.Find(id);
             if (camion == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Bonisoft_1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            camion camion = db.camions.Find(id);
-            db.camions.Remove(camion);
+            camion camion = db.camiones.Find(id);
+            db.camiones.Remove(camion);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

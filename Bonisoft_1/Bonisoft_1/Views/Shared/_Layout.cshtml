@@ -3,9 +3,41 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <title>Bonisoft | @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <!-- SCRIPTS -->`
+    <!-- jQuery 2.2.3 -->
+    <script src="/Scripts/jquery-2.2.3.min.js"></script>
+    <!-- jQuery Unobtrusive -->
+    <script src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
+
+    <!-- STYLES-->
+
+    <!-- Bootstrap 3.3.6 -->
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+
+    @RenderSection("Head_extension", false/*required*/)
+
+
+
 
 </head>
 <body>
@@ -22,8 +54,12 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Dashboard", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Datos", "Datos", "Datos")</li>
+                    <li>@Html.ActionLink("Recordatorios", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Contabilidad", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Baúl", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Registros", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Ajustes", "Index", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

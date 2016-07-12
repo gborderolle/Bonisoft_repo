@@ -25,23 +25,23 @@ namespace Bonisoft_1
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<banco> bancoes { get; set; }
-        public virtual DbSet<camion> camions { get; set; }
+        public virtual DbSet<banco> bancos { get; set; }
+        public virtual DbSet<camion> camiones { get; set; }
         public virtual DbSet<carga_descarga> carga_descarga { get; set; }
-        public virtual DbSet<chofer> chofers { get; set; }
+        public virtual DbSet<chofer> choferes { get; set; }
         public virtual DbSet<cliente> clientes { get; set; }
         public virtual DbSet<contacto_medio> contacto_medio { get; set; }
         public virtual DbSet<cuadrilla_descarga> cuadrilla_descarga { get; set; }
         public virtual DbSet<descarga_viaje> descarga_viaje { get; set; }
         public virtual DbSet<empresa> empresas { get; set; }
         public virtual DbSet<forma_de_pago> forma_de_pago { get; set; }
-        public virtual DbSet<interno> internoes { get; set; }
+        public virtual DbSet<interno> internos { get; set; }
         public virtual DbSet<lena_tipo> lena_tipo { get; set; }
         public virtual DbSet<mercaderia> mercaderias { get; set; }
         public virtual DbSet<persona> personas { get; set; }
         public virtual DbSet<pesada> pesadas { get; set; }
         public virtual DbSet<preferencias_cliente> preferencias_cliente { get; set; }
-        public virtual DbSet<proveedor> proveedors { get; set; }
+        public virtual DbSet<proveedor> proveedores { get; set; }
         public virtual DbSet<proveedor_carga> proveedor_carga { get; set; }
         public virtual DbSet<proveedor_mercaderia> proveedor_mercaderia { get; set; }
         public virtual DbSet<viaje> viajes { get; set; }

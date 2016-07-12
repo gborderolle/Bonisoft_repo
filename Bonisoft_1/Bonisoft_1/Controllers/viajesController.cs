@@ -17,7 +17,7 @@ namespace Bonisoft_1.Controllers
         // GET: viajes
         public ActionResult Index()
         {
-            return View(db.viajes.ToList());
+            return PartialView(db.viajes.ToList());
         }
 
         // GET: viajes/Details/5

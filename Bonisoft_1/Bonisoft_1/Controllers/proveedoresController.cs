@@ -17,7 +17,7 @@ namespace Bonisoft_1.Controllers
         // GET: proveedores
         public ActionResult Index()
         {
-            return View(db.proveedors.ToList());
+            return PartialView(db.proveedores.ToList());
         }
 
         // GET: proveedores/Details/5
@@ -27,7 +27,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            proveedor proveedor = db.proveedors.Find(id);
+            proveedor proveedor = db.proveedores.Find(id);
             if (proveedor == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace Bonisoft_1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.proveedors.Add(proveedor);
+                db.proveedores.Add(proveedor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            proveedor proveedor = db.proveedors.Find(id);
+            proveedor proveedor = db.proveedores.Find(id);
             if (proveedor == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            proveedor proveedor = db.proveedors.Find(id);
+            proveedor proveedor = db.proveedores.Find(id);
             if (proveedor == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Bonisoft_1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            proveedor proveedor = db.proveedors.Find(id);
-            db.proveedors.Remove(proveedor);
+            proveedor proveedor = db.proveedores.Find(id);
+            db.proveedores.Remove(proveedor);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

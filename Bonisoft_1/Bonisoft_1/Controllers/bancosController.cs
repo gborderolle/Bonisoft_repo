@@ -17,7 +17,7 @@ namespace Bonisoft_1.Controllers
         // GET: bancos
         public ActionResult Index()
         {
-            return View(db.bancoes.ToList());
+            return View(db.bancos.ToList());
         }
 
         // GET: bancos/Details/5
@@ -27,7 +27,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            banco banco = db.bancoes.Find(id);
+            banco banco = db.bancos.Find(id);
             if (banco == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace Bonisoft_1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.bancoes.Add(banco);
+                db.bancos.Add(banco);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            banco banco = db.bancoes.Find(id);
+            banco banco = db.bancos.Find(id);
             if (banco == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            banco banco = db.bancoes.Find(id);
+            banco banco = db.bancos.Find(id);
             if (banco == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Bonisoft_1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            banco banco = db.bancoes.Find(id);
-            db.bancoes.Remove(banco);
+            banco banco = db.bancos.Find(id);
+            db.bancos.Remove(banco);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

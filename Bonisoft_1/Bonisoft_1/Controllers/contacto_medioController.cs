@@ -123,5 +123,15 @@ namespace Bonisoft_1.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // --------------------------------
+
+
+        public ActionResult Contacto_medio(int id)
+        {
+            var modelo = from p in db.contacto_medio where p.Contacto_medio_ID == id select p;
+            return PartialView(modelo.ToList());
+            //return PartialView(db.contacto_medio.ToList());
+        }
     }
 }

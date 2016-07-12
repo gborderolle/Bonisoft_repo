@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Bonisoft_1;
+using Bonisoft_1.Models;
 
 namespace Bonisoft_1.Controllers
 {
@@ -17,7 +18,8 @@ namespace Bonisoft_1.Controllers
         // GET: personas
         public ActionResult Index()
         {
-            return View(db.personas.ToList());
+            return PartialView(db.personas.ToList());
+            //return View(db.personas.ToList());
         }
 
         // GET: personas/Details/5
@@ -122,6 +124,43 @@ namespace Bonisoft_1.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        // ----------------------------------------------------------------------------------------------
+
+        public ActionResult Personas_custom()
+        {
+            var modelo = from p in db.personas
+                         join m1 in db.contacto_medio
+                         on p.Contacto_medio_1_ID equals m1.Contacto_medio_ID
+                         join m2 in db.contacto_medio
+                         on p.Contacto_medio_2_ID equals m2.Contacto_medio_ID
+
+                         select new _Persona
+                         {
+                             Apellidos = p.Apellidos,
+                             Nombres = p.Nombres,
+                             Fecha_nacimiento = p.Fecha_nacimiento,
+                             CI = p.CI,
+                             Contacto_medio_1_ID = m1.Comentarios,
+                             Contacto_medio_2_ID = m2.Comentarios,
+                             Ciudad = p.Ciudad,
+                             Departamento = p.Departamento,
+                             Comentarios = p.Comentarios,
+                         };
+
+            return PartialView(modelo.ToList());
+        }
+
+        public ActionResult Contacto_medio(int id)
+        {
+            var modelo = from p in db.contacto_medio where p.Contacto_medio_ID == id select p;
+            var modelo_obj = modelo.SingleOrDefault();
+            if (modelo_obj == null)
+            {
+                return new EmptyResult();
+            }
+            return PartialView(modelo_obj);
         }
     }
 }

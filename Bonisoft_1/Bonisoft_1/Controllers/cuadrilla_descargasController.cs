@@ -17,7 +17,7 @@ namespace Bonisoft_1.Controllers
         // GET: cuadrilla_descargas
         public ActionResult Index()
         {
-            return View(db.cuadrilla_descarga.ToList());
+            return PartialView(db.cuadrilla_descarga.ToList());
         }
 
         // GET: cuadrilla_descargas/Details/5
