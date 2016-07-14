@@ -340,8 +340,10 @@
     <Content Include="assets\bootstrap\js\bootstrap.js" />
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="assets\bootstrap\js\npm.js" />
-    <Content Include="assets\dist\css\AdminLTE.css" />
-    <Content Include="assets\dist\css\AdminLTE.min.css" />
+    <Content Include="assets\dist\css\Datos.css" />
+    <Content Include="assets\dist\css\Datos.min.css" />
+    <Content Include="assets\dist\css\Datos_2.css" />
+    <Content Include="assets\dist\css\Login.css" />
     <Content Include="assets\dist\css\skins\skin-black-light.css" />
     <Content Include="assets\dist\css\skins\skin-black-light.min.css" />
     <Content Include="assets\dist\css\skins\skin-black.css" />
@@ -399,9 +401,10 @@
     <Content Include="assets\dist\js\app.js" />
     <Content Include="assets\dist\js\app.min.js" />
     <Content Include="assets\dist\js\demo.js" />
-    <Content Include="assets\dist\js\pages\datos.js" />
-    <Content Include="assets\dist\js\pages\dashboard.js" />
-    <Content Include="assets\dist\js\pages\dashboard2.js" />
+    <Content Include="assets\dist\js\pages\Datos.js" />
+    <Content Include="assets\dist\js\pages\Dashboard.js" />
+    <Content Include="assets\dist\js\pages\Dashboard2.js" />
+    <Content Include="assets\dist\js\pages\Login.js" />
     <Content Include="Bonisoft_db.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Bonisoft_db.edmx</DependentUpon>
@@ -486,11 +489,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\chofers\Create.cshtml" />
-    <Content Include="Views\chofers\Delete.cshtml" />
-    <Content Include="Views\chofers\Details.cshtml" />
-    <Content Include="Views\chofers\Edit.cshtml" />
-    <Content Include="Views\chofers\Index.cshtml" />
     <Content Include="Views\personas\Create.cshtml" />
     <Content Include="Views\personas\Delete.cshtml" />
     <Content Include="Views\personas\Details.cshtml" />
@@ -611,7 +609,6 @@
     <Content Include="Views\Cuenta\LoggedIn.cshtml" />
     <Content Include="Views\Cuenta\Index.cshtml" />
     <Content Include="Views\Cuenta\Rol_usuario.cshtml" />
-    <Content Include="Views\Datos\Clientes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

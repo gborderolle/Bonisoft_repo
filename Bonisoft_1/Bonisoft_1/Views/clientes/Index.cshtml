@@ -1,36 +1,33 @@
 ﻿@model IEnumerable<Bonisoft_1.cliente>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar", "Create", "Clientes", null, null)
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Empresa_ID)
+            Dueño
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Contacto_dueno_ID)
+            Encargado leña
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Contacto_encargado_lena_ID)
+            Encargado pagos
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Contacto_encargado_pagos_ID)
+            Supervisor leña
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Contacto_supervisor_lena_ID)
+            Contacto nuestro
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Contacto_nuestro_ID)
+            Forma de pago
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Forma_de_pago_ID)
+            Periodos de liquidación
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Periodos_liquidacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fechas_pago)
+            Fechas de pago
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Comentarios)
@@ -41,9 +38,6 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Empresa_ID)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Contacto_dueno_ID)
             </td>
@@ -72,9 +66,9 @@
                 @Html.DisplayFor(modelItem => item.Comentarios)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Cliente_ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Cliente_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Cliente_ID })
+                @Html.ActionLink("Modificar", "Edit", new { id = item.Cliente_ID }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.Cliente_ID }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Cliente_ID })
             </td>
         </tr>
     }

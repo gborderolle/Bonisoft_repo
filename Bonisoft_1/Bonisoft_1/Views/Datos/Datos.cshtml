@@ -39,12 +39,14 @@
 
 }
 
-<body class="hold-transition skin-blue sidebar-mini" style="padding-top: 25px; padding-bottom: 0;">
+
+
+<body class="hold-transition skin-blue sidebar-mini" style="padding-top: 40px; padding-bottom: 0;">
     <div class="wrapper" style="min-height: 600px;">
 
         <header class="main-header">
             <!-- Header Navbar: style can be found in header.less -->
-            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" onclick="sidebar_action();">
                 <span class="sr-only">Toggle navigation</span>
             </a>
 
@@ -171,15 +173,15 @@
                                     }, null))
                                     {
                                         <text>
-                                    <div id="box-2" onclick="setTabActive(this.id)" class="info-box tables">
-                                        <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
+                                            <div id="box-2" onclick="setTabActive(this.id)" class="info-box tables">
+                                                <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
 
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Clientes</span>
-                                            <span class="info-box-number">@Html.Action("GetTableCount", "Datos", new { table = "Clientes" })</span>
-                                        </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">Clientes</span>
+                                                    <span class="info-box-number">@Html.Action("GetTableCount", "Datos", new { table = "Clientes" })</span>
+                                                </div>
+                                                <!-- /.info-box-content -->
+                                            </div>
                                         </text>
                                     }
 
@@ -464,9 +466,8 @@
                 </div>
 
 
-
                 <div class="box box-default">
-                    <div class="box-header with-border">
+                    <div class="box-header with-border" style="padding-bottom:0;">
 
                         <div class="row">
                             <div class="col-md-9">
@@ -474,7 +475,7 @@
                             </div>
 
                             <div class="col-md-2 pull-right" style="margin-right: 10px;">
-                                <form action="#" method="get" class="sidebar-form" style="width: 100%;">
+                                <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
                                     <div class="input-group ">
                                         <input type="text" name="q" class="form-control" placeholder="Buscar...">
                                         <span class="input-group-btn">
@@ -489,37 +490,92 @@
 
 
                     </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div id="divContent">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div id="divContent">
 
 
+                                        @{
+                                            if (ViewBag.Table != null)
+                                            {
+                                                string table = ViewBag.Table.ToString();
+                                                if (!string.IsNullOrWhiteSpace(table))
+                                                {
+                                                    switch (table.ToLowerInvariant())
+                                                    {
+                                                        case "proveedores":
+                                                            {
+                                                                @Html.Action("Index", "Proveedores", null)
+                                                                break;
+                                                            }
+                                                        case "clientes":
+                                                            {
+                                                                @Html.Action("Index", "Clientes", null)
+                                                                break;
+                                                            }
+                                                        case "viajes":
+                                                            {
+                                                                @Html.Action("Index", "Viajes", null)
+                                                                break;
+                                                            }
+                                                        case "choferes":
+                                                            {
+                                                                @Html.Action("Index", "Choferes", null)
+                                                                break;
+                                                            }
+                                                        case "cuadrillas":
+                                                            {
+                                                                @Html.Action("Index", "Cuadrillas", null)
+                                                                break;
+                                                            }
+                                                        case "internos":
+                                                            {
+                                                                @Html.Action("Index", "Internos", null)
+                                                                break;
+                                                            }
+                                                        case "pesadas":
+                                                            {
+                                                                @Html.Action("Index", "Pesadas", null)
+                                                                break;
+                                                            }
+                                                        case "camiones":
+                                                            {
+                                                                @Html.Action("Index", "Camiones", null)
+                                                                break;
+                                                            }
+                                                    }
+                                                }
+                                            }
+                                            else {
+                                                @Html.Action("Index", "Proveedores", null)
+                                            }
+                                        }
 
-                                                @Html.Action("Index", "proveedores", null)
 
-                                            </div>
-                                        </div>
-
-                                        <!-- /.form-group -->
                                     </div>
-                                    <!-- /.col -->
-                                    <!-- /.col -->
                                 </div>
-                                <!-- /.row -->
+
+                                <!-- /.form-group -->
                             </div>
-                            <!-- /.box-body -->
+                            <!-- /.col -->
+                            <!-- /.col -->
                         </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-body -->
+                </div>
 
-                        <!-- TERMINA ********************* -->
+                <!-- TERMINA ********************* -->
 
 
 
 
 
-</section>
+            </section>
+
             <!-- /.content -->
         </div>
 
@@ -749,12 +805,12 @@
     <!-- AdminLTE App -->
     <script src="/assets/dist/js/app.min.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="/assets/dist/js/pages/dashboard.js"></script>
+    <script src="/assets/dist/js/pages/Dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="/assets/dist/js/demo.js"></script>
 
 
     <!-- Datos JS -->
-    <script src="/assets/dist/js/pages/datos.js"></script>
+    <script src="/assets/dist/js/pages/Datos.js"></script>
 
 </body>

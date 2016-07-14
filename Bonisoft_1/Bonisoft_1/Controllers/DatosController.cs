@@ -12,11 +12,18 @@ namespace Bonisoft_1.Controllers
         private bonisoft_dbEntities db = new bonisoft_dbEntities();
 
         // GET: Datos
-        public ActionResult Datos()
+        public ActionResult Datos(string table)
         {
             if (Session["UserId"] == null)
             {
                 return RedirectToAction("LoggedOut", "Cuenta", null);
+            }
+            else
+            {
+                if (!string.IsNullOrWhiteSpace(table))
+                {
+                    ViewBag.Table = table;
+                }
             }
             return View();
         }
@@ -28,28 +35,27 @@ namespace Bonisoft_1.Controllers
 
         public PartialViewResult Clientes()
         {
-            //return PartialView(db.cliente.ToList());
             return PartialView("~/views/Clientes/Index.cshtml", db.cliente.ToList());
         }
 
         public PartialViewResult Viajes()
         {
-            return PartialView(db.viaje.ToList());
+            return PartialView("~/views/Viajes/Index.cshtml", db.viaje.ToList());
         }
 
         public PartialViewResult Choferes()
         {
-            return PartialView(db.chofer.ToList());
+            return PartialView("~/views/Choferes/Index.cshtml", db.chofer.ToList());
         }
 
         public PartialViewResult Cuadrillas_descarga()
         {
-            return PartialView(db.cuadrilla_descarga.ToList());
+            return PartialView("~/views/Cuadrillas_descarga/Index.cshtml", db.cuadrilla_descarga.ToList());
         }
 
         public PartialViewResult Internos()
         {
-            return PartialView(db.interno.ToList());
+            return PartialView("~/views/Internos/Index.cshtml", db.interno.ToList());
         }
 
         public PartialViewResult Contacto_medio(int ID)
@@ -60,15 +66,15 @@ namespace Bonisoft_1.Controllers
 
         public PartialViewResult Pesadas()
         {
-            return PartialView(db.pesada.ToList());
+            return PartialView("~/views/Pesadas/Index.cshtml", db.pesada.ToList());
         }
         public PartialViewResult Camiones()
         {
-            return PartialView(db.camion.ToList());
+            return PartialView("~/views/Camiones/Index.cshtml", db.camion.ToList());
         }
         public PartialViewResult Personas()
         {
-            return PartialView(db.persona.ToList());
+            return PartialView("~/views/Personas/Index.cshtml", db.persona.ToList());
         }
 
         public string GetUserNameComplete()
