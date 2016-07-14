@@ -1,21 +1,15 @@
 ﻿@model IEnumerable<Bonisoft_1.chofer>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
 <p>
     @Html.ActionLink("Agregar", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Persona_ID)
+            Persona
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Empresa_pertenece_ID)
+            Empresa
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Comentarios)
@@ -23,23 +17,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Persona_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Empresa_pertenece_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comentarios)
-        </td>
-        <td>
-            @Html.ActionLink("Modificar", "Edit", new { id=item.Chofer_ID }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.Chofer_ID }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.Chofer_ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Persona_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa_pertenece_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comentarios)
+            </td>
+            <td>
+                @Html.ActionLink("Modificar", "Edit", new { id = item.Chofer_ID }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.Chofer_ID }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Chofer_ID })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -1,0 +1,32 @@
+div .tables {
+	cursor: pointer;
+}
+
+.info-box-icon {
+	width: 70px;
+	height: 70px;
+}
+
+.info-box-icon > i{
+	vertical-align: text-top;
+}
+
+.info-box-content {
+	margin-left: 65px;
+}
+
+.info-box-text {
+	text-transform: none;	
+}
+
+div .box-active {
+	border-style: inset;
+    border-color: lightgrey;
+}
+
+
+
+
+
+
+    

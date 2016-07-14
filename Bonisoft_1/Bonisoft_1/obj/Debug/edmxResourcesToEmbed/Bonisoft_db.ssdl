@@ -216,6 +216,20 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
     <Property Name="Proveedor_ID" Type="int" Nullable="false" />
     <Property Name="Mercaderia_ID" Type="int" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.bonisoft_db.roles_usuario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="roles_usuario">
+    <Key>
+      <PropertyRef Name="Roles_usuario_ID" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Nivel" />
+      <PropertyRef Name="Comentarios" />
+    </Key>
+    <Property Name="Roles_usuario_ID" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Nivel" Type="int" Nullable="false" />
+    <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
   <EntityType Name="usuario">
     <Key>
       <PropertyRef Name="Usuario_ID" />
@@ -227,6 +241,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
     <Property Name="Nombres" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Clave" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Ultima_conexion" Type="date" Nullable="false" />
+    <Property Name="Rol_usuario_ID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="viaje">
     <Key>
@@ -285,6 +300,14 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
 `cliente_preferencias_cliente`.`Cliente_ID`, 
 `cliente_preferencias_cliente`.`Cliente_Preferencias_cliente_ID`
 FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="roles_usuario" EntityType="Self.roles_usuario" store:Type="Tables" store:Schema="bonisoft_db">
+      <DefiningQuery>SELECT
+`roles_usuario`.`Roles_usuario_ID`, 
+`roles_usuario`.`Nombre`, 
+`roles_usuario`.`Nivel`, 
+`roles_usuario`.`Comentarios`
+FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
     </EntitySet>
   </EntityContainer>
 </Schema>

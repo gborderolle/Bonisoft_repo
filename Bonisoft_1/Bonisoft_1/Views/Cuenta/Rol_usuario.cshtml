@@ -1,0 +1,54 @@
+﻿@model Bonisoft_1.roles_usuario
+
+@{
+    ViewBag.Title = "Rol_usuario";
+}
+
+<h2>Roles de Usuario</h2>
+
+<div>
+    <h4>Usuario @Html.DisplayNameFor(model => model.Nombre)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+
+
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nivel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comentarios)
+            </th>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Nivel)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Comentarios)
+            </td>
+                
+        </tr>
+
+    </table>
+
+
+
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

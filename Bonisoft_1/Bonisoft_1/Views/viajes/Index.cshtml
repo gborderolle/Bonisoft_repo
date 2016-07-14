@@ -1,57 +1,51 @@
 ﻿@model IEnumerable<Bonisoft_1.viaje>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
 <p>
     @Html.ActionLink("Agregar", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Precio_compra_por_tonelada)
+            Precio compra por tonelada
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Precio_valor_total)
+            Precio valor total
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Importe_viaje)
+            Importe viaje
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Saldo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Forma_de_pago_ID)
+            Forma de Pago
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Carga_ID)
+            Carga
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descarga_ID)
+            Descarga
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Pesada_origen_ID)
+            Pesada origen
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Pesada_destino_ID)
+            Pesada destino
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Empresa_de_carga_ID)
+            Empresa de carga
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Fecha_partida)
+            Fecha partida
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Fecha_llegada)
+            Fecha llegada
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Camion_ID)
+            Camión
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Chofer_ID)
+            Chofer
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Comentarios)
@@ -59,59 +53,60 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Precio_compra_por_tonelada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Precio_valor_total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Importe_viaje)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Saldo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Forma_de_pago_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Carga_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descarga_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pesada_origen_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pesada_destino_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Empresa_de_carga_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_partida)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_llegada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Camion_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Chofer_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comentarios)
-        </td>
-        <td>
-            @Html.ActionLink("Modificar", "Edit", new { id=item.Viaje_ID }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.Viaje_ID }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.Viaje_ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio_compra_por_tonelada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio_valor_total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Importe_viaje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Saldo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Forma_de_pago_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carga_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descarga_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pesada_origen_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pesada_destino_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa_de_carga_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha_partida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha_llegada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Camion_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Chofer_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comentarios)
+            </td>
+            <td>
+                @Html.ActionLink("Modificar", "Edit", new { id = item.Viaje_ID }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.Viaje_ID }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Viaje_ID })
+            </td>
+        </tr>
+    }
 
 </table>

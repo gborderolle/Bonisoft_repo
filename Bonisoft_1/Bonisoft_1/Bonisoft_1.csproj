@@ -254,6 +254,7 @@
     <Compile Include="Controllers\cliente_preferencias_clienteController.cs" />
     <Compile Include="Controllers\contacto_medioController.cs" />
     <Compile Include="Controllers\cuadrilla_descargasController.cs" />
+    <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Controllers\DatosController.cs" />
     <Compile Include="Controllers\descarga_viajeController.cs" />
     <Compile Include="Controllers\empresasController.cs" />
@@ -314,6 +315,9 @@
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
     <Compile Include="proveedor_mercaderia.cs">
+      <DependentUpon>Bonisoft_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="roles_usuario.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
@@ -583,7 +587,7 @@
     <Content Include="Views\usuarios\Edit.cshtml" />
     <Content Include="Views\usuarios\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Shared\Datos.cshtml" />
+    <Content Include="Views\Datos\Datos.cshtml" />
     <Content Include="Views\Shared\Test.cshtml" />
     <Content Include="Views\clientes\_Clientes.cshtml" />
     <Content Include="Views\personas\Personas.cshtml" />
@@ -601,6 +605,13 @@
     <Content Include="Views\Datos\Choferes.cshtml" />
     <Content Include="Views\Datos\Cuadrillas_descarga.cshtml" />
     <Content Include="Views\Datos\Internos.cshtml" />
+    <Content Include="Views\Datos\Contacto_medio.cshtml" />
+    <Content Include="Views\Cuenta\Register.cshtml" />
+    <Content Include="Views\Cuenta\Login.cshtml" />
+    <Content Include="Views\Cuenta\LoggedIn.cshtml" />
+    <Content Include="Views\Cuenta\Index.cshtml" />
+    <Content Include="Views\Cuenta\Rol_usuario.cshtml" />
+    <Content Include="Views\Datos\Clientes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

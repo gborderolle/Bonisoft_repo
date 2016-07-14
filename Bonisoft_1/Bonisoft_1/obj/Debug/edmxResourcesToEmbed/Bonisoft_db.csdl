@@ -267,6 +267,7 @@
     <EntitySet Name="viaje_mercaderia" EntityType="Self.viaje_mercaderia" />
     <EntitySet Name="cliente_preferencias_cliente" EntityType="Self.cliente_preferencias_cliente" />
     <EntitySet Name="usuarios" EntityType="bonisoft_dbModel.usuario" />
+    <EntitySet Name="roles_usuario" EntityType="bonisoft_dbModel.roles_usuario" />
   </EntityContainer>
   <EntityType Name="usuario">
     <Key>
@@ -279,5 +280,18 @@
     <Property Name="Nombres" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Clave" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Ultima_conexion" Type="DateTime" Nullable="false" />
+    <Property Name="Rol_usuario_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="roles_usuario">
+    <Key>
+      <PropertyRef Name="Roles_usuario_ID" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Nivel" />
+      <PropertyRef Name="Comentarios" />
+    </Key>
+    <Property Name="Roles_usuario_ID" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Nivel" Type="Int32" Nullable="false" />
+    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

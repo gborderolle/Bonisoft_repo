@@ -221,6 +221,20 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Proveedor_ID" Type="int" Nullable="false" />
           <Property Name="Mercaderia_ID" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.bonisoft_db.roles_usuario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="roles_usuario">
+          <Key>
+            <PropertyRef Name="Roles_usuario_ID" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Nivel" />
+            <PropertyRef Name="Comentarios" />
+          </Key>
+          <Property Name="Roles_usuario_ID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nivel" Type="int" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
         <EntityType Name="usuario">
           <Key>
             <PropertyRef Name="Usuario_ID" />
@@ -232,6 +246,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Nombres" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Clave" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Ultima_conexion" Type="date" Nullable="false" />
+          <Property Name="Rol_usuario_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="viaje">
           <Key>
@@ -290,6 +305,14 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
 `cliente_preferencias_cliente`.`Cliente_ID`, 
 `cliente_preferencias_cliente`.`Cliente_Preferencias_cliente_ID`
 FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="roles_usuario" EntityType="Self.roles_usuario" store:Type="Tables" store:Schema="bonisoft_db">
+            <DefiningQuery>SELECT
+`roles_usuario`.`Roles_usuario_ID`, 
+`roles_usuario`.`Nombre`, 
+`roles_usuario`.`Nivel`, 
+`roles_usuario`.`Comentarios`
+FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -563,6 +586,7 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySet Name="viaje_mercaderia" EntityType="Self.viaje_mercaderia" />
           <EntitySet Name="cliente_preferencias_cliente" EntityType="Self.cliente_preferencias_cliente" />
           <EntitySet Name="usuarios" EntityType="bonisoft_dbModel.usuario" />
+          <EntitySet Name="roles_usuario" EntityType="bonisoft_dbModel.roles_usuario" />
         </EntityContainer>
         <EntityType Name="usuario">
           <Key>
@@ -575,6 +599,19 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Nombres" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Clave" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Ultima_conexion" Type="DateTime" Nullable="false" />
+          <Property Name="Rol_usuario_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roles_usuario">
+          <Key>
+            <PropertyRef Name="Roles_usuario_ID" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Nivel" />
+            <PropertyRef Name="Comentarios" />
+          </Key>
+          <Property Name="Roles_usuario_ID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Nivel" Type="Int32" Nullable="false" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -846,6 +883,7 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySetMapping Name="usuarios">
             <EntityTypeMapping TypeName="bonisoft_dbModel.usuario">
               <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="Rol_usuario_ID" ColumnName="Rol_usuario_ID" />
                 <ScalarProperty Name="Ultima_conexion" ColumnName="Ultima_conexion" />
                 <ScalarProperty Name="Clave" ColumnName="Clave" />
                 <ScalarProperty Name="Nombres" ColumnName="Nombres" />
@@ -853,6 +891,16 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
                 <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
                 <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
                 <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles_usuario">
+            <EntityTypeMapping TypeName="bonisoft_dbModel.roles_usuario">
+              <MappingFragment StoreEntitySet="roles_usuario">
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Roles_usuario_ID" ColumnName="Roles_usuario_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -870,7 +918,7 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

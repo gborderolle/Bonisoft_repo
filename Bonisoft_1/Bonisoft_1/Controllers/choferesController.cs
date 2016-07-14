@@ -17,7 +17,7 @@ namespace Bonisoft_1.Controllers
         // GET: choferes
         public ActionResult Index()
         {
-            return View(db.choferes.ToList());
+            return View(db.chofer.ToList());
         }
 
         // GET: choferes/Details/5
@@ -27,7 +27,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            chofer chofer = db.choferes.Find(id);
+            chofer chofer = db.chofer.Find(id);
             if (chofer == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace Bonisoft_1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.choferes.Add(chofer);
+                db.chofer.Add(chofer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            chofer chofer = db.choferes.Find(id);
+            chofer chofer = db.chofer.Find(id);
             if (chofer == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            chofer chofer = db.choferes.Find(id);
+            chofer chofer = db.chofer.Find(id);
             if (chofer == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Bonisoft_1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            chofer chofer = db.choferes.Find(id);
-            db.choferes.Remove(chofer);
+            chofer chofer = db.chofer.Find(id);
+            db.chofer.Remove(chofer);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

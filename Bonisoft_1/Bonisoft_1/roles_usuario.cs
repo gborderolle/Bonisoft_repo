@@ -12,15 +12,11 @@ namespace Bonisoft_1
     using System;
     using System.Collections.Generic;
     
-    public partial class usuario
+    public partial class roles_usuario
     {
-        public int Usuario_ID { get; set; }
-        public int Interno_ID { get; set; }
-        public string Usuario1 { get; set; }
-        public string Apellidos { get; set; }
-        public string Nombres { get; set; }
-        public string Clave { get; set; }
-        public System.DateTime Ultima_conexion { get; set; }
-        public int Rol_usuario_ID { get; set; }
+        public int Roles_usuario_ID { get; set; }
+        public string Nombre { get; set; }
+        public int Nivel { get; set; }
+        public string Comentarios { get; set; }
     }
 }

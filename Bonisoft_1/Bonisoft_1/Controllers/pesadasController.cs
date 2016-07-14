@@ -17,7 +17,7 @@ namespace Bonisoft_1.Controllers
         // GET: pesadas
         public ActionResult Index()
         {
-            return View(db.pesadas.ToList());
+            return View(db.pesada.ToList());
         }
 
         // GET: pesadas/Details/5
@@ -27,7 +27,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            pesada pesada = db.pesadas.Find(id);
+            pesada pesada = db.pesada.Find(id);
             if (pesada == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace Bonisoft_1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.pesadas.Add(pesada);
+                db.pesada.Add(pesada);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            pesada pesada = db.pesadas.Find(id);
+            pesada pesada = db.pesada.Find(id);
             if (pesada == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            pesada pesada = db.pesadas.Find(id);
+            pesada pesada = db.pesada.Find(id);
             if (pesada == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Bonisoft_1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            pesada pesada = db.pesadas.Find(id);
-            db.pesadas.Remove(pesada);
+            pesada pesada = db.pesada.Find(id);
+            db.pesada.Remove(pesada);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

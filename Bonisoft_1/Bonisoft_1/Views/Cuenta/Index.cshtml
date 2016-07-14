@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Bonisoft_1.usuario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Usuarios registrados</h2>
+
+<p>
+    @Html.ActionLink("Agregar", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Usuario
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </th>
+        <th>
+            Contraseña
+            @*@Html.DisplayNameFor(model => model.Clave)*@
+        </th>
+        <th>
+            Última conexión
+            @*@Html.DisplayNameFor(model => model.Ultima_conexion)*@
+        </th>
+        <th>
+            Rol
+            @*@Html.DisplayNameFor(model => model.Rol_usuario_ID)*@
+        </th>
+        <th></th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clave)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ultima_conexion)
+        </td>
+        <td>
+            @Html.ActionLink(item.Rol_usuario_ID.ToString(), "Rol_usuario", new { id = item.Rol_usuario_ID })
+        </td>
+        <td>
+            @Html.ActionLink("Modificar", "Edit", new { id = item.Usuario_ID }, null) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.Usuario_ID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Usuario_ID })
+        </td>
+    </tr>
+}
+
+</table>

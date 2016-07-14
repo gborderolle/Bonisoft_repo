@@ -28,6 +28,7 @@
         <EntityTypeShape EntityType="bonisoft_dbModel.viaje_mercaderia" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoft_dbModel.cliente_preferencias_cliente" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoft_dbModel.usuario" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="bonisoft_dbModel.roles_usuario" Width="1.5" PointX="13.25" PointY="4.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

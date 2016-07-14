@@ -17,7 +17,7 @@ namespace Bonisoft_1.Controllers
         // GET: internos
         public ActionResult Index()
         {
-            return PartialView(db.internos.ToList());
+            return PartialView(db.interno.ToList());
         }
 
         // GET: internos/Details/5
@@ -27,7 +27,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            interno interno = db.internos.Find(id);
+            interno interno = db.interno.Find(id);
             if (interno == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace Bonisoft_1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.internos.Add(interno);
+                db.interno.Add(interno);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            interno interno = db.internos.Find(id);
+            interno interno = db.interno.Find(id);
             if (interno == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            interno interno = db.internos.Find(id);
+            interno interno = db.interno.Find(id);
             if (interno == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Bonisoft_1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            interno interno = db.internos.Find(id);
-            db.internos.Remove(interno);
+            interno interno = db.interno.Find(id);
+            db.interno.Remove(interno);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

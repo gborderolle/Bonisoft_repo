@@ -17,7 +17,7 @@ namespace Bonisoft_1.Controllers
         // GET: clientes
         public ActionResult Index()
         {
-            return View(db.clientes.ToList());
+            return View(db.cliente.ToList());
         }
 
         // GET: clientes/Details/5
@@ -27,7 +27,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            cliente cliente = db.clientes.Find(id);
+            cliente cliente = db.cliente.Find(id);
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace Bonisoft_1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.clientes.Add(cliente);
+                db.cliente.Add(cliente);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            cliente cliente = db.clientes.Find(id);
+            cliente cliente = db.cliente.Find(id);
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            cliente cliente = db.clientes.Find(id);
+            cliente cliente = db.cliente.Find(id);
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Bonisoft_1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            cliente cliente = db.clientes.Find(id);
-            db.clientes.Remove(cliente);
+            cliente cliente = db.cliente.Find(id);
+            db.cliente.Remove(cliente);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

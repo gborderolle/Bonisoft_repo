@@ -18,7 +18,7 @@ namespace Bonisoft_1.Controllers
         // GET: personas
         public ActionResult Index()
         {
-            return PartialView(db.personas.ToList());
+            return PartialView(db.persona.ToList());
             //return View(db.personas.ToList());
         }
 
@@ -29,7 +29,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            persona persona = db.personas.Find(id);
+            persona persona = db.persona.Find(id);
             if (persona == null)
             {
                 return HttpNotFound();
@@ -52,7 +52,7 @@ namespace Bonisoft_1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.personas.Add(persona);
+                db.persona.Add(persona);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -67,7 +67,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            persona persona = db.personas.Find(id);
+            persona persona = db.persona.Find(id);
             if (persona == null)
             {
                 return HttpNotFound();
@@ -98,7 +98,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            persona persona = db.personas.Find(id);
+            persona persona = db.persona.Find(id);
             if (persona == null)
             {
                 return HttpNotFound();
@@ -111,8 +111,8 @@ namespace Bonisoft_1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            persona persona = db.personas.Find(id);
-            db.personas.Remove(persona);
+            persona persona = db.persona.Find(id);
+            db.persona.Remove(persona);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -130,7 +130,7 @@ namespace Bonisoft_1.Controllers
 
         public ActionResult Personas_custom()
         {
-            var modelo = from p in db.personas
+            var modelo = from p in db.persona
                          join m1 in db.contacto_medio
                          on p.Contacto_medio_1_ID equals m1.Contacto_medio_ID
                          join m2 in db.contacto_medio

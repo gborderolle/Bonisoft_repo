@@ -1,5 +1,11 @@
 
 function setTabActive(tabID) {
-    $(".sidebar-menu li").removeClass("active");
-    $(".sidebar-menu #" + tabID).addClass("active");
+    $("div .tables").removeClass("box-active");
+    $("div #" + tabID).addClass("box-active");
+
+    var title = $("div #" + tabID + " .info-box-text").text();
+	$("#lblTableActive").text(title);
+
+    var count = $("div #" + tabID + " .info-box-number").text();
+	$("#lblResultados").text(count);
 }

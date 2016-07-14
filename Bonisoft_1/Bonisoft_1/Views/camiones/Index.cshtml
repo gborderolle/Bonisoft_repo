@@ -1,30 +1,24 @@
 ﻿@model IEnumerable<Bonisoft_1.camion>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
 <p>
     @Html.ActionLink("Agregar", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Matricula_camion)
+            Matrícula
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Matricula_zorra)
+            Zorra
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Numero_ejes)
+            Ejes
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Peso_Tara_origen)
+            Peso Tara origen
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Peso_Tara_destino)
+            Peso Tara destino
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Marca)
@@ -33,49 +27,50 @@
             @Html.DisplayNameFor(model => model.Modelo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Comentarios)
+            Peso neto
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Peso_Neto)
+            @Html.DisplayNameFor(model => model.Comentarios)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Matricula_camion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Matricula_zorra)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Numero_ejes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Peso_Tara_origen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Peso_Tara_destino)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Marca)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Modelo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comentarios)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Peso_Neto)
-        </td>
-        <td>
-            @Html.ActionLink("Modificar", "Edit", new { id=item.Camion_ID }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.Camion_ID }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.Camion_ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Matricula_camion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Matricula_zorra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero_ejes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Peso_Tara_origen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Peso_Tara_destino)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Peso_Neto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comentarios)
+            </td>
+            <td>
+                @Html.ActionLink("Modificar", "Edit", new { id = item.Camion_ID }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.Camion_ID }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Camion_ID })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -17,7 +17,7 @@ namespace Bonisoft_1.Controllers
         // GET: viajes
         public ActionResult Index()
         {
-            return PartialView(db.viajes.ToList());
+            return PartialView(db.viaje.ToList());
         }
 
         // GET: viajes/Details/5
@@ -27,7 +27,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            viaje viaje = db.viajes.Find(id);
+            viaje viaje = db.viaje.Find(id);
             if (viaje == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace Bonisoft_1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.viajes.Add(viaje);
+                db.viaje.Add(viaje);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            viaje viaje = db.viajes.Find(id);
+            viaje viaje = db.viaje.Find(id);
             if (viaje == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace Bonisoft_1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            viaje viaje = db.viajes.Find(id);
+            viaje viaje = db.viaje.Find(id);
             if (viaje == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Bonisoft_1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            viaje viaje = db.viajes.Find(id);
-            db.viajes.Remove(viaje);
+            viaje viaje = db.viaje.Find(id);
+            db.viaje.Remove(viaje);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
