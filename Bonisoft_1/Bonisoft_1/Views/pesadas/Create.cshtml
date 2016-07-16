@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Nombre_balanza, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Nombre balanza</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Nombre_balanza, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Nombre_balanza, "", new { @class = "text-danger" })
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Valor_pesada, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Valor pesada</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Valor_pesada, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Valor_pesada, "", new { @class = "text-danger" })

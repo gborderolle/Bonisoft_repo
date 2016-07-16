@@ -38,6 +38,8 @@ namespace Bonisoft_1.Controllers
         // GET: choferes/Create
         public ActionResult Create()
         {
+            ViewBag.ListaPersonas = new SelectList(db.persona, "Persona_ID", "Apellidos");
+            ViewBag.ListaEmpresas = new SelectList(db.empresa, "Empresa_ID", "Nombre_fantasia");
             return View();
         }
 

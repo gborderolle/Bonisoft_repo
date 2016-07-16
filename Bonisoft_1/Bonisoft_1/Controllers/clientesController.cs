@@ -38,6 +38,10 @@ namespace Bonisoft_1.Controllers
         // GET: clientes/Create
         public ActionResult Create()
         {
+            ViewBag.ListaEmpresas = new SelectList(db.empresa, "Empresa_ID", "Nombre_fantasia");
+            ViewBag.ListaPersonas= new SelectList(db.persona, "Persona_ID", "Apellidos");
+            ViewBag.ListaInternos= new SelectList(db.interno, "Interno_ID", "Interno_ID");
+            ViewBag.ListaForma_de_pago = new SelectList(db.forma_de_pago, "Forma_de_pago_ID", "Forma");
             return View();
         }
 

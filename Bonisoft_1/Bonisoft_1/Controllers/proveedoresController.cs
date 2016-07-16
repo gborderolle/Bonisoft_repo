@@ -38,6 +38,7 @@ namespace Bonisoft_1.Controllers
         // GET: proveedores/Create
         public ActionResult Create()
         {
+            ViewBag.ListaEmpresas = new SelectList(db.empresa, "Empresa_ID", "Nombre_fantasia");
             return View();
         }
 

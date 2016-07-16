@@ -38,6 +38,14 @@ namespace Bonisoft_1.Controllers
         // GET: viajes/Create
         public ActionResult Create()
         {
+            ViewBag.ListaForma_de_pago = new SelectList(db.forma_de_pago, "Forma_de_pago_ID", "Forma");
+            ViewBag.ListaCargaDescarga = new SelectList(db.carga_descarga, "Carga_descarga_ID", "Fecha");
+            ViewBag.ListaCargaDescarga = new SelectList(db.carga_descarga, "Carga_descarga_ID", "Fecha");
+            ViewBag.ListaPesadas = new SelectList(db.pesada, "Pesada_ID", "Fecha");
+            ViewBag.ListaPesadas = new SelectList(db.pesada, "Pesada_ID", "Fecha");
+            ViewBag.ListaEmpresas = new SelectList(db.empresa, "Empresa_ID", "Nombre_fantasia");
+            ViewBag.ListaCamiones = new SelectList(db.camion, "Camion_ID", "Marca");
+            ViewBag.ListaChoferes = new SelectList(db.chofer, "Chofer_ID", "Comentarios");
             return View();
         }
 

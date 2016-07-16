@@ -40,6 +40,7 @@ namespace Bonisoft_1.Controllers
         // GET: personas/Create
         public ActionResult Create()
         {
+            ViewBag.ListaMedioContacto = new SelectList(db.contacto_medio, "Contacto_medio_ID", "Telefono_1");
             return View();
         }
 

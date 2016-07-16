@@ -38,6 +38,7 @@ namespace Bonisoft_1.Controllers
         // GET: internos/Create
         public ActionResult Create()
         {
+            ViewBag.ListaPersonas = new SelectList(db.persona, "Persona_ID", "Apellidos");
             return View();
         }
 

@@ -246,15 +246,19 @@
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AjustesController.cs" />
     <Compile Include="Controllers\bancosController.cs" />
+    <Compile Include="Controllers\BaulController.cs" />
     <Compile Include="Controllers\camionesController.cs" />
     <Compile Include="Controllers\carga_descargaController.cs" />
     <Compile Include="Controllers\choferesController.cs" />
     <Compile Include="Controllers\clientesController.cs" />
     <Compile Include="Controllers\cliente_preferencias_clienteController.cs" />
+    <Compile Include="Controllers\ContabilidadController.cs" />
     <Compile Include="Controllers\contacto_medioController.cs" />
     <Compile Include="Controllers\cuadrilla_descargasController.cs" />
     <Compile Include="Controllers\CuentaController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DatosController.cs" />
     <Compile Include="Controllers\descarga_viajeController.cs" />
     <Compile Include="Controllers\empresasController.cs" />
@@ -267,6 +271,8 @@
     <Compile Include="Controllers\proveedoresController.cs" />
     <Compile Include="Controllers\proveedor_cargaController.cs" />
     <Compile Include="Controllers\proveedor_mercaderiaController.cs" />
+    <Compile Include="Controllers\RecordatoriosController.cs" />
+    <Compile Include="Controllers\RegistrosController.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
     <Compile Include="Controllers\viajesController.cs" />
     <Compile Include="Controllers\viaje_mercaderiaController.cs" />
@@ -585,7 +591,7 @@
     <Content Include="Views\usuarios\Edit.cshtml" />
     <Content Include="Views\usuarios\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Datos\Datos.cshtml" />
+    <Content Include="Views\Shared\Datos.cshtml" />
     <Content Include="Views\Shared\Test.cshtml" />
     <Content Include="Views\clientes\_Clientes.cshtml" />
     <Content Include="Views\personas\Personas.cshtml" />
@@ -596,23 +602,26 @@
     <Content Include="Views\internos\Index.cshtml" />
     <Content Include="Views\personas\Contacto_medio.cshtml" />
     <Content Include="Views\personas\Personas_custom.cshtml" />
-    <Content Include="Views\Datos\Personas.cshtml" />
-    <Content Include="Views\Datos\Proveedores.cshtml" />
-    <Content Include="Views\Datos\Viajes.cshtml" />
-    <Content Include="Views\Datos\Camiones.cshtml" />
-    <Content Include="Views\Datos\Choferes.cshtml" />
-    <Content Include="Views\Datos\Cuadrillas_descarga.cshtml" />
-    <Content Include="Views\Datos\Internos.cshtml" />
-    <Content Include="Views\Datos\Contacto_medio.cshtml" />
     <Content Include="Views\Cuenta\Register.cshtml" />
     <Content Include="Views\Cuenta\Login.cshtml" />
     <Content Include="Views\Cuenta\LoggedIn.cshtml" />
     <Content Include="Views\Cuenta\Index.cshtml" />
     <Content Include="Views\Cuenta\Rol_usuario.cshtml" />
+    <Content Include="Views\Shared\Dashboard.cshtml" />
+    <Content Include="Views\Shared\Recordatorios.cshtml" />
+    <Content Include="Views\Shared\Contabilidad.cshtml" />
+    <Content Include="Views\Shared\Baul.cshtml" />
+    <Content Include="Views\Shared\Registros.cshtml" />
+    <Content Include="Views\Shared\Ajustes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\plugins\" />
+    <Folder Include="Views\Ajustes\" />
+    <Folder Include="Views\Baul\" />
+    <Folder Include="Views\Contabilidad\" />
+    <Folder Include="Views\Recordatorios\" />
+    <Folder Include="Views\Registros\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

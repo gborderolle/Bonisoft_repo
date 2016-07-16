@@ -72,7 +72,7 @@
                 @Html.DisplayFor(modelItem => item.Comentarios)
             </td>
             <td>
-                @Html.ActionLink("Modificar", "Edit", new { id = item.Persona_ID }) |
+                @Html.ActionLink("Modificar", "Edit", "Personas", new { id = item.Persona_ID }, null) |
                 @Html.ActionLink("Detalles", "Details", new { id = item.Persona_ID }) |
                 @Html.ActionLink("Eliminar", "Delete", new { id = item.Persona_ID })
             </td>

@@ -71,33 +71,31 @@
                 <ul class="sidebar-menu">
                     <li class="header">Secciones</li>
                     <li class="treeview">
-                        <a href="@Url.Action("Dashboard", "Dashboard")"><i class="fa fa-tachometer"></i> <span>Dashboard</span></a>
+                        <a href="@Url.Action("Dashboard")"><i class="fa fa-tachometer"></i> <span>Dashboard</span></a>
                     </li>
                     <li class="active treeview">
-                        <a href="@Url.Action("Datos", "Datos")"><i class="fa fa-pie-chart"></i> <span>Datos</span></a>
+                        <a href="@Url.Action("Datos")"><i class="fa fa-pie-chart"></i> <span>Datos</span></a>
                     </li>
                     <li class="treeview">
-                        <a href="@Url.Action("Recordatorios", "Recordatorios")"><i class="fa fa-calendar"></i> <span>Recordatorios</span></a>
+                        <a href="@Url.Action("Recordatorios")"><i class="fa fa-calendar"></i> <span>Recordatorios</span></a>
                     </li>
 
                     <li class="treeview">
-                        <a href="@Url.Action("Contabilidad", "Contabilidad")"><i class="fa fa-calculator"></i> <span>Contabilidad</span></a>
+                        <a href="@Url.Action("Contabilidad")"><i class="fa fa-calculator"></i> <span>Contabilidad</span></a>
                     </li>
 
                     <li class="treeview">
-                        <a href="@Url.Action("Baul", "Baul")"><i class="fa fa-suitcase"></i> <span>Baúl</span></a>
+                        <a href="@Url.Action("Baul")"><i class="fa fa-suitcase"></i> <span>Baúl</span></a>
                     </li>
 
                     <li class="treeview">
-                        <a href="@Url.Action("Registros", "Registros")"><i class="fa fa-book"></i> <span>Registros</span></a>
+                        <a href="@Url.Action("Registros")"><i class="fa fa-book"></i> <span>Registros</span></a>
                     </li>
 
                     <li class="treeview">
-                        <a href="@Url.Action("Ajustes", "Ajustes")"><i class="fa fa-cogs"></i> <span>Ajustes</span></a>
+                        <a href="@Url.Action("Ajustes")"><i class="fa fa-cogs"></i> <span>Ajustes</span></a>
                     </li>
-
                 </ul>
-
             </section>
 
             <!-- /.sidebar -->
@@ -363,11 +361,11 @@
                                     {
                                         <text>
                                             <div id="box-9" onclick="setTabActive(this.id)" class="info-box tables">
-                                                <span class="info-box-icon bg-teal"><i class="ion ion-ios-cart-outline"></i></span>
+                                                <span class="info-box-icon bg-teal"><i class="fa fa-user"></i></span>
 
                                                 <div class="info-box-content">
-                                                    <span class="info-box-text">+</span>
-                                                    <span class="info-box-number">@Html.Action("GetTableCount", "Datos", new { table = "Proveedores" })</span>
+                                                    <span class="info-box-text">Personas</span>
+                                                    <span class="info-box-number">@Html.Action("GetTableCount", "Datos", new { table = "Personas" })</span>
                                                 </div>
                                                 <!-- /.info-box-content -->
                                             </div>
