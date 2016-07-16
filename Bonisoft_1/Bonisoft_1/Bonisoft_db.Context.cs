@@ -25,29 +25,29 @@ namespace Bonisoft_1
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<banco> bancoes { get; set; }
-        public virtual DbSet<camion> camions { get; set; }
+        public virtual DbSet<banco> banco { get; set; }
+        public virtual DbSet<camion> camion { get; set; }
         public virtual DbSet<carga_descarga> carga_descarga { get; set; }
-        public virtual DbSet<chofer> chofers { get; set; }
-        public virtual DbSet<cliente> clientes { get; set; }
+        public virtual DbSet<chofer> chofer { get; set; }
+        public virtual DbSet<cliente> cliente { get; set; }
         public virtual DbSet<contacto_medio> contacto_medio { get; set; }
         public virtual DbSet<cuadrilla_descarga> cuadrilla_descarga { get; set; }
         public virtual DbSet<descarga_viaje> descarga_viaje { get; set; }
-        public virtual DbSet<empresa> empresas { get; set; }
+        public virtual DbSet<empresa> empresa { get; set; }
         public virtual DbSet<forma_de_pago> forma_de_pago { get; set; }
-        public virtual DbSet<interno> internoes { get; set; }
+        public virtual DbSet<interno> interno { get; set; }
         public virtual DbSet<lena_tipo> lena_tipo { get; set; }
-        public virtual DbSet<mercaderia> mercaderias { get; set; }
-        public virtual DbSet<persona> personas { get; set; }
-        public virtual DbSet<pesada> pesadas { get; set; }
+        public virtual DbSet<mercaderia> mercaderia { get; set; }
+        public virtual DbSet<persona> persona { get; set; }
+        public virtual DbSet<pesada> pesada { get; set; }
         public virtual DbSet<preferencias_cliente> preferencias_cliente { get; set; }
-        public virtual DbSet<proveedor> proveedors { get; set; }
+        public virtual DbSet<proveedor> proveedor { get; set; }
         public virtual DbSet<proveedor_carga> proveedor_carga { get; set; }
         public virtual DbSet<proveedor_mercaderia> proveedor_mercaderia { get; set; }
-        public virtual DbSet<viaje> viajes { get; set; }
+        public virtual DbSet<viaje> viaje { get; set; }
         public virtual DbSet<viaje_mercaderia> viaje_mercaderia { get; set; }
         public virtual DbSet<cliente_preferencias_cliente> cliente_preferencias_cliente { get; set; }
-        public virtual DbSet<usuario> usuarios { get; set; }
+        public virtual DbSet<usuario> usuario { get; set; }
         public virtual DbSet<roles_usuario> roles_usuario { get; set; }
     }
 }

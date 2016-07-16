@@ -167,3 +167,4 @@ C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_1\Bonisoft_1\bin
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_1\Bonisoft_1\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_1\Bonisoft_1\obj\Debug\Bonisoft_1.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_1\Bonisoft_1\obj\Debug\Bonisoft_1.pdb
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_1\Bonisoft_1\obj\Debug\Bonisoft_1.csprojResolveAssemblyReference.cache

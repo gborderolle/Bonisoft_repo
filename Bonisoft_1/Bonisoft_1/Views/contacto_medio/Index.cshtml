@@ -4,24 +4,25 @@
     ViewBag.Title = "Index";
 }
 
-
-
 <p>
-    @Html.ActionLink("Agregar", "Create")
+    @Html.ActionLink("Agregar", "Create", "Contacto_medio", null, null)
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Direccion)
+            Persona
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Telefono_1)
+            Dirección
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Telefono_2)
+            Tel 1
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Telefono_interno)
+            Tel 2
+        </th>
+        <th>
+            Tel interno
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
@@ -34,6 +35,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.ActionLink(item.Persona_ID.ToString(), "GetPersonaCompleteName", new { id = item.Persona_ID })
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Direccion)
         </td>

@@ -601,7 +601,6 @@
     <Content Include="Views\internos\Edit.cshtml" />
     <Content Include="Views\internos\Index.cshtml" />
     <Content Include="Views\personas\Contacto_medio.cshtml" />
-    <Content Include="Views\personas\Personas_custom.cshtml" />
     <Content Include="Views\Cuenta\Register.cshtml" />
     <Content Include="Views\Cuenta\Login.cshtml" />
     <Content Include="Views\Cuenta\LoggedIn.cshtml" />

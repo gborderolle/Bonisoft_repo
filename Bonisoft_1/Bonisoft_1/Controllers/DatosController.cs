@@ -115,12 +115,6 @@ namespace Bonisoft_1.Controllers
             return PartialView("~/views/Internos/Index.cshtml", db.interno.ToList());
         }
 
-        public PartialViewResult Contacto_medio(int ID)
-        {
-            var model = from p in db.contacto_medio where p.Contacto_medio_ID == ID select p;
-            return PartialView(model.SingleOrDefault());
-        }
-
         public PartialViewResult Pesadas()
         {
             return PartialView("~/views/Pesadas/Index.cshtml", db.pesada.ToList());
@@ -132,6 +126,10 @@ namespace Bonisoft_1.Controllers
         public PartialViewResult Personas()
         {
             return PartialView("~/views/Personas/Index.cshtml", db.persona.ToList());
+        }
+        public PartialViewResult Contacto_medio()
+        {
+            return PartialView("~/views/Contacto_medio/Index.cshtml", db.contacto_medio.ToList());
         }
 
         #endregion 

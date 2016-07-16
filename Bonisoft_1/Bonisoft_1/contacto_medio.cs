@@ -21,5 +21,6 @@ namespace Bonisoft_1
         public string Telefono_interno { get; set; }
         public string Email { get; set; }
         public string Comentarios { get; set; }
+        public int Persona_ID { get; set; }
     }
 }

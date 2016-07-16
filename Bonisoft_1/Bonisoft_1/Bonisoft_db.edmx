@@ -84,6 +84,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Telefono_interno" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Persona_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="cuadrilla_descarga">
           <Key>
@@ -168,8 +169,6 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Nombres" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Fecha_nacimiento" Type="date" Nullable="false" />
           <Property Name="CI" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Contacto_medio_1_ID" Type="int" Nullable="false" />
-          <Property Name="Contacto_medio_2_ID" Type="int" Nullable="false" />
           <Property Name="Ciudad" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Departamento" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
@@ -388,6 +387,7 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
           <Property Name="Telefono_interno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Persona_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="cuadrilla_descarga">
           <Key>
@@ -472,8 +472,6 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
           <Property Name="Nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Fecha_nacimiento" Type="DateTime" Nullable="false" />
           <Property Name="CI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Contacto_medio_1_ID" Type="Int32" Nullable="false" />
-          <Property Name="Contacto_medio_2_ID" Type="Int32" Nullable="false" />
           <Property Name="Ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Departamento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
@@ -685,6 +683,7 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
           <EntitySetMapping Name="contacto_medio">
             <EntityTypeMapping TypeName="bonisoft_dbModel.contacto_medio">
               <MappingFragment StoreEntitySet="contacto_medio">
+                <ScalarProperty Name="Persona_ID" ColumnName="Persona_ID" />
                 <ScalarProperty Name="Contacto_medio_ID" ColumnName="Contacto_medio_ID" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Telefono_1" ColumnName="Telefono_1" />
@@ -784,8 +783,6 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
                 <ScalarProperty Name="Nombres" ColumnName="Nombres" />
                 <ScalarProperty Name="Fecha_nacimiento" ColumnName="Fecha_nacimiento" />
                 <ScalarProperty Name="CI" ColumnName="CI" />
-                <ScalarProperty Name="Contacto_medio_1_ID" ColumnName="Contacto_medio_1_ID" />
-                <ScalarProperty Name="Contacto_medio_2_ID" ColumnName="Contacto_medio_2_ID" />
                 <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
                 <ScalarProperty Name="Departamento" ColumnName="Departamento" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />

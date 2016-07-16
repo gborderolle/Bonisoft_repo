@@ -69,6 +69,7 @@
     <Property Name="Telefono_interno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Persona_ID" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="cuadrilla_descarga">
     <Key>
@@ -153,8 +154,6 @@
     <Property Name="Nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Fecha_nacimiento" Type="DateTime" Nullable="false" />
     <Property Name="CI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Contacto_medio_1_ID" Type="Int32" Nullable="false" />
-    <Property Name="Contacto_medio_2_ID" Type="Int32" Nullable="false" />
     <Property Name="Ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Departamento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />

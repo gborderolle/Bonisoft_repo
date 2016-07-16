@@ -67,6 +67,7 @@
     <EntitySetMapping Name="contacto_medio">
       <EntityTypeMapping TypeName="bonisoft_dbModel.contacto_medio">
         <MappingFragment StoreEntitySet="contacto_medio">
+          <ScalarProperty Name="Persona_ID" ColumnName="Persona_ID" />
           <ScalarProperty Name="Contacto_medio_ID" ColumnName="Contacto_medio_ID" />
           <ScalarProperty Name="Direccion" ColumnName="Direccion" />
           <ScalarProperty Name="Telefono_1" ColumnName="Telefono_1" />
@@ -166,8 +167,6 @@
           <ScalarProperty Name="Nombres" ColumnName="Nombres" />
           <ScalarProperty Name="Fecha_nacimiento" ColumnName="Fecha_nacimiento" />
           <ScalarProperty Name="CI" ColumnName="CI" />
-          <ScalarProperty Name="Contacto_medio_1_ID" ColumnName="Contacto_medio_1_ID" />
-          <ScalarProperty Name="Contacto_medio_2_ID" ColumnName="Contacto_medio_2_ID" />
           <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
           <ScalarProperty Name="Departamento" ColumnName="Departamento" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
