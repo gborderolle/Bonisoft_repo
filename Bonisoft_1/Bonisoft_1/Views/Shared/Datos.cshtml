@@ -402,7 +402,7 @@
                                 <!-- /.col -->
                                 <div class="col-md-2 col-sm-6 col-xs-12" style="padding-right:0;">
 
-                                    @using (Ajax.BeginActionLink("Proveedores", new { page = 1 }, new AjaxOptions()
+                                    @using (Ajax.BeginActionLink("Empresas", new { page = 1 }, new AjaxOptions()
                                     {
                                         HttpMethod = "GET",
                                         UpdateTargetId = "divContent",
@@ -411,11 +411,11 @@
                                     {
                                         <text>
                                             <div id="box-11" onclick="setTabActive(this.id)" class="info-box tables">
-                                                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-people-outline"></i></span>
+                                                <span class="info-box-icon bg-aqua"><i class="fa fa-briefcase"></i></span>
 
                                                 <div class="info-box-content">
-                                                    <span class="info-box-text">+</span>
-                                                    <span class="info-box-number">@Html.Action("GetTableCount", "Datos", new { table = "Proveedores" })</span>
+                                                    <span class="info-box-text">Empresas</span>
+                                                    <span class="info-box-number">@Html.Action("GetTableCount", "Datos", new { table = "Empresas" })</span>
                                                 </div>
                                                 <!-- /.info-box-content -->
                                             </div>
@@ -427,7 +427,7 @@
                                 <!-- /.col -->
                                 <div class="col-md-2 col-sm-6 col-xs-12">
 
-                                    @using (Ajax.BeginActionLink("Proveedores", new { page = 1 }, new AjaxOptions()
+                                    @using (Ajax.BeginActionLink("Bancos", new { page = 1 }, new AjaxOptions()
                                     {
                                         HttpMethod = "GET",
                                         UpdateTargetId = "divContent",
@@ -436,11 +436,11 @@
                                     {
                                         <text>
                                             <div id="box-12" onclick="setTabActive(this.id)" class="info-box tables">
-                                                <span class="info-box-icon bg-navy"><i class="ion ion-ios-people-outline"></i></span>
+                                                <span class="info-box-icon bg-navy"><i class="fa fa-money"></i></span>
 
                                                 <div class="info-box-content">
-                                                    <span class="info-box-text">+</span>
-                                                    <span class="info-box-number">@Html.Action("GetTableCount", "Datos", new { table = "Proveedores" })</span>
+                                                    <span class="info-box-text">Bancos</span>
+                                                    <span class="info-box-number">@Html.Action("GetTableCount", "Datos", new { table = "Bancos" })</span>
                                                 </div>
                                                 <!-- /.info-box-content -->
                                             </div>
@@ -505,17 +505,17 @@
                                                     switch (table.ToLowerInvariant())
                                                     {
                                                         case "proveedores":
-                                                            {
+                                                            {                                                                
                                                                 @Html.Action("Index", "Proveedores", null)
                                                                 break;
                                                             }
                                                         case "clientes":
-                                                            {
+                                                            {                                                                
                                                                 @Html.Action("Index", "Clientes", null)
                                                                 break;
                                                             }
                                                         case "viajes":
-                                                            {
+                                                            {                                                                
                                                                 @Html.Action("Index", "Viajes", null)
                                                                 break;
                                                             }
@@ -542,6 +542,26 @@
                                                         case "camiones":
                                                             {
                                                                 @Html.Action("Index", "Camiones", null)
+                                                                break;
+                                                            }
+                                                        case "personas":
+                                                            {
+                                                                @Html.Action("Index", "personas", null)
+                                                                break;
+                                                            }
+                                                        case "contacto_medio":
+                                                            {
+                                                                @Html.Action("Index", "contacto_medio", null)
+                                                                break;
+                                                            }
+                                                        case "empresas":
+                                                            {
+                                                                @Html.Action("Index", "empresas", null)
+                                                                break;
+                                                            }
+                                                        case "bancos":
+                                                            {
+                                                                @Html.Action("Index", "bancos", null)
                                                                 break;
                                                             }
                                                     }

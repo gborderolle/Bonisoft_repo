@@ -125,5 +125,31 @@ namespace Bonisoft_1.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult GetPersona(int id)
+        {
+            var modelo = from p in db.persona where p.Persona_ID == id select p;
+            var modelo_obj = modelo.SingleOrDefault();
+            if (modelo_obj == null)
+            {
+                return new EmptyResult();
+            }
+
+            ViewBag.PersonaName = modelo_obj.Nombres + " " + modelo_obj.Apellidos;
+            return PartialView(modelo_obj);
+        }
+
+        public ActionResult GetEmpresa(int id)
+        {
+            var modelo = from p in db.empresa where p.Empresa_ID == id select p;
+            var modelo_obj = modelo.SingleOrDefault();
+            if (modelo_obj == null)
+            {
+                return new EmptyResult();
+            }
+
+            ViewBag.EmpresaName = modelo_obj.Nombre_fantasia;
+            return PartialView(modelo_obj);
+        }
     }
 }

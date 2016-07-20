@@ -11,10 +11,11 @@ namespace Bonisoft_1
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class carga_descarga
     {
         public int Carga_descarga_ID { get; set; }
+        [Required]
         public string Lugar { get; set; }
         public System.DateTime Fecha { get; set; }
         public string Comentarios { get; set; }

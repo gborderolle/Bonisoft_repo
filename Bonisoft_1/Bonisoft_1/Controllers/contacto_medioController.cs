@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Bonisoft_1;
+using System.Data.Entity.Validation;
+using System.Data.Entity.Infrastructure;
 
 namespace Bonisoft_1.Controllers
 {
@@ -38,6 +40,7 @@ namespace Bonisoft_1.Controllers
         // GET: contacto_medio/Create
         public ActionResult Create()
         {
+            ViewBag.ListaPersonas = new SelectList(db.persona, "Persona_ID", "Apellidos");
             return View();
         }
 
@@ -46,11 +49,39 @@ namespace Bonisoft_1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Contacto_medio_ID,Direccion,Telefono_1,Telefono_2,Telefono_interno,Email,Comentarios")] contacto_medio contacto_medio)
+        public ActionResult Create([Bind(Include = "Contacto_medio_ID,Persona_ID,Direccion,Telefono_1,Telefono_2,Telefono_interno,Email,Comentarios")] contacto_medio contacto_medio)
         {
             if (ModelState.IsValid)
             {
                 db.contacto_medio.Add(contacto_medio);
+
+                /*
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (DbEntityValidationResult item in ex.EntityValidationErrors)
+                    {
+                        // Get entry
+
+                        DbEntityEntry entry = item.Entry;
+                        string entityTypeName = entry.Entity.GetType().Name;
+
+                        // Display or log error messages
+
+                        foreach (DbValidationError subItem in item.ValidationErrors)
+                        {
+                            string message = string.Format("Error '{0}' occurred in {1} at {2}",
+                                     subItem.ErrorMessage, entityTypeName, subItem.PropertyName);
+                            Console.WriteLine(message);
+                        }
+                    }
+                }
+                */
+
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

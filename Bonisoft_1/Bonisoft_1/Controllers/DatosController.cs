@@ -132,6 +132,15 @@ namespace Bonisoft_1.Controllers
             return PartialView("~/views/Contacto_medio/Index.cshtml", db.contacto_medio.ToList());
         }
 
+        public PartialViewResult Empresas()
+        {
+            return PartialView("~/views/Empresas/Index.cshtml", db.empresa.ToList());
+        }
+        public PartialViewResult Bancos()
+        {
+            return PartialView("~/views/Bancos/Index.cshtml", db.banco.ToList());
+        }
+
         #endregion 
 
 
@@ -227,6 +236,28 @@ namespace Bonisoft_1.Controllers
                     case "camiones":
                         {
                             count = (from p in db.camion select p).Count();
+                            break;
+                        }
+                    case "personas":
+                        {
+                            count = (from p in db.persona select p).Count();
+                            break;
+                        }
+                    case "contacto_medio":
+                        {
+                            count = (from p in db.contacto_medio select p).Count();
+                            break;
+                        }
+
+                    case "empresas":
+                        {
+                            count = (from p in db.empresa select p).Count();
+                            break;
+                        }
+
+                    case "bancos":
+                        {
+                            count = (from p in db.banco select p).Count();
                             break;
                         }
                 }

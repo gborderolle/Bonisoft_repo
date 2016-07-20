@@ -11,11 +11,13 @@ namespace Bonisoft_1
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class persona
     {
         public int Persona_ID { get; set; }
+        [Required]
         public string Apellidos { get; set; }
+        [Required]
         public string Nombres { get; set; }
         public System.DateTime Fecha_nacimiento { get; set; }
         public string CI { get; set; }

@@ -38,6 +38,9 @@ namespace Bonisoft_1.Controllers
         // GET: empresas/Create
         public ActionResult Create()
         {
+            ViewBag.ListaMedioContactos = new SelectList(db.contacto_medio, "Contacto_medio_ID", "Telefono_1");
+            ViewBag.ListaPersonas = new SelectList(db.persona, "Persona_ID", "Apellidos");
+            ViewBag.ListaBancos = new SelectList(db.banco, "Contacto_medio_ID", "Nombre");
             return View();
         }
 

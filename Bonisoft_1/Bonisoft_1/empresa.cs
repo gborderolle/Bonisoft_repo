@@ -11,10 +11,11 @@ namespace Bonisoft_1
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class empresa
     {
         public int Empresa_ID { get; set; }
+        [Required]
         public string Nombre_fantasia { get; set; }
         public string Nombre_real { get; set; }
         public string RUT { get; set; }

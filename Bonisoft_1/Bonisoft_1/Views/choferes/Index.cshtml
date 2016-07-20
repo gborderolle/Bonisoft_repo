@@ -21,10 +21,18 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Persona_ID)
+                @if (ViewBag.PersonaName != null)
+                {
+                @Html.ActionLink((string)ViewBag.PersonaName, "GetPersona", new { id = item.Persona_ID })
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Empresa_pertenece_ID)
+                @*@Html.DisplayFor(modelItem => item.Empresa_pertenece_ID)*@
+
+                @if (ViewBag.PersonaName != null)
+                {
+                    @Html.ActionLink((string)ViewBag.EmpresaName, "GetEmpresa", new { id = item.Empresa_pertenece_ID })
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Comentarios)

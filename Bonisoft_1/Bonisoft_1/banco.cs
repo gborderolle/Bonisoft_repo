@@ -11,10 +11,11 @@ namespace Bonisoft_1
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class banco
     {
         public int Banco_ID { get; set; }
+        [Required]
         public string Nombre { get; set; }
         public string Cuenta { get; set; }
         public string Comentarios { get; set; }
