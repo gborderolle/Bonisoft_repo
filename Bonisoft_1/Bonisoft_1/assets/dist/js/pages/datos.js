@@ -133,3 +133,27 @@ var QueryString = function () {
     }
     return query_string;
 }();
+
+// http://www.itorian.com/2013/02/jquery-ajax-get-and-post-calls-to.html
+$("#txbSearchTable").on('input', function() {
+
+    var url = "/Camiones/Search";
+    var search = $(this).val();
+    $.post(url, { Search: search }, function (data) {
+        $("#msg").html(data);
+    });
+
+    //alert($(this).val());
+
+});
+
+    // maybe check the value is more than n chars or whatever
+    //$.ajax({
+    //    url: <%= Url.Action("txbSearchTable", "Camiones") %> + '/' + this.val(), // path to ajax request
+    //    dataType: "html", // probably
+    //    success: updateContainerWithResults
+    //});
+
+function updateContainerWithResults(data) {
+    $("#resultsContainerElement").html(data);
+}

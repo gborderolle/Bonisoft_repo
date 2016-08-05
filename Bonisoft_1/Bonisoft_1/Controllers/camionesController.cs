@@ -123,5 +123,37 @@ namespace Bonisoft_1.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public PartialViewResult txbSearchTable(string search)
+        {
+            var data = db.camion.Where(obj => obj.Matricula_camion.StartsWith(search) || obj.Matricula_zorra.StartsWith(search)
+            || obj.Numero_ejes.ToString().StartsWith(search) || obj.Peso_Tara_origen.ToString().StartsWith(search)
+            || obj.Peso_Tara_destino.ToString().StartsWith(search) || obj.Marca.StartsWith(search)
+            || obj.Modelo.ToString().StartsWith(search) || obj.Peso_Neto.ToString().StartsWith(search)).ToList();
+            return PartialView(data);
+        }
+
+        [HttpPost]
+        public ActionResult Search(string search)
+        {
+            // http://www.itorian.com/2013/02/jquery-ajax-get-and-post-calls-to.html
+
+            // http://stackoverflow.com/questions/31082741/refresh-partial-view-div-in-mvc-5
+
+            var data = db.camion.Where(obj => obj.Matricula_camion.StartsWith(search) || obj.Matricula_zorra.StartsWith(search)
+            || obj.Numero_ejes.ToString().StartsWith(search) || obj.Peso_Tara_origen.ToString().StartsWith(search)
+            || obj.Peso_Tara_destino.ToString().StartsWith(search) || obj.Marca.StartsWith(search)
+            || obj.Modelo.ToString().StartsWith(search) || obj.Peso_Neto.ToString().StartsWith(search)).ToList();
+            //return PartialView(data);
+
+            //if (!String.IsNullOrEmpty(subs.Name) && !String.IsNullOrEmpty(subs.Address))
+            //    //TODO: Save the data in database
+            //    return "Thank you " + subs.Name + ". Record Saved.";
+            //else
+            //    return "Please complete the form.";
+
+            return PartialView(data);
+
+        }
     }
 }
