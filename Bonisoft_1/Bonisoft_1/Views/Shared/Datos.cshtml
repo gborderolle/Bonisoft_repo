@@ -1,7 +1,7 @@
 ﻿@using Bonisoft_1.Views.Shared
 
 @{
-    ViewBag.Title = "Menú de Datos";
+    ViewBag.Title = "Menú de Datos Fijos";
 }
 
 @section Head_extension
@@ -71,10 +71,10 @@
                 <ul class="sidebar-menu">
                     <li class="header">Secciones</li>
                     <li class="treeview">
-                        <a href="@Url.Action("Dashboard")"><i class="fa fa-tachometer"></i> <span>Dashboard</span></a>
+                        <a href="@Url.Action("Dashboard")"><i class="fa fa-tachometer"></i> <span>Datos Dinámicos</span></a>
                     </li>
                     <li class="active treeview">
-                        <a href="@Url.Action("Datos")"><i class="fa fa-pie-chart"></i> <span>Datos</span></a>
+                        <a href="@Url.Action("Datos")"><i class="fa fa-pie-chart"></i> <span>Datos Fijos</span></a>
                     </li>
                     <li class="treeview">
                         <a href="@Url.Action("Recordatorios")"><i class="fa fa-calendar"></i> <span>Recordatorios</span></a>
@@ -84,12 +84,12 @@
                         <a href="@Url.Action("Contabilidad")"><i class="fa fa-calculator"></i> <span>Contabilidad</span></a>
                     </li>
 
-                    <li class="treeview">
+                    @*<li class="treeview">
                         <a href="@Url.Action("Baul")"><i class="fa fa-suitcase"></i> <span>Baúl</span></a>
-                    </li>
+                    </li>*@
 
                     <li class="treeview">
-                        <a href="@Url.Action("Registros")"><i class="fa fa-book"></i> <span>Registros</span></a>
+                        <a href="@Url.Action("Registros")"><i class="fa fa-book"></i> <span>Registros de log</span></a>
                     </li>
 
                     <li class="treeview">
@@ -186,6 +186,7 @@
                                     <!-- /.info-box -->
                                 </div>
                                 <!-- /.col -->
+
                                 <!-- fix for small devices only -->
                                 <div class="clearfix visible-sm-block"></div>
 
