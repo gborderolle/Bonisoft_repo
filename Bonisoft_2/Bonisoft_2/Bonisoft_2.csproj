@@ -250,6 +250,7 @@
     <Content Include="assets\bootstrap\js\bootstrap.js" />
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="assets\bootstrap\js\npm.js" />
+    <Content Include="assets\dist\css\Dashboard.css" />
     <Content Include="assets\dist\css\Datos.css" />
     <Content Include="assets\dist\css\Datos.min.css" />
     <Content Include="assets\dist\css\Datos_2.css" />
