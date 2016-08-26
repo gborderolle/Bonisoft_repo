@@ -22,6 +22,7 @@ namespace Bonisoft_2.User_Controls
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
+                grdCuadrillasCount.Value = context.cuadrilla_descarga.Count().ToString();
                 if (context.cuadrilla_descarga.Count() > 0)
                 {
                     gridSample.DataSource = context.cuadrilla_descarga.ToList();
@@ -44,7 +45,7 @@ namespace Bonisoft_2.User_Controls
                     gridSample.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
                     gridSample.Rows[0].Cells[0].Font.Bold = true;
                     //set No Results found to the new added cell
-                    gridSample.Rows[0].Cells[0].Text = "NO RESULT FOUND!";
+                    gridSample.Rows[0].Cells[0].Text = "No hay registros";
                 }
             }
         }

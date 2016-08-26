@@ -287,4 +287,5 @@
                         <SortedDescendingHeaderStyle BackColor="#4870BE" />
 
         </asp:GridView>
+        <asp:HiddenField ClientIDMode="Static" ID="grdClientesCount" runat="server" />
 

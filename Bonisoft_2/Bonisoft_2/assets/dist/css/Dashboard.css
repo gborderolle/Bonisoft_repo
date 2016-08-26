@@ -1,5 +1,8 @@
 .info-box{
     cursor: pointer;
+    border-style: solid;
+    border-width: thin;
+    border-color: darkgray;
 }
 
 div .tables {

@@ -46,7 +46,7 @@ namespace Bonisoft_2.Pages
                     gridSample.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
                     gridSample.Rows[0].Cells[0].Font.Bold = true;
                     //set No Results found to the new added cell
-                    gridSample.Rows[0].Cells[0].Text = "NO RESULT FOUND!";
+                    gridSample.Rows[0].Cells[0].Text = "No hay registros";
                 }
             }
         }

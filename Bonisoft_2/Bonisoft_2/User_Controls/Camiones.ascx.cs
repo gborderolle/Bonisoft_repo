@@ -22,6 +22,7 @@ namespace Bonisoft_2.Pages
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
+                grdCamionesCount.Value = context.camiones.Count().ToString();
                 if (context.camiones.Count() > 0)
                 {
                     gridSample.DataSource = context.camiones.ToList();
@@ -44,7 +45,7 @@ namespace Bonisoft_2.Pages
                     gridSample.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
                     gridSample.Rows[0].Cells[0].Font.Bold = true;
                     //set No Results found to the new added cell
-                    gridSample.Rows[0].Cells[0].Text = "NO RESULT FOUND!";
+                    gridSample.Rows[0].Cells[0].Text = "No hay registros";
                 }
             }
         }

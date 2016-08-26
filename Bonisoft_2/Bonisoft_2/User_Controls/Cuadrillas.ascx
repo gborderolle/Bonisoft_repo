@@ -66,3 +66,4 @@
                         <SortedDescendingHeaderStyle BackColor="#4870BE" />
 
         </asp:GridView>
+        <asp:HiddenField ClientIDMode="Static" ID="grdCuadrillasCount" runat="server" />

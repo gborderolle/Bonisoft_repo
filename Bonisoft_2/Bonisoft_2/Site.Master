@@ -23,9 +23,12 @@
     <!-- Jquery-UI -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 
-     <!-- SCRIPTS -->
+     <!-- GENERAL SCRIPTS -->
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+
+    </asp:ContentPlaceHolder>
 
 </head>
 <body>
@@ -50,6 +53,10 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
+
+         <asp:ContentPlaceHolder ID="SubbodyContent" runat="server">
+
+        </asp:ContentPlaceHolder>
 
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">

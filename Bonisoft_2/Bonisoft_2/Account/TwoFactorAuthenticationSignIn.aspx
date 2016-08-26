@@ -20,7 +20,7 @@
         <section>
             <h4>Enter verification code</h4>
             <hr />
-            <asp:HiddenField ID="SelectedProvider" runat="server" />
+            <asp:HiddenField ClientIDMode="Static" ID="SelectedProvider" runat="server" />
             <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                 <p class="text-danger">
                     <asp:Literal runat="server" ID="FailureText" />

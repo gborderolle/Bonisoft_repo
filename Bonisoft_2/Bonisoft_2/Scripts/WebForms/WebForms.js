@@ -47,7 +47,7 @@ var __pendingCallbacks = new Array();
 var __synchronousCallBackIndex = -1;
 function WebForm_DoCallback(eventTarget, eventArgument, eventCallback, context, errorCallback, useAsync) {
     var postData = __theFormPostData +
-                "__CALLBACKID=" + WebForm_EncodeCallback(eventTarget) +
+                "__CALLBACKID="+ WebForm_EncodeCallback(eventTarget) +
                 "&__CALLBACKPARAM=" + WebForm_EncodeCallback(eventArgument);
     if (theForm["__EVENTVALIDATION"]) {
         postData += "&__EVENTVALIDATION=" + WebForm_EncodeCallback(theForm["__EVENTVALIDATION"].value);

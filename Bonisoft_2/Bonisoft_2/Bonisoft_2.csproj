@@ -312,8 +312,8 @@
     <Content Include="assets\dist\js\app.min.js" />
     <Content Include="assets\dist\js\demo.js" />
     <Content Include="assets\dist\js\pages\Dashboard.js" />
-    <Content Include="assets\dist\js\pages\Dashboard2.js" />
-    <Content Include="assets\dist\js\pages\Datos.js" />
+    <Content Include="assets\dist\js\pages\Dashboard2_OLD.js" />
+    <Content Include="assets\dist\js\pages\Dashboard_OLD.js" />
     <Content Include="assets\dist\js\pages\login.js" />
     <Content Include="assets\plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="assets\plugins\bootstrap-slider\slider.css" />
