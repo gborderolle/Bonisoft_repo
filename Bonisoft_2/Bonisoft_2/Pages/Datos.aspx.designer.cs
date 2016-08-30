@@ -10,7 +10,7 @@
 namespace Bonisoft_2.Pages {
     
     
-    public partial class Dashboard {
+    public partial class Datos {
         
         /// <summary>
         /// Clientes control.

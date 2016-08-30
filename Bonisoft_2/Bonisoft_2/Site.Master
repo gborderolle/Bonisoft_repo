@@ -17,14 +17,14 @@
      <!-- STYLES -->
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">--%>
+    <link rel="stylesheet" href="/assets/dist/css/font-awesome.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Jquery-UI -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+    <%--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">--%>
+    <link rel="stylesheet" href="/assets/dist/css/jquery-ui.css">
 
-     <!-- GENERAL SCRIPTS -->
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
 
@@ -54,6 +54,11 @@
             </Scripts>
         </asp:ScriptManager>
 
+        
+     <!-- GENERAL SCRIPTS -->
+    <%--<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>--%>
+    <script src="/assets/dist/js/jquery-ui.js"></script>
+
          <asp:ContentPlaceHolder ID="SubbodyContent" runat="server">
 
         </asp:ContentPlaceHolder>
@@ -71,12 +76,12 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Inicio</a></li>
-                        <li><a runat="server" href="~/About">Dashboard</a></li>
-                        <li><a runat="server" href="~/Contact">Base de Datos</a></li>
-                        <li><a runat="server" href="~/Contact">Recordatorios</a></li>
-                        <li><a runat="server" href="~/Contact">Contabilidad</a></li>
-                        <li><a runat="server" href="~/Contact">Registros</a></li>
-                        <li><a runat="server" href="~/Contact">Ajustes</a></li>
+                        <li><a runat="server" href="/Pages/Viajes">Viajes</a></li>
+                        <li><a runat="server" href="/Pages/Datos">Base de Datos</a></li>
+                        <li><a runat="server" href="/Pages/Recordatorios">Recordatorios</a></li>
+                        <li><a runat="server" href="/Pages/Contabilidad">Contabilidad</a></li>
+                        <li><a runat="server" href="/Pages/Registros">Registros</a></li>
+                        <li><a runat="server" href="/Pages/Ajustes">Ajustes</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>

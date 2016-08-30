@@ -31,7 +31,7 @@
                                         CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-refresh"></span></asp:LinkButton>
                                 </FooterTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Dueno_nombre">
+                            <asp:TemplateField HeaderText="Dueño nombre">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Dueno_nombre") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -42,7 +42,7 @@
                                    <asp:TextBox ID="txbNew1" runat="server" CssClass=""   MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField>   
-                            <asp:TemplateField HeaderText="Dueno_contacto">
+                            <asp:TemplateField HeaderText="Dueño contacto">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Dueno_contacto") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -53,7 +53,7 @@
                                    <asp:TextBox ID="txbNew2" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="Encargado_lena_nombre">
+                            <asp:TemplateField HeaderText="Encargado leña nombre">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Encargado_lena_nombre") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -64,7 +64,7 @@
                                    <asp:TextBox ID="txbNew3" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="Encargado_lena_contacto">
+                            <asp:TemplateField HeaderText="Encargado leña contacto">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("Encargado_lena_contacto") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -75,7 +75,7 @@
                                    <asp:TextBox ID="txbNew4" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="Encargado_pagos_nombre">
+                            <asp:TemplateField HeaderText="Encargado pagos nombre">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb5" runat="server" Text='<%# Bind("Encargado_pagos_nombre") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -86,7 +86,7 @@
                                    <asp:TextBox ID="txbNew5" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="Encargado_pagos_contacto">
+                            <asp:TemplateField HeaderText="Encargado pagos contacto">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb6" runat="server" Text='<%# Bind("Encargado_pagos_contacto") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -97,7 +97,7 @@
                                    <asp:TextBox ID="txbNew6" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="Supervisor_lena_nombre">
+                            <asp:TemplateField HeaderText="Superv leña nombre">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb7" runat="server" Text='<%# Bind("Supervisor_lena_nombre") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -108,7 +108,7 @@
                                    <asp:TextBox ID="txbNew7" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="Supervisor_lena_contacto">
+                            <asp:TemplateField HeaderText="Superv leña contacto">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb8" runat="server" Text='<%# Bind("Supervisor_lena_contacto") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -119,7 +119,7 @@
                                    <asp:TextBox ID="txbNew8" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="Contacto_nuestro_ID">
+                            <asp:TemplateField HeaderText="Contacto nuestro">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb9" runat="server" Text='<%# Bind("Contacto_nuestro_ID") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -130,7 +130,7 @@
                                    <asp:TextBox ID="txbNew9" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="Forma_de_pago_ID">
+                            <asp:TemplateField HeaderText="Forma de pago">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb10" runat="server" Text='<%# Bind("Forma_de_pago_ID") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -141,7 +141,7 @@
                                    <asp:TextBox ID="txbNew10" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="Periodos_liquidacion">
+                            <asp:TemplateField HeaderText="Períodos de liq">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb11" runat="server" Text='<%# Bind("Periodos_liquidacion") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -152,7 +152,7 @@
                                    <asp:TextBox ID="txbNew11" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="Fechas_pago">
+                            <asp:TemplateField HeaderText="Fechas de pago">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb12" runat="server" Text='<%# Bind("Fechas_pago") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -163,7 +163,7 @@
                                    <asp:TextBox ID="txbNew12" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
-                           <asp:TemplateField HeaderText="Nombre_fantasia">
+                           <asp:TemplateField HeaderText="Nombre fantasía">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb13" runat="server" Text='<%# Bind("Nombre_fantasia") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -174,7 +174,7 @@
                                    <asp:TextBox ID="txbNew13" runat="server" CssClass=""   MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField>   
-                            <asp:TemplateField HeaderText="Nombre_real">
+                            <asp:TemplateField HeaderText="Nombre real">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb14" runat="server" Text='<%# Bind("Nombre_real") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -196,7 +196,7 @@
                                    <asp:TextBox ID="txbNew15" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="Direccion">
+                            <asp:TemplateField HeaderText="Dir">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb16" runat="server" Text='<%# Bind("Direccion") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -207,7 +207,7 @@
                                    <asp:TextBox ID="txbNew16" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="Telefono_1">
+                            <asp:TemplateField HeaderText="Tel 1">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb17" runat="server" Text='<%# Bind("Telefono_1") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -218,7 +218,7 @@
                                    <asp:TextBox ID="txbNew17" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="Telefono_2">
+                            <asp:TemplateField HeaderText="Tel 2">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb18" runat="server" Text='<%# Bind("Telefono_2") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
@@ -251,7 +251,7 @@
                                    <asp:TextBox ID="txbNew20" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
-                            <asp:TemplateField HeaderText="Departamento">
+                            <asp:TemplateField HeaderText="Depto">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb21" runat="server" Text='<%# Bind("Departamento") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Bonisoft_2.Pages
 {
-    public partial class Dashboard : System.Web.UI.Page
+    public partial class Datos : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

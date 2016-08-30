@@ -31,7 +31,7 @@
                                         CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-refresh"></span></asp:LinkButton>
                                 </FooterTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Empresa_ID">
+                            <asp:TemplateField HeaderText="Empresa">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Empresa_ID") %>' CssClass="" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
