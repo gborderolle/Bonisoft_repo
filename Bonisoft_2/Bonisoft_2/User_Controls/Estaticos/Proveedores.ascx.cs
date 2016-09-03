@@ -22,7 +22,7 @@ namespace Bonisoft_2.User_Controls
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                grdProveedoresCount.Value = context.proveedores.Count().ToString();
+                hdnProveedoresCount.Value = context.proveedores.Count().ToString();
                 if (context.proveedores.Count() > 0)
                 {
                     gridSample.DataSource = context.proveedores.ToList();
@@ -69,7 +69,8 @@ namespace Bonisoft_2.User_Controls
                 TextBox txb7 = row.FindControl("txbNew7") as TextBox;
                 TextBox txb8 = row.FindControl("txbNew8") as TextBox;
                 TextBox txb9 = row.FindControl("txbNew9") as TextBox;
-                TextBox txb10 = row.FindControl("txb10") as TextBox;
+                TextBox txb10 = row.FindControl("txbNew10") as TextBox;
+                if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null && txb9 != null && txb10 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
@@ -91,6 +92,10 @@ namespace Bonisoft_2.User_Controls
                     }
                 }
             }
+            else
+            {
+                BindGrid();
+            }
         }
 
         protected void gridSample_RowEditing(object sender, GridViewEditEventArgs e)
@@ -106,16 +111,16 @@ namespace Bonisoft_2.User_Controls
         protected void gridSample_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             GridViewRow row = gridSample.Rows[e.RowIndex];
-            TextBox txb1 = row.FindControl("txbNew1") as TextBox;
-            TextBox txb2 = row.FindControl("txbNew2") as TextBox;
-            TextBox txb3 = row.FindControl("txbNew3") as TextBox;
-            TextBox txb4 = row.FindControl("txbNew4") as TextBox;
-            TextBox txb5 = row.FindControl("txbNew5") as TextBox;
-            TextBox txb6 = row.FindControl("txbNew6") as TextBox;
-            TextBox txb7 = row.FindControl("txbNew7") as TextBox;
-            TextBox txb8 = row.FindControl("txbNew8") as TextBox;
-            TextBox txb9 = row.FindControl("txbNew9") as TextBox;
-            TextBox txb10 = row.FindControl("txbNew10") as TextBox;
+            TextBox txb1 = row.FindControl("txb1") as TextBox;
+            TextBox txb2 = row.FindControl("txb2") as TextBox;
+            TextBox txb3 = row.FindControl("txb3") as TextBox;
+            TextBox txb4 = row.FindControl("txb4") as TextBox;
+            TextBox txb5 = row.FindControl("txb5") as TextBox;
+            TextBox txb6 = row.FindControl("txb6") as TextBox;
+            TextBox txb7 = row.FindControl("txb7") as TextBox;
+            TextBox txb8 = row.FindControl("txb8") as TextBox;
+            TextBox txb9 = row.FindControl("txb9") as TextBox;
+            TextBox txb10 = row.FindControl("txb10") as TextBox;
             if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null && txb9 != null && txb10 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -151,6 +156,18 @@ namespace Bonisoft_2.User_Controls
                 BindGrid();
                 lblMessage.Text = "Borrado correctamente.";
             }
+        }
+
+        protected void PageDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Recupera la fila.
+            GridViewRow pagerRow = gridSample.BottomPagerRow;
+            // Recupera el control DropDownList...
+            DropDownList pageList = (DropDownList)pagerRow.Cells[0].FindControl("PageDropDownList");
+            //// Se Establece la propiedad PageIndex para visualizar la página seleccionada...
+            gridSample.PageIndex = pageList.SelectedIndex;
+            //Quita el mensaje de información si lo hubiera...
+            lblMessage.Text = "";
         }
 
     }

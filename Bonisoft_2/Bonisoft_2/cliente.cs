@@ -14,7 +14,6 @@ namespace Bonisoft_2
     
     public partial class cliente
     {
-        public int Cliente_ID { get; set; }
         public string Dueno_nombre { get; set; }
         public string Dueno_contacto { get; set; }
         public string Encargado_lena_nombre { get; set; }
@@ -37,5 +36,6 @@ namespace Bonisoft_2
         public string Ciudad { get; set; }
         public string Departamento { get; set; }
         public string Comentarios { get; set; }
+        public int cliente_ID { get; set; }
     }
 }

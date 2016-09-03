@@ -22,21 +22,21 @@ namespace Bonisoft_2.User_Controls {
         protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
-        /// gridSample control.
+        /// gridCuadrilla control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridSample;
+        protected global::System.Web.UI.WebControls.GridView gridCuadrilla;
         
         /// <summary>
-        /// grdCuadrillasCount control.
+        /// hdnCuadrillasCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField grdCuadrillasCount;
+        protected global::System.Web.UI.WebControls.HiddenField hdnCuadrillasCount;
     }
 }

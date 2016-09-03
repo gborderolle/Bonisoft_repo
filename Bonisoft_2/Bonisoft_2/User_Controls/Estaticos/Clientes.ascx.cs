@@ -22,7 +22,7 @@ namespace Bonisoft_2.User_Controls
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                grdClientesCount.Value = context.clientes.Count().ToString();
+                hdnClientesCount.Value = context.clientes.Count().ToString();
                 if (context.clientes.Count() > 0)
                 {
                     gridSample.DataSource = context.clientes.ToList();
@@ -118,6 +118,10 @@ namespace Bonisoft_2.User_Controls
                     }
                 }
             }
+            else
+            {
+                BindGrid();
+            }
         }
 
         protected void gridSample_RowEditing(object sender, GridViewEditEventArgs e)
@@ -161,7 +165,7 @@ namespace Bonisoft_2.User_Controls
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
                     int cliente_ID = Convert.ToInt32(gridSample.DataKeys[e.RowIndex].Value);
-                    cliente obj = context.clientes.First(x => x.Cliente_ID == cliente_ID);
+                    cliente obj = context.clientes.First(x => x.cliente_ID == cliente_ID);
                     obj.Dueno_nombre = txb1.Text;
                     obj.Dueno_contacto = txb2.Text;
                     obj.Encargado_lena_nombre = txb3.Text;
@@ -198,12 +202,24 @@ namespace Bonisoft_2.User_Controls
             int cliente_ID = Convert.ToInt32(gridSample.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                cliente obj = context.clientes.First(x => x.Cliente_ID == cliente_ID);
+                cliente obj = context.clientes.First(x => x.cliente_ID == cliente_ID);
                 context.clientes.Remove(obj);
                 context.SaveChanges();
                 BindGrid();
                 lblMessage.Text = "Borrado correctamente.";
             }
+        }
+
+        protected void PageDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Recupera la fila.
+            GridViewRow pagerRow = gridSample.BottomPagerRow;
+            // Recupera el control DropDownList...
+            DropDownList pageList = (DropDownList)pagerRow.Cells[0].FindControl("PageDropDownList");
+            //// Se Establece la propiedad PageIndex para visualizar la página seleccionada...
+            gridSample.PageIndex = pageList.SelectedIndex;
+            //Quita el mensaje de información si lo hubiera...
+            lblMessage.Text = "";
         }
 
     }

@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bonisoft_2.Pages {
+namespace Bonisoft_2.User_Controls.Configuracion {
     
     
-    public partial class Choferes {
+    public partial class Variedad {
         
         /// <summary>
         /// lblMessage control.
@@ -22,12 +22,21 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
-        /// gridSample control.
+        /// gridVariedades control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridSample;
+        protected global::System.Web.UI.WebControls.GridView gridVariedades;
+        
+        /// <summary>
+        /// hdnVariedadCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnVariedadCount;
     }
 }

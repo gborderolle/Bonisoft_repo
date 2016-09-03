@@ -22,7 +22,7 @@ namespace Bonisoft_2.Pages
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                grdCamionesCount.Value = context.camiones.Count().ToString();
+                hdnCamionesCount.Value = context.camiones.Count().ToString();
                 if (context.camiones.Count() > 0)
                 {
                     gridSample.DataSource = context.camiones.ToList();
@@ -91,6 +91,10 @@ namespace Bonisoft_2.Pages
                     }
                 }
             }
+            else
+            {
+                BindGrid();
+            }
         }
 
         protected void gridSample_RowEditing(object sender, GridViewEditEventArgs e)
@@ -150,6 +154,18 @@ namespace Bonisoft_2.Pages
                 BindGrid();
                 lblMessage.Text = "Borrado correctamente.";
             }
+        }
+
+        protected void PageDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Recupera la fila.
+            GridViewRow pagerRow = gridSample.BottomPagerRow;
+            // Recupera el control DropDownList...
+            DropDownList pageList = (DropDownList)pagerRow.Cells[0].FindControl("PageDropDownList");
+            //// Se Establece la propiedad PageIndex para visualizar la página seleccionada...
+            gridSample.PageIndex = pageList.SelectedIndex;
+            //Quita el mensaje de información si lo hubiera...
+            lblMessage.Text = "";
         }
 
     }

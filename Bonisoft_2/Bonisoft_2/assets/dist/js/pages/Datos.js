@@ -1,12 +1,50 @@
 
 $(document).ready(function () {
 
-    var clientes_count = $("#divContent #grdClientesCount").val();
-    var proveedores_count = $("#divContent #grdProveedoresCount").val();
-    var cuadrillas_count = $("#divContent #grdCuadrillasCount").val();
-    var camiones_count = $("#divContent #grdCamionesCount").val();
-    var choferes_count = $("#divContent #grdChoferesCount").val();
-    var internos_count = $("#divContent #grdInternosCount").val();
+    updateCounts();
+    
+    $(".info-box").hover(function () {
+        $(this).css("border-color", "#57c8da");
+        $(this).parent().find("span").css("color", "#57c8da");
+    }, function () {
+        $(this).css("border-color", "darkgray");
+        $(this).parent().find("span").css("color", "black");
+    });
+
+    $(".datepicker").datepicker();
+});
+
+$(document).on('click', ".info-box", function () {
+    show_grid($(this));
+
+    $(".info-box").css("border-color", "darkgray");
+    $(".info-box").parent().find("span").css("color", "black");
+
+    $(this).css("border-color", "#57c8da");
+    $(this).parent().find("span").css("color", "#57c8da");
+});
+
+var prm = Sys.WebForms.PageRequestManager.getInstance();
+if (prm !== null) {
+    prm.add_endRequest(function (sender, e) {
+        if (sender._postBackSettings.panelsToUpdate !== null) {
+            updateCounts();
+        }
+    });
+};
+
+function updateCounts() {
+    var clientes_count = $("#divContent #hdnClientesCount").val();
+    var proveedores_count = $("#divContent #hdnProveedoresCount").val();
+    var cuadrillas_count = $("#divContent #hdnCuadrillasCount").val();
+    var camiones_count = $("#divContent #hdnCamionesCount").val();
+    var choferes_count = $("#divContent #hdnChoferesCount").val();
+    var internos_count = $("#divContent #hdnInternosCount").val();
+
+    var tipos_count = $("#divContent #hdnTiposCount").val();
+    var variedades_count = $("#divContent #hdnVariedadCount").val();
+    var formas_count = $("#divContent #hdnFormaCount").val();
+
 
     $("#divBoxClientes .info-box-number").text(clientes_count);
     $("#divBoxProveedores .info-box-number").text(proveedores_count);
@@ -15,52 +53,21 @@ $(document).ready(function () {
     $("#divBoxChoferes .info-box-number").text(choferes_count);
     $("#divBoxInternos .info-box-number").text(internos_count);
 
-    ;
-
-    $(".info-box").hover(function () {
-        $(this).css("border-color", "#57c8da");
-        //$(this).stop().animate({ marginTop: "-1px" }, 200);
-        $(this).parent().find("span").css("color", "#57c8da");
-    }, function () {
-        $(this).css("border-color", "darkgray");
-        //$(this).parent().find("*").stop().animate({ marginTop: "1px", opacity: 1 }, 300);
-        $(this).parent().find("span").css("color", "black");
-    });
-
-    //#region Reflection effect
-    // http://www.adrianpelletier.com/2009/05/31/create-a-realistic-hover-effect-with-jquery-ui/
-
-    /*
-    // Animate buttons, move reflection and fade
-    $(".info-box").hover(function () {
-        $(this).stop().animate({ marginTop: "-4px" }, 200);
-        $(this).parent().find("*").stop().animate({ marginTop: "5px", opacity: 1 }, 200);
-    }, function () {
-        $(this).stop().animate({ marginTop: "0px" }, 300);
-        $(this).parent().find("*").stop().animate({ marginTop: "1px", opacity: 1 }, 300);
-    });
-
-    /* =Shadow Nav
-    -------------------------------------------------------------------------- */
-
-    //#endregion 
-
-
-});
-
-$(".info-box").mouseover(function () {
-    $(".info-box").css("background-color", "yellow");
-});
-
-$(document).on('click', ".info-box", function () {
-    show_grid($(this));
-});
-
+    $("#divBoxTipos .info-box-number").text(tipos_count);
+    $("#divBoxVariedades .info-box-number").text(variedades_count);
+    $("#divBoxFormas .info-box-number").text(formas_count);
+}
 
 function show_grid(element) {
     //Find the box parent
     var table_name = element.find(".info-box-text").text();
     if (table_name !== null) {
+
+        var firstWord = table_name.substr(0, table_name.indexOf(' '));
+        if (firstWord !== null && firstWord != "") {
+            table_name = firstWord;
+        }
+
         $(".divTables").hide();
         switch (table_name.toLowerCase()) {
             case "clientes": {
@@ -87,6 +94,18 @@ function show_grid(element) {
                 $("#divInternos").show();
                 break;
             }
+            case "tipos": {
+                $("#divTipos").show();
+                break;
+            }
+            case "variedades": {
+                $("#divVariedades").show();
+                break;
+            }
+            case "formas": {
+                $("#divFormas").show();
+                break;
+            }
         }
     }
 
@@ -111,7 +130,7 @@ function sidebar_action() {
 	$("body").toggleClass('sidebar-collapse').toggleClass('sidebar-expanded-on-hover');
 }
 
-function box_collapse (element) {
+function box_collapse(element) {
       //Find the box parent
       var box = element.parents(".box").first();
       //Find the body and the footer
@@ -189,3 +208,4 @@ $("#txbSearchTable").on('input', function() {
 function updateContainerWithResults(data) {
     $("#resultsContainerElement").html(data);
 }
+

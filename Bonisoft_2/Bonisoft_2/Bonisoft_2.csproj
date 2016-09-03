@@ -250,9 +250,10 @@
     <Content Include="assets\bootstrap\js\bootstrap.js" />
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="assets\bootstrap\js\npm.js" />
-    <Content Include="assets\dist\css\Dashboard.css" />
     <Content Include="assets\dist\css\Datos.css" />
-    <Content Include="assets\dist\css\Datos.min.css" />
+    <Content Include="assets\dist\css\font-awesome.css" />
+    <Content Include="assets\dist\css\InfoBoxes.min.css" />
+    <Content Include="assets\dist\css\jquery-ui.css" />
     <Content Include="assets\dist\css\Login.css" />
     <Content Include="assets\dist\css\skins\skin-black-light.css" />
     <Content Include="assets\dist\css\skins\skin-black-light.min.css" />
@@ -311,7 +312,9 @@
     <Content Include="assets\dist\js\app.js" />
     <Content Include="assets\dist\js\app.min.js" />
     <Content Include="assets\dist\js\demo.js" />
-    <Content Include="assets\dist\js\pages\Dashboard.js" />
+    <Content Include="assets\dist\js\jquery-ui.js" />
+    <Content Include="assets\dist\js\moment.js" />
+    <Content Include="assets\dist\js\pages\Datos.js" />
     <Content Include="assets\dist\js\pages\Dashboard2_OLD.js" />
     <Content Include="assets\dist\js\pages\Dashboard_OLD.js" />
     <Content Include="assets\dist\js\pages\login.js" />
@@ -1143,19 +1146,19 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Pages\Ajustes.aspx" />
     <Content Include="Pages\Bancos.aspx" />
-    <Content Include="Pages\Contabilidad.aspx" />
-    <Content Include="Pages\Dashboard_configuracion.aspx" />
+    <Content Include="Pages\Datos_configuracion.aspx" />
+    <Content Include="Pages\Gridview.aspx" />
     <Content Include="Pages\Recordatorios.aspx" />
     <Content Include="Pages\Registros.aspx" />
     <Content Include="Pages\Viajes.aspx" />
+    <Content Include="SYS_NOTES.txt" />
     <Content Include="User_Controls\Configuracion\Bancos.ascx" />
+    <Content Include="User_Controls\Configuracion\Formas_pago.ascx" />
+    <Content Include="User_Controls\Configuracion\Variedad.ascx" />
+    <Content Include="User_Controls\Dinamicos\Mercaderias.ascx" />
+    <Content Include="User_Controls\Configuracion\Tipo_lena.ascx" />
     <Content Include="User_Controls\Estaticos\Camiones.ascx" />
-    <Content Include="Pages\Camiones.aspx" />
-    <Content Include="Pages\Choferes.aspx" />
-    <Content Include="Pages\Clientes.aspx" />
-    <Content Include="Pages\Cuadrillas_descarga.aspx" />
     <Content Include="Pages\Datos.aspx" />
-    <Content Include="Pages\Proveedores.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1397,6 +1400,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Extras.cs" />
     <Compile Include="Helpers\TestController.cs" />
     <Compile Include="Helpers\WebFormController.cs" />
     <Compile Include="interno.cs">
@@ -1423,19 +1427,19 @@
     <Compile Include="Pages\Bancos.aspx.designer.cs">
       <DependentUpon>Bancos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Contabilidad.aspx.cs">
-      <DependentUpon>Contabilidad.aspx</DependentUpon>
+    <Compile Include="Pages\Datos_configuracion.aspx.cs">
+      <DependentUpon>Datos_configuracion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Contabilidad.aspx.designer.cs">
-      <DependentUpon>Contabilidad.aspx</DependentUpon>
+    <Compile Include="Pages\Datos_configuracion.aspx.designer.cs">
+      <DependentUpon>Datos_configuracion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Dashboard_configuracion.aspx.cs">
-      <DependentUpon>Dashboard_configuracion.aspx</DependentUpon>
+    <Compile Include="Pages\Gridview.aspx.cs">
+      <DependentUpon>Gridview.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Dashboard_configuracion.aspx.designer.cs">
-      <DependentUpon>Dashboard_configuracion.aspx</DependentUpon>
+    <Compile Include="Pages\Gridview.aspx.designer.cs">
+      <DependentUpon>Gridview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Recordatorios.aspx.cs">
       <DependentUpon>Recordatorios.aspx</DependentUpon>
@@ -1458,12 +1462,43 @@
     <Compile Include="Pages\Viajes.aspx.designer.cs">
       <DependentUpon>Viajes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="roles_usuario.cs">
+      <DependentUpon>Bonisoft_db.tt</DependentUpon>
+    </Compile>
     <Compile Include="User_Controls\Configuracion\Bancos.ascx.cs">
       <DependentUpon>Bancos.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="User_Controls\Configuracion\Bancos.ascx.designer.cs">
       <DependentUpon>Bancos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\Configuracion\Formas_pago.ascx.cs">
+      <DependentUpon>Formas_pago.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User_Controls\Configuracion\Formas_pago.ascx.designer.cs">
+      <DependentUpon>Formas_pago.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\Configuracion\Variedad.ascx.cs">
+      <DependentUpon>Variedad.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User_Controls\Configuracion\Variedad.ascx.designer.cs">
+      <DependentUpon>Variedad.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\Dinamicos\Mercaderias.ascx.cs">
+      <DependentUpon>Mercaderias.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User_Controls\Dinamicos\Mercaderias.ascx.designer.cs">
+      <DependentUpon>Mercaderias.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\Configuracion\Tipo_lena.ascx.cs">
+      <DependentUpon>Tipo_lena.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User_Controls\Configuracion\Tipo_lena.ascx.designer.cs">
+      <DependentUpon>Tipo_lena.ascx</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\Estaticos\Camiones.ascx.cs">
       <DependentUpon>Camiones.ascx</DependentUpon>
@@ -1472,47 +1507,12 @@
     <Compile Include="User_Controls\Estaticos\Camiones.ascx.designer.cs">
       <DependentUpon>Camiones.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Camiones.aspx.cs">
-      <DependentUpon>Camiones.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Camiones.aspx.designer.cs">
-      <DependentUpon>Camiones.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Choferes.aspx.cs">
-      <DependentUpon>Choferes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Choferes.aspx.designer.cs">
-      <DependentUpon>Choferes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Clientes.aspx.cs">
-      <DependentUpon>Clientes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Clientes.aspx.designer.cs">
-      <DependentUpon>Clientes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Cuadrillas_descarga.aspx.cs">
-      <DependentUpon>Cuadrillas_descarga.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Cuadrillas_descarga.aspx.designer.cs">
-      <DependentUpon>Cuadrillas_descarga.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Datos.aspx.cs">
       <DependentUpon>Datos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Datos.aspx.designer.cs">
       <DependentUpon>Datos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Proveedores.aspx.cs">
-      <DependentUpon>Proveedores.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Proveedores.aspx.designer.cs">
-      <DependentUpon>Proveedores.aspx</DependentUpon>
     </Compile>
     <Compile Include="pesada.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
@@ -1528,9 +1528,6 @@
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
     <Compile Include="proveedor_mercaderia.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="roles_usuario.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
@@ -1586,6 +1583,9 @@
     <Compile Include="usuario.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
+    <Compile Include="variedad.cs">
+      <DependentUpon>Bonisoft_db.tt</DependentUpon>
+    </Compile>
     <Compile Include="viaje.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
@@ -1604,7 +1604,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="assets\images\" />
     <Folder Include="Controllers\" />
-    <Folder Include="User_Controls\Dinamicos\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>

@@ -12,13 +12,10 @@ namespace Bonisoft_2
     using System;
     using System.Collections.Generic;
     
-    public partial class pesada
+    public partial class variedad
     {
-        public string Lugar { get; set; }
-        public System.DateTime Fecha { get; set; }
-        public string Nombre_balanza { get; set; }
-        public decimal Valor_pesada { get; set; }
+        public int Variedad_ID { get; set; }
+        public string Nombre { get; set; }
         public string Comentarios { get; set; }
-        public int pesada_ID { get; set; }
     }
 }

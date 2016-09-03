@@ -37,6 +37,6 @@ namespace Bonisoft_2.User_Controls {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField grdProveedoresCount;
+        protected global::System.Web.UI.WebControls.HiddenField hdnProveedoresCount;
     }
 }

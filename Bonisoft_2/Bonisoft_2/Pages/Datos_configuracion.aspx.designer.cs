@@ -19,16 +19,16 @@ namespace Bonisoft_2.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Bonisoft_2.User_Controls.Internos Tipos;
+        protected global::Bonisoft_2.User_Controls.Configuracion.Tipo_lena Tipos;
         
         /// <summary>
-        /// Mercaderias control.
+        /// Variedades control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Bonisoft_2.User_Controls.Internos Mercaderias;
+        protected global::Bonisoft_2.User_Controls.Configuracion.Variedad Variedades;
         
         /// <summary>
         /// Formas control.
@@ -37,6 +37,6 @@ namespace Bonisoft_2.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Bonisoft_2.User_Controls.Internos Formas;
+        protected global::Bonisoft_2.User_Controls.Configuracion.Formas_pago Formas;
     }
 }

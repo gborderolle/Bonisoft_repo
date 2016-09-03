@@ -1,9 +1,9 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Internos.ascx.cs" Inherits="Bonisoft_2.User_Controls.Internos" %>
-<h2>Lista de Internos</h2>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Mercaderias.ascx.cs" Inherits="Bonisoft_2.User_Controls.Configuracion.Mercaderias" %>
+<h2>Lista de Mercaderías</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridSample" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table"
-    DataKeyNames="Interno_ID"
+<asp:GridView ID="gridMercaderias" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
+    DataKeyNames="Lena_tipo_ID"
     OnRowCommand="gridSample_RowCommand"
     OnRowCancelingEdit="gridSample_RowCancelingEdit"
     OnRowEditing="gridSample_RowEditing"
@@ -13,7 +13,7 @@
 
     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
     <AlternatingRowStyle BackColor="#EFF3FB" />
-    <EditRowStyle BackColor="#ffffcc" />
+    <EditRowStyle BackColor="Red" />
     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
     <EmptyDataTemplate>
         ¡No hay clientes con los parámetros seleccionados!  
@@ -58,96 +58,63 @@
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Apellidos">
+        <asp:TemplateField HeaderText="Variedad">
             <EditItemTemplate>
-                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Apellidos") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:DropDownList ID="ddlVariedad1" runat="server" CssClass="form-control" />
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Apellidos") %>'></asp:Label>
+                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Variedad_ID") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:DropDownList ID="ddlVariedad2" runat="server" CssClass="form-control" />
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Nombres">
+        <asp:TemplateField HeaderText="Medida">
             <EditItemTemplate>
-                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Nombres") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Medida") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Nombres") %>'></asp:Label>
+                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Medida") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Fecha nac">
+        <asp:TemplateField HeaderText="Tipo leña">
             <EditItemTemplate>
-                <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Fecha_nacimiento") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                <asp:DropDownList ID="ddlTipo1" runat="server" CssClass="form-control" />
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Fecha_nacimiento") %>'></asp:Label>
+                <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Tipo_ID") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                <asp:DropDownList ID="ddlTipo2" runat="server" CssClass="form-control" />
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="CI">
+        <asp:TemplateField HeaderText="Fecha de corte">
             <EditItemTemplate>
-                <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("CI") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("Fecha_corte") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl4" runat="server" Text='<%# Bind("CI") %>'></asp:Label>
+                <asp:Label ID="lbl4" runat="server" Text='<%# Bind("Fecha_corte") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:TextBox ID="txbNew4" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="F ingreso">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb5" runat="server" Text='<%# Bind("Fecha_ingreso") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl5" runat="server" Text='<%# Bind("Fecha_ingreso") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew5" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="F egreso">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb6" runat="server" Text='<%# Bind("Fecha_egreso") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl6" runat="server" Text='<%# Bind("Fecha_egreso") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew6" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Cargo">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb7" runat="server" Text='<%# Bind("Cargo") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl7" runat="server" Text='<%# Bind("Cargo") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew7" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txbNew4" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Comentarios">
             <EditItemTemplate>
-                <asp:TextBox ID="txb8" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb5" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl8" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
+                <asp:Label ID="lbl5" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:TextBox ID="txbNew8" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txbNew5" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
 
     </Columns>
 
 </asp:GridView>
-<asp:HiddenField ClientIDMode="Static" ID="hdnInternosCount" runat="server" />
+<asp:HiddenField ClientIDMode="Static" ID="hdnMercaderiasCount" runat="server" />

@@ -30,6 +30,7 @@
     <EntitySetMapping Name="choferes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.chofer">
         <MappingFragment StoreEntitySet="chofer">
+          <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
           <ScalarProperty Name="Chofer_ID" ColumnName="Chofer_ID" />
           <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
           <ScalarProperty Name="Nombres" ColumnName="Nombres" />
@@ -41,6 +42,7 @@
     <EntitySetMapping Name="cuadrilla_descarga">
       <EntityTypeMapping TypeName="bonisoft_dbModel.cuadrilla_descarga">
         <MappingFragment StoreEntitySet="cuadrilla_descarga">
+          <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
           <ScalarProperty Name="Cuadrilla_descarga_ID" ColumnName="Cuadrilla_descarga_ID" />
           <ScalarProperty Name="Empresa_ID" ColumnName="Empresa_ID" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
@@ -107,7 +109,7 @@
     <EntitySetMapping Name="pesadas">
       <EntityTypeMapping TypeName="bonisoft_dbModel.pesada">
         <MappingFragment StoreEntitySet="pesada">
-          <ScalarProperty Name="Pesada_ID" ColumnName="Pesada_ID" />
+          <ScalarProperty Name="pesada_ID" ColumnName="pesada_ID" />
           <ScalarProperty Name="Lugar" ColumnName="Lugar" />
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
           <ScalarProperty Name="Nombre_balanza" ColumnName="Nombre_balanza" />
@@ -179,6 +181,7 @@
     <EntitySetMapping Name="viajes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
         <MappingFragment StoreEntitySet="viaje">
+          <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
           <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
           <ScalarProperty Name="Precio_compra_por_tonelada" ColumnName="Precio_compra_por_tonelada" />
           <ScalarProperty Name="Precio_valor_total" ColumnName="Precio_valor_total" />
@@ -214,19 +217,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="roles_usuario">
-      <EntityTypeMapping TypeName="bonisoft_dbModel.roles_usuario">
-        <MappingFragment StoreEntitySet="roles_usuario">
-          <ScalarProperty Name="Roles_usuario_ID" ColumnName="Roles_usuario_ID" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Nivel" ColumnName="Nivel" />
-          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="clientes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.cliente">
         <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="cliente_ID" ColumnName="cliente_ID" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
           <ScalarProperty Name="Departamento" ColumnName="Departamento" />
           <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
@@ -249,7 +243,25 @@
           <ScalarProperty Name="Encargado_lena_nombre" ColumnName="Encargado_lena_nombre" />
           <ScalarProperty Name="Dueno_contacto" ColumnName="Dueno_contacto" />
           <ScalarProperty Name="Dueno_nombre" ColumnName="Dueno_nombre" />
-          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles_usuario">
+      <EntityTypeMapping TypeName="bonisoft_dbModel.roles_usuario">
+        <MappingFragment StoreEntitySet="roles_usuario">
+          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+          <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Roles_usuario_ID" ColumnName="Roles_usuario_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="variedad">
+      <EntityTypeMapping TypeName="bonisoft_dbModel.variedad">
+        <MappingFragment StoreEntitySet="variedad">
+          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Variedad_ID" ColumnName="Variedad_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

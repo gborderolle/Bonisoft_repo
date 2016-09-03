@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bonisoft_2.Pages {
+namespace Bonisoft_2.User_Controls.Configuracion {
     
     
-    public partial class Camiones {
+    public partial class Tipo_lena {
         
         /// <summary>
         /// lblMessage control.
@@ -22,12 +22,21 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
-        /// gridSample control.
+        /// gridTipos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridSample;
+        protected global::System.Web.UI.WebControls.GridView gridTipos;
+        
+        /// <summary>
+        /// hdnTiposCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnTiposCount;
     }
 }

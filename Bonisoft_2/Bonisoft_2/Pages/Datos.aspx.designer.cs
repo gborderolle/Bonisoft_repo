@@ -13,6 +13,15 @@ namespace Bonisoft_2.Pages {
     public partial class Datos {
         
         /// <summary>
+        /// upClientes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upClientes;
+        
+        /// <summary>
         /// Clientes control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Bonisoft_2.User_Controls.Clientes Clientes;
+        
+        /// <summary>
+        /// upProveedores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upProveedores;
         
         /// <summary>
         /// Proveedores control.
@@ -31,6 +49,15 @@ namespace Bonisoft_2.Pages {
         protected global::Bonisoft_2.User_Controls.Proveedores Proveedores;
         
         /// <summary>
+        /// upCuadrillas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upCuadrillas;
+        
+        /// <summary>
         /// Cuadrillas control.
         /// </summary>
         /// <remarks>
@@ -38,6 +65,15 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Bonisoft_2.User_Controls.Cuadrillas Cuadrillas;
+        
+        /// <summary>
+        /// upCamiones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upCamiones;
         
         /// <summary>
         /// Camiones control.
@@ -49,6 +85,15 @@ namespace Bonisoft_2.Pages {
         protected global::Bonisoft_2.Pages.Camiones1 Camiones;
         
         /// <summary>
+        /// upChoferes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upChoferes;
+        
+        /// <summary>
         /// Choferes2 control.
         /// </summary>
         /// <remarks>
@@ -56,6 +101,15 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Bonisoft_2.User_Controls.Choferes2 Choferes2;
+        
+        /// <summary>
+        /// upInternos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upInternos;
         
         /// <summary>
         /// Internos control.

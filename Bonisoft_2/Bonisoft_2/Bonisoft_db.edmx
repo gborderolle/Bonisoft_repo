@@ -38,12 +38,13 @@
           <Property Name="Nombres" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Empresa_pertenece_ID" Type="int" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Empresa_esCliente" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="cliente">
           <Key>
-            <PropertyRef Name="Cliente_ID" />
+            <PropertyRef Name="cliente_ID" />
           </Key>
-          <Property Name="Cliente_ID" Type="int" Nullable="false" />
+          <Property Name="cliente_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Dueno_nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Dueno_contacto" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Encargado_lena_nombre" Type="varchar" MaxLength="100" Nullable="false" />
@@ -81,9 +82,10 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Key>
             <PropertyRef Name="Cuadrilla_descarga_ID" />
           </Key>
-          <Property Name="Cuadrilla_descarga_ID" Type="int" Nullable="false" />
+          <Property Name="Cuadrilla_descarga_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Empresa_ID" Type="int" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Empresa_esCliente" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="descarga_viaje">
           <Key>
@@ -108,7 +110,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Key>
             <PropertyRef Name="Interno_ID" />
           </Key>
-          <Property Name="Interno_ID" Type="int" Nullable="false" />
+          <Property Name="Interno_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Apellidos" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Nombres" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Fecha_nacimiento" Type="date" Nullable="false" />
@@ -122,7 +124,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Key>
             <PropertyRef Name="Lena_tipo_ID" />
           </Key>
-          <Property Name="Lena_tipo_ID" Type="int" Nullable="false" />
+          <Property Name="Lena_tipo_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tipo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
@@ -130,7 +132,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Key>
             <PropertyRef Name="Mercaderia_ID" />
           </Key>
-          <Property Name="Mercaderia_ID" Type="int" Nullable="false" />
+          <Property Name="Mercaderia_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Variedad_ID" Type="int" Nullable="false" />
           <Property Name="Medida" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Tipo_ID" Type="int" Nullable="false" />
@@ -139,9 +141,9 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
         </EntityType>
         <EntityType Name="pesada">
           <Key>
-            <PropertyRef Name="Pesada_ID" />
+            <PropertyRef Name="pesada_ID" />
           </Key>
-          <Property Name="Pesada_ID" Type="int" Nullable="false" />
+          <Property Name="pesada_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Lugar" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="Nombre_balanza" Type="varchar" MaxLength="100" Nullable="false" />
@@ -164,7 +166,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Key>
             <PropertyRef Name="Proveedor_ID" />
           </Key>
-          <Property Name="Proveedor_ID" Type="int" Nullable="false" />
+          <Property Name="Proveedor_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre_fantasia" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Nombre_real" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="RUT" Type="varchar" MaxLength="100" Nullable="false" />
@@ -192,16 +194,11 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Proveedor_ID" Type="int" Nullable="false" />
           <Property Name="Mercaderia_ID" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'def.bonisoft_db.roles_usuario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="roles_usuario">
           <Key>
             <PropertyRef Name="Roles_usuario_ID" />
-            <PropertyRef Name="Nombre" />
-            <PropertyRef Name="Nivel" />
-            <PropertyRef Name="Comentarios" />
           </Key>
-          <Property Name="Roles_usuario_ID" Type="int" Nullable="false" />
+          <Property Name="Roles_usuario_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Nivel" Type="int" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
@@ -210,7 +207,7 @@ warning 6002: The table/view 'def.bonisoft_db.roles_usuario' does not have a pri
           <Key>
             <PropertyRef Name="Usuario_ID" />
           </Key>
-          <Property Name="Usuario_ID" Type="int" Nullable="false" />
+          <Property Name="Usuario_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Interno_ID" Type="int" Nullable="false" />
           <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Apellidos" Type="varchar" MaxLength="100" Nullable="false" />
@@ -219,11 +216,19 @@ warning 6002: The table/view 'def.bonisoft_db.roles_usuario' does not have a pri
           <Property Name="Ultima_conexion" Type="date" Nullable="false" />
           <Property Name="Rol_usuario_ID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="variedad">
+          <Key>
+            <PropertyRef Name="Variedad_ID" />
+          </Key>
+          <Property Name="Variedad_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
         <EntityType Name="viaje">
           <Key>
             <PropertyRef Name="Viaje_ID" />
           </Key>
-          <Property Name="Viaje_ID" Type="int" Nullable="false" />
+          <Property Name="Viaje_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Precio_compra_por_tonelada" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="Precio_valor_total" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="Importe_viaje" Type="decimal" Precision="10" Scale="0" Nullable="false" />
@@ -239,6 +244,7 @@ warning 6002: The table/view 'def.bonisoft_db.roles_usuario' does not have a pri
           <Property Name="Camion_ID" Type="int" Nullable="false" />
           <Property Name="Chofer_ID" Type="int" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Empresa_esCliente" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="viaje_mercaderia">
           <Key>
@@ -264,7 +270,9 @@ warning 6002: The table/view 'def.bonisoft_db.roles_usuario' does not have a pri
           <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="proveedor_mercaderia" EntityType="Self.proveedor_mercaderia" Schema="bonisoft_db" store:Type="Tables" />
+          <EntitySet Name="roles_usuario" EntityType="Self.roles_usuario" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="bonisoft_db" store:Type="Tables" />
+          <EntitySet Name="variedad" EntityType="Self.variedad" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="viaje" EntityType="Self.viaje" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="viaje_mercaderia" EntityType="Self.viaje_mercaderia" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="cliente_preferencias_cliente" EntityType="Self.cliente_preferencias_cliente" store:Type="Tables" store:Schema="bonisoft_db">
@@ -272,14 +280,6 @@ warning 6002: The table/view 'def.bonisoft_db.roles_usuario' does not have a pri
 `cliente_preferencias_cliente`.`Cliente_ID`, 
 `cliente_preferencias_cliente`.`Cliente_Preferencias_cliente_ID`
 FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="roles_usuario" EntityType="Self.roles_usuario" store:Type="Tables" store:Schema="bonisoft_db">
-            <DefiningQuery>SELECT
-`roles_usuario`.`Roles_usuario_ID`, 
-`roles_usuario`.`Nombre`, 
-`roles_usuario`.`Nivel`, 
-`roles_usuario`.`Comentarios`
-FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -319,6 +319,7 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
           <Property Name="Nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Empresa_pertenece_ID" Type="Int32" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Empresa_esCliente" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="cuadrilla_descarga">
           <Key>
@@ -327,6 +328,7 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
           <Property Name="Cuadrilla_descarga_ID" Type="Int32" Nullable="false" />
           <Property Name="Empresa_ID" Type="Int32" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Empresa_esCliente" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="descarga_viaje">
           <Key>
@@ -382,14 +384,14 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
         </EntityType>
         <EntityType Name="pesada">
           <Key>
-            <PropertyRef Name="Pesada_ID" />
+            <PropertyRef Name="pesada_ID" />
           </Key>
-          <Property Name="Pesada_ID" Type="Int32" Nullable="false" />
           <Property Name="Lugar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" />
           <Property Name="Nombre_balanza" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Valor_pesada" Type="Decimal" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pesada_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="preferencias_cliente">
           <Key>
@@ -468,6 +470,7 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
           <Property Name="Camion_ID" Type="Int32" Nullable="false" />
           <Property Name="Chofer_ID" Type="Int32" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Empresa_esCliente" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="viaje_mercaderia">
           <Key>
@@ -484,18 +487,6 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
           </Key>
           <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
           <Property Name="Cliente_Preferencias_cliente_ID" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="roles_usuario">
-          <Key>
-            <PropertyRef Name="Roles_usuario_ID" />
-            <PropertyRef Name="Nombre" />
-            <PropertyRef Name="Nivel" />
-            <PropertyRef Name="Comentarios" />
-          </Key>
-          <Property Name="Roles_usuario_ID" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Nivel" Type="Int32" Nullable="false" />
-          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityContainer Name="bonisoft_dbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="camiones" EntityType="Self.camion" />
@@ -516,14 +507,14 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
           <EntitySet Name="viajes" EntityType="Self.viaje" />
           <EntitySet Name="viaje_mercaderia" EntityType="Self.viaje_mercaderia" />
           <EntitySet Name="cliente_preferencias_cliente" EntityType="Self.cliente_preferencias_cliente" />
-          <EntitySet Name="roles_usuario" EntityType="Self.roles_usuario" />
           <EntitySet Name="clientes" EntityType="bonisoft_dbModel.cliente" />
+          <EntitySet Name="roles_usuario" EntityType="bonisoft_dbModel.roles_usuario" />
+          <EntitySet Name="variedad" EntityType="bonisoft_dbModel.variedad" />
         </EntityContainer>
         <EntityType Name="cliente">
           <Key>
-            <PropertyRef Name="Cliente_ID" />
+            <PropertyRef Name="cliente_ID" />
           </Key>
-          <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
           <Property Name="Dueno_nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Dueno_contacto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Encargado_lena_nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -545,6 +536,24 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
           <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Ciudad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Departamento" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="cliente_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="roles_usuario">
+          <Key>
+            <PropertyRef Name="Roles_usuario_ID" />
+          </Key>
+          <Property Name="Roles_usuario_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Nivel" Type="Int32" Nullable="false" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="variedad">
+          <Key>
+            <PropertyRef Name="Variedad_ID" />
+          </Key>
+          <Property Name="Variedad_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
@@ -582,6 +591,7 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
           <EntitySetMapping Name="choferes">
             <EntityTypeMapping TypeName="bonisoft_dbModel.chofer">
               <MappingFragment StoreEntitySet="chofer">
+                <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
                 <ScalarProperty Name="Chofer_ID" ColumnName="Chofer_ID" />
                 <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
                 <ScalarProperty Name="Nombres" ColumnName="Nombres" />
@@ -593,6 +603,7 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
           <EntitySetMapping Name="cuadrilla_descarga">
             <EntityTypeMapping TypeName="bonisoft_dbModel.cuadrilla_descarga">
               <MappingFragment StoreEntitySet="cuadrilla_descarga">
+                <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
                 <ScalarProperty Name="Cuadrilla_descarga_ID" ColumnName="Cuadrilla_descarga_ID" />
                 <ScalarProperty Name="Empresa_ID" ColumnName="Empresa_ID" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
@@ -659,7 +670,7 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
           <EntitySetMapping Name="pesadas">
             <EntityTypeMapping TypeName="bonisoft_dbModel.pesada">
               <MappingFragment StoreEntitySet="pesada">
-                <ScalarProperty Name="Pesada_ID" ColumnName="Pesada_ID" />
+                <ScalarProperty Name="pesada_ID" ColumnName="pesada_ID" />
                 <ScalarProperty Name="Lugar" ColumnName="Lugar" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="Nombre_balanza" ColumnName="Nombre_balanza" />
@@ -731,6 +742,7 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
           <EntitySetMapping Name="viajes">
             <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
               <MappingFragment StoreEntitySet="viaje">
+                <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
                 <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
                 <ScalarProperty Name="Precio_compra_por_tonelada" ColumnName="Precio_compra_por_tonelada" />
                 <ScalarProperty Name="Precio_valor_total" ColumnName="Precio_valor_total" />
@@ -766,19 +778,10 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="roles_usuario">
-            <EntityTypeMapping TypeName="bonisoft_dbModel.roles_usuario">
-              <MappingFragment StoreEntitySet="roles_usuario">
-                <ScalarProperty Name="Roles_usuario_ID" ColumnName="Roles_usuario_ID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
-                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="clientes">
             <EntityTypeMapping TypeName="bonisoft_dbModel.cliente">
               <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="cliente_ID" ColumnName="cliente_ID" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
                 <ScalarProperty Name="Departamento" ColumnName="Departamento" />
                 <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
@@ -801,7 +804,25 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
                 <ScalarProperty Name="Encargado_lena_nombre" ColumnName="Encargado_lena_nombre" />
                 <ScalarProperty Name="Dueno_contacto" ColumnName="Dueno_contacto" />
                 <ScalarProperty Name="Dueno_nombre" ColumnName="Dueno_nombre" />
-                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles_usuario">
+            <EntityTypeMapping TypeName="bonisoft_dbModel.roles_usuario">
+              <MappingFragment StoreEntitySet="roles_usuario">
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Roles_usuario_ID" ColumnName="Roles_usuario_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="variedad">
+            <EntityTypeMapping TypeName="bonisoft_dbModel.variedad">
+              <MappingFragment StoreEntitySet="variedad">
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Variedad_ID" ColumnName="Variedad_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -819,8 +840,8 @@ FROM `roles_usuario` AS `roles_usuario`</DefiningQuery>
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

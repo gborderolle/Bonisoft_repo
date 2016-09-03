@@ -2,80 +2,94 @@
     <h2>Lista de Bancos</h2>
 
     <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-    <asp:GridView ID="gridSample" runat="server" AutoGenerateColumns="False" ShowFooter="True"
-                        CssClass="grid" OnRowCommand="gridSample_RowCommand" DataKeyNames="Cuadrilla_descarga_ID" CellPadding="4" ForeColor="#333333"
-                        GridLines="None" OnRowCancelingEdit="gridSample_RowCancelingEdit"
-                        OnRowEditing="gridSample_RowEditing" OnRowUpdating="gridSample_RowUpdating" onrowdatabound="gridSample_RowDataBound" 
-                        onrowdeleting="gridSample_RowDeleting">
+    <asp:GridView ID="gridSample" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" 
+        OnRowCommand="gridSample_RowCommand" 
+        DataKeyNames="Cuadrilla_descarga_ID"
+        OnRowCancelingEdit="gridSample_RowCancelingEdit"
+        OnRowEditing="gridSample_RowEditing" 
+        OnRowUpdating="gridSample_RowUpdating" 
+        onrowdatabound="gridSample_RowDataBound" 
+        onrowdeleting="gridSample_RowDeleting">
 
-                        <AlternatingRowStyle BackColor="White" />
-                        <Columns>
+<HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />        <AlternatingRowStyle BackColor="#EFF3FB" />
+        <EditRowStyle BackColor="#ffffcc" />
+        <EmptyDataRowStyle forecolor="Red" CssClass="table table-bordered" />
+        <emptydatatemplate>
+            ¡No hay clientes con los parámetros seleccionados!  
+        </emptydatatemplate>           
+
+        <%--Paginador...--%>        
+        <pagertemplate>
+        <div class="row" style="margin-top:20px;">
+            <div class="col-lg-1" style="text-align:right;">
+                <h5><asp:label id="MessageLabel" text="Ir a la pág." runat="server" /></h5>
+            </div>
+             <div class="col-lg-1" style="text-align:left;">
+                <asp:dropdownlist id="PageDropDownList" Width="50px" autopostback="true" onselectedindexchanged="PageDropDownList_SelectedIndexChanged" runat="server" CssClass="form-control" /></h3>
+            </div>
+            <div class="col-lg-10" style="text-align:right;">
+                <h3><asp:label id="CurrentPageLabel" runat="server" CssClass="label label-warning" /></h3>
+            </div>
+        </div>        
+        </pagertemplate>         
+        
+                                <Columns>
                             <asp:TemplateField HeaderText="">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" ToolTip="Edit" 
+                                    <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" ToolTip="Modificar" 
                                         CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
                                     <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete"
-                                        ToolTip="Delete" OnClientClick='return confirm("Are you sure you want to delete this entry?");'
+                                        ToolTip="Borrar" OnClientClick='return confirm("¿Está seguro que desea eliminar este registro?");'
                                         CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></asp:LinkButton>
                                 </ItemTemplate>
                                 <EditItemTemplate>
-                                    <asp:LinkButton ID="lnkInsert" runat="server" Text="" CommandName="Update" ToolTip="Save"
+                                    <asp:LinkButton ID="lnkInsert" runat="server" Text="" CommandName="Update" ToolTip="Guardar"
                                         CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-floppy-disk"></span></asp:LinkButton>
-                                    <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="Cancel" ToolTip="Cancel"
-                                        CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-refresh"></span></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="Cancel" ToolTip="Cancelar"
+                                        CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
                                 </EditItemTemplate>
                                 <FooterTemplate>
-                                    <asp:LinkButton ID="lnkInsert" runat="server" Text=""  ValidationGroup="newGrp" CommandName="InsertNew" ToolTip="Add New Entry"
+                                    <asp:LinkButton ID="lnkInsert" runat="server" Text=""  ValidationGroup="newGrp" CommandName="InsertNew" ToolTip="Nuevo"
                                         CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-plus"></span></asp:LinkButton>
-                                    <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew" ToolTip="Cancel"
-                                        CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-refresh"></span></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew" ToolTip="Cancelar"
+                                        CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
                                 </FooterTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Nombre">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Nombre") %>' CssClass="" MaxLength="30"></asp:TextBox>
+                                    <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Nombre") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                   <asp:TextBox ID="txbNew1" runat="server" CssClass="" MaxLength="30"></asp:TextBox>
+                                   <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField>   
                             <asp:TemplateField HeaderText="Cuenta">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Cuenta") %>' CssClass="" MaxLength="30"></asp:TextBox>
+                                    <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Cuenta") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Cuenta") %>'></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                   <asp:TextBox ID="txbNew2" runat="server" CssClass=""   MaxLength="30"></asp:TextBox>
+                                   <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control"   MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField>   
                             <asp:TemplateField HeaderText="Comentarios">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="" MaxLength="30"></asp:TextBox>
+                                    <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                   <asp:TextBox ID="txbNew3" runat="server" CssClass=""  MaxLength="30"></asp:TextBox>
+                                   <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control"  MaxLength="30"></asp:TextBox>
                                 </FooterTemplate>
                             </asp:TemplateField> 
                         </Columns>
-                        <EditRowStyle BackColor="#2461BF" />
-                        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                        <RowStyle BackColor="#EFF3FB" />
-                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                        <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                        <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                        <SortedDescendingHeaderStyle BackColor="#4870BE" />
 
         </asp:GridView>
-        <asp:HiddenField ClientIDMode="Static" ID="grdCuadrillasCount" runat="server" />
+        <asp:HiddenField ClientIDMode="Static" ID="hdnCuadrillasCount" runat="server" />
 

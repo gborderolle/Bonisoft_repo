@@ -1,8 +1,7 @@
 ﻿<%@ Page Title="Base de Datos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Datos_configuracion.aspx.cs" Inherits="Bonisoft_2.Pages.Datos_configuracion" %>
-<%@ Register Src="~/User_Controls/Estaticos/Internos.ascx" TagPrefix="uc1" TagName="Tipos" %>
-<%@ Register Src="~/User_Controls/Estaticos/Internos.ascx" TagPrefix="uc1" TagName="Mercaderias" %>
-<%@ Register Src="~/User_Controls/Estaticos/Internos.ascx" TagPrefix="uc1" TagName="Formas" %>
-<%@ Register Src="~/User_Controls/Estaticos/Internos.ascx" TagPrefix="uc1" TagName="Bancos" %>
+<%@ Register Src="~/User_Controls/Configuracion/Tipo_lena.ascx" TagPrefix="uc1" TagName="Tipos" %>
+<%@ Register Src="~/User_Controls/Configuracion/Variedad.ascx" TagPrefix="uc1" TagName="Variedades" %>
+<%@ Register Src="~/User_Controls/Configuracion/Formas_pago.ascx" TagPrefix="uc1" TagName="Formas" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
 
@@ -10,8 +9,8 @@
 <!-- STYLES EXTENSION -->
 
 <!-- Theme style -->
-<link rel="stylesheet" href="/assets/dist/css/Datos.min.css">
-<link rel="stylesheet" href="/assets/dist/css/Dashboard.css">
+<link rel="stylesheet" href="/assets/dist/css/InfoBoxes.min.css">
+<link rel="stylesheet" href="/assets/dist/css/Datos.css">
 
 <!-- AdminLTE Skins. Choose a skin from the css/skins
      folder instead of downloading all of them to reduce the load. -->
@@ -73,7 +72,7 @@
 <script src="/assets/dist/js/demo.js"></script>
 
 <!-- Page JS -->
-<script src="/assets/dist/js/pages/Dashboard.js"></script>
+<script src="/assets/dist/js/pages/Datos.js"></script>
 
 </asp:Content>
 
@@ -88,7 +87,7 @@
         Base de Datos
         <a href="/Pages/Datos.aspx"><small>Datos estáticos</small></a>
         <small> | </small> 
-        <a href="/Pages/Datos_configuracion.aspx"><small>Datos de configuración</small></a>
+        <a href="/Pages/Datos_configuracion.aspx"><small style="color:black">Datos de configuración</small></a>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -114,11 +113,11 @@
         </div>
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box" id="divBoxMercaderia">
+          <div class="info-box" id="divBoxVariedades">
             <span class="info-box-icon bg-light-blue"><i class="fa fa-suitcase"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Mercaderías</span>
+              <span class="info-box-text">Variedades</span>
               <span class="info-box-number">0</span>
             </div>
             <!-- /.info-box-content -->
@@ -132,19 +131,6 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Formas de pago</span>
-              <span class="info-box-number">0</span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box" id="divBoxBancos">
-            <span class="info-box-icon bg-purple"><i class="fa fa-truck"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Bancos</span>
               <span class="info-box-number">0</span>
             </div>
             <!-- /.info-box-content -->
@@ -193,16 +179,13 @@
                                     <div class="divTables" id="divTipos" style="display:block;">
                                          <uc1:Tipos runat="server" ID="Tipos" />
                                     </div>
-                                        <div class="divTables" id="divMercaderias" style="display:none;">
-                                         <uc1:Mercaderias runat="server" ID="Mercaderias" />
+                                        <div class="divTables" id="divVariedades" style="display:none;">
+                                         <uc1:Variedades runat="server" ID="Variedades" />
                                     </div>
                                         <div class="divTables" id="divFormas" style="display:none;">
                                          <uc1:Formas runat="server" ID="Formas" />
                                     </div>
-                                        <div class="divTables" id="divBancos" style="display:none;">
-                                         <%--<uc1:Bancos runat="server" ID="Bancos" />--%>
-                                    </div>
-
+                                    
                                     </div>
                                 </div>
 

@@ -1,17 +1,19 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Choferes2.ascx.cs" Inherits="Bonisoft_2.User_Controls.Choferes2" %>
-
-<h2>Lista de Choferes</h2>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Tipo_lena.ascx.cs" Inherits="Bonisoft_2.User_Controls.Configuracion.Tipo_lena" %>
+<h2>Lista de Tipos de Leña</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridSample" runat="server" AutoGenerateColumns="False" ShowFooter="True"
-    CssClass="table table-bordered bs-table" OnRowCommand="gridSample_RowCommand" DataKeyNames="Chofer_ID"
+<asp:GridView ID="gridTipos" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
+    DataKeyNames="Lena_tipo_ID"
+    OnRowCommand="gridSample_RowCommand"
     OnRowCancelingEdit="gridSample_RowCancelingEdit"
-    OnRowEditing="gridSample_RowEditing" OnRowUpdating="gridSample_RowUpdating" OnRowDataBound="gridSample_RowDataBound"
+    OnRowEditing="gridSample_RowEditing"
+    OnRowUpdating="gridSample_RowUpdating"
+    OnRowDataBound="gridSample_RowDataBound"
     OnRowDeleting="gridSample_RowDeleting">
 
     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
     <AlternatingRowStyle BackColor="#EFF3FB" />
-    <EditRowStyle BackColor="#ffffcc" />
+    <EditRowStyle BackColor="Red" />
     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
     <EmptyDataTemplate>
         ¡No hay clientes con los parámetros seleccionados!  
@@ -40,7 +42,7 @@
                 <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" ToolTip="Modificar"
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
                 <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete"
-                    ToolTip="Borrar" OnClientClick='return confirm("Está seguro que desea borrar este registro?");'
+                    ToolTip="Borrar" OnClientClick='return confirm("¿Está seguro que desea eliminar este registro?");'
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></asp:LinkButton>
             </ItemTemplate>
             <EditItemTemplate>
@@ -50,58 +52,34 @@
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </EditItemTemplate>
             <FooterTemplate>
-                <asp:LinkButton ID="lnkInsert" runat="server" Text="" ValidationGroup="newGrp" CommandName="InsertNew" ToolTip="Agregar"
+                <asp:LinkButton ID="lnkInsert" runat="server" Text="" ValidationGroup="newGrp" CommandName="InsertNew" ToolTip="Nuevo"
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-plus"></span></asp:LinkButton>
                 <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew" ToolTip="Cancelar"
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Apellidos">
+        <asp:TemplateField HeaderText="Nombre">
             <EditItemTemplate>
-                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Apellidos") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Tipo") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Apellidos") %>'></asp:Label>
+                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Tipo") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Nombres">
+        <asp:TemplateField HeaderText="Comentarios">
             <EditItemTemplate>
-                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Nombres") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Nombres") %>'></asp:Label>
+                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Empresa">
-            <EditItemTemplate>
-                <asp:DropDownList ID="ddlEmpresas1" runat="server" CssClass="form-control" />
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Empresa_pertenece_ID") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:DropDownList ID="ddlEmpresas2" runat="server" CssClass="form-control" />
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Comentarios">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl4" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew4" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>
-
     </Columns>
-
 </asp:GridView>
-<asp:HiddenField ClientIDMode="Static" ID="hdnChoferesCount" runat="server" />
+<asp:HiddenField ClientIDMode="Static" ID="hdnTiposCount" runat="server" />

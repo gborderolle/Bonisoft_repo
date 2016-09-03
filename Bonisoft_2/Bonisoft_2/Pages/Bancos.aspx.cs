@@ -85,9 +85,9 @@ namespace Bonisoft_2.Pages
             if (e.CommandName == "InsertNew")
             {
                 GridViewRow row = gridSample.FooterRow;
-                TextBox txb1 = row.FindControl("txbNew1") as TextBox;
-                TextBox txb2 = row.FindControl("txbNew2") as TextBox;
-                TextBox txb3 = row.FindControl("txbNew3") as TextBox;
+                TextBox txb1 = row.FindControl("txb1") as TextBox;
+                TextBox txb2 = row.FindControl("txb2") as TextBox;
+                TextBox txb3 = row.FindControl("txb3") as TextBox;
                 if (txb1 != null && txb2 != null && txb3 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())

@@ -17,5 +17,6 @@ namespace Bonisoft_2
         public int Cuadrilla_descarga_ID { get; set; }
         public int Empresa_ID { get; set; }
         public string Comentarios { get; set; }
+        public bool Empresa_esCliente { get; set; }
     }
 }

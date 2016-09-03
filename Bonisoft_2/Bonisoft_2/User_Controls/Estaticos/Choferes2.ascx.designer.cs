@@ -31,12 +31,12 @@ namespace Bonisoft_2.User_Controls {
         protected global::System.Web.UI.WebControls.GridView gridSample;
         
         /// <summary>
-        /// grdChoferesCount control.
+        /// hdnChoferesCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField grdChoferesCount;
+        protected global::System.Web.UI.WebControls.HiddenField hdnChoferesCount;
     }
 }
