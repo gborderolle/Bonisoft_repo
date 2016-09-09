@@ -15,15 +15,6 @@
     <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Peso_Neto" Type="Decimal" Nullable="false" />
   </EntityType>
-  <EntityType Name="carga_descarga">
-    <Key>
-      <PropertyRef Name="Carga_descarga_ID" />
-    </Key>
-    <Property Name="Carga_descarga_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Lugar" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Fecha" Type="DateTime" Nullable="false" />
-    <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-  </EntityType>
   <EntityType Name="chofer">
     <Key>
       <PropertyRef Name="Chofer_ID" />
@@ -174,8 +165,6 @@
     <Property Name="Importe_viaje" Type="Decimal" Nullable="false" />
     <Property Name="Saldo" Type="Decimal" Nullable="false" />
     <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
-    <Property Name="Carga_ID" Type="Int32" Nullable="false" />
-    <Property Name="Descarga_ID" Type="Int32" Nullable="false" />
     <Property Name="Pesada_origen_ID" Type="Int32" Nullable="false" />
     <Property Name="Pesada_destino_ID" Type="Int32" Nullable="false" />
     <Property Name="Empresa_de_carga_ID" Type="Int32" Nullable="false" />
@@ -185,6 +174,9 @@
     <Property Name="Chofer_ID" Type="Int32" Nullable="false" />
     <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Empresa_esCliente" Type="Boolean" Nullable="false" />
+    <Property Name="EnViaje" Type="Boolean" Nullable="false" />
+    <Property Name="Carga" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Descarga" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="viaje_mercaderia">
     <Key>
@@ -204,7 +196,6 @@
   </EntityType>
   <EntityContainer Name="bonisoft_dbEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="camiones" EntityType="Self.camion" />
-    <EntitySet Name="carga_descarga" EntityType="Self.carga_descarga" />
     <EntitySet Name="choferes" EntityType="Self.chofer" />
     <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" />
     <EntitySet Name="descarga_viaje" EntityType="Self.descarga_viaje" />

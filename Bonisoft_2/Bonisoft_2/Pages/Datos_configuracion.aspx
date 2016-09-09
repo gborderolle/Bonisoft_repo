@@ -66,13 +66,13 @@
 <script src="/assets/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="/assets/dist/js/app.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/assets/dist/js/pages/Dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/assets/dist/js/demo.js"></script>
 
 <!-- Page JS -->
+<script src="/assets/dist/js/jquery.quicksearch.js"></script>
 <script src="/assets/dist/js/pages/Datos.js"></script>
+<script src="/assets/dist/js/pages/Datos_configuracion.js"></script>
 
 </asp:Content>
 
@@ -127,7 +127,7 @@
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box" id="divBoxFormas">
-            <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+            <span class="info-box-icon bg-green"><i class="fa fa-thumbs-o-up"></i></span>
 
             <div class="info-box-content">
               <span class="info-box-text">Formas de pago</span>
@@ -156,7 +156,7 @@
                             <div class="col-md-2 pull-right" style="margin-right: 10px;">
                                 <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
                                     <div class="input-group ">
-                                        <input type="text" id="txbSearchTable" name="q" class="form-control" placeholder="Buscar...">
+                                        <input type="text" id="txbSearch" name="q" class="form-control" placeholder="Buscar...">
                                         <span class="input-group-btn">
                                             <button type="submit" name="search" id="search-btn" class="btn btn-flat">
                                                 <i class="fa fa-search"></i>

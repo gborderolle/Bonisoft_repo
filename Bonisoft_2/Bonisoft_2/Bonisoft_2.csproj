@@ -281,6 +281,9 @@
     <Content Include="assets\dist\css\skins\skin-yellow.min.css" />
     <Content Include="assets\dist\css\skins\_all-skins.css" />
     <Content Include="assets\dist\css\skins\_all-skins.min.css" />
+    <Content Include="assets\dist\css\Viajes.css" />
+    <Content Include="assets\dist\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\dist\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\dist\img\avatar.png" />
     <Content Include="assets\dist\img\avatar04.png" />
     <Content Include="assets\dist\img\avatar2.png" />
@@ -313,11 +316,14 @@
     <Content Include="assets\dist\js\app.min.js" />
     <Content Include="assets\dist\js\demo.js" />
     <Content Include="assets\dist\js\jquery-ui.js" />
+    <Content Include="assets\dist\js\jquery.quicksearch.js" />
     <Content Include="assets\dist\js\moment.js" />
     <Content Include="assets\dist\js\pages\Datos.js" />
     <Content Include="assets\dist\js\pages\Dashboard2_OLD.js" />
     <Content Include="assets\dist\js\pages\Dashboard_OLD.js" />
+    <Content Include="assets\dist\js\pages\Datos_configuracion.js" />
     <Content Include="assets\dist\js\pages\login.js" />
+    <Content Include="assets\dist\js\pages\Viajes.js" />
     <Content Include="assets\plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="assets\plugins\bootstrap-slider\slider.css" />
     <Content Include="assets\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.js" />
@@ -1143,9 +1149,24 @@
     <Content Include="assets\plugins\datatables\extensions\TableTools\images\psd\file_types.psd" />
     <Content Include="assets\plugins\datatables\extensions\TableTools\images\psd\printer.psd" />
     <Content Include="assets\plugins\datatables\extensions\TableTools\Readme.md" />
+    <Content Include="assets\dist\fonts\DroidSans-Bold.ttf" />
+    <Content Include="assets\dist\fonts\DroidSans-webfont.ttf" />
+    <Content Include="assets\dist\fonts\DroidSans-webfont.woff" />
+    <Content Include="assets\dist\fonts\DroidSans.ttf" />
+    <Content Include="assets\dist\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\dist\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\dist\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\dist\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\dist\fonts\FontAwesome.otf" />
+    <Content Include="assets\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="assets\dist\fonts\TradeGothicLTStd-Bd2.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Pages\Ajustes.aspx" />
     <Content Include="Pages\Bancos.aspx" />
+    <Content Include="Pages\Contabilidad.aspx" />
     <Content Include="Pages\Datos_configuracion.aspx" />
     <Content Include="Pages\Gridview.aspx" />
     <Content Include="Pages\Recordatorios.aspx" />
@@ -1362,9 +1383,6 @@
     <Compile Include="camion.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
-    <Compile Include="carga_descarga.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
     <Compile Include="chofer.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
@@ -1426,6 +1444,13 @@
     </Compile>
     <Compile Include="Pages\Bancos.aspx.designer.cs">
       <DependentUpon>Bancos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Contabilidad.aspx.cs">
+      <DependentUpon>Contabilidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Contabilidad.aspx.designer.cs">
+      <DependentUpon>Contabilidad.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Datos_configuracion.aspx.cs">
       <DependentUpon>Datos_configuracion.aspx</DependentUpon>

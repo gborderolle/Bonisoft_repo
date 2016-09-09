@@ -17,16 +17,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="carga_descarga">
-      <EntityTypeMapping TypeName="bonisoft_dbModel.carga_descarga">
-        <MappingFragment StoreEntitySet="carga_descarga">
-          <ScalarProperty Name="Carga_descarga_ID" ColumnName="Carga_descarga_ID" />
-          <ScalarProperty Name="Lugar" ColumnName="Lugar" />
-          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="choferes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.chofer">
         <MappingFragment StoreEntitySet="chofer">
@@ -181,6 +171,9 @@
     <EntitySetMapping Name="viajes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
         <MappingFragment StoreEntitySet="viaje">
+          <ScalarProperty Name="Descarga" ColumnName="Descarga" />
+          <ScalarProperty Name="Carga" ColumnName="Carga" />
+          <ScalarProperty Name="EnViaje" ColumnName="EnViaje" />
           <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
           <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
           <ScalarProperty Name="Precio_compra_por_tonelada" ColumnName="Precio_compra_por_tonelada" />
@@ -188,8 +181,6 @@
           <ScalarProperty Name="Importe_viaje" ColumnName="Importe_viaje" />
           <ScalarProperty Name="Saldo" ColumnName="Saldo" />
           <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
-          <ScalarProperty Name="Carga_ID" ColumnName="Carga_ID" />
-          <ScalarProperty Name="Descarga_ID" ColumnName="Descarga_ID" />
           <ScalarProperty Name="Pesada_origen_ID" ColumnName="Pesada_origen_ID" />
           <ScalarProperty Name="Pesada_destino_ID" ColumnName="Pesada_destino_ID" />
           <ScalarProperty Name="Empresa_de_carga_ID" ColumnName="Empresa_de_carga_ID" />

@@ -8,7 +8,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
 
-
     <!-- STYLES EXTENSION -->
 
     <!-- Theme style -->
@@ -127,7 +126,7 @@
                 <!-- /.col -->
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box" id="divBoxCuadrillas">
-                        <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+                        <span class="info-box-icon bg-green"><i class="fa fa-thumbs-o-up"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Cuadrillas</span>
@@ -167,7 +166,7 @@
 
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box" id="divBoxInternos">
-                        <span class="info-box-icon bg-green"><i class="fa fa-black-tie"></i></span>
+                        <span class="info-box-icon bg-teal"><i class="fa fa-black-tie"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Internos</span>
@@ -259,6 +258,7 @@
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>
+                                    
 
                                 </div>
                             </div>

@@ -2,7 +2,7 @@
 <h2>Lista de Formas de Pago</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridFormas" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
+<asp:GridView ID="gridFormas" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
     DataKeyNames="Forma_de_pago_ID"
     OnRowCommand="gridSample_RowCommand"
     OnRowCancelingEdit="gridSample_RowCancelingEdit"

@@ -26,7 +26,6 @@ namespace Bonisoft_2
         }
     
         public virtual DbSet<camion> camiones { get; set; }
-        public virtual DbSet<carga_descarga> carga_descarga { get; set; }
         public virtual DbSet<chofer> choferes { get; set; }
         public virtual DbSet<cuadrilla_descarga> cuadrilla_descarga { get; set; }
         public virtual DbSet<descarga_viaje> descarga_viaje { get; set; }

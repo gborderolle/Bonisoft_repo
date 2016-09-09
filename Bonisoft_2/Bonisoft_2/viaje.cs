@@ -20,8 +20,6 @@ namespace Bonisoft_2
         public decimal Importe_viaje { get; set; }
         public decimal Saldo { get; set; }
         public int Forma_de_pago_ID { get; set; }
-        public int Carga_ID { get; set; }
-        public int Descarga_ID { get; set; }
         public int Pesada_origen_ID { get; set; }
         public int Pesada_destino_ID { get; set; }
         public int Empresa_de_carga_ID { get; set; }
@@ -31,5 +29,8 @@ namespace Bonisoft_2
         public int Chofer_ID { get; set; }
         public string Comentarios { get; set; }
         public bool Empresa_esCliente { get; set; }
+        public bool EnViaje { get; set; }
+        public string Carga { get; set; }
+        public string Descarga { get; set; }
     }
 }

@@ -45,7 +45,6 @@ function updateCounts() {
     var variedades_count = $("#divContent #hdnVariedadCount").val();
     var formas_count = $("#divContent #hdnFormaCount").val();
 
-
     $("#divBoxClientes .info-box-number").text(clientes_count);
     $("#divBoxProveedores .info-box-number").text(proveedores_count);
     $("#divBoxCuadrillas .info-box-number").text(cuadrillas_count);
@@ -64,7 +63,7 @@ function show_grid(element) {
     if (table_name !== null) {
 
         var firstWord = table_name.substr(0, table_name.indexOf(' '));
-        if (firstWord !== null && firstWord != "") {
+        if (firstWord !== null && firstWord !== "") {
             table_name = firstWord;
         }
 

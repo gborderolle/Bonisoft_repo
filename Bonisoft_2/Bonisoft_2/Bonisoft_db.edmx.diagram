@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="43e7b3f4bede45e393555c33b6cdb28d" Name="Diagram1">
         <EntityTypeShape EntityType="bonisoft_dbModel.camion" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bonisoft_dbModel.carga_descarga" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoft_dbModel.chofer" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoft_dbModel.cuadrilla_descarga" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoft_dbModel.descarga_viaje" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />

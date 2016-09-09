@@ -1,0 +1,28 @@
+﻿.btnViajes {
+    padding: 10px 22px 10px 22px;
+    margin: 0px 0px 0px 0px;
+    background: #13AFEB;
+    border-bottom: 1px solid #13AFEB;
+    white-space: nowrap;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #FFF;
+    font-weight: 600;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.ancViajes {
+    padding: 5px 10px 5px 10px;
+    margin: 0px 0px 0px 0px;
+    background: #13AFEB;
+    border-bottom: 1px solid #13AFEB;
+    white-space: nowrap;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #FFF;
+    font-weight: 600;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}

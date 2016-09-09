@@ -31,7 +31,7 @@ namespace Bonisoft_2.User_Controls {
         protected global::System.Web.UI.WebControls.GridView gridSample;
         
         /// <summary>
-        /// grdInternosCount control.
+        /// hdnInternosCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

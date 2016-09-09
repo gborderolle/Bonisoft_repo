@@ -20,15 +20,6 @@
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Peso_Neto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
         </EntityType>
-        <EntityType Name="carga_descarga">
-          <Key>
-            <PropertyRef Name="Carga_descarga_ID" />
-          </Key>
-          <Property Name="Carga_descarga_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Lugar" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="Fecha" Type="date" Nullable="false" />
-          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
-        </EntityType>
         <EntityType Name="chofer">
           <Key>
             <PropertyRef Name="Chofer_ID" />
@@ -234,8 +225,6 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Importe_viaje" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="Saldo" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="Forma_de_pago_ID" Type="int" Nullable="false" />
-          <Property Name="Carga_ID" Type="int" Nullable="false" />
-          <Property Name="Descarga_ID" Type="int" Nullable="false" />
           <Property Name="Pesada_origen_ID" Type="int" Nullable="false" />
           <Property Name="Pesada_destino_ID" Type="int" Nullable="false" />
           <Property Name="Empresa_de_carga_ID" Type="int" Nullable="false" />
@@ -243,8 +232,11 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Fecha_llegada" Type="date" Nullable="false" />
           <Property Name="Camion_ID" Type="int" Nullable="false" />
           <Property Name="Chofer_ID" Type="int" Nullable="false" />
+          <Property Name="Carga" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Descarga" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Empresa_esCliente" Type="bit" Nullable="false" />
+          <Property Name="EnViaje" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="viaje_mercaderia">
           <Key>
@@ -256,7 +248,6 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
         </EntityType>
         <EntityContainer Name="bonisoft_dbModelStoreContainer">
           <EntitySet Name="camion" EntityType="Self.camion" Schema="bonisoft_db" store:Type="Tables" />
-          <EntitySet Name="carga_descarga" EntityType="Self.carga_descarga" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="chofer" EntityType="Self.chofer" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="cliente" EntityType="Self.cliente" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" Schema="bonisoft_db" store:Type="Tables" />
@@ -300,15 +291,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Modelo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Peso_Neto" Type="Decimal" Nullable="false" />
-        </EntityType>
-        <EntityType Name="carga_descarga">
-          <Key>
-            <PropertyRef Name="Carga_descarga_ID" />
-          </Key>
-          <Property Name="Carga_descarga_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Lugar" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
-          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="chofer">
           <Key>
@@ -460,8 +442,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Importe_viaje" Type="Decimal" Nullable="false" />
           <Property Name="Saldo" Type="Decimal" Nullable="false" />
           <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
-          <Property Name="Carga_ID" Type="Int32" Nullable="false" />
-          <Property Name="Descarga_ID" Type="Int32" Nullable="false" />
           <Property Name="Pesada_origen_ID" Type="Int32" Nullable="false" />
           <Property Name="Pesada_destino_ID" Type="Int32" Nullable="false" />
           <Property Name="Empresa_de_carga_ID" Type="Int32" Nullable="false" />
@@ -471,6 +451,9 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Chofer_ID" Type="Int32" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Empresa_esCliente" Type="Boolean" Nullable="false" />
+          <Property Name="EnViaje" Type="Boolean" Nullable="false" />
+          <Property Name="Carga" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descarga" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="viaje_mercaderia">
           <Key>
@@ -490,7 +473,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
         </EntityType>
         <EntityContainer Name="bonisoft_dbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="camiones" EntityType="Self.camion" />
-          <EntitySet Name="carga_descarga" EntityType="Self.carga_descarga" />
           <EntitySet Name="choferes" EntityType="Self.chofer" />
           <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" />
           <EntitySet Name="descarga_viaje" EntityType="Self.descarga_viaje" />
@@ -575,16 +557,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
                 <ScalarProperty Name="Modelo" ColumnName="Modelo" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
                 <ScalarProperty Name="Peso_Neto" ColumnName="Peso_Neto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="carga_descarga">
-            <EntityTypeMapping TypeName="bonisoft_dbModel.carga_descarga">
-              <MappingFragment StoreEntitySet="carga_descarga">
-                <ScalarProperty Name="Carga_descarga_ID" ColumnName="Carga_descarga_ID" />
-                <ScalarProperty Name="Lugar" ColumnName="Lugar" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -742,6 +714,9 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySetMapping Name="viajes">
             <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
               <MappingFragment StoreEntitySet="viaje">
+                <ScalarProperty Name="Descarga" ColumnName="Descarga" />
+                <ScalarProperty Name="Carga" ColumnName="Carga" />
+                <ScalarProperty Name="EnViaje" ColumnName="EnViaje" />
                 <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
                 <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
                 <ScalarProperty Name="Precio_compra_por_tonelada" ColumnName="Precio_compra_por_tonelada" />
@@ -749,8 +724,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
                 <ScalarProperty Name="Importe_viaje" ColumnName="Importe_viaje" />
                 <ScalarProperty Name="Saldo" ColumnName="Saldo" />
                 <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
-                <ScalarProperty Name="Carga_ID" ColumnName="Carga_ID" />
-                <ScalarProperty Name="Descarga_ID" ColumnName="Descarga_ID" />
                 <ScalarProperty Name="Pesada_origen_ID" ColumnName="Pesada_origen_ID" />
                 <ScalarProperty Name="Pesada_destino_ID" ColumnName="Pesada_destino_ID" />
                 <ScalarProperty Name="Empresa_de_carga_ID" ColumnName="Empresa_de_carga_ID" />

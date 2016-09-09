@@ -82,10 +82,10 @@
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Fecha nac">
             <EditItemTemplate>
-                <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Fecha_nacimiento") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Fecha_nacimiento", "{0:MMMM d, yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Fecha_nacimiento") %>'></asp:Label>
+                <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Fecha_nacimiento", "{0:MMMM d, yyyy}") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
@@ -104,10 +104,10 @@
         </asp:TemplateField>
         <asp:TemplateField HeaderText="F ingreso">
             <EditItemTemplate>
-                <asp:TextBox ID="txb5" runat="server" Text='<%# Bind("Fecha_ingreso") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb5" runat="server" Text='<%# Bind("Fecha_ingreso", "{0:MMMM d, yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl5" runat="server" Text='<%# Bind("Fecha_ingreso") %>'></asp:Label>
+                <asp:Label ID="lbl5" runat="server" Text='<%# Bind("Fecha_ingreso", "{0:MMMM d, yyyy}") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew5" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
@@ -115,10 +115,10 @@
         </asp:TemplateField>
         <asp:TemplateField HeaderText="F egreso">
             <EditItemTemplate>
-                <asp:TextBox ID="txb6" runat="server" Text='<%# Bind("Fecha_egreso") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb6" runat="server" Text='<%# Bind("Fecha_egreso", "{0:MMMM d, yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl6" runat="server" Text='<%# Bind("Fecha_egreso") %>'></asp:Label>
+                <asp:Label ID="lbl6" runat="server" Text='<%# Bind("Fecha_egreso", "{0:MMMM d, yyyy}") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew6" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
