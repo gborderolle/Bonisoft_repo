@@ -118,22 +118,22 @@ namespace Bonisoft_2.User_Controls.Configuracion
             if (e.CommandName == "InsertNew")
             {
                 GridViewRow row = gridMercaderias.FooterRow;
-                TextBox txb1 = row.FindControl("txbNew1") as TextBox;
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
-                TextBox txb3 = row.FindControl("txbNew3") as TextBox;
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
                 TextBox txb5 = row.FindControl("txbNew5") as TextBox;
                 TextBox txb6 = row.FindControl("txbNew6") as TextBox;
                 TextBox txb7 = row.FindControl("txbNew7") as TextBox;
                 TextBox txb8 = row.FindControl("txbNew8") as TextBox;
-                if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null)
+                DropDownList ddlVariedad2 = row.FindControl("ddlVariedad2") as DropDownList;
+                DropDownList ddlTipo2 = row.FindControl("ddlTipo2") as DropDownList;
+                if (ddlVariedad2 != null && txb2 != null && ddlTipo2 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         mercaderia obj = new mercaderia();
-                        obj.Variedad_ID = int.Parse(txb1.Text);
+                        obj.Variedad_ID = Convert.ToInt32(ddlVariedad2.SelectedValue);
                         obj.Medida = txb2.Text;
-                        obj.Tipo_ID = int.Parse(txb3.Text);
+                        obj.Tipo_ID = Convert.ToInt32(ddlTipo2.SelectedValue);
                         obj.Fecha_corte = DateTime.Parse(txb4.Text);
                         obj.Comentarios = txb5.Text;
 
@@ -159,23 +159,23 @@ namespace Bonisoft_2.User_Controls.Configuracion
         protected void gridSample_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             GridViewRow row = gridMercaderias.Rows[e.RowIndex];
-            TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
-            TextBox txb3 = row.FindControl("txb3") as TextBox;
             TextBox txb4 = row.FindControl("txb4") as TextBox;
             TextBox txb5 = row.FindControl("txb5") as TextBox;
             TextBox txb6 = row.FindControl("txb6") as TextBox;
             TextBox txb7 = row.FindControl("txb7") as TextBox;
             TextBox txb8 = row.FindControl("txb8") as TextBox;
-            if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null)
+            DropDownList ddlVariedad1 = row.FindControl("ddlVariedad1") as DropDownList;
+            DropDownList ddlTipo1 = row.FindControl("ddlTipo1") as DropDownList;
+            if (ddlVariedad1 != null && txb2 != null && ddlTipo1 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
                     int mercaderia_ID = Convert.ToInt32(gridMercaderias.DataKeys[e.RowIndex].Value);
                     mercaderia obj = context.mercaderias.First(x => x.Mercaderia_ID == mercaderia_ID);
-                    obj.Variedad_ID = int.Parse(txb1.Text);
+                    obj.Variedad_ID = Convert.ToInt32(ddlVariedad1.SelectedValue);
                     obj.Medida = txb2.Text;
-                    obj.Tipo_ID = int.Parse(txb3.Text);
+                    obj.Tipo_ID = Convert.ToInt32(ddlTipo1.SelectedValue);
                     obj.Fecha_corte = DateTime.Parse(txb4.Text);
                     obj.Comentarios = txb5.Text;
 

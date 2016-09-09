@@ -2,7 +2,8 @@
 <h2>Lista de Clientes</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridClientes" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table"
+<asp:GridView ID="gridClientes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
+    CssClass="table table-hover table-striped"
     DataKeyNames="Cliente_ID"
     OnRowCommand="gridClientes_RowCommand"
     OnRowCancelingEdit="gridClientes_RowCancelingEdit"
@@ -11,9 +12,6 @@
     OnRowDataBound="gridClientes_RowDataBound"
     OnRowDeleting="gridClientes_RowDeleting">
 
-    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
-    <AlternatingRowStyle BackColor="#EFF3FB" />
-    <EditRowStyle BackColor="#ffffcc" />
     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
     <EmptyDataTemplate>
         ¡No hay clientes con los parámetros seleccionados!  
@@ -256,15 +254,15 @@
                 <asp:TextBox ID="txbNew9" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Forma de pago">
+        <asp:TemplateField HeaderText="Usual Forma de pago">
             <EditItemTemplate>
-                <asp:TextBox ID="txb10" runat="server" Text='<%# Bind("Forma_de_pago_ID") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:DropDownList ID="ddlFormas1" runat="server" CssClass="form-control" />
             </EditItemTemplate>
             <ItemTemplate>
                 <asp:Label ID="lbl10" runat="server" Text='<%# Bind("Forma_de_pago_ID") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:TextBox ID="txbNew10" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:DropDownList ID="ddlFormas2" runat="server" CssClass="form-control" />
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Períodos de liq">

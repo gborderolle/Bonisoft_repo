@@ -76,10 +76,23 @@ namespace Bonisoft_2.User_Controls
                     ddl.DataBind();
                     ddl.Items.Insert(0, new ListItem("Elegir"));
 
-                }//Add Default Item in the DropDownList
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    ddl.SelectedValue = ((cuadrilla_descarga)(e.Row.DataItem)).Empresa_ID.ToString();
+                    if (e.Row.RowType == DataControlRowType.DataRow)
+                    {
+
+                        ddl.SelectedValue = ((chofer)(e.Row.DataItem)).Empresa_pertenece_ID.ToString();
+
+                        //int chofer_ID = ((chofer)(e.Row.DataItem)).Chofer_ID;
+                        //chofer chofer = context.choferes.FirstOrDefault(c => c.Chofer_ID == chofer_ID) as chofer;
+                        //int empresa_ID = ((chofer)(e.Row.DataItem)).Empresa_pertenece_ID;
+                        //bool isCliente = chofer.Empresa_esCliente;
+                        //string value = isCliente ? context.clientes.FirstOrDefault(c => c.cliente_ID == empresa_ID).Nombre_fantasia : context.proveedores.FirstOrDefault(c => c.Proveedor_ID == empresa_ID).Nombre_fantasia;
+                        //ddl.SelectedValue = value;
+
+                        //Label lbl = e.Row.FindControl("lbl3") as Label;
+                        //lbl.Text = value;
+
+                    //ddl.SelectedValue = ((cuadrilla_descarga)(e.Row.DataItem)).Empresa_ID.ToString();
+                    }
                 }
             }
         }
@@ -93,7 +106,6 @@ namespace Bonisoft_2.User_Controls
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
                 DropDownList ddlEmpresas2 = row.FindControl("ddlEmpresas2") as DropDownList;
-
                 if (txb1 != null && txb2 != null && ddlEmpresas2 != null && txb4 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -101,8 +113,18 @@ namespace Bonisoft_2.User_Controls
                         chofer obj = new chofer();
                         obj.Apellidos = txb1.Text;
                         obj.Nombres = txb2.Text;
-                        obj.Empresa_pertenece_ID = Convert.ToInt32(ddlEmpresas2.SelectedValue);
                         obj.Comentarios = txb4.Text;
+
+                        #region DDL logic
+
+                        int ddl1 = 0;
+                        if (!int.TryParse(ddlEmpresas2.SelectedValue, out ddl1))
+                        {
+                            ddl1 = 0;
+                        }
+                        obj.Empresa_pertenece_ID = ddl1;
+
+                        #endregion DDL logic
 
                         bool isClient = false;
                         string selectedText = ddlEmpresas2.SelectedItem.Text;
@@ -140,9 +162,9 @@ namespace Bonisoft_2.User_Controls
             GridViewRow row = gridChoferes.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
-            TextBox txb3 = row.FindControl("txb3") as TextBox;
             TextBox txb4 = row.FindControl("txb4") as TextBox;
-            if (txb1 != null && txb2 != null && txb3 != null && txb4 != null)
+            DropDownList ddlEmpresas1 = row.FindControl("ddlEmpresas1") as DropDownList;
+            if (txb1 != null && txb2 != null && ddlEmpresas1 != null && txb4 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -150,8 +172,16 @@ namespace Bonisoft_2.User_Controls
                     chofer obj = context.choferes.First(x => x.Chofer_ID == chofer_ID);
                     obj.Apellidos = txb1.Text;
                     obj.Nombres = txb2.Text;
-                    obj.Empresa_pertenece_ID = int.Parse(txb3.Text);
+                    obj.Empresa_pertenece_ID = Convert.ToInt32(ddlEmpresas1.SelectedValue);
                     obj.Comentarios = txb4.Text;
+
+                    bool isClient = false;
+                    string selectedText = ddlEmpresas1.SelectedItem.Text;
+                    if (!string.IsNullOrWhiteSpace(selectedText))
+                    {
+                        isClient = selectedText.Contains("Cliente");
+                    }
+                    obj.Empresa_esCliente = isClient;
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";

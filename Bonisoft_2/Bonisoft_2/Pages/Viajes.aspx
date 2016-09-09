@@ -3,9 +3,10 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
 
     <!-- STYLES EXTENSION -->
-
+    
     <!-- Page CSS -->
     <link rel="stylesheet" href="/assets/dist/css/Viajes.css">
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
@@ -27,57 +28,71 @@
                 <div class="col-md-9">
                     <h2>Menú de Viajes</h2>
                 </div>
-
             </div>
             <div class="row">
-
 
                 <div class="col-md-9">
                     <div class="row">
                         <h3>Viajes en Curso</h3>
                     </div>
-
+                </div>
+            </div>
+            <div class="row">
 
                     <!--  -->
 
+                                <br>
 
-                    <div style="width: 90%; margin-right: 5%; margin-left: 5%; text-align: center">
+                    <div style="text-align: center">
                         <!-- Placing GridView in UpdatePanel-->
                         <asp:UpdatePanel ID="upCrudGrid" runat="server">
                             <ContentTemplate>
-                                <div class="row">
-                                    <asp:Button ID="btnAdd" runat="server" Text="Iniciar viaje" CssClass="btn btn-info pull-left" OnClick="btnAdd_Click" />
+                                    <div class="row" style="margin-bottom: 10px;">
+                                        <div class="col-md-2 pull-left" >
+                                            <asp:Button ID="btnAdd" runat="server" Text="Iniciar viaje" CssClass="btn btn-info pull-left" OnClick="btnAdd_Click" />
+                                        </div>
 
-                                    <div class="col-md-2 pull-right" style="margin-right: 10px; margin-bottom: 10px;">
-                                        <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
-                                            <div class="input-group ">
-                                                <input type="text" id="txbSearchViajesEnCurso" name="q" class="form-control" placeholder="Buscar...">
-                                                <span class="input-group-btn">
-                                                    <button type="submit" name="search" id="search-btn1" class="btn btn-flat">
-                                                        <i class="fa fa-search"></i>
-                                                    </button>
-                                                </span>
-                                            </div>
-                                        </form>
+                                        <div class="col-md-2 pull-right">
+                                            <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
+                                                <div class="input-group ">
+                                                    <input type="text" id="txbSearchViajesEnCurso" name="q" class="form-control" placeholder="Buscar...">
+                                                    <span class="input-group-btn">
+                                                        <button type="submit" name="search" id="search-btn1" class="btn btn-flat">
+                                                            <i class="fa fa-search"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                                <br>
-                                <br>
-                                <asp:GridView ID="gridViajesEnCurso" runat="server" ClientIDMode="Static" Width="940px" HorizontalAlign="Center"
+                                <asp:GridView ID="gridViajesEnCurso" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
                                     OnRowCommand="gridViajesEnCurso_RowCommand" AutoGenerateColumns="false" AllowPaging="true"
-                                    DataKeyNames="Viaje_ID" CssClass="table table-hover table-striped">
+                                    DataKeyNames="Viaje_ID" CssClass="table table-hover table-striped"
+                                    OnRowDataBound="gridViajesEnCurso_RowDataBound">
                                     <Columns>
 
                                         <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:MMMM d, yyyy}" HtmlEncode="false" />
-                                        <asp:BoundField DataField="Precio_valor_total" HeaderText="Precio valor total" />
-                                        <asp:BoundField DataField="Importe_viaje" HeaderText="Importe viaje" />
-                                        <asp:BoundField DataField="Saldo" HeaderText="Saldo" />
+                                        <asp:BoundField DataField="Precio_valor_total" HeaderText="Precio valor total" DataFormatString="{0:c}" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Importe_viaje" HeaderText="Importe viaje" DataFormatString="{0:c}" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Saldo" HeaderText="Saldo" DataFormatString="{0:c}" HtmlEncode="False" />
                                         <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
 
                                         <asp:ButtonField CommandName="detail" ControlStyle-CssClass="btn btn-info"
                                             ButtonType="Link" Text="" HeaderText="Notificar">
                                             <ControlStyle CssClass="btn btn-info btn-xs fa fa-bullhorn"></ControlStyle>
                                         </asp:ButtonField>
+                                       <%-- <asp:ButtonField CommandName="detail" ControlStyle-CssClass="btn btn-info"
+                                            ButtonType="Link" Text="" HeaderText="Inspeccionar">
+                                            <ControlStyle CssClass="btn btn-info btn-xs glyphicon glyphicon-search"></ControlStyle>
+                                        </asp:ButtonField>
+                                        <asp:ButtonField CommandName="editRecord" ControlStyle-CssClass="btn btn-info"
+                                            ButtonType="Link" Text="" HeaderText="Modificar">
+                                            <ControlStyle CssClass="btn btn-info btn-xs glyphicon glyphicon-pencil"></ControlStyle>
+                                        </asp:ButtonField>
+                                        <asp:ButtonField CommandName="deleteRecord" ControlStyle-CssClass="btn btn-info"
+                                            ButtonType="Link" Text="" HeaderText="Borrar">
+                                            <ControlStyle CssClass="btn btn-info btn-xs glyphicon glyphicon-remove"></ControlStyle>
+                                        </asp:ButtonField>--%>
                                         <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btnInspeccionar" runat="server" CommandName="detail" Text="" ToolTip="Inspeccionar"><span aria-hidden="true" class="glyphicon glyphicon-search"></asp:LinkButton>
@@ -89,6 +104,8 @@
                                 </asp:GridView>
                             </ContentTemplate>
                             <Triggers>
+                                <%--<asp:AsyncPostBackTrigger ControlID="gridViajesEnCurso" EventName="RowCommand" />
+                                <%--<asp:AsyncPostBackTrigger ControlID="btnModificar" EventName="Click" />--%>
                             </Triggers>
                         </asp:UpdatePanel>
                         <!-- Detail Modal Starts here-->
@@ -217,13 +234,12 @@
                         <!--Delete Record Modal Ends here -->
                     </div>
 
+            </div>
 
                     <!--  -->
 
 
-                </div>
 
-            </div>
 
             <div class="row">
 
@@ -257,7 +273,7 @@
                     <div class="row">
                         <div id="divContent" style="overflow: auto;">
 
-                            <div style="width: 90%; margin-right: 5%; margin-left: 5%; text-align: center">
+                            <div style="text-align: center">
 
                                 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                                 <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-hover table-striped"
@@ -266,12 +282,9 @@
                                     OnRowCancelingEdit="gridViajes_RowCancelingEdit"
                                     OnRowEditing="gridViajes_RowEditing"
                                     OnRowUpdating="gridViajes_RowUpdating"
-                                    OnRowDataBound="gridViajes_RowDataBound"
-                                    OnRowDeleting="gridViajes_RowDeleting">
+                                    OnRowDeleting="gridViajes_RowDeleting"
+                                    OnRowDataBound="gridViajes_RowDataBound">
 
-                                    <%--<HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />--%>
-                                    <%--<AlternatingRowStyle BackColor="#EFF3FB" />--%>
-                                    <%--<EditRowStyle BackColor="#ffffcc" />--%>
                                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                                     <EmptyDataTemplate>
                                         ¡No hay clientes con los parámetros seleccionados!  
@@ -340,7 +353,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Precio compra por ton">
                                             <EditItemTemplate>
-                                                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Precio_compra_por_tonelada", "{0:C2}") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Precio_compra_por_tonelada") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                 <asp:CompareValidator ID="vtxb1" runat="server" ControlToValidate="txb1" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                                             </EditItemTemplate>
                                             <ItemTemplate>
@@ -353,7 +366,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Precio valor total">
                                             <EditItemTemplate>
-                                                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Precio_valor_total", "{0:C2}") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Precio_valor_total") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                             </EditItemTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Precio_valor_total", "{0:C2}") %>'></asp:Label>
@@ -364,7 +377,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Importe viaje">
                                             <EditItemTemplate>
-                                                <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Importe_viaje", "{0:C2}") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Importe_viaje") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                 <asp:CompareValidator ID="vtxb3" runat="server" ControlToValidate="txb3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                                             </EditItemTemplate>
                                             <ItemTemplate>
@@ -377,7 +390,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Saldo">
                                             <EditItemTemplate>
-                                                <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("Saldo", "{0:C2}") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("Saldo") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                 <asp:CompareValidator ID="vtxb4" runat="server" ControlToValidate="txb4" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                                             </EditItemTemplate>
                                             <ItemTemplate>

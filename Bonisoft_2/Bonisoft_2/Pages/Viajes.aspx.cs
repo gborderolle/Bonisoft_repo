@@ -182,70 +182,90 @@ namespace Bonisoft_2.Pages
 
         protected void gridViajes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-            if (e.CommandName == "InsertNew")
+            if (e.CommandArgument != null)
             {
-                GridViewRow row = gridViajes.FooterRow;
-                TextBox txb1 = row.FindControl("txbNew1") as TextBox;
-                TextBox txb2 = row.FindControl("txbNew2") as TextBox;
-                TextBox txb3 = row.FindControl("txbNew3") as TextBox;
-                TextBox txb4 = row.FindControl("txbNew4") as TextBox;
-                TextBox txb6 = row.FindControl("txbNew6") as TextBox;
-                TextBox txb7 = row.FindControl("txbNew7") as TextBox;
-                TextBox txb8 = row.FindControl("txbNew8") as TextBox;
-                TextBox txb9 = row.FindControl("txbNew9") as TextBox;
-                TextBox txb11 = row.FindControl("txbNew11") as TextBox;
-                TextBox txb12 = row.FindControl("txbNew12") as TextBox;
-                TextBox txb15 = row.FindControl("txbNew15") as TextBox;
-                DropDownList ddlFormas2 = row.FindControl("ddlFormas2") as DropDownList;
-                DropDownList ddlEmpresas2 = row.FindControl("ddlEmpresas2") as DropDownList;
-                DropDownList ddlCamiones2 = row.FindControl("ddlCamiones2") as DropDownList;
-                DropDownList ddlChoferes2 = row.FindControl("ddlChoferes2") as DropDownList;
-
-                if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb6 != null && txb7 != null && ddlChoferes2 != null && txb15 != null &&
-                    txb8 != null && txb9 != null && ddlFormas2 != null && txb11 != null && txb12 != null && txb3 != null && ddlEmpresas2 != null && ddlCamiones2 != null)
+                if (!string.IsNullOrWhiteSpace(e.CommandArgument.ToString()) && !string.IsNullOrWhiteSpace(e.CommandName))
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    int index = Convert.ToInt32(e.CommandArgument);
+                    if (e.CommandName == "InsertNew")
                     {
-                        viaje obj = new viaje();
-                        obj.Fecha_partida = DateTime.Parse(txb11.Text);
-                        obj.Fecha_llegada = DateTime.Parse(txb12.Text);
-                        obj.Precio_compra_por_tonelada = decimal.Parse(txb1.Text);
-                        obj.Precio_valor_total = decimal.Parse(txb2.Text);
-                        obj.Importe_viaje = decimal.Parse(txb3.Text);
-                        obj.Saldo = decimal.Parse(txb4.Text);
-                        obj.Carga = txb6.Text;
-                        obj.Descarga = txb7.Text;
-                        obj.Pesada_origen_ID = int.Parse(txb8.Text);
-                        obj.Pesada_destino_ID = int.Parse(txb9.Text);
-                        obj.Comentarios = txb15.Text;
+                        GridViewRow row = gridViajes.FooterRow;
+                        TextBox txb1 = row.FindControl("txbNew1") as TextBox;
+                        TextBox txb2 = row.FindControl("txbNew2") as TextBox;
+                        TextBox txb3 = row.FindControl("txbNew3") as TextBox;
+                        TextBox txb4 = row.FindControl("txbNew4") as TextBox;
+                        TextBox txb6 = row.FindControl("txbNew6") as TextBox;
+                        TextBox txb7 = row.FindControl("txbNew7") as TextBox;
+                        TextBox txb8 = row.FindControl("txbNew8") as TextBox;
+                        TextBox txb9 = row.FindControl("txbNew9") as TextBox;
+                        TextBox txb11 = row.FindControl("txbNew11") as TextBox;
+                        TextBox txb12 = row.FindControl("txbNew12") as TextBox;
+                        TextBox txb15 = row.FindControl("txbNew15") as TextBox;
+                        DropDownList ddlFormas2 = row.FindControl("ddlFormas2") as DropDownList;
+                        DropDownList ddlEmpresas2 = row.FindControl("ddlEmpresas2") as DropDownList;
+                        DropDownList ddlCamiones2 = row.FindControl("ddlCamiones2") as DropDownList;
+                        DropDownList ddlChoferes2 = row.FindControl("ddlChoferes2") as DropDownList;
 
-                        obj.Empresa_de_carga_ID = Convert.ToInt32(ddlEmpresas2.SelectedValue);
-                        obj.Camion_ID = Convert.ToInt32(ddlCamiones2.SelectedValue);
-                        obj.Chofer_ID = Convert.ToInt32(ddlChoferes2.SelectedValue);
-                        obj.Forma_de_pago_ID = Convert.ToInt32(ddlFormas2.SelectedValue);
-
-                        bool isClient = false;
-                        string selectedText = ddlEmpresas2.SelectedItem.Text;
-                        if (!string.IsNullOrWhiteSpace(selectedText))
+                        if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb6 != null && txb7 != null && ddlChoferes2 != null && txb15 != null &&
+                            txb8 != null && txb9 != null && ddlFormas2 != null && txb11 != null && txb12 != null && txb3 != null && ddlEmpresas2 != null && ddlCamiones2 != null)
                         {
-                            isClient = selectedText.Contains("Cliente");
-                        }
-                        obj.Empresa_esCliente = isClient;
+                            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                            {
+                                viaje obj = new viaje();                                
+                                obj.Precio_compra_por_tonelada = decimal.Parse(txb1.Text);
+                                obj.Precio_valor_total = decimal.Parse(txb2.Text);
+                                obj.Importe_viaje = decimal.Parse(txb3.Text);
+                                obj.Saldo = decimal.Parse(txb4.Text);
+                                obj.Carga = txb6.Text;
+                                obj.Descarga = txb7.Text;
+                                obj.Pesada_origen_ID = int.Parse(txb8.Text);
+                                obj.Pesada_destino_ID = int.Parse(txb9.Text);
+                                obj.Comentarios = txb15.Text;
 
-                        context.viajes.Add(obj);
-                        context.SaveChanges();
-                        lblMessage.Text = "Agregado correctamente.";
+                                DateTime date1 = DateTime.Now;
+                                if (!DateTime.TryParse(txb11.Text, out date1))
+                                {
+                                    date1 = DateTime.Now;
+                                }
+                                obj.Fecha_partida = date1;
+
+                                DateTime date2 = DateTime.Now;
+                                if (!DateTime.TryParse(txb12.Text, out date2))
+                                {
+                                    date2 = DateTime.Now;
+                                }
+                                obj.Fecha_llegada = date2;
+
+
+                                obj.Empresa_de_carga_ID = Convert.ToInt32(ddlEmpresas2.SelectedValue);
+                                obj.Camion_ID = Convert.ToInt32(ddlCamiones2.SelectedValue);
+                                obj.Chofer_ID = Convert.ToInt32(ddlChoferes2.SelectedValue);
+                                obj.Forma_de_pago_ID = Convert.ToInt32(ddlFormas2.SelectedValue);
+
+                                bool isClient = false;
+                                string selectedText = ddlEmpresas2.SelectedItem.Text;
+                                if (!string.IsNullOrWhiteSpace(selectedText))
+                                {
+                                    isClient = selectedText.Contains("Cliente");
+                                }
+                                obj.Empresa_esCliente = isClient;
+
+                                context.viajes.Add(obj);
+                                context.SaveChanges();
+                                lblMessage.Text = "Agregado correctamente.";
+                                BindGrid();
+                            }
+                        }
+                    }
+
+                    else
+                    {
                         BindGrid();
                     }
                 }
             }
-
-            else
-            {
-                BindGrid();
-            }
         }
+    
 
         protected void gridViajes_RowEditing(object sender, GridViewEditEventArgs e)
         {
@@ -273,10 +293,10 @@ namespace Bonisoft_2.Pages
             TextBox txb11 = row.FindControl("txb11") as TextBox;
             TextBox txb12 = row.FindControl("txb12") as TextBox;
             TextBox txb15 = row.FindControl("txb15") as TextBox;
-            DropDownList ddlFormas2 = row.FindControl("ddlFormas2") as DropDownList;
-            DropDownList ddlEmpresas2 = row.FindControl("ddlEmpresas2") as DropDownList;
-            DropDownList ddlCamiones2 = row.FindControl("ddlCamiones2") as DropDownList;
-            DropDownList ddlChoferes2 = row.FindControl("ddlChoferes2") as DropDownList;
+            DropDownList ddlFormas2 = row.FindControl("ddlFormas1") as DropDownList;
+            DropDownList ddlEmpresas2 = row.FindControl("ddlEmpresas1") as DropDownList;
+            DropDownList ddlCamiones2 = row.FindControl("ddlCamiones1") as DropDownList;
+            DropDownList ddlChoferes2 = row.FindControl("ddlChoferes1") as DropDownList;
 
             if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb6 != null && txb7 != null && ddlChoferes2 != null && txb15 != null &&
                 txb8 != null && txb9 != null && ddlFormas2 != null && txb11 != null && txb12 != null && txb3 != null && ddlEmpresas2 != null && ddlCamiones2 != null)
@@ -294,13 +314,56 @@ namespace Bonisoft_2.Pages
                     obj.Pesada_origen_ID = int.Parse(txb8.Text);
                     obj.Pesada_destino_ID = int.Parse(txb9.Text);
                     obj.Comentarios = txb15.Text;
-                    obj.Fecha_partida = DateTime.Parse(txb11.Text);
-                    obj.Fecha_llegada = DateTime.Parse(txb12.Text);
 
-                    obj.Empresa_de_carga_ID = Convert.ToInt32(ddlEmpresas2.SelectedValue);
-                    obj.Camion_ID = Convert.ToInt32(ddlCamiones2.SelectedValue);
-                    obj.Chofer_ID = Convert.ToInt32(ddlChoferes2.SelectedValue);
-                    obj.Forma_de_pago_ID = Convert.ToInt32(ddlFormas2.SelectedValue);
+                    #region Datetime logic
+
+                    DateTime date1 = obj.Fecha_partida;
+                    if(!DateTime.TryParse(txb11.Text, out date1))
+                    {
+                        date1 = obj.Fecha_partida;
+                    }
+                    obj.Fecha_partida = date1;
+
+                    DateTime date2 = obj.Fecha_llegada;
+                    if (!DateTime.TryParse(txb12.Text, out date2))
+                    {
+                        date2 = obj.Fecha_partida;
+                    }
+                    obj.Fecha_llegada = date2;
+
+                    #endregion 
+
+                    #region DDL logic
+
+                    int ddl1 = obj.Empresa_de_carga_ID;
+                    if (!int.TryParse(ddlEmpresas2.SelectedValue, out ddl1))
+                    {
+                        ddl1 = obj.Empresa_de_carga_ID;
+                    }
+                    obj.Empresa_de_carga_ID = ddl1;
+
+                    int ddl2 = obj.Camion_ID;
+                    if (!int.TryParse(ddlCamiones2.SelectedValue, out ddl2))
+                    {
+                        ddl2 = obj.Camion_ID;
+                    }
+                    obj.Camion_ID = ddl2;
+
+                    int ddl3 = obj.Chofer_ID;
+                    if (!int.TryParse(ddlChoferes2.SelectedValue, out ddl3))
+                    {
+                        ddl3 = obj.Chofer_ID;
+                    }
+                    obj.Chofer_ID = ddl3;
+
+                    int ddl4 = obj.Forma_de_pago_ID;
+                    if (!int.TryParse(ddlFormas2.SelectedValue, out ddl4))
+                    {
+                        ddl4 = obj.Forma_de_pago_ID;
+                    }
+                    obj.Forma_de_pago_ID = ddl4;
+
+                    #endregion DDL logic
 
                     bool isClient = false;
                     string selectedText = ddlEmpresas2.SelectedItem.Text;
@@ -492,6 +555,28 @@ namespace Bonisoft_2.Pages
                 if (element != null)
                 {
                     context.viajes.Remove(element);
+                }
+            }
+        }
+
+        protected void gridViajesEnCurso_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton btnInspeccionar = e.Row.FindControl("btnInspeccionar") as LinkButton;
+                if (btnInspeccionar != null)
+                {
+                    btnInspeccionar.CommandArgument = e.Row.DataItemIndex.ToString();
+                }
+                LinkButton btnModificar = e.Row.FindControl("btnModificar") as LinkButton;
+                if (btnModificar != null)
+                {
+                    btnModificar.CommandArgument = e.Row.DataItemIndex.ToString();
+                }
+                LinkButton btnBorrar = e.Row.FindControl("btnBorrar") as LinkButton;
+                if (btnBorrar != null)
+                {
+                    btnBorrar.CommandArgument = e.Row.DataItemIndex.ToString();
                 }
             }
         }

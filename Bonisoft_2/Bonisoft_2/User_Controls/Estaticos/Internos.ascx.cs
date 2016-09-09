@@ -75,12 +75,34 @@ namespace Bonisoft_2.User_Controls
                         interno obj = new interno();
                         obj.Apellidos = txb1.Text;
                         obj.Nombres= txb2.Text;
-                        obj.Fecha_nacimiento = DateTime.Parse(txb3.Text);
                         obj.CI = txb4.Text;
-                        obj.Fecha_ingreso = DateTime.Parse(txb5.Text);
-                        obj.Fecha_egreso = DateTime.Parse(txb6.Text);
                         obj.Cargo = txb7.Text;
                         obj.Comentarios = txb8.Text;
+
+                        #region Datetime logic
+
+                        DateTime date1 = DateTime.Now;
+                        if (!DateTime.TryParse(txb3.Text, out date1))
+                        {
+                            date1 = DateTime.Now;
+                        }
+                        obj.Fecha_nacimiento = date1;
+
+                        DateTime date2 = DateTime.Now;
+                        if (!DateTime.TryParse(txb5.Text, out date2))
+                        {
+                            date2 = DateTime.Now;
+                        }
+                        obj.Fecha_ingreso = date2;
+
+                        DateTime date3 = DateTime.Now;
+                        if (!DateTime.TryParse(txb6.Text, out date3))
+                        {
+                            date3 = DateTime.Now;
+                        }
+                        obj.Fecha_egreso = date3;
+
+                        #endregion
 
                         context.internos.Add(obj);
                         context.SaveChanges();
@@ -124,12 +146,34 @@ namespace Bonisoft_2.User_Controls
                     interno obj = context.internos.First(x => x.Interno_ID == interno_ID);
                     obj.Apellidos = txb1.Text;
                     obj.Nombres = txb2.Text;
-                    obj.Fecha_nacimiento = DateTime.Parse(txb3.Text);
                     obj.CI = txb4.Text;
-                    obj.Fecha_ingreso = DateTime.Parse(txb5.Text);
-                    obj.Fecha_egreso = DateTime.Parse(txb6.Text);
                     obj.Cargo = txb7.Text;
                     obj.Comentarios = txb8.Text;
+
+                    #region Datetime logic
+
+                    DateTime date1 = obj.Fecha_nacimiento;
+                    if (!DateTime.TryParse(txb3.Text, out date1))
+                    {
+                        date1 = obj.Fecha_nacimiento;
+                    }
+                    obj.Fecha_nacimiento = date1;
+
+                    DateTime date2 = obj.Fecha_ingreso;
+                    if (!DateTime.TryParse(txb5.Text, out date2))
+                    {
+                        date2 = obj.Fecha_ingreso;
+                    }
+                    obj.Fecha_ingreso = date2;
+
+                    DateTime date3 = obj.Fecha_egreso;
+                    if (!DateTime.TryParse(txb6.Text, out date3))
+                    {
+                        date3 = obj.Fecha_egreso;
+                    }
+                    obj.Fecha_egreso = date3;
+
+                    #endregion
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";

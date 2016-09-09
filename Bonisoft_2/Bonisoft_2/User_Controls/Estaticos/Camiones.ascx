@@ -2,7 +2,8 @@
 <h2>Lista de Camiones</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridCamiones" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table"
+<asp:GridView ID="gridCamiones" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
+    CssClass="table table-hover table-striped"
     DataKeyNames="Camion_ID"
     OnRowCommand="gridCamiones_RowCommand"
     OnRowCancelingEdit="gridCamiones_RowCancelingEdit"
@@ -11,9 +12,6 @@
     OnRowDataBound="gridCamiones_RowDataBound"
     OnRowDeleting="gridCamiones_RowDeleting">
 
-    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
-    <AlternatingRowStyle BackColor="#EFF3FB" />
-    <EditRowStyle BackColor="#ffffcc" />
     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
     <EmptyDataTemplate>
         ¡No hay clientes con los parámetros seleccionados!  

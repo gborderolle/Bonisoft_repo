@@ -2,7 +2,8 @@
 <h2>Lista de Cuadrillas de descarga</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridCuadrillas" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
+<asp:GridView ID="gridCuadrillas" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
+    CssClass="table table-hover table-striped" AllowPaging="true"
     DataKeyNames="Cuadrilla_descarga_ID"
     OnRowCommand="gridCuadrillas_RowCommand"
     OnRowCancelingEdit="gridCuadrillas_RowCancelingEdit"
@@ -11,9 +12,6 @@
     OnRowDataBound="gridCuadrillas_RowDataBound"
     OnRowDeleting="gridCuadrillas_RowDeleting">
 
-    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
-    <AlternatingRowStyle BackColor="#EFF3FB" />
-    <EditRowStyle BackColor="Red" />
     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
     <EmptyDataTemplate>
         ¡No hay clientes con los parámetros seleccionados!  
@@ -52,7 +50,7 @@
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </EditItemTemplate>
             <FooterTemplate>
-                <asp:LinkButton ID="lnkInsert" runat="server" Text="" ValidationGroup="newGrp" CommandName="InsertNew" ToolTip="Nuevo"
+                <asp:LinkButton ID="lnkInsert" runat="server" Text="" ValidationGroup="newGrp" CommandName="InsertNew" ToolTip="Agregar"
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-plus"></span></asp:LinkButton>
                 <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew" ToolTip="Cancelar"
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>

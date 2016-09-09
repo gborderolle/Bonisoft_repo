@@ -2,7 +2,8 @@
 <h2>Lista de Variedades</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridVariedades" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
+<asp:GridView ID="gridVariedades" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
+    CssClass="table table-hover table-striped" AllowPaging="true"
     DataKeyNames="Variedad_ID"
     OnRowCommand="gridVariedades_RowCommand"
     OnRowCancelingEdit="gridVariedades_RowCancelingEdit"
@@ -11,9 +12,6 @@
     OnRowDataBound="gridVariedades_RowDataBound"
     OnRowDeleting="gridVariedades_RowDeleting">
 
-    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
-    <AlternatingRowStyle BackColor="#EFF3FB" />
-    <EditRowStyle BackColor="Red" />
     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
     <EmptyDataTemplate>
         ¡No hay clientes con los parámetros seleccionados!  

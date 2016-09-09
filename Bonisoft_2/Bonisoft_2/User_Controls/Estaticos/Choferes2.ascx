@@ -1,17 +1,17 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Choferes2.ascx.cs" Inherits="Bonisoft_2.User_Controls.Choferes2" %>
-
 <h2>Lista de Choferes</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridChoferes" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True"
-    CssClass="table table-bordered bs-table" OnRowCommand="gridChoferes_RowCommand" DataKeyNames="Chofer_ID"
+<asp:GridView ID="gridChoferes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True"
+    CssClass="table table-hover table-striped" 
+    DataKeyNames="Chofer_ID"
+    OnRowCommand="gridChoferes_RowCommand" 
     OnRowCancelingEdit="gridChoferes_RowCancelingEdit"
-    OnRowEditing="gridChoferes_RowEditing" OnRowUpdating="gridChoferes_RowUpdating" OnRowDataBound="gridChoferes_RowDataBound"
+    OnRowEditing="gridChoferes_RowEditing" 
+    OnRowUpdating="gridChoferes_RowUpdating" 
+    OnRowDataBound="gridChoferes_RowDataBound"
     OnRowDeleting="gridChoferes_RowDeleting">
 
-    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
-    <AlternatingRowStyle BackColor="#EFF3FB" />
-    <EditRowStyle BackColor="#ffffcc" />
     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
     <EmptyDataTemplate>
         ¡No hay clientes con los parámetros seleccionados!  

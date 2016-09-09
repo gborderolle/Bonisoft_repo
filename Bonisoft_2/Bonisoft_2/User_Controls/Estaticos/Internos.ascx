@@ -2,7 +2,8 @@
 <h2>Lista de Internos</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridInternos" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table"
+<asp:GridView ID="gridInternos" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
+    CssClass="table table-hover table-striped"
     DataKeyNames="Interno_ID"
     OnRowCommand="gridInternos_RowCommand"
     OnRowCancelingEdit="gridInternos_RowCancelingEdit"
@@ -11,9 +12,6 @@
     OnRowDataBound="gridInternos_RowDataBound"
     OnRowDeleting="gridInternos_RowDeleting">
 
-    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
-    <AlternatingRowStyle BackColor="#EFF3FB" />
-    <EditRowStyle BackColor="#ffffcc" />
     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
     <EmptyDataTemplate>
         ¡No hay clientes con los parámetros seleccionados!  
@@ -80,7 +78,7 @@
                 <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Fecha nac">
+        <asp:TemplateField HeaderText="Fecha nacim.">
             <EditItemTemplate>
                 <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Fecha_nacimiento", "{0:MMMM d, yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
@@ -102,7 +100,7 @@
                 <asp:TextBox ID="txbNew4" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="F ingreso">
+        <asp:TemplateField HeaderText="Fecha ingreso">
             <EditItemTemplate>
                 <asp:TextBox ID="txb5" runat="server" Text='<%# Bind("Fecha_ingreso", "{0:MMMM d, yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
@@ -113,7 +111,7 @@
                 <asp:TextBox ID="txbNew5" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="F egreso">
+        <asp:TemplateField HeaderText="Fecha egreso">
             <EditItemTemplate>
                 <asp:TextBox ID="txb6" runat="server" Text='<%# Bind("Fecha_egreso", "{0:MMMM d, yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>

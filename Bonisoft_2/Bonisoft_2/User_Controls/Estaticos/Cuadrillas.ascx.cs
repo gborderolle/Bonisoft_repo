@@ -131,15 +131,23 @@ namespace Bonisoft_2.User_Controls
         {
             GridViewRow row = gridCuadrillas.Rows[e.RowIndex];
             TextBox txb2 = row.FindControl("txb2") as TextBox;
-            DropDownList ddlEmpresas2 = row.FindControl("ddlEmpresas2") as DropDownList;
-            if (ddlEmpresas2 != null && txb2 != null)
+            DropDownList ddlEmpresas1 = row.FindControl("ddlEmpresas1") as DropDownList;
+            if (ddlEmpresas1 != null && txb2 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
                     int cuadrilla_descarga_ID = Convert.ToInt32(gridCuadrillas.DataKeys[e.RowIndex].Value);
                     cuadrilla_descarga obj = context.cuadrilla_descarga.First(x => x.Cuadrilla_descarga_ID == cuadrilla_descarga_ID);
-                    obj.Empresa_ID = Convert.ToInt32(ddlEmpresas2.SelectedValue);
+                    obj.Empresa_ID = Convert.ToInt32(ddlEmpresas1.SelectedValue);
                     obj.Comentarios = txb2.Text;
+
+                    bool isClient = false;
+                    string selectedText = ddlEmpresas1.SelectedItem.Text;
+                    if (!string.IsNullOrWhiteSpace(selectedText))
+                    {
+                        isClient = selectedText.Contains("Cliente");
+                    }
+                    obj.Empresa_esCliente = isClient;
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";

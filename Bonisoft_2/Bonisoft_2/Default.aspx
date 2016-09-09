@@ -4,7 +4,7 @@
 
     <div class="jumbotron">
         <h1>Bonisoft software</h1>
-        <p class="lead">Bienvenido </p>
+        <p class="lead">¡Bienvenido Gonzalo!</p>
     </div>
 
     <div class="row">
