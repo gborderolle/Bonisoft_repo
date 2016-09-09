@@ -2,14 +2,14 @@
 <h2>Lista de Internos</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridSample" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table"
+<asp:GridView ID="gridInternos" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table"
     DataKeyNames="Interno_ID"
-    OnRowCommand="gridSample_RowCommand"
-    OnRowCancelingEdit="gridSample_RowCancelingEdit"
-    OnRowEditing="gridSample_RowEditing"
-    OnRowUpdating="gridSample_RowUpdating"
-    OnRowDataBound="gridSample_RowDataBound"
-    OnRowDeleting="gridSample_RowDeleting">
+    OnRowCommand="gridInternos_RowCommand"
+    OnRowCancelingEdit="gridInternos_RowCancelingEdit"
+    OnRowEditing="gridInternos_RowEditing"
+    OnRowUpdating="gridInternos_RowUpdating"
+    OnRowDataBound="gridInternos_RowDataBound"
+    OnRowDeleting="gridInternos_RowDeleting">
 
     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
     <AlternatingRowStyle BackColor="#EFF3FB" />

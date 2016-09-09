@@ -19,7 +19,7 @@ namespace Bonisoft_2.Pages
             {
                 BindGrid();
 
-                BindGrid_2();
+                BindGrid_EnCurso();
             }
             lblMessage.Text = "";
         }
@@ -31,8 +31,8 @@ namespace Bonisoft_2.Pages
                 var elements = context.viajes.Where(e => e.EnViaje == false).ToList();
                 if (elements.Count() > 0)
                 {
-                    grdViajes.DataSource = context.viajes.ToList();
-                    grdViajes.DataBind();
+                    gridViajes.DataSource = context.viajes.ToList();
+                    gridViajes.DataBind();
                 }
                 else
                 {
@@ -42,25 +42,25 @@ namespace Bonisoft_2.Pages
                     /* Grid Viajes */
 
                     // Bind the DataTable which contain a blank row to the GridView
-                    grdViajes.DataSource = obj;
-                    grdViajes.DataBind();
-                    int columnsCount = grdViajes.Columns.Count;
-                    grdViajes.Rows[0].Cells.Clear();// clear all the cells in the row
-                    grdViajes.Rows[0].Cells.Add(new TableCell()); //add a new blank cell
-                    grdViajes.Rows[0].Cells[0].ColumnSpan = columnsCount; //set the column span to the new added cell
+                    gridViajes.DataSource = obj;
+                    gridViajes.DataBind();
+                    int columnsCount = gridViajes.Columns.Count;
+                    gridViajes.Rows[0].Cells.Clear();// clear all the cells in the row
+                    gridViajes.Rows[0].Cells.Add(new TableCell()); //add a new blank cell
+                    gridViajes.Rows[0].Cells[0].ColumnSpan = columnsCount; //set the column span to the new added cell
 
                     //You can set the styles here
-                    grdViajes.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
-                    grdViajes.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
-                    grdViajes.Rows[0].Cells[0].Font.Bold = true;
+                    gridViajes.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+                    gridViajes.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
+                    gridViajes.Rows[0].Cells[0].Font.Bold = true;
 
                     //set No Results found to the new added cell
-                    grdViajes.Rows[0].Cells[0].Text = "No hay registros";
+                    gridViajes.Rows[0].Cells[0].Text = "No hay registros";
                 }
             }
         }
 
-        protected void gridSample_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gridViajes_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             DropDownList ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -180,12 +180,12 @@ namespace Bonisoft_2.Pages
 
         }
 
-        protected void gridSample_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gridViajes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName == "InsertNew")
             {
-                GridViewRow row = grdViajes.FooterRow;
+                GridViewRow row = gridViajes.FooterRow;
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 TextBox txb3 = row.FindControl("txbNew3") as TextBox;
@@ -247,21 +247,21 @@ namespace Bonisoft_2.Pages
             }
         }
 
-        protected void gridSample_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void gridViajes_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            grdViajes.EditIndex = e.NewEditIndex;
+            gridViajes.EditIndex = e.NewEditIndex;
             BindGrid();
         }
 
-        protected void gridSample_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        protected void gridViajes_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            grdViajes.EditIndex = -1;
+            gridViajes.EditIndex = -1;
             BindGrid();
         }
 
-        protected void gridSample_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        protected void gridViajes_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            GridViewRow row = grdViajes.Rows[e.RowIndex];
+            GridViewRow row = gridViajes.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
             TextBox txb3 = row.FindControl("txb3") as TextBox;
@@ -283,7 +283,7 @@ namespace Bonisoft_2.Pages
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
-                    int viaje_ID = Convert.ToInt32(grdViajes.DataKeys[e.RowIndex].Value);
+                    int viaje_ID = Convert.ToInt32(gridViajes.DataKeys[e.RowIndex].Value);
                     viaje obj = context.viajes.First(x => x.Viaje_ID == viaje_ID);
                     obj.Precio_compra_por_tonelada = decimal.Parse(txb1.Text);
                     obj.Precio_valor_total = decimal.Parse(txb2.Text);
@@ -312,15 +312,15 @@ namespace Bonisoft_2.Pages
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";
-                    grdViajes.EditIndex = -1;
+                    gridViajes.EditIndex = -1;
                     BindGrid();
                 }
             }
         }
 
-        protected void gridSample_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gridViajes_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            int viaje_ID = Convert.ToInt32(grdViajes.DataKeys[e.RowIndex].Value);
+            int viaje_ID = Convert.ToInt32(gridViajes.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 viaje obj = context.viajes.First(x => x.Viaje_ID == viaje_ID);
@@ -334,11 +334,11 @@ namespace Bonisoft_2.Pages
         protected void PageDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Recupera la fila.
-            GridViewRow pagerRow = grdViajes.BottomPagerRow;
+            GridViewRow pagerRow = gridViajes.BottomPagerRow;
             // Recupera el control DropDownList...
             DropDownList pageList = (DropDownList)pagerRow.Cells[0].FindControl("PageDropDownList");
             //// Se Establece la propiedad PageIndex para visualizar la página seleccionada...
-            grdViajes.PageIndex = pageList.SelectedIndex;
+            gridViajes.PageIndex = pageList.SelectedIndex;
             //Quita el mensaje de información si lo hubiera...
             lblMessage.Text = "";
         }
@@ -348,23 +348,23 @@ namespace Bonisoft_2.Pages
 
         }
 
-        public void BindGrid_2()
+        public void BindGrid_EnCurso()
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 var elements = context.viajes.Where(e => e.EnViaje == true).ToList();
                 if (elements.Count() > 0)
                 {
-                    GridView1.DataSource = context.viajes.ToList();
-                    GridView1.DataBind();
+                    gridViajesEnCurso.DataSource = context.viajes.ToList();
+                    gridViajesEnCurso.DataBind();
                 }
             }
         }
 
-        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gridViajesEnCurso_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
-            int viaje_ID = int.Parse(GridView1.DataKeys[index].Value.ToString());
+            int viaje_ID = int.Parse(gridViajesEnCurso.DataKeys[index].Value.ToString());
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 if (e.CommandName.Equals("detail"))
@@ -372,8 +372,8 @@ namespace Bonisoft_2.Pages
                     var elements = context.viajes.Where(v => v.Viaje_ID == viaje_ID).ToList();
                     if (elements.Count > 0)
                     {
-                        GridView1.DataSource = elements;
-                        GridView1.DataBind();
+                        gridViajesEnCurso.DataSource = elements;
+                        gridViajesEnCurso.DataBind();
 
                         System.Text.StringBuilder sb = new System.Text.StringBuilder();
                         sb.Append(@"<script type='text/javascript'>");
@@ -384,7 +384,7 @@ namespace Bonisoft_2.Pages
                 }
                 else if (e.CommandName.Equals("editRecord"))
                 {
-                    GridViewRow gvrow = GridView1.Rows[index];
+                    GridViewRow gvrow = gridViajesEnCurso.Rows[index];
                     lblCountryCode.Text = HttpUtility.HtmlDecode(gvrow.Cells[3].Text).ToString();
                     txtPopulation.Text = HttpUtility.HtmlDecode(gvrow.Cells[4].Text);
                     lblResult.Visible = false;
@@ -414,7 +414,7 @@ namespace Bonisoft_2.Pages
             int viaje_ID = int.Parse(lblCountryCode.Text);
             string comentarios = txtPopulation.Text;
             executeUpdate(viaje_ID, comentarios);
-            BindGrid_2();
+            BindGrid_EnCurso();
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");
             sb.Append("alert('Records Updated Successfully');");
@@ -450,7 +450,7 @@ namespace Bonisoft_2.Pages
         {
             string comentarios = txtCountryName.Text;
             executeAdd(comentarios);
-            BindGrid_2();
+            BindGrid_EnCurso();
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");
             sb.Append("alert('Record Added Successfully');");
@@ -475,7 +475,7 @@ namespace Bonisoft_2.Pages
         {
             string viaje_ID = hfCode.Value;
             executeDelete(viaje_ID);
-            BindGrid_2();
+            BindGrid_EnCurso();
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");
             sb.Append("alert('Record deleted Successfully');");

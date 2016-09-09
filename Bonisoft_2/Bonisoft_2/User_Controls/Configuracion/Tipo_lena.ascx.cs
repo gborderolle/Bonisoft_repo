@@ -50,11 +50,11 @@ namespace Bonisoft_2.User_Controls.Configuracion
             }
         }
 
-        protected void gridSample_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gridTipos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
         }
 
-        protected void gridSample_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gridTipos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "InsertNew")
             {
@@ -78,17 +78,17 @@ namespace Bonisoft_2.User_Controls.Configuracion
             }
         }
 
-        protected void gridSample_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void gridTipos_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gridTipos.EditIndex = e.NewEditIndex;
             BindGrid();
         }
-        protected void gridSample_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        protected void gridTipos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             gridTipos.EditIndex = -1;
             BindGrid();
         }
-        protected void gridSample_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        protected void gridTipos_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             GridViewRow row = gridTipos.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
@@ -110,7 +110,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
             }
         }
 
-        protected void gridSample_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gridTipos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int lena_tipo_ID = Convert.ToInt32(gridTipos.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())

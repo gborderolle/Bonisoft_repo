@@ -2,14 +2,14 @@
 <h2>Lista de Variedades</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridVariedades" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
+<asp:GridView ID="gridVariedades" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
     DataKeyNames="Variedad_ID"
-    OnRowCommand="gridSample_RowCommand"
-    OnRowCancelingEdit="gridSample_RowCancelingEdit"
-    OnRowEditing="gridSample_RowEditing"
-    OnRowUpdating="gridSample_RowUpdating"
-    OnRowDataBound="gridSample_RowDataBound"
-    OnRowDeleting="gridSample_RowDeleting">
+    OnRowCommand="gridVariedades_RowCommand"
+    OnRowCancelingEdit="gridVariedades_RowCancelingEdit"
+    OnRowEditing="gridVariedades_RowEditing"
+    OnRowUpdating="gridVariedades_RowUpdating"
+    OnRowDataBound="gridVariedades_RowDataBound"
+    OnRowDeleting="gridVariedades_RowDeleting">
 
     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
     <AlternatingRowStyle BackColor="#EFF3FB" />

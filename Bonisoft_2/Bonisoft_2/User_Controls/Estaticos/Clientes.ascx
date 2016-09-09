@@ -2,14 +2,14 @@
 <h2>Lista de Clientes</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridSample" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table"
+<asp:GridView ID="gridClientes" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table"
     DataKeyNames="Cliente_ID"
-    OnRowCommand="gridSample_RowCommand"
-    OnRowCancelingEdit="gridSample_RowCancelingEdit"
-    OnRowEditing="gridSample_RowEditing"
-    OnRowUpdating="gridSample_RowUpdating"
-    OnRowDataBound="gridSample_RowDataBound"
-    OnRowDeleting="gridSample_RowDeleting">
+    OnRowCommand="gridClientes_RowCommand"
+    OnRowCancelingEdit="gridClientes_RowCancelingEdit"
+    OnRowEditing="gridClientes_RowEditing"
+    OnRowUpdating="gridClientes_RowUpdating"
+    OnRowDataBound="gridClientes_RowDataBound"
+    OnRowDeleting="gridClientes_RowDeleting">
 
     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
     <AlternatingRowStyle BackColor="#EFF3FB" />

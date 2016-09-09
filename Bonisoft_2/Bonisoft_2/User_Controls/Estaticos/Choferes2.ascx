@@ -3,11 +3,11 @@
 <h2>Lista de Choferes</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridSample" runat="server" AutoGenerateColumns="False" ShowFooter="True"
-    CssClass="table table-bordered bs-table" OnRowCommand="gridSample_RowCommand" DataKeyNames="Chofer_ID"
-    OnRowCancelingEdit="gridSample_RowCancelingEdit"
-    OnRowEditing="gridSample_RowEditing" OnRowUpdating="gridSample_RowUpdating" OnRowDataBound="gridSample_RowDataBound"
-    OnRowDeleting="gridSample_RowDeleting">
+<asp:GridView ID="gridChoferes" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True"
+    CssClass="table table-bordered bs-table" OnRowCommand="gridChoferes_RowCommand" DataKeyNames="Chofer_ID"
+    OnRowCancelingEdit="gridChoferes_RowCancelingEdit"
+    OnRowEditing="gridChoferes_RowEditing" OnRowUpdating="gridChoferes_RowUpdating" OnRowDataBound="gridChoferes_RowDataBound"
+    OnRowDeleting="gridChoferes_RowDeleting">
 
     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
     <AlternatingRowStyle BackColor="#EFF3FB" />

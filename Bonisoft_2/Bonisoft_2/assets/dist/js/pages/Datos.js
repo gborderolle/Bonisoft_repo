@@ -12,6 +12,20 @@ $(document).ready(function () {
     });
 
     $(".datepicker").datepicker();
+
+    // Source: https://www.youtube.com/watch?v=Sy2J7cUv0QM
+    var gridCamiones = $("#gridCamiones tbody tr").not(':first');
+    var gridChoferes = $("#gridChoferes tbody tr").not(':first');
+    var gridClientes = $("#gridClientes tbody tr").not(':first');
+    var gridCuadrillas = $("#gridCuadrillas tbody tr").not(':first');
+    var gridInternos = $("#gridInternos tbody tr").not(':first');
+    var gridProveedores = $("#gridProveedores tbody tr").not(':first');
+    $("#txbSearch").quicksearch(gridCamiones);
+    $("#txbSearch").quicksearch(gridChoferes);
+    $("#txbSearch").quicksearch(gridClientes);
+    $("#txbSearch").quicksearch(gridCuadrillas);
+    $("#txbSearch").quicksearch(gridInternos);
+    $("#txbSearch").quicksearch(gridProveedores);
 });
 
 $(document).on('click', ".info-box", function () {

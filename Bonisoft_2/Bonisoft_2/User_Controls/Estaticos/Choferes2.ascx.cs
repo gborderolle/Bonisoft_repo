@@ -27,32 +27,32 @@ namespace Bonisoft_2.User_Controls
                 hdnChoferesCount.Value = context.choferes.Count().ToString();
                 if (context.choferes.Count() > 0)
                 {
-                    gridSample.DataSource = context.choferes.ToList();
-                    gridSample.DataBind();
+                    gridChoferes.DataSource = context.choferes.ToList();
+                    gridChoferes.DataBind();
                 }
                 else
                 {
                     var obj = new List<chofer>();
                     obj.Add(new chofer());
                     // Bind the DataTable which contain a blank row to the GridView
-                    gridSample.DataSource = obj;
-                    gridSample.DataBind();
-                    int columnsCount = gridSample.Columns.Count;
-                    gridSample.Rows[0].Cells.Clear();// clear all the cells in the row
-                    gridSample.Rows[0].Cells.Add(new TableCell()); //add a new blank cell
-                    gridSample.Rows[0].Cells[0].ColumnSpan = columnsCount; //set the column span to the new added cell
+                    gridChoferes.DataSource = obj;
+                    gridChoferes.DataBind();
+                    int columnsCount = gridChoferes.Columns.Count;
+                    gridChoferes.Rows[0].Cells.Clear();// clear all the cells in the row
+                    gridChoferes.Rows[0].Cells.Add(new TableCell()); //add a new blank cell
+                    gridChoferes.Rows[0].Cells[0].ColumnSpan = columnsCount; //set the column span to the new added cell
 
                     //You can set the styles here
-                    gridSample.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
-                    gridSample.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
-                    gridSample.Rows[0].Cells[0].Font.Bold = true;
+                    gridChoferes.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+                    gridChoferes.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
+                    gridChoferes.Rows[0].Cells[0].Font.Bold = true;
                     //set No Results found to the new added cell
-                    gridSample.Rows[0].Cells[0].Text = "No hay registros";
+                    gridChoferes.Rows[0].Cells[0].Text = "No hay registros";
                 }
             }
         }
 
-        protected void gridSample_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gridChoferes_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             DropDownList ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -84,11 +84,11 @@ namespace Bonisoft_2.User_Controls
             }
         }
 
-        protected void gridSample_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gridChoferes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "InsertNew")
             {
-                GridViewRow row = gridSample.FooterRow;
+                GridViewRow row = gridChoferes.FooterRow;
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
@@ -125,19 +125,19 @@ namespace Bonisoft_2.User_Controls
             }
         }
 
-        protected void gridSample_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void gridChoferes_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            gridSample.EditIndex = e.NewEditIndex;
+            gridChoferes.EditIndex = e.NewEditIndex;
             BindGrid();
         }
-        protected void gridSample_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        protected void gridChoferes_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            gridSample.EditIndex = -1;
+            gridChoferes.EditIndex = -1;
             BindGrid();
         }
-        protected void gridSample_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        protected void gridChoferes_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            GridViewRow row = gridSample.Rows[e.RowIndex];
+            GridViewRow row = gridChoferes.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
             TextBox txb3 = row.FindControl("txb3") as TextBox;
@@ -146,7 +146,7 @@ namespace Bonisoft_2.User_Controls
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
-                    int chofer_ID = Convert.ToInt32(gridSample.DataKeys[e.RowIndex].Value);
+                    int chofer_ID = Convert.ToInt32(gridChoferes.DataKeys[e.RowIndex].Value);
                     chofer obj = context.choferes.First(x => x.Chofer_ID == chofer_ID);
                     obj.Apellidos = txb1.Text;
                     obj.Nombres = txb2.Text;
@@ -155,15 +155,15 @@ namespace Bonisoft_2.User_Controls
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";
-                    gridSample.EditIndex = -1;
+                    gridChoferes.EditIndex = -1;
                     BindGrid();
                 }
             }
         }
 
-        protected void gridSample_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gridChoferes_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            int chofer_ID = Convert.ToInt32(gridSample.DataKeys[e.RowIndex].Value);
+            int chofer_ID = Convert.ToInt32(gridChoferes.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 chofer obj = context.choferes.First(x => x.Chofer_ID == chofer_ID);
@@ -177,11 +177,11 @@ namespace Bonisoft_2.User_Controls
         protected void PageDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Recupera la fila.
-            GridViewRow pagerRow = gridSample.BottomPagerRow;
+            GridViewRow pagerRow = gridChoferes.BottomPagerRow;
             // Recupera el control DropDownList...
             DropDownList pageList = (DropDownList)pagerRow.Cells[0].FindControl("PageDropDownList");
             //// Se Establece la propiedad PageIndex para visualizar la página seleccionada...
-            gridSample.PageIndex = pageList.SelectedIndex;
+            gridChoferes.PageIndex = pageList.SelectedIndex;
             //Quita el mensaje de información si lo hubiera...
             lblMessage.Text = "";
         }

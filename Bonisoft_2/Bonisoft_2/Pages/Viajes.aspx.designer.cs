@@ -31,13 +31,13 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// GridView1 control.
+        /// gridViajesEnCurso control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView gridViajesEnCurso;
         
         /// <summary>
         /// UpdatePanel2 control.
@@ -175,13 +175,13 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
-        /// grdViajes control.
+        /// gridViajes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdViajes;
+        protected global::System.Web.UI.WebControls.GridView gridViajes;
         
         /// <summary>
         /// hdnViajesCount control.

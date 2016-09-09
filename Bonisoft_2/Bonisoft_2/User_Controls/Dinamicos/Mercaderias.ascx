@@ -2,14 +2,14 @@
 <h2>Lista de Mercaderías</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridMercaderias" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
+<asp:GridView ID="gridMercaderias" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
     DataKeyNames="Lena_tipo_ID"
-    OnRowCommand="gridSample_RowCommand"
-    OnRowCancelingEdit="gridSample_RowCancelingEdit"
-    OnRowEditing="gridSample_RowEditing"
-    OnRowUpdating="gridSample_RowUpdating"
-    OnRowDataBound="gridSample_RowDataBound"
-    OnRowDeleting="gridSample_RowDeleting">
+    OnRowCommand="gridMercaderias_RowCommand"
+    OnRowCancelingEdit="gridMercaderias_RowCancelingEdit"
+    OnRowEditing="gridMercaderias_RowEditing"
+    OnRowUpdating="gridMercaderias_RowUpdating"
+    OnRowDataBound="gridMercaderias_RowDataBound"
+    OnRowDeleting="gridMercaderias_RowDeleting">
 
     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
     <AlternatingRowStyle BackColor="#EFF3FB" />

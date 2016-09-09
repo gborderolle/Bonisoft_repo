@@ -25,41 +25,41 @@ namespace Bonisoft_2.Pages
                 hdnCamionesCount.Value = context.camiones.Count().ToString();
                 if (context.camiones.Count() > 0)
                 {
-                    gridSample.DataSource = context.camiones.ToList();
-                    gridSample.DataBind();
+                    gridCamiones.DataSource = context.camiones.ToList();
+                    gridCamiones.DataBind();
                 }
                 else
                 {
                     var obj = new List<camion>();
                     obj.Add(new camion());
                     // Bind the DataTable which contain a blank row to the GridView
-                    gridSample.DataSource = obj;
-                    gridSample.DataBind();
-                    int columnsCount = gridSample.Columns.Count;
-                    gridSample.Rows[0].Cells.Clear();// clear all the cells in the row
-                    gridSample.Rows[0].Cells.Add(new TableCell()); //add a new blank cell
-                    gridSample.Rows[0].Cells[0].ColumnSpan = columnsCount; //set the column span to the new added cell
+                    gridCamiones.DataSource = obj;
+                    gridCamiones.DataBind();
+                    int columnsCount = gridCamiones.Columns.Count;
+                    gridCamiones.Rows[0].Cells.Clear();// clear all the cells in the row
+                    gridCamiones.Rows[0].Cells.Add(new TableCell()); //add a new blank cell
+                    gridCamiones.Rows[0].Cells[0].ColumnSpan = columnsCount; //set the column span to the new added cell
 
                     //You can set the styles here
-                    gridSample.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
-                    gridSample.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
-                    gridSample.Rows[0].Cells[0].Font.Bold = true;
+                    gridCamiones.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+                    gridCamiones.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
+                    gridCamiones.Rows[0].Cells[0].Font.Bold = true;
                     //set No Results found to the new added cell
-                    gridSample.Rows[0].Cells[0].Text = "No hay registros";
+                    gridCamiones.Rows[0].Cells[0].Text = "No hay registros";
                 }
             }
         }
 
-        protected void gridSample_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gridCamiones_RowDataBound(object sender, GridViewRowEventArgs e)
         {
         }
 
 
-        protected void gridSample_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gridCamiones_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "InsertNew")
             {
-                GridViewRow row = gridSample.FooterRow;
+                GridViewRow row = gridCamiones.FooterRow;
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 TextBox txb3 = row.FindControl("txbNew3") as TextBox;
@@ -97,19 +97,19 @@ namespace Bonisoft_2.Pages
             }
         }
 
-        protected void gridSample_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void gridCamiones_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            gridSample.EditIndex = e.NewEditIndex;
+            gridCamiones.EditIndex = e.NewEditIndex;
             BindGrid();
         }
-        protected void gridSample_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        protected void gridCamiones_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            gridSample.EditIndex = -1;
+            gridCamiones.EditIndex = -1;
             BindGrid();
         }
-        protected void gridSample_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        protected void gridCamiones_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            GridViewRow row = gridSample.Rows[e.RowIndex];
+            GridViewRow row = gridCamiones.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
             TextBox txb3 = row.FindControl("txb3") as TextBox;
@@ -123,7 +123,7 @@ namespace Bonisoft_2.Pages
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
-                    int camion_ID = Convert.ToInt32(gridSample.DataKeys[e.RowIndex].Value);
+                    int camion_ID = Convert.ToInt32(gridCamiones.DataKeys[e.RowIndex].Value);
                     camion obj = context.camiones.First(x => x.Camion_ID == camion_ID);
                     obj.Matricula_camion = txb1.Text;
                     obj.Matricula_zorra = txb2.Text;
@@ -137,15 +137,15 @@ namespace Bonisoft_2.Pages
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";
-                    gridSample.EditIndex = -1;
+                    gridCamiones.EditIndex = -1;
                     BindGrid();
                 }
             }
         }
 
-        protected void gridSample_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gridCamiones_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            int camion_ID = Convert.ToInt32(gridSample.DataKeys[e.RowIndex].Value);
+            int camion_ID = Convert.ToInt32(gridCamiones.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 camion obj = context.camiones.First(x => x.Camion_ID == camion_ID);
@@ -159,11 +159,11 @@ namespace Bonisoft_2.Pages
         protected void PageDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Recupera la fila.
-            GridViewRow pagerRow = gridSample.BottomPagerRow;
+            GridViewRow pagerRow = gridCamiones.BottomPagerRow;
             // Recupera el control DropDownList...
             DropDownList pageList = (DropDownList)pagerRow.Cells[0].FindControl("PageDropDownList");
             //// Se Establece la propiedad PageIndex para visualizar la página seleccionada...
-            gridSample.PageIndex = pageList.SelectedIndex;
+            gridCamiones.PageIndex = pageList.SelectedIndex;
             //Quita el mensaje de información si lo hubiera...
             lblMessage.Text = "";
         }

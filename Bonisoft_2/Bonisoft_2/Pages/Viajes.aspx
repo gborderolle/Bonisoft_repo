@@ -11,6 +11,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
 
     <!-- PAGE SCRIPTS -->
+    <script src="/assets/dist/js/jquery.quicksearch.js"></script>
 
     <!-- Page JS -->
     <script src="/assets/dist/js/pages/Viajes.js"></script>
@@ -44,11 +45,26 @@
                         <!-- Placing GridView in UpdatePanel-->
                         <asp:UpdatePanel ID="upCrudGrid" runat="server">
                             <ContentTemplate>
-                                <asp:Button ID="btnAdd" runat="server" Text="Iniciar viaje" CssClass="btn btn-info pull-left" OnClick="btnAdd_Click" />
+                                <div class="row">
+                                    <asp:Button ID="btnAdd" runat="server" Text="Iniciar viaje" CssClass="btn btn-info pull-left" OnClick="btnAdd_Click" />
+
+                                    <div class="col-md-2 pull-right" style="margin-right: 10px; margin-bottom: 10px;">
+                                        <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
+                                            <div class="input-group ">
+                                                <input type="text" id="txbSearchViajesEnCurso" name="q" class="form-control" placeholder="Buscar...">
+                                                <span class="input-group-btn">
+                                                    <button type="submit" name="search" id="search-btn1" class="btn btn-flat">
+                                                        <i class="fa fa-search"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                                 <br>
                                 <br>
-                                <asp:GridView ID="GridView1" runat="server" Width="940px" HorizontalAlign="Center"
-                                    OnRowCommand="GridView1_RowCommand" AutoGenerateColumns="false" AllowPaging="true"
+                                <asp:GridView ID="gridViajesEnCurso" runat="server" ClientIDMode="Static" Width="940px" HorizontalAlign="Center"
+                                    OnRowCommand="gridViajesEnCurso_RowCommand" AutoGenerateColumns="false" AllowPaging="true"
                                     DataKeyNames="Viaje_ID" CssClass="table table-hover table-striped">
                                     <Columns>
 
@@ -92,7 +108,7 @@
                                         </asp:DetailsView>
                                     </ContentTemplate>
                                     <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="GridView1" EventName="RowCommand" />
+                                        <asp:AsyncPostBackTrigger ControlID="gridViajesEnCurso" EventName="RowCommand" />
                                         <asp:AsyncPostBackTrigger ControlID="btnAdd" EventName="Click" />
                                     </Triggers>
                                 </asp:UpdatePanel>
@@ -134,7 +150,7 @@
                                     </div>
                                 </ContentTemplate>
                                 <Triggers>
-                                    <asp:AsyncPostBackTrigger ControlID="GridView1" EventName="RowCommand" />
+                                    <asp:AsyncPostBackTrigger ControlID="gridViajesEnCurso" EventName="RowCommand" />
                                     <asp:AsyncPostBackTrigger ControlID="btnSave" EventName="Click" />
                                 </Triggers>
                             </asp:UpdatePanel>
@@ -227,7 +243,7 @@
                         <div class="col-md-2 pull-right" style="margin-right: 10px; margin-bottom: 10px;">
                             <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
                                 <div class="input-group ">
-                                    <input type="text" id="txbSearchTable" name="q" class="form-control" placeholder="Buscar...">
+                                    <input type="text" id="txbSearchViajes" name="q" class="form-control" placeholder="Buscar...">
                                     <span class="input-group-btn">
                                         <button type="submit" name="search" id="search-btn" class="btn btn-flat">
                                             <i class="fa fa-search"></i>
@@ -244,14 +260,14 @@
                             <div style="width: 90%; margin-right: 5%; margin-left: 5%; text-align: center">
 
                                 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-                                <asp:GridView ID="grdViajes" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-hover table-striped"
+                                <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-hover table-striped"
                                     DataKeyNames="Viaje_ID"
-                                    OnRowCommand="gridSample_RowCommand"
-                                    OnRowCancelingEdit="gridSample_RowCancelingEdit"
-                                    OnRowEditing="gridSample_RowEditing"
-                                    OnRowUpdating="gridSample_RowUpdating"
-                                    OnRowDataBound="gridSample_RowDataBound"
-                                    OnRowDeleting="gridSample_RowDeleting">
+                                    OnRowCommand="gridViajes_RowCommand"
+                                    OnRowCancelingEdit="gridViajes_RowCancelingEdit"
+                                    OnRowEditing="gridViajes_RowEditing"
+                                    OnRowUpdating="gridViajes_RowUpdating"
+                                    OnRowDataBound="gridViajes_RowDataBound"
+                                    OnRowDeleting="gridViajes_RowDeleting">
 
                                     <%--<HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />--%>
                                     <%--<AlternatingRowStyle BackColor="#EFF3FB" />--%>

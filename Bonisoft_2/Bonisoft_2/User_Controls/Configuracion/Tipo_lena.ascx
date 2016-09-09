@@ -2,14 +2,14 @@
 <h2>Lista de Tipos de Leña</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridTipos" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
+<asp:GridView ID="gridTipos" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
     DataKeyNames="Lena_tipo_ID"
-    OnRowCommand="gridSample_RowCommand"
-    OnRowCancelingEdit="gridSample_RowCancelingEdit"
-    OnRowEditing="gridSample_RowEditing"
-    OnRowUpdating="gridSample_RowUpdating"
-    OnRowDataBound="gridSample_RowDataBound"
-    OnRowDeleting="gridSample_RowDeleting">
+    OnRowCommand="gridTipos_RowCommand"
+    OnRowCancelingEdit="gridTipos_RowCancelingEdit"
+    OnRowEditing="gridTipos_RowEditing"
+    OnRowUpdating="gridTipos_RowUpdating"
+    OnRowDataBound="gridTipos_RowDataBound"
+    OnRowDeleting="gridTipos_RowDeleting">
 
     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
     <AlternatingRowStyle BackColor="#EFF3FB" />

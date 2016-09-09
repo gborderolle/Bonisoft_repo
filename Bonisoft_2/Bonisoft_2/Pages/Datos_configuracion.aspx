@@ -68,9 +68,9 @@
 <script src="/assets/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/assets/dist/js/demo.js"></script>
+<script src="/assets/dist/js/jquery.quicksearch.js"></script>
 
 <!-- Page JS -->
-<script src="/assets/dist/js/jquery.quicksearch.js"></script>
 <script src="/assets/dist/js/pages/Datos.js"></script>
 <script src="/assets/dist/js/pages/Datos_configuracion.js"></script>
 

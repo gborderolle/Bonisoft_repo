@@ -70,6 +70,7 @@
     <script src="/assets/dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="/assets/dist/js/demo.js"></script>
+    <script src="/assets/dist/js/jquery.quicksearch.js"></script>
 
     <!-- Page JS -->
     <script src="/assets/dist/js/pages/Datos.js"></script>
@@ -196,7 +197,7 @@
                         <div class="col-md-2 pull-right" style="margin-right: 10px;">
                             <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
                                 <div class="input-group ">
-                                    <input type="text" id="txbSearchTable" name="q" class="form-control" placeholder="Buscar...">
+                                    <input type="text" id="txbSearch" name="q" class="form-control" placeholder="Buscar...">
                                     <span class="input-group-btn">
                                         <button type="submit" name="search" id="search-btn" class="btn btn-flat">
                                             <i class="fa fa-search"></i>
