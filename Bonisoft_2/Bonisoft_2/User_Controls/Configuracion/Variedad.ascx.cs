@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Bonisoft_2.Helpers;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -52,7 +54,29 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
         protected void gridVariedades_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-           
+            DropDownList ddl = null;
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                ddl = e.Row.FindControl("ddlTipo1") as DropDownList;
+            }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                ddl = e.Row.FindControl("ddlTipo2") as DropDownList;
+            }
+            if (ddl != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.lena_tipo.ToList());
+
+                    ddl.DataSource = dt1;
+                    ddl.DataTextField = "Tipo";
+                    ddl.DataValueField = "Lena_tipo_ID";
+                    ddl.DataBind();
+                    ddl.Items.Insert(0, new ListItem("Elegir"));
+                }
+            }
         }
 
         protected void gridVariedades_RowCommand(object sender, GridViewCommandEventArgs e)

@@ -3,7 +3,7 @@
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
 <asp:GridView ID="gridMercaderias" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
-    DataKeyNames="Lena_tipo_ID"
+    DataKeyNames="Mercaderia_ID"
     OnRowCommand="gridMercaderias_RowCommand"
     OnRowCancelingEdit="gridMercaderias_RowCancelingEdit"
     OnRowEditing="gridMercaderias_RowEditing"
@@ -67,28 +67,6 @@
             </ItemTemplate>
             <FooterTemplate>
                 <asp:DropDownList ID="ddlVariedad2" runat="server" CssClass="form-control" />
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Medida">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Medida") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Medida") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Tipo leña">
-            <EditItemTemplate>
-                <asp:DropDownList ID="ddlTipo1" runat="server" CssClass="form-control" />
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Tipo_ID") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:DropDownList ID="ddlTipo2" runat="server" CssClass="form-control" />
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Fecha de corte">

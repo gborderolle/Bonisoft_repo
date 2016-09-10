@@ -68,8 +68,8 @@ namespace Bonisoft_2.User_Controls
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
-                    var elements = context.proveedores.Select(c => new { ID = c.Proveedor_ID, DisplayText = "Proveedor: " + c.Nombre_fantasia.ToString() }).ToList();
-                    elements.AddRange(context.clientes.Select(c => new { ID = c.cliente_ID, DisplayText = "Cliente: " + c.Nombre_fantasia.ToString() }).ToList());
+                    var elements = context.proveedores.Select(c => new { ID = c.Proveedor_ID, DisplayText = "Proveedor: " + c.Nombre.ToString() }).ToList();
+                    elements.AddRange(context.clientes.Select(c => new { ID = c.cliente_ID, DisplayText = "Cliente: " + c.Nombre.ToString() }).ToList());
 
                     ddl.DataSource = elements;
                     ddl.DataTextField = "DisplayText";

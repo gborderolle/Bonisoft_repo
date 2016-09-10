@@ -15,6 +15,6 @@ namespace Bonisoft_2
     public partial class viaje_mercaderia
     {
         public int Viaje_ID { get; set; }
-        public int Mercaderia_ID { get; set; }
+        public int Mercaderia_comprada_ID { get; set; }
     }
 }

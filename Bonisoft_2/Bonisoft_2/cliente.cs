@@ -14,6 +14,8 @@ namespace Bonisoft_2
     
     public partial class cliente
     {
+        public int cliente_ID { get; set; }
+        public string Nombre { get; set; }
         public string Dueno_nombre { get; set; }
         public string Dueno_contacto { get; set; }
         public string Encargado_lena_nombre { get; set; }
@@ -26,16 +28,9 @@ namespace Bonisoft_2
         public int Forma_de_pago_ID { get; set; }
         public string Periodos_liquidacion { get; set; }
         public string Fechas_pago { get; set; }
-        public string Nombre_fantasia { get; set; }
-        public string Nombre_real { get; set; }
         public string RUT { get; set; }
         public string Direccion { get; set; }
-        public string Telefono_1 { get; set; }
-        public string Telefono_2 { get; set; }
-        public string Email { get; set; }
-        public string Ciudad { get; set; }
-        public string Departamento { get; set; }
+        public string Telefono { get; set; }
         public string Comentarios { get; set; }
-        public int cliente_ID { get; set; }
     }
 }

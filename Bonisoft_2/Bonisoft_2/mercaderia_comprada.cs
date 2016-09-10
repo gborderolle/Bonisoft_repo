@@ -12,13 +12,11 @@ namespace Bonisoft_2
     using System;
     using System.Collections.Generic;
     
-    public partial class proveedor
+    public partial class mercaderia_comprada
     {
-        public int Proveedor_ID { get; set; }
-        public string Nombre { get; set; }
-        public string RUT { get; set; }
-        public string Direccion { get; set; }
-        public string Telefono { get; set; }
+        public int Mercaderia_ID { get; set; }
+        public int Variedad_ID { get; set; }
+        public System.DateTime Fecha_corte { get; set; }
         public string Comentarios { get; set; }
     }
 }

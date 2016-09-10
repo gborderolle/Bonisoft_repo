@@ -91,32 +91,6 @@
                 <asp:CompareValidator ID="vtxbNew3" runat="server" ControlToValidate="txbNew3"  Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />              
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Peso T. Origen Kg.">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("Peso_Tara_origen") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                <asp:CompareValidator ID="vtxb4" runat="server" ControlToValidate="txb4"  Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Double" />              
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl4" runat="server" Text='<%# Bind("Peso_Tara_origen") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew4" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                <asp:CompareValidator ID="vtxbNew4" runat="server" ControlToValidate="txbNew4"  Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Double" />              
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Peso T. Destino Kg.">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb5" runat="server" Text='<%# Bind("Peso_Tara_destino") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                <asp:CompareValidator ID="vtxb5" runat="server" ControlToValidate="txb5"  Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Double" />              
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl5" runat="server" Text='<%# Bind("Peso_Tara_destino") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew5" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                <asp:CompareValidator ID="vtxbNew5" runat="server" ControlToValidate="txbNew5"  Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Double" />              
-            </FooterTemplate>
-        </asp:TemplateField>
         <asp:TemplateField HeaderText="Marca">
             <EditItemTemplate>
                 <asp:TextBox ID="txb6" runat="server" Text='<%# Bind("Marca") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -137,19 +111,6 @@
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew7" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Peso Neto Kg.">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb8" runat="server" Text='<%# Bind("Peso_neto") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                <asp:CompareValidator ID="vtxb8" runat="server" ControlToValidate="txb8"  Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Double" />              
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl8" runat="server" Text='<%# Bind("Peso_neto") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew8" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                <asp:CompareValidator ID="vtxbNew8" runat="server" ControlToValidate="txbNew8"  Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Double" />              
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Comentarios">

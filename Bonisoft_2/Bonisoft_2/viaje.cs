@@ -27,10 +27,10 @@ namespace Bonisoft_2
         public System.DateTime Fecha_llegada { get; set; }
         public int Camion_ID { get; set; }
         public int Chofer_ID { get; set; }
+        public string Carga { get; set; }
+        public string Descarga { get; set; }
         public string Comentarios { get; set; }
         public bool Empresa_esCliente { get; set; }
         public bool EnViaje { get; set; }
-        public string Carga { get; set; }
-        public string Descarga { get; set; }
     }
 }

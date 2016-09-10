@@ -12,13 +12,10 @@ namespace Bonisoft_2
     using System;
     using System.Collections.Generic;
     
-    public partial class mercaderia
+    public partial class procesador
     {
-        public int Mercaderia_ID { get; set; }
-        public int Variedad_ID { get; set; }
-        public string Medida { get; set; }
-        public int Tipo_ID { get; set; }
-        public System.DateTime Fecha_corte { get; set; }
+        public int Procesador_ID { get; set; }
+        public int Nombre { get; set; }
         public string Comentarios { get; set; }
     }
 }

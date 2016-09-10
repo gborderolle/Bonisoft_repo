@@ -1414,6 +1414,9 @@
     <Compile Include="descarga_viaje.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
+    <Compile Include="fletero.cs">
+      <DependentUpon>Bonisoft_db.tt</DependentUpon>
+    </Compile>
     <Compile Include="forma_de_pago.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
@@ -1429,7 +1432,7 @@
     <Compile Include="lena_tipo.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
-    <Compile Include="mercaderia.cs">
+    <Compile Include="mercaderia_comprada.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -1495,6 +1498,9 @@
     </Compile>
     <Compile Include="Pages\Viajes_TEST.aspx.designer.cs">
       <DependentUpon>Viajes_TEST.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="procesador.cs">
+      <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
     <Compile Include="roles_usuario.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>

@@ -12,13 +12,10 @@ namespace Bonisoft_2
     using System;
     using System.Collections.Generic;
     
-    public partial class proveedor
+    public partial class fletero
     {
-        public int Proveedor_ID { get; set; }
+        public int Fletero_ID { get; set; }
         public string Nombre { get; set; }
-        public string RUT { get; set; }
-        public string Direccion { get; set; }
-        public string Telefono { get; set; }
         public string Comentarios { get; set; }
     }
 }

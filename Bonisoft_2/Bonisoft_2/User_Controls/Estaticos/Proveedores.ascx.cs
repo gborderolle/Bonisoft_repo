@@ -61,29 +61,17 @@ namespace Bonisoft_2.User_Controls
             {
                 GridViewRow row = gridProveedores.FooterRow;
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
-                TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 TextBox txb3 = row.FindControl("txbNew3") as TextBox;
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
-                TextBox txb5 = row.FindControl("txbNew5") as TextBox;
-                TextBox txb6 = row.FindControl("txbNew6") as TextBox;
-                TextBox txb7 = row.FindControl("txbNew7") as TextBox;
-                TextBox txb8 = row.FindControl("txbNew8") as TextBox;
-                TextBox txb9 = row.FindControl("txbNew9") as TextBox;
                 TextBox txb10 = row.FindControl("txbNew10") as TextBox;
-                if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null && txb9 != null && txb10 != null)
+                if (txb1 != null && txb3 != null && txb4 != null && txb10 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         proveedor obj = new proveedor();
-                        obj.Nombre_fantasia = txb1.Text;
-                        obj.Nombre_real = txb2.Text;
+                        obj.Nombre = txb1.Text;
                         obj.RUT = txb3.Text;
                         obj.Direccion = txb4.Text;
-                        obj.Telefono_1 = txb5.Text;
-                        obj.Telefono_2 = txb6.Text;
-                        obj.Email = txb7.Text;
-                        obj.Ciudad = txb8.Text;
-                        obj.Departamento = txb9.Text;
                         obj.Comentarios = txb10.Text;
                         context.proveedores.Add(obj);
                         context.SaveChanges();
@@ -112,30 +100,18 @@ namespace Bonisoft_2.User_Controls
         {
             GridViewRow row = gridProveedores.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
-            TextBox txb2 = row.FindControl("txb2") as TextBox;
             TextBox txb3 = row.FindControl("txb3") as TextBox;
             TextBox txb4 = row.FindControl("txb4") as TextBox;
-            TextBox txb5 = row.FindControl("txb5") as TextBox;
-            TextBox txb6 = row.FindControl("txb6") as TextBox;
-            TextBox txb7 = row.FindControl("txb7") as TextBox;
-            TextBox txb8 = row.FindControl("txb8") as TextBox;
-            TextBox txb9 = row.FindControl("txb9") as TextBox;
             TextBox txb10 = row.FindControl("txb10") as TextBox;
-            if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null && txb9 != null && txb10 != null)
+            if (txb1 != null && txb3 != null && txb4 != null && txb10 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
                     int proveedor_ID = Convert.ToInt32(gridProveedores.DataKeys[e.RowIndex].Value);
                     proveedor obj = context.proveedores.First(x => x.Proveedor_ID == proveedor_ID);
-                    obj.Nombre_fantasia = txb1.Text;
-                    obj.Nombre_real = txb2.Text;
+                    obj.Nombre = txb1.Text;
                     obj.RUT = txb3.Text;
                     obj.Direccion = txb4.Text;
-                    obj.Telefono_1 = txb5.Text;
-                    obj.Telefono_2 = txb6.Text;
-                    obj.Email = txb7.Text;
-                    obj.Ciudad = txb8.Text;
-                    obj.Departamento = txb9.Text;
                     obj.Comentarios = txb10.Text;
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";

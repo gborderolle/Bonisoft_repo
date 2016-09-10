@@ -56,26 +56,15 @@
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Nom Fantasía">
+        <asp:TemplateField HeaderText="Nombre">
             <EditItemTemplate>
-                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Nombre_fantasia") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Nombre") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Nombre_fantasia") %>'></asp:Label>
+                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Nom Real">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Nombre_real") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Nombre_real") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="RUT">
@@ -89,7 +78,7 @@
                 <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Dir">
+        <asp:TemplateField HeaderText="Dirección">
             <EditItemTemplate>
                 <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("Direccion") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
@@ -100,59 +89,15 @@
                 <asp:TextBox ID="txbNew4" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Tel 1">
+        <asp:TemplateField HeaderText="Telefono">
             <EditItemTemplate>
-                <asp:TextBox ID="txb5" runat="server" Text='<%# Bind("Telefono_1") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb5" runat="server" Text='<%# Bind("Telefono") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl5" runat="server" Text='<%# Bind("Telefono_1") %>'></asp:Label>
+                <asp:Label ID="lbl5" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew5" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Tel 2">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb6" runat="server" Text='<%# Bind("Telefono_2") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl6" runat="server" Text='<%# Bind("Telefono_2") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew6" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Email">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb7" runat="server" Text='<%# Bind("Email") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl7" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew7" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Cdad">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb8" runat="server" Text='<%# Bind("Ciudad") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl8" runat="server" Text='<%# Bind("Ciudad") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew8" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Depto">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb9" runat="server" Text='<%# Bind("Departamento") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl9" runat="server" Text='<%# Bind("Departamento") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew9" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Comentarios">

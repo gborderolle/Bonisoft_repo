@@ -67,6 +67,17 @@
                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
+         <asp:TemplateField HeaderText="Tipo de Leña">
+            <EditItemTemplate>
+                <asp:DropDownList ID="ddlTipo1" runat="server" CssClass="form-control" />
+            </EditItemTemplate>
+            <ItemTemplate>
+                <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Lena_tipo_ID") %>'></asp:Label>
+            </ItemTemplate>
+            <FooterTemplate>
+                <asp:DropDownList ID="ddlTipo2" runat="server" CssClass="form-control" />
+            </FooterTemplate>
+        </asp:TemplateField>
         <asp:TemplateField HeaderText="Comentarios">
             <EditItemTemplate>
                 <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>

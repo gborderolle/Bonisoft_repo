@@ -25,25 +25,27 @@ namespace Bonisoft_2
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<camion> camiones { get; set; }
         public virtual DbSet<chofer> choferes { get; set; }
         public virtual DbSet<cuadrilla_descarga> cuadrilla_descarga { get; set; }
         public virtual DbSet<descarga_viaje> descarga_viaje { get; set; }
         public virtual DbSet<forma_de_pago> forma_de_pago { get; set; }
         public virtual DbSet<interno> internos { get; set; }
         public virtual DbSet<lena_tipo> lena_tipo { get; set; }
-        public virtual DbSet<mercaderia> mercaderias { get; set; }
-        public virtual DbSet<pesada> pesadas { get; set; }
         public virtual DbSet<preferencias_cliente> preferencias_cliente { get; set; }
-        public virtual DbSet<proveedor> proveedores { get; set; }
         public virtual DbSet<proveedor_carga> proveedor_carga { get; set; }
         public virtual DbSet<proveedor_mercaderia> proveedor_mercaderia { get; set; }
         public virtual DbSet<usuario> usuarios { get; set; }
-        public virtual DbSet<viaje> viajes { get; set; }
-        public virtual DbSet<viaje_mercaderia> viaje_mercaderia { get; set; }
         public virtual DbSet<cliente_preferencias_cliente> cliente_preferencias_cliente { get; set; }
-        public virtual DbSet<cliente> clientes { get; set; }
         public virtual DbSet<roles_usuario> roles_usuario { get; set; }
         public virtual DbSet<variedad> variedad { get; set; }
+        public virtual DbSet<fletero> fleteros { get; set; }
+        public virtual DbSet<mercaderia_comprada> mercaderia_comprada { get; set; }
+        public virtual DbSet<procesador> procesadores { get; set; }
+        public virtual DbSet<cliente> clientes { get; set; }
+        public virtual DbSet<camion> camiones { get; set; }
+        public virtual DbSet<pesada> pesadas { get; set; }
+        public virtual DbSet<proveedor> proveedores { get; set; }
+        public virtual DbSet<viaje> viajes { get; set; }
+        public virtual DbSet<viaje_mercaderia> viaje_mercaderia { get; set; }
     }
 }

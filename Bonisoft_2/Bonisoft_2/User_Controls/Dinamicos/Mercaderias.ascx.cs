@@ -24,16 +24,16 @@ namespace Bonisoft_2.User_Controls.Configuracion
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                hdnMercaderiasCount.Value = context.mercaderias.Count().ToString();
-                if (context.mercaderias.Count() > 0)
+                hdnMercaderiasCount.Value = context.mercaderia_comprada.Count().ToString();
+                if (context.mercaderia_comprada.Count() > 0)
                 {
-                    gridMercaderias.DataSource = context.mercaderias.ToList();
+                    gridMercaderias.DataSource = context.mercaderia_comprada.ToList();
                     gridMercaderias.DataBind();
                 }
                 else
                 {
-                    var obj = new List<mercaderia>();
-                    obj.Add(new mercaderia());
+                    var obj = new List<mercaderia_comprada>();
+                    obj.Add(new mercaderia_comprada());
                     // Bind the DataTable which contain a blank row to the GridView
                     gridMercaderias.DataSource = obj;
                     gridMercaderias.DataBind();
@@ -82,35 +82,6 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     ddl.SelectedValue = ((cuadrilla_descarga)(e.Row.DataItem)).Empresa_ID.ToString();
                 }
             }
-
-            ddl = null;
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                ddl = e.Row.FindControl("ddlTipo1") as DropDownList;
-            }
-            if (e.Row.RowType == DataControlRowType.Footer)
-            {
-                ddl = e.Row.FindControl("ddlTipo2") as DropDownList;
-            }
-            if (ddl != null)
-            {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                {
-                    DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.lena_tipo.ToList());
-
-                    ddl.DataSource = dt1;
-                    ddl.DataTextField = "Nombre_fantasia";
-                    ddl.DataValueField = "Lena_tipo_ID";
-                    ddl.DataBind();
-                    ddl.Items.Insert(0, new ListItem("Elegir"));
-
-                }//Add Default Item in the DropDownList
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    ddl.SelectedValue = ((cuadrilla_descarga)(e.Row.DataItem)).Empresa_ID.ToString();
-                }
-            }
         }
 
         protected void gridSample_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -118,26 +89,22 @@ namespace Bonisoft_2.User_Controls.Configuracion
             if (e.CommandName == "InsertNew")
             {
                 GridViewRow row = gridMercaderias.FooterRow;
-                TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
                 TextBox txb5 = row.FindControl("txbNew5") as TextBox;
                 TextBox txb6 = row.FindControl("txbNew6") as TextBox;
                 TextBox txb7 = row.FindControl("txbNew7") as TextBox;
                 TextBox txb8 = row.FindControl("txbNew8") as TextBox;
                 DropDownList ddlVariedad2 = row.FindControl("ddlVariedad2") as DropDownList;
-                DropDownList ddlTipo2 = row.FindControl("ddlTipo2") as DropDownList;
-                if (ddlVariedad2 != null && txb2 != null && ddlTipo2 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null)
+                if (ddlVariedad2 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
-                        mercaderia obj = new mercaderia();
+                        mercaderia_comprada obj = new mercaderia_comprada();
                         obj.Variedad_ID = Convert.ToInt32(ddlVariedad2.SelectedValue);
-                        obj.Medida = txb2.Text;
-                        obj.Tipo_ID = Convert.ToInt32(ddlTipo2.SelectedValue);
                         obj.Fecha_corte = DateTime.Parse(txb4.Text);
                         obj.Comentarios = txb5.Text;
 
-                        context.mercaderias.Add(obj);
+                        context.mercaderia_comprada.Add(obj);
                         context.SaveChanges();
                         lblMessage.Text = "Agregado correctamente.";
                         BindGrid();
@@ -159,23 +126,19 @@ namespace Bonisoft_2.User_Controls.Configuracion
         protected void gridSample_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             GridViewRow row = gridMercaderias.Rows[e.RowIndex];
-            TextBox txb2 = row.FindControl("txb2") as TextBox;
             TextBox txb4 = row.FindControl("txb4") as TextBox;
             TextBox txb5 = row.FindControl("txb5") as TextBox;
             TextBox txb6 = row.FindControl("txb6") as TextBox;
             TextBox txb7 = row.FindControl("txb7") as TextBox;
             TextBox txb8 = row.FindControl("txb8") as TextBox;
             DropDownList ddlVariedad1 = row.FindControl("ddlVariedad1") as DropDownList;
-            DropDownList ddlTipo1 = row.FindControl("ddlTipo1") as DropDownList;
-            if (ddlVariedad1 != null && txb2 != null && ddlTipo1 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null)
+            if (ddlVariedad1 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
                     int mercaderia_ID = Convert.ToInt32(gridMercaderias.DataKeys[e.RowIndex].Value);
-                    mercaderia obj = context.mercaderias.First(x => x.Mercaderia_ID == mercaderia_ID);
+                    mercaderia_comprada obj = context.mercaderia_comprada.First(x => x.Mercaderia_ID == mercaderia_ID);
                     obj.Variedad_ID = Convert.ToInt32(ddlVariedad1.SelectedValue);
-                    obj.Medida = txb2.Text;
-                    obj.Tipo_ID = Convert.ToInt32(ddlTipo1.SelectedValue);
                     obj.Fecha_corte = DateTime.Parse(txb4.Text);
                     obj.Comentarios = txb5.Text;
 
@@ -192,8 +155,8 @@ namespace Bonisoft_2.User_Controls.Configuracion
             int mercaderias_ID = Convert.ToInt32(gridMercaderias.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                mercaderia obj = context.mercaderias.First(x => x.Mercaderia_ID == mercaderias_ID);
-                context.mercaderias.Remove(obj);
+                mercaderia_comprada obj = context.mercaderia_comprada.First(x => x.Mercaderia_ID == mercaderias_ID);
+                context.mercaderia_comprada.Remove(obj);
                 context.SaveChanges();
                 BindGrid();
                 lblMessage.Text = "Borrado correctamente.";
