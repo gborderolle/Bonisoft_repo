@@ -32,5 +32,8 @@ namespace Bonisoft_2
         public string Comentarios { get; set; }
         public bool Empresa_esCliente { get; set; }
         public bool EnViaje { get; set; }
+        public int Fletero_ID { get; set; }
+        public int Cliente_ID { get; set; }
+        public int Proveedor_ID { get; set; }
     }
 }

@@ -78,20 +78,29 @@ namespace Bonisoft_2.User_Controls
 
                     if (e.Row.RowType == DataControlRowType.DataRow)
                     {
+                        ddl.SelectedValue = ((chofer)(e.Row.DataItem)).Empresa_pertenece_ID.ToString();                      
+                    }
+                }
+            }
 
-                        ddl.SelectedValue = ((chofer)(e.Row.DataItem)).Empresa_pertenece_ID.ToString();
-
-                        //int chofer_ID = ((chofer)(e.Row.DataItem)).Chofer_ID;
-                        //chofer chofer = context.choferes.FirstOrDefault(c => c.Chofer_ID == chofer_ID) as chofer;
-                        //int empresa_ID = ((chofer)(e.Row.DataItem)).Empresa_pertenece_ID;
-                        //bool isCliente = chofer.Empresa_esCliente;
-                        //string value = isCliente ? context.clientes.FirstOrDefault(c => c.cliente_ID == empresa_ID).Nombre_fantasia : context.proveedores.FirstOrDefault(c => c.Proveedor_ID == empresa_ID).Nombre_fantasia;
-                        //ddl.SelectedValue = value;
-
-                        //Label lbl = e.Row.FindControl("lbl3") as Label;
-                        //lbl.Text = value;
-
-                    //ddl.SelectedValue = ((cuadrilla_descarga)(e.Row.DataItem)).Empresa_ID.ToString();
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label lbl = e.Row.FindControl("lbl3") as Label;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        chofer chofer = (chofer)(e.Row.DataItem);
+                        if (chofer != null)
+                        {
+                            try
+                            {
+                                int id = chofer.Empresa_pertenece_ID;
+                                string empresa = chofer.Empresa_esCliente ? ((cliente)context.clientes.FirstOrDefault(c => c.cliente_ID == id)).Nombre : ((proveedor)context.proveedores.FirstOrDefault(c => c.Proveedor_ID == id)).Nombre;
+                                lbl.Text = empresa;
+                            }
+                            catch (Exception) { }
+                        }
                     }
                 }
             }

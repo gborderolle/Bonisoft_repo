@@ -82,6 +82,28 @@ namespace Bonisoft_2.User_Controls
                     ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Empresa_de_carga_ID.ToString();
                 }
             }
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label lbl = e.Row.FindControl("lbl10") as Label;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        cliente cliente = (cliente)(e.Row.DataItem);
+                        if (cliente != null)
+                        {
+                            int id = cliente.Forma_de_pago_ID;
+                            forma_de_pago forma_de_pago = (forma_de_pago)context.forma_de_pago.FirstOrDefault(c => c.Forma_de_pago_ID == id);
+                            if (forma_de_pago != null)
+                            {
+                                string nombre = forma_de_pago.Forma;
+                                lbl.Text = nombre;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
 

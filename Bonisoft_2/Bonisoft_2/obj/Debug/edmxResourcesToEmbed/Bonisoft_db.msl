@@ -151,6 +151,7 @@
     <EntitySetMapping Name="mercaderia_comprada">
       <EntityTypeMapping TypeName="bonisoft_dbModel.mercaderia_comprada">
         <MappingFragment StoreEntitySet="mercaderia_comprada">
+          <ScalarProperty Name="Procesador_ID" ColumnName="Procesador_ID" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
           <ScalarProperty Name="Fecha_corte" ColumnName="Fecha_corte" />
           <ScalarProperty Name="Variedad_ID" ColumnName="Variedad_ID" />
@@ -232,6 +233,9 @@
     <EntitySetMapping Name="viajes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
         <MappingFragment StoreEntitySet="viaje">
+          <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
+          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+          <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />
           <ScalarProperty Name="EnViaje" ColumnName="EnViaje" />
           <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />

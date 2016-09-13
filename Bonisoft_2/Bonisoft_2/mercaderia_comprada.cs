@@ -18,5 +18,6 @@ namespace Bonisoft_2
         public int Variedad_ID { get; set; }
         public System.DateTime Fecha_corte { get; set; }
         public string Comentarios { get; set; }
+        public int Procesador_ID { get; set; }
     }
 }

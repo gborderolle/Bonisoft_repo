@@ -83,6 +83,24 @@ namespace Bonisoft_2.User_Controls
                     ddl.SelectedValue = ((cuadrilla_descarga)(e.Row.DataItem)).Empresa_ID.ToString();
                 }
             }
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label lbl = e.Row.FindControl("lbl1") as Label;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        cuadrilla_descarga cuadrilla = (cuadrilla_descarga)(e.Row.DataItem);
+                        if (cuadrilla != null)
+                        {
+                            int id = cuadrilla.Empresa_ID;
+                            string empresa = cuadrilla.Empresa_esCliente ? ((cliente)context.clientes.FirstOrDefault(c => c.cliente_ID == id)).Nombre : ((proveedor)context.proveedores.FirstOrDefault(c => c.Proveedor_ID == id)).Nombre;
+                            lbl.Text = empresa;
+                        }
+                    }
+                }
+            }
         }
 
         protected void gridCuadrillas_RowCommand(object sender, GridViewCommandEventArgs e)

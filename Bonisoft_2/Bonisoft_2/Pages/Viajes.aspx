@@ -276,7 +276,7 @@
                             <div style="text-align: center">
 
                                 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-                                <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-hover table-striped"
+                                <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="False" CssClass="table table-hover table-striped"
                                     DataKeyNames="Viaje_ID"
                                     OnRowCommand="gridViajes_RowCommand"
                                     OnRowCancelingEdit="gridViajes_RowCancelingEdit"
@@ -349,6 +349,28 @@
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:TextBox ID="txbNew12" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                            </FooterTemplate>
+                                        </asp:TemplateField>
+                                         <asp:TemplateField HeaderText="Proveedor">
+                                            <EditItemTemplate>
+                                                <asp:DropDownList ID="ddlProveedores1" runat="server" CssClass="form-control" />
+                                            </EditItemTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbl17" runat="server" Text='<%# Bind("Proveedor_ID") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:DropDownList ID="ddlProveedores2" runat="server" CssClass="form-control" />
+                                            </FooterTemplate>
+                                        </asp:TemplateField>
+                                         <asp:TemplateField HeaderText="Cliente">
+                                            <EditItemTemplate>
+                                                <asp:DropDownList ID="ddlClientes1" runat="server" CssClass="form-control" />
+                                            </EditItemTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbl18" runat="server" Text='<%# Bind("Cliente_ID") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:DropDownList ID="ddlClientes2" runat="server" CssClass="form-control" />
                                             </FooterTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Precio compra por ton">
@@ -465,6 +487,17 @@
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:DropDownList ID="ddlEmpresas2" runat="server" CssClass="form-control" />
+                                            </FooterTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Fletero">
+                                            <EditItemTemplate>
+                                                <asp:DropDownList ID="ddlFleteros1" runat="server" CssClass="form-control" />
+                                            </EditItemTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbl16" runat="server" Text='<%# Bind("Fletero_ID") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:DropDownList ID="ddlFleteros2" runat="server" CssClass="form-control" />
                                             </FooterTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Camión">

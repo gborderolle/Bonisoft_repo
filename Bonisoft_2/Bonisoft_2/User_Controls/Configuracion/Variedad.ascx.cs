@@ -77,6 +77,28 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     ddl.Items.Insert(0, new ListItem("Elegir"));
                 }
             }
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label lbl = e.Row.FindControl("lbl3") as Label;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        variedad variedad = (variedad)(e.Row.DataItem);
+                        if (variedad != null)
+                        {
+                            int id = variedad.Lena_tipo_ID;
+                            lena_tipo lena_tipo = (lena_tipo)context.lena_tipo.FirstOrDefault(c => c.Lena_tipo_ID == id);
+                            if (lena_tipo != null)
+                            {
+                                string nombre = lena_tipo.Tipo;
+                                lbl.Text = nombre;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         protected void gridVariedades_RowCommand(object sender, GridViewCommandEventArgs e)

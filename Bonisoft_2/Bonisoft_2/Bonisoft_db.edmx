@@ -125,6 +125,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           </Key>
           <Property Name="Mercaderia_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Variedad_ID" Type="int" Nullable="false" />
+          <Property Name="Procesador_ID" Type="int" Nullable="false" />
           <Property Name="Fecha_corte" Type="date" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
@@ -223,6 +224,8 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
             <PropertyRef Name="Viaje_ID" />
           </Key>
           <Property Name="Viaje_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cliente_ID" Type="int" Nullable="false" />
+          <Property Name="Proveedor_ID" Type="int" Nullable="false" />
           <Property Name="Precio_compra_por_tonelada" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="Precio_valor_total" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="Importe_viaje" Type="decimal" Precision="10" Scale="0" Nullable="false" />
@@ -237,6 +240,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Chofer_ID" Type="int" Nullable="false" />
           <Property Name="Carga" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Descarga" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Fletero_ID" Type="int" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Empresa_esCliente" Type="bit" Nullable="false" />
           <Property Name="EnViaje" Type="bit" Nullable="false" />
@@ -450,6 +454,7 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Variedad_ID" Type="Int32" Nullable="false" />
           <Property Name="Fecha_corte" Type="DateTime" Nullable="false" />
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Procesador_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="procesador">
           <Key>
@@ -539,6 +544,9 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Empresa_esCliente" Type="Boolean" Nullable="false" />
           <Property Name="EnViaje" Type="Boolean" Nullable="false" />
+          <Property Name="Fletero_ID" Type="Int32" Nullable="false" />
+          <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
+          <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="viaje_mercaderia">
           <Key>
@@ -704,6 +712,7 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySetMapping Name="mercaderia_comprada">
             <EntityTypeMapping TypeName="bonisoft_dbModel.mercaderia_comprada">
               <MappingFragment StoreEntitySet="mercaderia_comprada">
+                <ScalarProperty Name="Procesador_ID" ColumnName="Procesador_ID" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
                 <ScalarProperty Name="Fecha_corte" ColumnName="Fecha_corte" />
                 <ScalarProperty Name="Variedad_ID" ColumnName="Variedad_ID" />
@@ -785,6 +794,9 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySetMapping Name="viajes">
             <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
               <MappingFragment StoreEntitySet="viaje">
+                <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
+                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+                <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />
                 <ScalarProperty Name="EnViaje" ColumnName="EnViaje" />
                 <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
