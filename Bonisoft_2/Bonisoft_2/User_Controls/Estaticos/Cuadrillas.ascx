@@ -56,15 +56,15 @@
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Empresa">
+        <asp:TemplateField HeaderText="Nombre">
             <EditItemTemplate>
-                <asp:DropDownList ID="txb1" runat="server" CssClass="form-control" />
+                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Nombre") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
                 <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:DropDownList ID="txbNew1" runat="server" CssClass="form-control" />
+                <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Comentarios">

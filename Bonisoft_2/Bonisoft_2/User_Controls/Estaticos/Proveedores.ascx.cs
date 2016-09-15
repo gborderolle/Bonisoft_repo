@@ -98,6 +98,13 @@ namespace Bonisoft_2.User_Controls
         }
         protected void gridProveedores_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            GridView gv = (GridView)sender;
+            for (int i = 0; i < gv.Columns.Count; i++)
+            {
+                DataControlFieldCell cell = gv.Rows[e.RowIndex].Cells[i] as DataControlFieldCell;
+                gv.Columns[i].ExtractValuesFromCell(e.NewValues, cell, DataControlRowState.Edit, true);
+            }
+
             GridViewRow row = gridProveedores.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb3 = row.FindControl("txb3") as TextBox;
@@ -116,7 +123,7 @@ namespace Bonisoft_2.User_Controls
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";
                     gridProveedores.EditIndex = -1;
-                    BindGrid();
+                    //BindGrid();
                 }
             }
         }

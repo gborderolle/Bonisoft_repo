@@ -107,10 +107,10 @@ namespace Bonisoft_2.Pages
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
             TextBox txb3 = row.FindControl("txb3") as TextBox;
+            TextBox txb6 = row.FindControl("txb6") as TextBox;
             TextBox txb7 = row.FindControl("txb7") as TextBox;
-            TextBox txb8 = row.FindControl("txb8") as TextBox;
             TextBox txb9 = row.FindControl("txb9") as TextBox;
-            if (txb1 != null && txb2 != null && txb3 != null && txb7 != null && txb8 != null && txb9 != null)
+            if (txb1 != null && txb2 != null && txb3 != null && txb6 != null && txb7 != null && txb9 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -119,8 +119,8 @@ namespace Bonisoft_2.Pages
                     obj.Matricula_camion = txb1.Text;
                     obj.Matricula_zorra = txb2.Text;
                     obj.Numero_ejes = int.Parse(txb3.Text);
-                    obj.Marca = txb7.Text;
-                    obj.Modelo = txb8.Text;
+                    obj.Marca = txb6.Text;
+                    obj.Modelo = txb7.Text;
                     obj.Comentarios = txb9.Text;
 
                     context.SaveChanges();
