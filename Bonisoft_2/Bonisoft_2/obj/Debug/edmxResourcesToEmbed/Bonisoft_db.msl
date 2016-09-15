@@ -16,9 +16,8 @@
     <EntitySetMapping Name="cuadrilla_descarga">
       <EntityTypeMapping TypeName="bonisoft_dbModel.cuadrilla_descarga">
         <MappingFragment StoreEntitySet="cuadrilla_descarga">
-          <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Cuadrilla_descarga_ID" ColumnName="Cuadrilla_descarga_ID" />
-          <ScalarProperty Name="Empresa_ID" ColumnName="Empresa_ID" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -237,7 +236,6 @@
           <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
           <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />
           <ScalarProperty Name="EnViaje" ColumnName="EnViaje" />
-          <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
           <ScalarProperty Name="Descarga" ColumnName="Descarga" />
           <ScalarProperty Name="Carga" ColumnName="Carga" />
@@ -262,6 +260,15 @@
         <MappingFragment StoreEntitySet="viaje_mercaderia">
           <ScalarProperty Name="Mercaderia_comprada_ID" ColumnName="Mercaderia_comprada_ID" />
           <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cargadores">
+      <EntityTypeMapping TypeName="bonisoft_dbModel.cargador">
+        <MappingFragment StoreEntitySet="cargador">
+          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Cargador_ID" ColumnName="Cargador_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

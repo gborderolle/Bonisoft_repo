@@ -12,6 +12,14 @@
     <Property Name="Modelo" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
+  <EntityType Name="cargador">
+    <Key>
+      <PropertyRef Name="Cargador_ID" />
+    </Key>
+    <Property Name="Cargador_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
   <EntityType Name="chofer">
     <Key>
       <PropertyRef Name="Chofer_ID" />
@@ -61,9 +69,8 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
       <PropertyRef Name="Cuadrilla_descarga_ID" />
     </Key>
     <Property Name="Cuadrilla_descarga_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Empresa_ID" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
-    <Property Name="Empresa_esCliente" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="descarga_viaje">
     <Key>
@@ -237,7 +244,6 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
     <Property Name="Descarga" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Fletero_ID" Type="int" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
-    <Property Name="Empresa_esCliente" Type="bit" Nullable="false" />
     <Property Name="EnViaje" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="viaje_mercaderia">
@@ -250,6 +256,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
   </EntityType>
   <EntityContainer Name="bonisoft_dbModelStoreContainer">
     <EntitySet Name="camion" EntityType="Self.camion" Schema="bonisoft_db" store:Type="Tables" />
+    <EntitySet Name="cargador" EntityType="Self.cargador" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="chofer" EntityType="Self.chofer" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="cliente" EntityType="Self.cliente" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" Schema="bonisoft_db" store:Type="Tables" />

@@ -10,7 +10,7 @@
 namespace Bonisoft_2.Pages {
     
     
-    public partial class Datos {
+    public partial class Detalles {
         
         /// <summary>
         /// upClientes control.
@@ -121,39 +121,57 @@ namespace Bonisoft_2.Pages {
         protected global::Bonisoft_2.User_Controls.Internos Internos;
         
         /// <summary>
-        /// upFleteros control.
+        /// upTipos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upFleteros;
+        protected global::System.Web.UI.UpdatePanel upTipos;
         
         /// <summary>
-        /// Fleteros control.
+        /// Tipos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Bonisoft_2.User_Controls.Estaticos.Fleteros Fleteros;
+        protected global::Bonisoft_2.User_Controls.Configuracion.Tipo_lena Tipos;
         
         /// <summary>
-        /// upCargadores control.
+        /// upVariedades control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upCargadores;
+        protected global::System.Web.UI.UpdatePanel upVariedades;
         
         /// <summary>
-        /// Cargadores control.
+        /// Variedades control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Bonisoft_2.User_Controls.Estaticos.Cargadores Cargadores;
+        protected global::Bonisoft_2.User_Controls.Configuracion.Variedad Variedades;
+        
+        /// <summary>
+        /// upFormas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upFormas;
+        
+        /// <summary>
+        /// Formas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Bonisoft_2.User_Controls.Configuracion.Formas_pago Formas;
     }
 }

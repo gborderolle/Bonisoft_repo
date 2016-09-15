@@ -30,7 +30,6 @@ namespace Bonisoft_2
         public string Carga { get; set; }
         public string Descarga { get; set; }
         public string Comentarios { get; set; }
-        public bool Empresa_esCliente { get; set; }
         public bool EnViaje { get; set; }
         public int Fletero_ID { get; set; }
         public int Cliente_ID { get; set; }

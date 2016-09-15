@@ -79,7 +79,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                 }//Add Default Item in the DropDownList
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    ddl.SelectedValue = ((cuadrilla_descarga)(e.Row.DataItem)).Empresa_ID.ToString();
+                    ddl.SelectedValue = ((mercaderia_comprada)(e.Row.DataItem)).Variedad_ID.ToString();
                 }
             }
         }

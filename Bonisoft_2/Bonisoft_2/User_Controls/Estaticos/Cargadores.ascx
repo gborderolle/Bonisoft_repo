@@ -1,16 +1,16 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Cuadrillas.ascx.cs" Inherits="Bonisoft_2.User_Controls.Cuadrillas" %>
-<h2>Lista de Cuadrillas de descarga</h2>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Cargadores.ascx.cs" Inherits="Bonisoft_2.User_Controls.Estaticos.Cargadores" %>
+<h2>Lista de Empresas de Carga</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridCuadrillas" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
-    CssClass="table table-hover table-striped" AllowPaging="true"
-    DataKeyNames="Cuadrilla_descarga_ID"
-    OnRowCommand="gridCuadrillas_RowCommand"
-    OnRowCancelingEdit="gridCuadrillas_RowCancelingEdit"
-    OnRowEditing="gridCuadrillas_RowEditing"
-    OnRowUpdating="gridCuadrillas_RowUpdating"
-    OnRowDataBound="gridCuadrillas_RowDataBound"
-    OnRowDeleting="gridCuadrillas_RowDeleting">
+<asp:GridView ID="gridCargadores" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
+    CssClass="table table-hover table-striped"
+    DataKeyNames="Cargador_ID"
+    OnRowCommand="gridCargadores_RowCommand"
+    OnRowCancelingEdit="gridCargadores_RowCancelingEdit"
+    OnRowEditing="gridCargadores_RowEditing"
+    OnRowUpdating="gridCargadores_RowUpdating"
+    OnRowDataBound="gridCargadores_RowDataBound"
+    OnRowDeleting="gridCargadores_RowDeleting">
 
     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
     <EmptyDataTemplate>
@@ -40,7 +40,7 @@
                 <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" ToolTip="Modificar"
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
                 <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete"
-                    ToolTip="Borrar" OnClientClick='return confirm("¿Está seguro que desea eliminar este registro?");'
+                    ToolTip="Borrar" OnClientClick='return confirm("Está seguro que desea borrar este registro?");'
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></asp:LinkButton>
             </ItemTemplate>
             <EditItemTemplate>
@@ -56,15 +56,15 @@
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Empresa">
+        <asp:TemplateField HeaderText="Nombre">
             <EditItemTemplate>
-                <asp:DropDownList ID="txb1" runat="server" CssClass="form-control" />
+                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Nombre") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
                 <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:DropDownList ID="txbNew1" runat="server" CssClass="form-control" />
+                <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Comentarios">
@@ -78,6 +78,8 @@
                 <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
+
     </Columns>
+
 </asp:GridView>
-<asp:HiddenField ClientIDMode="Static" ID="hdnCuadrillasCount" runat="server" />
+<asp:HiddenField ClientIDMode="Static" ID="hdnCargadoresCount" runat="server" />

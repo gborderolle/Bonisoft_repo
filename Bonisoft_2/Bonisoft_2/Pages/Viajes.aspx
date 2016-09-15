@@ -356,7 +356,7 @@
                                                 <asp:DropDownList ID="ddlProveedores1" runat="server" CssClass="form-control" />
                                             </EditItemTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lbl17" runat="server" Text='<%# Bind("Proveedor_ID") %>'></asp:Label>
+                                                <asp:LinkButton ID="lbl17" runat="server" CommandName="View" CommandArgument='proveedores' Text='<%# Bind("Proveedor_ID") %>'></asp:LinkButton>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:DropDownList ID="ddlProveedores2" runat="server" CssClass="form-control" />
@@ -367,7 +367,7 @@
                                                 <asp:DropDownList ID="ddlClientes1" runat="server" CssClass="form-control" />
                                             </EditItemTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lbl18" runat="server" Text='<%# Bind("Cliente_ID") %>'></asp:Label>
+                                                <asp:LinkButton ID="lbl18" runat="server" CommandName="View" CommandArgument='clientes' Text='<%# Bind("Cliente_ID") %>'></asp:LinkButton>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:DropDownList ID="ddlClientes2" runat="server" CssClass="form-control" />
@@ -428,7 +428,7 @@
                                                 <asp:DropDownList ID="ddlFormas1" runat="server" CssClass="form-control" />
                                             </EditItemTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lbl5" runat="server" Text='<%# Bind("Forma_de_pago_ID") %>'></asp:Label>
+                                                <asp:LinkButton ID="lbl5" runat="server" CommandName="View" CommandArgument='formas' Text='<%# Bind("Forma_de_pago_ID") %>'></asp:LinkButton>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:DropDownList ID="ddlFormas2" runat="server" CssClass="form-control" />
@@ -458,35 +458,36 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Pesada Origen">
                                             <EditItemTemplate>
-                                                <asp:TextBox ID="txb8" runat="server" Text='<%# Bind("Pesada_origen_ID") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                <asp:DropDownList ID="ddlPesadaOrigen1" runat="server" CssClass="form-control" />
                                             </EditItemTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lbl8" runat="server" Text='<%# Bind("Pesada_origen_ID") %>'></asp:Label>
+                                                <asp:LinkButton ID="lbl8" runat="server" CommandName="View" CommandArgument='pesadas_destino' Text='<%# Bind("Pesada_origen_ID") %>'></asp:LinkButton>
+                                                <%--<asp:Label ID="lbl8" runat="server" Text='<%# Bind("Pesada_origen_ID") %>'></asp:Label>--%>
                                             </ItemTemplate>
                                             <FooterTemplate>
-                                                <asp:TextBox ID="txbNew8" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                <asp:DropDownList ID="ddlPesadaOrigen2" runat="server" CssClass="form-control" />
                                             </FooterTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Pesada Destino">
                                             <EditItemTemplate>
-                                                <asp:TextBox ID="txb9" runat="server" Text='<%# Bind("Pesada_destino_ID") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                <asp:DropDownList ID="ddlPesadaDestino1" runat="server" CssClass="form-control" />
                                             </EditItemTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lbl9" runat="server" Text='<%# Bind("Pesada_destino_ID") %>'></asp:Label>
+                                                <asp:LinkButton ID="lbl9" runat="server" CommandName="View" CommandArgument='pesadas_origen' Text='<%# Bind("Pesada_destino_ID") %>'></asp:LinkButton>
                                             </ItemTemplate>
                                             <FooterTemplate>
-                                                <asp:TextBox ID="txbNew9" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                <asp:DropDownList ID="ddlPesadaDestino2" runat="server" CssClass="form-control" />
                                             </FooterTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Empresa de carga">
                                             <EditItemTemplate>
-                                                <asp:DropDownList ID="ddlEmpresas1" runat="server" CssClass="form-control" />
+                                                <asp:DropDownList ID="ddlCargadores1" runat="server" CssClass="form-control" />
                                             </EditItemTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lbl10" runat="server" Text='<%# Bind("Empresa_de_carga_ID") %>'></asp:Label>
+                                                <asp:LinkButton ID="lbl10" runat="server" CommandName="View" CommandArgument='cargadores' Text='<%# Bind("Empresa_de_carga_ID") %>'></asp:LinkButton>
                                             </ItemTemplate>
                                             <FooterTemplate>
-                                                <asp:DropDownList ID="ddlEmpresas2" runat="server" CssClass="form-control" />
+                                                <asp:DropDownList ID="ddlCargadores2" runat="server" CssClass="form-control" />
                                             </FooterTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Fletero">
@@ -494,7 +495,7 @@
                                                 <asp:DropDownList ID="ddlFleteros1" runat="server" CssClass="form-control" />
                                             </EditItemTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lbl16" runat="server" Text='<%# Bind("Fletero_ID") %>'></asp:Label>
+                                                <asp:LinkButton ID="lbl16" runat="server" CommandName="View" CommandArgument='fleteros' Text='<%# Bind("Fletero_ID") %>'></asp:LinkButton>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:DropDownList ID="ddlFleteros2" runat="server" CssClass="form-control" />
@@ -505,7 +506,7 @@
                                                 <asp:DropDownList ID="ddlCamiones1" runat="server" CssClass="form-control" />
                                             </EditItemTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lbl13" runat="server" Text='<%# Bind("Camion_ID") %>'></asp:Label>
+                                                <asp:LinkButton ID="lbl13" runat="server" CommandName="View" CommandArgument='camiones' Text='<%# Bind("Camion_ID") %>'></asp:LinkButton>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:DropDownList ID="ddlCamiones2" runat="server" CssClass="form-control" />
@@ -516,7 +517,7 @@
                                                 <asp:DropDownList ID="ddlChoferes1" runat="server" CssClass="form-control" />
                                             </EditItemTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lbl14" runat="server" Text='<%# Bind("Chofer_ID") %>'></asp:Label>
+                                                <asp:LinkButton ID="lbl14" runat="server" CommandName="View" CommandArgument='camiones' Text='<%# Bind("Chofer_ID") %>'></asp:LinkButton>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:DropDownList ID="ddlChoferes2" runat="server" CssClass="form-control" />

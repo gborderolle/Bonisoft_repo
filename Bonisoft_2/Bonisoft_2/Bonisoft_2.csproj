@@ -317,11 +317,15 @@
     <Content Include="assets\dist\js\demo.js" />
     <Content Include="assets\dist\js\jquery-ui.js" />
     <Content Include="assets\dist\js\jquery.quicksearch.js" />
+    <Content Include="assets\dist\js\Listados.js" />
     <Content Include="assets\dist\js\moment.js" />
     <Content Include="assets\dist\js\pages\Datos.js" />
     <Content Include="assets\dist\js\pages\Dashboard2_OLD.js" />
     <Content Include="assets\dist\js\pages\Dashboard_OLD.js" />
     <Content Include="assets\dist\js\pages\Datos_configuracion.js" />
+    <Content Include="assets\dist\js\pages\Detalles.js" />
+    <Content Include="assets\dist\js\pages\Listados.js" />
+    <Content Include="Pages\Listados.aspx" />
     <Content Include="assets\dist\js\pages\login.js" />
     <Content Include="assets\dist\js\pages\Viajes.js" />
     <Content Include="assets\plugins\bootstrap-slider\bootstrap-slider.js" />
@@ -1169,7 +1173,7 @@
     <Content Include="Pages\Bancos.aspx" />
     <Content Include="Pages\Contabilidad.aspx" />
     <Content Include="Pages\Datos_configuracion.aspx" />
-    <Content Include="Pages\Gridview.aspx" />
+    <Content Include="Pages\Detalles.aspx" />
     <Content Include="Pages\Recordatorios.aspx" />
     <Content Include="Pages\Registros.aspx" />
     <Content Include="Pages\Viajes.aspx" />
@@ -1222,9 +1226,11 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
+    <Content Include="User_Controls\Estaticos\Cargadores.ascx" />
     <Content Include="User_Controls\Estaticos\Choferes2.ascx" />
     <Content Include="User_Controls\Estaticos\Clientes.ascx" />
     <Content Include="User_Controls\Estaticos\Cuadrillas.ascx" />
+    <Content Include="User_Controls\Estaticos\Fleteros.ascx" />
     <Content Include="User_Controls\Estaticos\Internos.ascx" />
     <Content Include="User_Controls\Estaticos\Proveedores.ascx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -1367,6 +1373,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\RouteConfig2.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="cargador.cs">
+      <DependentUpon>Bonisoft_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Listados.aspx.cs">
+      <DependentUpon>Listados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Listados.aspx.designer.cs">
+      <DependentUpon>Listados.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Bonisoft_db.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1464,12 +1480,12 @@
     <Compile Include="Pages\Datos_configuracion.aspx.designer.cs">
       <DependentUpon>Datos_configuracion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Gridview.aspx.cs">
-      <DependentUpon>Gridview.aspx</DependentUpon>
+    <Compile Include="Pages\Detalles.aspx.cs">
+      <DependentUpon>Detalles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Gridview.aspx.designer.cs">
-      <DependentUpon>Gridview.aspx</DependentUpon>
+    <Compile Include="Pages\Detalles.aspx.designer.cs">
+      <DependentUpon>Detalles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Recordatorios.aspx.cs">
       <DependentUpon>Recordatorios.aspx</DependentUpon>
@@ -1585,6 +1601,13 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="User_Controls\Estaticos\Cargadores.ascx.cs">
+      <DependentUpon>Cargadores.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User_Controls\Estaticos\Cargadores.ascx.designer.cs">
+      <DependentUpon>Cargadores.ascx</DependentUpon>
+    </Compile>
     <Compile Include="User_Controls\Estaticos\Choferes2.ascx.cs">
       <DependentUpon>Choferes2.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1605,6 +1628,13 @@
     </Compile>
     <Compile Include="User_Controls\Estaticos\Cuadrillas.ascx.designer.cs">
       <DependentUpon>Cuadrillas.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\Estaticos\Fleteros.ascx.cs">
+      <DependentUpon>Fleteros.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User_Controls\Estaticos\Fleteros.ascx.designer.cs">
+      <DependentUpon>Fleteros.ascx</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\Estaticos\Internos.ascx.cs">
       <DependentUpon>Internos.ascx</DependentUpon>

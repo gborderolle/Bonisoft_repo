@@ -16,9 +16,8 @@
       <PropertyRef Name="Cuadrilla_descarga_ID" />
     </Key>
     <Property Name="Cuadrilla_descarga_ID" Type="Int32" Nullable="false" />
-    <Property Name="Empresa_ID" Type="Int32" Nullable="false" />
     <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Empresa_esCliente" Type="Boolean" Nullable="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="descarga_viaje">
     <Key>
@@ -133,6 +132,7 @@
     <EntitySet Name="proveedores" EntityType="bonisoft_dbModel.proveedor" />
     <EntitySet Name="viajes" EntityType="bonisoft_dbModel.viaje" />
     <EntitySet Name="viaje_mercaderia" EntityType="bonisoft_dbModel.viaje_mercaderia" />
+    <EntitySet Name="cargadores" EntityType="bonisoft_dbModel.cargador" />
   </EntityContainer>
   <EntityType Name="roles_usuario">
     <Key>
@@ -256,7 +256,6 @@
     <Property Name="Carga" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Descarga" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="Empresa_esCliente" Type="Boolean" Nullable="false" />
     <Property Name="EnViaje" Type="Boolean" Nullable="false" />
     <Property Name="Fletero_ID" Type="Int32" Nullable="false" />
     <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
@@ -269,5 +268,13 @@
     </Key>
     <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
     <Property Name="Mercaderia_comprada_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cargador">
+    <Key>
+      <PropertyRef Name="Cargador_ID" />
+    </Key>
+    <Property Name="Cargador_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

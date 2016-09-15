@@ -79,7 +79,7 @@ namespace Bonisoft_2.User_Controls
                 }//Add Default Item in the DropDownList
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Empresa_de_carga_ID.ToString();
+                    ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Forma_de_pago_ID.ToString();
                 }
             }
 

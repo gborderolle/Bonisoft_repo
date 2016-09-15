@@ -12,10 +12,10 @@ namespace Bonisoft_2
     using System;
     using System.Collections.Generic;
     
-    public partial class cuadrilla_descarga
+    public partial class cargador
     {
-        public int Cuadrilla_descarga_ID { get; set; }
-        public string Comentarios { get; set; }
+        public int Cargador_ID { get; set; }
         public string Nombre { get; set; }
+        public string Comentarios { get; set; }
     }
 }

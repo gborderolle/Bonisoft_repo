@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="43e7b3f4bede45e393555c33b6cdb28d" Name="Diagram1">
+      <Diagram DiagramId="43e7b3f4bede45e393555c33b6cdb28d" Name="Diagram1" ZoomLevel="97">
         <EntityTypeShape EntityType="bonisoft_dbModel.chofer" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoft_dbModel.cuadrilla_descarga" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoft_dbModel.descarga_viaje" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
@@ -27,6 +27,7 @@
         <EntityTypeShape EntityType="bonisoft_dbModel.proveedor" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.viaje" Width="1.5" PointX="5.75" PointY="14.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.viaje_mercaderia" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="bonisoft_dbModel.cargador" Width="1.5" PointX="8.375" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -62,6 +62,9 @@ namespace Bonisoft_2.Pages
 
         protected void gridViajes_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            #region DDL Options 
+
+            // Camiones --------------------------------------------------
             DropDownList ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -91,6 +94,7 @@ namespace Bonisoft_2.Pages
                 }
             }
 
+            // Choferes --------------------------------------------------
             ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -120,6 +124,7 @@ namespace Bonisoft_2.Pages
                 }
             }
 
+            // Formas de pago --------------------------------------------------
             ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -149,6 +154,7 @@ namespace Bonisoft_2.Pages
                 }
             }
 
+            // Empresas de carga --------------------------------------------------
             ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -178,6 +184,7 @@ namespace Bonisoft_2.Pages
                 }
             }
 
+            // Fleteros --------------------------------------------------
             ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -207,6 +214,7 @@ namespace Bonisoft_2.Pages
                 }
             }
 
+            // Proveedores --------------------------------------------------
             ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -236,6 +244,7 @@ namespace Bonisoft_2.Pages
                 }
             }
 
+            // Clientes --------------------------------------------------
             ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -265,9 +274,74 @@ namespace Bonisoft_2.Pages
                 }
             }
 
+            // Pesadas origen --------------------------------------------------
+            ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                Label lbl = e.Row.FindControl("lbl5") as Label;
+                ddl = e.Row.FindControl("ddlPesadaOrigen1") as DropDownList;
+            }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                ddl = e.Row.FindControl("ddlPesadaOrigen2") as DropDownList;
+            }
+            if (ddl != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.pesadas.ToList());
+
+                    ddl.DataSource = dt1;
+                    ddl.DataTextField = "Nombre_balanza";
+                    ddl.DataValueField = "Pesada_ID";
+                    ddl.DataBind();
+                    ddl.Items.Insert(0, new ListItem("Elegir"));
+
+                }//Add Default Item in the DropDownList
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Pesada_origen_ID.ToString();
+                }
+            }
+
+            // Pesadas destino --------------------------------------------------
+            ddl = null;
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                ddl = e.Row.FindControl("ddlPesadaDestino1") as DropDownList;
+            }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                ddl = e.Row.FindControl("ddlPesadaDestino2") as DropDownList;
+            }
+            if (ddl != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.pesadas.ToList());
+
+                    ddl.DataSource = dt1;
+                    ddl.DataTextField = "Nombre_balanza";
+                    ddl.DataValueField = "Pesada_ID";
+                    ddl.DataBind();
+                    ddl.Items.Insert(0, new ListItem("Elegir"));
+
+                }//Add Default Item in the DropDownList
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Pesada_destino_ID.ToString();
+                }
+            }
+
+            #endregion
+
+            #region DDL Default values
+
+            // Forma de pago ----------------------------------------------------
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lbl = e.Row.FindControl("lbl5") as LinkButton;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -287,9 +361,10 @@ namespace Bonisoft_2.Pages
                 }
             }
 
+            // Empresa de carga ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                Label lbl = e.Row.FindControl("lbl10") as Label;
+                LinkButton lbl = e.Row.FindControl("lbl10") as LinkButton;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -297,21 +372,22 @@ namespace Bonisoft_2.Pages
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
                         {
-                            try
+                            int id = viaje.Empresa_de_carga_ID;
+                            cargador cargador = (cargador)context.cargadores.FirstOrDefault(c => c.Cargador_ID == id);
+                            if (cargador != null)
                             {
-                                int id = viaje.Empresa_de_carga_ID;
-                                string empresa = viaje.Empresa_esCliente ? ((cliente)context.clientes.FirstOrDefault(c => c.cliente_ID == id)).Nombre : ((proveedor)context.proveedores.FirstOrDefault(c => c.Proveedor_ID == id)).Nombre;
-                                lbl.Text = empresa;
+                                string nombre = cargador.ToString();
+                                lbl.Text = nombre;
                             }
-                            catch (Exception) { }
                         }
                     }
                 }
             }
 
+            // Camion ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                Label lbl = e.Row.FindControl("lbl13") as Label;
+                LinkButton lbl = e.Row.FindControl("lbl13") as LinkButton;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -331,9 +407,10 @@ namespace Bonisoft_2.Pages
                 }
             }
 
+            // Chofer ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                Label lbl = e.Row.FindControl("lbl14") as Label;
+                LinkButton lbl = e.Row.FindControl("lbl14") as LinkButton;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -353,9 +430,10 @@ namespace Bonisoft_2.Pages
                 }
             }
 
+            // Proveedor ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                Label lbl = e.Row.FindControl("lbl17") as Label;
+                LinkButton lbl = e.Row.FindControl("lbl17") as LinkButton;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -367,7 +445,7 @@ namespace Bonisoft_2.Pages
                             proveedor proveedor = (proveedor)context.proveedores.FirstOrDefault(c => c.Proveedor_ID == id);
                             if (proveedor != null)
                             {
-                                string nombre = proveedor.Nombre;
+                                string nombre = proveedor.ToString();
                                 lbl.Text = nombre;
                             }
                         }
@@ -375,9 +453,10 @@ namespace Bonisoft_2.Pages
                 }
             }
 
+            // Cliente ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                Label lbl = e.Row.FindControl("lbl18") as Label;
+                LinkButton lbl = e.Row.FindControl("lbl18") as LinkButton;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -389,13 +468,61 @@ namespace Bonisoft_2.Pages
                             cliente cliente = (cliente)context.clientes.FirstOrDefault(c => c.cliente_ID == id);
                             if (cliente != null)
                             {
-                                string nombre = cliente.Nombre;
+                                string nombre = cliente.ToString();
                                 lbl.Text = nombre;
                             }
                         }
                     }
                 }
             }
+
+            // Pesada origen ----------------------------------------------------
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lbl = e.Row.FindControl("lbl8") as LinkButton;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        viaje viaje = (viaje)(e.Row.DataItem);
+                        if (viaje != null)
+                        {
+                            int id = viaje.Pesada_origen_ID;
+                            pesada pesada = (pesada)context.pesadas.FirstOrDefault(c => c.pesada_ID == id);
+                            if (pesada != null)
+                            {
+                                string nombre = pesada.ToString();
+                                lbl.Text = nombre;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Pesada destino ----------------------------------------------------
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lbl = e.Row.FindControl("lbl9") as LinkButton;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        viaje viaje = (viaje)(e.Row.DataItem);
+                        if (viaje != null)
+                        {
+                            int id = viaje.Pesada_destino_ID;
+                            pesada pesada = (pesada)context.pesadas.FirstOrDefault(c => c.pesada_ID == id);
+                            if (pesada != null)
+                            {
+                                string nombre = pesada.ToString();
+                                lbl.Text = nombre;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #endregion
 
         }
 
@@ -404,10 +531,13 @@ namespace Bonisoft_2.Pages
             if (e.CommandArgument != null)
             {
                 if (!string.IsNullOrWhiteSpace(e.CommandArgument.ToString()) && !string.IsNullOrWhiteSpace(e.CommandName))
-                {
-                    int index = Convert.ToInt32(e.CommandArgument);
+                {                    
+                    #region InsertNew
+
                     if (e.CommandName == "InsertNew")
                     {
+                        int index = Convert.ToInt32(e.CommandArgument);
+
                         GridViewRow row = gridViajes.FooterRow;
                         TextBox txb1 = row.FindControl("txbNew1") as TextBox;
                         TextBox txb2 = row.FindControl("txbNew2") as TextBox;
@@ -415,22 +545,22 @@ namespace Bonisoft_2.Pages
                         TextBox txb4 = row.FindControl("txbNew4") as TextBox;
                         TextBox txb6 = row.FindControl("txbNew6") as TextBox;
                         TextBox txb7 = row.FindControl("txbNew7") as TextBox;
-                        TextBox txb8 = row.FindControl("txbNew8") as TextBox;
-                        TextBox txb9 = row.FindControl("txbNew9") as TextBox;
                         TextBox txb11 = row.FindControl("txbNew11") as TextBox;
                         TextBox txb12 = row.FindControl("txbNew12") as TextBox;
                         TextBox txb15 = row.FindControl("txbNew15") as TextBox;
                         DropDownList ddlFormas2 = row.FindControl("ddlFormas2") as DropDownList;
-                        DropDownList ddlEmpresas2 = row.FindControl("ddlEmpresas2") as DropDownList;
+                        DropDownList ddlCargadores2 = row.FindControl("ddlCargadores2") as DropDownList;
                         DropDownList ddlCamiones2 = row.FindControl("ddlCamiones2") as DropDownList;
                         DropDownList ddlChoferes2 = row.FindControl("ddlChoferes2") as DropDownList;
                         DropDownList ddlFleteros2 = row.FindControl("ddlFleteros2") as DropDownList;
                         DropDownList ddlProveedores2 = row.FindControl("ddlProveedores2") as DropDownList;
                         DropDownList ddlClientes2 = row.FindControl("ddlClientes2") as DropDownList;
+                        DropDownList ddlPesadaOrigen2 = row.FindControl("ddlPesadaOrigen2") as DropDownList;
+                        DropDownList ddlPesadaDestino2 = row.FindControl("ddlPesadaDestino2") as DropDownList;
 
                         if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb6 != null && txb7 != null && ddlChoferes2 != null && txb15 != null &&
-                            txb8 != null && txb9 != null && ddlFormas2 != null && txb11 != null && txb12 != null && txb3 != null && ddlEmpresas2 != null && ddlCamiones2 != null && 
-                            ddlFleteros2 != null && ddlProveedores2 != null && ddlClientes2 != null)
+                            ddlPesadaOrigen2 != null && txb11 != null && txb12 != null && txb3 != null && ddlCargadores2 != null && ddlCamiones2 != null &&
+                            ddlPesadaDestino2 != null && ddlFleteros2 != null && ddlProveedores2 != null && ddlClientes2 != null)
                         {
                             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                             {
@@ -441,8 +571,6 @@ namespace Bonisoft_2.Pages
                                 obj.Saldo = decimal.Parse(txb4.Text);
                                 obj.Carga = txb6.Text;
                                 obj.Descarga = txb7.Text;
-                                obj.Pesada_origen_ID = int.Parse(txb8.Text);
-                                obj.Pesada_destino_ID = int.Parse(txb9.Text);
                                 obj.Comentarios = txb15.Text;
 
                                 DateTime date1 = DateTime.Now;
@@ -459,22 +587,15 @@ namespace Bonisoft_2.Pages
                                 }
                                 obj.Fecha_llegada = date2;
 
-
-                                obj.Empresa_de_carga_ID = Convert.ToInt32(ddlEmpresas2.SelectedValue);
+                                obj.Empresa_de_carga_ID = Convert.ToInt32(ddlCargadores2.SelectedValue);
                                 obj.Camion_ID = Convert.ToInt32(ddlCamiones2.SelectedValue);
                                 obj.Chofer_ID = Convert.ToInt32(ddlChoferes2.SelectedValue);
                                 obj.Forma_de_pago_ID = Convert.ToInt32(ddlFormas2.SelectedValue);
                                 obj.Fletero_ID = Convert.ToInt32(ddlFleteros2.SelectedValue);
                                 obj.Proveedor_ID = Convert.ToInt32(ddlProveedores2.SelectedValue);
                                 obj.Cliente_ID = Convert.ToInt32(ddlClientes2.SelectedValue);
-
-                                bool isClient = false;
-                                string selectedText = ddlEmpresas2.SelectedItem.Text;
-                                if (!string.IsNullOrWhiteSpace(selectedText))
-                                {
-                                    isClient = selectedText.Contains("Cliente");
-                                }
-                                obj.Empresa_esCliente = isClient;
+                                obj.Pesada_origen_ID = Convert.ToInt32(ddlPesadaOrigen2.SelectedValue);
+                                obj.Pesada_destino_ID = Convert.ToInt32(ddlPesadaDestino2.SelectedValue);
 
                                 context.viajes.Add(obj);
                                 context.SaveChanges();
@@ -482,6 +603,12 @@ namespace Bonisoft_2.Pages
                                 BindGrid();
                             }
                         }
+                    }
+                    #endregion
+
+                    if (e.CommandName == "View")
+                    {
+                        Response.Redirect("Listados.aspx?tabla=" + e.CommandArgument);
                     }
 
                     else
@@ -514,23 +641,22 @@ namespace Bonisoft_2.Pages
             TextBox txb4 = row.FindControl("txb4") as TextBox;
             TextBox txb6 = row.FindControl("txb6") as TextBox;
             TextBox txb7 = row.FindControl("txb7") as TextBox;
-            TextBox txb8 = row.FindControl("txb8") as TextBox;
-            TextBox txb9 = row.FindControl("txb9") as TextBox;
             TextBox txb11 = row.FindControl("txb11") as TextBox;
             TextBox txb12 = row.FindControl("txb12") as TextBox;
             TextBox txb15 = row.FindControl("txb15") as TextBox;
             DropDownList ddlFormas2 = row.FindControl("ddlFormas1") as DropDownList;
-            DropDownList ddlEmpresas2 = row.FindControl("ddlEmpresas1") as DropDownList;
+            DropDownList ddlCargadores2 = row.FindControl("ddlCargadores1") as DropDownList;
             DropDownList ddlCamiones2 = row.FindControl("ddlCamiones1") as DropDownList;
-            DropDownList ddlChoferes2 = row.FindControl("ddlChoferes1") as DropDownList;
-            DropDownList ddlFleteros2 = row.FindControl("ddlFleteros1") as DropDownList;
+            DropDownList ddlChoferes2 = row.FindControl("ddlChoferes2") as DropDownList;
+            DropDownList ddlFleteros2 = row.FindControl("ddlFleteros2") as DropDownList;
             DropDownList ddlProveedores2 = row.FindControl("ddlProveedores2") as DropDownList;
             DropDownList ddlClientes2 = row.FindControl("ddlClientes2") as DropDownList;
+            DropDownList ddlPesadaOrigen2 = row.FindControl("ddlPesadaOrigen2") as DropDownList;
+            DropDownList ddlPesadaDestino2 = row.FindControl("ddlPesadaDestino2") as DropDownList;
 
             if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb6 != null && txb7 != null && ddlChoferes2 != null && txb15 != null &&
-                txb8 != null && txb9 != null && ddlFormas2 != null && txb11 != null && txb12 != null && txb3 != null && ddlEmpresas2 != null && ddlCamiones2 != null &&
-                ddlFleteros2 != null && ddlProveedores2 != null && ddlClientes2 != null)
-
+                ddlPesadaOrigen2 != null && txb11 != null && txb12 != null && txb3 != null && ddlCargadores2 != null && ddlCamiones2 != null &&
+                ddlPesadaDestino2 != null && ddlFleteros2 != null && ddlProveedores2 != null && ddlClientes2 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -542,8 +668,6 @@ namespace Bonisoft_2.Pages
                     obj.Saldo = decimal.Parse(txb4.Text);
                     obj.Carga = txb6.Text;
                     obj.Descarga = txb7.Text;
-                    obj.Pesada_origen_ID = int.Parse(txb8.Text);
-                    obj.Pesada_destino_ID = int.Parse(txb9.Text);
                     obj.Comentarios = txb15.Text;
 
                     #region Datetime logic
@@ -567,7 +691,7 @@ namespace Bonisoft_2.Pages
                     #region DDL logic
 
                     int ddl1 = obj.Empresa_de_carga_ID;
-                    if (!int.TryParse(ddlEmpresas2.SelectedValue, out ddl1))
+                    if (!int.TryParse(ddlCargadores2.SelectedValue, out ddl1))
                     {
                         ddl1 = obj.Empresa_de_carga_ID;
                     }
@@ -615,15 +739,21 @@ namespace Bonisoft_2.Pages
                     }
                     obj.Cliente_ID = ddl7;
 
-                    #endregion DDL logic
-
-                    bool isClient = false;
-                    string selectedText = ddlEmpresas2.SelectedItem.Text;
-                    if (!string.IsNullOrWhiteSpace(selectedText))
+                    int ddl8 = obj.Pesada_origen_ID;
+                    if (!int.TryParse(ddlPesadaOrigen2.SelectedValue, out ddl8))
                     {
-                        isClient = selectedText.Contains("Cliente");
+                        ddl8 = obj.Pesada_origen_ID;
                     }
-                    obj.Empresa_esCliente = isClient;
+                    obj.Pesada_origen_ID = ddl8;
+
+                    int ddl9 = obj.Pesada_destino_ID;
+                    if (!int.TryParse(ddlPesadaDestino2.SelectedValue, out ddl9))
+                    {
+                        ddl9 = obj.Pesada_destino_ID;
+                    }
+                    obj.Pesada_destino_ID = ddl9;
+
+                    #endregion DDL logic
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";

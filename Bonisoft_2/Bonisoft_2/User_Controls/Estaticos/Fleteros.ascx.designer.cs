@@ -7,45 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bonisoft_2.Pages {
+namespace Bonisoft_2.User_Controls.Estaticos {
     
     
-    public partial class Gridview {
+    public partial class Fleteros {
         
         /// <summary>
-        /// lblInfo control.
+        /// lblMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblInfo;
+        protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
-        /// lblTotalClientes control.
+        /// gridFleteros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalClientes;
+        protected global::System.Web.UI.WebControls.GridView gridFleteros;
         
         /// <summary>
-        /// gridSample control.
+        /// hdnFleterosCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridSample;
-        
-        /// <summary>
-        /// btnQuitarSeleccionados control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnQuitarSeleccionados;
+        protected global::System.Web.UI.WebControls.HiddenField hdnFleterosCount;
     }
 }

@@ -17,6 +17,14 @@
           <Property Name="Modelo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <EntityType Name="cargador">
+          <Key>
+            <PropertyRef Name="Cargador_ID" />
+          </Key>
+          <Property Name="Cargador_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
         <EntityType Name="chofer">
           <Key>
             <PropertyRef Name="Chofer_ID" />
@@ -66,9 +74,8 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
             <PropertyRef Name="Cuadrilla_descarga_ID" />
           </Key>
           <Property Name="Cuadrilla_descarga_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Empresa_ID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="Empresa_esCliente" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="descarga_viaje">
           <Key>
@@ -242,7 +249,6 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Descarga" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Fletero_ID" Type="int" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="Empresa_esCliente" Type="bit" Nullable="false" />
           <Property Name="EnViaje" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="viaje_mercaderia">
@@ -255,6 +261,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
         </EntityType>
         <EntityContainer Name="bonisoft_dbModelStoreContainer">
           <EntitySet Name="camion" EntityType="Self.camion" Schema="bonisoft_db" store:Type="Tables" />
+          <EntitySet Name="cargador" EntityType="Self.cargador" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="chofer" EntityType="Self.chofer" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="cliente" EntityType="Self.cliente" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" Schema="bonisoft_db" store:Type="Tables" />
@@ -302,9 +309,8 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
             <PropertyRef Name="Cuadrilla_descarga_ID" />
           </Key>
           <Property Name="Cuadrilla_descarga_ID" Type="Int32" Nullable="false" />
-          <Property Name="Empresa_ID" Type="Int32" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Empresa_esCliente" Type="Boolean" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="descarga_viaje">
           <Key>
@@ -419,6 +425,7 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySet Name="proveedores" EntityType="bonisoft_dbModel.proveedor" />
           <EntitySet Name="viajes" EntityType="bonisoft_dbModel.viaje" />
           <EntitySet Name="viaje_mercaderia" EntityType="bonisoft_dbModel.viaje_mercaderia" />
+          <EntitySet Name="cargadores" EntityType="bonisoft_dbModel.cargador" />
         </EntityContainer>
         <EntityType Name="roles_usuario">
           <Key>
@@ -542,7 +549,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Carga" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Descarga" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Empresa_esCliente" Type="Boolean" Nullable="false" />
           <Property Name="EnViaje" Type="Boolean" Nullable="false" />
           <Property Name="Fletero_ID" Type="Int32" Nullable="false" />
           <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
@@ -555,6 +561,14 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           </Key>
           <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
           <Property Name="Mercaderia_comprada_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cargador">
+          <Key>
+            <PropertyRef Name="Cargador_ID" />
+          </Key>
+          <Property Name="Cargador_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -577,9 +591,8 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySetMapping Name="cuadrilla_descarga">
             <EntityTypeMapping TypeName="bonisoft_dbModel.cuadrilla_descarga">
               <MappingFragment StoreEntitySet="cuadrilla_descarga">
-                <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Cuadrilla_descarga_ID" ColumnName="Cuadrilla_descarga_ID" />
-                <ScalarProperty Name="Empresa_ID" ColumnName="Empresa_ID" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -798,7 +811,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
                 <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
                 <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />
                 <ScalarProperty Name="EnViaje" ColumnName="EnViaje" />
-                <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
                 <ScalarProperty Name="Descarga" ColumnName="Descarga" />
                 <ScalarProperty Name="Carga" ColumnName="Carga" />
@@ -823,6 +835,15 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
               <MappingFragment StoreEntitySet="viaje_mercaderia">
                 <ScalarProperty Name="Mercaderia_comprada_ID" ColumnName="Mercaderia_comprada_ID" />
                 <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cargadores">
+            <EntityTypeMapping TypeName="bonisoft_dbModel.cargador">
+              <MappingFragment StoreEntitySet="cargador">
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cargador_ID" ColumnName="Cargador_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

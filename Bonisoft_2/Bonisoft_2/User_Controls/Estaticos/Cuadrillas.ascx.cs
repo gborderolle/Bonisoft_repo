@@ -55,52 +55,6 @@ namespace Bonisoft_2.User_Controls
 
         protected void gridCuadrillas_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            DropDownList ddl = null;
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                ddl = e.Row.FindControl("ddlEmpresas1") as DropDownList;
-            }
-            if (e.Row.RowType == DataControlRowType.Footer)
-            {
-                ddl = e.Row.FindControl("ddlEmpresas2") as DropDownList;
-            }
-            if (ddl != null)
-            {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                {
-                    var elements = context.proveedores.Select(c => new { ID = c.Proveedor_ID, DisplayText = "Proveedor: " + c.Nombre.ToString() }).ToList();
-                    elements.AddRange(context.clientes.Select(c => new { ID = c.cliente_ID, DisplayText = "Cliente: " + c.Nombre.ToString() }).ToList());
-
-                    ddl.DataSource = elements;
-                    ddl.DataTextField = "DisplayText";
-                    ddl.DataValueField = "ID";
-                    ddl.DataBind();
-                    ddl.Items.Insert(0, new ListItem("Elegir"));
-
-                }//Add Default Item in the DropDownList
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    ddl.SelectedValue = ((cuadrilla_descarga)(e.Row.DataItem)).Empresa_ID.ToString();
-                }
-            }
-
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                Label lbl = e.Row.FindControl("lbl1") as Label;
-                if (lbl != null)
-                {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                    {
-                        cuadrilla_descarga cuadrilla = (cuadrilla_descarga)(e.Row.DataItem);
-                        if (cuadrilla != null)
-                        {
-                            int id = cuadrilla.Empresa_ID;
-                            string empresa = cuadrilla.Empresa_esCliente ? ((cliente)context.clientes.FirstOrDefault(c => c.cliente_ID == id)).Nombre : ((proveedor)context.proveedores.FirstOrDefault(c => c.Proveedor_ID == id)).Nombre;
-                            lbl.Text = empresa;
-                        }
-                    }
-                }
-            }
         }
 
         protected void gridCuadrillas_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -108,23 +62,15 @@ namespace Bonisoft_2.User_Controls
             if (e.CommandName == "InsertNew")
             {
                 GridViewRow row = gridCuadrillas.FooterRow;
+                TextBox txb1 = row.FindControl("txbNew1") as TextBox;
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
-                DropDownList ddlEmpresas2 = row.FindControl("ddlEmpresas2") as DropDownList;
-                if (ddlEmpresas2 != null && txb2 != null)
+                if (txb1 != null && txb2 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         cuadrilla_descarga obj = new cuadrilla_descarga();
-                        obj.Empresa_ID = Convert.ToInt32(ddlEmpresas2.SelectedValue);
+                        obj.Nombre = txb1.Text;
                         obj.Comentarios = txb2.Text;
-
-                        bool isClient = false;
-                        string selectedText = ddlEmpresas2.SelectedItem.Text;
-                        if (!string.IsNullOrWhiteSpace(selectedText))
-                        {
-                            isClient = selectedText.Contains("Cliente");
-                        }
-                        obj.Empresa_esCliente = isClient;
 
                         context.cuadrilla_descarga.Add(obj);
                         context.SaveChanges();
@@ -148,24 +94,16 @@ namespace Bonisoft_2.User_Controls
         protected void gridCuadrillas_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             GridViewRow row = gridCuadrillas.Rows[e.RowIndex];
+            TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
-            DropDownList ddlEmpresas1 = row.FindControl("ddlEmpresas1") as DropDownList;
-            if (ddlEmpresas1 != null && txb2 != null)
+            if (txb1 != null && txb2 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
                     int cuadrilla_descarga_ID = Convert.ToInt32(gridCuadrillas.DataKeys[e.RowIndex].Value);
                     cuadrilla_descarga obj = context.cuadrilla_descarga.First(x => x.Cuadrilla_descarga_ID == cuadrilla_descarga_ID);
-                    obj.Empresa_ID = Convert.ToInt32(ddlEmpresas1.SelectedValue);
+                    obj.Nombre = txb1.Text;
                     obj.Comentarios = txb2.Text;
-
-                    bool isClient = false;
-                    string selectedText = ddlEmpresas1.SelectedItem.Text;
-                    if (!string.IsNullOrWhiteSpace(selectedText))
-                    {
-                        isClient = selectedText.Contains("Cliente");
-                    }
-                    obj.Empresa_esCliente = isClient;
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";

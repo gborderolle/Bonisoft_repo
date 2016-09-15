@@ -1,14 +1,17 @@
-﻿<%@ Page Title="Base de datos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Datos.aspx.cs" Inherits="Bonisoft_2.Pages.Datos" %>
+﻿<%@ Page Title="Detalles" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Detalles.aspx.cs" Inherits="Bonisoft_2.Pages.Detalles" %>
+
 <%@ Register Src="~/User_Controls/Estaticos/Clientes.ascx" TagPrefix="uc1" TagName="Clientes" %>
 <%@ Register Src="~/User_Controls/Estaticos/Proveedores.ascx" TagPrefix="uc1" TagName="Proveedores" %>
 <%@ Register Src="~/User_Controls/Estaticos/Cuadrillas.ascx" TagPrefix="uc1" TagName="Cuadrillas" %>
 <%@ Register Src="~/User_Controls/Estaticos/Camiones.ascx" TagPrefix="uc1" TagName="Camiones" %>
 <%@ Register Src="~/User_Controls/Estaticos/Choferes2.ascx" TagPrefix="uc1" TagName="Choferes2" %>
 <%@ Register Src="~/User_Controls/Estaticos/Internos.ascx" TagPrefix="uc1" TagName="Internos" %>
-<%@ Register Src="~/User_Controls/Estaticos/Fleteros.ascx" TagPrefix="uc1" TagName="Fleteros" %>
-<%@ Register Src="~/User_Controls/Estaticos/Cargadores.ascx" TagPrefix="uc1" TagName="Cargadores" %>
+<%@ Register Src="~/User_Controls/Configuracion/Tipo_lena.ascx" TagPrefix="uc1" TagName="Tipos" %>
+<%@ Register Src="~/User_Controls/Configuracion/Variedad.ascx" TagPrefix="uc1" TagName="Variedades" %>
+<%@ Register Src="~/User_Controls/Configuracion/Formas_pago.ascx" TagPrefix="uc1" TagName="Formas" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
+
 
     <!-- STYLES EXTENSION -->
 
@@ -75,139 +78,26 @@
     <script src="/assets/dist/js/jquery.quicksearch.js"></script>
 
     <!-- Page JS -->
-    <script src="/assets/dist/js/pages/Datos.js"></script>
+    <script src="/assets/dist/js/pages/Detalles.js"></script>
 
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper1">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Base de Datos
-        <a href="/Pages/Datos.aspx"><small style="color: black">Datos estáticos</small></a>
-                <small>| </small>
-                <a href="/Pages/Datos_configuracion.aspx"><small>Datos de configuración</small></a>
+            <h1>Detalles        
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i>Inicio</a></li>
-                <li class="active">Base de Datos</li>
+                <li class="active">Detalles</li>
             </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-
-            <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box" id="divBoxClientes">
-                        <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Clientes</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box" id="divBoxProveedores">
-                        <span class="info-box-icon bg-light-blue"><i class="fa fa-suitcase"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Proveedores</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box" id="divBoxCuadrillas">
-                        <span class="info-box-icon bg-green"><i class="fa fa-thumbs-o-up"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Cuadrillas</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box" id="divBoxCamiones">
-                        <span class="info-box-icon bg-purple"><i class="fa fa-truck"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Camiones</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box" id="divBoxChoferes">
-                        <span class="info-box-icon bg-yellow"><i class="fa fa-cog"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Choferes</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box" id="divBoxInternos">
-                        <span class="info-box-icon bg-teal"><i class="fa fa-black-tie"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Internos</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-
-                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box" id="divBoxFleteros">
-                        <span class="info-box-icon bg-red"><i class="fa fa-black-tie"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Fleteros</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-
-                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box" id="divBoxCargadores">
-                        <span class="info-box-icon bg-blue"><i class="fa fa-black-tie"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Cargadores</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-
-            </div>
-
 
             <!-- =========================================================== -->
 
@@ -243,9 +133,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <div id="divContent" style="overflow: auto;">
+                                <div id="divContent">
 
-                                    <div class="divTables" id="divClientes" style="display: block;">
+                                    <div class="divTables" id="divClientes" style="display: none;">
                                         <asp:UpdatePanel ID="upClientes" runat="server">
                                             <ContentTemplate>
                                                 <uc1:Clientes runat="server" ID="Clientes" />
@@ -287,21 +177,27 @@
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>
-                                    <div class="divTables" id="divFleteros" style="display: none;">
-                                        <asp:UpdatePanel ID="upFleteros" runat="server">
+                                    <div class="divTables" id="divTipos" style="display: none;">
+                                        <asp:UpdatePanel ID="upTipos" runat="server">
                                             <ContentTemplate>
-                                                <uc1:Fleteros runat="server" ID="Fleteros" />
+                                                <uc1:Tipos runat="server" ID="Tipos" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>
-                                    <div class="divTables" id="divCargadores" style="display: none;">
-                                        <asp:UpdatePanel ID="upCargadores" runat="server">
+                                    <div class="divTables" id="divVariedades" style="display: none;">
+                                        <asp:UpdatePanel ID="upVariedades" runat="server">
                                             <ContentTemplate>
-                                                <uc1:Cargadores runat="server" ID="Cargadores" />
+                                                <uc1:Variedades runat="server" ID="Variedades" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>
-                                    
+                                    <div class="divTables" id="divFormas" style="display: none;">
+                                        <asp:UpdatePanel ID="upFormas" runat="server">
+                                            <ContentTemplate>
+                                                <uc1:Formas runat="server" ID="Formas" />
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </div>
 
                                 </div>
                             </div>
