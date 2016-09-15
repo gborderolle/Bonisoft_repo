@@ -89,7 +89,7 @@
                 <asp:TextBox ID="txbNew16" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Telefono">
+        <asp:TemplateField HeaderText="Teléfono">
             <EditItemTemplate>
                 <asp:TextBox ID="txb17" runat="server" Text='<%# Bind("Telefono") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
@@ -190,13 +190,13 @@
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Contacto nuestro">
             <EditItemTemplate>
-                <asp:TextBox ID="txb9" runat="server" Text='<%# Bind("Contacto_nuestro_ID") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:DropDownList ID="ddlContactoNuestro1" runat="server" CssClass="form-control" />
             </EditItemTemplate>
             <ItemTemplate>
                 <asp:Label ID="lbl9" runat="server" Text='<%# Bind("Contacto_nuestro_ID") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:TextBox ID="txbNew9" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:DropDownList ID="ddlContactoNuestro2" runat="server" CssClass="form-control" />
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Usual Forma de pago">

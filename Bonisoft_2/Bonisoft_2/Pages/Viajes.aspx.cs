@@ -441,7 +441,7 @@ namespace Bonisoft_2.Pages
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
                         {
-                            int id = viaje.Fletero_ID;
+                            int id = viaje.Proveedor_ID;
                             proveedor proveedor = (proveedor)context.proveedores.FirstOrDefault(c => c.Proveedor_ID == id);
                             if (proveedor != null)
                             {
@@ -464,7 +464,7 @@ namespace Bonisoft_2.Pages
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
                         {
-                            int id = viaje.Fletero_ID;
+                            int id = viaje.Cliente_ID;
                             cliente cliente = (cliente)context.clientes.FirstOrDefault(c => c.cliente_ID == id);
                             if (cliente != null)
                             {
@@ -619,7 +619,6 @@ namespace Bonisoft_2.Pages
             }
         }
     
-
         protected void gridViajes_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gridViajes.EditIndex = e.NewEditIndex;
@@ -647,12 +646,12 @@ namespace Bonisoft_2.Pages
             DropDownList ddlFormas2 = row.FindControl("ddlFormas1") as DropDownList;
             DropDownList ddlCargadores2 = row.FindControl("ddlCargadores1") as DropDownList;
             DropDownList ddlCamiones2 = row.FindControl("ddlCamiones1") as DropDownList;
-            DropDownList ddlChoferes2 = row.FindControl("ddlChoferes2") as DropDownList;
-            DropDownList ddlFleteros2 = row.FindControl("ddlFleteros2") as DropDownList;
-            DropDownList ddlProveedores2 = row.FindControl("ddlProveedores2") as DropDownList;
-            DropDownList ddlClientes2 = row.FindControl("ddlClientes2") as DropDownList;
-            DropDownList ddlPesadaOrigen2 = row.FindControl("ddlPesadaOrigen2") as DropDownList;
-            DropDownList ddlPesadaDestino2 = row.FindControl("ddlPesadaDestino2") as DropDownList;
+            DropDownList ddlChoferes2 = row.FindControl("ddlChoferes1") as DropDownList;
+            DropDownList ddlFleteros2 = row.FindControl("ddlFleteros1") as DropDownList;
+            DropDownList ddlProveedores2 = row.FindControl("ddlProveedores1") as DropDownList;
+            DropDownList ddlClientes2 = row.FindControl("ddlClientes1") as DropDownList;
+            DropDownList ddlPesadaOrigen2 = row.FindControl("ddlPesadaOrigen1") as DropDownList;
+            DropDownList ddlPesadaDestino2 = row.FindControl("ddlPesadaDestino1") as DropDownList;
 
             if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb6 != null && txb7 != null && ddlChoferes2 != null && txb15 != null &&
                 ddlPesadaOrigen2 != null && txb11 != null && txb12 != null && txb3 != null && ddlCargadores2 != null && ddlCamiones2 != null &&

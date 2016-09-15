@@ -462,7 +462,6 @@
                                             </EditItemTemplate>
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lbl8" runat="server" CommandName="View" CommandArgument='pesadas_destino' Text='<%# Bind("Pesada_origen_ID") %>'></asp:LinkButton>
-                                                <%--<asp:Label ID="lbl8" runat="server" Text='<%# Bind("Pesada_origen_ID") %>'></asp:Label>--%>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:DropDownList ID="ddlPesadaOrigen2" runat="server" CssClass="form-control" />

@@ -108,6 +108,8 @@
 
                     <div class="row">
                         <div class="col-md-9">
+                            <asp:button id="backButton" runat="server" text="Volver" OnClientClick="JavaScript:window.history.back(1);return false;"></asp:button>
+
                             <h3 class="box-title">
                                 <label id="lblTableActive" style="font-weight: normal;"></label>
                             </h3>

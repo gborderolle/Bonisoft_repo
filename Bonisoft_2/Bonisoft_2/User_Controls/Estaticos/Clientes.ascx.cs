@@ -79,7 +79,36 @@ namespace Bonisoft_2.User_Controls
                 }//Add Default Item in the DropDownList
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Forma_de_pago_ID.ToString();
+                    ddl.SelectedValue = ((cliente)(e.Row.DataItem)).Forma_de_pago_ID.ToString();
+                }
+            }
+
+            ddl = null;
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                ddl = e.Row.FindControl("ddlContactoNuestro1") as DropDownList;
+            }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                ddl = e.Row.FindControl("ddlContactoNuestro2") as DropDownList;
+            }
+            if (ddl != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.internos.ToList());
+
+                    ddl.DataSource = dt1;
+                    ddl.DataTextField = "Nombres";
+                    ddl.DataValueField = "Interno_ID";
+                    ddl.DataBind();
+                    ddl.Items.Insert(0, new ListItem("Elegir"));
+
+                }//Add Default Item in the DropDownList
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    ddl.SelectedValue = ((cliente)(e.Row.DataItem)).Contacto_nuestro_ID.ToString();
                 }
             }
 
@@ -120,18 +149,18 @@ namespace Bonisoft_2.User_Controls
                 TextBox txb6 = row.FindControl("txbNew6") as TextBox;
                 TextBox txb7 = row.FindControl("txbNew7") as TextBox;
                 TextBox txb8 = row.FindControl("txbNew8") as TextBox;
-                TextBox txb9 = row.FindControl("txbNew9") as TextBox;
                 TextBox txb11 = row.FindControl("txbNew11") as TextBox;
                 TextBox txb12 = row.FindControl("txbNew12") as TextBox;
                 TextBox txb13 = row.FindControl("txbNew13") as TextBox;
                 TextBox txb15 = row.FindControl("txbNew15") as TextBox;
                 TextBox txb16 = row.FindControl("txbNew16") as TextBox;
                 TextBox txb17 = row.FindControl("txbNew17") as TextBox;
-                TextBox txb18 = row.FindControl("txbNew18") as TextBox;
                 TextBox txb22 = row.FindControl("txbNew22") as TextBox;
-            DropDownList ddlFormas2 = row.FindControl("ddlFormas2") as DropDownList;
-                if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null && txb9 != null && ddlFormas2 != null &&
-                    txb11 != null && txb12 != null && txb13 != null && txb15 != null && txb16 != null && txb17 != null && txb18 != null && txb22 != null)
+                DropDownList ddlContactoNuestro2 = row.FindControl("ddlContactoNuestro2") as DropDownList;
+                DropDownList ddlFormas2 = row.FindControl("ddlFormas2") as DropDownList;
+                if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null
+                    && ddlFormas2 != null && ddlContactoNuestro2 != null &&
+                    txb11 != null && txb12 != null && txb13 != null && txb15 != null && txb16 != null && txb17 != null && txb22 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
@@ -144,7 +173,6 @@ namespace Bonisoft_2.User_Controls
                         obj.Encargado_pagos_contacto = txb6.Text;
                         obj.Supervisor_lena_nombre = txb7.Text;
                         obj.Supervisor_lena_contacto = txb8.Text;
-                        obj.Contacto_nuestro_ID = int.Parse(txb9.Text);
                         obj.Periodos_liquidacion = txb11.Text;
                         obj.Fechas_pago = txb12.Text;
                         obj.Nombre = txb13.Text;
@@ -161,6 +189,13 @@ namespace Bonisoft_2.User_Controls
                             ddl1 = 0;
                         }
                         obj.Forma_de_pago_ID = ddl1;
+
+                        int ddl2 = 0;
+                        if (!int.TryParse(ddlContactoNuestro2.SelectedValue, out ddl1))
+                        {
+                            ddl2 = 0;
+                        }
+                        obj.Contacto_nuestro_ID = ddl2;
 
                         #endregion DDL logic
 
@@ -198,18 +233,18 @@ namespace Bonisoft_2.User_Controls
             TextBox txb6 = row.FindControl("txb6") as TextBox;
             TextBox txb7 = row.FindControl("txb7") as TextBox;
             TextBox txb8 = row.FindControl("txb8") as TextBox;
-            TextBox txb9 = row.FindControl("txb9") as TextBox;
             TextBox txb11 = row.FindControl("txb11") as TextBox;
             TextBox txb12 = row.FindControl("txb12") as TextBox;
             TextBox txb13 = row.FindControl("txb13") as TextBox;
             TextBox txb15 = row.FindControl("txb15") as TextBox;
             TextBox txb16 = row.FindControl("txb16") as TextBox;
             TextBox txb17 = row.FindControl("txb17") as TextBox;
-            TextBox txb18 = row.FindControl("txb18") as TextBox;
             TextBox txb22 = row.FindControl("txb22") as TextBox;
+            DropDownList ddlContactoNuestro2 = row.FindControl("ddlContactoNuestro1") as DropDownList;
             DropDownList ddlFormas2 = row.FindControl("ddlFormas1") as DropDownList;
-            if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null && txb9 != null && ddlFormas2 != null &&
-                txb11 != null && txb12 != null && txb13 != null && txb15 != null && txb16 != null && txb17 != null && txb18 != null && txb22 != null)
+            if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null 
+                && ddlFormas2 != null && ddlContactoNuestro2 != null &&
+                txb11 != null && txb12 != null && txb13 != null && txb15 != null && txb16 != null && txb17 != null && txb22 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -223,14 +258,12 @@ namespace Bonisoft_2.User_Controls
                     obj.Encargado_pagos_contacto = txb6.Text;
                     obj.Supervisor_lena_nombre = txb7.Text;
                     obj.Supervisor_lena_contacto = txb8.Text;
-                    obj.Contacto_nuestro_ID = int.Parse(txb9.Text);
                     obj.Periodos_liquidacion = txb11.Text;
                     obj.Fechas_pago = txb12.Text;
                     obj.Nombre = txb13.Text;
                     obj.RUT = txb15.Text;
                     obj.Direccion = txb16.Text;
-                    obj.Dueno_nombre = txb17.Text;
-                    obj.Telefono = txb18.Text;
+                    obj.Telefono = txb17.Text;
                     obj.Comentarios = txb22.Text;
 
                     #region DDL logic
@@ -241,6 +274,13 @@ namespace Bonisoft_2.User_Controls
                         ddl1 = obj.Forma_de_pago_ID;
                     }
                     obj.Forma_de_pago_ID = ddl1;
+
+                    int ddl2 = obj.Contacto_nuestro_ID;
+                    if (!int.TryParse(ddlContactoNuestro2.SelectedValue, out ddl2))
+                    {
+                        ddl2 = obj.Contacto_nuestro_ID;
+                    }
+                    obj.Contacto_nuestro_ID = ddl2;
 
                     #endregion DDL logic
 
