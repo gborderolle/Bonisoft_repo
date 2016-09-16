@@ -166,7 +166,7 @@ namespace Bonisoft_2.User_Controls
                     dt1 = Extras.ToDataTable(context.internos.ToList());
 
                     ddl.DataSource = dt1;
-                    ddl.DataTextField = "Nombres";
+                    ddl.DataTextField = "Nombre_completo";
                     ddl.DataValueField = "Interno_ID";
                     ddl.DataBind();
                     ddl.Items.Insert(0, new ListItem("Elegir"));

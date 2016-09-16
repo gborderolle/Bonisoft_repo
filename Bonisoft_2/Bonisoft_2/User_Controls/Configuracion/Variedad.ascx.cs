@@ -113,6 +113,8 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
             #endregion
 
+            #region DDL Options 
+
             DropDownList ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -136,6 +138,8 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     ddl.Items.Insert(0, new ListItem("Elegir"));
                 }
             }
+
+            #endregion
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -167,13 +171,16 @@ namespace Bonisoft_2.User_Controls.Configuracion
                 GridViewRow row = gridVariedades.FooterRow;
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
-                if (txb1 != null && txb2 != null)
+                DropDownList ddlTipo2 = row.FindControl("ddlTipo2") as DropDownList;
+                if (txb1 != null && txb2 != null && ddlTipo2 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         variedad obj = new variedad();
                         obj.Nombre = txb1.Text;
                         obj.Comentarios = txb2.Text;
+
+                        obj.Lena_tipo_ID = Convert.ToInt32(ddlTipo2.SelectedValue);
 
                         context.variedad.Add(obj);
                         context.SaveChanges();
@@ -199,7 +206,8 @@ namespace Bonisoft_2.User_Controls.Configuracion
             GridViewRow row = gridVariedades.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
-            if (txb1 != null && txb2 != null)
+            DropDownList ddlTipo2 = row.FindControl("ddlTipo1") as DropDownList;
+            if (txb1 != null && txb2 != null && ddlTipo2 !=null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -207,6 +215,13 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     variedad obj = context.variedad.First(x => x.Variedad_ID == variedad_ID);
                     obj.Nombre = txb1.Text;
                     obj.Comentarios = txb2.Text;
+
+                    int ddl1 = obj.Lena_tipo_ID;
+                    if (!int.TryParse(ddlTipo2.SelectedValue, out ddl1))
+                    {
+                        ddl1 = obj.Lena_tipo_ID;
+                    }
+                    obj.Lena_tipo_ID = ddl1;
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";
