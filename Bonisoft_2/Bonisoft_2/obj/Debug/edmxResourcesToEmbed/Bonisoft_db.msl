@@ -4,10 +4,9 @@
     <EntitySetMapping Name="choferes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.chofer">
         <MappingFragment StoreEntitySet="chofer">
+          <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
           <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
           <ScalarProperty Name="Chofer_ID" ColumnName="Chofer_ID" />
-          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
-          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
           <ScalarProperty Name="Empresa_pertenece_ID" ColumnName="Empresa_pertenece_ID" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
         </MappingFragment>
@@ -46,11 +45,9 @@
     <EntitySetMapping Name="internos">
       <EntityTypeMapping TypeName="bonisoft_dbModel.interno">
         <MappingFragment StoreEntitySet="interno">
+          <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
           <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
-          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
-          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
           <ScalarProperty Name="Fecha_nacimiento" ColumnName="Fecha_nacimiento" />
-          <ScalarProperty Name="CI" ColumnName="CI" />
           <ScalarProperty Name="Fecha_ingreso" ColumnName="Fecha_ingreso" />
           <ScalarProperty Name="Fecha_egreso" ColumnName="Fecha_egreso" />
           <ScalarProperty Name="Cargo" ColumnName="Cargo" />
@@ -102,8 +99,6 @@
           <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
           <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
           <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
-          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
-          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
           <ScalarProperty Name="Clave" ColumnName="Clave" />
           <ScalarProperty Name="Ultima_conexion" ColumnName="Ultima_conexion" />
           <ScalarProperty Name="Rol_usuario_ID" ColumnName="Rol_usuario_ID" />

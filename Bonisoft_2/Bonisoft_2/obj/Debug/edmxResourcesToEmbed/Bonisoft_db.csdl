@@ -5,11 +5,10 @@
       <PropertyRef Name="Chofer_ID" />
     </Key>
     <Property Name="Chofer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Empresa_pertenece_ID" Type="Int32" Nullable="false" />
     <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Empresa_esCliente" Type="Boolean" Nullable="false" />
+    <Property Name="Nombre_completo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="cuadrilla_descarga">
     <Key>
@@ -43,14 +42,12 @@
       <PropertyRef Name="Interno_ID" />
     </Key>
     <Property Name="Interno_ID" Type="Int32" Nullable="false" />
-    <Property Name="Apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Fecha_nacimiento" Type="DateTime" Nullable="false" />
-    <Property Name="CI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Fecha_ingreso" Type="DateTime" Nullable="false" />
     <Property Name="Fecha_egreso" Type="DateTime" Nullable="false" />
     <Property Name="Cargo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombre_completo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="lena_tipo">
     <Key>
@@ -95,8 +92,6 @@
     <Property Name="Usuario_ID" Type="Int32" Nullable="false" />
     <Property Name="Interno_ID" Type="Int32" Nullable="false" />
     <Property Name="Usuario1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Clave" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Ultima_conexion" Type="DateTime" Nullable="false" />
     <Property Name="Rol_usuario_ID" Type="Int32" Nullable="false" />

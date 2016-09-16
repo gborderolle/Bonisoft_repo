@@ -35,12 +35,12 @@
     </PagerTemplate>
 
     <Columns>
-        <asp:TemplateField HeaderText="">
+       <asp:TemplateField HeaderText="">
             <ItemTemplate>
                 <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" ToolTip="Modificar"
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
                 <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete"
-                    ToolTip="Borrar" OnClientClick='return confirm("Está seguro que desea borrar este registro?");'
+                    ToolTip="Borrar" OnClientClick='return confirm("¿Está seguro que desea eliminar este registro?");'
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></asp:LinkButton>
             </ItemTemplate>
             <EditItemTemplate>

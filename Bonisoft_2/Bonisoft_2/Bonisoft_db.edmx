@@ -30,8 +30,7 @@
             <PropertyRef Name="Chofer_ID" />
           </Key>
           <Property Name="Chofer_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Apellidos" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Nombres" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nombre_completo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Empresa_pertenece_ID" Type="int" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Empresa_esCliente" Type="bit" Nullable="false" />
@@ -109,10 +108,8 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
             <PropertyRef Name="Interno_ID" />
           </Key>
           <Property Name="Interno_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Apellidos" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Nombres" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nombre_completo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Fecha_nacimiento" Type="date" Nullable="false" />
-          <Property Name="CI" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Fecha_ingreso" Type="date" Nullable="false" />
           <Property Name="Fecha_egreso" Type="date" Nullable="false" />
           <Property Name="Cargo" Type="varchar" MaxLength="100" Nullable="false" />
@@ -211,8 +208,6 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Usuario_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Interno_ID" Type="int" Nullable="false" />
           <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Apellidos" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Nombres" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Clave" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Ultima_conexion" Type="date" Nullable="false" />
           <Property Name="Rol_usuario_ID" Type="int" Nullable="false" />
@@ -298,11 +293,10 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
             <PropertyRef Name="Chofer_ID" />
           </Key>
           <Property Name="Chofer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Empresa_pertenece_ID" Type="Int32" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Empresa_esCliente" Type="Boolean" Nullable="false" />
+          <Property Name="Nombre_completo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="cuadrilla_descarga">
           <Key>
@@ -336,14 +330,12 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
             <PropertyRef Name="Interno_ID" />
           </Key>
           <Property Name="Interno_ID" Type="Int32" Nullable="false" />
-          <Property Name="Apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Fecha_nacimiento" Type="DateTime" Nullable="false" />
-          <Property Name="CI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Fecha_ingreso" Type="DateTime" Nullable="false" />
           <Property Name="Fecha_egreso" Type="DateTime" Nullable="false" />
           <Property Name="Cargo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre_completo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="lena_tipo">
           <Key>
@@ -388,8 +380,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Usuario_ID" Type="Int32" Nullable="false" />
           <Property Name="Interno_ID" Type="Int32" Nullable="false" />
           <Property Name="Usuario1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Clave" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Ultima_conexion" Type="DateTime" Nullable="false" />
           <Property Name="Rol_usuario_ID" Type="Int32" Nullable="false" />
@@ -579,10 +569,9 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySetMapping Name="choferes">
             <EntityTypeMapping TypeName="bonisoft_dbModel.chofer">
               <MappingFragment StoreEntitySet="chofer">
+                <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
                 <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
                 <ScalarProperty Name="Chofer_ID" ColumnName="Chofer_ID" />
-                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
-                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
                 <ScalarProperty Name="Empresa_pertenece_ID" ColumnName="Empresa_pertenece_ID" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
               </MappingFragment>
@@ -621,11 +610,9 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySetMapping Name="internos">
             <EntityTypeMapping TypeName="bonisoft_dbModel.interno">
               <MappingFragment StoreEntitySet="interno">
+                <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
                 <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
-                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
-                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
                 <ScalarProperty Name="Fecha_nacimiento" ColumnName="Fecha_nacimiento" />
-                <ScalarProperty Name="CI" ColumnName="CI" />
                 <ScalarProperty Name="Fecha_ingreso" ColumnName="Fecha_ingreso" />
                 <ScalarProperty Name="Fecha_egreso" ColumnName="Fecha_egreso" />
                 <ScalarProperty Name="Cargo" ColumnName="Cargo" />
@@ -677,8 +664,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
                 <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
                 <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
                 <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
-                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
-                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
                 <ScalarProperty Name="Clave" ColumnName="Clave" />
                 <ScalarProperty Name="Ultima_conexion" ColumnName="Ultima_conexion" />
                 <ScalarProperty Name="Rol_usuario_ID" ColumnName="Rol_usuario_ID" />

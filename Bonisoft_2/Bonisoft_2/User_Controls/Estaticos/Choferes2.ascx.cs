@@ -112,16 +112,14 @@ namespace Bonisoft_2.User_Controls
             {
                 GridViewRow row = gridChoferes.FooterRow;
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
-                TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
                 DropDownList ddlEmpresas2 = row.FindControl("ddlEmpresas2") as DropDownList;
-                if (txb1 != null && txb2 != null && ddlEmpresas2 != null && txb4 != null)
+                if (txb1 != null && ddlEmpresas2 != null && txb4 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         chofer obj = new chofer();
-                        obj.Apellidos = txb1.Text;
-                        obj.Nombres = txb2.Text;
+                        obj.Nombre_completo = txb1.Text;
                         obj.Comentarios = txb4.Text;
 
                         #region DDL logic
@@ -170,17 +168,15 @@ namespace Bonisoft_2.User_Controls
         {
             GridViewRow row = gridChoferes.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
-            TextBox txb2 = row.FindControl("txb2") as TextBox;
             TextBox txb4 = row.FindControl("txb4") as TextBox;
             DropDownList ddlEmpresas1 = row.FindControl("ddlEmpresas1") as DropDownList;
-            if (txb1 != null && txb2 != null && ddlEmpresas1 != null && txb4 != null)
+            if (txb1 != null && ddlEmpresas1 != null && txb4 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
                     int chofer_ID = Convert.ToInt32(gridChoferes.DataKeys[e.RowIndex].Value);
                     chofer obj = context.choferes.First(x => x.Chofer_ID == chofer_ID);
-                    obj.Apellidos = txb1.Text;
-                    obj.Nombres = txb2.Text;
+                    obj.Nombre_completo= txb1.Text;
                     obj.Empresa_pertenece_ID = Convert.ToInt32(ddlEmpresas1.SelectedValue);
                     obj.Comentarios = txb4.Text;
 

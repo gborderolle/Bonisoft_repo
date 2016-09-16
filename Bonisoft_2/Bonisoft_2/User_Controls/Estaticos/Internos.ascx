@@ -56,26 +56,15 @@
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Apellidos">
+        <asp:TemplateField HeaderText="Nombre completo">
             <EditItemTemplate>
-                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Apellidos") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Nombre_completo") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Apellidos") %>'></asp:Label>
+                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Nombre_completo") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Nombres">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Nombres") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Nombres") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Fecha nacim.">
@@ -87,17 +76,6 @@
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="CI">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("CI") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl4" runat="server" Text='<%# Bind("CI") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew4" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Fecha ingreso">

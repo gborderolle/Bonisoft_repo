@@ -112,7 +112,7 @@ namespace Bonisoft_2.Pages
                     dt1 = Extras.ToDataTable(context.choferes.ToList());
 
                     ddl.DataSource = dt1;
-                    ddl.DataTextField = "Apellidos";
+                    ddl.DataTextField = "Nombre_completo";
                     ddl.DataValueField = "Chofer_ID";
                     ddl.DataBind();
                     ddl.Items.Insert(0, new ListItem("Elegir"));

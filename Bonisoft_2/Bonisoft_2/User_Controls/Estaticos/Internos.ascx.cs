@@ -61,21 +61,17 @@ namespace Bonisoft_2.User_Controls
             {
                 GridViewRow row = gridInternos.FooterRow;
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
-                TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 TextBox txb3 = row.FindControl("txbNew3") as TextBox;
-                TextBox txb4 = row.FindControl("txbNew4") as TextBox;
                 TextBox txb5 = row.FindControl("txbNew5") as TextBox;
                 TextBox txb6 = row.FindControl("txbNew6") as TextBox;
                 TextBox txb7 = row.FindControl("txbNew7") as TextBox;
                 TextBox txb8 = row.FindControl("txbNew8") as TextBox;
-                if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null)
+                if (txb1 != null && txb3 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         interno obj = new interno();
-                        obj.Apellidos = txb1.Text;
-                        obj.Nombres= txb2.Text;
-                        obj.CI = txb4.Text;
+                        obj.Nombre_completo = txb1.Text;
                         obj.Cargo = txb7.Text;
                         obj.Comentarios = txb8.Text;
 
@@ -131,22 +127,18 @@ namespace Bonisoft_2.User_Controls
         {
             GridViewRow row = gridInternos.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
-            TextBox txb2 = row.FindControl("txb2") as TextBox;
             TextBox txb3 = row.FindControl("txb3") as TextBox;
-            TextBox txb4 = row.FindControl("txb4") as TextBox;
             TextBox txb5 = row.FindControl("txb5") as TextBox;
             TextBox txb6 = row.FindControl("txb6") as TextBox;
             TextBox txb7 = row.FindControl("txb7") as TextBox;
             TextBox txb8 = row.FindControl("txb8") as TextBox;
-            if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null)
+            if (txb1 != null && txb3 != null && txb5 != null && txb6 != null && txb7 != null && txb8 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
                     int interno_ID = Convert.ToInt32(gridInternos.DataKeys[e.RowIndex].Value);
                     interno obj = context.internos.First(x => x.Interno_ID == interno_ID);
-                    obj.Apellidos = txb1.Text;
-                    obj.Nombres = txb2.Text;
-                    obj.CI = txb4.Text;
+                    obj.Nombre_completo = txb1.Text;
                     obj.Cargo = txb7.Text;
                     obj.Comentarios = txb8.Text;
 
