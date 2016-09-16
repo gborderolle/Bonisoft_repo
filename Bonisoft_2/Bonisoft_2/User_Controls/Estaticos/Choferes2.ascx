@@ -67,15 +67,15 @@
                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Empresa">
+          <asp:TemplateField HeaderText="Empresa">
             <EditItemTemplate>
-                <asp:DropDownList ID="ddlEmpresas1" runat="server" CssClass="form-control" />
+                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Empresa") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Empresa_pertenece_ID") %>'></asp:Label>
+                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Empresa") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:DropDownList ID="ddlEmpresas2" runat="server" CssClass="form-control" />
+                <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Comentarios">

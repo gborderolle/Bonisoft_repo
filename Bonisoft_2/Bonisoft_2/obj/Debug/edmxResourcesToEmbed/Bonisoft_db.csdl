@@ -5,10 +5,9 @@
       <PropertyRef Name="Chofer_ID" />
     </Key>
     <Property Name="Chofer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Empresa_pertenece_ID" Type="Int32" Nullable="false" />
     <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Empresa_esCliente" Type="Boolean" Nullable="false" />
     <Property Name="Nombre_completo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Empresa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="cuadrilla_descarga">
     <Key>

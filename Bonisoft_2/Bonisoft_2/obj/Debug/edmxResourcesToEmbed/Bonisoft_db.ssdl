@@ -26,9 +26,8 @@
     </Key>
     <Property Name="Chofer_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre_completo" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Empresa_pertenece_ID" Type="int" Nullable="false" />
+    <Property Name="Empresa" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
-    <Property Name="Empresa_esCliente" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="cliente">
     <Key>

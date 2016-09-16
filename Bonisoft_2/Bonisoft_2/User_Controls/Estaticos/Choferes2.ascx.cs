@@ -17,6 +17,7 @@ namespace Bonisoft_2.User_Controls
             {
                 BindGrid();
             }
+
             lblMessage.Text = "";
         }
 
@@ -49,61 +50,69 @@ namespace Bonisoft_2.User_Controls
                     //set No Results found to the new added cell
                     gridChoferes.Rows[0].Cells[0].Text = "No hay registros";
                 }
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "updateCounts", "updateCounts();", true);
             }
         }
 
         protected void gridChoferes_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            DropDownList ddl = null;
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            #region Action buttons
+
+            ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
+            if (ScriptManager1 != null)
             {
-                ddl = e.Row.FindControl("ddlEmpresas1") as DropDownList;
-            }
-            if (e.Row.RowType == DataControlRowType.Footer)
-            {
-                ddl = e.Row.FindControl("ddlEmpresas2") as DropDownList;
-            }
-            if (ddl != null)
-            {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                LinkButton lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    var elements = context.proveedores.Select(c => new { ID = c.Proveedor_ID, DisplayText = "Proveedor: " + c.Nombre.ToString() }).ToList();
-                    elements.AddRange(context.clientes.Select(c => new { ID = c.cliente_ID, DisplayText = "Cliente: " + c.Nombre.ToString() }).ToList());
+                    lnk = e.Row.FindControl("lnkEdit") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
 
-                    ddl.DataSource = elements;
-                    ddl.DataTextField = "DisplayText";
-                    ddl.DataValueField = "ID";
-                    ddl.DataBind();
-                    ddl.Items.Insert(0, new ListItem("Elegir"));
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkDelete") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
 
-                    if (e.Row.RowType == DataControlRowType.DataRow)
-                    {
-                        ddl.SelectedValue = ((chofer)(e.Row.DataItem)).Empresa_pertenece_ID.ToString();                      
-                    }
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkInsert") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.Footer)
+                {
+                    lnk = e.Row.FindControl("lnkInsert") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkCancel") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
                 }
             }
 
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                Label lbl = e.Row.FindControl("lbl3") as Label;
-                if (lbl != null)
-                {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                    {
-                        chofer chofer = (chofer)(e.Row.DataItem);
-                        if (chofer != null)
-                        {
-                            try
-                            {
-                                int id = chofer.Empresa_pertenece_ID;
-                                string empresa = chofer.Empresa_esCliente ? ((cliente)context.clientes.FirstOrDefault(c => c.cliente_ID == id)).Nombre : ((proveedor)context.proveedores.FirstOrDefault(c => c.Proveedor_ID == id)).Nombre;
-                                lbl.Text = empresa;
-                            }
-                            catch (Exception) { }
-                        }
-                    }
-                }
-            }
+            #endregion
         }
 
         protected void gridChoferes_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -112,34 +121,16 @@ namespace Bonisoft_2.User_Controls
             {
                 GridViewRow row = gridChoferes.FooterRow;
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
+                TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
-                DropDownList ddlEmpresas2 = row.FindControl("ddlEmpresas2") as DropDownList;
-                if (txb1 != null && ddlEmpresas2 != null && txb4 != null)
+                if (txb1 != null && txb2 != null && txb4 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         chofer obj = new chofer();
                         obj.Nombre_completo = txb1.Text;
+                        obj.Empresa = txb2.Text;
                         obj.Comentarios = txb4.Text;
-
-                        #region DDL logic
-
-                        int ddl1 = 0;
-                        if (!int.TryParse(ddlEmpresas2.SelectedValue, out ddl1))
-                        {
-                            ddl1 = 0;
-                        }
-                        obj.Empresa_pertenece_ID = ddl1;
-
-                        #endregion DDL logic
-
-                        bool isClient = false;
-                        string selectedText = ddlEmpresas2.SelectedItem.Text;
-                        if (!string.IsNullOrWhiteSpace(selectedText))
-                        {
-                            isClient = selectedText.Contains("Cliente");
-                        }
-                        obj.Empresa_esCliente = isClient;
 
                         context.choferes.Add(obj);
                         context.SaveChanges();
@@ -168,25 +159,17 @@ namespace Bonisoft_2.User_Controls
         {
             GridViewRow row = gridChoferes.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
+            TextBox txb2 = row.FindControl("txb2") as TextBox;
             TextBox txb4 = row.FindControl("txb4") as TextBox;
-            DropDownList ddlEmpresas1 = row.FindControl("ddlEmpresas1") as DropDownList;
-            if (txb1 != null && ddlEmpresas1 != null && txb4 != null)
+            if (txb1 != null && txb2 != null && txb4 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
                     int chofer_ID = Convert.ToInt32(gridChoferes.DataKeys[e.RowIndex].Value);
                     chofer obj = context.choferes.First(x => x.Chofer_ID == chofer_ID);
-                    obj.Nombre_completo= txb1.Text;
-                    obj.Empresa_pertenece_ID = Convert.ToInt32(ddlEmpresas1.SelectedValue);
+                    obj.Nombre_completo = txb1.Text;
+                    obj.Empresa = txb2.Text;
                     obj.Comentarios = txb4.Text;
-
-                    bool isClient = false;
-                    string selectedText = ddlEmpresas1.SelectedItem.Text;
-                    if (!string.IsNullOrWhiteSpace(selectedText))
-                    {
-                        isClient = selectedText.Contains("Cliente");
-                    }
-                    obj.Empresa_esCliente = isClient;
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";

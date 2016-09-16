@@ -47,11 +47,69 @@ namespace Bonisoft_2.User_Controls
                     //set No Results found to the new added cell
                     gridProveedores.Rows[0].Cells[0].Text = "No hay registros";
                 }
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "updateCounts", "updateCounts();", true);
             }
         }
 
         protected void gridProveedores_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            #region Action buttons
+
+            ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
+            if (ScriptManager1 != null)
+            {
+                LinkButton lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkEdit") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkDelete") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkInsert") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.Footer)
+                {
+                    lnk = e.Row.FindControl("lnkInsert") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkCancel") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+            }
+
+            #endregion
         }
 
 

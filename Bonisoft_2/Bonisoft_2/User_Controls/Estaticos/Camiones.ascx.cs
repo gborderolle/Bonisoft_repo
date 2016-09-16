@@ -47,11 +47,69 @@ namespace Bonisoft_2.Pages
                     //set No Results found to the new added cell
                     gridCamiones.Rows[0].Cells[0].Text = "No hay registros";
                 }
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "updateCounts", "updateCounts();", true);
             }
         }
 
         protected void gridCamiones_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            #region Action buttons
+
+            ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
+            if (ScriptManager1 != null)
+            {
+                LinkButton lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkEdit") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkDelete") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkInsert") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.Footer)
+                {
+                    lnk = e.Row.FindControl("lnkInsert") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkCancel") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+            }
+
+            #endregion
         }
 
 
@@ -63,10 +121,10 @@ namespace Bonisoft_2.Pages
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 TextBox txb3 = row.FindControl("txbNew3") as TextBox;
+                TextBox txb6 = row.FindControl("txbNew6") as TextBox;
                 TextBox txb7 = row.FindControl("txbNew7") as TextBox;
-                TextBox txb8 = row.FindControl("txbNew8") as TextBox;
                 TextBox txb9 = row.FindControl("txbNew9") as TextBox;
-                if (txb1 != null && txb2 != null && txb3 != null && txb7 != null && txb8 != null && txb9 != null)
+                if (txb1 != null && txb2 != null && txb3 != null && txb6 != null && txb7 != null && txb9 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
@@ -74,8 +132,8 @@ namespace Bonisoft_2.Pages
                         obj.Matricula_camion = txb1.Text;
                         obj.Matricula_zorra = txb2.Text;
                         obj.Numero_ejes = int.Parse(txb3.Text);
-                        obj.Marca = txb7.Text;
-                        obj.Modelo = txb8.Text;
+                        obj.Marca = txb6.Text;
+                        obj.Modelo = txb7.Text;
                         obj.Comentarios = txb9.Text;
 
                         context.camiones.Add(obj);

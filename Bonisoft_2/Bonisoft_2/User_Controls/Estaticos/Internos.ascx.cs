@@ -47,11 +47,69 @@ namespace Bonisoft_2.User_Controls
                     //set No Results found to the new added cell
                     gridInternos.Rows[0].Cells[0].Text = "No hay registros";
                 }
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "updateCounts", "updateCounts();", true);
             }
         }
 
         protected void gridInternos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            #region Action buttons
+
+            ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
+            if (ScriptManager1 != null)
+            {
+                LinkButton lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkEdit") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkDelete") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkInsert") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.Footer)
+                {
+                    lnk = e.Row.FindControl("lnkInsert") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkCancel") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+            }
+
+            #endregion
         }
 
 
@@ -78,21 +136,21 @@ namespace Bonisoft_2.User_Controls
                         #region Datetime logic
 
                         DateTime date1 = DateTime.Now;
-                        if (!DateTime.TryParse(txb3.Text, out date1))
+                        if (!DateTime.TryParseExact(txb3.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                         {
                             date1 = DateTime.Now;
                         }
                         obj.Fecha_nacimiento = date1;
 
                         DateTime date2 = DateTime.Now;
-                        if (!DateTime.TryParse(txb5.Text, out date2))
+                        if (!DateTime.TryParseExact(txb5.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                         {
                             date2 = DateTime.Now;
                         }
                         obj.Fecha_ingreso = date2;
 
                         DateTime date3 = DateTime.Now;
-                        if (!DateTime.TryParse(txb6.Text, out date3))
+                        if (!DateTime.TryParseExact(txb6.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                         {
                             date3 = DateTime.Now;
                         }
@@ -145,21 +203,21 @@ namespace Bonisoft_2.User_Controls
                     #region Datetime logic
 
                     DateTime date1 = obj.Fecha_nacimiento;
-                    if (!DateTime.TryParse(txb3.Text, out date1))
+                    if (!DateTime.TryParseExact(txb3.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                     {
                         date1 = obj.Fecha_nacimiento;
                     }
                     obj.Fecha_nacimiento = date1;
 
                     DateTime date2 = obj.Fecha_ingreso;
-                    if (!DateTime.TryParse(txb5.Text, out date2))
+                    if (!DateTime.TryParseExact(txb5.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                     {
                         date2 = obj.Fecha_ingreso;
                     }
                     obj.Fecha_ingreso = date2;
 
                     DateTime date3 = obj.Fecha_egreso;
-                    if (!DateTime.TryParse(txb6.Text, out date3))
+                    if (!DateTime.TryParseExact(txb6.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                     {
                         date3 = obj.Fecha_egreso;
                     }

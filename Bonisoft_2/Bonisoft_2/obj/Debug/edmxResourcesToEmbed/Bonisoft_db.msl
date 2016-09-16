@@ -4,10 +4,9 @@
     <EntitySetMapping Name="choferes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.chofer">
         <MappingFragment StoreEntitySet="chofer">
+          <ScalarProperty Name="Empresa" ColumnName="Empresa" />
           <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
-          <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
           <ScalarProperty Name="Chofer_ID" ColumnName="Chofer_ID" />
-          <ScalarProperty Name="Empresa_pertenece_ID" ColumnName="Empresa_pertenece_ID" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
         </MappingFragment>
       </EntityTypeMapping>

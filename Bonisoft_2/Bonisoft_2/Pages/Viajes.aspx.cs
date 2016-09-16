@@ -274,6 +274,36 @@ namespace Bonisoft_2.Pages
                 }
             }
 
+            // Cargadores --------------------------------------------------
+            ddl = null;
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                ddl = e.Row.FindControl("ddlCargadores1") as DropDownList;
+            }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                ddl = e.Row.FindControl("ddlCargadores2") as DropDownList;
+            }
+            if (ddl != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.cargadores.ToList());
+
+                    ddl.DataSource = dt1;
+                    ddl.DataTextField = "Nombre";
+                    ddl.DataValueField = "Cargador_ID";
+                    ddl.DataBind();
+                    ddl.Items.Insert(0, new ListItem("Elegir"));
+
+                }//Add Default Item in the DropDownList
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Empresa_de_carga_ID.ToString();
+                }
+            }
+
             // Pesadas origen --------------------------------------------------
             ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -355,6 +385,7 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = forma_de_pago.Forma;
                                 lbl.Text = nombre;
+                                lbl.CommandArgument = "formas," + forma_de_pago.Forma;
                             }
                         }
                     }
@@ -378,6 +409,31 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = cargador.ToString();
                                 lbl.Text = nombre;
+                                lbl.CommandArgument = "cargadores," + cargador.Nombre;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Fleteros ----------------------------------------------------
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lbl = e.Row.FindControl("lbl16") as LinkButton;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        viaje viaje = (viaje)(e.Row.DataItem);
+                        if (viaje != null)
+                        {
+                            int id = viaje.Fletero_ID;
+                            fletero fletero = (fletero)context.fleteros.FirstOrDefault(c => c.Fletero_ID == id);
+                            if (fletero != null)
+                            {
+                                string nombre = fletero.ToString();
+                                lbl.Text = nombre;
+                                lbl.CommandArgument = "fleteros," + fletero.Nombre;
                             }
                         }
                     }
@@ -401,6 +457,7 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = camion.ToString();
                                 lbl.Text = nombre;
+                                lbl.CommandArgument = "camiones," + camion.Marca;
                             }
                         }
                     }
@@ -424,6 +481,7 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = chofer.ToString();
                                 lbl.Text = nombre;
+                                lbl.CommandArgument = "choferes," + chofer.Nombre_completo;
                             }
                         }
                     }
@@ -447,6 +505,7 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = proveedor.ToString();
                                 lbl.Text = nombre;
+                                lbl.CommandArgument = "proveedores," + proveedor.Nombre;
                             }
                         }
                     }
@@ -470,6 +529,31 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = cliente.ToString();
                                 lbl.Text = nombre;
+                                lbl.CommandArgument = "clientes," + cliente.Nombre;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Cargador ----------------------------------------------------
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lbl = e.Row.FindControl("lbl10") as LinkButton;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        viaje viaje = (viaje)(e.Row.DataItem);
+                        if (viaje != null)
+                        {
+                            int id = viaje.Empresa_de_carga_ID;
+                            cargador cargador = (cargador)context.cargadores.FirstOrDefault(c => c.Cargador_ID == id);
+                            if (cargador != null)
+                            {
+                                string nombre = cargador.Nombre;
+                                lbl.Text = nombre;
+                                lbl.CommandArgument = "cargadores," + cargador.Nombre;
                             }
                         }
                     }
@@ -493,6 +577,7 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = pesada.ToString();
                                 lbl.Text = nombre;
+                                lbl.CommandArgument = "pesadas," + pesada.Nombre_balanza;
                             }
                         }
                     }
@@ -516,6 +601,7 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = pesada.ToString();
                                 lbl.Text = nombre;
+                                lbl.CommandArgument = "pesadas," + pesada.Nombre_balanza;
                             }
                         }
                     }
@@ -531,7 +617,7 @@ namespace Bonisoft_2.Pages
             if (e.CommandArgument != null)
             {
                 if (!string.IsNullOrWhiteSpace(e.CommandArgument.ToString()) && !string.IsNullOrWhiteSpace(e.CommandName))
-                {                    
+                {
                     #region InsertNew
 
                     if (e.CommandName == "InsertNew")
@@ -564,7 +650,7 @@ namespace Bonisoft_2.Pages
                         {
                             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                             {
-                                viaje obj = new viaje();                                
+                                viaje obj = new viaje();
                                 obj.Precio_compra_por_tonelada = decimal.Parse(txb1.Text);
                                 obj.Precio_valor_total = decimal.Parse(txb2.Text);
                                 obj.Importe_viaje = decimal.Parse(txb3.Text);
@@ -574,14 +660,14 @@ namespace Bonisoft_2.Pages
                                 obj.Comentarios = txb15.Text;
 
                                 DateTime date1 = DateTime.Now;
-                                if (!DateTime.TryParse(txb11.Text, out date1))
+                                if (!DateTime.TryParseExact(txb11.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                                 {
                                     date1 = DateTime.Now;
                                 }
                                 obj.Fecha_partida = date1;
 
                                 DateTime date2 = DateTime.Now;
-                                if (!DateTime.TryParse(txb12.Text, out date2))
+                                if (!DateTime.TryParseExact(txb12.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date2))
                                 {
                                     date2 = DateTime.Now;
                                 }
@@ -608,7 +694,17 @@ namespace Bonisoft_2.Pages
 
                     if (e.CommandName == "View")
                     {
-                        Response.Redirect("Listados.aspx?tabla=" + e.CommandArgument);
+                        string[] values = e.CommandArgument.ToString().Split(new char[] { ',' });
+                        if (values.Length > 1)
+                        {
+                            string tabla = values[0];
+                            string dato = values[1];
+                            if (!string.IsNullOrWhiteSpace(tabla) && !string.IsNullOrWhiteSpace(dato))
+                            {
+                                Response.Redirect("Listados.aspx?tabla=" + tabla + "&dato=" + dato);
+                            }
+                        }
+
                     }
 
                     else
@@ -618,7 +714,7 @@ namespace Bonisoft_2.Pages
                 }
             }
         }
-    
+
         protected void gridViajes_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gridViajes.EditIndex = e.NewEditIndex;
@@ -672,14 +768,14 @@ namespace Bonisoft_2.Pages
                     #region Datetime logic
 
                     DateTime date1 = obj.Fecha_partida;
-                    if (!DateTime.TryParse(txb11.Text, out date1))
+                    if (!DateTime.TryParseExact(txb11.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                     {
                         date1 = obj.Fecha_partida;
                     }
                     obj.Fecha_partida = date1;
 
                     DateTime date2 = obj.Fecha_llegada;
-                    if (!DateTime.TryParse(txb12.Text, out date2))
+                    if (!DateTime.TryParseExact(txb12.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date2))
                     {
                         date2 = obj.Fecha_partida;
                     }

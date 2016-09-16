@@ -11,6 +11,8 @@ namespace Bonisoft_2.User_Controls
 {
     public partial class Clientes : System.Web.UI.UserControl
     {
+        public event Action LoadCompleted = delegate { };
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -18,6 +20,7 @@ namespace Bonisoft_2.User_Controls
                 BindGrid();
             }
             lblMessage.Text = "";
+            //this.LoadCompleted();
         }
 
         void BindGrid()
@@ -49,11 +52,74 @@ namespace Bonisoft_2.User_Controls
                     //set No Results found to the new added cell
                     gridClientes.Rows[0].Cells[0].Text = "No hay registros";
                 }
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "updateCounts", "updateCounts();", true);
             }
         }
 
         protected void gridClientes_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            #region Action buttons
+
+            LinkButton lnk = null;
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                lnk = e.Row.FindControl("lnkEdit") as LinkButton;
+            }
+            if (lnk != null)
+            {
+                ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
+                if (ScriptManager1 != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+            }
+
+            lnk = null;
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                lnk = e.Row.FindControl("lnkDelete") as LinkButton;
+            }
+            if (lnk != null)
+            {
+                ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
+                if (ScriptManager1 != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+            }
+
+            lnk = null;
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                lnk = e.Row.FindControl("lnkInsert") as LinkButton;
+            }
+            if (lnk != null)
+            {
+                ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
+                if (ScriptManager1 != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+            }
+
+            lnk = null;
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                lnk = e.Row.FindControl("lnkCancel") as LinkButton;
+            }
+            if (lnk != null)
+            {
+                ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
+                if (ScriptManager1 != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+            }
+
+            #endregion
+
+            #region DDLs
+
             DropDownList ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -112,6 +178,8 @@ namespace Bonisoft_2.User_Controls
                 }
             }
 
+            #endregion
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 Label lbl = e.Row.FindControl("lbl10") as Label;
@@ -133,6 +201,8 @@ namespace Bonisoft_2.User_Controls
                     }
                 }
             }
+
+
         }
 
 

@@ -11,7 +11,17 @@ namespace Bonisoft_2.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // http://www.aspsnippets.com/Articles/Assign-PostBack-Trigger-Full-PostBack-for-LinkButton-inside-GridView-within-AJAX-UpdatePanel-in-ASPNet.aspx
+            // Source: http://stackoverflow.com/questions/11235062/is-there-an-after-page-load-event-in-asp-net
+            //this.Clientes.LoadCompleted += () =>
+            //{
+            //    ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
+            //    Control ctrl = Clientes.FindControl("lnkEdit");
+            //    if (ctrl != null)
+            //    {
+            //        scriptManager.RegisterPostBackControl(ctrl);
+            //    }
+            //};
         }
     }
 }

@@ -49,11 +49,70 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     //set No Results found to the new added cell
                     gridMercaderias.Rows[0].Cells[0].Text = "No hay registros";
                 }
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "updateCounts", "updateCounts();", true);
             }
         }
 
         protected void gridSample_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            #region Action buttons
+
+            ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
+            if (ScriptManager1 != null)
+            {
+                LinkButton lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkEdit") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkDelete") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkInsert") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.Footer)
+                {
+                    lnk = e.Row.FindControl("lnkInsert") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+
+                lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    lnk = e.Row.FindControl("lnkCancel") as LinkButton;
+                }
+                if (lnk != null)
+                {
+                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                }
+            }
+
+            #endregion
+
             DropDownList ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -101,8 +160,14 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     {
                         mercaderia_comprada obj = new mercaderia_comprada();
                         obj.Variedad_ID = Convert.ToInt32(ddlVariedad2.SelectedValue);
-                        obj.Fecha_corte = DateTime.Parse(txb4.Text);
                         obj.Comentarios = txb5.Text;
+
+                        DateTime date1 = DateTime.Now;
+                        if (!DateTime.TryParseExact(txb4.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                        {
+                            date1 = DateTime.Now;
+                        }
+                        obj.Fecha_corte = date1;
 
                         context.mercaderia_comprada.Add(obj);
                         context.SaveChanges();
@@ -139,8 +204,14 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     int mercaderia_ID = Convert.ToInt32(gridMercaderias.DataKeys[e.RowIndex].Value);
                     mercaderia_comprada obj = context.mercaderia_comprada.First(x => x.Mercaderia_ID == mercaderia_ID);
                     obj.Variedad_ID = Convert.ToInt32(ddlVariedad1.SelectedValue);
-                    obj.Fecha_corte = DateTime.Parse(txb4.Text);
                     obj.Comentarios = txb5.Text;
+
+                    DateTime date1 = obj.Fecha_corte;
+                    if (!DateTime.TryParseExact(txb4.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                    {
+                        date1 = obj.Fecha_corte;
+                    }
+                    obj.Fecha_corte = date1;
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";

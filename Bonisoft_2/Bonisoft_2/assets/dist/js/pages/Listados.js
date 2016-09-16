@@ -1,12 +1,42 @@
 ﻿
 $(document).ready(function () {
-    show_listados();
+    load_quicksearch();
+
+    show_tabla();
+    show_dato();
 });
 
-function show_listados() {
+function load_quicksearch() {
+    // Source: https://www.youtube.com/watch?v=Sy2J7cUv0QM
+    var gridCamiones = $("#gridCamiones tbody tr").not(':first');
+    var gridChoferes = $("#gridChoferes tbody tr").not(':first');
+    var gridClientes = $("#gridClientes tbody tr").not(':first');
+    var gridCuadrillas = $("#gridCuadrillas tbody tr").not(':first');
+    var gridProveedores = $("#gridProveedores tbody tr").not(':first');
+    var gridInternos = $("#gridInternos tbody tr").not(':first');
+    var gridFleteros = $("#gridFleteros tbody tr").not(':first');
+    var gridCargadores = $("#gridCargadores tbody tr").not(':first');
+    var gridFormas = $("#gridFormas tbody tr").not(':first');
+    var gridTipos = $("#gridTipos tbody tr").not(':first');
+    var gridVariedades = $("#gridVariedades tbody tr").not(':first');
+
+    $("#txbSearch").quicksearch(gridCamiones);
+    $("#txbSearch").quicksearch(gridChoferes);
+    $("#txbSearch").quicksearch(gridClientes);
+    $("#txbSearch").quicksearch(gridCuadrillas);
+    $("#txbSearch").quicksearch(gridProveedores);
+    $("#txbSearch").quicksearch(gridInternos);
+    $("#txbSearch").quicksearch(gridFleteros);
+    $("#txbSearch").quicksearch(gridCargadores);
+    $("#txbSearch").quicksearch(gridFormas);
+    $("#txbSearch").quicksearch(gridTipos);
+    $("#txbSearch").quicksearch(gridVariedades);
+}
+
+function show_tabla() {
     if (QueryString !== null) {
 
-        if (QueryString['tabla'] != null && QueryString['tabla'] !== "") {
+        if (QueryString['tabla'] !== null && QueryString['tabla'] !== "") {
             var tabla = QueryString['tabla'];
             switch (tabla) {
                 case "clientes": {
@@ -56,10 +86,18 @@ function show_listados() {
                 }
             }
         }
-
-
     }
+}
 
+function show_dato() {
+    if (QueryString !== null) {
+
+        if (QueryString['dato'] !== null && QueryString['dato'] !== "") {
+            var dato = QueryString['dato'];
+            $("#txbSearch").val(dato);
+            $("#txbSearch").trigger("keyup");
+        }
+    }
 }
 
 var QueryString = function () {

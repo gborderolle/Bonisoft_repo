@@ -31,9 +31,8 @@
           </Key>
           <Property Name="Chofer_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre_completo" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Empresa_pertenece_ID" Type="int" Nullable="false" />
+          <Property Name="Empresa" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="Empresa_esCliente" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="cliente">
           <Key>
@@ -293,10 +292,9 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
             <PropertyRef Name="Chofer_ID" />
           </Key>
           <Property Name="Chofer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Empresa_pertenece_ID" Type="Int32" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Empresa_esCliente" Type="Boolean" Nullable="false" />
           <Property Name="Nombre_completo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Empresa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="cuadrilla_descarga">
           <Key>
@@ -569,10 +567,9 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySetMapping Name="choferes">
             <EntityTypeMapping TypeName="bonisoft_dbModel.chofer">
               <MappingFragment StoreEntitySet="chofer">
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
                 <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
-                <ScalarProperty Name="Empresa_esCliente" ColumnName="Empresa_esCliente" />
                 <ScalarProperty Name="Chofer_ID" ColumnName="Chofer_ID" />
-                <ScalarProperty Name="Empresa_pertenece_ID" ColumnName="Empresa_pertenece_ID" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
               </MappingFragment>
             </EntityTypeMapping>
