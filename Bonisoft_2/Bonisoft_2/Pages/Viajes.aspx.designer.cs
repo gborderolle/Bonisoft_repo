@@ -22,15 +22,6 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.UpdatePanel upCrudGrid;
         
         /// <summary>
-        /// btnAdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdd;
-        
-        /// <summary>
         /// gridViajesEnCurso control.
         /// </summary>
         /// <remarks>
@@ -112,22 +103,85 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.UpdatePanel upAdd;
         
         /// <summary>
-        /// txtCode control.
+        /// modalAdd_txbFechaInicio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCode;
+        protected global::System.Web.UI.WebControls.TextBox modalAdd_txbFechaInicio;
         
         /// <summary>
-        /// txtCountryName control.
+        /// modalAdd_txbFechaFin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCountryName;
+        protected global::System.Web.UI.WebControls.TextBox modalAdd_txbFechaFin;
+        
+        /// <summary>
+        /// modalAdd_ddlProveedores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList modalAdd_ddlProveedores;
+        
+        /// <summary>
+        /// modalAdd_ddlClientes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList modalAdd_ddlClientes;
+        
+        /// <summary>
+        /// modalAdd_ddlEmpresaCarga control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList modalAdd_ddlEmpresaCarga;
+        
+        /// <summary>
+        /// modalAdd_txbLugarCarga control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox modalAdd_txbLugarCarga;
+        
+        /// <summary>
+        /// modalAdd_ddlFleteros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList modalAdd_ddlFleteros;
+        
+        /// <summary>
+        /// modalAdd_ddlCamiones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList modalAdd_ddlCamiones;
+        
+        /// <summary>
+        /// modalAdd_ddlChoferes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList modalAdd_ddlChoferes;
         
         /// <summary>
         /// btnAddRecord control.

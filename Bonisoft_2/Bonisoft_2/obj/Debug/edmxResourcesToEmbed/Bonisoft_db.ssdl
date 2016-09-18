@@ -18,6 +18,8 @@
     </Key>
     <Property Name="Cargador_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Telefono" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
   <EntityType Name="chofer">
@@ -156,7 +158,9 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
       <PropertyRef Name="Procesador_ID" />
     </Key>
     <Property Name="Procesador_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Telefono" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
   <EntityType Name="proveedor">

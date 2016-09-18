@@ -20,8 +20,124 @@ namespace Bonisoft_2.Pages
                 BindGrid();
 
                 BindGrid_EnCurso();
+
+                BindModals();
             }
             lblMessage.Text = "";
+        }
+
+        private void BindModals()
+        {
+            BindAdd();
+        }
+
+        private void BindAdd()
+        {
+            #region AddModal Fill DDLs
+
+            // Proveedores --------------------------------------------------
+            if (modalAdd_ddlProveedores != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.proveedores.ToList());
+
+                    modalAdd_ddlProveedores.DataSource = dt1;
+                    modalAdd_ddlProveedores.DataTextField = "Nombre";
+                    modalAdd_ddlProveedores.DataValueField = "Proveedor_ID";
+                    modalAdd_ddlProveedores.DataBind();
+                    modalAdd_ddlProveedores.Items.Insert(0, new ListItem("Elegir"));
+
+                }
+            }
+
+            // Clientes --------------------------------------------------
+            if (modalAdd_ddlClientes != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.clientes.ToList());
+
+                    modalAdd_ddlClientes.DataSource = dt1;
+                    modalAdd_ddlClientes.DataTextField = "Nombre";
+                    modalAdd_ddlClientes.DataValueField = "Cliente_ID";
+                    modalAdd_ddlClientes.DataBind();
+                    modalAdd_ddlClientes.Items.Insert(0, new ListItem("Elegir"));
+
+                }
+            }
+
+            // Empresas de carga --------------------------------------------------
+            if (modalAdd_ddlEmpresaCarga != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.cargadores.ToList());
+
+                    modalAdd_ddlEmpresaCarga.DataSource = dt1;
+                    modalAdd_ddlEmpresaCarga.DataTextField = "Nombre";
+                    modalAdd_ddlEmpresaCarga.DataValueField = "Cargador_ID";
+                    modalAdd_ddlEmpresaCarga.DataBind();
+                    modalAdd_ddlEmpresaCarga.Items.Insert(0, new ListItem("Elegir"));
+
+                }
+            }
+
+            // Fleteros --------------------------------------------------
+            if (modalAdd_ddlFleteros != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.fleteros.ToList());
+
+                    modalAdd_ddlFleteros.DataSource = dt1;
+                    modalAdd_ddlFleteros.DataTextField = "Nombre";
+                    modalAdd_ddlFleteros.DataValueField = "Fletero_ID";
+                    modalAdd_ddlFleteros.DataBind();
+                    modalAdd_ddlFleteros.Items.Insert(0, new ListItem("Elegir"));
+
+                }
+            }
+
+            // Camiones --------------------------------------------------
+            if (modalAdd_ddlCamiones != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.camiones.ToList());
+
+                    modalAdd_ddlCamiones.DataSource = dt1;
+                    modalAdd_ddlCamiones.DataTextField = "Matricula_camion";
+                    modalAdd_ddlCamiones.DataValueField = "Camion_ID";
+                    modalAdd_ddlCamiones.DataBind();
+                    modalAdd_ddlCamiones.Items.Insert(0, new ListItem("Elegir"));
+
+                }
+            }
+
+            // Choferes --------------------------------------------------
+            if (modalAdd_ddlChoferes != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.choferes.ToList());
+
+                    modalAdd_ddlChoferes.DataSource = dt1;
+                    modalAdd_ddlChoferes.DataTextField = "Nombre_completo";
+                    modalAdd_ddlChoferes.DataValueField = "Chofer_ID";
+                    modalAdd_ddlChoferes.DataBind();
+                    modalAdd_ddlChoferes.Items.Insert(0, new ListItem("Elegir"));
+
+                }
+            }
+
+            #endregion
         }
 
         void BindGrid()
@@ -62,7 +178,7 @@ namespace Bonisoft_2.Pages
 
         protected void gridViajes_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            #region DDL Options 
+            #region Fill DDLs 
 
             // Camiones --------------------------------------------------
             DropDownList ddl = null;
@@ -158,22 +274,22 @@ namespace Bonisoft_2.Pages
             ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                ddl = e.Row.FindControl("ddlEmpresas1") as DropDownList;
+                ddl = e.Row.FindControl("ddlCargadores1") as DropDownList;
             }
             if (e.Row.RowType == DataControlRowType.Footer)
             {
-                ddl = e.Row.FindControl("ddlEmpresas2") as DropDownList;
+                ddl = e.Row.FindControl("ddlCargadores2") as DropDownList;
             }
             if (ddl != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
-                    var elements = context.proveedores.Select(c => new { ID = c.Proveedor_ID, DisplayText = "Proveedor: " + c.Nombre.ToString() }).ToList();
-                    elements.AddRange(context.clientes.Select(c => new { ID = c.cliente_ID, DisplayText = "Cliente: " + c.Nombre.ToString() }).ToList());
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.cargadores.ToList());
 
-                    ddl.DataSource = elements;
-                    ddl.DataTextField = "DisplayText";
-                    ddl.DataValueField = "ID";
+                    ddl.DataSource = dt1;
+                    ddl.DataTextField = "Nombre";
+                    ddl.DataValueField = "Cargador_ID";
                     ddl.DataBind();
                     ddl.Items.Insert(0, new ListItem("Elegir"));
 
@@ -609,6 +725,7 @@ namespace Bonisoft_2.Pages
             }
 
             #endregion
+            
 
         }
 
@@ -988,17 +1105,45 @@ namespace Bonisoft_2.Pages
 
         protected void btnAddRecord_Click(object sender, EventArgs e)
         {
-            string comentarios = txtCountryName.Text;
-            executeAdd(comentarios);
+            DateTime date1 = DateTime.Now;
+            if (!DateTime.TryParseExact(modalAdd_txbFechaInicio.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+            {
+                date1 = DateTime.Now;
+            }
+
+            DateTime date2 = DateTime.Now;
+            if (!DateTime.TryParseExact(modalAdd_txbFechaFin.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date2))
+            {
+                date2 = DateTime.Now;
+            }
+
+            int proveedor_ID = Convert.ToInt32(modalAdd_ddlProveedores.SelectedValue);
+            int cliente_ID = Convert.ToInt32(modalAdd_ddlClientes.SelectedValue);
+            int cargador_ID = Convert.ToInt32(modalAdd_ddlEmpresaCarga.SelectedValue);
+            int fletero_ID = Convert.ToInt32(modalAdd_ddlFleteros.SelectedValue);
+            int camion_ID = Convert.ToInt32(modalAdd_ddlCamiones.SelectedValue);
+            int chofer_ID = Convert.ToInt32(modalAdd_ddlChoferes.SelectedValue);
+
+            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            {
+                viaje new_viaje = new viaje();
+                new_viaje.Proveedor_ID = proveedor_ID;
+                new_viaje.Cliente_ID = cliente_ID;
+                new_viaje.Empresa_de_carga_ID = cliente_ID;
+                new_viaje.Fletero_ID = cliente_ID;
+                new_viaje.Camion_ID = cliente_ID;
+                new_viaje.Chofer_ID = cliente_ID;
+                new_viaje.Fecha_partida = date1;
+                new_viaje.Fecha_llegada = date2;
+                var element = context.viajes.Add(new_viaje);
+            }
             BindGrid_EnCurso();
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");
-            sb.Append("alert('Record Added Successfully');");
+            sb.Append("alert('Viaje agregado');");
             sb.Append("$('#addModal').modal('hide');");
             sb.Append(@"</script>");
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AddHideModalScript", sb.ToString(), false);
-
-
         }
 
         private void executeAdd(string comentarios)

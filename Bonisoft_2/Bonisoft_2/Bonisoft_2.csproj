@@ -317,8 +317,8 @@
     <Content Include="assets\dist\js\demo.js" />
     <Content Include="assets\dist\js\jquery-ui.js" />
     <Content Include="assets\dist\js\jquery.quicksearch.js" />
-    <Content Include="assets\dist\js\Listados.js" />
     <Content Include="assets\dist\js\moment.js" />
+    <Content Include="assets\dist\js\pages\Master.js" />
     <Content Include="assets\dist\js\pages\Datos.js" />
     <Content Include="assets\dist\js\pages\Dashboard2_OLD.js" />
     <Content Include="assets\dist\js\pages\Dashboard_OLD.js" />
@@ -1232,6 +1232,7 @@
     <Content Include="User_Controls\Estaticos\Cuadrillas.ascx" />
     <Content Include="User_Controls\Estaticos\Fleteros.ascx" />
     <Content Include="User_Controls\Estaticos\Internos.ascx" />
+    <Content Include="User_Controls\Estaticos\Procesadores.ascx" />
     <Content Include="User_Controls\Estaticos\Proveedores.ascx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
@@ -1642,6 +1643,13 @@
     </Compile>
     <Compile Include="User_Controls\Estaticos\Internos.ascx.designer.cs">
       <DependentUpon>Internos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\Estaticos\Procesadores.ascx.cs">
+      <DependentUpon>Procesadores.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User_Controls\Estaticos\Procesadores.ascx.designer.cs">
+      <DependentUpon>Procesadores.ascx</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\Estaticos\Proveedores.ascx.cs">
       <DependentUpon>Proveedores.ascx</DependentUpon>

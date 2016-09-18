@@ -119,7 +119,6 @@
     <EntitySet Name="variedad" EntityType="bonisoft_dbModel.variedad" />
     <EntitySet Name="fleteros" EntityType="bonisoft_dbModel.fletero" />
     <EntitySet Name="mercaderia_comprada" EntityType="bonisoft_dbModel.mercaderia_comprada" />
-    <EntitySet Name="procesadores" EntityType="bonisoft_dbModel.procesador" />
     <EntitySet Name="clientes" EntityType="bonisoft_dbModel.cliente" />
     <EntitySet Name="camiones" EntityType="bonisoft_dbModel.camion" />
     <EntitySet Name="pesadas" EntityType="bonisoft_dbModel.pesada" />
@@ -127,6 +126,7 @@
     <EntitySet Name="viajes" EntityType="bonisoft_dbModel.viaje" />
     <EntitySet Name="viaje_mercaderia" EntityType="bonisoft_dbModel.viaje_mercaderia" />
     <EntitySet Name="cargadores" EntityType="bonisoft_dbModel.cargador" />
+    <EntitySet Name="procesadores" EntityType="bonisoft_dbModel.procesador" />
   </EntityContainer>
   <EntityType Name="roles_usuario">
     <Key>
@@ -163,14 +163,6 @@
     <Property Name="Fecha_corte" Type="DateTime" Nullable="false" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Procesador_ID" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityType Name="procesador">
-    <Key>
-      <PropertyRef Name="Procesador_ID" />
-    </Key>
-    <Property Name="Procesador_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="Int32" Nullable="false" />
-    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="cliente">
     <Key>
@@ -269,6 +261,18 @@
     </Key>
     <Property Name="Cargador_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="procesador">
+    <Key>
+      <PropertyRef Name="Procesador_ID" />
+    </Key>
+    <Property Name="Procesador_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

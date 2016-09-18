@@ -15,7 +15,9 @@ namespace Bonisoft_2
     public partial class procesador
     {
         public int Procesador_ID { get; set; }
-        public int Nombre { get; set; }
+        public string Nombre { get; set; }
+        public string Direccion { get; set; }
+        public string Telefono { get; set; }
         public string Comentarios { get; set; }
     }
 }

@@ -3,6 +3,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
 
     <!-- STYLES EXTENSION -->
+    <link rel="stylesheet" href="/assets/dist/css/jquery.modal.css">
     
     <!-- Page CSS -->
     <link rel="stylesheet" href="/assets/dist/css/Viajes.css">
@@ -13,6 +14,7 @@
 
     <!-- PAGE SCRIPTS -->
     <script src="/assets/dist/js/jquery.quicksearch.js"></script>
+    <script src="/assets/dist/js/jquery.modal.js"></script>
 
     <!-- Page JS -->
     <script src="/assets/dist/js/pages/Viajes.js"></script>
@@ -39,8 +41,6 @@
             </div>
             <div class="row">
 
-                    <!--  -->
-
                                 <br>
 
                     <div style="text-align: center">
@@ -48,8 +48,9 @@
                         <asp:UpdatePanel ID="upCrudGrid" runat="server">
                             <ContentTemplate>
                                     <div class="row" style="margin-bottom: 10px;">
-                                        <div class="col-md-2 pull-left" >
-                                            <asp:Button ID="btnAdd" runat="server" Text="Iniciar viaje" CssClass="btn btn-info pull-left" OnClick="btnAdd_Click" />
+                                        <div class="col-md-2 pull-left" >                                          
+                                            <%--<asp:Button ID="btnAdd" runat="server" Text="Iniciar viaje" CssClass="btn btn-info pull-left" OnClick="btnAdd_Click" />--%>
+                                         <a href="#addModal" rel="modal:open" class="btn btn-info pull-left">Iniciar viaje</a>
                                         </div>
 
                                         <div class="col-md-2 pull-right">
@@ -72,9 +73,9 @@
                                     <Columns>
 
                                         <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:MMMM d, yyyy}" HtmlEncode="false" />
-                                        <asp:BoundField DataField="Precio_valor_total" HeaderText="Precio valor total" DataFormatString="{0:c}" HtmlEncode="False" />
-                                        <asp:BoundField DataField="Importe_viaje" HeaderText="Importe viaje" DataFormatString="{0:c}" HtmlEncode="False" />
-                                        <asp:BoundField DataField="Saldo" HeaderText="Saldo" DataFormatString="{0:c}" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Precio_valor_total" HeaderText="Precio valor total" DataFormatString="{0:C0}" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Importe_viaje" HeaderText="Importe viaje" DataFormatString="{0:C0}" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Saldo" HeaderText="Saldo" DataFormatString="{0:C0}" HtmlEncode="False" />
                                         <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
 
                                         <asp:ButtonField CommandName="detail" ControlStyle-CssClass="btn btn-info"
@@ -126,7 +127,7 @@
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="gridViajesEnCurso" EventName="RowCommand" />
-                                        <asp:AsyncPostBackTrigger ControlID="btnAdd" EventName="Click" />
+                                        <%--<asp:AsyncPostBackTrigger ControlID="btnAdd" EventName="Click" />--%>
                                     </Triggers>
                                 </asp:UpdatePanel>
                                 <div class="modal-footer">
@@ -173,33 +174,69 @@
                             </asp:UpdatePanel>
                         </div>
                         <!-- Edit Modal Ends here -->
+
                         <!-- Add Record Modal Starts here-->
-                        <div id="addModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+                        <%--<div id="addModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">--%>
+                        <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" style="display:none;">
+
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 id="addModalLabel">Add New Record</h3>
+                                <h3 id="addModalLabel">Iniciar viaje</h3>
                             </div>
                             <asp:UpdatePanel ID="upAdd" runat="server">
                                 <ContentTemplate>
                                     <div class="modal-body">
                                         <table class="table table-bordered table-hover">
                                             <tr>
-                                                <td>Viaje_ID : 
-                               
-                                                    <asp:TextBox ID="txtCode" runat="server"></asp:TextBox>
+                                                <td>Fecha de inicio: 
+                                                <asp:TextBox ID="modalAdd_txbFechaInicio" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Comentarios : 
-                               
-                                                    <asp:TextBox ID="txtCountryName" runat="server"></asp:TextBox>
+                                                <td>Fecha de llegada (tentativa): 
+                                                <asp:TextBox ID="modalAdd_txbFechaFin" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td>Proveedor: 
+                                                <asp:DropDownList ID="modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Cliente: 
+                                                <asp:DropDownList ID="modalAdd_ddlClientes" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Cargadores: 
+                                                <asp:DropDownList ID="modalAdd_ddlEmpresaCarga" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lugar de carga: 
+                                                <asp:TextBox ID="modalAdd_txbLugarCarga" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fletero: 
+                                                <asp:DropDownList ID="modalAdd_ddlFleteros" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Camión: 
+                                                <asp:DropDownList ID="modalAdd_ddlCamiones" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Chofer: 
+                                                <asp:DropDownList ID="modalAdd_ddlChoferes" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                                                </td>
+                                            </tr>
+
                                         </table>
                                     </div>
                                     <div class="modal-footer">
-                                        <asp:Button ID="btnAddRecord" runat="server" Text="Add" CssClass="btn btn-info" OnClick="btnAddRecord_Click" />
-                                        <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                                        <asp:Button ID="btnAddRecord" runat="server" Text="Agregar" CssClass="btn btn-info" OnClick="btnAddRecord_Click" />
+                                        <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancelar</button>
                                     </div>
                                 </ContentTemplate>
                                 <Triggers>
@@ -379,7 +416,7 @@
                                                 <asp:CompareValidator ID="vtxb1" runat="server" ControlToValidate="txb1" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                                             </EditItemTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Precio_compra_por_tonelada", "{0:C2}") %>'></asp:Label>
+                                                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Precio_compra_por_tonelada", "{0:C0}") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -391,7 +428,7 @@
                                                 <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Precio_valor_total") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                             </EditItemTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Precio_valor_total", "{0:C2}") %>'></asp:Label>
+                                                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Precio_valor_total", "{0:C0}") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -403,7 +440,7 @@
                                                 <asp:CompareValidator ID="vtxb3" runat="server" ControlToValidate="txb3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                                             </EditItemTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Importe_viaje", "{0:C2}") %>'></asp:Label>
+                                                <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Importe_viaje", "{0:C0}") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -416,7 +453,7 @@
                                                 <asp:CompareValidator ID="vtxb4" runat="server" ControlToValidate="txb4" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                                             </EditItemTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lbl4" runat="server" Text='<%# Bind("Saldo", "{0:C2}") %>'></asp:Label>
+                                                <asp:Label ID="lbl4" runat="server" Text='<%# Bind("Saldo", "{0:C0}") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:TextBox ID="txbNew4" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -456,7 +493,7 @@
                                                 <asp:DropDownList ID="ddlPesadaDestino2" runat="server" CssClass="form-control" />
                                             </FooterTemplate>
                                         </asp:TemplateField>     
-                                        <asp:TemplateField HeaderText="Empresa de carga">
+                                        <asp:TemplateField HeaderText="Cargadores">
                                             <EditItemTemplate>
                                                 <asp:DropDownList ID="ddlCargadores1" runat="server" CssClass="form-control" />
                                             </EditItemTemplate>

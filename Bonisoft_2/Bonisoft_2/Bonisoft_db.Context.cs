@@ -40,7 +40,6 @@ namespace Bonisoft_2
         public virtual DbSet<variedad> variedad { get; set; }
         public virtual DbSet<fletero> fleteros { get; set; }
         public virtual DbSet<mercaderia_comprada> mercaderia_comprada { get; set; }
-        public virtual DbSet<procesador> procesadores { get; set; }
         public virtual DbSet<cliente> clientes { get; set; }
         public virtual DbSet<camion> camiones { get; set; }
         public virtual DbSet<pesada> pesadas { get; set; }
@@ -48,5 +47,6 @@ namespace Bonisoft_2
         public virtual DbSet<viaje> viajes { get; set; }
         public virtual DbSet<viaje_mercaderia> viaje_mercaderia { get; set; }
         public virtual DbSet<cargador> cargadores { get; set; }
+        public virtual DbSet<procesador> procesadores { get; set; }
     }
 }

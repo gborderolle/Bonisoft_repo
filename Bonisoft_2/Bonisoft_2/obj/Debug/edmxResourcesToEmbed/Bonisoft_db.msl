@@ -152,15 +152,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="procesadores">
-      <EntityTypeMapping TypeName="bonisoft_dbModel.procesador">
-        <MappingFragment StoreEntitySet="procesador">
-          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Procesador_ID" ColumnName="Procesador_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="clientes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.cliente">
         <MappingFragment StoreEntitySet="cliente">
@@ -260,9 +251,22 @@
     <EntitySetMapping Name="cargadores">
       <EntityTypeMapping TypeName="bonisoft_dbModel.cargador">
         <MappingFragment StoreEntitySet="cargador">
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Cargador_ID" ColumnName="Cargador_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="procesadores">
+      <EntityTypeMapping TypeName="bonisoft_dbModel.procesador">
+        <MappingFragment StoreEntitySet="procesador">
+          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Procesador_ID" ColumnName="Procesador_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

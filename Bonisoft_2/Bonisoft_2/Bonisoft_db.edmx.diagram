@@ -20,7 +20,6 @@
         <EntityTypeShape EntityType="bonisoft_dbModel.variedad" Width="1.5" PointX="0.75" PointY="13.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.fletero" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.mercaderia_comprada" Width="1.5" PointX="13.375" PointY="7.75" />
-        <EntityTypeShape EntityType="bonisoft_dbModel.procesador" Width="1.5" PointX="13.375" PointY="10.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.cliente" Width="1.5" PointX="13.375" PointY="0.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.camion" Width="1.5" PointX="13.75" PointY="13.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.pesada" Width="1.5" PointX="3.75" PointY="14.75" />
@@ -28,6 +27,7 @@
         <EntityTypeShape EntityType="bonisoft_dbModel.viaje" Width="1.5" PointX="5.75" PointY="14.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.viaje_mercaderia" Width="1.5" PointX="0.75" PointY="10.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.cargador" Width="1.5" PointX="8.375" PointY="14.75" />
+        <EntityTypeShape EntityType="bonisoft_dbModel.procesador" Width="1.5" PointX="13.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,16 +1,16 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Cargadores.ascx.cs" Inherits="Bonisoft_2.User_Controls.Estaticos.Cargadores" %>
-<h2>Lista de Cargadores</h2>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Procesadores.ascx.cs" Inherits="Bonisoft_2.User_Controls.Estaticos.Procesadores" %>
+<h2>Lista de Procesadores</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridCargadores" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
+<asp:GridView ID="gridProcesadores" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
     CssClass="table table-hover table-striped"
-    DataKeyNames="Cargador_ID"
-    OnRowCommand="gridCargadores_RowCommand"
-    OnRowCancelingEdit="gridCargadores_RowCancelingEdit"
-    OnRowEditing="gridCargadores_RowEditing"
-    OnRowUpdating="gridCargadores_RowUpdating"
-    OnRowDataBound="gridCargadores_RowDataBound"
-    OnRowDeleting="gridCargadores_RowDeleting">
+    DataKeyNames="Procesador_ID"
+    OnRowCommand="gridProcesadores_RowCommand"
+    OnRowCancelingEdit="gridProcesadores_RowCancelingEdit"
+    OnRowEditing="gridProcesadores_RowEditing"
+    OnRowUpdating="gridProcesadores_RowUpdating"
+    OnRowDataBound="gridProcesadores_RowDataBound"
+    OnRowDeleting="gridProcesadores_RowDeleting">
 
     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
     <EmptyDataTemplate>
@@ -104,4 +104,4 @@
     </Columns>
 
 </asp:GridView>
-<asp:HiddenField ClientIDMode="Static" ID="hdnCargadoresCount" runat="server" />
+<asp:HiddenField ClientIDMode="Static" ID="hdnProcesadoresCount" runat="server" />

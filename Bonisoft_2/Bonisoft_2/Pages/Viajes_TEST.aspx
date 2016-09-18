@@ -65,9 +65,9 @@
                                     <Columns>
 
                                         <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:MMMM d, yyyy}" HtmlEncode="false" />
-                                        <asp:BoundField DataField="Precio_valor_total" HeaderText="Precio valor total" DataFormatString="{0:c}" HtmlEncode="False" />
-                                        <asp:BoundField DataField="Importe_viaje" HeaderText="Importe viaje" DataFormatString="{0:c}" HtmlEncode="False" />
-                                        <asp:BoundField DataField="Saldo" HeaderText="Saldo" DataFormatString="{0:c}" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Precio_valor_total" HeaderText="Precio valor total" DataFormatString="{0:C0}" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Importe_viaje" HeaderText="Importe viaje" DataFormatString="{0:C0}" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Saldo" HeaderText="Saldo" DataFormatString="{0:C0}" HtmlEncode="False" />
                                         <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
 
                                         <asp:ButtonField CommandName="detail" ControlStyle-CssClass="btn btn-info"

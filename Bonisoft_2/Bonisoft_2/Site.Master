@@ -25,7 +25,6 @@
     <%--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">--%>
     <link rel="stylesheet" href="/assets/dist/css/jquery-ui.css">
 
-
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
 
     </asp:ContentPlaceHolder>
@@ -59,6 +58,8 @@
     <%--<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>--%>
     <script src="/assets/dist/js/jquery-ui.js"></script>
 
+    <script src="/assets/dist/js/pages/Master.js"></script>
+
          <asp:ContentPlaceHolder ID="SubbodyContent" runat="server">
 
         </asp:ContentPlaceHolder>
@@ -86,7 +87,9 @@
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Registrar</a></li>
+                                <%--<li><a runat="server" href="~/Account/Register">Registrar</a></li>--%>
+                                <li><%--<label id="txbDatetime" class="label">-</label>--%></li>
+                                <li><a id="lblDatetime" href="#">-</a></li>
                                 <li><a runat="server" href="~/Account/Login">Acceder</a></li>
                             </ul>
                         </AnonymousTemplate>
