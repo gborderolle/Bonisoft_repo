@@ -157,6 +157,15 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.TextBox modalAdd_txbLugarCarga;
         
         /// <summary>
+        /// modalAdd_ddlCuadrilla control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList modalAdd_ddlCuadrilla;
+        
+        /// <summary>
         /// modalAdd_ddlFleteros control.
         /// </summary>
         /// <remarks>

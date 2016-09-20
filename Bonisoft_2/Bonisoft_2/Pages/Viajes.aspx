@@ -217,6 +217,11 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td>Cuadrilla de carga: 
+                                                <asp:DropDownList ID="modalAdd_ddlCuadrilla" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td>Fletero: 
                                                 <asp:DropDownList ID="modalAdd_ddlFleteros" runat="server" ClientIDMode="Static" CssClass="form-control" />
                                                 </td>

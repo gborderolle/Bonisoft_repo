@@ -86,6 +86,23 @@ namespace Bonisoft_2.Pages
                 }
             }
 
+            // Cuadrillas de carga --------------------------------------------------
+            if (modalAdd_ddlCuadrilla != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.cuadrilla_descarga.ToList());
+
+                    modalAdd_ddlCuadrilla.DataSource = dt1;
+                    modalAdd_ddlCuadrilla.DataTextField = "Nombre";
+                    modalAdd_ddlCuadrilla.DataValueField = "Cuadrilla_descarga_ID";
+                    modalAdd_ddlCuadrilla.DataBind();
+                    modalAdd_ddlCuadrilla.Items.Insert(0, new ListItem("Elegir"));
+
+                }
+            }
+
             // Fleteros --------------------------------------------------
             if (modalAdd_ddlFleteros != null)
             {
