@@ -196,8 +196,13 @@
                                     </table>
                                 </div>
                                 <div class="modal-footer">
+<<<<<<< HEAD
                                     <asp:Button ID="btnAddRecord" runat="server" Text="Agregar" CssClass="btn btn-info" OnClientClick="Javascript:DoCustomPost();" OnClick="btnAddRecord1_Click" UseSubmitBehavior="false" />
                                     <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+=======
+                                    <asp:Button ID="btnAddRecord1" runat="server" Text="Agregar" CssClass="btn btn-info" OnClientClick="Javascript:DoCustomPost();" OnClick="btnAddRecord1_Click" UseSubmitBehavior="false" />
+                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cancelar</button>
+>>>>>>> origin/master
                                 </div>
                             </ContentTemplate>
                             <Triggers>
