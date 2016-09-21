@@ -27,7 +27,7 @@
                 <a class="btn btn-default" href="/Pages/Datos">Acceder &raquo;</a>
             </p>
         </div>
-        <div class="col-md-4">
+       <%-- <div class="col-md-4">
             <h2>Recordatorios</h2>
             <p>
                 You can easily find a web hosting company that offers the right mix of features and price for your applications.
@@ -35,10 +35,10 @@
             <p>
                 <a class="btn btn-default" href="/Pages/Recordatorios">Acceder &raquo;</a>
             </p>
-        </div>
+        </div>--%>
     </div>
 
-        <div class="row">
+        <%--<div class="row">
         <div class="col-md-4">
             <h2>Contabilidad</h2>
             <p>
@@ -67,6 +67,6 @@
                 <a class="btn btn-default" href="/Pages/Ajustes">Acceder &raquo;</a>
             </p>
         </div>
-    </div>
+    </div>--%>
 
 </asp:Content>

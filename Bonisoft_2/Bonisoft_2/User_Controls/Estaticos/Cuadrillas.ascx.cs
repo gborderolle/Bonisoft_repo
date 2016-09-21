@@ -122,13 +122,17 @@ namespace Bonisoft_2.User_Controls
                 GridViewRow row = gridCuadrillas.FooterRow;
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
-                if (txb1 != null && txb2 != null)
+                TextBox txb3 = row.FindControl("txbNew3") as TextBox;
+                TextBox txb4 = row.FindControl("txbNew4") as TextBox;
+                if (txb1 != null && txb2 != null && txb3 != null && txb4 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         cuadrilla_descarga obj = new cuadrilla_descarga();
                         obj.Nombre = txb1.Text;
                         obj.Comentarios = txb2.Text;
+                        obj.Direccion = txb3.Text;
+                        obj.Telefono = txb4.Text;
 
                         context.cuadrilla_descarga.Add(obj);
                         context.SaveChanges();
@@ -154,7 +158,9 @@ namespace Bonisoft_2.User_Controls
             GridViewRow row = gridCuadrillas.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
-            if (txb1 != null && txb2 != null)
+            TextBox txb3 = row.FindControl("txb3") as TextBox;
+            TextBox txb4 = row.FindControl("txb4") as TextBox;
+            if (txb1 != null && txb2 != null && txb3 != null && txb4 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -162,6 +168,8 @@ namespace Bonisoft_2.User_Controls
                     cuadrilla_descarga obj = context.cuadrilla_descarga.First(x => x.Cuadrilla_descarga_ID == cuadrilla_descarga_ID);
                     obj.Nombre = txb1.Text;
                     obj.Comentarios = txb2.Text;
+                    obj.Direccion = txb3.Text;
+                    obj.Telefono = txb4.Text;
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";

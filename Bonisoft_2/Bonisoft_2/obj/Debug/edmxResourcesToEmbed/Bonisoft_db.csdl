@@ -16,6 +16,8 @@
     <Property Name="Cuadrilla_descarga_ID" Type="Int32" Nullable="false" />
     <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="descarga_viaje">
     <Key>
@@ -153,6 +155,8 @@
     <Property Name="Fletero_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="mercaderia_comprada">
     <Key>

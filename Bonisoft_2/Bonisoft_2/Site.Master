@@ -58,6 +58,7 @@
     <%--<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>--%>
     <script src="/assets/dist/js/jquery-ui.js"></script>
 
+     <!-- PAGE SCRIPTS -->
     <script src="/assets/dist/js/pages/Master.js"></script>
 
          <asp:ContentPlaceHolder ID="SubbodyContent" runat="server">
@@ -79,10 +80,10 @@
                         <li><a runat="server" href="~/">Inicio</a></li>
                         <li><a runat="server" href="/Pages/Viajes">Viajes</a></li>
                         <li><a runat="server" href="/Pages/Datos">Base de Datos</a></li>
-                        <li><a runat="server" href="/Pages/Recordatorios">Recordatorios</a></li>
+                       <%-- <li><a runat="server" href="/Pages/Recordatorios">Recordatorios</a></li>
                         <li><a runat="server" href="/Pages/Contabilidad">Contabilidad</a></li>
                         <li><a runat="server" href="/Pages/Registros">Registros</a></li>
-                        <li><a runat="server" href="/Pages/Ajustes">Ajustes</a></li>
+                        <li><a runat="server" href="/Pages/Ajustes">Ajustes</a></li>--%>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>

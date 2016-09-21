@@ -67,6 +67,28 @@
                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
+         <asp:TemplateField HeaderText="Dirección">
+            <EditItemTemplate>
+                <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Direccion") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+            </EditItemTemplate>
+            <ItemTemplate>
+                <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Direccion") %>'></asp:Label>
+            </ItemTemplate>
+            <FooterTemplate>
+                <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+            </FooterTemplate>
+        </asp:TemplateField>
+         <asp:TemplateField HeaderText="Teléfono">
+            <EditItemTemplate>
+                <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("Telefono") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+            </EditItemTemplate>
+            <ItemTemplate>
+                <asp:Label ID="lbl4" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>
+            </ItemTemplate>
+            <FooterTemplate>
+                <asp:TextBox ID="txbNew4" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+            </FooterTemplate>
+        </asp:TemplateField>
         <asp:TemplateField HeaderText="Comentarios">
             <EditItemTemplate>
                 <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>

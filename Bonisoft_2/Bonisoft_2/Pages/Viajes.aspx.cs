@@ -23,7 +23,7 @@ namespace Bonisoft_2.Pages
 
                 BindModals();
             }
-            lblMessage.Text = "";
+            lblMessage.Text = string.Empty;
         }
 
         private void BindModals()
@@ -82,23 +82,6 @@ namespace Bonisoft_2.Pages
                     modalAdd_ddlEmpresaCarga.DataValueField = "Cargador_ID";
                     modalAdd_ddlEmpresaCarga.DataBind();
                     modalAdd_ddlEmpresaCarga.Items.Insert(0, new ListItem("Elegir"));
-
-                }
-            }
-
-            // Cuadrillas de carga --------------------------------------------------
-            if (modalAdd_ddlCuadrilla != null)
-            {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                {
-                    DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.cuadrilla_descarga.ToList());
-
-                    modalAdd_ddlCuadrilla.DataSource = dt1;
-                    modalAdd_ddlCuadrilla.DataTextField = "Nombre";
-                    modalAdd_ddlCuadrilla.DataValueField = "Cuadrilla_descarga_ID";
-                    modalAdd_ddlCuadrilla.DataBind();
-                    modalAdd_ddlCuadrilla.Items.Insert(0, new ListItem("Elegir"));
 
                 }
             }
@@ -742,7 +725,7 @@ namespace Bonisoft_2.Pages
             }
 
             #endregion
-            
+
 
         }
 
@@ -807,15 +790,72 @@ namespace Bonisoft_2.Pages
                                 }
                                 obj.Fecha_llegada = date2;
 
-                                obj.Empresa_de_carga_ID = Convert.ToInt32(ddlCargadores2.SelectedValue);
-                                obj.Camion_ID = Convert.ToInt32(ddlCamiones2.SelectedValue);
-                                obj.Chofer_ID = Convert.ToInt32(ddlChoferes2.SelectedValue);
-                                obj.Forma_de_pago_ID = Convert.ToInt32(ddlFormas2.SelectedValue);
-                                obj.Fletero_ID = Convert.ToInt32(ddlFleteros2.SelectedValue);
-                                obj.Proveedor_ID = Convert.ToInt32(ddlProveedores2.SelectedValue);
-                                obj.Cliente_ID = Convert.ToInt32(ddlClientes2.SelectedValue);
-                                obj.Pesada_origen_ID = Convert.ToInt32(ddlPesadaOrigen2.SelectedValue);
-                                obj.Pesada_destino_ID = Convert.ToInt32(ddlPesadaDestino2.SelectedValue);
+                                #region DDL logic
+
+                                int ddl = 0;
+                                if (!int.TryParse(ddlCargadores2.SelectedValue, out ddl))
+                                {
+                                    ddl = 0;
+                                }
+                                obj.Empresa_de_carga_ID = ddl;
+
+                                ddl = 0;
+                                if (!int.TryParse(ddlCamiones2.SelectedValue, out ddl))
+                                {
+                                    ddl = 0;
+                                }
+                                obj.Camion_ID = ddl;
+
+                                ddl = 0;
+                                if (!int.TryParse(ddlChoferes2.SelectedValue, out ddl))
+                                {
+                                    ddl = 0;
+                                }
+                                obj.Chofer_ID = ddl;
+
+                                ddl = 0;
+                                if (!int.TryParse(ddlFormas2.SelectedValue, out ddl))
+                                {
+                                    ddl = 0;
+                                }
+                                obj.Forma_de_pago_ID = ddl;
+
+                                ddl = 0;
+                                if (!int.TryParse(ddlFleteros2.SelectedValue, out ddl))
+                                {
+                                    ddl = 0;
+                                }
+                                obj.Fletero_ID = ddl;
+
+                                ddl = 0;
+                                if (!int.TryParse(ddlProveedores2.SelectedValue, out ddl))
+                                {
+                                    ddl = 0;
+                                }
+                                obj.Proveedor_ID = ddl;
+
+                                ddl = 0;
+                                if (!int.TryParse(ddlClientes2.SelectedValue, out ddl))
+                                {
+                                    ddl = 0;
+                                }
+                                obj.Cliente_ID = ddl;
+
+                                ddl = 0;
+                                if (!int.TryParse(ddlPesadaOrigen2.SelectedValue, out ddl))
+                                {
+                                    ddl = 0;
+                                }
+                                obj.Pesada_origen_ID = ddl;
+
+                                ddl = 0;
+                                if (!int.TryParse(ddlPesadaDestino2.SelectedValue, out ddl))
+                                {
+                                    ddl = 0;
+                                }
+                                obj.Pesada_destino_ID = ddl;
+
+                                #endregion DDL logic
 
                                 context.viajes.Add(obj);
                                 context.SaveChanges();
@@ -1014,7 +1054,7 @@ namespace Bonisoft_2.Pages
             //// Se Establece la propiedad PageIndex para visualizar la página seleccionada...
             gridViajes.PageIndex = pageList.SelectedIndex;
             //Quita el mensaje de información si lo hubiera...
-            lblMessage.Text = "";
+            lblMessage.Text = string.Empty;
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -1041,7 +1081,55 @@ namespace Bonisoft_2.Pages
             int viaje_ID = int.Parse(gridViajesEnCurso.DataKeys[index].Value.ToString());
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                if (e.CommandName.Equals("detail"))
+                if (e.CommandName.Equals("inspect"))
+                {
+                    viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
+                    if (viaje != null)
+                    {
+                        modalInspect_lblFecha1.Text = viaje.Fecha_partida.ToShortDateString();
+                        modalInspect_lblFecha2.Text = viaje.Fecha_llegada.ToShortDateString();
+                        modalInspect_lblLugarCarga.Text = viaje.Carga;
+                        modalInspect_lblComentarios.Text = viaje.Comentarios;
+
+                        proveedor proveedor = (proveedor)context.proveedores.FirstOrDefault(v => v.Proveedor_ID == viaje.Proveedor_ID);
+                        if (proveedor != null)
+                        {
+                            modalInspect_lblProveedor.Text = proveedor.Nombre;
+                        }
+                        cliente cliente = (cliente)context.clientes.FirstOrDefault(v => v.cliente_ID == viaje.Cliente_ID);
+                        if (cliente != null)
+                        {
+                            modalInspect_lblCliente.Text = cliente.Nombre;
+                        }
+                        cargador cargador = (cargador)context.cargadores.FirstOrDefault(v => v.Cargador_ID == viaje.Empresa_de_carga_ID);
+                        if (cargador != null)
+                        {
+                            modalInspect_lblCargadores.Text = cargador.Nombre;
+                        }
+                        fletero fletero = (fletero)context.fleteros.FirstOrDefault(v => v.Fletero_ID == viaje.Fletero_ID);
+                        if (fletero != null)
+                        {
+                            modalInspect_lblFletero.Text = fletero.Nombre;
+                        }
+                        camion camion = (camion)context.camiones.FirstOrDefault(v => v.Camion_ID == viaje.Camion_ID);
+                        if (camion != null)
+                        {
+                            modalInspect_lblCamion.Text = camion.Matricula_camion;
+                        }
+                        chofer chofer = (chofer)context.choferes.FirstOrDefault(v => v.Chofer_ID == viaje.Chofer_ID);
+                        if (chofer != null)
+                        {
+                            modalInspect_lblChofer.Text = chofer.Nombre_completo;
+                        }
+
+                        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                        sb.Append(@"<script type='text/javascript'>");
+                        sb.Append("$('#inspectModal').modal('show');");
+                        sb.Append(@"</script>");
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "InspectModalScript", sb.ToString(), false);
+                    }
+                }
+                else if (e.CommandName.Equals("detail"))
                 {
                     var elements = context.viajes.Where(v => v.Viaje_ID == viaje_ID).ToList();
                     if (elements.Count > 0)
@@ -1053,21 +1141,56 @@ namespace Bonisoft_2.Pages
                         sb.Append(@"<script type='text/javascript'>");
                         sb.Append("$('#detailModal').modal('show');");
                         sb.Append(@"</script>");
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DetailModalScript", sb.ToString(), false);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "DetailModalScript", sb.ToString(), false);
                     }
                 }
                 else if (e.CommandName.Equals("editRecord"))
                 {
-                    GridViewRow gvrow = gridViajesEnCurso.Rows[index];
-                    lblCountryCode.Text = HttpUtility.HtmlDecode(gvrow.Cells[3].Text).ToString();
-                    txtPopulation.Text = HttpUtility.HtmlDecode(gvrow.Cells[4].Text);
-                    lblResult.Visible = false;
-                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                    sb.Append(@"<script type='text/javascript'>");
-                    sb.Append("$('#editModal').modal('show');");
-                    sb.Append(@"</script>");
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "EditModalScript", sb.ToString(), false);
+                    viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
+                    if (viaje != null)
+                    {
+                        modalEdit_txbFecha1.Text = viaje.Fecha_partida.ToShortDateString();
+                        modalEdit_txbFecha2.Text = viaje.Fecha_llegada.ToShortDateString();
+                        modalEdit_txbLugarCarga.Text = viaje.Carga;
+                        modalEdit_txbComentarios.Text = viaje.Comentarios;
 
+                        proveedor proveedor = (proveedor)context.proveedores.FirstOrDefault(v => v.Proveedor_ID == viaje.Proveedor_ID);
+                        if (proveedor != null)
+                        {
+                            modalEdit_ddlProveedor.Text = proveedor.Nombre;
+                        }
+                        cliente cliente = (cliente)context.clientes.FirstOrDefault(v => v.cliente_ID == viaje.Cliente_ID);
+                        if (cliente != null)
+                        {
+                            modalEdit_ddlCliente.Text = cliente.Nombre;
+                        }
+                        cargador cargador = (cargador)context.cargadores.FirstOrDefault(v => v.Cargador_ID == viaje.Empresa_de_carga_ID);
+                        if (cargador != null)
+                        {
+                            modalEdit_ddlCargadores.Text = cargador.Nombre;
+                        }
+                        fletero fletero = (fletero)context.fleteros.FirstOrDefault(v => v.Fletero_ID == viaje.Fletero_ID);
+                        if (fletero != null)
+                        {
+                            modalEdit_ddlFletero.Text = fletero.Nombre;
+                        }
+                        camion camion = (camion)context.camiones.FirstOrDefault(v => v.Camion_ID == viaje.Camion_ID);
+                        if (camion != null)
+                        {
+                            modalEdit_ddlCamion.Text = camion.Matricula_camion;
+                        }
+                        chofer chofer = (chofer)context.choferes.FirstOrDefault(v => v.Chofer_ID == viaje.Chofer_ID);
+                        if (chofer != null)
+                        {
+                            modalEdit_ddlChofer.Text = chofer.Nombre_completo;
+                        }
+
+                        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                        sb.Append(@"<script type='text/javascript'>");
+                        sb.Append("$('#editModal').modal('show');");
+                        sb.Append(@"</script>");
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "EditModalScript", sb.ToString(), false);
+                    }
                 }
                 else if (e.CommandName.Equals("deleteRecord"))
                 {
@@ -1076,12 +1199,11 @@ namespace Bonisoft_2.Pages
                     sb.Append(@"<script type='text/javascript'>");
                     sb.Append("$('#deleteModal').modal('show');");
                     sb.Append(@"</script>");
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DeleteModalScript", sb.ToString(), false);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "DeleteModalScript", sb.ToString(), false);
                 }
 
             }
         }
-
 
         protected void btnSave_Click_2(object sender, EventArgs e)
         {
@@ -1118,49 +1240,6 @@ namespace Bonisoft_2.Pages
             sb.Append(@"</script>");
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AddShowModalScript", sb.ToString(), false);
 
-        }
-
-        protected void btnAddRecord_Click(object sender, EventArgs e)
-        {
-            DateTime date1 = DateTime.Now;
-            if (!DateTime.TryParseExact(modalAdd_txbFechaInicio.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
-            {
-                date1 = DateTime.Now;
-            }
-
-            DateTime date2 = DateTime.Now;
-            if (!DateTime.TryParseExact(modalAdd_txbFechaFin.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date2))
-            {
-                date2 = DateTime.Now;
-            }
-
-            int proveedor_ID = Convert.ToInt32(modalAdd_ddlProveedores.SelectedValue);
-            int cliente_ID = Convert.ToInt32(modalAdd_ddlClientes.SelectedValue);
-            int cargador_ID = Convert.ToInt32(modalAdd_ddlEmpresaCarga.SelectedValue);
-            int fletero_ID = Convert.ToInt32(modalAdd_ddlFleteros.SelectedValue);
-            int camion_ID = Convert.ToInt32(modalAdd_ddlCamiones.SelectedValue);
-            int chofer_ID = Convert.ToInt32(modalAdd_ddlChoferes.SelectedValue);
-
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-            {
-                viaje new_viaje = new viaje();
-                new_viaje.Proveedor_ID = proveedor_ID;
-                new_viaje.Cliente_ID = cliente_ID;
-                new_viaje.Empresa_de_carga_ID = cliente_ID;
-                new_viaje.Fletero_ID = cliente_ID;
-                new_viaje.Camion_ID = cliente_ID;
-                new_viaje.Chofer_ID = cliente_ID;
-                new_viaje.Fecha_partida = date1;
-                new_viaje.Fecha_llegada = date2;
-                var element = context.viajes.Add(new_viaje);
-            }
-            BindGrid_EnCurso();
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            sb.Append(@"<script type='text/javascript'>");
-            sb.Append("alert('Viaje agregado');");
-            sb.Append("$('#addModal').modal('hide');");
-            sb.Append(@"</script>");
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AddHideModalScript", sb.ToString(), false);
         }
 
         private void executeAdd(string comentarios)
@@ -1219,5 +1298,108 @@ namespace Bonisoft_2.Pages
                 }
             }
         }
+
+        protected void btnAddRecord1_Click(object sender, EventArgs e)
+        {
+            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            {
+                string txbFecha1 = hdn_modalAdd_txbFecha1.Value;
+                string txbFecha2 = hdn_modalAdd_txbFecha2.Value;
+                string ddlProveedores = hdn_modalAdd_ddlProveedores.Value;
+                string ddlClientes = hdn_modalAdd_ddlClientes.Value;
+                string ddlEmpresaCarga = hdn_modalAdd_ddlEmpresaCarga.Value;
+                string txbLugarCarga = hdn_modalAdd_txbLugarCarga.Value;
+                string ddlFleteros = hdn_modalAdd_ddlFleteros.Value;
+                string ddlCamiones = hdn_modalAdd_ddlCamiones.Value;
+                string ddlChoferes = hdn_modalAdd_ddlChoferes.Value;
+                string txbComentarios = hdn_modalAdd_txbComentarios.Value;
+
+                if (txbFecha1 != null && txbFecha2 != null && ddlProveedores != null && ddlClientes != null && ddlEmpresaCarga != null && txbLugarCarga != null && 
+                    ddlFleteros != null && ddlCamiones != null && ddlChoferes != null && txbComentarios != null)
+                {
+
+                    viaje new_viaje = new viaje();
+
+                    DateTime date1 = DateTime.Now;
+                    if (!DateTime.TryParseExact(txbFecha1, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                    {
+                        date1 = DateTime.Now;
+                    }
+                    new_viaje.Fecha_partida = date1;
+
+                    DateTime date2 = DateTime.Now;
+                    if (!DateTime.TryParseExact(txbFecha2, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date2))
+                    {
+                        date2 = DateTime.Now;
+                    }
+                    new_viaje.Fecha_llegada = date2;
+
+                    #region DDL logic
+
+                    int ddl = 0;
+                    if (!int.TryParse(ddlProveedores, out ddl))
+                    {
+                        ddl = 0;
+                    }
+                    new_viaje.Empresa_de_carga_ID = ddl;
+
+                    ddl = 0;
+                    if (!int.TryParse(ddlClientes, out ddl))
+                    {
+                        ddl = 0;
+                    }
+                    new_viaje.Camion_ID = ddl;
+
+                    ddl = 0;
+                    if (!int.TryParse(ddlEmpresaCarga, out ddl))
+                    {
+                        ddl = 0;
+                    }
+                    new_viaje.Chofer_ID = ddl;
+
+                    ddl = 0;
+                    if (!int.TryParse(ddlFleteros, out ddl))
+                    {
+                        ddl = 0;
+                    }
+                    new_viaje.Fletero_ID = ddl;
+
+                    ddl = 0;
+                    if (!int.TryParse(ddlProveedores, out ddl))
+                    {
+                        ddl = 0;
+                    }
+                    new_viaje.Proveedor_ID = ddl;
+
+                    ddl = 0;
+                    if (!int.TryParse(ddlClientes, out ddl))
+                    {
+                        ddl = 0;
+                    }
+                    new_viaje.Cliente_ID = ddl;
+
+                    #endregion DDL logic
+
+                    new_viaje.Carga = txbLugarCarga;
+                    new_viaje.Descarga = string.Empty;
+                    new_viaje.Comentarios = txbComentarios;
+                    new_viaje.EnViaje = true;
+
+                    context.viajes.Add(new_viaje);
+                    context.SaveChanges();
+
+                    BindGrid_EnCurso();
+                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                    sb.Append(@"<script type='text/javascript'>");
+                    sb.Append("alert('Viaje agregado');");
+                    //sb.Append("$('#addModal').modal('hide');");
+                    sb.Append("$.modal.close();");
+                    sb.Append(@"</script>");
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AddHideModalScript", sb.ToString(), false);
+                }
+
+            }
+        }
+
     }
 }

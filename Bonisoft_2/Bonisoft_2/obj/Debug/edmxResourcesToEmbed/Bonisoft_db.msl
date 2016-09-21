@@ -14,6 +14,8 @@
     <EntitySetMapping Name="cuadrilla_descarga">
       <EntityTypeMapping TypeName="bonisoft_dbModel.cuadrilla_descarga">
         <MappingFragment StoreEntitySet="cuadrilla_descarga">
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Cuadrilla_descarga_ID" ColumnName="Cuadrilla_descarga_ID" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
@@ -135,6 +137,8 @@
     <EntitySetMapping Name="fleteros">
       <EntityTypeMapping TypeName="bonisoft_dbModel.fletero">
         <MappingFragment StoreEntitySet="fletero">
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />

@@ -17,5 +17,7 @@ namespace Bonisoft_2
         public int Cuadrilla_descarga_ID { get; set; }
         public string Comentarios { get; set; }
         public string Nombre { get; set; }
+        public string Direccion { get; set; }
+        public string Telefono { get; set; }
     }
 }

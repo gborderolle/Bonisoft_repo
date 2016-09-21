@@ -1,8 +1,6 @@
 
 $(document).ready(function () {
-
-    var datetime = timenow();
-    $("#lblDatetime").text(datetime);
+    updateClock(); 
 });
 
 function timenow(){
@@ -19,4 +17,12 @@ function timenow(){
     if(m<10) m= '0'+m;
     if(s<10) s= '0'+s;
     return now.toLocaleDateString()+ ' ' + h + ':' + m + ' ' + ampm;
+}
+
+function updateClock() {
+    var datetime = timenow();
+    $("#lblDatetime").text(datetime);
+
+    // call this function again in 1000ms
+    setTimeout(updateClock, 1000);
 }

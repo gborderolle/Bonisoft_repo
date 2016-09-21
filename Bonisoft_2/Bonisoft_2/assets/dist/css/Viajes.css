@@ -1,4 +1,8 @@
-﻿.btnViajes {
+﻿#MainContent_upAdd input {
+    max-width: 100%;
+}
+
+.btnViajes {
     padding: 10px 22px 10px 22px;
     margin: 0px 0px 0px 0px;
     background: #13AFEB;

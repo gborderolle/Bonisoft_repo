@@ -1,13 +1,12 @@
-﻿<%@ Page Title="Viajes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Viajes.aspx.cs" Inherits="Bonisoft_2.Pages.Viajes" %>
+﻿<%@ Page Title="Viajes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Viajes.aspx.cs" Inherits="Bonisoft_2.Pages.Viajes" EnableEventValidation="false" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
 
     <!-- STYLES EXTENSION -->
     <link rel="stylesheet" href="/assets/dist/css/jquery.modal.css">
-    
+
     <!-- Page CSS -->
     <link rel="stylesheet" href="/assets/dist/css/Viajes.css">
-
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
@@ -41,48 +40,47 @@
             </div>
             <div class="row">
 
-                                <br>
+                <br>
 
-                    <div style="text-align: center">
-                        <!-- Placing GridView in UpdatePanel-->
-                        <asp:UpdatePanel ID="upCrudGrid" runat="server">
-                            <ContentTemplate>
-                                    <div class="row" style="margin-bottom: 10px;">
-                                        <div class="col-md-2 pull-left" >                                          
-                                            <%--<asp:Button ID="btnAdd" runat="server" Text="Iniciar viaje" CssClass="btn btn-info pull-left" OnClick="btnAdd_Click" />--%>
-                                         <a href="#addModal" rel="modal:open" class="btn btn-info pull-left">Iniciar viaje</a>
+                <div style="text-align: center">
+                    <!-- Placing GridView in UpdatePanel-->
+                    <asp:UpdatePanel ID="upCrudGrid" runat="server">
+                        <ContentTemplate>
+                            <div class="row" style="margin-bottom: 10px;">
+                                <div class="col-md-2 pull-left">
+                                    <a href="#addModal" rel="modal:open" class="btn btn-info pull-left">Iniciar viaje</a>
+                                </div>
+
+                                <div class="col-md-2 pull-right">
+                                    <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
+                                        <div class="input-group ">
+                                            <input type="text" id="txbSearchViajesEnCurso" name="q" class="form-control" placeholder="Buscar...">
+                                            <span class="input-group-btn">
+                                                <button type="button" name="search" id="search-btn1" class="btn btn-flat">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
                                         </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <asp:GridView ID="gridViajesEnCurso" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
+                                OnRowCommand="gridViajesEnCurso_RowCommand" AutoGenerateColumns="false" AllowPaging="true"
+                                DataKeyNames="Viaje_ID" CssClass="table table-hover table-striped"
+                                OnRowDataBound="gridViajesEnCurso_RowDataBound">
+                                <Columns>
 
-                                        <div class="col-md-2 pull-right">
-                                            <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
-                                                <div class="input-group ">
-                                                    <input type="text" id="txbSearchViajesEnCurso" name="q" class="form-control" placeholder="Buscar...">
-                                                    <span class="input-group-btn">
-                                                        <button type="button" name="search" id="search-btn1" class="btn btn-flat">
-                                                            <i class="fa fa-search"></i>
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                <asp:GridView ID="gridViajesEnCurso" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
-                                    OnRowCommand="gridViajesEnCurso_RowCommand" AutoGenerateColumns="false" AllowPaging="true"
-                                    DataKeyNames="Viaje_ID" CssClass="table table-hover table-striped"
-                                    OnRowDataBound="gridViajesEnCurso_RowDataBound">
-                                    <Columns>
+                                    <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:MMMM d, yyyy}" HtmlEncode="false" />
+                                    <asp:BoundField DataField="Precio_valor_total" HeaderText="Precio valor total" DataFormatString="{0:C0}" HtmlEncode="False" />
+                                    <asp:BoundField DataField="Importe_viaje" HeaderText="Importe viaje" DataFormatString="{0:C0}" HtmlEncode="False" />
+                                    <asp:BoundField DataField="Saldo" HeaderText="Saldo" DataFormatString="{0:C0}" HtmlEncode="False" />
+                                    <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
 
-                                        <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:MMMM d, yyyy}" HtmlEncode="false" />
-                                        <asp:BoundField DataField="Precio_valor_total" HeaderText="Precio valor total" DataFormatString="{0:C0}" HtmlEncode="False" />
-                                        <asp:BoundField DataField="Importe_viaje" HeaderText="Importe viaje" DataFormatString="{0:C0}" HtmlEncode="False" />
-                                        <asp:BoundField DataField="Saldo" HeaderText="Saldo" DataFormatString="{0:C0}" HtmlEncode="False" />
-                                        <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
-
-                                        <asp:ButtonField CommandName="detail" ControlStyle-CssClass="btn btn-info"
-                                            ButtonType="Link" Text="" HeaderText="Notificar">
-                                            <ControlStyle CssClass="btn btn-info btn-xs fa fa-bullhorn"></ControlStyle>
-                                        </asp:ButtonField>
-                                       <%-- <asp:ButtonField CommandName="detail" ControlStyle-CssClass="btn btn-info"
+                                    <asp:ButtonField CommandName="detail" ControlStyle-CssClass="btn btn-info"
+                                        ButtonType="Link" Text="" HeaderText="Notificar">
+                                        <ControlStyle CssClass="btn btn-info btn-xs fa fa-bullhorn"></ControlStyle>
+                                    </asp:ButtonField>
+                                    <%-- <asp:ButtonField CommandName="detail" ControlStyle-CssClass="btn btn-info"
                                             ButtonType="Link" Text="" HeaderText="Inspeccionar">
                                             <ControlStyle CssClass="btn btn-info btn-xs glyphicon glyphicon-search"></ControlStyle>
                                         </asp:ButtonField>
@@ -94,191 +92,328 @@
                                             ButtonType="Link" Text="" HeaderText="Borrar">
                                             <ControlStyle CssClass="btn btn-info btn-xs glyphicon glyphicon-remove"></ControlStyle>
                                         </asp:ButtonField>--%>
-                                        <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
-                                            <ItemTemplate>
-                                                <asp:LinkButton ID="btnInspeccionar" runat="server" CommandName="detail" Text="" ToolTip="Inspeccionar"><span aria-hidden="true" class="glyphicon glyphicon-search"></asp:LinkButton>
-                                                <asp:LinkButton ID="btnModificar" runat="server" CommandName="editRecord" Text="" ToolTip="Modificar"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></asp:LinkButton>
-                                                <asp:LinkButton ID="btnBorrar" runat="server" CommandName="deleteRecord" Text="" ToolTip="Borrar"><span aria-hidden="true" class="glyphicon glyphicon-remove"></asp:LinkButton>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
-                            </ContentTemplate>
-                            <Triggers>
-                                <%--<asp:AsyncPostBackTrigger ControlID="gridViajesEnCurso" EventName="RowCommand" />
+                                    <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="btnInspeccionar" runat="server" CommandName="inspect" Text="" ToolTip="Inspeccionar"><span aria-hidden="true" class="glyphicon glyphicon-search"></asp:LinkButton>
+                                            <%--<asp:LinkButton ID="btnInspeccionar" runat="server" CommandName="detail" Text="" ToolTip="Inspeccionar"><span aria-hidden="true" class="glyphicon glyphicon-search"></asp:LinkButton>--%>
+                                            <asp:LinkButton ID="btnModificar" runat="server" CommandName="editRecord" Text="" ToolTip="Modificar"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></asp:LinkButton>
+                                            <asp:LinkButton ID="btnBorrar" runat="server" CommandName="deleteRecord" Text="" ToolTip="Borrar"><span aria-hidden="true" class="glyphicon glyphicon-remove"></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+                        </ContentTemplate>
+                        <Triggers>
+                            <%--<asp:AsyncPostBackTrigger ControlID="gridViajesEnCurso" EventName="RowCommand" />
                                 <%--<asp:AsyncPostBackTrigger ControlID="btnModificar" EventName="Click" />--%>
-                            </Triggers>
-                        </asp:UpdatePanel>
-                        <!-- Detail Modal Starts here-->
-                        <div id="detailModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 id="myModalLabel">Detailed View</h3>
-                            </div>
-                            <div class="modal-body">
-                                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DetailsView ID="DetailsView1" runat="server" CssClass="table table-bordered table-hover" BackColor="White" ForeColor="Black" FieldHeaderStyle-Wrap="false" FieldHeaderStyle-Font-Bold="true" FieldHeaderStyle-BackColor="LavenderBlush" FieldHeaderStyle-ForeColor="Black" BorderStyle="Groove" AutoGenerateRows="False">
-                                            <Fields>
-                                                <asp:BoundField DataField="Viaje_ID" HeaderText="Viaje_ID" />
-                                                <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
-                                            </Fields>
-                                        </asp:DetailsView>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="gridViajesEnCurso" EventName="RowCommand" />
-                                        <%--<asp:AsyncPostBackTrigger ControlID="btnAdd" EventName="Click" />--%>
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                                <div class="modal-footer">
-                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
-                                </div>
-                            </div>
+                        </Triggers>
+                    </asp:UpdatePanel>
+                    <!-- Detail Modal Starts here-->
+                    <div id="detailModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 id="myModalLabel">Detailed View</h3>
                         </div>
-                        <!-- Detail Modal Ends here -->
-                        <!-- Edit Modal Starts here -->
-                        <div id="editModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 id="editModalLabel">Edit Record</h3>
-                            </div>
-                            <asp:UpdatePanel ID="upEdit" runat="server">
+                        <div class="modal-body">
+                            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                 <ContentTemplate>
-                                    <div class="modal-body">
-                                        <table class="table">
-                                            <tr>
-                                                <td>Viaje_ID : 
-                           
-                                                    <asp:Label ID="lblCountryCode" runat="server"></asp:Label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Comentarios : 
-                           
-                                                    <asp:TextBox ID="txtPopulation" runat="server"></asp:TextBox>
-                                                    <asp:Label runat="server" Text="Type Integer Value!" />
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <asp:Label ID="lblResult" Visible="false" runat="server"></asp:Label>
-                                        <asp:Button ID="btnSave" runat="server" Text="Update" CssClass="btn btn-info" OnClick="btnSave_Click_2" />
-                                        <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
-                                    </div>
+                                    <asp:DetailsView ID="DetailsView1" runat="server" CssClass="table table-bordered table-hover" BackColor="White" ForeColor="Black" FieldHeaderStyle-Wrap="false" FieldHeaderStyle-Font-Bold="true" FieldHeaderStyle-BackColor="LavenderBlush" FieldHeaderStyle-ForeColor="Black" BorderStyle="Groove" AutoGenerateRows="False">
+                                        <Fields>
+                                            <asp:BoundField DataField="Viaje_ID" HeaderText="Viaje_ID" />
+                                            <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
+                                        </Fields>
+                                    </asp:DetailsView>
                                 </ContentTemplate>
                                 <Triggers>
                                     <asp:AsyncPostBackTrigger ControlID="gridViajesEnCurso" EventName="RowCommand" />
-                                    <asp:AsyncPostBackTrigger ControlID="btnSave" EventName="Click" />
+                                    <%--<asp:AsyncPostBackTrigger ControlID="btnAdd" EventName="Click" />--%>
                                 </Triggers>
                             </asp:UpdatePanel>
-                        </div>
-                        <!-- Edit Modal Ends here -->
-
-                        <!-- Add Record Modal Starts here-->
-                        <%--<div id="addModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">--%>
-                        <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" style="display:none;">
-
-                            <div class="modal-header">
-                                <h3 id="addModalLabel">Iniciar viaje</h3>
+                            <div class="modal-footer">
+                                <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
                             </div>
-                            <asp:UpdatePanel ID="upAdd" runat="server">
-                                <ContentTemplate>
-                                    <div class="modal-body">
-                                        <table class="table table-bordered table-hover">
-                                            <tr>
-                                                <td>Fecha de inicio: 
-                                                <asp:TextBox ID="modalAdd_txbFechaInicio" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fecha de llegada (tentativa): 
-                                                <asp:TextBox ID="modalAdd_txbFechaFin" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Proveedor: 
+                        </div>
+                    </div>
+                    <!-- Detail Modal Ends here -->
+                    <!-- Edit Modal Starts here -->
+                    <div id="editModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 id="editModalLabel">Edit Record</h3>
+                        </div>
+                        <asp:UpdatePanel ID="upEdit" runat="server">
+                            <ContentTemplate>
+                                <div class="modal-body">
+                                    <table class="table">
+                                        <tr>
+                                            <td>Viaje_ID : 
+                           
+                                                    <asp:Label ID="lblCountryCode" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Comentarios : 
+                           
+                                                    <asp:TextBox ID="txtPopulation" runat="server"></asp:TextBox>
+                                                <asp:Label runat="server" Text="Type Integer Value!" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <asp:Label ID="lblResult" Visible="false" runat="server"></asp:Label>
+                                    <asp:Button ID="btnSave" runat="server" Text="Update" CssClass="btn btn-info" OnClick="btnSave_Click_2" />
+                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                                </div>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="gridViajesEnCurso" EventName="RowCommand" />
+                                <asp:AsyncPostBackTrigger ControlID="btnSave" EventName="Click" />
+                            </Triggers>
+                        </asp:UpdatePanel>
+                    </div>
+                    <!-- Edit Modal Ends here -->
+
+                    <!-- Add Record Modal Starts here-->
+                    <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
+
+                        <div class="modal-header">
+                            <h3 id="addModalLabel">Iniciar viaje</h3>
+                        </div>
+                        <asp:UpdatePanel ID="upAdd" runat="server">
+                            <ContentTemplate>
+                                <div class="modal-body">
+                                    <table class="table table-bordered table-hover">
+                                        <tr>
+                                            <td>Fecha de inicio: 
+                                                <asp:TextBox ID="modalAdd_txbFecha1" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                            </td>
+                                            <td>Fecha de llegada (tentativa): 
+                                                <asp:TextBox ID="modalAdd_txbFecha2" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Proveedor: 
                                                 <asp:DropDownList ID="modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="form-control" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cliente: 
+                                            </td>
+                                            <td>Cliente: 
                                                 <asp:DropDownList ID="modalAdd_ddlClientes" runat="server" ClientIDMode="Static" CssClass="form-control" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cargadores: 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cargadores: 
                                                 <asp:DropDownList ID="modalAdd_ddlEmpresaCarga" runat="server" ClientIDMode="Static" CssClass="form-control" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Lugar de carga: 
+                                            </td>
+                                             <td>Lugar de carga: 
                                                 <asp:TextBox ID="modalAdd_txbLugarCarga" runat="server" ClientIDMode="Static" CssClass="form-control" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cuadrilla de carga: 
-                                                <asp:DropDownList ID="modalAdd_ddlCuadrilla" runat="server" ClientIDMode="Static" CssClass="form-control" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fletero: 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fletero: 
                                                 <asp:DropDownList ID="modalAdd_ddlFleteros" runat="server" ClientIDMode="Static" CssClass="form-control" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Camión: 
+                                            </td>
+                                            <td>Camión: 
                                                 <asp:DropDownList ID="modalAdd_ddlCamiones" runat="server" ClientIDMode="Static" CssClass="form-control" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Chofer: 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chofer: 
                                                 <asp:DropDownList ID="modalAdd_ddlChoferes" runat="server" ClientIDMode="Static" CssClass="form-control" />
-                                                </td>
-                                            </tr>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Comentarios: 
+                                                <asp:TextBox ID="modalAdd_txbComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" />
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
 
-                                        </table>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <asp:Button ID="btnAddRecord" runat="server" Text="Agregar" CssClass="btn btn-info" OnClick="btnAddRecord_Click" />
-                                        <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-                                    </div>
-                                </ContentTemplate>
-                                <Triggers>
-                                    <asp:AsyncPostBackTrigger ControlID="btnAddRecord" EventName="Click" />
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <asp:Button ID="btnAddRecord1" runat="server" Text="Agregar" CssClass="btn btn-info" OnClientClick="Javascript:DoCustomPost();" OnClick="btnAddRecord1_Click" UseSubmitBehavior="false" />
+                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                                </div>
+                            </ContentTemplate>
+                            <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="btnAddRecord1" EventName="Click" />
                                 </Triggers>
-                            </asp:UpdatePanel>
+                        </asp:UpdatePanel>
+                    </div>
+
+
+                    <div id="editModal1" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
+
+                        <div class="modal-header">
+                            <h3 id="editModalLabel1">Modificar viaje</h3>
                         </div>
-                        <!--Add Record Modal Ends here-->
-                        <!-- Delete Record Modal Starts here-->
-                        <div id="deleteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 id="delModalLabel">Delete Record</h3>
-                            </div>
-                            <asp:UpdatePanel ID="upDel" runat="server">
-                                <ContentTemplate>
-                                    <div class="modal-body">
-                                        Are you sure you want to delete the record?
+                        <asp:UpdatePanel ID="upEdit1" runat="server">
+                            <ContentTemplate>
+                                <div class="modal-body">
+                                    <table class="table table-bordered table-hover">
+                                        <tr>
+                                            <td>Fecha de inicio: 
+                                                <asp:TextBox ID="modalEdit_txbFecha1" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                            </td>
+                                            <td>Fecha de llegada (tentativa): 
+                                                <asp:TextBox ID="modalEdit_txbFecha2" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Proveedor: 
+                                                <asp:DropDownList ID="modalEdit_ddlProveedor" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                                            </td>
+                                            <td>Cliente: 
+                                                <asp:DropDownList ID="modalEdit_ddlCliente" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cargadores: 
+                                                <asp:DropDownList ID="modalEdit_ddlCargadores" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                                            </td>
+                                             <td>Lugar de carga: 
+                                                <asp:TextBox ID="modalEdit_txbLugarCarga" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fletero: 
+                                                <asp:DropDownList ID="modalEdit_ddlFletero" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                                            </td>
+                                            <td>Camión: 
+                                                <asp:DropDownList ID="modalEdit_ddlCamion" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chofer: 
+                                                <asp:DropDownList ID="modalEdit_ddlChofer" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Comentarios: 
+                                                <asp:TextBox ID="modalEdit_txbComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" />
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <asp:Button ID="Button1" runat="server" Text="Agregar" CssClass="btn btn-info" OnClientClick="Javascript:DoCustomPost();" OnClick="btnAddRecord1_Click" UseSubmitBehavior="false" />
+                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                                </div>
+                            </ContentTemplate>
+                            <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="btnAddRecord1" EventName="Click" />
+                                </Triggers>
+                        </asp:UpdatePanel>
+                    </div>
+
+
+                    <!-- Add Record Modal Starts here-->
+                    <div id="inspectModal" tabindex="-1" role="dialog" aria-labelledby="inspectModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
+
+                        <div class="modal-header">
+                            <h3 id="inspectModalLabel">Inspeccionar viaje</h3>
+                        </div>
+                        <asp:UpdatePanel ID="upInspect" runat="server">
+                            <ContentTemplate>
+                                <div class="modal-body">
+                                    <table class="table table-bordered table-hover">
+                                        <tr>
+                                            <td>Fecha de inicio: 
+                                                <asp:Label ID="modalInspect_lblFecha1" runat="server" ClientIDMode="Static" CssClass="form-control" ></asp:Label>
+                                            </td>
+                                            <td>Fecha de llegada (tentativa): 
+                                                <asp:Label ID="modalInspect_lblFecha2" runat="server" ClientIDMode="Static" CssClass="form-control" ></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Proveedor: 
+                                                <asp:Label ID="modalInspect_lblProveedor" runat="server" ClientIDMode="Static" CssClass="form-control" ></asp:Label>
+                                            </td>
+                                            <td>Cliente: 
+                                                <asp:Label ID="modalInspect_lblCliente" runat="server" ClientIDMode="Static" CssClass="form-control" ></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cargadores: 
+                                                <asp:Label ID="modalInspect_lblCargadores" runat="server" ClientIDMode="Static" CssClass="form-control" ></asp:Label>
+                                            </td>
+                                             <td>Lugar de carga: 
+                                                <asp:Label ID="modalInspect_lblLugarCarga" runat="server" ClientIDMode="Static" CssClass="form-control" ></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fletero: 
+                                                <asp:Label ID="modalInspect_lblFletero" runat="server" ClientIDMode="Static" CssClass="form-control" ></asp:Label>
+                                            </td>
+                                            <td>Camión: 
+                                                <asp:Label ID="modalInspect_lblCamion" runat="server" ClientIDMode="Static" CssClass="form-control" ></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chofer: 
+                                                <asp:Label ID="modalInspect_lblChofer" runat="server" ClientIDMode="Static" CssClass="form-control" ></asp:Label>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Comentarios: 
+                                                <asp:Label ID="modalInspect_lblComentarios" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:Label>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+
+
+
+
+                    <!--Add Record Modal Ends here-->
+                    <!-- Delete Record Modal Starts here-->
+                    <div id="deleteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 id="delModalLabel">Delete Record</h3>
+                        </div>
+                        <asp:UpdatePanel ID="upDel" runat="server">
+                            <ContentTemplate>
+                                <div class="modal-body">
+                                    Are you sure you want to delete the record?
                            
                                         <asp:HiddenField ID="hfCode" runat="server" />
-                                    </div>
-                                    <div class="modal-footer">
-                                        <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-info" OnClick="btnDelete_Click" />
-                                        <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                                    </div>
-                                </ContentTemplate>
-                                <Triggers>
-                                    <asp:AsyncPostBackTrigger ControlID="btnDelete" EventName="Click" />
-                                </Triggers>
-                            </asp:UpdatePanel>
-                        </div>
-                        <!--Delete Record Modal Ends here -->
+                                </div>
+                                <div class="modal-footer">
+                                    <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-info" OnClick="btnDelete_Click" />
+                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                                </div>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="btnDelete" EventName="Click" />
+                            </Triggers>
+                        </asp:UpdatePanel>
                     </div>
+                    <!--Delete Record Modal Ends here -->
+                </div>
 
             </div>
 
-                    <!--  -->
+            <!--  -->
 
 
 
@@ -393,7 +528,7 @@
                                                 <asp:TextBox ID="txbNew12" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                                             </FooterTemplate>
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Proveedor">
+                                        <asp:TemplateField HeaderText="Proveedor">
                                             <EditItemTemplate>
                                                 <asp:DropDownList ID="ddlProveedores1" runat="server" CssClass="form-control" />
                                             </EditItemTemplate>
@@ -404,7 +539,7 @@
                                                 <asp:DropDownList ID="ddlProveedores2" runat="server" CssClass="form-control" />
                                             </FooterTemplate>
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Cliente">
+                                        <asp:TemplateField HeaderText="Cliente">
                                             <EditItemTemplate>
                                                 <asp:DropDownList ID="ddlClientes1" runat="server" CssClass="form-control" />
                                             </EditItemTemplate>
@@ -475,7 +610,7 @@
                                             <FooterTemplate>
                                                 <asp:DropDownList ID="ddlFormas2" runat="server" CssClass="form-control" />
                                             </FooterTemplate>
-                                        </asp:TemplateField>                                        
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Pesada origen">
                                             <EditItemTemplate>
                                                 <asp:DropDownList ID="ddlPesadaOrigen1" runat="server" CssClass="form-control" />
@@ -497,7 +632,7 @@
                                             <FooterTemplate>
                                                 <asp:DropDownList ID="ddlPesadaDestino2" runat="server" CssClass="form-control" />
                                             </FooterTemplate>
-                                        </asp:TemplateField>     
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Cargadores">
                                             <EditItemTemplate>
                                                 <asp:DropDownList ID="ddlCargadores1" runat="server" CssClass="form-control" />
@@ -530,7 +665,7 @@
                                             <FooterTemplate>
                                                 <asp:TextBox ID="txbNew7" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                             </FooterTemplate>
-                                        </asp:TemplateField>                                   
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Fletero">
                                             <EditItemTemplate>
                                                 <asp:DropDownList ID="ddlFleteros1" runat="server" CssClass="form-control" />
@@ -592,6 +727,16 @@
         </div>
     </div>
 
+    <asp:HiddenField ID="hdn_modalAdd_txbFecha1" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalAdd_txbFecha2" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalAdd_ddlClientes" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalAdd_ddlEmpresaCarga" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalAdd_txbLugarCarga" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalAdd_ddlFleteros" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalAdd_ddlCamiones" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalAdd_ddlChoferes" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalAdd_txbComentarios" runat="server" ClientIDMode="Static" />
 
 
 </asp:Content>

@@ -120,13 +120,17 @@ namespace Bonisoft_2.User_Controls.Estaticos
                 GridViewRow row = gridFleteros.FooterRow;
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
-                if (txb1 != null && txb2 != null)
+                TextBox txb3 = row.FindControl("txbNew3") as TextBox;
+                TextBox txb4 = row.FindControl("txbNew4") as TextBox;
+                if (txb1 != null && txb2 != null && txb3 != null && txb4 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         fletero obj = new fletero();
                         obj.Nombre = txb1.Text;
                         obj.Comentarios = txb2.Text;
+                        obj.Direccion = txb3.Text;
+                        obj.Telefono = txb4.Text;
 
                         context.fleteros.Add(obj);
                         context.SaveChanges();
@@ -156,7 +160,9 @@ namespace Bonisoft_2.User_Controls.Estaticos
             GridViewRow row = gridFleteros.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
-            if (txb1 != null && txb2 != null)
+            TextBox txb3 = row.FindControl("txb3") as TextBox;
+            TextBox txb4 = row.FindControl("txb4") as TextBox;
+            if (txb1 != null && txb2 != null && txb3 != null && txb4 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -164,6 +170,8 @@ namespace Bonisoft_2.User_Controls.Estaticos
                     fletero obj = context.fleteros.First(x => x.Fletero_ID == fletero_ID);
                     obj.Nombre = txb1.Text;
                     obj.Comentarios = txb2.Text;
+                    obj.Direccion = txb3.Text;
+                    obj.Telefono = txb4.Text;
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";

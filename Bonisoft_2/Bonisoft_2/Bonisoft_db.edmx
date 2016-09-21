@@ -75,6 +75,8 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           </Key>
           <Property Name="Cuadrilla_descarga_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="descarga_viaje">
@@ -94,6 +96,8 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           </Key>
           <Property Name="Fletero_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="forma_de_pago">
@@ -307,6 +311,8 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Cuadrilla_descarga_ID" Type="Int32" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="descarga_viaje">
           <Key>
@@ -444,6 +450,8 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Fletero_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="mercaderia_comprada">
           <Key>
@@ -585,6 +593,8 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySetMapping Name="cuadrilla_descarga">
             <EntityTypeMapping TypeName="bonisoft_dbModel.cuadrilla_descarga">
               <MappingFragment StoreEntitySet="cuadrilla_descarga">
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Cuadrilla_descarga_ID" ColumnName="Cuadrilla_descarga_ID" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
@@ -706,6 +716,8 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySetMapping Name="fleteros">
             <EntityTypeMapping TypeName="bonisoft_dbModel.fletero">
               <MappingFragment StoreEntitySet="fletero">
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />
