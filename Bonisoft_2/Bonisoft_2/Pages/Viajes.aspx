@@ -235,7 +235,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <asp:Button ID="btnAddRecord1" runat="server" Text="Agregar" CssClass="btn btn-info" OnClientClick="Javascript:DoCustomPost();" OnClick="btnAddRecord1_Click" UseSubmitBehavior="false" />
-                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cancelar</button>
                                 </div>
                             </ContentTemplate>
                             <Triggers>
