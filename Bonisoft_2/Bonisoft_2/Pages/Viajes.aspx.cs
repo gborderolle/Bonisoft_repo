@@ -1081,7 +1081,7 @@ namespace Bonisoft_2.Pages
             int viaje_ID = int.Parse(gridViajesEnCurso.DataKeys[index].Value.ToString());
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                if (e.CommandName.Equals("inspect"))
+                if (e.CommandName.Equals("inspectViajeEnCurso"))
                 {
                     viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                     if (viaje != null)
@@ -1144,7 +1144,7 @@ namespace Bonisoft_2.Pages
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "DetailModalScript", sb.ToString(), false);
                     }
                 }
-                else if (e.CommandName.Equals("editRecord"))
+                else if (e.CommandName.Equals("editViajeEnCurso"))
                 {
                     viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                     if (viaje != null)
@@ -1192,7 +1192,7 @@ namespace Bonisoft_2.Pages
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "EditModalScript", sb.ToString(), false);
                     }
                 }
-                else if (e.CommandName.Equals("deleteRecord"))
+                else if (e.CommandName.Equals("deleteViajeEnCurso"))
                 {
                     hfCode.Value = viaje_ID.ToString();
                     System.Text.StringBuilder sb = new System.Text.StringBuilder();
@@ -1203,21 +1203,6 @@ namespace Bonisoft_2.Pages
                 }
 
             }
-        }
-
-        protected void btnSave_Click_2(object sender, EventArgs e)
-        {
-            int viaje_ID = int.Parse(lblCountryCode.Text);
-            string comentarios = txtPopulation.Text;
-            executeUpdate(viaje_ID, comentarios);
-            BindGrid_EnCurso();
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            sb.Append(@"<script type='text/javascript'>");
-            sb.Append("alert('Records Updated Successfully');");
-            sb.Append("$('#editModal').modal('hide');");
-            sb.Append(@"</script>");
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "EditHideModalScript", sb.ToString(), false);
-
         }
 
         private void executeUpdate(int viaje_ID, string comentarios)

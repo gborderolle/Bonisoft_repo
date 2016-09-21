@@ -94,10 +94,10 @@
                                         </asp:ButtonField>--%>
                                     <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="btnInspeccionar" runat="server" CommandName="inspect" Text="" ToolTip="Inspeccionar"><span aria-hidden="true" class="glyphicon glyphicon-search"></asp:LinkButton>
+                                            <asp:LinkButton ID="btnInspeccionar" runat="server" CommandName="inspectViajeEnCurso" Text="" ToolTip="Inspeccionar"><span aria-hidden="true" class="glyphicon glyphicon-search"></asp:LinkButton>
                                             <%--<asp:LinkButton ID="btnInspeccionar" runat="server" CommandName="detail" Text="" ToolTip="Inspeccionar"><span aria-hidden="true" class="glyphicon glyphicon-search"></asp:LinkButton>--%>
-                                            <asp:LinkButton ID="btnModificar" runat="server" CommandName="editRecord" Text="" ToolTip="Modificar"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></asp:LinkButton>
-                                            <asp:LinkButton ID="btnBorrar" runat="server" CommandName="deleteRecord" Text="" ToolTip="Borrar"><span aria-hidden="true" class="glyphicon glyphicon-remove"></asp:LinkButton>
+                                            <asp:LinkButton ID="btnModificar" runat="server" CommandName="editViajeEnCurso" Text="" ToolTip="Modificar"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></asp:LinkButton>
+                                            <asp:LinkButton ID="btnBorrar" runat="server" CommandName="deleteViajeEnCurso" Text="" ToolTip="Borrar"><span aria-hidden="true" class="glyphicon glyphicon-remove"></asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
@@ -135,44 +135,6 @@
                         </div>
                     </div>
                     <!-- Detail Modal Ends here -->
-                    <!-- Edit Modal Starts here -->
-                    <div id="editModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h3 id="editModalLabel">Edit Record</h3>
-                        </div>
-                        <asp:UpdatePanel ID="upEdit" runat="server">
-                            <ContentTemplate>
-                                <div class="modal-body">
-                                    <table class="table">
-                                        <tr>
-                                            <td>Viaje_ID : 
-                           
-                                                    <asp:Label ID="lblCountryCode" runat="server"></asp:Label>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Comentarios : 
-                           
-                                                    <asp:TextBox ID="txtPopulation" runat="server"></asp:TextBox>
-                                                <asp:Label runat="server" Text="Type Integer Value!" />
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="modal-footer">
-                                    <asp:Label ID="lblResult" Visible="false" runat="server"></asp:Label>
-                                    <asp:Button ID="btnSave" runat="server" Text="Update" CssClass="btn btn-info" OnClick="btnSave_Click_2" />
-                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
-                                </div>
-                            </ContentTemplate>
-                            <Triggers>
-                                <asp:AsyncPostBackTrigger ControlID="gridViajesEnCurso" EventName="RowCommand" />
-                                <asp:AsyncPostBackTrigger ControlID="btnSave" EventName="Click" />
-                            </Triggers>
-                        </asp:UpdatePanel>
-                    </div>
-                    <!-- Edit Modal Ends here -->
 
                     <!-- Add Record Modal Starts here-->
                     <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
@@ -234,7 +196,7 @@
                                     </table>
                                 </div>
                                 <div class="modal-footer">
-                                    <asp:Button ID="btnAddRecord1" runat="server" Text="Agregar" CssClass="btn btn-info" OnClientClick="Javascript:DoCustomPost();" OnClick="btnAddRecord1_Click" UseSubmitBehavior="false" />
+                                    <asp:Button ID="btnAddRecord" runat="server" Text="Agregar" CssClass="btn btn-info" OnClientClick="Javascript:DoCustomPost();" OnClick="btnAddRecord1_Click" UseSubmitBehavior="false" />
                                     <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cancelar</button>
                                 </div>
                             </ContentTemplate>
@@ -245,12 +207,12 @@
                     </div>
 
 
-                    <div id="editModal1" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
+                    <div id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
 
                         <div class="modal-header">
-                            <h3 id="editModalLabel1">Modificar viaje</h3>
+                            <h3 id="editModalLabel">Modificar viaje</h3>
                         </div>
-                        <asp:UpdatePanel ID="upEdit1" runat="server">
+                        <asp:UpdatePanel ID="upEdit" runat="server">
                             <ContentTemplate>
                                 <div class="modal-body">
                                     <table class="table table-bordered table-hover">

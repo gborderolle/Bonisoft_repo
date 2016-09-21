@@ -49,51 +49,6 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.DetailsView DetailsView1;
         
         /// <summary>
-        /// upEdit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upEdit;
-        
-        /// <summary>
-        /// lblCountryCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCountryCode;
-        
-        /// <summary>
-        /// txtPopulation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPopulation;
-        
-        /// <summary>
-        /// lblResult control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblResult;
-        
-        /// <summary>
-        /// btnSave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
-        
-        /// <summary>
         /// upAdd control.
         /// </summary>
         /// <remarks>
@@ -193,22 +148,22 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.TextBox modalAdd_txbComentarios;
         
         /// <summary>
-        /// btnAddRecord1 control.
+        /// btnAddRecord control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddRecord1;
+        protected global::System.Web.UI.WebControls.Button btnAddRecord;
         
         /// <summary>
-        /// upEdit1 control.
+        /// upEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upEdit1;
+        protected global::System.Web.UI.UpdatePanel upEdit;
         
         /// <summary>
         /// modalEdit_txbFecha1 control.
