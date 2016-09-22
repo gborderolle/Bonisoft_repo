@@ -19,5 +19,8 @@ namespace Bonisoft_2
         public System.DateTime Fecha_corte { get; set; }
         public string Comentarios { get; set; }
         public int Procesador_ID { get; set; }
+        public decimal Precio_xTonelada_compra { get; set; }
+        public decimal Precio_xTonelada_venta { get; set; }
+        public int Viaje_ID { get; set; }
     }
 }

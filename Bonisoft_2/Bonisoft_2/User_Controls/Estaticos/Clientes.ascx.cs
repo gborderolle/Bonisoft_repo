@@ -140,7 +140,7 @@ namespace Bonisoft_2.User_Controls
                     ddl.DataTextField = "Forma";
                     ddl.DataValueField = "Forma_de_pago_ID";
                     ddl.DataBind();
-                    ddl.Items.Insert(0, new ListItem("Elegir"));
+                    ddl.Items.Insert(0, new ListItem("Elegir", "0"));
 
                 }//Add Default Item in the DropDownList
                 if (e.Row.RowType == DataControlRowType.DataRow)
@@ -169,7 +169,7 @@ namespace Bonisoft_2.User_Controls
                     ddl.DataTextField = "Nombre_completo";
                     ddl.DataValueField = "Interno_ID";
                     ddl.DataBind();
-                    ddl.Items.Insert(0, new ListItem("Elegir"));
+                    ddl.Items.Insert(0, new ListItem("Elegir", "0"));
 
                 }//Add Default Item in the DropDownList
                 if (e.Row.RowType == DataControlRowType.DataRow)

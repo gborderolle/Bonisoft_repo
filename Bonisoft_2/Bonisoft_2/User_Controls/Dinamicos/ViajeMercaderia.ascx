@@ -1,14 +1,14 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Mercaderias.ascx.cs" Inherits="Bonisoft_2.User_Controls.Configuracion.Mercaderias" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ViajeMercaderia.ascx.cs" Inherits="Bonisoft_2.User_Controls.Dinamicos.ViajeMercaderia" %>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridMercaderias" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
+<asp:GridView ID="gridViajeMercaderia" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
     DataKeyNames="Mercaderia_ID"
-    OnRowCommand="gridMercaderias_RowCommand"
-    OnRowCancelingEdit="gridMercaderias_RowCancelingEdit"
-    OnRowEditing="gridMercaderias_RowEditing"
-    OnRowUpdating="gridMercaderias_RowUpdating"
-    OnRowDataBound="gridMercaderias_RowDataBound"
-    OnRowDeleting="gridMercaderias_RowDeleting">
+    OnRowCommand="gridViajeMercaderia_RowCommand"
+    OnRowCancelingEdit="gridViajeMercaderia_RowCancelingEdit"
+    OnRowEditing="gridViajeMercaderia_RowEditing"
+    OnRowUpdating="gridViajeMercaderia_RowUpdating"
+    OnRowDataBound="gridViajeMercaderia_RowDataBound"
+    OnRowDeleting="gridViajeMercaderia_RowDeleting">
 
     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
     <AlternatingRowStyle BackColor="#EFF3FB" />
@@ -68,17 +68,6 @@
                 <asp:DropDownList ID="ddlVariedad2" runat="server" CssClass="form-control" />
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Procesador">
-            <EditItemTemplate>
-                <asp:DropDownList ID="ddlProcesador1" runat="server" CssClass="form-control" />
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Procesador_ID") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:DropDownList ID="ddlProcesador2" runat="server" CssClass="form-control" />
-            </FooterTemplate>
-        </asp:TemplateField>
         <asp:TemplateField HeaderText="Fecha de corte">
             <EditItemTemplate>
                 <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("Fecha_corte") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
@@ -90,41 +79,15 @@
                 <asp:TextBox ID="txbNew4" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Precio Compra xTON">
+        <asp:TemplateField HeaderText="Comentarios">
             <EditItemTemplate>
-                <asp:TextBox ID="txb5" runat="server" Text='<%# Bind("Precio_xTonelada_compra") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                <asp:CompareValidator ID="vtxb5" runat="server" ControlToValidate="txb5" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                <asp:TextBox ID="txb5" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl5" runat="server" Text='<%# Bind("Precio_xTonelada_compra", "{0:C0}") %>'></asp:Label>
+                <asp:Label ID="lbl5" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew5" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                <asp:CompareValidator ID="vtxbNew5" runat="server" ControlToValidate="txbNew5" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Precio Venta xTON">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb6" runat="server" Text='<%# Bind("Precio_xTonelada_venta") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                <asp:CompareValidator ID="vtxb6" runat="server" ControlToValidate="txb6" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl6" runat="server" Text='<%# Bind("Precio_xTonelada_venta", "{0:C0}") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew6" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                <asp:CompareValidator ID="vtxbNew6" runat="server" ControlToValidate="txbNew6" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Comentarios">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb7" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl7" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew7" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
 

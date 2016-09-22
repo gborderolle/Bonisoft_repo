@@ -1,4 +1,30 @@
-﻿#MainContent_upAdd input {
+﻿.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+    background: #d49a9a;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: #d49a9a;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+    background: #da3333;
+    border-color: darkred;
+}
+
+#myTabs a {
+    /*font-size: medium;*/
+    color: whitesmoke;
+}
+
+#myTabs a .btn{
+    font-size: small;
+}
+
+#myTabs a .fa{
+    font-size: small;
+}
+
+#MainContent_upAdd input {
     max-width: 100%;
 }
 

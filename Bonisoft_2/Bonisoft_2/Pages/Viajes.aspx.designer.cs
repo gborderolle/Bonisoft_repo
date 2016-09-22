@@ -94,13 +94,13 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.DropDownList modalAdd_ddlClientes;
         
         /// <summary>
-        /// modalAdd_ddlEmpresaCarga control.
+        /// modalAdd_ddlCargadores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList modalAdd_ddlEmpresaCarga;
+        protected global::System.Web.UI.WebControls.DropDownList modalAdd_ddlCargadores;
         
         /// <summary>
         /// modalAdd_txbLugarCarga control.
@@ -148,13 +148,13 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.TextBox modalAdd_txbComentarios;
         
         /// <summary>
-        /// btnAddRecord control.
+        /// btnAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddRecord;
+        protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
         /// upEdit control.
@@ -184,22 +184,22 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.TextBox modalEdit_txbFecha2;
         
         /// <summary>
-        /// modalEdit_ddlProveedor control.
+        /// modalEdit_ddlProveedores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList modalEdit_ddlProveedor;
+        protected global::System.Web.UI.WebControls.DropDownList modalEdit_ddlProveedores;
         
         /// <summary>
-        /// modalEdit_ddlCliente control.
+        /// modalEdit_ddlClientes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList modalEdit_ddlCliente;
+        protected global::System.Web.UI.WebControls.DropDownList modalEdit_ddlClientes;
         
         /// <summary>
         /// modalEdit_ddlCargadores control.
@@ -220,31 +220,31 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.TextBox modalEdit_txbLugarCarga;
         
         /// <summary>
-        /// modalEdit_ddlFletero control.
+        /// modalEdit_ddlFleteros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList modalEdit_ddlFletero;
+        protected global::System.Web.UI.WebControls.DropDownList modalEdit_ddlFleteros;
         
         /// <summary>
-        /// modalEdit_ddlCamion control.
+        /// modalEdit_ddlCamiones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList modalEdit_ddlCamion;
+        protected global::System.Web.UI.WebControls.DropDownList modalEdit_ddlCamiones;
         
         /// <summary>
-        /// modalEdit_ddlChofer control.
+        /// modalEdit_ddlChoferes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList modalEdit_ddlChofer;
+        protected global::System.Web.UI.WebControls.DropDownList modalEdit_ddlChoferes;
         
         /// <summary>
         /// modalEdit_txbComentarios control.
@@ -256,13 +256,13 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.TextBox modalEdit_txbComentarios;
         
         /// <summary>
-        /// Button1 control.
+        /// btnEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnEdit;
         
         /// <summary>
         /// upInspect control.
@@ -364,31 +364,40 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.Label modalInspect_lblComentarios;
         
         /// <summary>
-        /// upDel control.
+        /// hdnNotificaciones_viajeID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upDel;
+        protected global::System.Web.UI.WebControls.HiddenField hdnNotificaciones_viajeID;
         
         /// <summary>
-        /// hfCode control.
+        /// lnkViajeDestino control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfCode;
+        protected global::System.Web.UI.WebControls.LinkButton lnkViajeDestino;
         
         /// <summary>
-        /// btnDelete control.
+        /// upMercaderias control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
+        protected global::System.Web.UI.UpdatePanel upMercaderias;
+        
+        /// <summary>
+        /// Mercaderias control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Bonisoft_2.User_Controls.Configuracion.Mercaderias Mercaderias;
         
         /// <summary>
         /// lblMessage control.
@@ -416,6 +425,15 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnViajesCount;
+        
+        /// <summary>
+        /// hdn_editViajeEnCurso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_editViajeEnCurso;
         
         /// <summary>
         /// hdn_modalAdd_txbFecha1 control.
@@ -454,13 +472,13 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.HiddenField hdn_modalAdd_ddlClientes;
         
         /// <summary>
-        /// hdn_modalAdd_ddlEmpresaCarga control.
+        /// hdn_modalAdd_ddlCargadores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn_modalAdd_ddlEmpresaCarga;
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalAdd_ddlCargadores;
         
         /// <summary>
         /// hdn_modalAdd_txbLugarCarga control.
@@ -506,5 +524,95 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdn_modalAdd_txbComentarios;
+        
+        /// <summary>
+        /// hdn_modalEdit_txbFecha1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalEdit_txbFecha1;
+        
+        /// <summary>
+        /// hdn_modalEdit_txbFecha2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalEdit_txbFecha2;
+        
+        /// <summary>
+        /// hdn_modalEdit_ddlProveedores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalEdit_ddlProveedores;
+        
+        /// <summary>
+        /// hdn_modalEdit_ddlClientes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalEdit_ddlClientes;
+        
+        /// <summary>
+        /// hdn_modalEdit_ddlCargadores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalEdit_ddlCargadores;
+        
+        /// <summary>
+        /// hdn_modalEdit_txbLugarCarga control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalEdit_txbLugarCarga;
+        
+        /// <summary>
+        /// hdn_modalEdit_ddlFleteros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalEdit_ddlFleteros;
+        
+        /// <summary>
+        /// hdn_modalEdit_ddlCamiones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalEdit_ddlCamiones;
+        
+        /// <summary>
+        /// hdn_modalEdit_ddlChoferes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalEdit_ddlChoferes;
+        
+        /// <summary>
+        /// hdn_modalEdit_txbComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalEdit_txbComentarios;
     }
 }

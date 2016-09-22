@@ -135,7 +135,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     ddl.DataTextField = "Tipo";
                     ddl.DataValueField = "Lena_tipo_ID";
                     ddl.DataBind();
-                    ddl.Items.Insert(0, new ListItem("Elegir"));
+                    ddl.Items.Insert(0, new ListItem("Elegir", "0"));
                 }
             }
 

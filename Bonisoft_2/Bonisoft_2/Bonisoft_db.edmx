@@ -133,9 +133,12 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
             <PropertyRef Name="Mercaderia_ID" />
           </Key>
           <Property Name="Mercaderia_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Viaje_ID" Type="int" Nullable="false" />
           <Property Name="Variedad_ID" Type="int" Nullable="false" />
           <Property Name="Procesador_ID" Type="int" Nullable="false" />
           <Property Name="Fecha_corte" Type="date" Nullable="false" />
+          <Property Name="Precio_xTonelada_compra" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Precio_xTonelada_venta" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="pesada">
@@ -462,6 +465,9 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Fecha_corte" Type="DateTime" Nullable="false" />
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Procesador_ID" Type="Int32" Nullable="false" />
+          <Property Name="Precio_xTonelada_compra" Type="Decimal" Nullable="false" />
+          <Property Name="Precio_xTonelada_venta" Type="Decimal" Nullable="false" />
+          <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="cliente">
           <Key>
@@ -727,6 +733,9 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySetMapping Name="mercaderia_comprada">
             <EntityTypeMapping TypeName="bonisoft_dbModel.mercaderia_comprada">
               <MappingFragment StoreEntitySet="mercaderia_comprada">
+                <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+                <ScalarProperty Name="Precio_xTonelada_venta" ColumnName="Precio_xTonelada_venta" />
+                <ScalarProperty Name="Precio_xTonelada_compra" ColumnName="Precio_xTonelada_compra" />
                 <ScalarProperty Name="Procesador_ID" ColumnName="Procesador_ID" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
                 <ScalarProperty Name="Fecha_corte" ColumnName="Fecha_corte" />

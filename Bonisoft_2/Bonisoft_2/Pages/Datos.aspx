@@ -13,8 +13,8 @@
     <!-- STYLES EXTENSION -->
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="/assets/dist/css/InfoBoxes.min.css">
-    <link rel="stylesheet" href="/assets/dist/css/Datos.css">
+    <link rel="stylesheet" href="/assets/dist/css/pages/InfoBoxes.min.css">
+    <link rel="stylesheet" href="/assets/dist/css/pages/Datos.css">
 
     <!-- AdminLTE Skins. Choose a skin from the css/skins
      folder instead of downloading all of them to reduce the load. -->
