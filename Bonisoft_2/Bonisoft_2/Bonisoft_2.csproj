@@ -250,11 +250,11 @@
     <Content Include="assets\bootstrap\js\bootstrap.js" />
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="assets\bootstrap\js\npm.js" />
-    <Content Include="assets\dist\css\Datos.css" />
+    <Content Include="assets\dist\css\pages\Datos.css" />
     <Content Include="assets\dist\css\font-awesome.css" />
-    <Content Include="assets\dist\css\InfoBoxes.min.css" />
+    <Content Include="assets\dist\css\pages\InfoBoxes.min.css" />
     <Content Include="assets\dist\css\jquery-ui.css" />
-    <Content Include="assets\dist\css\Login.css" />
+    <Content Include="assets\dist\css\pages\Login.css" />
     <Content Include="assets\dist\css\skins\skin-black-light.css" />
     <Content Include="assets\dist\css\skins\skin-black-light.min.css" />
     <Content Include="assets\dist\css\skins\skin-black.css" />
@@ -281,7 +281,7 @@
     <Content Include="assets\dist\css\skins\skin-yellow.min.css" />
     <Content Include="assets\dist\css\skins\_all-skins.css" />
     <Content Include="assets\dist\css\skins\_all-skins.min.css" />
-    <Content Include="assets\dist\css\Viajes.css" />
+    <Content Include="assets\dist\css\pages\Viajes.css" />
     <Content Include="assets\dist\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\dist\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\dist\img\avatar.png" />
@@ -325,7 +325,7 @@
     <Content Include="assets\dist\js\pages\Datos_configuracion.js" />
     <Content Include="assets\dist\js\pages\Detalles.js" />
     <Content Include="assets\dist\js\pages\Listados.js" />
-    <Content Include="Pages\Listados.aspx" />
+    <Content Include="ExternalResources\Alert_Messages.js" />
     <Content Include="assets\dist\js\pages\login.js" />
     <Content Include="assets\dist\js\pages\Viajes.js" />
     <Content Include="assets\plugins\bootstrap-slider\bootstrap-slider.js" />
@@ -1174,6 +1174,7 @@
     <Content Include="Pages\Contabilidad.aspx" />
     <Content Include="Pages\Datos_configuracion.aspx" />
     <Content Include="Pages\Detalles.aspx" />
+    <Content Include="Pages\Listados.aspx" />
     <Content Include="Pages\Recordatorios.aspx" />
     <Content Include="Pages\Registros.aspx" />
     <Content Include="Pages\Viajes.aspx" />
@@ -1184,6 +1185,7 @@
     <Content Include="User_Controls\Configuracion\Variedad.ascx" />
     <Content Include="User_Controls\Dinamicos\Mercaderias.ascx" />
     <Content Include="User_Controls\Configuracion\Tipo_lena.ascx" />
+    <Content Include="User_Controls\Dinamicos\ViajeMercaderia.ascx" />
     <Content Include="User_Controls\Estaticos\Camiones.ascx" />
     <Content Include="Pages\Datos.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
@@ -1377,13 +1379,6 @@
     <Compile Include="cargador.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Listados.aspx.cs">
-      <DependentUpon>Listados.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Listados.aspx.designer.cs">
-      <DependentUpon>Listados.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Bonisoft_db.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1488,6 +1483,10 @@
     <Compile Include="Pages\Detalles.aspx.designer.cs">
       <DependentUpon>Detalles.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Listados.aspx.cs">
+      <DependentUpon>Listados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Pages\Recordatorios.aspx.cs">
       <DependentUpon>Recordatorios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1556,6 +1555,13 @@
     </Compile>
     <Compile Include="User_Controls\Configuracion\Tipo_lena.ascx.designer.cs">
       <DependentUpon>Tipo_lena.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\Dinamicos\ViajeMercaderia.ascx.cs">
+      <DependentUpon>ViajeMercaderia.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User_Controls\Dinamicos\ViajeMercaderia.ascx.designer.cs">
+      <DependentUpon>ViajeMercaderia.ascx</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\Estaticos\Camiones.ascx.cs">
       <DependentUpon>Camiones.ascx</DependentUpon>
