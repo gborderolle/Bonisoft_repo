@@ -341,23 +341,23 @@
 
                         <!-- Add Record Modal Starts here-->
                         <div id="notificacionesModal" tabindex="-1" role="dialog" aria-labelledby="notificacionesModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
-                            <asp:HiddenField ClientIDMode="Static" ID="hdnNotificaciones_viajeID" runat="server" />
+                            <asp:HiddenField ClientIDMode="Static" ID="hdnNotificaciones_viajeID" runat="server" EnableViewState="true" />
 
 
                             <div class="modal-header">
+                            <div class="row">
                                 <div class="col-md-10 pull-left">
                                     <h3 id="notificacionesModalLabel">Notificaciones</h3>
                                 </div>
 
-                                <div class="col-md-2 pull-right">
-                                    <%--<a href="" class="btn btn-info">Viaje en destino</a>--%>
-                                    <asp:LinkButton ID="lnkViajeDestino" runat="server" Text="Viaje en destino" CommandName="Edit" ToolTip="Viaje en destino"
-                                        CommandArgument='' OnClick="lnkViajeDestino_Click"><span aria-hidden="true" ></span></asp:LinkButton>
+                                <div class="col-md-2 pull-right" style="padding-top: 10px;">
+                                    <asp:LinkButton ID="lnkViajeDestino" runat="server" Text="Viaje en destino" ToolTip="Viaje en destino"
+                                        CssClass="btn btn-info" OnClick="lnkViajeDestino_Click" >Viaje en destino</asp:LinkButton>
                                 </div>
+                            </div>
 
                             </div>
                                 
-                            <hr />
                             <h4>Asignar mercaderías</h4>
 
                             <div class="divTables" id="divMercaderias" style="display: block;">

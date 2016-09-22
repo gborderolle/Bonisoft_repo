@@ -1154,11 +1154,6 @@ namespace Bonisoft_2.Pages
             lblMessage.Text = string.Empty;
         }
 
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public void BindGrid_EnCurso()
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -1225,6 +1220,10 @@ namespace Bonisoft_2.Pages
                     {
                         hdnNotificaciones_viajeID.Value = viaje_ID.ToString();
 
+                        gridViajesEnCurso.DataSource = elements;
+                        gridViajesEnCurso.DataBind();
+
+
                         System.Text.StringBuilder sb = new System.Text.StringBuilder();
                         sb.Append(@"<script type='text/javascript'>");
                         sb.Append("$('#notificacionesModal').modal('show');");
@@ -1272,18 +1271,6 @@ namespace Bonisoft_2.Pages
             }
         }
 
-        private void executeUpdate(int viaje_ID, string comentarios)
-        {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-            {
-                var element = context.viajes.SingleOrDefault(v => v.Viaje_ID == viaje_ID);
-                if (element != null)
-                {
-                    element.Comentarios = comentarios;
-                }
-            }
-        }
-
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
@@ -1292,28 +1279,6 @@ namespace Bonisoft_2.Pages
             sb.Append(@"</script>");
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AddShowModalScript", sb.ToString(), false);
 
-        }
-
-        private void executeAdd(string comentarios)
-        {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-            {
-                viaje new_viaje = new viaje();
-                new_viaje.Comentarios = comentarios;
-                var element = context.viajes.Add(new_viaje);
-            }
-        }
-
-        private void executeDelete(string viaje_ID)
-        {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-            {
-                var element = context.viajes.SingleOrDefault(v => v.Viaje_ID == int.Parse(viaje_ID));
-                if (element != null)
-                {
-                    context.viajes.Remove(element);
-                }
-            }
         }
 
         protected void gridViajesEnCurso_RowDataBound(object sender, GridViewRowEventArgs e)

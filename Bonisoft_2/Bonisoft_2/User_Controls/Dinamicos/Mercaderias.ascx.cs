@@ -49,7 +49,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     //set No Results found to the new added cell
                     gridMercaderias.Rows[0].Cells[0].Text = "No hay registros";
                 }
-                ScriptManager.RegisterStartupScript(this, typeof(Page), "updateCounts", "updateCounts();", true);
+                //ScriptManager.RegisterStartupScript(this, typeof(Page), "updateCounts", "updateCounts();", true);
             }
         }
 

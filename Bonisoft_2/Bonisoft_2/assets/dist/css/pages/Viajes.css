@@ -11,6 +11,10 @@
     border-color: darkred;
 }
 
+.ui-widget-content a{
+    color: whitesmoke;
+}
+
 #myTabs a {
     /*font-size: medium;*/
     color: whitesmoke;
