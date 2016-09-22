@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Viajes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Viajes.aspx.cs" Inherits="Bonisoft_2.Pages.Viajes" EnableEventValidation="false" %>
+
 <%@ Register Src="~/User_Controls/Dinamicos/Mercaderias.ascx" TagPrefix="uc1" TagName="Mercaderias" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
@@ -37,16 +38,18 @@
                     <li><a href="#tabsViajes_1">Viajes en Curso</a></li>
                     <li><a href="#tabsViajes_2">Histórico</a></li>
                 </ul>
+
+                <!-- Tab Viajes En Curso BEGIN -->
                 <div id="tabsViajes_1">
 
 
-
-
-
                     <div style="text-align: center">
-                        <!-- Placing GridView in UpdatePanel-->
+
                         <asp:UpdatePanel ID="upCrudGrid" runat="server">
                             <ContentTemplate>
+
+                                <asp:HiddenField ClientIDMode="Static" ID="hdnNotificaciones_viajeID" runat="server" EnableViewState="true" />
+
                                 <div class="row" style="margin-bottom: 10px;">
                                     <div class="col-md-2 pull-left">
                                         <a href="#addModal" rel="modal:open" class="btn btn-info pull-left">Iniciar viaje</a>
@@ -65,6 +68,7 @@
                                         </form>
                                     </div>
                                 </div>
+
                                 <asp:GridView ID="gridViajesEnCurso" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
                                     OnRowCommand="gridViajesEnCurso_RowCommand" AutoGenerateColumns="false" AllowPaging="true"
                                     DataKeyNames="Viaje_ID" CssClass="table table-hover table-striped"
@@ -105,7 +109,8 @@
                                 <%--<asp:AsyncPostBackTrigger ControlID="btnBorrar" EventName="Click" />--%>
                             </Triggers>
                         </asp:UpdatePanel>
-                        <!-- Detail Modal Starts here-->
+
+                        <!-- Modal Detalles BEGIN -->
                         <div id="detailModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -131,9 +136,9 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Detail Modal Ends here -->
+                        <!-- Modal Detalles END -->
 
-                        <!-- Add Record Modal Starts here-->
+                        <!-- Modal Iniciar viaje BEGIN -->
                         <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
 
                             <div class="modal-header">
@@ -202,8 +207,9 @@
                                 </Triggers>
                             </asp:UpdatePanel>
                         </div>
+                        <!-- Modal Iniciar viaje END -->
 
-
+                        <!-- Modal Editar BEGIN -->
                         <div id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
 
                             <div class="modal-header">
@@ -270,9 +276,9 @@
                                 </Triggers>
                             </asp:UpdatePanel>
                         </div>
+                        <!-- Modal Editar END -->
 
-
-                        <!-- Add Record Modal Starts here-->
+                        <!-- Modal Inspeccionar BEGIN -->
                         <div id="inspectModal" tabindex="-1" role="dialog" aria-labelledby="inspectModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
 
                             <div class="modal-header">
@@ -335,29 +341,26 @@
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
-                        <!-- Modal END-->
+                        <!-- Modal Inspeccionar END -->
 
-
-
-                        <!-- Add Record Modal Starts here-->
+                        <!-- Modal Notificaciones BEGIN -->
                         <div id="notificacionesModal" tabindex="-1" role="dialog" aria-labelledby="notificacionesModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
-                            <asp:HiddenField ClientIDMode="Static" ID="hdnNotificaciones_viajeID" runat="server" EnableViewState="true" />
 
 
                             <div class="modal-header">
-                            <div class="row">
-                                <div class="col-md-10 pull-left">
-                                    <h3 id="notificacionesModalLabel">Notificaciones</h3>
+                                <div class="row">
+                                    <div class="col-md-10 pull-left">
+                                        <h3 id="notificacionesModalLabel">Notificaciones</h3>
+                                    </div>
+
+                                    <div class="col-md-2 pull-right" style="padding-top: 10px;">
+                                        <asp:LinkButton ID="lnkViajeDestino" runat="server" Text="Viaje en destino" ToolTip="Viaje en destino"
+                                            CssClass="btn btn-info" OnClick="lnkViajeDestino_Click">Viaje en destino</asp:LinkButton>
+                                    </div>
                                 </div>
 
-                                <div class="col-md-2 pull-right" style="padding-top: 10px;">
-                                    <asp:LinkButton ID="lnkViajeDestino" runat="server" Text="Viaje en destino" ToolTip="Viaje en destino"
-                                        CssClass="btn btn-info" OnClick="lnkViajeDestino_Click" >Viaje en destino</asp:LinkButton>
-                                </div>
                             </div>
 
-                            </div>
-                                
                             <h4>Asignar mercaderías</h4>
 
                             <div class="divTables" id="divMercaderias" style="display: block;">
@@ -374,18 +377,19 @@
                             <h4>Asignar pesada destino</h4>
 
 
-                                
 
-                       
+
+
+
+                        </div>
+                        <!-- Modal Notificaciones END -->
 
                     </div>
-                        <!-- Modal END-->
-
-
-
-
 
                 </div>
+                <!-- Tab Viajes En Curso END -->
+
+                <!-- Tab Viajes Histórico BEGIN -->
                 <div id="tabsViajes_2">
 
 
@@ -693,23 +697,15 @@
 
 
                 </div>
-
-
-
-                <!--  -->
-
-
-
-
-
+                <!-- Tab Viajes Histórico END -->
 
             </div>
         </div>
     </div>
 
-        <div id="dialog" title="Mensaje Bonisoft">
-            <p style="text-align: left;"></p>
-        </div>
+    <div id="dialog" title="Mensaje Bonisoft">
+        <p style="text-align: left;"></p>
+    </div>
 
     <asp:HiddenField ID="hdn_editViajeEnCurso" runat="server" ClientIDMode="Static" />
 
@@ -736,6 +732,5 @@
     <asp:HiddenField ID="hdn_modalEdit_ddlCamiones" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalEdit_ddlChoferes" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalEdit_txbComentarios" runat="server" ClientIDMode="Static" />
-
 
 </asp:Content>

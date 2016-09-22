@@ -13,6 +13,10 @@ namespace Bonisoft_2.Pages
     {
         // http://www.programming-free.com/2013/09/gridview-crud-bootstrap-modal-popup.html
 
+        private string modalNotificaciones_client_ID;
+        protected string ModalNotificaciones_client_ID { get { return modalNotificaciones_client_ID; } }
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -1219,6 +1223,7 @@ namespace Bonisoft_2.Pages
                     if (elements.Count > 0)
                     {
                         hdnNotificaciones_viajeID.Value = viaje_ID.ToString();
+                        //modalNotificaciones_client_ID = viaje_ID.ToString();
 
                         gridViajesEnCurso.DataSource = elements;
                         gridViajesEnCurso.DataBind();
@@ -1226,6 +1231,7 @@ namespace Bonisoft_2.Pages
 
                         System.Text.StringBuilder sb = new System.Text.StringBuilder();
                         sb.Append(@"<script type='text/javascript'>");
+                        //sb.Append("$('#notificacionesModal').modal('show'); $('#hdnNotificaciones_viajeID').val('"+ viaje_ID.ToString() + "')");
                         sb.Append("$('#notificacionesModal').modal('show');");
                         sb.Append(@"</script>");
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "NotificarModalScript", sb.ToString(), false);
@@ -1542,6 +1548,11 @@ namespace Bonisoft_2.Pages
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 int viaje_ID = 0;
+                //if (!int.TryParse(modalNotificaciones_client_ID, out viaje_ID))
+                //{
+                //    viaje_ID = 0;
+                //}
+
                 if (!int.TryParse(hdnNotificaciones_viajeID.Value, out viaje_ID))
                 {
                     viaje_ID = 0;

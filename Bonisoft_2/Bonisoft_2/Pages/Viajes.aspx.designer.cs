@@ -22,6 +22,15 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.UpdatePanel upCrudGrid;
         
         /// <summary>
+        /// hdnNotificaciones_viajeID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnNotificaciones_viajeID;
+        
+        /// <summary>
         /// gridViajesEnCurso control.
         /// </summary>
         /// <remarks>
@@ -362,15 +371,6 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label modalInspect_lblComentarios;
-        
-        /// <summary>
-        /// hdnNotificaciones_viajeID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnNotificaciones_viajeID;
         
         /// <summary>
         /// lnkViajeDestino control.
