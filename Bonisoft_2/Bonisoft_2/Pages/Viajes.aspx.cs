@@ -1229,6 +1229,29 @@ namespace Bonisoft_2.Pages
                         sb.Append("$('#notificacionesModal').modal('show');");
                         sb.Append(@"</script>");
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "NotificarModalScript", sb.ToString(), false);
+
+
+                        /*
+                         
+                    int index = Convert.ToInt32(e.CommandArgument);
+            if (e.CommandName.Equals("detail"))
+            {
+                int viaje_ID = int.Parse(GridView1.DataKeys[index].Value.ToString());
+                IEnumerable<DataRow> query = from i in dt.AsEnumerable()
+                                             where i.Field<int>("Viaje_ID").Equals(viaje_ID)
+                                             select i;
+                DataTable detailTable = query.CopyToDataTable<DataRow>();
+                DetailsView1.DataSource = detailTable;
+                DetailsView1.DataBind();
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                sb.Append(@"<script type='text/javascript'>");
+                sb.Append("$('#detailModal').modal('show');");
+                sb.Append(@"</script>");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DetailModalScript", sb.ToString(), false);
+            }
+                          
+                         * */
+
                     }
                 }
                 else if (e.CommandName.Equals("editViajeEnCurso"))
