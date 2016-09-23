@@ -24,6 +24,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <p>Hola 1 
+        <br>Hola 2 
+        Hola 3</p>
+
     <div class="box box-default">
         <div class="box-header with-border" style="padding-bottom: 0;">
 
@@ -48,7 +52,8 @@
                         <asp:UpdatePanel ID="upCrudGrid" runat="server">
                             <ContentTemplate>
 
-                                <asp:HiddenField ClientIDMode="Static" ID="hdnNotificaciones_viajeID" runat="server" EnableViewState="true" />
+                                <asp:HiddenField ID="hdn_notificaciones_viajeID" runat="server" ClientIDMode="Static" />
+                                <asp:HiddenField ID="hdn_editViaje_viajeID" runat="server" ClientIDMode="Static" />
 
                                 <div class="row" style="margin-bottom: 10px;">
                                     <div class="col-md-2 pull-left">
@@ -96,8 +101,11 @@
                                         </asp:ButtonField>--%>
                                         <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="btnModificar" runat="server" CommandName="editViajeEnCurso" ToolTip="Modificar"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></asp:LinkButton>
-                                                <asp:LinkButton ID="btnBorrar" runat="server" CommandName="deleteViajeEnCurso" ToolTip="Borrar" OnClientClick="return confirm('¿Está seguro?');" ClientIDMode="AutoID"><span aria-hidden="true" class="glyphicon glyphicon-remove"></asp:LinkButton>
+                                                <asp:LinkButton ID="btnModificar" runat="server" CommandName="editViajeEnCurso" ToolTip="Modificar">
+                                                    <span aria-hidden="true" class="glyphicon glyphicon-pencil"></asp:LinkButton>
+                                                <asp:LinkButton ID="btnBorrar" runat="server" CommandName="deleteViajeEnCurso" ToolTip="Borrar" 
+                                                    OnClientClick="return confirm('¿Está seguro que desea borrar este registro?');">
+                                                    <span aria-hidden="true" class="glyphicon glyphicon-remove"></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
@@ -109,34 +117,6 @@
                                 <%--<asp:AsyncPostBackTrigger ControlID="btnBorrar" EventName="Click" />--%>
                             </Triggers>
                         </asp:UpdatePanel>
-
-                        <!-- Modal Detalles BEGIN -->
-                        <div id="detailModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 id="myModalLabel">Detailed View</h3>
-                            </div>
-                            <div class="modal-body">
-                                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DetailsView ID="DetailsView1" runat="server" CssClass="table table-bordered table-hover" BackColor="White" ForeColor="Black" FieldHeaderStyle-Wrap="false" FieldHeaderStyle-Font-Bold="true" FieldHeaderStyle-BackColor="LavenderBlush" FieldHeaderStyle-ForeColor="Black" BorderStyle="Groove" AutoGenerateRows="False">
-                                            <Fields>
-                                                <asp:BoundField DataField="Viaje_ID" HeaderText="Viaje_ID" />
-                                                <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
-                                            </Fields>
-                                        </asp:DetailsView>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="gridViajesEnCurso" EventName="RowCommand" />
-                                        <%--<asp:AsyncPostBackTrigger ControlID="btnAdd" EventName="Click" />--%>
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                                <div class="modal-footer">
-                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Modal Detalles END -->
 
                         <!-- Modal Iniciar viaje BEGIN -->
                         <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
@@ -267,7 +247,7 @@
                                         </table>
                                     </div>
                                     <div class="modal-footer">
-                                        <asp:Button ID="btnEdit" runat="server" Text="Notificar" CssClass="btn btn-info" OnClientClick="Javascript:DoCustomPost();" OnClick="btnEdit_Click" UseSubmitBehavior="false" />
+                                        <asp:Button ID="btnEdit" runat="server" Text="Modificar" CssClass="btn btn-info" OnClientClick="Javascript:DoCustomPost();" OnClick="btnEdit_Click" UseSubmitBehavior="false" />
                                         <button class="btn btn-info" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cancelar</button>
                                     </div>
                                 </ContentTemplate>
@@ -456,22 +436,22 @@
                                                 <asp:TemplateField HeaderText="">
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" ToolTip="Modificar"
-                                                            CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
+                                                            CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
                                                         <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete"
                                                             ToolTip="Borrar" OnClientClick='return confirm("Está seguro que desea borrar este registro?");'
-                                                            CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></asp:LinkButton>
+                                                            CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></asp:LinkButton>
                                                     </ItemTemplate>
                                                     <EditItemTemplate>
                                                         <asp:LinkButton ID="lnkInsert" runat="server" Text="" CommandName="Update" ToolTip="Guardar"
-                                                            CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-floppy-disk"></span></asp:LinkButton>
+                                                            CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-floppy-disk"></span></asp:LinkButton>
                                                         <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="Cancel" ToolTip="Cancelar"
-                                                            CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
+                                                            CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
                                                     </EditItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:LinkButton ID="lnkInsert" runat="server" Text="" ValidationGroup="newGrp" CommandName="InsertNew" ToolTip="Agregar"
-                                                            CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-plus"></span></asp:LinkButton>
+                                                            CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-plus"></span></asp:LinkButton>
                                                         <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew" ToolTip="Cancelar"
-                                                            CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
+                                                            CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
                                                     </FooterTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Fecha partida">
@@ -706,8 +686,6 @@
     <div id="dialog" title="Mensaje Bonisoft">
         <p style="text-align: left;"></p>
     </div>
-
-    <asp:HiddenField ID="hdn_editViajeEnCurso" runat="server" ClientIDMode="Static" />
 
     <!-- Add Hdn Fields -->
     <asp:HiddenField ID="hdn_modalAdd_txbFecha1" runat="server" ClientIDMode="Static" />

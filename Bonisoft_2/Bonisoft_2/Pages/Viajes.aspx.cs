@@ -13,10 +13,6 @@ namespace Bonisoft_2.Pages
     {
         // http://www.programming-free.com/2013/09/gridview-crud-bootstrap-modal-popup.html
 
-        private string modalNotificaciones_client_ID;
-        protected string ModalNotificaciones_client_ID { get { return modalNotificaciones_client_ID; } }
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -248,7 +244,7 @@ namespace Bonisoft_2.Pages
                 var elements = context.viajes.Where(e => e.EnViaje == false).ToList();
                 if (elements.Count() > 0)
                 {
-                    gridViajes.DataSource = context.viajes.ToList();
+                    gridViajes.DataSource = elements;
                     gridViajes.DataBind();
                 }
                 else
@@ -1165,7 +1161,7 @@ namespace Bonisoft_2.Pages
                 var elements = context.viajes.Where(e => e.EnViaje == true).ToList();
                 if (elements.Count() > 0)
                 {
-                    gridViajesEnCurso.DataSource = context.viajes.ToList();
+                    gridViajesEnCurso.DataSource = elements;
                     gridViajesEnCurso.DataBind();
                 }
                 else
@@ -1198,32 +1194,16 @@ namespace Bonisoft_2.Pages
         {
             int index = Convert.ToInt32(e.CommandArgument);
             int viaje_ID = int.Parse(gridViajesEnCurso.DataKeys[index].Value.ToString());
-            hdn_editViajeEnCurso.Value = viaje_ID.ToString();
+            hdn_editViaje_viajeID.Value = viaje_ID.ToString();
 
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                if (e.CommandName.Equals("detail"))
+                if (e.CommandName.Equals("notificar"))
                 {
                     var elements = context.viajes.Where(v => v.Viaje_ID == viaje_ID).ToList();
                     if (elements.Count > 0)
                     {
-                        gridViajesEnCurso.DataSource = elements;
-                        gridViajesEnCurso.DataBind();
-
-                        System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                        sb.Append(@"<script type='text/javascript'>");
-                        sb.Append("$('#detailModal').modal('show');");
-                        sb.Append(@"</script>");
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "DetailModalScript", sb.ToString(), false);
-                    }
-                }
-                else if (e.CommandName.Equals("notificar"))
-                {
-                    var elements = context.viajes.Where(v => v.Viaje_ID == viaje_ID).ToList();
-                    if (elements.Count > 0)
-                    {
-                        hdnNotificaciones_viajeID.Value = viaje_ID.ToString();
-                        //modalNotificaciones_client_ID = viaje_ID.ToString();
+                        hdn_notificaciones_viajeID.Value = viaje_ID.ToString();
 
                         gridViajesEnCurso.DataSource = elements;
                         gridViajesEnCurso.DataBind();
@@ -1231,33 +1211,9 @@ namespace Bonisoft_2.Pages
 
                         System.Text.StringBuilder sb = new System.Text.StringBuilder();
                         sb.Append(@"<script type='text/javascript'>");
-                        //sb.Append("$('#notificacionesModal').modal('show'); $('#hdnNotificaciones_viajeID').val('"+ viaje_ID.ToString() + "')");
                         sb.Append("$('#notificacionesModal').modal('show');");
                         sb.Append(@"</script>");
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "NotificarModalScript", sb.ToString(), false);
-
-
-                        /*
-                         
-                    int index = Convert.ToInt32(e.CommandArgument);
-            if (e.CommandName.Equals("detail"))
-            {
-                int viaje_ID = int.Parse(GridView1.DataKeys[index].Value.ToString());
-                IEnumerable<DataRow> query = from i in dt.AsEnumerable()
-                                             where i.Field<int>("Viaje_ID").Equals(viaje_ID)
-                                             select i;
-                DataTable detailTable = query.CopyToDataTable<DataRow>();
-                DetailsView1.DataSource = detailTable;
-                DetailsView1.DataBind();
-                System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                sb.Append(@"<script type='text/javascript'>");
-                sb.Append("$('#detailModal').modal('show');");
-                sb.Append(@"</script>");
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DetailModalScript", sb.ToString(), false);
-            }
-                          
-                         * */
-
                     }
                 }
                 else if (e.CommandName.Equals("editViajeEnCurso"))
@@ -1432,7 +1388,7 @@ namespace Bonisoft_2.Pages
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                string value = hdn_editViajeEnCurso.Value;
+                string value = hdn_editViaje_viajeID.Value;
                 if (!string.IsNullOrWhiteSpace(value))
                 {
                     int viaje_ID = 0;
@@ -1548,12 +1504,7 @@ namespace Bonisoft_2.Pages
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 int viaje_ID = 0;
-                //if (!int.TryParse(modalNotificaciones_client_ID, out viaje_ID))
-                //{
-                //    viaje_ID = 0;
-                //}
-
-                if (!int.TryParse(hdnNotificaciones_viajeID.Value, out viaje_ID))
+                if (!int.TryParse(hdn_notificaciones_viajeID.Value, out viaje_ID))
                 {
                     viaje_ID = 0;
                 }

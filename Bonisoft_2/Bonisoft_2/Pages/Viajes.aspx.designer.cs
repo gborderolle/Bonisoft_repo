@@ -22,13 +22,22 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.UpdatePanel upCrudGrid;
         
         /// <summary>
-        /// hdnNotificaciones_viajeID control.
+        /// hdn_notificaciones_viajeID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnNotificaciones_viajeID;
+        protected global::System.Web.UI.WebControls.HiddenField hdn_notificaciones_viajeID;
+        
+        /// <summary>
+        /// hdn_editViaje_viajeID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_editViaje_viajeID;
         
         /// <summary>
         /// gridViajesEnCurso control.
@@ -38,24 +47,6 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridViajesEnCurso;
-        
-        /// <summary>
-        /// UpdatePanel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
-        /// <summary>
-        /// DetailsView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView DetailsView1;
         
         /// <summary>
         /// upAdd control.
@@ -425,15 +416,6 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnViajesCount;
-        
-        /// <summary>
-        /// hdn_editViajeEnCurso control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn_editViajeEnCurso;
         
         /// <summary>
         /// hdn_modalAdd_txbFecha1 control.
