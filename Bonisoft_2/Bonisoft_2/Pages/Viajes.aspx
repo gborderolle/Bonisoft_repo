@@ -50,6 +50,8 @@
 
                                 <asp:HiddenField ID="hdn_notificaciones_viajeID" runat="server" ClientIDMode="Static" />
                                 <asp:HiddenField ID="hdn_editViaje_viajeID" runat="server" ClientIDMode="Static" />
+                                <asp:HiddenField ID="hdn_notificacionesPesadaOrigenID" runat="server" ClientIDMode="Static" />
+                                <asp:HiddenField ID="hdn_notificacionesPesadaDestinoID" runat="server" ClientIDMode="Static" />
 
                                 <div class="row" style="margin-bottom: 10px;">
                                     <div class="col-md-2 pull-left">
@@ -86,20 +88,11 @@
                                             <ControlStyle CssClass="btn btn-info btn-xs fa fa-bullhorn"></ControlStyle>
                                         </asp:ButtonField>
 
-                                        <%-- 
-                                        <asp:ButtonField CommandName="editRecord" ControlStyle-CssClass="btn btn-info"
-                                            ButtonType="Link" Text="" HeaderText="Modificar">
-                                            <ControlStyle CssClass="btn btn-info btn-xs glyphicon glyphicon-pencil"></ControlStyle>
-                                        </asp:ButtonField>
-                                        <asp:ButtonField CommandName="deleteRecord" ControlStyle-CssClass="btn btn-info"
-                                            ButtonType="Link" Text="" HeaderText="Borrar">
-                                            <ControlStyle CssClass="btn btn-info btn-xs glyphicon glyphicon-remove"></ControlStyle>
-                                        </asp:ButtonField>--%>
                                         <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btnModificar" runat="server" CommandName="editViajeEnCurso" ToolTip="Modificar">
                                                     <span aria-hidden="true" class="glyphicon glyphicon-pencil"></asp:LinkButton>
-                                                <asp:LinkButton ID="btnBorrar" runat="server" CommandName="deleteViajeEnCurso" ToolTip="Borrar" 
+                                                <asp:LinkButton ID="btnBorrar" runat="server" CommandName="deleteViajeEnCurso" ToolTip="Borrar"
                                                     OnClientClick="return confirm('¿Está seguro que desea borrar este registro?');">
                                                     <span aria-hidden="true" class="glyphicon glyphicon-remove"></asp:LinkButton>
                                             </ItemTemplate>
@@ -107,11 +100,6 @@
                                     </Columns>
                                 </asp:GridView>
                             </ContentTemplate>
-                            <Triggers>
-                                <%--<asp:AsyncPostBackTrigger ControlID="gridViajesEnCurso" EventName="RowCommand" />
-                                <%--<asp:AsyncPostBackTrigger ControlID="btnModificar" EventName="Click" />--%>
-                                <%--<asp:AsyncPostBackTrigger ControlID="btnBorrar" EventName="Click" />--%>
-                            </Triggers>
                         </asp:UpdatePanel>
 
                         <!-- Modal Iniciar viaje BEGIN -->
@@ -320,8 +308,8 @@
                         <!-- Modal Inspeccionar END -->
 
                         <!-- Modal Notificaciones BEGIN -->
-                        <div id="notificacionesModal" tabindex="-1" role="dialog" aria-labelledby="notificacionesModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
-
+                        <div id="notificacionesModal" tabindex="-1" role="dialog" aria-labelledby="notificacionesModalLabel"
+                            aria-hidden="true" style="display: none; max-width: 1000px; overflow: hidden;">
 
                             <div class="modal-header">
                                 <div class="row">
@@ -347,15 +335,87 @@
                                 </asp:UpdatePanel>
                             </div>
 
-                            <hr />
-                            <h4>Asignar pesada origen</h4>
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Pesadas
+                                 
+                                        <div class="pull-right"><a href="#" data-perform="panel-collapse" class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i></a></div>
+                                    </h4>
+                                </div>
+                                <div class="panel-wrapper collapse">
+                                    <div class="panel-body" style="padding-bottom:0;">
 
-                            <h4>Asignar pesada destino</h4>
+                                        <h4>Asignar origen</h4>
+                                        <div class="modal-body" style="padding-bottom: 0; padding-top: 0;">
+                                            <table class="table table-bordered table-hover">
+                                                <tr>
+                                                    <td>Lugar: 
+                                                        <asp:TextBox ID="txb_pesada1Lugar" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                    </td>
+                                                    <td>Fecha: 
+                                                        <asp:TextBox ID="txb_pesada1Fecha" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Peso bruto: 
+                                                        <asp:TextBox ID="txb_pesada1Peso_bruto" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                    </td>
+                                                    <td>Peso neto: 
+                                                        <asp:TextBox ID="txb_pesada1Peso_neto" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nombre balanza: 
+                                                        <asp:TextBox ID="txb_pesada1Nombre" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                    </td>
+                                                    <td>Comentarios: 
+                                                        <asp:TextBox ID="txb_pesada1Comentarios" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <h4>Asignar destino</h4>
+                                        <div class="modal-body" style="padding-bottom: 0; padding-top: 0;">
+                                            <table class="table table-bordered table-hover">
+                                                <tr>
+                                                    <td>Lugar: 
+                                                      <asp:TextBox ID="txb_pesada2Lugar" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                    </td>
+                                                    <td>Fecha: 
+                                                        <asp:TextBox ID="txb_pesada2Fecha" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Peso bruto: 
+                                                         <asp:TextBox ID="txb_pesada2Peso_bruto" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                    </td>
+                                                    <td>Peso neto: 
+                                                       <asp:TextBox ID="txb_pesada2Peso_neto" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nombre balanza: 
+                                                        <asp:TextBox ID="txb_pesada2Nombre" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                    </td>
+                                                    <td>Comentarios: 
+                                                       <asp:TextBox ID="txb_pesada2Comentarios" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <div class="col-md-2 pull-right" style="padding: 10px;">
+                                            <asp:LinkButton ID="lnk_pesada1Guardar" runat="server"
+                                                CssClass="btn btn-info" OnClick="lnk_pesadasGuardar_Click">Guardar</asp:LinkButton>
+                                        </div>
 
 
 
-
-
+                                    </div>
+                                </div>
+                            </div>
+                           
 
                         </div>
                         <!-- Modal Notificaciones END -->
@@ -706,5 +766,21 @@
     <asp:HiddenField ID="hdn_modalEdit_ddlCamiones" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalEdit_ddlChoferes" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalEdit_txbComentarios" runat="server" ClientIDMode="Static" />
+
+    <!-- Notificaciones Hdn Fields - Pesada origen -->
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasOrigen_txbLugar" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasOrigen_txbFecha" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasOrigen_txbPesoBruto" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasOrigen_txbPesoNeto" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasOrigen_txbNombre" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasOrigen_txbComentarios" runat="server" ClientIDMode="Static" />
+
+    <!-- Notificaciones Hdn Fields - Pesada origen -->
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasDestino_txbLugar" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasDestino_txbFecha" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasDestino_txbPesoBruto" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasDestino_txbPesoNeto" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasDestino_txbNombre" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasDestino_txbComentarios" runat="server" ClientIDMode="Static" />
 
 </asp:Content>

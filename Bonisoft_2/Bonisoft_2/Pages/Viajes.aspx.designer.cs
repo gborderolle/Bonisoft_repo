@@ -40,6 +40,24 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.HiddenField hdn_editViaje_viajeID;
         
         /// <summary>
+        /// hdn_notificacionesPesadaOrigenID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_notificacionesPesadaOrigenID;
+        
+        /// <summary>
+        /// hdn_notificacionesPesadaDestinoID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_notificacionesPesadaDestinoID;
+        
+        /// <summary>
         /// gridViajesEnCurso control.
         /// </summary>
         /// <remarks>
@@ -391,6 +409,123 @@ namespace Bonisoft_2.Pages {
         protected global::Bonisoft_2.User_Controls.Configuracion.Mercaderias Mercaderias;
         
         /// <summary>
+        /// txb_pesada1Lugar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txb_pesada1Lugar;
+        
+        /// <summary>
+        /// txb_pesada1Fecha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txb_pesada1Fecha;
+        
+        /// <summary>
+        /// txb_pesada1Peso_bruto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txb_pesada1Peso_bruto;
+        
+        /// <summary>
+        /// txb_pesada1Peso_neto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txb_pesada1Peso_neto;
+        
+        /// <summary>
+        /// txb_pesada1Nombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txb_pesada1Nombre;
+        
+        /// <summary>
+        /// txb_pesada1Comentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txb_pesada1Comentarios;
+        
+        /// <summary>
+        /// txb_pesada2Lugar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txb_pesada2Lugar;
+        
+        /// <summary>
+        /// txb_pesada2Fecha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txb_pesada2Fecha;
+        
+        /// <summary>
+        /// txb_pesada2Peso_bruto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txb_pesada2Peso_bruto;
+        
+        /// <summary>
+        /// txb_pesada2Peso_neto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txb_pesada2Peso_neto;
+        
+        /// <summary>
+        /// txb_pesada2Nombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txb_pesada2Nombre;
+        
+        /// <summary>
+        /// txb_pesada2Comentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txb_pesada2Comentarios;
+        
+        /// <summary>
+        /// lnk_pesada1Guardar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnk_pesada1Guardar;
+        
+        /// <summary>
         /// lblMessage control.
         /// </summary>
         /// <remarks>
@@ -596,5 +731,113 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdn_modalEdit_txbComentarios;
+        
+        /// <summary>
+        /// hdn_modalNotificaciones_pesadasOrigen_txbLugar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalNotificaciones_pesadasOrigen_txbLugar;
+        
+        /// <summary>
+        /// hdn_modalNotificaciones_pesadasOrigen_txbFecha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalNotificaciones_pesadasOrigen_txbFecha;
+        
+        /// <summary>
+        /// hdn_modalNotificaciones_pesadasOrigen_txbPesoBruto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalNotificaciones_pesadasOrigen_txbPesoBruto;
+        
+        /// <summary>
+        /// hdn_modalNotificaciones_pesadasOrigen_txbPesoNeto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalNotificaciones_pesadasOrigen_txbPesoNeto;
+        
+        /// <summary>
+        /// hdn_modalNotificaciones_pesadasOrigen_txbNombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalNotificaciones_pesadasOrigen_txbNombre;
+        
+        /// <summary>
+        /// hdn_modalNotificaciones_pesadasOrigen_txbComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalNotificaciones_pesadasOrigen_txbComentarios;
+        
+        /// <summary>
+        /// hdn_modalNotificaciones_pesadasDestino_txbLugar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalNotificaciones_pesadasDestino_txbLugar;
+        
+        /// <summary>
+        /// hdn_modalNotificaciones_pesadasDestino_txbFecha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalNotificaciones_pesadasDestino_txbFecha;
+        
+        /// <summary>
+        /// hdn_modalNotificaciones_pesadasDestino_txbPesoBruto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalNotificaciones_pesadasDestino_txbPesoBruto;
+        
+        /// <summary>
+        /// hdn_modalNotificaciones_pesadasDestino_txbPesoNeto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalNotificaciones_pesadasDestino_txbPesoNeto;
+        
+        /// <summary>
+        /// hdn_modalNotificaciones_pesadasDestino_txbNombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalNotificaciones_pesadasDestino_txbNombre;
+        
+        /// <summary>
+        /// hdn_modalNotificaciones_pesadasDestino_txbComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalNotificaciones_pesadasDestino_txbComentarios;
     }
 }
