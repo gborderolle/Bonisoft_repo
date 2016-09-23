@@ -237,7 +237,7 @@ namespace Bonisoft_2.Pages
         }
 
 
-        void BindGrid()
+        private void BindGrid()
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
@@ -1200,14 +1200,13 @@ namespace Bonisoft_2.Pages
             {
                 if (e.CommandName.Equals("notificar"))
                 {
-                    var elements = context.viajes.Where(v => v.Viaje_ID == viaje_ID).ToList();
-                    if (elements.Count > 0)
+                    hdn_notificaciones_viajeID.Value = viaje_ID.ToString();
+
+                    HiddenField hdn_notificacionesViajeID = Mercaderias.FindControl("hdn_notificacionesViajeID") as HiddenField;
+                    if (hdn_notificacionesViajeID != null)
                     {
-                        hdn_notificaciones_viajeID.Value = viaje_ID.ToString();
-
-                        gridViajesEnCurso.DataSource = elements;
-                        gridViajesEnCurso.DataBind();
-
+                        hdn_notificacionesViajeID.Value = viaje_ID.ToString();
+                        Mercaderias.BindGrid();
 
                         System.Text.StringBuilder sb = new System.Text.StringBuilder();
                         sb.Append(@"<script type='text/javascript'>");

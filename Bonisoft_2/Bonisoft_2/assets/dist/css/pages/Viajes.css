@@ -11,8 +11,12 @@
     border-color: darkred;
 }
 
-.ui-widget-content a{
+.ui-widget-content .btn{
     color: whitesmoke;
+}
+
+.ui-widget-content a {
+    color: blue;
 }
 
 #myTabs a {

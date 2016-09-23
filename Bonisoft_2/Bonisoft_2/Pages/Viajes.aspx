@@ -24,10 +24,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <p>Hola 1 
-        <br>Hola 2 
-        Hola 3</p>
-
     <div class="box box-default">
         <div class="box-header with-border" style="padding-bottom: 0;">
 
@@ -334,8 +330,8 @@
                                     </div>
 
                                     <div class="col-md-2 pull-right" style="padding-top: 10px;">
-                                        <asp:LinkButton ID="lnkViajeDestino" runat="server" Text="Viaje en destino" ToolTip="Viaje en destino"
-                                            CssClass="btn btn-info" OnClick="lnkViajeDestino_Click">Viaje en destino</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkViajeDestino" runat="server"
+                                            CssClass="btn btn-info" OnClick="lnkViajeDestino_Click">FIN del Viaje</asp:LinkButton>
                                     </div>
                                 </div>
 

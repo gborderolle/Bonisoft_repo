@@ -132,3 +132,4 @@
 
 </asp:GridView>
 <asp:HiddenField ClientIDMode="Static" ID="hdnMercaderiasCount" runat="server" />
+<asp:HiddenField ClientIDMode="Static" ID="hdn_notificacionesViajeID" runat="server" />

@@ -20,7 +20,7 @@ namespace Bonisoft_2.Pages
             lblMessage.Text = "";
         }
 
-        void BindGrid()
+        private void BindGrid()
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {

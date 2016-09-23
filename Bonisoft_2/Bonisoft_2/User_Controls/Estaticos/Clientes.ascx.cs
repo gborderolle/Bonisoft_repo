@@ -23,7 +23,7 @@ namespace Bonisoft_2.User_Controls
             //this.LoadCompleted();
         }
 
-        void BindGrid()
+        private void BindGrid()
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {

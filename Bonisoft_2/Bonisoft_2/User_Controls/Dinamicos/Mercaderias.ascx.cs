@@ -20,17 +20,30 @@ namespace Bonisoft_2.User_Controls.Configuracion
             lblMessage.Text = "";
         }
 
-        void BindGrid()
+        public void BindGrid()
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
+                bool ok = false;             
                 hdnMercaderiasCount.Value = context.mercaderia_comprada.Count().ToString();
-                if (context.mercaderia_comprada.Count() > 0)
+
+                int viaje_ID = 0;
+                if(!int.TryParse(hdn_notificacionesViajeID.Value, out viaje_ID))
                 {
-                    gridMercaderias.DataSource = context.mercaderia_comprada.ToList();
-                    gridMercaderias.DataBind();
+                    viaje_ID = 0;
                 }
-                else
+                if (viaje_ID > 0)
+                {
+                    var elements = context.mercaderia_comprada.Where(e => e.Viaje_ID == viaje_ID).ToList();
+                    if (elements.Count() > 0)
+                    {
+                        gridMercaderias.DataSource = elements;
+                        gridMercaderias.DataBind();
+
+                        ok = true;
+                    }
+                }
+                if(!ok)
                 {
                     var obj = new List<mercaderia_comprada>();
                     obj.Add(new mercaderia_comprada());
