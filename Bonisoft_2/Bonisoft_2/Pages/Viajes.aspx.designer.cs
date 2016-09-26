@@ -391,6 +391,60 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.UpdatePanel upNotificaciones;
         
         /// <summary>
+        /// hdn_modalMercaderia_txbNew4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalMercaderia_txbNew4;
+        
+        /// <summary>
+        /// hdn_modalMercaderia_txbNew5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalMercaderia_txbNew5;
+        
+        /// <summary>
+        /// hdn_modalMercaderia_txbNew6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalMercaderia_txbNew6;
+        
+        /// <summary>
+        /// hdn_modalMercaderia_txbNew7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalMercaderia_txbNew7;
+        
+        /// <summary>
+        /// hdn_modalMercaderia_ddlVariedad2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalMercaderia_ddlVariedad2;
+        
+        /// <summary>
+        /// hdn_modalMercaderia_ddlProcesador2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_modalMercaderia_ddlProcesador2;
+        
+        /// <summary>
         /// lnkViajeDestino control.
         /// </summary>
         /// <remarks>

@@ -197,141 +197,158 @@ namespace Bonisoft_2.User_Controls.Configuracion
             }
         }
 
+
         protected void gridMercaderias_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "InsertNew")
             {
-                string txb4 = hdn_modalMercaderia_txbNew4.Value;
-                string txb5 = hdn_modalMercaderia_txbNew5.Value;
-                string txb6 = hdn_modalMercaderia_txbNew6.Value;
-                string txb7 = hdn_modalMercaderia_txbNew7.Value;
-                string ddlVariedad2 = hdn_modalMercaderia_ddlVariedad2.Value;
-                string ddlProcesador2 = hdn_modalMercaderia_ddlProcesador2.Value;
+                HiddenField hdn_modalMercaderia_txbNew4 = this.Page.FindControl("hdn_modalMercaderia_txbNew4") as HiddenField;
+                HiddenField hdn_modalMercaderia_txbNew5 = this.Page.FindControl("hdn_modalMercaderia_txbNew5") as HiddenField;
+                HiddenField hdn_modalMercaderia_txbNew6 = this.Page.FindControl("hdn_modalMercaderia_txbNew6") as HiddenField;
+                HiddenField hdn_modalMercaderia_txbNew7 = this.Page.FindControl("hdn_modalMercaderia_txbNew7") as HiddenField;
+                HiddenField hdn_modalMercaderia_ddlVariedad2 = this.Page.FindControl("hdn_modalMercaderia_ddlVariedad2") as HiddenField;
+                HiddenField hdn_modalMercaderia_ddlProcesador2 = this.Page.FindControl("hdn_modalMercaderia_ddlProcesador2") as HiddenField;
 
-                /*
-                //GridViewRow row = gridMercaderias.FooterRow;
-                GridViewRow row = ((GridView)sender).FooterRow;
-                TextBox txb4 = row.FindControl("txbNew4") as TextBox;
-                TextBox txb5 = row.FindControl("txbNew5") as TextBox;
-                TextBox txb6 = row.FindControl("txbNew6") as TextBox;
-                TextBox txb7 = row.FindControl("txbNew7") as TextBox;
-                DropDownList ddlVariedad2 = row.FindControl("ddlVariedad2") as DropDownList;
-                DropDownList ddlProcesador2 = row.FindControl("ddlProcesador2") as DropDownList;
-                if (ddlVariedad2 != null && ddlProcesador2 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null)
-                */
+                if (hdn_modalMercaderia_txbNew4 != null && hdn_modalMercaderia_txbNew5 != null && hdn_modalMercaderia_txbNew6 != null &&
+                    hdn_modalMercaderia_txbNew7 != null && hdn_modalMercaderia_ddlVariedad2 != null && hdn_modalMercaderia_ddlProcesador2 != null)
                 {
-                    int viaje_ID = 0;
-                    if (!int.TryParse(Viaje_ID1, out viaje_ID))
+                    string txb4 = hdn_modalMercaderia_txbNew4.Value;
+                    string txb5 = hdn_modalMercaderia_txbNew5.Value;
+                    string txb6 = hdn_modalMercaderia_txbNew6.Value;
+                    string txb7 = hdn_modalMercaderia_txbNew7.Value;
+                    string ddlVariedad2 = hdn_modalMercaderia_ddlVariedad2.Value;
+                    string ddlProcesador2 = hdn_modalMercaderia_ddlProcesador2.Value;
+
+
+                    //GridViewRow row = gridMercaderias.FooterRow;
+                    GridViewRow row = ((GridView)sender).FooterRow;
+                    //TextBox txb4 = row.FindControl("mercaderias_txbNew4") as TextBox;
+                    //TextBox txb5 = row.FindControl("mercaderias_txbNew5") as TextBox;
+                    //TextBox txb6 = row.FindControl("mercaderias_txbNew6") as TextBox;
+                    //TextBox txb7 = row.FindControl("mercaderias_txbNew7") as TextBox;
+                    //DropDownList ddlVariedad2 = row.FindControl("mercaderias_ddlVariedad2") as DropDownList;
+                    //DropDownList ddlProcesador2 = row.FindControl("mercaderias_ddlProcesador2") as DropDownList;
+                    //if (ddlVariedad2 != null && ddlProcesador2 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null)
                     {
-                        viaje_ID = 0;
-                    }
-                    if (viaje_ID > 0)
-                    {
-                        using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                        int viaje_ID = 0;
+                        if (!int.TryParse(Viaje_ID1, out viaje_ID))
                         {
-                            mercaderia_comprada obj = new mercaderia_comprada();
-
-                            obj.Comentarios = txb7;
-
-                            decimal valor = 0;
-                            if (!decimal.TryParse(txb5, out valor))
+                            viaje_ID = 0;
+                        }
+                        if (viaje_ID > 0)
+                        {
+                            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                             {
+                                //string txb4 = ((HiddenField)this.Page.FindControl("hdn_modalMercaderia_txbNew4")).Value;
+                                //string txb5 = ((HiddenField)this.Page.FindControl("hdn_modalMercaderia_txbNew5")).Value;
+                                //string txb6 = ((HiddenField)this.Page.FindControl("hdn_modalMercaderia_txbNew6")).Value;
+                                //string txb7 = ((HiddenField)this.Page.FindControl("hdn_modalMercaderia_txbNew7")).Value;
+                                //string ddlVariedad2 = ((HiddenField)this.Page.FindControl("hdn_modalMercaderia_ddlVariedad2")).Value;
+                                //string ddlProcesador2 = ((HiddenField)this.Page.FindControl("hdn_modalMercaderia_ddlProcesador2")).Value;
+
+
+                                mercaderia_comprada obj = new mercaderia_comprada();
+                                obj.Comentarios = txb7;
+
+                                decimal valor = 0;
+                                if (!decimal.TryParse(txb5, out valor))
+                                {
+                                    valor = 0;
+                                }
+                                obj.Precio_xTonelada_compra = valor;
+
                                 valor = 0;
-                            }
-                            obj.Precio_xTonelada_compra = valor;
+                                if (!decimal.TryParse(txb6, out valor))
+                                {
+                                    valor = 0;
+                                }
+                                obj.Precio_xTonelada_venta = valor;
 
-                            valor = 0;
-                            if (!decimal.TryParse(txb6, out valor))
-                            {
+                                #region DDL logic
+
+                                int ddl1 = 0;
+                                if (!int.TryParse(ddlVariedad2, out ddl1))
+                                {
+                                    ddl1 = 0;
+                                }
+                                obj.Variedad_ID = ddl1;
+
+                                int ddl2 = 0;
+                                if (!int.TryParse(ddlProcesador2, out ddl2))
+                                {
+                                    ddl2 = 0;
+                                }
+                                obj.Procesador_ID = ddl2;
+
+                                #endregion DDL logic
+
+                                #region Datetime logic
+
+                                DateTime date1 = DateTime.Now;
+                                if (!DateTime.TryParseExact(txb4, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                                {
+                                    date1 = DateTime.Now;
+                                }
+                                obj.Fecha_corte = date1;
+
+                                #endregion
+                                /*
+
+                                obj.Comentarios = txb7.Text;
+
+                                decimal valor = 0;
+                                if (!decimal.TryParse(txb5.Text, out valor))
+                                {
+                                    valor = 0;
+                                }
+                                obj.Precio_xTonelada_compra = valor;
+
                                 valor = 0;
+                                if (!decimal.TryParse(txb6.Text, out valor))
+                                {
+                                    valor = 0;
+                                }
+                                obj.Precio_xTonelada_venta = valor;
+
+                                #region DDL logic
+
+                                int ddl1 = 0;
+                                if (!int.TryParse(ddlVariedad2.SelectedValue, out ddl1))
+                                {
+                                    ddl1 = 0;
+                                }
+                                obj.Variedad_ID = ddl1;
+
+                                int ddl2 = 0;
+                                if (!int.TryParse(ddlProcesador2.SelectedValue, out ddl2))
+                                {
+                                    ddl2 = 0;
+                                }
+                                obj.Procesador_ID = ddl2;
+
+                                #endregion DDL logic
+
+                                #region Datetime logic
+
+                                DateTime date1 = DateTime.Now;
+                                if (!DateTime.TryParseExact(txb4.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                                {
+                                    date1 = DateTime.Now;
+                                }
+                                obj.Fecha_corte = date1;
+
+                                #endregion
+        */
+                                obj.Viaje_ID = viaje_ID;
+
+                                context.mercaderia_comprada.Add(obj);
+                                context.SaveChanges();
+                                //lblMessage.Text = "Agregado correctamente.";
+                                BindGrid();
+
+                                //ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('OK_Datos'); $.modal.close();</script>", false);
+
                             }
-                            obj.Precio_xTonelada_venta = valor;
-
-                            #region DDL logic
-
-                            int ddl1 = 0;
-                            if (!int.TryParse(ddlVariedad2, out ddl1))
-                            {
-                                ddl1 = 0;
-                            }
-                            obj.Variedad_ID = ddl1;
-
-                            int ddl2 = 0;
-                            if (!int.TryParse(ddlProcesador2, out ddl2))
-                            {
-                                ddl2 = 0;
-                            }
-                            obj.Procesador_ID = ddl2;
-
-                            #endregion DDL logic
-
-                            #region Datetime logic
-
-                            DateTime date1 = DateTime.Now;
-                            if (!DateTime.TryParseExact(txb4, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
-                            {
-                                date1 = DateTime.Now;
-                            }
-                            obj.Fecha_corte = date1;
-
-                            #endregion
-
-                            /*
-                            obj.Comentarios = txb7.Text;
-
-                            decimal valor = 0;
-                            if (!decimal.TryParse(txb5.Text, out valor))
-                            {
-                                valor = 0;
-                            }
-                            obj.Precio_xTonelada_compra = valor;
-
-                            valor = 0;
-                            if (!decimal.TryParse(txb6.Text, out valor))
-                            {
-                                valor = 0;
-                            }
-                            obj.Precio_xTonelada_venta = valor;
-
-                            #region DDL logic
-
-                            int ddl1 = 0;
-                            if (!int.TryParse(ddlVariedad2.SelectedValue, out ddl1))
-                            {
-                                ddl1 = 0;
-                            }
-                            obj.Variedad_ID = ddl1;
-
-                            int ddl2 = 0;
-                            if (!int.TryParse(ddlProcesador2.SelectedValue, out ddl2))
-                            {
-                                ddl2 = 0;
-                            }
-                            obj.Procesador_ID = ddl2;
-
-                            #endregion DDL logic
-
-                            #region Datetime logic
-
-                            DateTime date1 = DateTime.Now;
-                            if (!DateTime.TryParseExact(txb4.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
-                            {
-                                date1 = DateTime.Now;
-                            }
-                            obj.Fecha_corte = date1;
-
-                            #endregion
-                            */
-
-                            obj.Viaje_ID = viaje_ID;
-
-                            context.mercaderia_comprada.Add(obj);
-                            context.SaveChanges();
-                            //lblMessage.Text = "Agregado correctamente.";
-                            BindGrid();
-
-                            //ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('OK_Datos'); $.modal.close();</script>", false);
-
                         }
                     }
                 }

@@ -313,6 +313,14 @@
                                 <asp:UpdatePanel ID="upNotificaciones" runat="server">
                                     <ContentTemplate>
 
+                                         <!-- Mercaderia Hdn Fields -->
+    <asp:HiddenField ID="hdn_modalMercaderia_txbNew4" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalMercaderia_txbNew5" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalMercaderia_txbNew6" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalMercaderia_txbNew7" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalMercaderia_ddlVariedad2" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalMercaderia_ddlProcesador2" runat="server" ClientIDMode="Static" />
+
                             <div class="modal-header">
                                 <div class="row">
                                     <div class="col-md-10 pull-left">
