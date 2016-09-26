@@ -141,11 +141,11 @@ namespace Bonisoft_2.User_Controls.Configuracion
             DropDownList ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                ddl = e.Row.FindControl("ddlVariedad1") as DropDownList;
+                ddl = e.Row.FindControl("mercaderias_ddlVariedad1") as DropDownList;
             }
             if (e.Row.RowType == DataControlRowType.Footer)
             {
-                ddl = e.Row.FindControl("ddlVariedad2") as DropDownList;
+                ddl = e.Row.FindControl("mercaderias_ddlVariedad2") as DropDownList;
             }
             if (ddl != null)
             {
@@ -170,11 +170,11 @@ namespace Bonisoft_2.User_Controls.Configuracion
             ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                ddl = e.Row.FindControl("ddlProcesador1") as DropDownList;
+                ddl = e.Row.FindControl("mercaderias_ddlProcesador1") as DropDownList;
             }
             if (e.Row.RowType == DataControlRowType.Footer)
             {
-                ddl = e.Row.FindControl("ddlProcesador2") as DropDownList;
+                ddl = e.Row.FindControl("mercaderias_ddlProcesador2") as DropDownList;
             }
             if (ddl != null)
             {
@@ -201,14 +201,24 @@ namespace Bonisoft_2.User_Controls.Configuracion
         {
             if (e.CommandName == "InsertNew")
             {
-                GridViewRow row = gridMercaderias.FooterRow;
+                string txb4 = hdn_modalMercaderia_txbNew4.Value;
+                string txb5 = hdn_modalMercaderia_txbNew5.Value;
+                string txb6 = hdn_modalMercaderia_txbNew6.Value;
+                string txb7 = hdn_modalMercaderia_txbNew7.Value;
+                string ddlVariedad2 = hdn_modalMercaderia_ddlVariedad2.Value;
+                string ddlProcesador2 = hdn_modalMercaderia_ddlProcesador2.Value;
+
+                /*
+                //GridViewRow row = gridMercaderias.FooterRow;
+                GridViewRow row = ((GridView)sender).FooterRow;
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
                 TextBox txb5 = row.FindControl("txbNew5") as TextBox;
                 TextBox txb6 = row.FindControl("txbNew6") as TextBox;
-                TextBox txb7 = row.FindControl("txbNew5") as TextBox;
+                TextBox txb7 = row.FindControl("txbNew7") as TextBox;
                 DropDownList ddlVariedad2 = row.FindControl("ddlVariedad2") as DropDownList;
                 DropDownList ddlProcesador2 = row.FindControl("ddlProcesador2") as DropDownList;
                 if (ddlVariedad2 != null && ddlProcesador2 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null)
+                */
                 {
                     int viaje_ID = 0;
                     if (!int.TryParse(Viaje_ID1, out viaje_ID))
@@ -220,6 +230,53 @@ namespace Bonisoft_2.User_Controls.Configuracion
                         using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                         {
                             mercaderia_comprada obj = new mercaderia_comprada();
+
+                            obj.Comentarios = txb7;
+
+                            decimal valor = 0;
+                            if (!decimal.TryParse(txb5, out valor))
+                            {
+                                valor = 0;
+                            }
+                            obj.Precio_xTonelada_compra = valor;
+
+                            valor = 0;
+                            if (!decimal.TryParse(txb6, out valor))
+                            {
+                                valor = 0;
+                            }
+                            obj.Precio_xTonelada_venta = valor;
+
+                            #region DDL logic
+
+                            int ddl1 = 0;
+                            if (!int.TryParse(ddlVariedad2, out ddl1))
+                            {
+                                ddl1 = 0;
+                            }
+                            obj.Variedad_ID = ddl1;
+
+                            int ddl2 = 0;
+                            if (!int.TryParse(ddlProcesador2, out ddl2))
+                            {
+                                ddl2 = 0;
+                            }
+                            obj.Procesador_ID = ddl2;
+
+                            #endregion DDL logic
+
+                            #region Datetime logic
+
+                            DateTime date1 = DateTime.Now;
+                            if (!DateTime.TryParseExact(txb4, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                            {
+                                date1 = DateTime.Now;
+                            }
+                            obj.Fecha_corte = date1;
+
+                            #endregion
+
+                            /*
                             obj.Comentarios = txb7.Text;
 
                             decimal valor = 0;
@@ -264,13 +321,17 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             obj.Fecha_corte = date1;
 
                             #endregion
+                            */
 
                             obj.Viaje_ID = viaje_ID;
 
                             context.mercaderia_comprada.Add(obj);
                             context.SaveChanges();
-                            lblMessage.Text = "Agregado correctamente.";
+                            //lblMessage.Text = "Agregado correctamente.";
                             BindGrid();
+
+                            //ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('OK_Datos'); $.modal.close();</script>", false);
+
                         }
                     }
                 }
@@ -290,12 +351,12 @@ namespace Bonisoft_2.User_Controls.Configuracion
         protected void gridMercaderias_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             GridViewRow row = gridMercaderias.Rows[e.RowIndex];
-            TextBox txb4 = row.FindControl("txb4") as TextBox;
-            TextBox txb5 = row.FindControl("txb5") as TextBox;
-            TextBox txb6 = row.FindControl("txb6") as TextBox;
-            TextBox txb7 = row.FindControl("txb7") as TextBox;
-            DropDownList ddlVariedad1 = row.FindControl("ddlVariedad1") as DropDownList;
-            DropDownList ddlProcesador1 = row.FindControl("ddlProcesador1") as DropDownList;
+            TextBox txb4 = row.FindControl("mercaderias_txb4") as TextBox;
+            TextBox txb5 = row.FindControl("mercaderias_txb5") as TextBox;
+            TextBox txb6 = row.FindControl("mercaderias_txb6") as TextBox;
+            TextBox txb7 = row.FindControl("mercaderias_txb7") as TextBox;
+            DropDownList ddlVariedad1 = row.FindControl("mercaderias_ddlVariedad1") as DropDownList;
+            DropDownList ddlProcesador1 = row.FindControl("mercaderias_ddlProcesador1") as DropDownList;
             if (ddlVariedad1 != null && ddlProcesador1 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())

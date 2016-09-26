@@ -26,3 +26,10 @@ function updateClock() {
     // call this function again in 1000ms
     setTimeout(updateClock, 1000);
 }
+
+Sys.Browser.WebKit = {};
+if (navigator.userAgent.indexOf('WebKit/') > -1) {
+    Sys.Browser.agent = Sys.Browser.WebKit;
+    Sys.Browser.version = parseFloat(navigator.userAgent.match(/WebKit\/(\d+(\.\d+)?)/)[1]);
+    Sys.Browser.name = 'WebKit';
+}

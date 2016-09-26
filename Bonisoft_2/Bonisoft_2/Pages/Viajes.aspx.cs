@@ -1579,7 +1579,7 @@ namespace Bonisoft_2.Pages
                         }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_confirm('Error_DatosPesadas'); </script>", false);
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('Error_DatosPesadas'); </script>", false);
                         }
                     }
                 }
@@ -1600,6 +1600,8 @@ namespace Bonisoft_2.Pages
                     viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                     if (viaje != null)
                     {
+                        bool save_ok = false;
+
                         #region Pesada origen
 
                         bool origen_ok = false;
@@ -1641,6 +1643,7 @@ namespace Bonisoft_2.Pages
                                 pesada.Peso_neto = value;
 
                                 context.SaveChanges();
+                                save_ok = true;
                             }
                         }
 
@@ -1678,6 +1681,7 @@ namespace Bonisoft_2.Pages
                             viaje.Pesada_origen_ID = context.pesadas.Count() + 1;
 
                             context.SaveChanges();
+                                save_ok = true;
                         }
 
                         #endregion Pesada origen
@@ -1723,6 +1727,7 @@ namespace Bonisoft_2.Pages
                                 pesada.Peso_neto = value;
 
                                 context.SaveChanges();
+                                save_ok = true;
                             }
                         }
 
@@ -1760,10 +1765,14 @@ namespace Bonisoft_2.Pages
                             viaje.Pesada_destino_ID = context.pesadas.Count() + 1;
 
                             context.SaveChanges();
+                                save_ok = true;
                         }
 
                         #endregion Pesada destino
 
+                        if (save_ok) {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('OK_Datos'); $.modal.close();</script>", false);
+                        }
                     }
                 }
             }

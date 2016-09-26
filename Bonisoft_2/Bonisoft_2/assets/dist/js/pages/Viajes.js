@@ -74,12 +74,12 @@ function DoPost_Pesadas() {
     var txb_pesada1Nombre = $("#txb_pesada1Nombre").val();
     var txb_pesada1Comentarios = $("#txb_pesada1Comentarios").val();
 
-    $("#hdn_modalNotificaciones_pesadas1_txbLugar").val(txb_pesada2Lugar);
-    $("#hdn_modalNotificaciones_pesadas1_txbFecha").val(txb_pesada2Fecha);
-    $("#hdn_modalNotificaciones_pesadas1_txbPesoBruto").val(txb_pesada2Peso_bruto);
-    $("#hdn_modalNotificaciones_pesadas1_txbPesoNeto").val(txb_pesada2Peso_neto);
-    $("#hdn_modalNotificaciones_pesadas1_txbNombre").val(txb_pesada2Nombre);
-    $("#hdn_modalNotificaciones_pesadas1_txbComentarios").val(txb_pesada2Comentarios);
+    $("#hdn_modalNotificaciones_pesadas1_txbLugar").val(txb_pesada1Lugar);
+    $("#hdn_modalNotificaciones_pesadas1_txbFecha").val(txb_pesada1Fecha);
+    $("#hdn_modalNotificaciones_pesadas1_txbPesoBruto").val(txb_pesada1Peso_bruto);
+    $("#hdn_modalNotificaciones_pesadas1_txbPesoNeto").val(txb_pesada1Peso_neto);
+    $("#hdn_modalNotificaciones_pesadas1_txbNombre").val(txb_pesada1Nombre);
+    $("#hdn_modalNotificaciones_pesadas1_txbComentarios").val(txb_pesada1Comentarios);
 
     // Hdn Fields - Pesada destino
     var txb_pesada2Lugar = $("#txb_pesada2Lugar").val();
@@ -192,3 +192,23 @@ $(document).ready(function () {
     }(jQuery, window, document));
 
 });
+
+
+function DoPost_Mercaderias() {
+
+    // Hdn Fields - Pesada origen
+    var mercaderias_txbNew4 = $("#mercaderias_txbNew4").val();
+    var mercaderias_txbNew5 = $("#mercaderias_txbNew5").val();
+    var mercaderias_txbNew6 = $("#mercaderias_txbNew6").val();
+    var mercaderias_txbNew7 = $("#mercaderias_txbNew7").val();
+    var mercaderias_ddlVariedad2 = $("#mercaderias_ddlVariedad2").val();
+    var mercaderias_ddlProcesador2 = $("#mercaderias_ddlProcesador2").val();
+
+    $("#hdn_modalMercaderia_txbNew4").val(mercaderias_txbNew4);
+    $("#hdn_modalMercaderia_txbNew5").val(mercaderias_txbNew5);
+    $("#hdn_modalMercaderia_txbNew6").val(mercaderias_txbNew6);
+    $("#hdn_modalMercaderia_txbNew7").val(mercaderias_txbNew7);
+    $("#hdn_modalMercaderia_ddlVariedad2").val(mercaderias_ddlVariedad2);
+    $("#hdn_modalMercaderia_ddlProcesador2").val(mercaderias_ddlProcesador2);
+
+}
