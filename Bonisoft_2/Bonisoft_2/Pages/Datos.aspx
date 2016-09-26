@@ -1,10 +1,11 @@
 ﻿<%@ Page Title="Base de datos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Datos.aspx.cs" Inherits="Bonisoft_2.Pages.Datos" %>
+
 <%@ Register Src="~/User_Controls/Estaticos/Clientes.ascx" TagPrefix="uc1" TagName="Clientes" %>
 <%@ Register Src="~/User_Controls/Estaticos/Proveedores.ascx" TagPrefix="uc1" TagName="Proveedores" %>
 <%@ Register Src="~/User_Controls/Estaticos/Cuadrillas.ascx" TagPrefix="uc1" TagName="Cuadrillas" %>
 <%@ Register Src="~/User_Controls/Estaticos/Camiones.ascx" TagPrefix="uc1" TagName="Camiones" %>
 <%@ Register Src="~/User_Controls/Estaticos/Choferes2.ascx" TagPrefix="uc1" TagName="Choferes2" %>
-<%@ Register Src="~/User_Controls/Estaticos/Internos.ascx" TagPrefix="uc1" TagName="Internos" %>
+<%@ Register Src="~/User_Controls/Estaticos/Procesadores.ascx" TagPrefix="uc1" TagName="Procesadores" %>
 <%@ Register Src="~/User_Controls/Estaticos/Fleteros.ascx" TagPrefix="uc1" TagName="Fleteros" %>
 <%@ Register Src="~/User_Controls/Estaticos/Cargadores.ascx" TagPrefix="uc1" TagName="Cargadores" %>
 
@@ -116,7 +117,7 @@
                 <!-- /.col -->
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box" id="divBoxProveedores">
-                        <span class="info-box-icon bg-light-blue"><i class="fa fa-suitcase"></i></span>
+                        <span class="info-box-icon bg-light-blue"><i class="fa fa-black-tie"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Proveedores</span>
@@ -141,6 +142,20 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box" id="divBoxCargadores">
+                        <span class="info-box-icon bg-blue"><i class="fa fa-suitcase"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Cargadores</span>
+                            <span class="info-box-number">0</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box --> 
+                </div>               
+                <!-- /.col -->
+
+                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box" id="divBoxCamiones">
                         <span class="info-box-icon bg-purple"><i class="fa fa-truck"></i></span>
 
@@ -151,8 +166,7 @@
                         <!-- /.info-box-content -->
                     </div>
                     <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
+                </div>           
 
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box" id="divBoxChoferes">
@@ -165,24 +179,11 @@
                         <!-- /.info-box-content -->
                     </div>
                     <!-- /.info-box -->
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box" id="divBoxInternos">
-                        <span class="info-box-icon bg-teal"><i class="fa fa-black-tie"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Internos</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
+                </div>                     
 
                  <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box" id="divBoxFleteros">
-                        <span class="info-box-icon bg-red"><i class="fa fa-black-tie"></i></span>
+                        <span class="info-box-icon bg-red"><i class="fa fa-anchor"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Fleteros</span>
@@ -192,19 +193,20 @@
                     </div>
                     <!-- /.info-box -->
                 </div>
-
-                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box" id="divBoxCargadores">
-                        <span class="info-box-icon bg-blue"><i class="fa fa-black-tie"></i></span>
+                
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box" id="divBoxProcesadores">
+                        <span class="info-box-icon bg-teal"><i class="fa fa-scissors"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Cargadores</span>
+                            <span class="info-box-text">Procesadores</span>
                             <span class="info-box-number">0</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
                     <!-- /.info-box -->
                 </div>
+                 
 
             </div>
 
@@ -280,10 +282,10 @@
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>
-                                    <div class="divTables" id="divInternos" style="display: none;">
-                                        <asp:UpdatePanel ID="upInternos" runat="server">
+                                     <div class="divTables" id="divCargadores" style="display: none;">
+                                        <asp:UpdatePanel ID="upCargadores" runat="server">
                                             <ContentTemplate>
-                                                <uc1:Internos runat="server" ID="Internos" />
+                                                <uc1:Cargadores runat="server" ID="Cargadores" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>
@@ -293,15 +295,14 @@
                                                 <uc1:Fleteros runat="server" ID="Fleteros" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
-                                    </div>
-                                    <div class="divTables" id="divCargadores" style="display: none;">
-                                        <asp:UpdatePanel ID="upCargadores" runat="server">
+                                    </div>                                   
+                                    <div class="divTables" id="divProcesadores" style="display: none;">
+                                        <asp:UpdatePanel ID="upProcesadores" runat="server">
                                             <ContentTemplate>
-                                                <uc1:Cargadores runat="server" ID="Cargadores" />
+                                                <uc1:Procesadores runat="server" ID="Procesadores" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>
-                                    
 
                                 </div>
                             </div>

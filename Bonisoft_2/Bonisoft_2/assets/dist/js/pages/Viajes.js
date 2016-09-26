@@ -64,7 +64,41 @@ function DoCustomPost() {
     
 }
 
-function show_message(msg) {
+function DoPost_Pesadas() {
+
+    // Hdn Fields - Pesada origen
+    var txb_pesada1Lugar = $("#txb_pesada1Lugar").val();
+    var txb_pesada1Fecha = $("#txb_pesada1Fecha").val();
+    var txb_pesada1Peso_bruto = $("#txb_pesada1Peso_bruto").val();
+    var txb_pesada1Peso_neto = $("#txb_pesada1Peso_neto").val();
+    var txb_pesada1Nombre = $("#txb_pesada1Nombre").val();
+    var txb_pesada1Comentarios = $("#txb_pesada1Comentarios").val();
+
+    $("#hdn_modalNotificaciones_pesadas1_txbLugar").val(txb_pesada2Lugar);
+    $("#hdn_modalNotificaciones_pesadas1_txbFecha").val(txb_pesada2Fecha);
+    $("#hdn_modalNotificaciones_pesadas1_txbPesoBruto").val(txb_pesada2Peso_bruto);
+    $("#hdn_modalNotificaciones_pesadas1_txbPesoNeto").val(txb_pesada2Peso_neto);
+    $("#hdn_modalNotificaciones_pesadas1_txbNombre").val(txb_pesada2Nombre);
+    $("#hdn_modalNotificaciones_pesadas1_txbComentarios").val(txb_pesada2Comentarios);
+
+    // Hdn Fields - Pesada destino
+    var txb_pesada2Lugar = $("#txb_pesada2Lugar").val();
+    var txb_pesada2Fecha = $("#txb_pesada2Fecha").val();
+    var txb_pesada2Peso_bruto = $("#txb_pesada2Peso_bruto").val();
+    var txb_pesada2Peso_neto = $("#txb_pesada2Peso_neto").val();
+    var txb_pesada2Nombre = $("#txb_pesada2Nombre").val();
+    var txb_pesada2Comentarios = $("#txb_pesada2Comentarios").val();
+
+    $("#hdn_modalNotificaciones_pesadas2_txbLugar").val(txb_pesada2Lugar);
+    $("#hdn_modalNotificaciones_pesadas2_txbFecha").val(txb_pesada2Fecha);
+    $("#hdn_modalNotificaciones_pesadas2_txbPesoBruto").val(txb_pesada2Peso_bruto);
+    $("#hdn_modalNotificaciones_pesadas2_txbPesoNeto").val(txb_pesada2Peso_neto);
+    $("#hdn_modalNotificaciones_pesadas2_txbNombre").val(txb_pesada2Nombre);
+    $("#hdn_modalNotificaciones_pesadas2_txbComentarios").val(txb_pesada2Comentarios);
+
+}
+
+function show_message_confirm(msg) {
     $('#dialog p').text(hashMessages[msg]);
     $("#dialog").dialog({
         open: {},
@@ -73,84 +107,29 @@ function show_message(msg) {
         modal: true,
         buttons: {
             "Confirmar": function () {
-
                 $(this).dialog("close");
                 return true;
-
-
-                //$.ajax({
-                //    type: "POST",
-                //    url: "Dashboard.aspx/RemoveElementSelected",
-                //    data: '{list_elements: "' + list_elements + '"}',
-                //    contentType: "application/json; charset=utf-8",
-                //    dataType: "json",
-                //    success: function (response) {
-
-                //        $("#dialog p").text(hashMessages["ElementosBorrados"]);
-                //        $("#dialog").dialog({
-                //            open: {},
-                //            buttons: {
-                //                "Confirmar": function () {
-                //                    $(this).dialog("close");
-                //                    $(this).dialog("destroy");
-                //                }
-                //            }
-                //        });
-
-                //        // Hide elements from search panel
-                //        $('tr:visible td input:checked').parent().parent().hide();
-
-                //        // Disable element in memory elements 
-                //        var _hdnIsUpdateNeeded = $("#_hdnIsUpdateNeeded");
-                //        if (
-                //            _hdnIsUpdateNeeded != null) {
-                //            _hdnIsUpdateNeeded.val("true");
-                //        }
-
-                //        // Clear player image
-                //        $("#imgPlayer").attr("src", "");
-
-                //        if (list_elements.length > 0) {
-
-                //            //
-                //            $("#timeframe").empty(); // Clean div content
-                //            var new_timeline_data = jQuery.extend(true, {}, _TL_DATA); // It clones the object, does not references it
-                //            for (var i = 0; i < list_elements.length; i++) {
-                //                if (list_elements[i] != null) {
-                //                    var attrs_array = list_elements[i].split("#"); // Element attributes
-                //                    if (attrs_array.length > 1) {
-                //                        var tapeID = attrs_array[0];
-                //                        if (tapeID != null && tapeID.length) {
-                //                            if (new_timeline_data.spans != null && new_timeline_data.spans.length > 0) {
-                //                                new_timeline_data.spans = $
-                //                                    .grep(
-                //                                        new_timeline_data.spans,
-                //                                        function (item, index) {
-                //                                            return item.id != tapeID;
-                //                                        }
-                //                                    );
-                //                            }
-                //                        }
-                //                    }
-                //                }
-                //            } // for
-                //            _TL_DATA = new_timeline_data;
-                //            prepareTimelineReload(_TL_DATA);
-                //        }
-
-                //        // Update elements count
-                //        $("#divPanel_Busqueda span[id*='lblResultsCount']").text($("#tblLeftGridElements tr[id*='tape_']:visible").length.toString());
-
-                //    }, // end success
-                //    failure: function (response) {
-                //        alert(response.d);
-                //    }
-                //});
 
             },
             Cancel: function () {
                 $(this).dialog("close");
                 return false;
+            }
+        }
+    });
+}
+
+function show_message_accept(msg) {
+    $('#dialog p').text(hashMessages[msg]);
+    $("#dialog").dialog({
+        open: {},
+        resizable: false,
+        height: 140,
+        modal: true,
+        buttons: {
+            "Aceptar": function () {
+                $(this).dialog("close");
+                return true;
             }
         }
     });

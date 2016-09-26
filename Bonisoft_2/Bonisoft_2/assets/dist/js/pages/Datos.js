@@ -19,17 +19,17 @@ $(document).ready(function () {
     var gridClientes = $("#gridClientes tbody tr").not(':first');
     var gridCuadrillas = $("#gridCuadrillas tbody tr").not(':first');
     var gridProveedores = $("#gridProveedores tbody tr").not(':first');
-    var gridInternos = $("#gridInternos tbody tr").not(':first');
     var gridFleteros = $("#gridFleteros tbody tr").not(':first');
     var gridCargadores = $("#gridCargadores tbody tr").not(':first');
+    var gridProcesadores = $("#gridProcesadores tbody tr").not(':first');
     $("#txbSearch").quicksearch(gridCamiones);
     $("#txbSearch").quicksearch(gridChoferes);
     $("#txbSearch").quicksearch(gridClientes);
     $("#txbSearch").quicksearch(gridCuadrillas);
     $("#txbSearch").quicksearch(gridProveedores);
-    $("#txbSearch").quicksearch(gridInternos);
     $("#txbSearch").quicksearch(gridFleteros);
     $("#txbSearch").quicksearch(gridCargadores);
+    $("#txbSearch").quicksearch(gridProcesadores);
 });
 
 $(document).on('click', ".info-box", function () {
@@ -57,10 +57,11 @@ function updateCounts() {
     var cuadrillas_count = $("#divContent #hdnCuadrillasCount").val();
     var camiones_count = $("#divContent #hdnCamionesCount").val();
     var choferes_count = $("#divContent #hdnChoferesCount").val();
-    var internos_count = $("#divContent #hdnInternosCount").val();
     var fleteros_count = $("#divContent #hdnFleterosCount").val();
     var cargadores_count = $("#divContent #hdnCargadoresCount").val();
+    var procesadores_count = $("#divContent #hdnProcesadoresCount").val();
 
+    var internos_count = $("#divContent #hdnInternosCount").val();
     var tipos_count = $("#divContent #hdnTiposCount").val();
     var variedades_count = $("#divContent #hdnVariedadCount").val();
     var formas_count = $("#divContent #hdnFormaCount").val();
@@ -70,10 +71,11 @@ function updateCounts() {
     $("#divBoxCuadrillas .info-box-number").text(cuadrillas_count);
     $("#divBoxCamiones .info-box-number").text(camiones_count);
     $("#divBoxChoferes .info-box-number").text(choferes_count);
-    $("#divBoxInternos .info-box-number").text(internos_count);
     $("#divBoxFleteros .info-box-number").text(fleteros_count);
     $("#divBoxCargadores .info-box-number").text(cargadores_count);
+    $("#divBoxProcesadores .info-box-number").text(procesadores_count);
 
+    $("#divBoxInternos .info-box-number").text(internos_count);
     $("#divBoxTipos .info-box-number").text(tipos_count);
     $("#divBoxVariedades .info-box-number").text(variedades_count);
     $("#divBoxFormas .info-box-number").text(formas_count);
@@ -111,10 +113,6 @@ function show_grid(element) {
                 $("#divChoferes").show();
                 break;
             }
-            case "internos": {
-                $("#divInternos").show();
-                break;
-            }
             case "fleteros": {
                 $("#divFleteros").show();
                 break;
@@ -123,7 +121,15 @@ function show_grid(element) {
                 $("#divCargadores").show();
                 break;
             }
+            case "procesadores": {
+                $("#divProcesadores").show();
+                break;
+            }
 
+            case "internos": {
+                $("#divInternos").show();
+                break;
+            }
             case "tipos": {
                 $("#divTipos").show();
                 break;

@@ -1203,78 +1203,75 @@ namespace Bonisoft_2.Pages
                     viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                     if (viaje != null)
                     {
+                        // http://asp.net-tutorials.com/user-controls/using/
                         hdn_notificaciones_viajeID.Value = viaje_ID.ToString();
 
-                        HiddenField hdn_notificacionesViajeID = Mercaderias.FindControl("hdn_notificacionesViajeID") as HiddenField;
-                        if (hdn_notificacionesViajeID != null)
+                        Mercaderias.Viaje_ID1 = viaje_ID.ToString();
+                        Mercaderias.BindGrid();
+
+                        #region Pesada 1
+
+                        int pesada_origen_ID = viaje.Pesada_origen_ID;
+                        if (pesada_origen_ID > 0)
                         {
-                            hdn_notificacionesViajeID.Value = viaje_ID.ToString();
-                            Mercaderias.BindGrid();
-
-                            #region Pesada 1
-
-                            int pesada_origen_ID = viaje.Pesada_origen_ID;
-                            if (pesada_origen_ID > 0)
+                            pesada pesada_origen = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_origen_ID);
+                            if (pesada_origen != null)
                             {
-                                pesada pesada_origen = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_origen_ID);
-                                if (pesada_origen != null)
-                                {
-                                    hdn_notificacionesPesadaOrigenID.Value = pesada_origen_ID.ToString();
+                                hdn_notificacionesPesadaOrigenID.Value = pesada_origen_ID.ToString();
 
-                                    // Fields
-                                    txb_pesada1Lugar.Text = pesada_origen.Lugar;
-                                    txb_pesada1Fecha.Text = pesada_origen.Fecha.ToString();
-                                    txb_pesada1Nombre.Text = pesada_origen.Nombre_balanza;
-                                    txb_pesada1Peso_bruto.Text = pesada_origen.Peso_bruto.ToString();
-                                    txb_pesada1Peso_neto.Text = pesada_origen.Peso_neto.ToString();
-                                    txb_pesada1Comentarios.Text = pesada_origen.Comentarios;
+                                // Fields
+                                txb_pesada1Lugar.Text = pesada_origen.Lugar;
+                                txb_pesada1Fecha.Text = pesada_origen.Fecha.ToString();
+                                txb_pesada1Nombre.Text = pesada_origen.Nombre_balanza;
+                                txb_pesada1Peso_bruto.Text = pesada_origen.Peso_bruto.ToString();
+                                txb_pesada1Peso_neto.Text = pesada_origen.Peso_neto.ToString();
+                                txb_pesada1Comentarios.Text = pesada_origen.Comentarios;
 
-                                    // Hidden Fields
-                                    hdn_modalNotificaciones_pesadasOrigen_txbLugar.Value = pesada_origen.Lugar;
-                                    hdn_modalNotificaciones_pesadasOrigen_txbFecha.Value = pesada_origen.Fecha.ToString();
-                                    hdn_modalNotificaciones_pesadasOrigen_txbPesoBruto.Value = pesada_origen.Nombre_balanza;
-                                    hdn_modalNotificaciones_pesadasOrigen_txbPesoNeto.Value = pesada_origen.Peso_bruto.ToString();
-                                    hdn_modalNotificaciones_pesadasOrigen_txbNombre.Value = pesada_origen.Peso_neto.ToString();
-                                    hdn_modalNotificaciones_pesadasOrigen_txbComentarios.Value = pesada_origen.Comentarios;
-                                }
+                                // Hidden Fields
+                                hdn_modalNotificaciones_pesadas1_txbLugar.Value = pesada_origen.Lugar;
+                                hdn_modalNotificaciones_pesadas1_txbFecha.Value = pesada_origen.Fecha.ToString();
+                                hdn_modalNotificaciones_pesadas1_txbPesoBruto.Value = pesada_origen.Nombre_balanza;
+                                hdn_modalNotificaciones_pesadas1_txbPesoNeto.Value = pesada_origen.Peso_bruto.ToString();
+                                hdn_modalNotificaciones_pesadas1_txbNombre.Value = pesada_origen.Peso_neto.ToString();
+                                hdn_modalNotificaciones_pesadas1_txbComentarios.Value = pesada_origen.Comentarios;
                             }
-                            #endregion
-
-                            #region Pesada 2
-
-                            int pesada_destino_ID = viaje.Pesada_destino_ID;
-                            if (pesada_destino_ID > 0)
-                            {
-                                pesada pesada_destino = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_destino_ID);
-                                if (pesada_destino != null)
-                                {
-                                    hdn_notificacionesPesadaDestinoID.Value = pesada_destino_ID.ToString();
-
-                                    // Fields
-                                    txb_pesada2Lugar.Text = pesada_destino.Lugar;
-                                    txb_pesada2Fecha.Text = pesada_destino.Fecha.ToString();
-                                    txb_pesada2Nombre.Text = pesada_destino.Nombre_balanza;
-                                    txb_pesada2Peso_bruto.Text = pesada_destino.Peso_bruto.ToString();
-                                    txb_pesada2Peso_neto.Text = pesada_destino.Peso_neto.ToString();
-                                    txb_pesada2Comentarios.Text = pesada_destino.Comentarios;
-
-                                    // Hidden Fields                                        
-                                    hdn_modalNotificaciones_pesadasDestino_txbLugar.Value = pesada_destino.Lugar;
-                                    hdn_modalNotificaciones_pesadasDestino_txbFecha.Value = pesada_destino.Fecha.ToString();
-                                    hdn_modalNotificaciones_pesadasDestino_txbPesoBruto.Value = pesada_destino.Nombre_balanza;
-                                    hdn_modalNotificaciones_pesadasDestino_txbPesoNeto.Value = pesada_destino.Peso_bruto.ToString();
-                                    hdn_modalNotificaciones_pesadasDestino_txbNombre.Value = pesada_destino.Peso_neto.ToString();
-                                    hdn_modalNotificaciones_pesadasDestino_txbComentarios.Value = pesada_destino.Comentarios;
-                                }
-                            }
-                            #endregion
-
-                            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                            sb.Append(@"<script type='text/javascript'>");
-                            sb.Append("$('#notificacionesModal').modal('show'); $('.datepicker').datepicker();");
-                            sb.Append(@"</script>");
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "NotificarModalScript", sb.ToString(), false);
                         }
+                        #endregion
+
+                        #region Pesada 2
+
+                        int pesada_destino_ID = viaje.Pesada_destino_ID;
+                        if (pesada_destino_ID > 0)
+                        {
+                            pesada pesada_destino = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_destino_ID);
+                            if (pesada_destino != null)
+                            {
+                                hdn_notificacionesPesadaDestinoID.Value = pesada_destino_ID.ToString();
+
+                                // Fields
+                                txb_pesada2Lugar.Text = pesada_destino.Lugar;
+                                txb_pesada2Fecha.Text = pesada_destino.Fecha.ToString();
+                                txb_pesada2Nombre.Text = pesada_destino.Nombre_balanza;
+                                txb_pesada2Peso_bruto.Text = pesada_destino.Peso_bruto.ToString();
+                                txb_pesada2Peso_neto.Text = pesada_destino.Peso_neto.ToString();
+                                txb_pesada2Comentarios.Text = pesada_destino.Comentarios;
+
+                                // Hidden Fields                                        
+                                hdn_modalNotificaciones_pesadas2_txbLugar.Value = pesada_destino.Lugar;
+                                hdn_modalNotificaciones_pesadas2_txbFecha.Value = pesada_destino.Fecha.ToString();
+                                hdn_modalNotificaciones_pesadas2_txbPesoBruto.Value = pesada_destino.Nombre_balanza;
+                                hdn_modalNotificaciones_pesadas2_txbPesoNeto.Value = pesada_destino.Peso_bruto.ToString();
+                                hdn_modalNotificaciones_pesadas2_txbNombre.Value = pesada_destino.Peso_neto.ToString();
+                                hdn_modalNotificaciones_pesadas2_txbComentarios.Value = pesada_destino.Comentarios;
+                            }
+                        }
+                        #endregion
+
+                        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                        sb.Append(@"<script type='text/javascript'>");
+                        sb.Append("$('#notificacionesModal').modal('show'); $('.datepicker').datepicker();");
+                        sb.Append(@"</script>");
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "NotificarModalScript", sb.ToString(), false);
                     }
                 }
                 else if (e.CommandName.Equals("editViajeEnCurso"))
@@ -1571,11 +1568,19 @@ namespace Bonisoft_2.Pages
                     viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                     if (viaje != null)
                     {
-                        viaje.EnViaje = false;
-                        context.SaveChanges();
+                        // Check si tiene PESADA ORIGEN y DESTINO
+                        if (viaje.Pesada_origen_ID > 0 && viaje.Pesada_destino_ID > 0)
+                        {
+                            viaje.EnViaje = false;
+                            context.SaveChanges();
 
-                        BindGrid();
-                        BindGrid_EnCurso();
+                            BindGrid();
+                            BindGrid_EnCurso();
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_confirm('Error_DatosPesadas'); </script>", false);
+                        }
                     }
                 }
             }
@@ -1610,26 +1615,26 @@ namespace Bonisoft_2.Pages
                             {
                                 // Ya existe
                                 origen_ok = true;
-                                pesada.Lugar = txb_pesada1Lugar.Text;
-                                pesada.Nombre_balanza = txb_pesada1Nombre.Text;
-                                pesada.Comentarios = txb_pesada1Comentarios.Text;
+                                pesada.Lugar = hdn_modalNotificaciones_pesadas1_txbLugar.Value;
+                                pesada.Nombre_balanza = hdn_modalNotificaciones_pesadas1_txbNombre.Value;
+                                pesada.Comentarios = hdn_modalNotificaciones_pesadas1_txbComentarios.Value;
 
                                 DateTime date = pesada.Fecha;
-                                if (!DateTime.TryParseExact(txb_pesada1Fecha.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
+                                if (!DateTime.TryParseExact(hdn_modalNotificaciones_pesadas1_txbFecha.Value, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
                                 {
                                     pesada.Fecha = pesada.Fecha;
                                 }
                                 pesada.Fecha = date;
 
                                 decimal value = pesada.Peso_bruto;
-                                if (!decimal.TryParse(txb_pesada1Peso_bruto.Text, out value))
+                                if (!decimal.TryParse(hdn_modalNotificaciones_pesadas1_txbPesoBruto.Value, out value))
                                 {
                                     value = pesada.Peso_bruto;
                                 }
                                 pesada.Peso_bruto = value;
 
                                 value = pesada.Peso_neto;
-                                if (!decimal.TryParse(txb_pesada1Peso_neto.Text, out value))
+                                if (!decimal.TryParse(hdn_modalNotificaciones_pesadas1_txbPesoNeto.Value, out value))
                                 {
                                     value = pesada.Peso_neto;
                                 }
@@ -1644,26 +1649,26 @@ namespace Bonisoft_2.Pages
                             // No existe
                             pesada pesada = new pesada();
 
-                            pesada.Lugar = txb_pesada1Lugar.Text;
-                            pesada.Nombre_balanza = txb_pesada1Nombre.Text;
-                            pesada.Comentarios = txb_pesada1Comentarios.Text;
+                            pesada.Lugar = hdn_modalNotificaciones_pesadas1_txbLugar.Value;
+                            pesada.Nombre_balanza = hdn_modalNotificaciones_pesadas1_txbNombre.Value;
+                            pesada.Comentarios = hdn_modalNotificaciones_pesadas1_txbComentarios.Value;
 
                             DateTime date = pesada.Fecha;
-                            if (!DateTime.TryParseExact(txb_pesada1Fecha.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
+                            if (!DateTime.TryParseExact(hdn_modalNotificaciones_pesadas1_txbFecha.Value, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
                             {
                                 pesada.Fecha = pesada.Fecha;
                             }
                             pesada.Fecha = date;
 
                             decimal value = pesada.Peso_bruto;
-                            if (!decimal.TryParse(txb_pesada1Peso_bruto.Text, out value))
+                            if (!decimal.TryParse(hdn_modalNotificaciones_pesadas1_txbPesoBruto.Value, out value))
                             {
                                 value = pesada.Peso_bruto;
                             }
                             pesada.Peso_bruto = value;
 
                             value = pesada.Peso_neto;
-                            if (!decimal.TryParse(txb_pesada1Peso_neto.Text, out value))
+                            if (!decimal.TryParse(hdn_modalNotificaciones_pesadas1_txbPesoNeto.Value, out value))
                             {
                                 value = pesada.Peso_neto;
                             }
@@ -1692,26 +1697,26 @@ namespace Bonisoft_2.Pages
                             {
                                 // Ya existe
                                 destino_ok = true;
-                                pesada.Lugar = txb_pesada2Lugar.Text;
-                                pesada.Nombre_balanza = txb_pesada2Nombre.Text;
-                                pesada.Comentarios = txb_pesada2Comentarios.Text;
+                                pesada.Lugar = hdn_modalNotificaciones_pesadas2_txbLugar.Value;
+                                pesada.Nombre_balanza = hdn_modalNotificaciones_pesadas2_txbNombre.Value;
+                                pesada.Comentarios = hdn_modalNotificaciones_pesadas2_txbComentarios.Value;
 
                                 DateTime date = pesada.Fecha;
-                                if (!DateTime.TryParseExact(txb_pesada2Fecha.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
+                                if (!DateTime.TryParseExact(hdn_modalNotificaciones_pesadas2_txbFecha.Value, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
                                 {
                                     pesada.Fecha = pesada.Fecha;
                                 }
                                 pesada.Fecha = date;
 
                                 decimal value = pesada.Peso_bruto;
-                                if (!decimal.TryParse(txb_pesada2Peso_bruto.Text, out value))
+                                if (!decimal.TryParse(hdn_modalNotificaciones_pesadas2_txbPesoBruto.Value, out value))
                                 {
                                     value = pesada.Peso_bruto;
                                 }
                                 pesada.Peso_bruto = value;
 
                                 value = pesada.Peso_neto;
-                                if (!decimal.TryParse(txb_pesada2Peso_neto.Text, out value))
+                                if (!decimal.TryParse(hdn_modalNotificaciones_pesadas2_txbPesoNeto.Value, out value))
                                 {
                                     value = pesada.Peso_neto;
                                 }
@@ -1726,26 +1731,26 @@ namespace Bonisoft_2.Pages
                             // No existe
                             pesada pesada = new pesada();
 
-                            pesada.Lugar = txb_pesada2Lugar.Text;
-                            pesada.Nombre_balanza = txb_pesada2Nombre.Text;
-                            pesada.Comentarios = txb_pesada2Comentarios.Text;
+                            pesada.Lugar = hdn_modalNotificaciones_pesadas2_txbLugar.Value;
+                            pesada.Nombre_balanza = hdn_modalNotificaciones_pesadas2_txbNombre.Value;
+                            pesada.Comentarios = hdn_modalNotificaciones_pesadas2_txbComentarios.Value;
 
                             DateTime date = pesada.Fecha;
-                            if (!DateTime.TryParseExact(txb_pesada2Fecha.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
+                            if (!DateTime.TryParseExact(hdn_modalNotificaciones_pesadas2_txbFecha.Value, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
                             {
                                 pesada.Fecha = pesada.Fecha;
                             }
                             pesada.Fecha = date;
 
                             decimal value = pesada.Peso_bruto;
-                            if (!decimal.TryParse(txb_pesada2Peso_bruto.Text, out value))
+                            if (!decimal.TryParse(hdn_modalNotificaciones_pesadas2_txbPesoBruto.Value, out value))
                             {
                                 value = pesada.Peso_bruto;
                             }
                             pesada.Peso_bruto = value;
 
                             value = pesada.Peso_neto;
-                            if (!decimal.TryParse(txb_pesada2Peso_neto.Text, out value))
+                            if (!decimal.TryParse(hdn_modalNotificaciones_pesadas2_txbPesoNeto.Value, out value))
                             {
                                 value = pesada.Peso_neto;
                             }

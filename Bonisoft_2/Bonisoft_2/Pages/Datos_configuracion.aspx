@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="Base de Datos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Datos_configuracion.aspx.cs" Inherits="Bonisoft_2.Pages.Datos_configuracion" %>
 
+<%@ Register Src="~/User_Controls/Estaticos/Internos.ascx" TagPrefix="uc1" TagName="Internos" %>
 <%@ Register Src="~/User_Controls/Configuracion/Tipo_lena.ascx" TagPrefix="uc1" TagName="Tipos" %>
 <%@ Register Src="~/User_Controls/Configuracion/Variedad.ascx" TagPrefix="uc1" TagName="Variedades" %>
 <%@ Register Src="~/User_Controls/Configuracion/Formas_pago.ascx" TagPrefix="uc1" TagName="Formas" %>
@@ -10,8 +11,8 @@
     <!-- STYLES EXTENSION -->
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="/assets/dist/css/InfoBoxes.min.css">
-    <link rel="stylesheet" href="/assets/dist/css/Datos.css">
+    <link rel="stylesheet" href="/assets/dist/css/pages/InfoBoxes.min.css">
+    <link rel="stylesheet" href="/assets/dist/css/pages/Datos.css">
 
     <!-- AdminLTE Skins. Choose a skin from the css/skins
      folder instead of downloading all of them to reduce the load. -->
@@ -99,6 +100,19 @@
 
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box" id="divBoxInternos">
+                        <span class="info-box-icon bg-teal"><i class="fa fa-black-tie"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Internos</span>
+                            <span class="info-box-number">0</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                    </div>
+                <!-- /.col -->
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box" id="divBoxTipos">
                         <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
 
@@ -176,6 +190,14 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div id="divContent">
+
+                                    <div class="divTables" id="divInternos" style="display: none;">
+                                        <asp:UpdatePanel ID="upInternos" runat="server">
+                                            <ContentTemplate>
+                                                <uc1:Internos runat="server" ID="Internos" />
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </div>
 
                                     <div class="divTables" id="divTipos" style="display: block;">
                                         <asp:UpdatePanel ID="upTipos" runat="server">

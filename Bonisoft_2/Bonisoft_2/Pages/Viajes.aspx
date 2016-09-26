@@ -310,6 +310,8 @@
                         <!-- Modal Notificaciones BEGIN -->
                         <div id="notificacionesModal" tabindex="-1" role="dialog" aria-labelledby="notificacionesModalLabel"
                             aria-hidden="true" style="display: none; max-width: 1000px; overflow: hidden;">
+                                <asp:UpdatePanel ID="upNotificaciones" runat="server">
+                                    <ContentTemplate>
 
                             <div class="modal-header">
                                 <div class="row">
@@ -345,61 +347,61 @@
                                 <div class="panel-wrapper collapse">
                                     <div class="panel-body" style="padding-bottom:0;">
 
-                                        <h4>Asignar origen</h4>
+                                        <h4>Pesada origen</h4>
                                         <div class="modal-body" style="padding-bottom: 0; padding-top: 0;">
                                             <table class="table table-bordered table-hover">
                                                 <tr>
                                                     <td>Lugar: 
-                                                        <asp:TextBox ID="txb_pesada1Lugar" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                        <asp:TextBox ID="txb_pesada1Lugar" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </td>
                                                     <td>Fecha: 
-                                                        <asp:TextBox ID="txb_pesada1Fecha" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                                        <asp:TextBox ID="txb_pesada1Fecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Peso bruto: 
-                                                        <asp:TextBox ID="txb_pesada1Peso_bruto" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                        <asp:TextBox ID="txb_pesada1Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </td>
                                                     <td>Peso neto: 
-                                                        <asp:TextBox ID="txb_pesada1Peso_neto" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                        <asp:TextBox ID="txb_pesada1Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Nombre balanza: 
-                                                        <asp:TextBox ID="txb_pesada1Nombre" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                        <asp:TextBox ID="txb_pesada1Nombre" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </td>
                                                     <td>Comentarios: 
-                                                        <asp:TextBox ID="txb_pesada1Comentarios" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                        <asp:TextBox ID="txb_pesada1Comentarios" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </td>
                                                 </tr>
                                             </table>
                                         </div>
 
-                                        <h4>Asignar destino</h4>
+                                        <h4>Pesada destino</h4>
                                         <div class="modal-body" style="padding-bottom: 0; padding-top: 0;">
                                             <table class="table table-bordered table-hover">
                                                 <tr>
                                                     <td>Lugar: 
-                                                      <asp:TextBox ID="txb_pesada2Lugar" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                      <asp:TextBox ID="txb_pesada2Lugar" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </td>
                                                     <td>Fecha: 
-                                                        <asp:TextBox ID="txb_pesada2Fecha" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                                        <asp:TextBox ID="txb_pesada2Fecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Peso bruto: 
-                                                         <asp:TextBox ID="txb_pesada2Peso_bruto" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                         <asp:TextBox ID="txb_pesada2Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </td>
                                                     <td>Peso neto: 
-                                                       <asp:TextBox ID="txb_pesada2Peso_neto" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                       <asp:TextBox ID="txb_pesada2Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Nombre balanza: 
-                                                        <asp:TextBox ID="txb_pesada2Nombre" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                        <asp:TextBox ID="txb_pesada2Nombre" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </td>
                                                     <td>Comentarios: 
-                                                       <asp:TextBox ID="txb_pesada2Comentarios" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                       <asp:TextBox ID="txb_pesada2Comentarios" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -407,7 +409,7 @@
 
                                         <div class="col-md-2 pull-right" style="padding: 10px;">
                                             <asp:LinkButton ID="lnk_pesada1Guardar" runat="server"
-                                                CssClass="btn btn-info" OnClick="lnk_pesadasGuardar_Click">Guardar</asp:LinkButton>
+                                                CssClass="btn btn-info" OnClick="lnk_pesadasGuardar_Click" OnClientClick="Javascript:DoPost_Pesadas();">Guardar</asp:LinkButton>
                                         </div>
 
 
@@ -416,7 +418,8 @@
                                 </div>
                             </div>
                            
-
+                                    </ContentTemplate>
+                            </asp:UpdatePanel>
                         </div>
                         <!-- Modal Notificaciones END -->
 
@@ -768,19 +771,19 @@
     <asp:HiddenField ID="hdn_modalEdit_txbComentarios" runat="server" ClientIDMode="Static" />
 
     <!-- Notificaciones Hdn Fields - Pesada origen -->
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasOrigen_txbLugar" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasOrigen_txbFecha" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasOrigen_txbPesoBruto" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasOrigen_txbPesoNeto" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasOrigen_txbNombre" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasOrigen_txbComentarios" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas1_txbLugar" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas1_txbFecha" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas1_txbPesoBruto" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas1_txbPesoNeto" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas1_txbNombre" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas1_txbComentarios" runat="server" ClientIDMode="Static" />
 
     <!-- Notificaciones Hdn Fields - Pesada origen -->
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasDestino_txbLugar" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasDestino_txbFecha" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasDestino_txbPesoBruto" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasDestino_txbPesoNeto" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasDestino_txbNombre" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadasDestino_txbComentarios" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbLugar" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbFecha" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbPesoBruto" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbPesoNeto" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbNombre" runat="server" ClientIDMode="Static" />
+    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbComentarios" runat="server" ClientIDMode="Static" />
 
 </asp:Content>

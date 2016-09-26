@@ -103,22 +103,22 @@ namespace Bonisoft_2.Pages {
         protected global::Bonisoft_2.User_Controls.Choferes2 Choferes2;
         
         /// <summary>
-        /// upInternos control.
+        /// upCargadores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upInternos;
+        protected global::System.Web.UI.UpdatePanel upCargadores;
         
         /// <summary>
-        /// Internos control.
+        /// Cargadores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Bonisoft_2.User_Controls.Internos Internos;
+        protected global::Bonisoft_2.User_Controls.Estaticos.Cargadores Cargadores;
         
         /// <summary>
         /// upFleteros control.
@@ -139,21 +139,21 @@ namespace Bonisoft_2.Pages {
         protected global::Bonisoft_2.User_Controls.Estaticos.Fleteros Fleteros;
         
         /// <summary>
-        /// upCargadores control.
+        /// upProcesadores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upCargadores;
+        protected global::System.Web.UI.UpdatePanel upProcesadores;
         
         /// <summary>
-        /// Cargadores control.
+        /// Procesadores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Bonisoft_2.User_Controls.Estaticos.Cargadores Cargadores;
+        protected global::Bonisoft_2.User_Controls.Estaticos.Procesadores Procesadores;
     }
 }

@@ -2,6 +2,7 @@
 var hashMessages = {};
 
 hashMessages["ConfirmarBorrarElemento"] = "¿Está seguro?";
+hashMessages["Error_DatosPesadas"] = "Faltan datos de Pesadas.";
 
 hashMessages["ElementosBorrados"] = "Los elementos se borraron correctamente.";
 hashMessages["SeleccioneElemento"] = "Por favor, seleccione un elemento del folio.";

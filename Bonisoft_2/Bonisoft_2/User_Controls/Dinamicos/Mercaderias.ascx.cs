@@ -11,6 +11,18 @@ namespace Bonisoft_2.User_Controls.Configuracion
 {
     public partial class Mercaderias : System.Web.UI.UserControl
     {
+        public string Viaje_ID1
+        {
+            get
+            {
+                if (ViewState["viaje_ID1"] == null)
+                    return string.Empty;
+                else
+                    return ViewState["viaje_ID1"].ToString();
+            }
+            set { ViewState["viaje_ID1"] = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -28,7 +40,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                 hdnMercaderiasCount.Value = context.mercaderia_comprada.Count().ToString();
 
                 int viaje_ID = 0;
-                if(!int.TryParse(hdn_notificacionesViajeID.Value, out viaje_ID))
+                if (!int.TryParse(Viaje_ID1, out viaje_ID))
                 {
                     viaje_ID = 0;
                 }
@@ -198,46 +210,68 @@ namespace Bonisoft_2.User_Controls.Configuracion
                 DropDownList ddlProcesador2 = row.FindControl("ddlProcesador2") as DropDownList;
                 if (ddlVariedad2 != null && ddlProcesador2 != null && txb4 != null && txb5 != null && txb6 != null && txb7 != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    int viaje_ID = 0;
+                    if (!int.TryParse(Viaje_ID1, out viaje_ID))
                     {
-                        mercaderia_comprada obj = new mercaderia_comprada();
-                        obj.Precio_xTonelada_compra = decimal.Parse(txb5.Text);
-                        obj.Precio_xTonelada_venta= decimal.Parse(txb6.Text);
-                        obj.Comentarios = txb7.Text;
-
-                        #region DDL logic
-
-                        int ddl1 = 0;
-                        if (!int.TryParse(ddlVariedad2.SelectedValue, out ddl1))
+                        viaje_ID = 0;
+                    }
+                    if (viaje_ID > 0)
+                    {
+                        using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                         {
-                            ddl1 = 0;
+                            mercaderia_comprada obj = new mercaderia_comprada();
+                            obj.Comentarios = txb7.Text;
+
+                            decimal valor = 0;
+                            if (!decimal.TryParse(txb5.Text, out valor))
+                            {
+                                valor = 0;
+                            }
+                            obj.Precio_xTonelada_compra = valor;
+
+                            valor = 0;
+                            if (!decimal.TryParse(txb6.Text, out valor))
+                            {
+                                valor = 0;
+                            }
+                            obj.Precio_xTonelada_venta = valor;
+
+                            #region DDL logic
+
+                            int ddl1 = 0;
+                            if (!int.TryParse(ddlVariedad2.SelectedValue, out ddl1))
+                            {
+                                ddl1 = 0;
+                            }
+                            obj.Variedad_ID = ddl1;
+
+                            int ddl2 = 0;
+                            if (!int.TryParse(ddlProcesador2.SelectedValue, out ddl2))
+                            {
+                                ddl2 = 0;
+                            }
+                            obj.Procesador_ID = ddl2;
+
+                            #endregion DDL logic
+
+                            #region Datetime logic
+
+                            DateTime date1 = DateTime.Now;
+                            if (!DateTime.TryParseExact(txb4.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                            {
+                                date1 = DateTime.Now;
+                            }
+                            obj.Fecha_corte = date1;
+
+                            #endregion
+
+                            obj.Viaje_ID = viaje_ID;
+
+                            context.mercaderia_comprada.Add(obj);
+                            context.SaveChanges();
+                            lblMessage.Text = "Agregado correctamente.";
+                            BindGrid();
                         }
-                        obj.Variedad_ID = ddl1;
-
-                        int ddl2 = 0;
-                        if (!int.TryParse(ddlProcesador2.SelectedValue, out ddl1))
-                        {
-                            ddl2 = 0;
-                        }
-                        obj.Procesador_ID = ddl2;
-
-                        #endregion DDL logic
-
-                        #region Datetime logic
-
-                        DateTime date1 = DateTime.Now;
-                        if (!DateTime.TryParseExact(txb4.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
-                        {
-                            date1 = DateTime.Now;
-                        }
-                        obj.Fecha_corte = date1;
-
-                        #endregion
-
-                        context.mercaderia_comprada.Add(obj);
-                        context.SaveChanges();
-                        lblMessage.Text = "Agregado correctamente.";
-                        BindGrid();
                     }
                 }
             }
@@ -268,9 +302,21 @@ namespace Bonisoft_2.User_Controls.Configuracion
                 {
                     int mercaderia_ID = Convert.ToInt32(gridMercaderias.DataKeys[e.RowIndex].Value);
                     mercaderia_comprada obj = context.mercaderia_comprada.First(x => x.Mercaderia_ID == mercaderia_ID);
-                    obj.Precio_xTonelada_compra = decimal.Parse(txb5.Text);
-                    obj.Precio_xTonelada_venta = decimal.Parse(txb6.Text);
                     obj.Comentarios = txb7.Text;
+
+                    decimal valor = obj.Precio_xTonelada_compra;
+                    if (!decimal.TryParse(txb5.Text, out valor))
+                    {
+                        valor = obj.Precio_xTonelada_compra;
+                    }
+                    obj.Precio_xTonelada_compra = valor;
+
+                    valor = obj.Precio_xTonelada_venta;
+                    if (!decimal.TryParse(txb6.Text, out valor))
+                    {
+                        valor = obj.Precio_xTonelada_venta;
+                    }
+                    obj.Precio_xTonelada_venta = valor;
 
                     #region DDL logic
 

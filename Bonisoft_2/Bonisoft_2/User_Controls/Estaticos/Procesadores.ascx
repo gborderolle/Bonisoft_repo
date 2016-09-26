@@ -67,7 +67,7 @@
                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Direccion">
+        <asp:TemplateField HeaderText="Dirección">
             <EditItemTemplate>
                 <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Direccion") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
@@ -78,7 +78,7 @@
                 <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-         <asp:TemplateField HeaderText="Telefono">
+         <asp:TemplateField HeaderText="Teléfono">
             <EditItemTemplate>
                 <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("Telefono") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>

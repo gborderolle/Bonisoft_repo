@@ -56,7 +56,7 @@
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Matr camión">
+        <asp:TemplateField HeaderText="Matrícula camión">
             <EditItemTemplate>
                 <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Matricula_camion") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
@@ -67,7 +67,7 @@
                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Matr zorra">
+        <asp:TemplateField HeaderText="Matrícula zorra">
             <EditItemTemplate>
                 <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Matricula_zorra") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
