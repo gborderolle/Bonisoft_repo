@@ -7,6 +7,7 @@
 <%@ Register Src="~/User_Controls/Estaticos/Internos.ascx" TagPrefix="uc1" TagName="Internos" %>
 <%@ Register Src="~/User_Controls/Estaticos/Fleteros.ascx" TagPrefix="uc1" TagName="Fleteros" %>
 <%@ Register Src="~/User_Controls/Estaticos/Cargadores.ascx" TagPrefix="uc1" TagName="Cargadores" %>
+<%@ Register Src="~/User_Controls/Estaticos/Procesadores.ascx" TagPrefix="uc1" TagName="Procesadores" %>
 <%@ Register Src="~/User_Controls/Configuracion/Tipo_lena.ascx" TagPrefix="uc1" TagName="Tipos" %>
 <%@ Register Src="~/User_Controls/Configuracion/Variedad.ascx" TagPrefix="uc1" TagName="Variedades" %>
 <%@ Register Src="~/User_Controls/Configuracion/Formas_pago.ascx" TagPrefix="uc1" TagName="Formas" %>
@@ -195,6 +196,14 @@
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>
+                                    <div class="divTables" id="divProcesadores" style="display: none;">
+                                        <asp:UpdatePanel ID="upProcesadores" runat="server">
+                                            <ContentTemplate>
+                                                <uc1:Procesadores runat="server" ID="Procesadores" />
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </div>
+                                    
 
                                     <div class="divTables" id="divTipos" style="display: none;">
                                         <asp:UpdatePanel ID="upTipos" runat="server">

@@ -141,7 +141,7 @@ namespace Bonisoft_2.User_Controls.Estaticos
             }
             else
             {
-                BindGrid();
+                //BindGrid();
             }
         }
 

@@ -118,7 +118,7 @@ namespace Bonisoft_2.User_Controls
 
             #endregion
 
-            #region DDLs
+            #region Fill DDLs
 
             DropDownList ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -180,9 +180,12 @@ namespace Bonisoft_2.User_Controls
 
             #endregion
 
+            #region DDL Default values
+
+            // Forma de pago ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                Label lbl = e.Row.FindControl("lbl10") as Label;
+                LinkButton lbl = e.Row.FindControl("lbl10") as LinkButton;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -196,15 +199,41 @@ namespace Bonisoft_2.User_Controls
                             {
                                 string nombre = forma_de_pago.Forma;
                                 lbl.Text = nombre;
+                                lbl.CommandArgument = "formas," + nombre;
                             }
                         }
                     }
                 }
             }
 
+            // Contacto nuestro ----------------------------------------------------
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lbl = e.Row.FindControl("lbl9") as LinkButton;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        cliente cliente = (cliente)(e.Row.DataItem);
+                        if (cliente != null)
+                        {
+                            int id = cliente.Contacto_nuestro_ID;
+                            interno interno = (interno)context.internos.FirstOrDefault(c => c.Interno_ID == id);
+                            if (interno != null)
+                            {
+                                string nombre = interno.Nombre_completo;
+                                lbl.Text = nombre;
+                                lbl.CommandArgument = "internos," + nombre;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #endregion
+
 
         }
-
 
         protected void gridClientes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -261,7 +290,7 @@ namespace Bonisoft_2.User_Controls
                         obj.Forma_de_pago_ID = ddl1;
 
                         int ddl2 = 0;
-                        if (!int.TryParse(ddlContactoNuestro2.SelectedValue, out ddl1))
+                        if (!int.TryParse(ddlContactoNuestro2.SelectedValue, out ddl2))
                         {
                             ddl2 = 0;
                         }
@@ -276,9 +305,23 @@ namespace Bonisoft_2.User_Controls
                     }
                 }
             }
+            else if (e.CommandName == "View")
+            {
+                string[] values = e.CommandArgument.ToString().Split(new char[] { ',' });
+                if (values.Length > 1)
+                {
+                    string tabla = values[0];
+                    string dato = values[1];
+                    if (!string.IsNullOrWhiteSpace(tabla) && !string.IsNullOrWhiteSpace(dato))
+                    {
+                        Response.Redirect("Listados.aspx?tabla=" + tabla + "&dato=" + dato);
+                    }
+                }
+
+            }
             else
             {
-                BindGrid();
+                //BindGrid();
             }
         }
 

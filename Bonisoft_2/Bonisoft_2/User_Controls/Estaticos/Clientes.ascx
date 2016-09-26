@@ -37,22 +37,22 @@
     <Columns>
         <asp:TemplateField HeaderText="">
             <ItemTemplate>
-                <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" ToolTip="Modificar"
+                <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit"
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
                 <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete"
-                    ToolTip="Borrar" OnClientClick='return confirm("Está seguro que desea borrar este registro?");'
+                    OnClientClick='return confirm("Está seguro que desea borrar este registro?");'
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></asp:LinkButton>
             </ItemTemplate>
             <EditItemTemplate>
-                <asp:LinkButton ID="lnkInsert" runat="server" Text="" CommandName="Update" ToolTip="Guardar"
+                <asp:LinkButton ID="lnkInsert" runat="server" Text="" CommandName="Update"
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-floppy-disk"></span></asp:LinkButton>
-                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="Cancel" ToolTip="Cancelar"
+                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="Cancel"
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </EditItemTemplate>
             <FooterTemplate>
-                <asp:LinkButton ID="lnkInsert" runat="server" Text="" ValidationGroup="newGrp" CommandName="InsertNew" ToolTip="Agregar"
+                <asp:LinkButton ID="lnkInsert" runat="server" Text="" ValidationGroup="newGrp" CommandName="InsertNew"
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-plus"></span></asp:LinkButton>
-                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew" ToolTip="Cancelar"
+                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew"
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </FooterTemplate>
         </asp:TemplateField>
@@ -193,7 +193,7 @@
                 <asp:DropDownList ID="ddlContactoNuestro1" runat="server" CssClass="form-control" />
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl9" runat="server" Text='<%# Bind("Contacto_nuestro_ID") %>'></asp:Label>
+                <asp:LinkButton ID="lbl9" runat="server" CommandName="View" Text='<%# Bind("Contacto_nuestro_ID") %>'></asp:LinkButton>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:DropDownList ID="ddlContactoNuestro2" runat="server" CssClass="form-control" />
@@ -204,7 +204,7 @@
                 <asp:DropDownList ID="ddlFormas1" runat="server" CssClass="form-control" />
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl10" runat="server" Text='<%# Bind("Forma_de_pago_ID") %>'></asp:Label>
+                <asp:LinkButton ID="lbl10" runat="server" CommandName="View" Text='<%# Bind("Forma_de_pago_ID") %>'></asp:LinkButton>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:DropDownList ID="ddlFormas2" runat="server" CssClass="form-control" />
@@ -234,13 +234,13 @@
         </asp:TemplateField>        
         <asp:TemplateField HeaderText="Comentarios">
             <EditItemTemplate>
-                <asp:TextBox ID="txb22" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb22" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="100"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
                 <asp:Label ID="lbl22" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:TextBox ID="txbNew22" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txbNew22" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
 

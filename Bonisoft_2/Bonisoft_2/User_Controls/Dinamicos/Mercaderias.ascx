@@ -3,7 +3,7 @@
 
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridMercaderias" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true"
+<asp:GridView ID="gridMercaderias" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true" EnableViewState="True"
     DataKeyNames="Mercaderia_ID"
     OnRowCommand="gridMercaderias_RowCommand"
     OnRowCancelingEdit="gridMercaderias_RowCancelingEdit"
@@ -40,31 +40,31 @@
     <Columns>
         <asp:TemplateField HeaderText="">
             <ItemTemplate>
-                <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" ToolTip="Modificar"
+                <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" 
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
                 <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete"
-                    ToolTip="Borrar" OnClientClick='return confirm("Está seguro que desea borrar este registro?");'
+                    OnClientClick='return confirm("Está seguro que desea borrar este registro?");'
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></asp:LinkButton>
             </ItemTemplate>
             <EditItemTemplate>
-                <asp:LinkButton ID="lnkInsert" runat="server" Text="" CommandName="Update" ToolTip="Guardar"
+                <asp:LinkButton ID="lnkInsert" runat="server" Text="" CommandName="Update" OnClientClick = "return GetSelectedRow(this)"
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-floppy-disk"></span></asp:LinkButton>
-                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="Cancel" ToolTip="Cancelar"
+                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="Cancel" 
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </EditItemTemplate>
             <FooterTemplate>
-                <asp:LinkButton ID="lnkInsert" runat="server" Text="" ValidationGroup="newGrp" CommandName="InsertNew" ToolTip="Agregar"
+                <asp:LinkButton ID="lnkInsert" runat="server" Text="" ValidationGroup="newGrp" CommandName="InsertNew" 
                     CommandArgument='' OnClientClick="Javascript:DoPost_Mercaderias();"><span aria-hidden="true" class="glyphicon glyphicon-plus"></span></asp:LinkButton>
-                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew" ToolTip="Cancelar"
+                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew" 
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Variedad">
             <EditItemTemplate>
-                <asp:DropDownList ID="ddlVariedad1" runat="server" CssClass="form-control" />
+                <asp:DropDownList ID="mercaderias_ddlVariedad1" runat="server" CssClass="form-control" />
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Variedad_ID") %>'></asp:Label>
+                <asp:LinkButton ID="mercaderias_lbl1" runat="server" CommandName="View" Text='<%# Bind("Variedad_ID") %>'></asp:LinkButton>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:DropDownList ID="mercaderias_ddlVariedad2" runat="server" CssClass="form-control" />
@@ -72,10 +72,10 @@
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Procesador">
             <EditItemTemplate>
-                <asp:DropDownList ID="ddlProcesador1" runat="server" CssClass="form-control" />
+                <asp:DropDownList ID="mercaderias_ddlProcesador1" runat="server" CssClass="form-control" />
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Procesador_ID") %>'></asp:Label>
+                <asp:LinkButton ID="mercaderias_lbl2" runat="server" CommandName="View" Text='<%# Bind("Procesador_ID") %>'></asp:LinkButton>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:DropDownList ID="mercaderias_ddlProcesador2" runat="server" CssClass="form-control" />
@@ -83,10 +83,10 @@
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Fecha de corte">
             <EditItemTemplate>
-                <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("Fecha_corte") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="mercaderias_txb4" runat="server" Text='<%# Bind("Fecha_corte") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl4" runat="server" Text='<%# Bind("Fecha_corte") %>'></asp:Label>
+                <asp:Label ID="mercaderias_lbl4" runat="server" Text='<%# Bind("Fecha_corte") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="mercaderias_txbNew4" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
@@ -98,7 +98,7 @@
                 <asp:CompareValidator ID="vtxb5" runat="server" ControlToValidate="mercaderias_txb5" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl5" runat="server" Text='<%# Bind("Precio_xTonelada_compra", "{0:C0}") %>'></asp:Label>
+                <asp:Label ID="mercaderias_lbl5" runat="server" Text='<%# Bind("Precio_xTonelada_compra", "{0:C0}") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="mercaderias_txbNew5" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -111,7 +111,7 @@
                 <asp:CompareValidator ID="vtxb6" runat="server" ControlToValidate="mercaderias_txb6" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl6" runat="server" Text='<%# Bind("Precio_xTonelada_venta", "{0:C0}") %>'></asp:Label>
+                <asp:Label ID="mercaderias_lbl6" runat="server" Text='<%# Bind("Precio_xTonelada_venta", "{0:C0}") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="mercaderias_txbNew6" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -120,13 +120,13 @@
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Comentarios">
             <EditItemTemplate>
-                <asp:TextBox ID="txb7" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="mercaderias_txb7" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="100"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl7" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
+                <asp:Label ID="mercaderias_lbl7" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:TextBox ID="mercaderias_txbNew7" runat="server" CssClass="form-control" MaxLength="30" EnableViewState="true"></asp:TextBox>
+                <asp:TextBox ID="mercaderias_txbNew7" runat="server" CssClass="form-control" MaxLength="100" EnableViewState="true"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
 

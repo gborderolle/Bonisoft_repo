@@ -167,7 +167,7 @@ namespace Bonisoft_2.User_Controls
             }
             else
             {
-                BindGrid();
+                //BindGrid();
             }
         }
 

@@ -16,6 +16,7 @@ function load_quicksearch() {
     var gridInternos = $("#gridInternos tbody tr").not(':first');
     var gridFleteros = $("#gridFleteros tbody tr").not(':first');
     var gridCargadores = $("#gridCargadores tbody tr").not(':first');
+    var gridProcesadores = $("#gridProcesadores tbody tr").not(':first');
     var gridFormas = $("#gridFormas tbody tr").not(':first');
     var gridTipos = $("#gridTipos tbody tr").not(':first');
     var gridVariedades = $("#gridVariedades tbody tr").not(':first');
@@ -28,6 +29,7 @@ function load_quicksearch() {
     $("#txbSearch").quicksearch(gridInternos);
     $("#txbSearch").quicksearch(gridFleteros);
     $("#txbSearch").quicksearch(gridCargadores);
+    $("#txbSearch").quicksearch(gridProcesadores);
     $("#txbSearch").quicksearch(gridFormas);
     $("#txbSearch").quicksearch(gridTipos);
     $("#txbSearch").quicksearch(gridVariedades);
@@ -69,6 +71,10 @@ function show_tabla() {
                 }
                 case "cargadores": {
                     $("#divCargadores").show();
+                    break;
+                }
+                case "procesadores": {
+                    $("#divProcesadores").show();
                     break;
                 }
 

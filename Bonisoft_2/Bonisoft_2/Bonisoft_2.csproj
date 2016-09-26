@@ -1178,7 +1178,6 @@
     <Content Include="Pages\Recordatorios.aspx" />
     <Content Include="Pages\Registros.aspx" />
     <Content Include="Pages\Viajes.aspx" />
-    <Content Include="Pages\Viajes_TEST.aspx" />
     <Content Include="SYS_NOTES.txt" />
     <Content Include="User_Controls\Configuracion\Bancos.ascx" />
     <Content Include="User_Controls\Configuracion\Formas_pago.ascx" />
@@ -1508,13 +1507,6 @@
     </Compile>
     <Compile Include="Pages\Viajes.aspx.designer.cs">
       <DependentUpon>Viajes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Viajes_TEST.aspx.cs">
-      <DependentUpon>Viajes_TEST.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Viajes_TEST.aspx.designer.cs">
-      <DependentUpon>Viajes_TEST.aspx</DependentUpon>
     </Compile>
     <Compile Include="procesador.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>

@@ -963,7 +963,7 @@ namespace Bonisoft_2.Pages
                     }
                     #endregion
 
-                    if (e.CommandName == "View")
+                    else if (e.CommandName == "View")
                     {
                         string[] values = e.CommandArgument.ToString().Split(new char[] { ',' });
                         if (values.Length > 1)
@@ -980,7 +980,7 @@ namespace Bonisoft_2.Pages
 
                     else
                     {
-                        BindGrid();
+                        //BindGrid();
                     }
                 }
             }
@@ -1295,7 +1295,7 @@ namespace Bonisoft_2.Pages
 
                         System.Text.StringBuilder sb = new System.Text.StringBuilder();
                         sb.Append(@"<script type='text/javascript'>");
-                        sb.Append("$('#editModal').modal('show');");
+                        sb.Append("$('#editModal').modal('show'); $('.datepicker').datepicker();");
                         sb.Append(@"</script>");
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "EditModalScript", sb.ToString(), false);
                     }
@@ -1518,7 +1518,7 @@ namespace Bonisoft_2.Pages
                                 viaje.Fletero_ID = ddl;
 
                                 ddl = viaje.Camion_ID;
-                                if (!int.TryParse(ddlClientes, out ddl))
+                                if (!int.TryParse(ddlCamiones, out ddl))
                                 {
                                     ddl = viaje.Camion_ID;
                                 }
@@ -1568,8 +1568,29 @@ namespace Bonisoft_2.Pages
                     viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                     if (viaje != null)
                     {
-                        // Check si tiene PESADA ORIGEN y DESTINO
+                        bool save_ok = false;
+
+                        // Check si tiene Mercaderías
+                        var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
+                        if (elements.Count() > 0)
+                        {
+                            save_ok = true;
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('Error_DatosMercaderias');  </script>", false);
+                        }
+                        // Check si tiene Pesadas origen y destino
                         if (viaje.Pesada_origen_ID > 0 && viaje.Pesada_destino_ID > 0)
+                        {
+                            save_ok = true;                            
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('Error_DatosPesadas');  </script>", false);
+                        }
+
+                        if (save_ok)
                         {
                             viaje.EnViaje = false;
                             context.SaveChanges();
@@ -1577,10 +1598,7 @@ namespace Bonisoft_2.Pages
                             BindGrid();
                             BindGrid_EnCurso();
                         }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('Error_DatosPesadas'); </script>", false);
-                        }
+                        
                     }
                 }
             }

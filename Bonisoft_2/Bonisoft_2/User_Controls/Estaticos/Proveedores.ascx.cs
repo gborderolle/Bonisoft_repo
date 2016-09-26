@@ -121,8 +121,9 @@ namespace Bonisoft_2.User_Controls
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
                 TextBox txb3 = row.FindControl("txbNew3") as TextBox;
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
+                TextBox txb5 = row.FindControl("txbNew5") as TextBox;
                 TextBox txb10 = row.FindControl("txbNew10") as TextBox;
-                if (txb1 != null && txb3 != null && txb4 != null && txb10 != null)
+                if (txb1 != null && txb3 != null && txb4 != null && txb5 != null && txb10 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
@@ -130,7 +131,9 @@ namespace Bonisoft_2.User_Controls
                         obj.Nombre = txb1.Text;
                         obj.RUT = txb3.Text;
                         obj.Direccion = txb4.Text;
+                        obj.Telefono = txb5.Text;
                         obj.Comentarios = txb10.Text;
+
                         context.proveedores.Add(obj);
                         context.SaveChanges();
                         lblMessage.Text = "Agregado correctamente.";
@@ -140,7 +143,7 @@ namespace Bonisoft_2.User_Controls
             }
             else
             {
-                BindGrid();
+                //BindGrid();
             }
         }
 
@@ -156,19 +159,13 @@ namespace Bonisoft_2.User_Controls
         }
         protected void gridProveedores_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            GridView gv = (GridView)sender;
-            for (int i = 0; i < gv.Columns.Count; i++)
-            {
-                DataControlFieldCell cell = gv.Rows[e.RowIndex].Cells[i] as DataControlFieldCell;
-                gv.Columns[i].ExtractValuesFromCell(e.NewValues, cell, DataControlRowState.Edit, true);
-            }
-
             GridViewRow row = gridProveedores.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb3 = row.FindControl("txb3") as TextBox;
             TextBox txb4 = row.FindControl("txb4") as TextBox;
+            TextBox txb5 = row.FindControl("txb5") as TextBox;
             TextBox txb10 = row.FindControl("txb10") as TextBox;
-            if (txb1 != null && txb3 != null && txb4 != null && txb10 != null)
+            if (txb1 != null && txb3 != null && txb4 != null && txb5 != null && txb10 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -177,11 +174,13 @@ namespace Bonisoft_2.User_Controls
                     obj.Nombre = txb1.Text;
                     obj.RUT = txb3.Text;
                     obj.Direccion = txb4.Text;
+                    obj.Telefono = txb5.Text;
                     obj.Comentarios = txb10.Text;
+
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";
                     gridProveedores.EditIndex = -1;
-                    //BindGrid();
+                    BindGrid();
                 }
             }
         }

@@ -131,10 +131,16 @@ namespace Bonisoft_2.Pages
                         camion obj = new camion();
                         obj.Matricula_camion = txb1.Text;
                         obj.Matricula_zorra = txb2.Text;
-                        obj.Numero_ejes = int.Parse(txb3.Text);
                         obj.Marca = txb6.Text;
                         obj.Modelo = txb7.Text;
                         obj.Comentarios = txb9.Text;
+
+                        int Numero_ejes = 0;
+                        if (!int.TryParse(txb3.Text, out Numero_ejes))
+                        {
+                            Numero_ejes = 0;
+                        }
+                        obj.Numero_ejes = Numero_ejes;
 
                         context.camiones.Add(obj);
                         context.SaveChanges();
@@ -145,7 +151,7 @@ namespace Bonisoft_2.Pages
             }
             else
             {
-                BindGrid();
+                //BindGrid();
             }
         }
 
@@ -176,10 +182,16 @@ namespace Bonisoft_2.Pages
                     camion obj = context.camiones.First(x => x.Camion_ID == camion_ID);
                     obj.Matricula_camion = txb1.Text;
                     obj.Matricula_zorra = txb2.Text;
-                    obj.Numero_ejes = int.Parse(txb3.Text);
                     obj.Marca = txb6.Text;
                     obj.Modelo = txb7.Text;
                     obj.Comentarios = txb9.Text;
+
+                    int Numero_ejes = obj.Numero_ejes;
+                    if (!int.TryParse(txb3.Text, out Numero_ejes))
+                    {
+                        Numero_ejes = obj.Numero_ejes;
+                    }
+                    obj.Numero_ejes = Numero_ejes;
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";

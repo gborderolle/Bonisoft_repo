@@ -143,7 +143,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                Label lbl = e.Row.FindControl("lbl3") as Label;
+                LinkButton lbl = e.Row.FindControl("lbl3") as LinkButton;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -157,6 +157,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             {
                                 string nombre = lena_tipo.Tipo;
                                 lbl.Text = nombre;
+                                lbl.CommandArgument = "tipos," + nombre;
                             }
                         }
                     }
@@ -188,6 +189,20 @@ namespace Bonisoft_2.User_Controls.Configuracion
                         BindGrid();
                     }
                 }
+            }
+            else if (e.CommandName == "View")
+            {
+                string[] values = e.CommandArgument.ToString().Split(new char[] { ',' });
+                if (values.Length > 1)
+                {
+                    string tabla = values[0];
+                    string dato = values[1];
+                    if (!string.IsNullOrWhiteSpace(tabla) && !string.IsNullOrWhiteSpace(dato))
+                    {
+                        Response.Redirect("Listados.aspx?tabla=" + tabla + "&dato=" + dato);
+                    }
+                }
+
             }
         }
 

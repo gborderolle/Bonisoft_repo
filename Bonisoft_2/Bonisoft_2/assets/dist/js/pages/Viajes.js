@@ -212,3 +212,29 @@ function DoPost_Mercaderias() {
     $("#hdn_modalMercaderia_ddlProcesador2").val(mercaderias_ddlProcesador2);
 
 }
+
+function GetSelectedRow(lnk) {
+    //var row = lnk.parentNode.parentNode;
+    //var rowIndex = row.rowIndex - 1;
+    
+    //var variedad = $(row.cells[1]).val();
+    //var procesador = $(row.cells[2]).val();
+    //var fecha = $(row.cells[3]).val();
+    //var precio_compra = $(row.cells[4]).val();
+    //var precio_venta = $(row.cells[5]).val();
+    //var comentarios = $(row.cells[6]).val();
+
+    var mercaderias_txb4 = $("#mercaderias_txb4").val();
+    var mercaderias_txb5 = $("#mercaderias_txb5").val();
+    var mercaderias_txb6 = $("#mercaderias_txb6").val();
+    var mercaderias_txb7 = $("#mercaderias_txb7").val();
+    var mercaderias_ddlVariedad1 = $("#mercaderias_ddlVariedad1").val();
+    var mercaderias_ddlProcesador1 = $("#mercaderias_ddlProcesador1").val();
+    
+    $("#hdn_modalMercaderia_txb4").val(mercaderias_txb4);
+    $("#hdn_modalMercaderia_txb5").val(mercaderias_txb5);
+    $("#hdn_modalMercaderia_txb6").val(mercaderias_txb6);
+    $("#hdn_modalMercaderia_txb7").val(mercaderias_txb7);
+    $("#hdn_modalMercaderia_ddlVariedad1").val(mercaderias_ddlVariedad1);
+    $("#hdn_modalMercaderia_ddlProcesador1").val(mercaderias_ddlProcesador1);
+}
