@@ -1444,6 +1444,9 @@
     <Compile Include="lena_tipo.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
+    <Compile Include="log.cs">
+      <DependentUpon>Bonisoft_db.tt</DependentUpon>
+    </Compile>
     <Compile Include="mercaderia_comprada.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>

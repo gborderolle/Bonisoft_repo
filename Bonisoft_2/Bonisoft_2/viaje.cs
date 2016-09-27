@@ -34,5 +34,7 @@ namespace Bonisoft_2
         public int Fletero_ID { get; set; }
         public int Cliente_ID { get; set; }
         public int Proveedor_ID { get; set; }
+        public Nullable<decimal> precio_compra { get; set; }
+        public Nullable<decimal> precio_venta { get; set; }
     }
 }

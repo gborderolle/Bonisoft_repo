@@ -48,5 +48,6 @@ namespace Bonisoft_2
         public virtual DbSet<viaje_mercaderia> viaje_mercaderia { get; set; }
         public virtual DbSet<cargador> cargadores { get; set; }
         public virtual DbSet<procesador> procesadores { get; set; }
+        public virtual DbSet<log> logs { get; set; }
     }
 }

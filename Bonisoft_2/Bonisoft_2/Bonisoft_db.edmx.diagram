@@ -28,6 +28,7 @@
         <EntityTypeShape EntityType="bonisoft_dbModel.viaje_mercaderia" Width="1.5" PointX="0.75" PointY="10.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.cargador" Width="1.5" PointX="8.375" PointY="14.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.procesador" Width="1.5" PointX="13.375" PointY="10.75" />
+        <EntityTypeShape EntityType="bonisoft_dbModel.log" Width="1.5" PointX="10.375" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

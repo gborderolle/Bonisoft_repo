@@ -148,9 +148,6 @@
     <EntitySetMapping Name="mercaderia_comprada">
       <EntityTypeMapping TypeName="bonisoft_dbModel.mercaderia_comprada">
         <MappingFragment StoreEntitySet="mercaderia_comprada">
-          <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
-          <ScalarProperty Name="Precio_xTonelada_venta" ColumnName="Precio_xTonelada_venta" />
-          <ScalarProperty Name="Precio_xTonelada_compra" ColumnName="Precio_xTonelada_compra" />
           <ScalarProperty Name="Procesador_ID" ColumnName="Procesador_ID" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
           <ScalarProperty Name="Fecha_corte" ColumnName="Fecha_corte" />
@@ -224,6 +221,8 @@
     <EntitySetMapping Name="viajes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
         <MappingFragment StoreEntitySet="viaje">
+          <ScalarProperty Name="precio_venta" ColumnName="precio_venta" />
+          <ScalarProperty Name="precio_compra" ColumnName="precio_compra" />
           <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
           <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
           <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />
@@ -274,6 +273,16 @@
           <ScalarProperty Name="Direccion" ColumnName="Direccion" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Procesador_ID" ColumnName="Procesador_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="logs">
+      <EntityTypeMapping TypeName="bonisoft_dbModel.log">
+        <MappingFragment StoreEntitySet="log">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Log_ID" ColumnName="Log_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -123,17 +123,23 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
     <Property Name="Tipo" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
+  <EntityType Name="log">
+    <Key>
+      <PropertyRef Name="Log_ID" />
+    </Key>
+    <Property Name="Log_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha" Type="date" Nullable="false" />
+    <Property Name="Usuario_ID" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
   <EntityType Name="mercaderia_comprada">
     <Key>
       <PropertyRef Name="Mercaderia_ID" />
     </Key>
     <Property Name="Mercaderia_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Viaje_ID" Type="int" Nullable="false" />
     <Property Name="Variedad_ID" Type="int" Nullable="false" />
     <Property Name="Procesador_ID" Type="int" Nullable="false" />
     <Property Name="Fecha_corte" Type="date" Nullable="false" />
-    <Property Name="Precio_xTonelada_compra" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="Precio_xTonelada_venta" Type="decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
   <EntityType Name="pesada">
@@ -248,6 +254,8 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
     <Property Name="Carga" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Descarga" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Fletero_ID" Type="int" Nullable="false" />
+    <Property Name="precio_compra" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="precio_venta" Type="decimal" Precision="10" Scale="0" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="EnViaje" Type="bit" Nullable="false" />
   </EntityType>
@@ -270,6 +278,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
     <EntitySet Name="forma_de_pago" EntityType="Self.forma_de_pago" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="interno" EntityType="Self.interno" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="lena_tipo" EntityType="Self.lena_tipo" Schema="bonisoft_db" store:Type="Tables" />
+    <EntitySet Name="log" EntityType="Self.log" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="mercaderia_comprada" EntityType="Self.mercaderia_comprada" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="pesada" EntityType="Self.pesada" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="preferencias_cliente" EntityType="Self.preferencias_cliente" Schema="bonisoft_db" store:Type="Tables" />

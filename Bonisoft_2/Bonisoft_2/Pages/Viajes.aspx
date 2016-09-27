@@ -313,8 +313,6 @@
                             <asp:UpdatePanel ID="upNotificaciones" runat="server">
                                 <ContentTemplate>
 
-                                    
-
                                     <div class="modal-header">
                                         <div class="row">
                                             <div class="col-md-10 pull-left">
@@ -434,12 +432,7 @@
                 <!-- Tab Viajes Histórico BEGIN -->
                 <div id="tabsViajes_2">
 
-
-
-
-
                     <div class="row">
-
 
                         <div class="col-md-12">
                             <div class="row">
@@ -733,10 +726,6 @@
                         </div>
 
                     </div>
-
-
-
-
 
                 </div>
                 <!-- Tab Viajes Histórico END -->

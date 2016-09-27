@@ -128,17 +128,23 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Tipo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="Log_ID" />
+          </Key>
+          <Property Name="Log_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Usuario_ID" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="mercaderia_comprada">
           <Key>
             <PropertyRef Name="Mercaderia_ID" />
           </Key>
           <Property Name="Mercaderia_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Viaje_ID" Type="int" Nullable="false" />
           <Property Name="Variedad_ID" Type="int" Nullable="false" />
           <Property Name="Procesador_ID" Type="int" Nullable="false" />
           <Property Name="Fecha_corte" Type="date" Nullable="false" />
-          <Property Name="Precio_xTonelada_compra" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="Precio_xTonelada_venta" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="pesada">
@@ -253,6 +259,8 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Carga" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Descarga" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Fletero_ID" Type="int" Nullable="false" />
+          <Property Name="precio_compra" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="precio_venta" Type="decimal" Precision="10" Scale="0" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="EnViaje" Type="bit" Nullable="false" />
         </EntityType>
@@ -275,6 +283,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <EntitySet Name="forma_de_pago" EntityType="Self.forma_de_pago" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="interno" EntityType="Self.interno" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="lena_tipo" EntityType="Self.lena_tipo" Schema="bonisoft_db" store:Type="Tables" />
+          <EntitySet Name="log" EntityType="Self.log" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="mercaderia_comprada" EntityType="Self.mercaderia_comprada" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="pesada" EntityType="Self.pesada" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="preferencias_cliente" EntityType="Self.preferencias_cliente" Schema="bonisoft_db" store:Type="Tables" />
@@ -427,6 +436,7 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySet Name="viaje_mercaderia" EntityType="bonisoft_dbModel.viaje_mercaderia" />
           <EntitySet Name="cargadores" EntityType="bonisoft_dbModel.cargador" />
           <EntitySet Name="procesadores" EntityType="bonisoft_dbModel.procesador" />
+          <EntitySet Name="logs" EntityType="bonisoft_dbModel.log" />
         </EntityContainer>
         <EntityType Name="roles_usuario">
           <Key>
@@ -551,6 +561,8 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Fletero_ID" Type="Int32" Nullable="false" />
           <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
           <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
+          <Property Name="precio_compra" Type="Decimal" />
+          <Property Name="precio_venta" Type="Decimal" />
         </EntityType>
         <EntityType Name="viaje_mercaderia">
           <Key>
@@ -579,6 +591,15 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="Log_ID" />
+          </Key>
+          <Property Name="Log_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <Property Name="Usuario_ID" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -733,9 +754,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySetMapping Name="mercaderia_comprada">
             <EntityTypeMapping TypeName="bonisoft_dbModel.mercaderia_comprada">
               <MappingFragment StoreEntitySet="mercaderia_comprada">
-                <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
-                <ScalarProperty Name="Precio_xTonelada_venta" ColumnName="Precio_xTonelada_venta" />
-                <ScalarProperty Name="Precio_xTonelada_compra" ColumnName="Precio_xTonelada_compra" />
                 <ScalarProperty Name="Procesador_ID" ColumnName="Procesador_ID" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
                 <ScalarProperty Name="Fecha_corte" ColumnName="Fecha_corte" />
@@ -809,6 +827,8 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySetMapping Name="viajes">
             <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
               <MappingFragment StoreEntitySet="viaje">
+                <ScalarProperty Name="precio_venta" ColumnName="precio_venta" />
+                <ScalarProperty Name="precio_compra" ColumnName="precio_compra" />
                 <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
                 <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
                 <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />
@@ -859,6 +879,16 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Procesador_ID" ColumnName="Procesador_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logs">
+            <EntityTypeMapping TypeName="bonisoft_dbModel.log">
+              <MappingFragment StoreEntitySet="log">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Log_ID" ColumnName="Log_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

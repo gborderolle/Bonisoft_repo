@@ -129,6 +129,7 @@
     <EntitySet Name="viaje_mercaderia" EntityType="bonisoft_dbModel.viaje_mercaderia" />
     <EntitySet Name="cargadores" EntityType="bonisoft_dbModel.cargador" />
     <EntitySet Name="procesadores" EntityType="bonisoft_dbModel.procesador" />
+    <EntitySet Name="logs" EntityType="bonisoft_dbModel.log" />
   </EntityContainer>
   <EntityType Name="roles_usuario">
     <Key>
@@ -253,6 +254,8 @@
     <Property Name="Fletero_ID" Type="Int32" Nullable="false" />
     <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
     <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
+    <Property Name="precio_compra" Type="Decimal" />
+    <Property Name="precio_venta" Type="Decimal" />
   </EntityType>
   <EntityType Name="viaje_mercaderia">
     <Key>
@@ -281,5 +284,14 @@
     <Property Name="Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="log">
+    <Key>
+      <PropertyRef Name="Log_ID" />
+    </Key>
+    <Property Name="Log_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" />
+    <Property Name="Usuario_ID" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>
