@@ -111,7 +111,7 @@ function show_message_confirm(msg) {
                 return true;
 
             },
-            Cancel: function () {
+            "Cancelar": function () {
                 $(this).dialog("close");
                 return false;
             }
@@ -130,6 +130,29 @@ function show_message_accept(msg) {
             "Aceptar": function () {
                 $(this).dialog("close");
                 return true;
+            }
+        }
+    });
+}
+
+function finalizarViaje() {
+
+    $('#dialog p').text(hashMessages['Confirmacion']);
+    $("#dialog").dialog({
+        open: {},
+        resizable: false,
+        height: 140,
+        modal: true,
+        buttons: {
+            "Confirmar": function () {
+                $("#lnkViajeDestinoCandidate").click();
+                //__doPostBack('<%=lnkViajeDestinoCandidate.UniqueID%>', "");
+                //$(this).dialog("close");
+
+            },
+            "Cancelar": function () {
+                $(this).dialog("close");
+                return false;
             }
         }
     });

@@ -322,8 +322,9 @@
                                             </div>
 
                                             <div class="col-md-2 pull-right" style="padding-top: 10px;">
-                                                <asp:LinkButton ID="lnkViajeDestino" runat="server"
-                                                    CssClass="btn btn-info" OnClick="lnkViajeDestino_Click">FIN del Viaje</asp:LinkButton>
+                                                <asp:LinkButton ID="lnkViajeDestino" runat="server" CssClass="btn btn-info" OnClientClick="Javascript:return finalizarViaje();">FIN del Viaje</asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkViajeDestinoCandidate1" runat="server" ClientIDMode="Static" CssClass="btn btn-info" OnClick="lnkViajeDestino_Click" Style="display: block;"></asp:LinkButton>
+                                                    <%--<asp:Button ID="lnkViajeDestinoCandidate" runat="server" ClientIDMode="Static" Style="display: block;" OnClick="lnkViajeDestino_Click" />--%>
                                             </div>
                                         </div>
 
