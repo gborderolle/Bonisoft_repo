@@ -67,6 +67,15 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.GridView gridViajesEnCurso;
         
         /// <summary>
+        /// lblGridViajesEnCursoCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGridViajesEnCursoCount;
+        
+        /// <summary>
         /// upAdd control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,15 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel upAdd;
+        
+        /// <summary>
+        /// btnSubmit_upAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit_upAdd;
         
         /// <summary>
         /// modalAdd_txbFecha1 control.
@@ -400,15 +418,6 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.LinkButton lnkViajeDestino;
         
         /// <summary>
-        /// lnkViajeDestinoCandidate1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkViajeDestinoCandidate1;
-        
-        /// <summary>
         /// upMercaderias control.
         /// </summary>
         /// <remarks>
@@ -560,6 +569,15 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridViajes;
+        
+        /// <summary>
+        /// lblGridViajesCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGridViajesCount;
         
         /// <summary>
         /// hdnViajesCount control.

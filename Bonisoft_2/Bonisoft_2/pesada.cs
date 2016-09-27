@@ -21,5 +21,10 @@ namespace Bonisoft_2
         public decimal Peso_bruto { get; set; }
         public decimal Peso_neto { get; set; }
         public string Comentarios { get; set; }
+
+        public override string ToString()
+        {
+            return Lugar + ": " + Peso_neto + "(N)";
+        }
     }
 }

@@ -126,11 +126,8 @@ namespace Bonisoft_2.Pages
                     context.SaveChanges();
 
                     BindGrid_EnCurso();
-                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                    sb.Append(@"<script type='text/javascript'>");
-                    sb.Append("$.modal.close();");
-                    sb.Append(@"</script>");
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AddHideModalScript", sb.ToString(), false);
+                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('OK_ViajeNuevo'); $.modal.close();</script>", false);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>$.modal.close();</script>", false);
                 }
 
             }
@@ -248,56 +245,6 @@ namespace Bonisoft_2.Pages
             }
         }
 
-        protected void lnkViajeDestino_Click(object sender, EventArgs e)
-        {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-            {
-                int viaje_ID = 0;
-                if (!int.TryParse(hdn_notificaciones_viajeID.Value, out viaje_ID))
-                {
-                    viaje_ID = 0;
-                }
-                if (viaje_ID > 0)
-                {
-                    viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
-                    if (viaje != null)
-                    {
-                        bool save_ok = false;
-
-                        // Check si tiene Mercaderías
-                        var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
-                        if (elements.Count() > 0)
-                        {
-                            save_ok = true;
-                        }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('Error_DatosMercaderias');  </script>", false);
-                        }
-                        // Check si tiene Pesadas origen y destino
-                        if (viaje.Pesada_origen_ID > 0 && viaje.Pesada_destino_ID > 0)
-                        {
-                            save_ok = true;
-                        }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('Error_DatosPesadas');  </script>", false);
-                        }
-
-                        if (save_ok)
-                        {
-                            viaje.EnViaje = false;
-                            context.SaveChanges();
-
-                            BindGrid();
-                            BindGrid_EnCurso();
-                        }
-
-                    }
-                }
-            }
-        }
-
         protected void lnk_pesadasGuardar_Click(object sender, EventArgs e)
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -390,7 +337,7 @@ namespace Bonisoft_2.Pages
                             pesada.Peso_neto = value;
 
                             context.pesadas.Add(pesada);
-                            viaje.Pesada_origen_ID = context.pesadas.Count() + 1;
+                            viaje.Pesada_origen_ID = ((pesada)context.pesadas.OrderByDescending(p => p.pesada_ID).FirstOrDefault()).pesada_ID + 1;
 
                             context.SaveChanges();
                             save_ok = true;
@@ -474,7 +421,7 @@ namespace Bonisoft_2.Pages
                             pesada.Peso_neto = value;
 
                             context.pesadas.Add(pesada);
-                            viaje.Pesada_destino_ID = context.pesadas.Count() + 1;
+                            viaje.Pesada_destino_ID = ((pesada)context.pesadas.OrderByDescending(p => p.pesada_ID).FirstOrDefault()).pesada_ID + 1;
 
                             context.SaveChanges();
                             save_ok = true;
@@ -487,6 +434,62 @@ namespace Bonisoft_2.Pages
                             CalcularSaldos(viaje_ID);
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('OK_Datos'); $.modal.close();</script>", false);
                         }
+                    }
+                }
+            }
+        }
+
+        protected void lnkViajeDestino_Click(object sender, EventArgs e)
+        {
+            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            {
+                int viaje_ID = 0;
+                if (!int.TryParse(hdn_notificaciones_viajeID.Value, out viaje_ID))
+                {
+                    viaje_ID = 0;
+                }
+                if (viaje_ID > 0)
+                {
+                    viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
+                    if (viaje != null)
+                    {
+                        bool save_ok = false;
+
+                        // Check si tiene Mercaderías
+                        var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
+                        if (elements.Count() > 0)
+                        {
+                            save_ok = true;
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('Error_DatosMercaderias');  </script>", false);
+                        }
+                        if (save_ok)
+                        {
+                            // Check si tiene Pesadas origen y destino
+                            if (viaje.Pesada_origen_ID > 0 && viaje.Pesada_destino_ID > 0)
+                            {
+                                viaje.EnViaje = false;
+                                context.SaveChanges();
+
+                                BindGrid();
+                                BindGrid_EnCurso();
+
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('OK_FINViaje'); $.modal.close();</script>", false);
+                            }
+                            else
+                            {
+                                save_ok = false;
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('Error_DatosPesadas');  </script>", false);
+                            }
+                        }
+
+                        if (!save_ok)
+                        {
+                            Mercaderias.BindGrid();
+                        }
+
                     }
                 }
             }
@@ -866,7 +869,7 @@ namespace Bonisoft_2.Pages
                             fletero fletero = (fletero)context.fleteros.FirstOrDefault(c => c.Fletero_ID == id);
                             if (fletero != null)
                             {
-                                string nombre = fletero.ToString();
+                                string nombre = fletero.Nombre;
                                 lbl.Text = nombre;
                                 lbl.CommandArgument = "fleteros," + fletero.Nombre;
                             }
@@ -914,7 +917,7 @@ namespace Bonisoft_2.Pages
                             chofer chofer = (chofer)context.choferes.FirstOrDefault(c => c.Chofer_ID == id);
                             if (chofer != null)
                             {
-                                string nombre = chofer.ToString();
+                                string nombre = chofer.Nombre_completo;
                                 lbl.Text = nombre;
                                 lbl.CommandArgument = "choferes," + chofer.Nombre_completo;
                             }
@@ -938,7 +941,7 @@ namespace Bonisoft_2.Pages
                             proveedor proveedor = (proveedor)context.proveedores.FirstOrDefault(c => c.Proveedor_ID == id);
                             if (proveedor != null)
                             {
-                                string nombre = proveedor.ToString();
+                                string nombre = proveedor.Nombre;
                                 lbl.Text = nombre;
                                 lbl.CommandArgument = "proveedores," + proveedor.Nombre;
                             }
@@ -962,7 +965,7 @@ namespace Bonisoft_2.Pages
                             cliente cliente = (cliente)context.clientes.FirstOrDefault(c => c.cliente_ID == id);
                             if (cliente != null)
                             {
-                                string nombre = cliente.ToString();
+                                string nombre = cliente.Nombre;
                                 lbl.Text = nombre;
                                 lbl.CommandArgument = "clientes," + cliente.Nombre;
                             }
@@ -998,7 +1001,7 @@ namespace Bonisoft_2.Pages
             // Pesada origen ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                LinkButton lbl = e.Row.FindControl("lbl8") as LinkButton;
+                Label lbl = e.Row.FindControl("lbl8") as Label;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -1012,7 +1015,7 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = pesada.ToString();
                                 lbl.Text = nombre;
-                                lbl.CommandArgument = "pesadas," + pesada.Nombre_balanza;
+                                //lbl.CommandArgument = "pesadas," + pesada.Nombre_balanza;
                             }
                         }
                     }
@@ -1022,7 +1025,7 @@ namespace Bonisoft_2.Pages
             // Pesada destino ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                LinkButton lbl = e.Row.FindControl("lbl9") as LinkButton;
+                Label lbl = e.Row.FindControl("lbl9") as Label;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -1036,7 +1039,7 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = pesada.ToString();
                                 lbl.Text = nombre;
-                                lbl.CommandArgument = "pesadas," + pesada.Nombre_balanza;
+                                //lbl.CommandArgument = "pesadas," + pesada.Nombre_balanza;
                             }
                         }
                     }
@@ -1061,10 +1064,8 @@ namespace Bonisoft_2.Pages
                         int index = Convert.ToInt32(e.CommandArgument);
 
                         GridViewRow row = gridViajes.FooterRow;
-                        TextBox txb1 = row.FindControl("txbNew1") as TextBox;
                         TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                         TextBox txb3 = row.FindControl("txbNew3") as TextBox;
-                        TextBox txb4 = row.FindControl("txbNew4") as TextBox;
                         TextBox txb6 = row.FindControl("txbNew6") as TextBox;
                         TextBox txb7 = row.FindControl("txbNew7") as TextBox;
                         TextBox txb11 = row.FindControl("txbNew11") as TextBox;
@@ -1080,20 +1081,32 @@ namespace Bonisoft_2.Pages
                         DropDownList ddlPesadaOrigen2 = row.FindControl("ddlPesadaOrigen2") as DropDownList;
                         DropDownList ddlPesadaDestino2 = row.FindControl("ddlPesadaDestino2") as DropDownList;
 
-                        if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb6 != null && txb7 != null && ddlChoferes2 != null && txb15 != null &&
+                        if (txb2 != null && txb3 != null && txb6 != null && txb7 != null && ddlChoferes2 != null && txb15 != null &&
                             ddlPesadaOrigen2 != null && txb11 != null && txb12 != null && txb3 != null && ddlCargadores2 != null && ddlCamiones2 != null &&
                             ddlPesadaDestino2 != null && ddlFleteros2 != null && ddlProveedores2 != null && ddlClientes2 != null)
                         {
                             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                             {
                                 viaje obj = new viaje();
-                                obj.Precio_compra_por_tonelada = decimal.Parse(txb1.Text);
-                                obj.Precio_valor_total = decimal.Parse(txb2.Text);
-                                obj.Importe_viaje = decimal.Parse(txb3.Text);
-                                obj.Saldo = decimal.Parse(txb4.Text);
                                 obj.Carga = txb6.Text;
                                 obj.Descarga = txb7.Text;
                                 obj.Comentarios = txb15.Text;
+
+                                decimal value = obj.precio_compra;
+                                if (!decimal.TryParse(txb2.Text, out value))
+                                {
+                                    value = obj.precio_compra;
+                                }
+                                obj.precio_compra = value;
+
+                                value = obj.precio_venta;
+                                if (!decimal.TryParse(txb3.Text, out value))
+                                {
+                                    value = obj.precio_venta;
+                                }
+                                obj.precio_venta = value;
+
+                                #region Datetime logic
 
                                 DateTime date1 = DateTime.Now;
                                 if (!DateTime.TryParseExact(txb11.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
@@ -1108,6 +1121,8 @@ namespace Bonisoft_2.Pages
                                     date2 = DateTime.Now;
                                 }
                                 obj.Fecha_llegada = date2;
+                                
+                                #endregion Datetime logic
 
                                 #region DDL logic
 
@@ -1223,10 +1238,8 @@ namespace Bonisoft_2.Pages
         protected void gridViajes_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             GridViewRow row = gridViajes.Rows[e.RowIndex];
-            TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
             TextBox txb3 = row.FindControl("txb3") as TextBox;
-            TextBox txb4 = row.FindControl("txb4") as TextBox;
             TextBox txb6 = row.FindControl("txb6") as TextBox;
             TextBox txb7 = row.FindControl("txb7") as TextBox;
             TextBox txb11 = row.FindControl("txb11") as TextBox;
@@ -1242,7 +1255,7 @@ namespace Bonisoft_2.Pages
             DropDownList ddlPesadaOrigen2 = row.FindControl("ddlPesadaOrigen1") as DropDownList;
             DropDownList ddlPesadaDestino2 = row.FindControl("ddlPesadaDestino1") as DropDownList;
 
-            if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb6 != null && txb7 != null && ddlChoferes2 != null && txb15 != null &&
+            if (txb2 != null && txb3 != null && txb6 != null && txb7 != null && ddlChoferes2 != null && txb15 != null &&
                 ddlPesadaOrigen2 != null && txb11 != null && txb12 != null && txb3 != null && ddlCargadores2 != null && ddlCamiones2 != null &&
                 ddlPesadaDestino2 != null && ddlFleteros2 != null && ddlProveedores2 != null && ddlClientes2 != null)
             {
@@ -1250,13 +1263,24 @@ namespace Bonisoft_2.Pages
                 {
                     int viaje_ID = Convert.ToInt32(gridViajes.DataKeys[e.RowIndex].Value);
                     viaje obj = context.viajes.First(x => x.Viaje_ID == viaje_ID);
-                    obj.Precio_compra_por_tonelada = decimal.Parse(txb1.Text);
-                    obj.Precio_valor_total = decimal.Parse(txb2.Text);
-                    obj.Importe_viaje = decimal.Parse(txb3.Text);
-                    obj.Saldo = decimal.Parse(txb4.Text);
+                    //obj.Saldo = decimal.Parse(txb4.Text);
                     obj.Carga = txb6.Text;
                     obj.Descarga = txb7.Text;
                     obj.Comentarios = txb15.Text;
+
+                    decimal value = 0;
+                    if (!decimal.TryParse(txb2.Text, out value))
+                    {
+                        value = 0;
+                    }
+                    obj.precio_compra = value;
+
+                    value = 0;
+                    if (!decimal.TryParse(txb3.Text, out value))
+                    {
+                        value = 0;
+                    }
+                    obj.precio_venta = value;
 
                     #region Datetime logic
 
@@ -1739,6 +1763,8 @@ namespace Bonisoft_2.Pages
                 {
                     gridViajes.DataSource = elements;
                     gridViajes.DataBind();
+
+                    lblGridViajesCount.Text = "Resultados: " + elements.Count();
                 }
                 else
                 {
@@ -1763,6 +1789,7 @@ namespace Bonisoft_2.Pages
                     //set No Results found to the new added cell
                     gridViajes.Rows[0].Cells[0].Text = "No hay registros";
                 }
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>$('.datepicker').datepicker();  </script>", false);
             }
         }
         
@@ -1775,6 +1802,8 @@ namespace Bonisoft_2.Pages
                 {
                     gridViajesEnCurso.DataSource = elements;
                     gridViajesEnCurso.DataBind();
+
+                    lblGridViajesEnCursoCount.Text = "Resultados: " + elements.Count();
                 }
                 else
                 {
@@ -1799,6 +1828,7 @@ namespace Bonisoft_2.Pages
                     //set No Results found to the new added cell
                     gridViajesEnCurso.Rows[0].Cells[0].Text = "No hay registros";
                 }
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>$('.datepicker').datepicker();  </script>", false);
             }
         }
 
@@ -1863,5 +1893,14 @@ namespace Bonisoft_2.Pages
 
         #endregion Events
 
+        protected void btnSubmit_upAdd_Click(object sender, EventArgs e)
+        {
+            BindAddModal();
+        }
+
+        protected void upAdd_Load(object sender, EventArgs e)
+        {
+            BindAddModal();
+        }
     }
 }

@@ -15,6 +15,8 @@ namespace Bonisoft_2
     public partial class viaje
     {
         public int Viaje_ID { get; set; }
+        public int Cliente_ID { get; set; }
+        public int Proveedor_ID { get; set; }
         public decimal Precio_compra_por_tonelada { get; set; }
         public decimal Precio_valor_total { get; set; }
         public decimal Importe_viaje { get; set; }
@@ -29,12 +31,10 @@ namespace Bonisoft_2
         public int Chofer_ID { get; set; }
         public string Carga { get; set; }
         public string Descarga { get; set; }
+        public int Fletero_ID { get; set; }
+        public decimal precio_compra { get; set; }
+        public decimal precio_venta { get; set; }
         public string Comentarios { get; set; }
         public bool EnViaje { get; set; }
-        public int Fletero_ID { get; set; }
-        public int Cliente_ID { get; set; }
-        public int Proveedor_ID { get; set; }
-        public Nullable<decimal> precio_compra { get; set; }
-        public Nullable<decimal> precio_venta { get; set; }
     }
 }

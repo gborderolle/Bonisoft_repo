@@ -1,4 +1,10 @@
-﻿input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="select"] {
+﻿.lblResultados{
+    float:left;
+    font-size: small;
+    display:none;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="select"] {
     max-width: none;
 }
 

@@ -21,5 +21,10 @@ namespace Bonisoft_2
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public string Comentarios { get; set; }
+
+        public override string ToString()
+        {
+            return Matricula_camion + "(C) - " + Matricula_zorra + "(Z)";
+        }
     }
 }

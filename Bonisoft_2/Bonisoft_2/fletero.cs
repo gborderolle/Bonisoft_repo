@@ -19,5 +19,6 @@ namespace Bonisoft_2
         public string Comentarios { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
+
     }
 }

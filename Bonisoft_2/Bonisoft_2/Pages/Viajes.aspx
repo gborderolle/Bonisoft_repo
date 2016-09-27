@@ -79,9 +79,8 @@
                                     <Columns>
 
                                         <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:MMMM d, yyyy}" HtmlEncode="false" />
-                                        <asp:BoundField DataField="Precio_valor_total" HeaderText="Precio valor total" DataFormatString="{0:C0}" HtmlEncode="False" />
-                                        <asp:BoundField DataField="Importe_viaje" HeaderText="Importe viaje" DataFormatString="{0:C0}" HtmlEncode="False" />
-                                        <asp:BoundField DataField="Saldo" HeaderText="Saldo" DataFormatString="{0:C0}" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Precio_compra" HeaderText="Precio compra" DataFormatString="{0:C0}" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Precio_venta" HeaderText="Precio venta" DataFormatString="{0:C0}" HtmlEncode="False" />
                                         <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
 
                                         <asp:ButtonField CommandName="notificar" ControlStyle-CssClass="btn btn-info" ButtonType="Link" Text="" HeaderText="Notificar">
@@ -99,6 +98,8 @@
                                         </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
+                                <asp:Label ID="lblGridViajesEnCursoCount" runat="server" ClientIDMode="Static" Text="Resultados: 0" CssClass="lblResultados"></asp:Label>
+
                             </ContentTemplate>
                         </asp:UpdatePanel>
 
@@ -110,6 +111,7 @@
                             </div>
                             <asp:UpdatePanel ID="upAdd" runat="server">
                                 <ContentTemplate>
+                                     <asp:Button ID="btnSubmit_upAdd" runat="server" OnClick="btnSubmit_upAdd_Click" style = "display:none" />
                                     <div class="modal-body">
                                         <table class="table table-bordered table-hover">
                                             <tr>
@@ -154,7 +156,13 @@
                                                 <td>Comentarios: 
                                                 <asp:TextBox ID="modalAdd_txbComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" />
                                                 </td>
-                                                <td></td>
+                                                <td>
+
+                                <%--<a onclick="showItems();" style="cursor:pointer; text-decoration:underline; float:right; padding: 20px;">Actualizar</a>--%>
+                                <%--<a onclick="openNewWindows();" style="cursor:pointer; text-decoration:underline; float:right; padding: 20px;">Ir a Base de datos</a>--%>
+
+
+                                                </td>
                                             </tr>
 
                                         </table>
@@ -162,7 +170,7 @@
                                     <div class="modal-footer">
 
                                         <asp:Button ID="btnAdd" runat="server" Text="Agregar" CssClass="btn btn-info" OnClientClick="Javascript:DoCustomPost();" OnClick="btnAddRecord1_Click" UseSubmitBehavior="false" />
-                                        <button class="btn btn-info" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cancelar</button>
+                                        <button class="btn btn-info" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cerrar</button>
 
                                     </div>
                                 </ContentTemplate>
@@ -320,9 +328,9 @@
                                             </div>
 
                                             <div class="col-md-2 pull-right" style="padding-top: 10px;">
-                                                <asp:LinkButton ID="lnkViajeDestino" runat="server" CssClass="btn btn-info" OnClientClick="Javascript:return finalizarViaje();">FIN del Viaje</asp:LinkButton>
-                                                    <asp:LinkButton ID="lnkViajeDestinoCandidate1" runat="server" ClientIDMode="Static" CssClass="btn btn-info" OnClick="lnkViajeDestino_Click" Style="display: block;"></asp:LinkButton>
-                                                    <%--<asp:Button ID="lnkViajeDestinoCandidate" runat="server" ClientIDMode="Static" Style="display: block;" OnClick="lnkViajeDestino_Click" />--%>
+                                                <asp:LinkButton ID="lnkViajeDestino" runat="server" CssClass="btn btn-info" OnClick="lnkViajeDestino_Click">FIN del Viaje</asp:LinkButton>
+                                                <%--<asp:LinkButton ID="lnkViajeDestino" runat="server" CssClass="btn btn-info" OnClientClick="Javascript:return finalizarViaje();">FIN del Viaje</asp:LinkButton>--%>
+                                                    <%--<asp:Button ID="lnkViajeDestinoCandidate" runat="server" ClientIDMode="Static" Style="display: none;" OnClick="lnkViajeDestino_Click" />--%>
                                             </div>
                                         </div>
 
@@ -553,54 +561,28 @@
                                                         <asp:DropDownList ID="ddlClientes2" runat="server" CssClass="form-control" />
                                                     </FooterTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Precio compra por ton">
+                                                <asp:TemplateField HeaderText="Precio compra">
                                                     <EditItemTemplate>
-                                                        <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Precio_compra_por_tonelada") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                        <asp:CompareValidator ID="vtxb1" runat="server" ControlToValidate="txb1" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                                                        <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Precio_compra") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </EditItemTemplate>
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Precio_compra_por_tonelada", "{0:C0}") %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                    <FooterTemplate>
-                                                        <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                        <asp:CompareValidator ID="vtxbNew1" runat="server" ControlToValidate="txbNew1" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
-                                                    </FooterTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Precio valor total">
-                                                    <EditItemTemplate>
-                                                        <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Precio_valor_total") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                    </EditItemTemplate>
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Precio_valor_total", "{0:C0}") %>'></asp:Label>
+                                                        <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Precio_compra", "{0:C0}") %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </FooterTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Importe viaje">
+                                                <asp:TemplateField HeaderText="Precio venta">
                                                     <EditItemTemplate>
-                                                        <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Importe_viaje") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                        <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Precio_venta") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                         <asp:CompareValidator ID="vtxb3" runat="server" ControlToValidate="txb3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                                                     </EditItemTemplate>
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Importe_viaje", "{0:C0}") %>'></asp:Label>
+                                                        <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Precio_venta", "{0:C0}") %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                         <asp:CompareValidator ID="vtxbNew3" runat="server" ControlToValidate="txbNew3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
-                                                    </FooterTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Saldo">
-                                                    <EditItemTemplate>
-                                                        <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("Saldo") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                        <asp:CompareValidator ID="vtxb4" runat="server" ControlToValidate="txb4" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
-                                                    </EditItemTemplate>
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lbl4" runat="server" Text='<%# Bind("Saldo", "{0:C0}") %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                    <FooterTemplate>
-                                                        <asp:TextBox ID="txbNew4" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                        <asp:CompareValidator ID="vtxbNew4" runat="server" ControlToValidate="txbNew4" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                                                     </FooterTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Forma de pago">
@@ -619,7 +601,7 @@
                                                         <asp:DropDownList ID="ddlPesadaOrigen1" runat="server" CssClass="form-control" />
                                                     </EditItemTemplate>
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lbl8" runat="server" CommandName="View" Text='<%# Bind("Pesada_origen_ID") %>'></asp:LinkButton>
+                                                        <asp:Label ID="lbl8" runat="server" Text='<%# Bind("Pesada_origen_ID") %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:DropDownList ID="ddlPesadaOrigen2" runat="server" CssClass="form-control" />
@@ -630,7 +612,7 @@
                                                         <asp:DropDownList ID="ddlPesadaDestino1" runat="server" CssClass="form-control" />
                                                     </EditItemTemplate>
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lbl9" runat="server" CommandName="View" Text='<%# Bind("Pesada_destino_ID") %>'></asp:LinkButton>
+                                                        <asp:Label ID="lbl9" runat="server" Text='<%# Bind("Pesada_destino_ID") %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:DropDownList ID="ddlPesadaDestino2" runat="server" CssClass="form-control" />
@@ -717,6 +699,8 @@
                                             </Columns>
 
                                         </asp:GridView>
+                                        <asp:Label ID="lblGridViajesCount" runat="server" ClientIDMode="Static" Text="Resultados: 0" CssClass="lblResultados"></asp:Label>
+
                                         <asp:HiddenField ClientIDMode="Static" ID="hdnViajesCount" runat="server" />
 
                                     </div>

@@ -1,3 +1,4 @@
+var upAdd = '<%=upAdd.ClientID%>';
 
 $(document).ready(function () {
     $(".datepicker").datepicker();
@@ -8,7 +9,17 @@ $(document).ready(function () {
     $("#txbSearchViajesEnCurso").quicksearch(gridViajesEnCurso);
     $("#txbSearchViajes").quicksearch(gridViajes);
 
+    $('#txbSearchViajesEnCurso').keydown(function () {
+        var count = "Resultados: " + $('#gridViajesEnCurso tr:visible').length;
+        $("#lblGridViajesEnCursoCount").text(count);
+    });
+
+    $('#txbSearchViajes').keydown(function () {
+        var count = "Resultados: " + $('#gridViajes tr:visible').length;
+        $("#lblGridViajesCount").text(count);
+    });
 });
+
 
 $(function () {
     $("#tabsViajes").tabs();
@@ -260,4 +271,17 @@ function GetSelectedRow(lnk) {
     $("#hdn_modalMercaderia_txb7").val(mercaderias_txb7);
     $("#hdn_modalMercaderia_ddlVariedad1").val(mercaderias_ddlVariedad1);
     $("#hdn_modalMercaderia_ddlProcesador1").val(mercaderias_ddlProcesador1);
+}
+
+function openNewWindows() {
+    window.open("http://localhost:8083/Pages/Datos");
+}
+
+function showItems() {
+    if (upAdd != null) {
+        //__doPostBack(upAdd, '');
+
+        __doPostBack("<%=upAdd.UniqueID %>", "");
+        //document.getElementById("<%=btnSubmit_upAdd.ClientID %>").click();
+    }
 }

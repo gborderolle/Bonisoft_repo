@@ -75,6 +75,8 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     gridMercaderias.Rows[0].Cells[0].Text = "No hay registros";
                 }
                 //ScriptManager.RegisterStartupScript(this, typeof(Page), "updateCounts", "updateCounts();", true);
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>$('.datepicker').datepicker();  </script>", false);
             }
         }
 
