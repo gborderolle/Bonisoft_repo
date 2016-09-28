@@ -15,11 +15,7 @@ namespace Bonisoft_2
     public partial class interno
     {
         public int Interno_ID { get; set; }
-        public System.DateTime Fecha_nacimiento { get; set; }
-        public System.DateTime Fecha_ingreso { get; set; }
-        public System.DateTime Fecha_egreso { get; set; }
-        public string Cargo { get; set; }
-        public string Comentarios { get; set; }
         public string Nombre_completo { get; set; }
+        public string Comentarios { get; set; }
     }
 }

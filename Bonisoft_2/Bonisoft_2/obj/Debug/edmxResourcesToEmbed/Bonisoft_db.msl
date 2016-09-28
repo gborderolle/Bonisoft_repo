@@ -43,19 +43,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="internos">
-      <EntityTypeMapping TypeName="bonisoft_dbModel.interno">
-        <MappingFragment StoreEntitySet="interno">
-          <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
-          <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
-          <ScalarProperty Name="Fecha_nacimiento" ColumnName="Fecha_nacimiento" />
-          <ScalarProperty Name="Fecha_ingreso" ColumnName="Fecha_ingreso" />
-          <ScalarProperty Name="Fecha_egreso" ColumnName="Fecha_egreso" />
-          <ScalarProperty Name="Cargo" ColumnName="Cargo" />
-          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="lena_tipo">
       <EntityTypeMapping TypeName="bonisoft_dbModel.lena_tipo">
         <MappingFragment StoreEntitySet="lena_tipo">
@@ -169,19 +156,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="camiones">
-      <EntityTypeMapping TypeName="bonisoft_dbModel.camion">
-        <MappingFragment StoreEntitySet="camion">
-          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
-          <ScalarProperty Name="Marca" ColumnName="Marca" />
-          <ScalarProperty Name="Numero_ejes" ColumnName="Numero_ejes" />
-          <ScalarProperty Name="Matricula_zorra" ColumnName="Matricula_zorra" />
-          <ScalarProperty Name="Matricula_camion" ColumnName="Matricula_camion" />
-          <ScalarProperty Name="Camion_ID" ColumnName="Camion_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="pesadas">
       <EntityTypeMapping TypeName="bonisoft_dbModel.pesada">
         <MappingFragment StoreEntitySet="pesada">
@@ -286,6 +260,37 @@
           <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
           <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
           <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="camion_ejes">
+      <EntityTypeMapping TypeName="bonisoft_dbModel.camion_ejes">
+        <MappingFragment StoreEntitySet="camion_ejes">
+          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+          <ScalarProperty Name="Ejes" ColumnName="Ejes" />
+          <ScalarProperty Name="Camion_ejes_ID" ColumnName="Camion_ejes_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="camiones">
+      <EntityTypeMapping TypeName="bonisoft_dbModel.camion">
+        <MappingFragment StoreEntitySet="camion">
+          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+          <ScalarProperty Name="Tara" ColumnName="Tara" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Matricula_zorra" ColumnName="Matricula_zorra" />
+          <ScalarProperty Name="Matricula_camion" ColumnName="Matricula_camion" />
+          <ScalarProperty Name="Ejes_ID" ColumnName="Ejes_ID" />
+          <ScalarProperty Name="Camion_ID" ColumnName="Camion_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="internos">
+      <EntityTypeMapping TypeName="bonisoft_dbModel.interno">
+        <MappingFragment StoreEntitySet="interno">
+          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+          <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
+          <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

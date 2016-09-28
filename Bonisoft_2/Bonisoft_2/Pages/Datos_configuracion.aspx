@@ -4,6 +4,7 @@
 <%@ Register Src="~/User_Controls/Configuracion/Tipo_lena.ascx" TagPrefix="uc1" TagName="Tipos" %>
 <%@ Register Src="~/User_Controls/Configuracion/Variedad.ascx" TagPrefix="uc1" TagName="Variedades" %>
 <%@ Register Src="~/User_Controls/Configuracion/Formas_pago.ascx" TagPrefix="uc1" TagName="Formas" %>
+<%@ Register Src="~/User_Controls/Configuracion/Camion_ejes.ascx" TagPrefix="uc1" TagName="Ejes" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
 
@@ -154,6 +155,24 @@
 
             </div>
 
+            <div class="row">
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box" id="divBoxEjes">
+                        <span class="info-box-icon bg-purple"><i class="fa fa-truck"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Ejes de camión</span>
+                            <span class="info-box-number">0</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+            </div>
+
 
             <!-- =========================================================== -->
 
@@ -217,6 +236,14 @@
                                         <asp:UpdatePanel ID="upFormas" runat="server">
                                             <ContentTemplate>
                                                 <uc1:Formas runat="server" ID="Formas" />
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </div>
+
+                                    <div class="divTables" id="divEjes" style="display: none;">
+                                        <asp:UpdatePanel ID="upEjes" runat="server">
+                                            <ContentTemplate>
+                                                <uc1:Ejes runat="server" ID="Ejes" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>

@@ -15,16 +15,11 @@ namespace Bonisoft_2
     public partial class camion
     {
         public int Camion_ID { get; set; }
+        public int Ejes_ID { get; set; }
         public string Matricula_camion { get; set; }
         public string Matricula_zorra { get; set; }
-        public int Numero_ejes { get; set; }
         public string Marca { get; set; }
-        public string Modelo { get; set; }
+        public decimal Tara { get; set; }
         public string Comentarios { get; set; }
-
-        public override string ToString()
-        {
-            return Matricula_camion + "(C) - " + Matricula_zorra + "(Z)";
-        }
     }
 }

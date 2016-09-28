@@ -175,34 +175,34 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
             // Procesador ----------------------------------------------------
 
-            ddl = null;
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                ddl = e.Row.FindControl("mercaderias_ddlProcesador1") as DropDownList;
-            }
-            if (e.Row.RowType == DataControlRowType.Footer)
-            {
-                ddl = e.Row.FindControl("mercaderias_ddlProcesador2") as DropDownList;
-            }
-            if (ddl != null)
-            {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                {
-                    DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.procesadores.ToList());
+            //ddl = null;
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //    ddl = e.Row.FindControl("mercaderias_ddlProcesador1") as DropDownList;
+            //}
+            //if (e.Row.RowType == DataControlRowType.Footer)
+            //{
+            //    ddl = e.Row.FindControl("mercaderias_ddlProcesador2") as DropDownList;
+            //}
+            //if (ddl != null)
+            //{
+            //    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            //    {
+            //        DataTable dt1 = new DataTable();
+            //        dt1 = Extras.ToDataTable(context.procesadores.ToList());
 
-                    ddl.DataSource = dt1;
-                    ddl.DataTextField = "Nombre";
-                    ddl.DataValueField = "Procesador_ID";
-                    ddl.DataBind();
-                    ddl.Items.Insert(0, new ListItem("Elegir", "0"));
+            //        ddl.DataSource = dt1;
+            //        ddl.DataTextField = "Nombre";
+            //        ddl.DataValueField = "Procesador_ID";
+            //        ddl.DataBind();
+            //        ddl.Items.Insert(0, new ListItem("Elegir", "0"));
 
-                }//Add Default Item in the DropDownList
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    ddl.SelectedValue = ((mercaderia_comprada)(e.Row.DataItem)).Procesador_ID.ToString();
-                }
-            }
+            //    }//Add Default Item in the DropDownList
+            //    if (e.Row.RowType == DataControlRowType.DataRow)
+            //    {
+            //        ddl.SelectedValue = ((mercaderia_comprada)(e.Row.DataItem)).Procesador_ID.ToString();
+            //    }
+            //}
 
             #endregion
 
@@ -230,32 +230,29 @@ namespace Bonisoft_2.User_Controls.Configuracion
                         }
                     }
                 }
-            }
 
-            // Procesador ----------------------------------------------------
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                LinkButton lbl = e.Row.FindControl("mercaderias_lbl2") as LinkButton;
-                if (lbl != null)
-                {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                    {
-                        mercaderia_comprada mercaderia_comprada = (mercaderia_comprada)(e.Row.DataItem);
-                        if (mercaderia_comprada != null)
-                        {
-                            int id = mercaderia_comprada.Procesador_ID;
-                            procesador procesador = (procesador)context.procesadores.FirstOrDefault(c => c.Procesador_ID == id);
-                            if (procesador != null)
-                            {
-                                string nombre = procesador.Nombre;
-                                lbl.Text = nombre;
-                                lbl.CommandArgument = "procesadores," + nombre;
-                            }
-                        }
-                    }
-                }
-            }
+                // Procesador ----------------------------------------------------
+                //    LinkButton lbl = e.Row.FindControl("mercaderias_lbl2") as LinkButton;
+                //    if (lbl != null)
+                //    {
+                //        using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                //        {
+                //            mercaderia_comprada mercaderia_comprada = (mercaderia_comprada)(e.Row.DataItem);
+                //            if (mercaderia_comprada != null)
+                //            {
+                //                int id = mercaderia_comprada.Procesador_ID;
+                //                procesador procesador = (procesador)context.procesadores.FirstOrDefault(c => c.Procesador_ID == id);
+                //                if (procesador != null)
+                //                {
+                //                    string nombre = procesador.Nombre;
+                //                    lbl.Text = nombre;
+                //                    lbl.CommandArgument = "procesadores," + nombre;
+                //                }
+                //            }
+                //        }
+                //    }
 
+            }
             #endregion
 
         }
@@ -269,17 +266,17 @@ namespace Bonisoft_2.User_Controls.Configuracion
                 HiddenField hdn_modalMercaderia_txbNew6 = this.Parent.FindControl("hdn_modalMercaderia_txbNew6") as HiddenField;
                 HiddenField hdn_modalMercaderia_txbNew7 = this.Parent.FindControl("hdn_modalMercaderia_txbNew7") as HiddenField;
                 HiddenField hdn_modalMercaderia_ddlVariedad2 = this.Parent.FindControl("hdn_modalMercaderia_ddlVariedad2") as HiddenField;
-                HiddenField hdn_modalMercaderia_ddlProcesador2 = this.Parent.FindControl("hdn_modalMercaderia_ddlProcesador2") as HiddenField;
+                //HiddenField hdn_modalMercaderia_ddlProcesador2 = this.Parent.FindControl("hdn_modalMercaderia_ddlProcesador2") as HiddenField;
 
                 if (hdn_modalMercaderia_txbNew4 != null && hdn_modalMercaderia_txbNew5 != null && hdn_modalMercaderia_txbNew6 != null &&
-                    hdn_modalMercaderia_txbNew7 != null && hdn_modalMercaderia_ddlVariedad2 != null && hdn_modalMercaderia_ddlProcesador2 != null)
+                    hdn_modalMercaderia_txbNew7 != null && hdn_modalMercaderia_ddlVariedad2 != null)
                 {
                     string txb4 = hdn_modalMercaderia_txbNew4.Value;
                     string txb5 = hdn_modalMercaderia_txbNew5.Value;
                     string txb6 = hdn_modalMercaderia_txbNew6.Value;
                     string txb7 = hdn_modalMercaderia_txbNew7.Value;
                     string ddlVariedad2 = hdn_modalMercaderia_ddlVariedad2.Value;
-                    string ddlProcesador2 = hdn_modalMercaderia_ddlProcesador2.Value;
+                    //string ddlProcesador2 = hdn_modalMercaderia_ddlProcesador2.Value;
 
                     int viaje_ID = 0;
                     if (!int.TryParse(Viaje_ID1, out viaje_ID))
@@ -316,12 +313,12 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             }
                             obj.Variedad_ID = ddl1;
 
-                            int ddl2 = 0;
-                            if (!int.TryParse(ddlProcesador2, out ddl2))
-                            {
-                                ddl2 = 0;
-                            }
-                            obj.Procesador_ID = ddl2;
+                            //int ddl2 = 0;
+                            //if (!int.TryParse(ddlProcesador2, out ddl2))
+                            //{
+                            //    ddl2 = 0;
+                            //}
+                            //obj.Procesador_ID = ddl2;
 
                             #endregion DDL logic
 
@@ -384,17 +381,17 @@ namespace Bonisoft_2.User_Controls.Configuracion
             HiddenField hdn_modalMercaderia_txb6 = this.Parent.FindControl("hdn_modalMercaderia_txb6") as HiddenField;
             HiddenField hdn_modalMercaderia_txb7 = this.Parent.FindControl("hdn_modalMercaderia_txb7") as HiddenField;
             HiddenField hdn_modalMercaderia_ddlVariedad1 = this.Parent.FindControl("hdn_modalMercaderia_ddlVariedad1") as HiddenField;
-            HiddenField hdn_modalMercaderia_ddlProcesador1 = this.Parent.FindControl("hdn_modalMercaderia_ddlProcesador1") as HiddenField;
+            //HiddenField hdn_modalMercaderia_ddlProcesador1 = this.Parent.FindControl("hdn_modalMercaderia_ddlProcesador1") as HiddenField;
 
             if (hdn_modalMercaderia_txb4 != null && hdn_modalMercaderia_txb5 != null && hdn_modalMercaderia_txb6 != null &&
-                hdn_modalMercaderia_txb7 != null && hdn_modalMercaderia_ddlVariedad1 != null && hdn_modalMercaderia_ddlProcesador1 != null)
+                hdn_modalMercaderia_txb7 != null && hdn_modalMercaderia_ddlVariedad1 != null)
             {
                 string txb4 = hdn_modalMercaderia_txb4.Value;
                 string txb5 = hdn_modalMercaderia_txb5.Value;
                 string txb6 = hdn_modalMercaderia_txb6.Value;
                 string txb7 = hdn_modalMercaderia_txb7.Value;
                 string ddlVariedad1 = hdn_modalMercaderia_ddlVariedad1.Value;
-                string ddlProcesador1 = hdn_modalMercaderia_ddlProcesador1.Value;
+                //string ddlProcesador1 = hdn_modalMercaderia_ddlProcesador1.Value;
 
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -425,12 +422,12 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     }
                     obj.Variedad_ID = ddl1;
 
-                    int ddl2 = obj.Procesador_ID;
-                    if (!int.TryParse(ddlProcesador1, out ddl2))
-                    {
-                        ddl2 = obj.Procesador_ID;
-                    }
-                    obj.Procesador_ID = ddl2;
+                    //int ddl2 = obj.Procesador_ID;
+                    //if (!int.TryParse(ddlProcesador1, out ddl2))
+                    //{
+                    //    ddl2 = obj.Procesador_ID;
+                    //}
+                    //obj.Procesador_ID = ddl2;
 
                     #endregion DDL logic
 

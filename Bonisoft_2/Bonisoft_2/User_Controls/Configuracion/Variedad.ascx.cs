@@ -141,6 +141,8 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
             #endregion
 
+            #region DDL Default values
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lbl = e.Row.FindControl("lbl3") as LinkButton;
@@ -163,6 +165,9 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     }
                 }
             }
+
+            #endregion DDL Default values
+
         }
 
         protected void gridVariedades_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -181,7 +186,16 @@ namespace Bonisoft_2.User_Controls.Configuracion
                         obj.Nombre = txb1.Text;
                         obj.Comentarios = txb2.Text;
 
-                        obj.Lena_tipo_ID = Convert.ToInt32(ddlTipo2.SelectedValue);
+                        #region DDL logic
+
+                        int ddl = 0;
+                        if (!int.TryParse(ddlTipo2.SelectedValue, out ddl))
+                        {
+                            ddl = 0;
+                        }
+                        obj.Lena_tipo_ID = ddl;
+
+                        #endregion
 
                         context.variedad.Add(obj);
                         context.SaveChanges();
@@ -202,7 +216,6 @@ namespace Bonisoft_2.User_Controls.Configuracion
                         Response.Redirect("Listados.aspx?tabla=" + tabla + "&dato=" + dato);
                     }
                 }
-
             }
         }
 
@@ -231,12 +244,16 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     obj.Nombre = txb1.Text;
                     obj.Comentarios = txb2.Text;
 
+                    #region DDL logic
+
                     int ddl1 = obj.Lena_tipo_ID;
                     if (!int.TryParse(ddlTipo2.SelectedValue, out ddl1))
                     {
                         ddl1 = obj.Lena_tipo_ID;
                     }
                     obj.Lena_tipo_ID = ddl1;
+
+                    #endregion
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";

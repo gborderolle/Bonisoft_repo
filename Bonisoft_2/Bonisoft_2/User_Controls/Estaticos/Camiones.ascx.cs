@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Bonisoft_2.Helpers;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -110,6 +112,63 @@ namespace Bonisoft_2.Pages
             }
 
             #endregion
+
+            #region DDL Options 
+
+            DropDownList ddl = null;
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                ddl = e.Row.FindControl("ddlEjes1") as DropDownList;
+            }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                ddl = e.Row.FindControl("ddlEjes2") as DropDownList;
+            }
+            if (ddl != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.camion_ejes.ToList());
+
+                    ddl.DataSource = dt1;
+                    ddl.DataTextField = "Ejes";
+                    ddl.DataValueField = "Camion_ejes_ID";
+                    ddl.DataBind();
+                    ddl.Items.Insert(0, new ListItem("Elegir", "0"));
+                }
+            }
+
+            #endregion
+
+            #region DDL Default values
+
+            // Ejes ----------------------------------------------------
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lbl = e.Row.FindControl("lbl3") as LinkButton;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        camion camion = (camion)(e.Row.DataItem);
+                        if (camion != null)
+                        {
+                            int id = camion.Ejes_ID;
+                            camion_ejes camion_ejes = (camion_ejes)context.camion_ejes.FirstOrDefault(c => c.Camion_ejes_ID == id);
+                            if (camion_ejes != null)
+                            {
+                                string nombre = camion_ejes.Ejes;
+                                lbl.Text = nombre;
+                                lbl.CommandArgument = "ejes," + nombre;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #endregion DDL Default values
+
         }
 
 
@@ -120,11 +179,11 @@ namespace Bonisoft_2.Pages
                 GridViewRow row = gridCamiones.FooterRow;
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
-                TextBox txb3 = row.FindControl("txbNew3") as TextBox;
                 TextBox txb6 = row.FindControl("txbNew6") as TextBox;
                 TextBox txb7 = row.FindControl("txbNew7") as TextBox;
                 TextBox txb9 = row.FindControl("txbNew9") as TextBox;
-                if (txb1 != null && txb2 != null && txb3 != null && txb6 != null && txb7 != null && txb9 != null)
+                DropDownList ddlEjes2 = row.FindControl("ddlEjes2") as DropDownList;
+                if (txb1 != null && txb2 != null && txb6 != null && txb7 != null && txb9 != null && ddlEjes2 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
@@ -132,15 +191,25 @@ namespace Bonisoft_2.Pages
                         obj.Matricula_camion = txb1.Text;
                         obj.Matricula_zorra = txb2.Text;
                         obj.Marca = txb6.Text;
-                        obj.Modelo = txb7.Text;
                         obj.Comentarios = txb9.Text;
 
-                        int Numero_ejes = 0;
-                        if (!int.TryParse(txb3.Text, out Numero_ejes))
+                        decimal value = 0;
+                        if (!decimal.TryParse(txb7.Text, out value))
                         {
-                            Numero_ejes = 0;
+                            value = 0;
                         }
-                        obj.Numero_ejes = Numero_ejes;
+                        obj.Tara = value;
+
+                        #region DDL logic
+
+                        int ddl1 = 0;
+                        if (!int.TryParse(ddlEjes2.SelectedValue, out ddl1))
+                        {
+                            ddl1 = 0;
+                        }
+                        obj.Ejes_ID = ddl1;
+
+                        #endregion
 
                         context.camiones.Add(obj);
                         context.SaveChanges();
@@ -149,9 +218,19 @@ namespace Bonisoft_2.Pages
                     }
                 }
             }
-            else
+
+            else if (e.CommandName == "View")
             {
-                //BindGrid();
+                string[] values = e.CommandArgument.ToString().Split(new char[] { ',' });
+                if (values.Length > 1)
+                {
+                    string tabla = values[0];
+                    string dato = values[1];
+                    if (!string.IsNullOrWhiteSpace(tabla) && !string.IsNullOrWhiteSpace(dato))
+                    {
+                        Response.Redirect("Listados.aspx?tabla=" + tabla + "&dato=" + dato);
+                    }
+                }
             }
         }
 
@@ -170,11 +249,11 @@ namespace Bonisoft_2.Pages
             GridViewRow row = gridCamiones.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
-            TextBox txb3 = row.FindControl("txb3") as TextBox;
             TextBox txb6 = row.FindControl("txb6") as TextBox;
             TextBox txb7 = row.FindControl("txb7") as TextBox;
             TextBox txb9 = row.FindControl("txb9") as TextBox;
-            if (txb1 != null && txb2 != null && txb3 != null && txb6 != null && txb7 != null && txb9 != null)
+            DropDownList ddlEjes2 = row.FindControl("ddlEjes1") as DropDownList;
+            if (txb1 != null && txb2 != null && txb6 != null && txb7 != null && txb9 != null && ddlEjes2 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -183,15 +262,25 @@ namespace Bonisoft_2.Pages
                     obj.Matricula_camion = txb1.Text;
                     obj.Matricula_zorra = txb2.Text;
                     obj.Marca = txb6.Text;
-                    obj.Modelo = txb7.Text;
                     obj.Comentarios = txb9.Text;
 
-                    int Numero_ejes = obj.Numero_ejes;
-                    if (!int.TryParse(txb3.Text, out Numero_ejes))
+                    decimal value = obj.Tara;
+                    if (!decimal.TryParse(txb7.Text, out value))
                     {
-                        Numero_ejes = obj.Numero_ejes;
+                        value = obj.Tara;
                     }
-                    obj.Numero_ejes = Numero_ejes;
+                    obj.Tara = value;
+
+                    #region DDL logic
+
+                    int ddl1 = obj.Ejes_ID;
+                    if (!int.TryParse(ddlEjes2.SelectedValue, out ddl1))
+                    {
+                        ddl1 = obj.Ejes_ID;
+                    }
+                    obj.Ejes_ID = ddl1;
+
+                    #endregion
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";

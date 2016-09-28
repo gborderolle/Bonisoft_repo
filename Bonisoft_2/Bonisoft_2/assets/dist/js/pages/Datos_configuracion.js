@@ -4,9 +4,10 @@
     var gridFormas = $("#gridFormas tbody tr").not(':first');
     var gridTipos = $("#gridTipos tbody tr").not(':first');
     var gridVariedades = $("#gridVariedades tbody tr").not(':first');
+    var gridEjes = $("#gridEjes tbody tr").not(':first');
     $("#txbSearch").quicksearch(gridInternos);
     $("#txbSearch").quicksearch(gridFormas);
     $("#txbSearch").quicksearch(gridTipos);
-    $("#txbSearch").quicksearch(gridVariedades);
+    $("#txbSearch").quicksearch(gridEjes);
 });
 

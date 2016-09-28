@@ -2,7 +2,7 @@
 <h2>Lista de Camiones</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridCamiones" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
+<asp:GridView ID="gridCamiones" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True"
     CssClass="table table-hover table-striped"
     DataKeyNames="Camion_ID"
     OnRowCommand="gridCamiones_RowCommand"
@@ -80,15 +80,13 @@
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Ejes">
             <EditItemTemplate>
-                <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Numero_ejes") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                <asp:CompareValidator ID="vtxb3" runat="server" ControlToValidate="txb3"  Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />              
+                <asp:DropDownList ID="ddlEjes1" runat="server" CssClass="form-control" />
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Numero_ejes") %>'></asp:Label>
+                <asp:LinkButton ID="lbl3" runat="server" CommandName="View" Text='<%# Bind("Ejes_ID") %>'></asp:LinkButton>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                <asp:CompareValidator ID="vtxbNew3" runat="server" ControlToValidate="txbNew3"  Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />              
+                <asp:DropDownList ID="ddlEjes2" runat="server" CssClass="form-control" />
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Marca">
@@ -102,15 +100,17 @@
                 <asp:TextBox ID="txbNew6" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Modelo">
+        <asp:TemplateField HeaderText="Tara">
             <EditItemTemplate>
-                <asp:TextBox ID="txb7" runat="server" Text='<%# Bind("Modelo") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb7" runat="server" Text='<%# Bind("Tara") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:CompareValidator ID="vtxb7" runat="server" ControlToValidate="txb7" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl7" runat="server" Text='<%# Bind("Modelo") %>'></asp:Label>
+                <asp:Label ID="lbl7" runat="server" Text='<%# Bind("Tara") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew7" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:CompareValidator ID="vtxbNew7" runat="server" ControlToValidate="txbNew7" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Comentarios">

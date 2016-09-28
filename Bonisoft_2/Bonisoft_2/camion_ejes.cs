@@ -12,12 +12,10 @@ namespace Bonisoft_2
     using System;
     using System.Collections.Generic;
     
-    public partial class fletero
+    public partial class camion_ejes
     {
-        public int Fletero_ID { get; set; }
-        public string Nombre { get; set; }
+        public int Camion_ejes_ID { get; set; }
+        public string Ejes { get; set; }
         public string Comentarios { get; set; }
-        public string Direccion { get; set; }
-        public string Telefono { get; set; }
     }
 }

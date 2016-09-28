@@ -2,6 +2,7 @@ var upAdd = '<%=upAdd.ClientID%>';
 
 $(document).ready(function () {
     $(".datepicker").datepicker();
+    $("#tabsViajes").tabs();
 
     // Source: https://www.youtube.com/watch?v=Sy2J7cUv0QM
     var gridViajes = $("#gridViajes tbody tr").not(':first');
@@ -20,10 +21,38 @@ $(document).ready(function () {
     });
 });
 
+function copiarPesadas(isOrigen) {
+    if (isOrigen == 1) {
+        var txb_pesada2Lugar = $("#txb_pesada2Lugar").val();
+        var txb_pesada2Fecha = $("#txb_pesada2Fecha").val();
+        var txb_pesada2Peso_bruto = $("#txb_pesada2Peso_bruto").val();
+        var txb_pesada2Peso_neto = $("#txb_pesada2Peso_neto").val();
+        var txb_pesada2Nombre = $("#txb_pesada2Nombre").val();
+        var txb_pesada2Comentarios = $("#txb_pesada2Comentarios").val();
 
-$(function () {
-    $("#tabsViajes").tabs();
-});
+        $("#txb_pesada1Lugar").val(txb_pesada2Lugar);
+        $("#txb_pesada1Fecha").val(txb_pesada2Fecha);
+        $("#txb_pesada1Peso_bruto").val(txb_pesada2Peso_bruto);
+        $("#txb_pesada1Peso_neto").val(txb_pesada2Peso_neto);
+        $("#txb_pesada1Nombre").val(txb_pesada2Nombre);
+        $("#txb_pesada1Comentarios").val(txb_pesada2Comentarios);
+
+    } else {
+        var txb_pesada1Lugar = $("#txb_pesada1Lugar").val();
+        var txb_pesada1Fecha = $("#txb_pesada1Fecha").val();
+        var txb_pesada1Peso_bruto = $("#txb_pesada1Peso_bruto").val();
+        var txb_pesada1Peso_neto = $("#txb_pesada1Peso_neto").val();
+        var txb_pesada1Nombre = $("#txb_pesada1Nombre").val();
+        var txb_pesada1Comentarios = $("#txb_pesada1Comentarios").val();
+
+        $("#txb_pesada2Lugar").val(txb_pesada1Lugar);
+        $("#txb_pesada2Fecha").val(txb_pesada1Fecha);
+        $("#txb_pesada2Peso_bruto").val(txb_pesada1Peso_bruto);
+        $("#txb_pesada2Peso_neto").val(txb_pesada1Peso_neto);
+        $("#txb_pesada2Nombre").val(txb_pesada1Nombre);
+        $("#txb_pesada2Comentarios").val(txb_pesada1Comentarios);
+    }
+}
 
 function DoCustomPost() {
 

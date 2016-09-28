@@ -73,12 +73,29 @@
                                 </div>
 
                                 <asp:GridView ID="gridViajesEnCurso" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
-                                    OnRowCommand="gridViajesEnCurso_RowCommand" AutoGenerateColumns="false" AllowPaging="true"
-                                    DataKeyNames="Viaje_ID" CssClass="table table-hover table-striped"
-                                    OnRowDataBound="gridViajesEnCurso_RowDataBound">
+                                    AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped"
+                                    DataKeyNames="Viaje_ID" 
+                                    OnRowDataBound="gridViajesEnCurso_RowDataBound"
+                                    OnRowCommand="gridViajesEnCurso_RowCommand" >
                                     <Columns>
 
-                                        <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:MMMM d, yyyy}" HtmlEncode="false" />
+                                        <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />
+                                        <asp:TemplateField HeaderText = "Proveedor">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lblProveedor" runat="server" CommandName="View" Text='<%# Eval("Proveedor_ID") %>'/>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText = "Fletero">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lblFletero" runat="server" CommandName="View" Text='<%# Eval("Fletero_ID") %>'/>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText = "Cliente">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lblCliente" runat="server" CommandName="View" Text='<%# Eval("Cliente_ID") %>'/>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                         <asp:BoundField DataField="Precio_compra" HeaderText="Precio compra" DataFormatString="{0:C0}" HtmlEncode="False" />
                                         <asp:BoundField DataField="Precio_venta" HeaderText="Precio venta" DataFormatString="{0:C0}" HtmlEncode="False" />
                                         <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
@@ -356,8 +373,11 @@
                                         <div class="panel-wrapper collapse">
                                             <div class="panel-body" style="padding-bottom: 0;">
 
-                                                <h4>Pesada origen</h4>
-                                                <div class="modal-body" style="padding-bottom: 0; padding-top: 0;">
+                                                <div style="z-index:10001;">
+                                                    <h4 style="width: 80%; float: left;">Pesada origen</h4> 
+                                                    <a id="aCopiarDestino" style="float:right; cursor:pointer;" onclick="copiarPesadas(1);">Copiar destino</a>
+                                                </div>
+                                                    <div class="modal-body" style="padding-bottom: 0; padding-top: 0; position:inherit;">
                                                     <table class="table table-bordered table-hover">
                                                         <tr>
                                                             <td>Lugar: 
@@ -386,8 +406,11 @@
                                                     </table>
                                                 </div>
 
-                                                <h4>Pesada destino</h4>
-                                                <div class="modal-body" style="padding-bottom: 0; padding-top: 0;">
+                                                 <div style="z-index:10001;">
+                                                    <h4 style="width: 80%; float: left;">Pesada destino</h4> 
+                                                    <a id="aCopiarOrigen" style="float:right; cursor:pointer;" onclick="copiarPesadas(2);">Copiar origen</a>
+                                                </div>
+                                                <div class="modal-body" style="padding-bottom: 0; padding-top: 0; position:inherit;">
                                                     <table class="table table-bordered table-hover">
                                                         <tr>
                                                             <td>Lugar: 
@@ -564,12 +587,14 @@
                                                 <asp:TemplateField HeaderText="Precio compra">
                                                     <EditItemTemplate>
                                                         <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Precio_compra") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                        <asp:CompareValidator ID="vtxb2" runat="server" ControlToValidate="txb2" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                                                     </EditItemTemplate>
                                                     <ItemTemplate>
                                                         <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Precio_compra", "{0:C0}") %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                        <asp:CompareValidator ID="vtxbNew2" runat="server" ControlToValidate="txbNew2" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                                                     </FooterTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Precio venta">
@@ -754,7 +779,7 @@
     <asp:HiddenField ID="hdn_modalNotificaciones_pesadas1_txbNombre" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalNotificaciones_pesadas1_txbComentarios" runat="server" ClientIDMode="Static" />
 
-    <!-- Notificaciones Hdn Fields - Pesada origen -->
+    <!-- Notificaciones Hdn Fields - Pesada destino -->
     <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbLugar" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbFecha" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbPesoBruto" runat="server" ClientIDMode="Static" />

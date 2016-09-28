@@ -103,7 +103,7 @@
 
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box" id="divBoxClientes">
+                    <div class="info-box box-selected" id="divBoxClientes">
                         <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
 
                         <div class="info-box-content">
@@ -133,7 +133,7 @@
                         <span class="info-box-icon bg-green"><i class="fa fa-thumbs-o-up"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Cuadrillas</span>
+                            <span class="info-box-text">Descargadores</span>
                             <span class="info-box-number">0</span>
                         </div>
                         <!-- /.info-box-content -->
@@ -194,7 +194,7 @@
                     <!-- /.info-box -->
                 </div>
                 
-                <div class="col-md-3 col-sm-6 col-xs-12">
+                <%--<div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box" id="divBoxProcesadores">
                         <span class="info-box-icon bg-teal"><i class="fa fa-scissors"></i></span>
 
@@ -205,7 +205,7 @@
                         <!-- /.info-box-content -->
                     </div>
                     <!-- /.info-box -->
-                </div>
+                </div>--%>
                  
 
             </div>
@@ -296,13 +296,13 @@
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>                                   
-                                    <div class="divTables" id="divProcesadores" style="display: none;">
+                                    <%--<div class="divTables" id="divProcesadores" style="display: none;">
                                         <asp:UpdatePanel ID="upProcesadores" runat="server">
                                             <ContentTemplate>
                                                 <uc1:Procesadores runat="server" ID="Procesadores" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
-                                    </div>
+                                    </div>--%>
 
                                 </div>
                             </div>

@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Bonisoft_2.User_Controls
+namespace Bonisoft_2.User_Controls.Configuracion
 {
-    public partial class Internos : System.Web.UI.UserControl
+    public partial class Camion_ejes : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,36 +22,36 @@ namespace Bonisoft_2.User_Controls
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                hdnInternosCount.Value = context.internos.Count().ToString();
-                if (context.internos.Count() > 0)
+                hdnEjesCount.Value = context.camion_ejes.Count().ToString();
+                if (context.camion_ejes.Count() > 0)
                 {
-                    gridInternos.DataSource = context.internos.ToList();
-                    gridInternos.DataBind();
+                    gridEjes.DataSource = context.camion_ejes.ToList();
+                    gridEjes.DataBind();
                 }
                 else
                 {
-                    var obj = new List<interno>();
-                    obj.Add(new interno());
+                    var obj = new List<camion_ejes>();
+                    obj.Add(new camion_ejes());
                     // Bind the DataTable which contain a blank row to the GridView
-                    gridInternos.DataSource = obj;
-                    gridInternos.DataBind();
-                    int columnsCount = gridInternos.Columns.Count;
-                    gridInternos.Rows[0].Cells.Clear();// clear all the cells in the row
-                    gridInternos.Rows[0].Cells.Add(new TableCell()); //add a new blank cell
-                    gridInternos.Rows[0].Cells[0].ColumnSpan = columnsCount; //set the column span to the new added cell
+                    gridEjes.DataSource = obj;
+                    gridEjes.DataBind();
+                    int columnsCount = gridEjes.Columns.Count;
+                    gridEjes.Rows[0].Cells.Clear();// clear all the cells in the row
+                    gridEjes.Rows[0].Cells.Add(new TableCell()); //add a new blank cell
+                    gridEjes.Rows[0].Cells[0].ColumnSpan = columnsCount; //set the column span to the new added cell
 
                     //You can set the styles here
-                    gridInternos.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
-                    gridInternos.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
-                    gridInternos.Rows[0].Cells[0].Font.Bold = true;
+                    gridEjes.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+                    gridEjes.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
+                    gridEjes.Rows[0].Cells[0].Font.Bold = true;
                     //set No Results found to the new added cell
-                    gridInternos.Rows[0].Cells[0].Text = "No hay registros";
+                    gridEjes.Rows[0].Cells[0].Text = "No hay registros";
                 }
                 ScriptManager.RegisterStartupScript(this, typeof(Page), "updateCounts", "updateCounts();", true);
             }
         }
 
-        protected void gridInternos_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gridEjes_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             #region Action buttons
 
@@ -112,74 +112,69 @@ namespace Bonisoft_2.User_Controls
             #endregion
         }
 
-
-        protected void gridInternos_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gridEjes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "InsertNew")
             {
-                GridViewRow row = gridInternos.FooterRow;
+                GridViewRow row = gridEjes.FooterRow;
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
-                TextBox txb8 = row.FindControl("txbNew8") as TextBox;
-                if (txb1 != null && txb8 != null)
+                TextBox txb2 = row.FindControl("txbNew2") as TextBox;
+                if (txb1 != null && txb2 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
-                        interno obj = new interno();
-                        obj.Nombre_completo = txb1.Text;
-                        obj.Comentarios = txb8.Text;
+                        camion_ejes obj = new camion_ejes();
+                        obj.Ejes = txb1.Text;
+                        obj.Comentarios = txb2.Text;
 
-                        context.internos.Add(obj);
+                        context.camion_ejes.Add(obj);
                         context.SaveChanges();
                         lblMessage.Text = "Agregado correctamente.";
                         BindGrid();
                     }
                 }
             }
-            else
-            {
-                //BindGrid();
-            }
         }
 
-        protected void gridInternos_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void gridEjes_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            gridInternos.EditIndex = e.NewEditIndex;
+            gridEjes.EditIndex = e.NewEditIndex;
             BindGrid();
         }
-        protected void gridInternos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        protected void gridEjes_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            gridInternos.EditIndex = -1;
+            gridEjes.EditIndex = -1;
             BindGrid();
         }
-        protected void gridInternos_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        protected void gridEjes_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            GridViewRow row = gridInternos.Rows[e.RowIndex];
+            GridViewRow row = gridEjes.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
-            TextBox txb8 = row.FindControl("txb8") as TextBox;
-            if (txb1 != null && txb8 != null)
+            TextBox txb2 = row.FindControl("txb2") as TextBox;
+            if (txb1 != null && txb2 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
-                    int interno_ID = Convert.ToInt32(gridInternos.DataKeys[e.RowIndex].Value);
-                    interno obj = context.internos.First(x => x.Interno_ID == interno_ID);
-                    obj.Nombre_completo = txb1.Text;
-                    obj.Comentarios = txb8.Text;
+                    int camion_ejes_ID = Convert.ToInt32(gridEjes.DataKeys[e.RowIndex].Value);
+                    camion_ejes obj = context.camion_ejes.First(x => x.Camion_ejes_ID == camion_ejes_ID);
+                    obj.Ejes = txb1.Text;
+                    obj.Comentarios = txb2.Text;
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";
-                    gridInternos.EditIndex = -1;
+                    gridEjes.EditIndex = -1;
                     BindGrid();
                 }
             }
         }
 
-        protected void gridInternos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gridEjes_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            int interno_ID = Convert.ToInt32(gridInternos.DataKeys[e.RowIndex].Value);
+            int camion_ejes_ID = Convert.ToInt32(gridEjes.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                interno obj = context.internos.First(x => x.Interno_ID == interno_ID);
-                context.internos.Remove(obj);
+                camion_ejes obj = context.camion_ejes.First(x => x.Camion_ejes_ID == camion_ejes_ID);
+                context.camion_ejes.Remove(obj);
                 context.SaveChanges();
                 BindGrid();
                 lblMessage.Text = "Borrado correctamente.";
@@ -189,14 +184,13 @@ namespace Bonisoft_2.User_Controls
         protected void PageDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Recupera la fila.
-            GridViewRow pagerRow = gridInternos.BottomPagerRow;
+            GridViewRow pagerRow = gridEjes.BottomPagerRow;
             // Recupera el control DropDownList...
             DropDownList pageList = (DropDownList)pagerRow.Cells[0].FindControl("PageDropDownList");
             //// Se Establece la propiedad PageIndex para visualizar la página seleccionada...
-            gridInternos.PageIndex = pageList.SelectedIndex;
+            gridEjes.PageIndex = pageList.SelectedIndex;
             //Quita el mensaje de información si lo hubiera...
             lblMessage.Text = "";
         }
-
     }
 }

@@ -5,11 +5,19 @@
       <PropertyRef Name="Camion_ID" />
     </Key>
     <Property Name="Camion_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ejes_ID" Type="int" Nullable="false" />
     <Property Name="Matricula_camion" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Matricula_zorra" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Numero_ejes" Type="int" Nullable="false" />
     <Property Name="Marca" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Modelo" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Tara" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="camion_ejes">
+    <Key>
+      <PropertyRef Name="Camion_ejes_ID" />
+    </Key>
+    <Property Name="Camion_ejes_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ejes" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
   <EntityType Name="cargador">
@@ -109,10 +117,6 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
     </Key>
     <Property Name="Interno_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre_completo" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Fecha_nacimiento" Type="date" Nullable="false" />
-    <Property Name="Fecha_ingreso" Type="date" Nullable="false" />
-    <Property Name="Fecha_egreso" Type="date" Nullable="false" />
-    <Property Name="Cargo" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
   <EntityType Name="lena_tipo">
@@ -272,6 +276,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
   </EntityType>
   <EntityContainer Name="bonisoft_dbModelStoreContainer">
     <EntitySet Name="camion" EntityType="Self.camion" Schema="bonisoft_db" store:Type="Tables" />
+    <EntitySet Name="camion_ejes" EntityType="Self.camion_ejes" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="cargador" EntityType="Self.cargador" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="chofer" EntityType="Self.chofer" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="cliente" EntityType="Self.cliente" Schema="bonisoft_db" store:Type="Tables" />

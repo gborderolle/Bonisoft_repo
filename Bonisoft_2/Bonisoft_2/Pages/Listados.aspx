@@ -11,6 +11,7 @@
 <%@ Register Src="~/User_Controls/Configuracion/Tipo_lena.ascx" TagPrefix="uc1" TagName="Tipos" %>
 <%@ Register Src="~/User_Controls/Configuracion/Variedad.ascx" TagPrefix="uc1" TagName="Variedades" %>
 <%@ Register Src="~/User_Controls/Configuracion/Formas_pago.ascx" TagPrefix="uc1" TagName="Formas" %>
+<%@ Register Src="~/User_Controls/Configuracion/Camion_ejes.ascx" TagPrefix="uc1" TagName="Ejes" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
 
@@ -223,6 +224,13 @@
                                         <asp:UpdatePanel ID="upFormas" runat="server">
                                             <ContentTemplate>
                                                 <uc1:Formas runat="server" ID="Formas" />
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </div>
+                                    <div class="divTables" id="divEjes" style="display: none;">
+                                        <asp:UpdatePanel ID="upEjes" runat="server">
+                                            <ContentTemplate>
+                                                <uc1:Ejes runat="server" ID="Ejes" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>

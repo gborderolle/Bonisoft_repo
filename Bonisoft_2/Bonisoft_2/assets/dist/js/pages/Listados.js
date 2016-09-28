@@ -20,6 +20,7 @@ function load_quicksearch() {
     var gridFormas = $("#gridFormas tbody tr").not(':first');
     var gridTipos = $("#gridTipos tbody tr").not(':first');
     var gridVariedades = $("#gridVariedades tbody tr").not(':first');
+    var gridEjes = $("#gridEjes tbody tr").not(':first');
 
     $("#txbSearch").quicksearch(gridCamiones);
     $("#txbSearch").quicksearch(gridChoferes);
@@ -33,6 +34,7 @@ function load_quicksearch() {
     $("#txbSearch").quicksearch(gridFormas);
     $("#txbSearch").quicksearch(gridTipos);
     $("#txbSearch").quicksearch(gridVariedades);
+    $("#txbSearch").quicksearch(gridEjes);
 }
 
 function show_tabla() {
@@ -88,6 +90,10 @@ function show_tabla() {
                 }
                 case "formas": {
                     $("#divFormas").show();
+                    break;
+                }
+                case "ejes": {
+                    $("#divEjes").show();
                     break;
                 }
             }

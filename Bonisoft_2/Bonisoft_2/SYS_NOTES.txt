@@ -3,3 +3,12 @@
 http://techbrij.com/insert-update-delete-gridview-entity-framework
 
 http://blog.siinet.com/2015/11/22/asp-net-y-bootstrap-gridview/
+
+
+ToString() methods:
+Camion
+
+public override string ToString()
+        {
+            return Matricula_camion + "(C) - " + Matricula_zorra + "(Z)";
+        }

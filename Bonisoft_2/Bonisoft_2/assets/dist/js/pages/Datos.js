@@ -35,9 +35,11 @@ $(document).ready(function () {
 $(document).on('click', ".info-box", function () {
     show_grid($(this));
 
+    $(".info-box").css("background", "white");
     $(".info-box").css("border-color", "darkgray");
     $(".info-box").parent().find("span").css("color", "black");
 
+    $(this).css("background", "lightblue");
     $(this).css("border-color", "#57c8da");
     $(this).parent().find("span").css("color", "#57c8da");
 });
@@ -65,6 +67,7 @@ function updateCounts() {
     var tipos_count = $("#divContent #hdnTiposCount").val();
     var variedades_count = $("#divContent #hdnVariedadCount").val();
     var formas_count = $("#divContent #hdnFormaCount").val();
+    var ejes_count = $("#divContent #hdnEjesCount").val();
 
     $("#divBoxClientes .info-box-number").text(clientes_count);
     $("#divBoxProveedores .info-box-number").text(proveedores_count);
@@ -79,6 +82,7 @@ function updateCounts() {
     $("#divBoxTipos .info-box-number").text(tipos_count);
     $("#divBoxVariedades .info-box-number").text(variedades_count);
     $("#divBoxFormas .info-box-number").text(formas_count);
+    $("#divBoxEjes .info-box-number").text(ejes_count);
 }
 
 function show_grid(element) {
@@ -101,7 +105,7 @@ function show_grid(element) {
                 $("#divProveedores").show();
                 break;
             }
-            case "cuadrillas": {
+            case "descargadores": {
                 $("#divCuadrillas").show();
                 break;
             }
@@ -140,6 +144,10 @@ function show_grid(element) {
             }
             case "formas": {
                 $("#divFormas").show();
+                break;
+            }
+            case "ejes": {
+                $("#divEjes").show();
                 break;
             }
         }

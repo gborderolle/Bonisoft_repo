@@ -38,18 +38,6 @@
     <Property Name="Forma" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
-  <EntityType Name="interno">
-    <Key>
-      <PropertyRef Name="Interno_ID" />
-    </Key>
-    <Property Name="Interno_ID" Type="Int32" Nullable="false" />
-    <Property Name="Fecha_nacimiento" Type="DateTime" Nullable="false" />
-    <Property Name="Fecha_ingreso" Type="DateTime" Nullable="false" />
-    <Property Name="Fecha_egreso" Type="DateTime" Nullable="false" />
-    <Property Name="Cargo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Nombre_completo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-  </EntityType>
   <EntityType Name="lena_tipo">
     <Key>
       <PropertyRef Name="Lena_tipo_ID" />
@@ -110,7 +98,6 @@
     <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" />
     <EntitySet Name="descarga_viaje" EntityType="Self.descarga_viaje" />
     <EntitySet Name="forma_de_pago" EntityType="Self.forma_de_pago" />
-    <EntitySet Name="internos" EntityType="Self.interno" />
     <EntitySet Name="lena_tipo" EntityType="Self.lena_tipo" />
     <EntitySet Name="preferencias_cliente" EntityType="Self.preferencias_cliente" />
     <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" />
@@ -121,7 +108,6 @@
     <EntitySet Name="variedad" EntityType="bonisoft_dbModel.variedad" />
     <EntitySet Name="fleteros" EntityType="bonisoft_dbModel.fletero" />
     <EntitySet Name="clientes" EntityType="bonisoft_dbModel.cliente" />
-    <EntitySet Name="camiones" EntityType="bonisoft_dbModel.camion" />
     <EntitySet Name="pesadas" EntityType="bonisoft_dbModel.pesada" />
     <EntitySet Name="proveedores" EntityType="bonisoft_dbModel.proveedor" />
     <EntitySet Name="viaje_mercaderia" EntityType="bonisoft_dbModel.viaje_mercaderia" />
@@ -130,6 +116,9 @@
     <EntitySet Name="logs" EntityType="bonisoft_dbModel.log" />
     <EntitySet Name="mercaderia_comprada" EntityType="bonisoft_dbModel.mercaderia_comprada" />
     <EntitySet Name="viajes" EntityType="bonisoft_dbModel.viaje" />
+    <EntitySet Name="camion_ejes" EntityType="bonisoft_dbModel.camion_ejes" />
+    <EntitySet Name="camiones" EntityType="bonisoft_dbModel.camion" />
+    <EntitySet Name="internos" EntityType="bonisoft_dbModel.interno" />
   </EntityContainer>
   <EntityType Name="roles_usuario">
     <Key>
@@ -180,18 +169,6 @@
     <Property Name="RUT" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Direccion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="camion">
-    <Key>
-      <PropertyRef Name="Camion_ID" />
-    </Key>
-    <Property Name="Camion_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Matricula_camion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Matricula_zorra" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Numero_ejes" Type="Int32" Nullable="false" />
-    <Property Name="Marca" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Modelo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="pesada">
@@ -293,5 +270,33 @@
     <Property Name="precio_venta" Type="Decimal" Nullable="false" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="EnViaje" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="camion_ejes">
+    <Key>
+      <PropertyRef Name="Camion_ejes_ID" />
+    </Key>
+    <Property Name="Camion_ejes_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ejes" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="camion">
+    <Key>
+      <PropertyRef Name="Camion_ID" />
+    </Key>
+    <Property Name="Camion_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ejes_ID" Type="Int32" Nullable="false" />
+    <Property Name="Matricula_camion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Matricula_zorra" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Marca" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Tara" Type="Decimal" Nullable="false" />
+    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="interno">
+    <Key>
+      <PropertyRef Name="Interno_ID" />
+    </Key>
+    <Property Name="Interno_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_completo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

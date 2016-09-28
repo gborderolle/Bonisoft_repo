@@ -1,16 +1,16 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Internos.ascx.cs" Inherits="Bonisoft_2.User_Controls.Internos" %>
-<h2>Lista de Internos</h2>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Camion_ejes.ascx.cs" Inherits="Bonisoft_2.User_Controls.Configuracion.Camion_ejes" %>
+<h2>Lista de Ejes de camión</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridInternos" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
-    CssClass="table table-hover table-striped"
-    DataKeyNames="Interno_ID"
-    OnRowCommand="gridInternos_RowCommand"
-    OnRowCancelingEdit="gridInternos_RowCancelingEdit"
-    OnRowEditing="gridInternos_RowEditing"
-    OnRowUpdating="gridInternos_RowUpdating"
-    OnRowDataBound="gridInternos_RowDataBound"
-    OnRowDeleting="gridInternos_RowDeleting">
+<asp:GridView ID="gridEjes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
+    CssClass="table table-hover table-striped" AllowPaging="true"
+    DataKeyNames="Camion_ejes_ID"
+    OnRowCommand="gridEjes_RowCommand"
+    OnRowCancelingEdit="gridEjes_RowCancelingEdit"
+    OnRowEditing="gridEjes_RowEditing"
+    OnRowUpdating="gridEjes_RowUpdating"
+    OnRowDataBound="gridEjes_RowDataBound"
+    OnRowDeleting="gridEjes_RowDeleting">
 
     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
     <EmptyDataTemplate>
@@ -40,7 +40,7 @@
                 <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit"
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
                 <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete"
-                    OnClientClick='return confirm("Está seguro que desea borrar este registro?");'
+                    OnClientClick='return confirm("¿Está seguro que desea eliminar este registro?");'
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></asp:LinkButton>
             </ItemTemplate>
             <EditItemTemplate>
@@ -50,18 +50,18 @@
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </EditItemTemplate>
             <FooterTemplate>
-                <asp:LinkButton ID="lnkInsert" runat="server" Text="" ValidationGroup="newGrp" CommandName="InsertNew"
+                <asp:LinkButton ID="lnkInsert" runat="server" Text="" ValidationGroup="newGrp" CommandName="InsertNew" 
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-plus"></span></asp:LinkButton>
                 <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew"
                     CommandArgument=''><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Nombre completo">
+        <asp:TemplateField HeaderText="Ejes">
             <EditItemTemplate>
-                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Nombre_completo") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Ejes") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Nombre_completo") %>'></asp:Label>
+                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Ejes") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -69,17 +69,15 @@
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Comentarios">
             <EditItemTemplate>
-                <asp:TextBox ID="txb8" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="100"></asp:TextBox>
+                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="100"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl8" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
+                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:TextBox ID="txbNew8" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-
     </Columns>
-
 </asp:GridView>
-<asp:HiddenField ClientIDMode="Static" ID="hdnInternosCount" runat="server" />
+<asp:HiddenField ClientIDMode="Static" ID="hdnEjesCount" runat="server" />

@@ -70,7 +70,7 @@
                 <asp:DropDownList ID="mercaderias_ddlVariedad2" runat="server" CssClass="form-control" />
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Procesador">
+       <%-- <asp:TemplateField HeaderText="Procesador">
             <EditItemTemplate>
                 <asp:DropDownList ID="mercaderias_ddlProcesador1" runat="server" CssClass="form-control" />
             </EditItemTemplate>
@@ -80,13 +80,13 @@
             <FooterTemplate>
                 <asp:DropDownList ID="mercaderias_ddlProcesador2" runat="server" CssClass="form-control" />
             </FooterTemplate>
-        </asp:TemplateField>
+        </asp:TemplateField>--%>
         <asp:TemplateField HeaderText="Fecha de corte">
             <EditItemTemplate>
-                <asp:TextBox ID="mercaderias_txb4" runat="server" Text='<%# Bind("Fecha_corte") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="mercaderias_txb4" runat="server" Text='<%# Bind("Fecha_corte", "{0:MMMM d, yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="mercaderias_lbl4" runat="server" Text='<%# Bind("Fecha_corte") %>'></asp:Label>
+                <asp:Label ID="mercaderias_lbl4" runat="server" Text='<%# Bind("Fecha_corte", "{0:MMMM d, yyyy}") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="mercaderias_txbNew4" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>

@@ -137,23 +137,5 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Bonisoft_2.User_Controls.Estaticos.Fleteros Fleteros;
-        
-        /// <summary>
-        /// upProcesadores control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upProcesadores;
-        
-        /// <summary>
-        /// Procesadores control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Bonisoft_2.User_Controls.Estaticos.Procesadores Procesadores;
     }
 }

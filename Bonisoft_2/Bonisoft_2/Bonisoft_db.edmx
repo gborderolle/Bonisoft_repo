@@ -10,11 +10,19 @@
             <PropertyRef Name="Camion_ID" />
           </Key>
           <Property Name="Camion_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ejes_ID" Type="int" Nullable="false" />
           <Property Name="Matricula_camion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Matricula_zorra" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Numero_ejes" Type="int" Nullable="false" />
           <Property Name="Marca" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Modelo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Tara" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="camion_ejes">
+          <Key>
+            <PropertyRef Name="Camion_ejes_ID" />
+          </Key>
+          <Property Name="Camion_ejes_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ejes" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="cargador">
@@ -114,10 +122,6 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           </Key>
           <Property Name="Interno_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre_completo" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Fecha_nacimiento" Type="date" Nullable="false" />
-          <Property Name="Fecha_ingreso" Type="date" Nullable="false" />
-          <Property Name="Fecha_egreso" Type="date" Nullable="false" />
-          <Property Name="Cargo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="lena_tipo">
@@ -277,6 +281,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
         </EntityType>
         <EntityContainer Name="bonisoft_dbModelStoreContainer">
           <EntitySet Name="camion" EntityType="Self.camion" Schema="bonisoft_db" store:Type="Tables" />
+          <EntitySet Name="camion_ejes" EntityType="Self.camion_ejes" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="cargador" EntityType="Self.cargador" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="chofer" EntityType="Self.chofer" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="cliente" EntityType="Self.cliente" Schema="bonisoft_db" store:Type="Tables" />
@@ -348,18 +353,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Forma" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityType Name="interno">
-          <Key>
-            <PropertyRef Name="Interno_ID" />
-          </Key>
-          <Property Name="Interno_ID" Type="Int32" Nullable="false" />
-          <Property Name="Fecha_nacimiento" Type="DateTime" Nullable="false" />
-          <Property Name="Fecha_ingreso" Type="DateTime" Nullable="false" />
-          <Property Name="Fecha_egreso" Type="DateTime" Nullable="false" />
-          <Property Name="Cargo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Nombre_completo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="lena_tipo">
           <Key>
             <PropertyRef Name="Lena_tipo_ID" />
@@ -420,7 +413,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" />
           <EntitySet Name="descarga_viaje" EntityType="Self.descarga_viaje" />
           <EntitySet Name="forma_de_pago" EntityType="Self.forma_de_pago" />
-          <EntitySet Name="internos" EntityType="Self.interno" />
           <EntitySet Name="lena_tipo" EntityType="Self.lena_tipo" />
           <EntitySet Name="preferencias_cliente" EntityType="Self.preferencias_cliente" />
           <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" />
@@ -431,7 +423,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySet Name="variedad" EntityType="bonisoft_dbModel.variedad" />
           <EntitySet Name="fleteros" EntityType="bonisoft_dbModel.fletero" />
           <EntitySet Name="clientes" EntityType="bonisoft_dbModel.cliente" />
-          <EntitySet Name="camiones" EntityType="bonisoft_dbModel.camion" />
           <EntitySet Name="pesadas" EntityType="bonisoft_dbModel.pesada" />
           <EntitySet Name="proveedores" EntityType="bonisoft_dbModel.proveedor" />
           <EntitySet Name="viaje_mercaderia" EntityType="bonisoft_dbModel.viaje_mercaderia" />
@@ -440,6 +431,9 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySet Name="logs" EntityType="bonisoft_dbModel.log" />
           <EntitySet Name="mercaderia_comprada" EntityType="bonisoft_dbModel.mercaderia_comprada" />
           <EntitySet Name="viajes" EntityType="bonisoft_dbModel.viaje" />
+          <EntitySet Name="camion_ejes" EntityType="bonisoft_dbModel.camion_ejes" />
+          <EntitySet Name="camiones" EntityType="bonisoft_dbModel.camion" />
+          <EntitySet Name="internos" EntityType="bonisoft_dbModel.interno" />
         </EntityContainer>
         <EntityType Name="roles_usuario">
           <Key>
@@ -490,18 +484,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="RUT" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Direccion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="camion">
-          <Key>
-            <PropertyRef Name="Camion_ID" />
-          </Key>
-          <Property Name="Camion_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Matricula_camion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Matricula_zorra" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Numero_ejes" Type="Int32" Nullable="false" />
-          <Property Name="Marca" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Modelo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="pesada">
@@ -604,6 +586,34 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="EnViaje" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="camion_ejes">
+          <Key>
+            <PropertyRef Name="Camion_ejes_ID" />
+          </Key>
+          <Property Name="Camion_ejes_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ejes" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="camion">
+          <Key>
+            <PropertyRef Name="Camion_ID" />
+          </Key>
+          <Property Name="Camion_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ejes_ID" Type="Int32" Nullable="false" />
+          <Property Name="Matricula_camion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Matricula_zorra" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Marca" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Tara" Type="Decimal" Nullable="false" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="interno">
+          <Key>
+            <PropertyRef Name="Interno_ID" />
+          </Key>
+          <Property Name="Interno_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_completo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -648,19 +658,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
               <MappingFragment StoreEntitySet="forma_de_pago">
                 <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
                 <ScalarProperty Name="Forma" ColumnName="Forma" />
-                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="internos">
-            <EntityTypeMapping TypeName="bonisoft_dbModel.interno">
-              <MappingFragment StoreEntitySet="interno">
-                <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
-                <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
-                <ScalarProperty Name="Fecha_nacimiento" ColumnName="Fecha_nacimiento" />
-                <ScalarProperty Name="Fecha_ingreso" ColumnName="Fecha_ingreso" />
-                <ScalarProperty Name="Fecha_egreso" ColumnName="Fecha_egreso" />
-                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -778,19 +775,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="camiones">
-            <EntityTypeMapping TypeName="bonisoft_dbModel.camion">
-              <MappingFragment StoreEntitySet="camion">
-                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
-                <ScalarProperty Name="Marca" ColumnName="Marca" />
-                <ScalarProperty Name="Numero_ejes" ColumnName="Numero_ejes" />
-                <ScalarProperty Name="Matricula_zorra" ColumnName="Matricula_zorra" />
-                <ScalarProperty Name="Matricula_camion" ColumnName="Matricula_camion" />
-                <ScalarProperty Name="Camion_ID" ColumnName="Camion_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="pesadas">
             <EntityTypeMapping TypeName="bonisoft_dbModel.pesada">
               <MappingFragment StoreEntitySet="pesada">
@@ -895,6 +879,37 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
                 <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
                 <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
                 <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="camion_ejes">
+            <EntityTypeMapping TypeName="bonisoft_dbModel.camion_ejes">
+              <MappingFragment StoreEntitySet="camion_ejes">
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Ejes" ColumnName="Ejes" />
+                <ScalarProperty Name="Camion_ejes_ID" ColumnName="Camion_ejes_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="camiones">
+            <EntityTypeMapping TypeName="bonisoft_dbModel.camion">
+              <MappingFragment StoreEntitySet="camion">
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Tara" ColumnName="Tara" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Matricula_zorra" ColumnName="Matricula_zorra" />
+                <ScalarProperty Name="Matricula_camion" ColumnName="Matricula_camion" />
+                <ScalarProperty Name="Ejes_ID" ColumnName="Ejes_ID" />
+                <ScalarProperty Name="Camion_ID" ColumnName="Camion_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="internos">
+            <EntityTypeMapping TypeName="bonisoft_dbModel.interno">
+              <MappingFragment StoreEntitySet="interno">
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
+                <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1180,6 +1180,7 @@
     <Content Include="Pages\Viajes.aspx" />
     <Content Include="SYS_NOTES.txt" />
     <Content Include="User_Controls\Configuracion\Bancos.ascx" />
+    <Content Include="User_Controls\Configuracion\Camion_ejes.ascx" />
     <Content Include="User_Controls\Configuracion\Formas_pago.ascx" />
     <Content Include="User_Controls\Configuracion\Variedad.ascx" />
     <Content Include="User_Controls\Dinamicos\Mercaderias.ascx" />
@@ -1376,6 +1377,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\RouteConfig2.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="camion_ejes.cs">
+      <DependentUpon>Bonisoft_db.tt</DependentUpon>
+    </Compile>
     <Compile Include="cargador.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
@@ -1523,6 +1527,13 @@
     </Compile>
     <Compile Include="User_Controls\Configuracion\Bancos.ascx.designer.cs">
       <DependentUpon>Bancos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\Configuracion\Camion_ejes.ascx.cs">
+      <DependentUpon>Camion_ejes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User_Controls\Configuracion\Camion_ejes.ascx.designer.cs">
+      <DependentUpon>Camion_ejes.ascx</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\Configuracion\Formas_pago.ascx.cs">
       <DependentUpon>Formas_pago.ascx</DependentUpon>
