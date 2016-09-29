@@ -453,9 +453,92 @@ namespace Bonisoft_2.Pages
                         if (save_ok)
                         {
                             CalcularSaldos(viaje_ID);
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "lnk_pesadasGuardar_Click", "<script type='text/javascript'>show_message_accept('OK_Datos'); $.modal.close();</script>", false);
+                            //ScriptManager.RegisterStartupScript(this, this.GetType(), "lnk_pesadasGuardar_Click", "<script type='text/javascript'>show_message_accept('OK_Datos'); $.modal.close();</script>", false);
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "lnk_pesadasGuardar_Click", "<script type='text/javascript'>show_message_accept('OK_Datos'); </script>", false);
+
+                            FillData_Pesadas(viaje);
+
                         }
                     }
+                }
+            }
+        }
+
+        private void FillData_Pesadas(viaje viaje)
+        {
+            if (viaje != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    #region Pesada 1
+
+                    int pesada_origen_ID = viaje.Pesada_origen_ID;
+                    if (pesada_origen_ID > 0)
+                    {
+                        pesada pesada_origen = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_origen_ID);
+                        if (pesada_origen != null)
+                        {
+                            hdn_notificacionesPesadaOrigenID.Value = pesada_origen_ID.ToString();
+
+                            // Fields
+                            txb_pesada1Lugar.Text = pesada_origen.Lugar;
+                            txb_pesada1Fecha.Text = pesada_origen.Fecha.ToShortDateString();
+                            txb_pesada1Nombre.Text = pesada_origen.Nombre_balanza;
+                            txb_pesada1Peso_bruto.Text = pesada_origen.Peso_bruto.ToString();
+                            txb_pesada1Peso_neto.Text = pesada_origen.Peso_neto.ToString();
+                            txb_pesada1Comentarios.Text = pesada_origen.Comentarios;
+
+                            // Hidden Fields
+                            hdn_modalNotificaciones_pesadas1_txbLugar.Value = pesada_origen.Lugar;
+                            hdn_modalNotificaciones_pesadas1_txbFecha.Value = pesada_origen.Fecha.ToShortDateString();
+                            hdn_modalNotificaciones_pesadas1_txbPesoBruto.Value = pesada_origen.Nombre_balanza;
+                            hdn_modalNotificaciones_pesadas1_txbPesoNeto.Value = pesada_origen.Peso_bruto.ToString();
+                            hdn_modalNotificaciones_pesadas1_txbNombre.Value = pesada_origen.Peso_neto.ToString();
+                            hdn_modalNotificaciones_pesadas1_txbComentarios.Value = pesada_origen.Comentarios;
+                        }
+                    }
+                    #endregion
+
+                    #region Pesada 2
+
+                    int pesada_destino_ID = viaje.Pesada_destino_ID;
+                    if (pesada_destino_ID > 0)
+                    {
+                        pesada pesada_destino = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_destino_ID);
+                        if (pesada_destino != null)
+                        {
+                            hdn_notificacionesPesadaDestinoID.Value = pesada_destino_ID.ToString();
+
+                            // Fields
+                            txb_pesada2Lugar.Text = pesada_destino.Lugar;
+                            txb_pesada2Fecha.Text = pesada_destino.Fecha.ToShortDateString();
+                            txb_pesada2Nombre.Text = pesada_destino.Nombre_balanza;
+                            txb_pesada2Peso_bruto.Text = pesada_destino.Peso_bruto.ToString();
+                            txb_pesada2Peso_neto.Text = pesada_destino.Peso_neto.ToString();
+                            txb_pesada2Comentarios.Text = pesada_destino.Comentarios;
+
+                            // Hidden Fields                                        
+                            hdn_modalNotificaciones_pesadas2_txbLugar.Value = pesada_destino.Lugar;
+                            hdn_modalNotificaciones_pesadas2_txbFecha.Value = pesada_destino.Fecha.ToShortDateString();
+                            hdn_modalNotificaciones_pesadas2_txbPesoBruto.Value = pesada_destino.Nombre_balanza;
+                            hdn_modalNotificaciones_pesadas2_txbPesoNeto.Value = pesada_destino.Peso_bruto.ToString();
+                            hdn_modalNotificaciones_pesadas2_txbNombre.Value = pesada_destino.Peso_neto.ToString();
+                            hdn_modalNotificaciones_pesadas2_txbComentarios.Value = pesada_destino.Comentarios;
+                        }
+                    }
+                    #endregion
+
+                }
+            }
+        }
+
+        private void FillData_Ventas(viaje viaje)
+        {
+            if (viaje != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    //notif_txbPrecioFlete.Text = viaje.
                 }
             }
         }
@@ -484,29 +567,38 @@ namespace Bonisoft_2.Pages
                         }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click1", "<script type='text/javascript'>show_message_accept('Error_DatosMercaderias');  </script>", false);
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click1", "<script type='text/javascript'>show_message_accept('Error_DatosMercaderias'); </script>", false);
                         }
                         if (save_ok)
                         {
                             // Check si tiene Pesadas origen y destino
-                            if (viaje.Pesada_origen_ID > 0 && viaje.Pesada_destino_ID > 0)
-                            {
-                                viaje.EnViaje = false;
-                                context.SaveChanges();
-
-                                BindGrid_EnCurso();
-                                BindGrid();
-
-                                ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click2", "<script type='text/javascript'>show_message_accept('OK_FINViaje'); $.modal.close();</script>", false);
-                            }
-                            else
+                            if (viaje.Pesada_origen_ID == 0 || viaje.Pesada_destino_ID == 0)
                             {
                                 save_ok = false;
-                                ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click3", "<script type='text/javascript'>show_message_accept('Error_DatosPesadas');  </script>", false);
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click2", "<script type='text/javascript'>show_message_accept('Error_DatosPesadas'); </script>", false);
+                            }
+                        }
+                        if (save_ok)
+                        {
+                            // Check si tiene Precio de venta calculado
+                            if (viaje.precio_venta == 0)
+                            {
+                                save_ok = false;
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click4", "<script type='text/javascript'>show_message_accept('Error_DatosPrecioVenta'); </script>", false);
                             }
                         }
 
-                        if (!save_ok)
+                        if (save_ok)
+                        {
+                            viaje.EnViaje = false;
+                            context.SaveChanges();
+
+                            BindGrid_EnCurso();
+                            BindGrid();
+
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click3", "<script type='text/javascript'>show_message_accept('OK_FINViaje'); $.modal.close();</script>", false);
+                        }
+                        else
                         {
                             Mercaderias.BindGrid();
                         }
@@ -1446,69 +1538,15 @@ namespace Bonisoft_2.Pages
                             viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                             if (viaje != null)
                             {
+                                notif_lblPrecioCompra.InnerText = viaje.precio_compra.ToString();
+
                                 // http://asp.net-tutorials.com/user-controls/using/
                                 hdn_notificaciones_viajeID.Value = viaje_ID.ToString();
 
                                 Mercaderias.Viaje_ID1 = viaje_ID.ToString();
                                 Mercaderias.BindGrid();
 
-                                #region Pesada 1
-
-                                int pesada_origen_ID = viaje.Pesada_origen_ID;
-                                if (pesada_origen_ID > 0)
-                                {
-                                    pesada pesada_origen = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_origen_ID);
-                                    if (pesada_origen != null)
-                                    {
-                                        hdn_notificacionesPesadaOrigenID.Value = pesada_origen_ID.ToString();
-
-                                        // Fields
-                                        txb_pesada1Lugar.Text = pesada_origen.Lugar;
-                                        txb_pesada1Fecha.Text = pesada_origen.Fecha.ToShortDateString();
-                                        txb_pesada1Nombre.Text = pesada_origen.Nombre_balanza;
-                                        txb_pesada1Peso_bruto.Text = pesada_origen.Peso_bruto.ToString();
-                                        txb_pesada1Peso_neto.Text = pesada_origen.Peso_neto.ToString();
-                                        txb_pesada1Comentarios.Text = pesada_origen.Comentarios;
-
-                                        // Hidden Fields
-                                        hdn_modalNotificaciones_pesadas1_txbLugar.Value = pesada_origen.Lugar;
-                                        hdn_modalNotificaciones_pesadas1_txbFecha.Value = pesada_origen.Fecha.ToShortDateString();
-                                        hdn_modalNotificaciones_pesadas1_txbPesoBruto.Value = pesada_origen.Nombre_balanza;
-                                        hdn_modalNotificaciones_pesadas1_txbPesoNeto.Value = pesada_origen.Peso_bruto.ToString();
-                                        hdn_modalNotificaciones_pesadas1_txbNombre.Value = pesada_origen.Peso_neto.ToString();
-                                        hdn_modalNotificaciones_pesadas1_txbComentarios.Value = pesada_origen.Comentarios;
-                                    }
-                                }
-                                #endregion
-
-                                #region Pesada 2
-
-                                int pesada_destino_ID = viaje.Pesada_destino_ID;
-                                if (pesada_destino_ID > 0)
-                                {
-                                    pesada pesada_destino = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_destino_ID);
-                                    if (pesada_destino != null)
-                                    {
-                                        hdn_notificacionesPesadaDestinoID.Value = pesada_destino_ID.ToString();
-
-                                        // Fields
-                                        txb_pesada2Lugar.Text = pesada_destino.Lugar;
-                                        txb_pesada2Fecha.Text = pesada_destino.Fecha.ToShortDateString();
-                                        txb_pesada2Nombre.Text = pesada_destino.Nombre_balanza;
-                                        txb_pesada2Peso_bruto.Text = pesada_destino.Peso_bruto.ToString();
-                                        txb_pesada2Peso_neto.Text = pesada_destino.Peso_neto.ToString();
-                                        txb_pesada2Comentarios.Text = pesada_destino.Comentarios;
-
-                                        // Hidden Fields                                        
-                                        hdn_modalNotificaciones_pesadas2_txbLugar.Value = pesada_destino.Lugar;
-                                        hdn_modalNotificaciones_pesadas2_txbFecha.Value = pesada_destino.Fecha.ToShortDateString();
-                                        hdn_modalNotificaciones_pesadas2_txbPesoBruto.Value = pesada_destino.Nombre_balanza;
-                                        hdn_modalNotificaciones_pesadas2_txbPesoNeto.Value = pesada_destino.Peso_bruto.ToString();
-                                        hdn_modalNotificaciones_pesadas2_txbNombre.Value = pesada_destino.Peso_neto.ToString();
-                                        hdn_modalNotificaciones_pesadas2_txbComentarios.Value = pesada_destino.Comentarios;
-                                    }
-                                }
-                                #endregion
+                                FillData_Pesadas(viaje);
 
                                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
                                 sb.Append(@"<script type='text/javascript'>");
@@ -2014,7 +2052,116 @@ namespace Bonisoft_2.Pages
             }
         }
 
-        #endregion Events
+        #endregion Private methods
 
+        #region Web methods
+
+        [System.Web.Services.WebMethod]
+        public static decimal CalcularPrecioVenta(string viajeID, string precioCompra, string precioFlete, string precioDescarga, string gananciaXTon, string IVA, string peso_neto_destino)
+        {
+            decimal result = 0;
+            if (!string.IsNullOrWhiteSpace(viajeID) && !string.IsNullOrWhiteSpace(precioCompra) && !string.IsNullOrWhiteSpace(precioFlete) &&
+                !string.IsNullOrWhiteSpace(precioDescarga) && !string.IsNullOrWhiteSpace(gananciaXTon) && !string.IsNullOrWhiteSpace(IVA) && !string.IsNullOrWhiteSpace(peso_neto_destino))
+            {
+                int viajeID_value = 0;
+                if (!int.TryParse(viajeID, out viajeID_value))
+                {
+                    viajeID_value = 0;
+                }
+
+                if (viajeID_value > 0)
+                {
+                    decimal precioCompra_value = 0;
+                    if (!decimal.TryParse(precioCompra, out precioCompra_value))
+                    {
+                        precioCompra_value = 0;
+                    }
+
+                    decimal precioFlete_value = 0;
+                    if (!decimal.TryParse(precioFlete, out precioFlete_value))
+                    {
+                        precioFlete_value = 0;
+                    }
+
+                    decimal precioDescarga_value = 0;
+                    if (!decimal.TryParse(precioDescarga, out precioDescarga_value))
+                    {
+                        precioDescarga_value = 0;
+                    }
+
+                    decimal gananciaXTon_value = 0;
+                    if (!decimal.TryParse(gananciaXTon, out gananciaXTon_value))
+                    {
+                        gananciaXTon_value = 0;
+                    }
+
+                    int IVA_value = 0;
+                    if (!int.TryParse(IVA, out IVA_value))
+                    {
+                        IVA_value = 0;
+                    }
+
+                    decimal peso_neto_destino_value = 0;
+                    if (!decimal.TryParse(peso_neto_destino, out peso_neto_destino_value))
+                    {
+                        peso_neto_destino_value = 0;
+                    }
+
+                    //
+                    decimal ganancia_final = gananciaXTon_value * peso_neto_destino_value;
+                    decimal precio_venta = precioCompra_value + precioFlete_value + precioDescarga_value + ganancia_final;
+
+                    if(IVA_value > 0)
+                    {
+                        decimal IVA_solo = precio_venta * IVA_value / 100;
+                        precio_venta = precio_venta + IVA_solo;
+                    }
+                    result = precio_venta;
+                }
+            }
+
+            return result;
+        }
+
+        #endregion Web methods
+
+        protected void lnkGuardarPrecioVenta_Click(object sender, EventArgs e)
+        {
+            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            {
+                int viaje_ID = 0;
+                if (!int.TryParse(hdn_notificaciones_viajeID.Value, out viaje_ID))
+                {
+                    viaje_ID = 0;
+                }
+                if (viaje_ID > 0)
+                {
+                    viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
+                    if (viaje != null)
+                    {
+                        string precio_venta_str = notif_lblPrecioVenta.InnerText;
+                        if (!string.IsNullOrWhiteSpace(precio_venta_str))
+                        {
+                            decimal precio_venta = 0;
+                            if (!decimal.TryParse(precio_venta_str, out precio_venta))
+                            {
+                                precio_venta = 0;
+                            }
+                            if (precio_venta > 0)
+                            {
+                                viaje.precio_venta = precio_venta;
+                                context.SaveChanges();
+
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkGuardarPrecioVenta_Click1", "<script type='text/javascript'>show_message_accept('OK_Datos'); $.modal.close();</script>", false);
+                            }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkGuardarPrecioVenta_Click2", "<script type='text/javascript'>show_message_accept('Error_DatosPrecioVenta'); </script>", false);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -268,6 +268,8 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Fletero_ID" Type="int" Nullable="false" />
           <Property Name="precio_compra" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="precio_venta" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="precio_flete" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="precio_descarga" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="EnViaje" Type="bit" Nullable="false" />
         </EntityType>
@@ -585,6 +587,8 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="precio_venta" Type="Decimal" Nullable="false" />
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="EnViaje" Type="Boolean" Nullable="false" />
+          <Property Name="precio_flete" Type="Decimal" Nullable="false" />
+          <Property Name="precio_descarga" Type="Decimal" Nullable="false" />
         </EntityType>
         <EntityType Name="camion_ejes">
           <Key>
@@ -857,6 +861,8 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySetMapping Name="viajes">
             <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
               <MappingFragment StoreEntitySet="viaje">
+                <ScalarProperty Name="precio_descarga" ColumnName="precio_descarga" />
+                <ScalarProperty Name="precio_flete" ColumnName="precio_flete" />
                 <ScalarProperty Name="EnViaje" ColumnName="EnViaje" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
                 <ScalarProperty Name="precio_venta" ColumnName="precio_venta" />

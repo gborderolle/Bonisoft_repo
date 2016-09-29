@@ -450,12 +450,14 @@
                                                             </td>
                                                         </tr>
                                                     </table>
-                                                </div>
 
-                                                <div class="col-md-2 pull-right" style="padding: 10px;">
+                                                    <div class="col-md-2 pull-right" style="padding: 10px;">
                                                     <asp:LinkButton ID="lnk_pesada1Guardar" runat="server"
                                                         CssClass="btn btn-info" OnClick="lnk_pesadasGuardar_Click" OnClientClick="Javascript:DoPost_Pesadas();">Guardar</asp:LinkButton>
                                                 </div>
+                                                </div>
+
+                                                
 
 
 
@@ -473,6 +475,51 @@
                                         <div id="tabsNotificaciones_3">
 
                                             <h4>Precio de venta</h4>
+
+
+                                            <div class="modal-body" style="padding: 0; position:inherit;">
+                                                    <table class="table table-bordered table-hover" style="margin-bottom:0;">
+                                                        <tr>
+                                                            <td>Precio de compra: 
+                                                <label id="notif_lblPrecioCompra" runat="server" style="width: 50px;">0</label>
+                                                            </td>
+                                                            <td>Precio de flete: 
+                                                        <asp:TextBox ID="notif_txbPrecioFlete" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0"></asp:TextBox>
+                                                        <asp:CompareValidator ID="vnotif_txbPrecioFlete" runat="server" ControlToValidate="notif_txbPrecioFlete" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                                                            </td>
+                                                            <td>Precio de descarga: 
+                                                        <asp:TextBox ID="notif_txbPrecioDescarga" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0"></asp:TextBox>
+                                                        <asp:CompareValidator ID="vnotif_txbPrecioDescarga" runat="server" ControlToValidate="notif_txbPrecioDescarga" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                                                            </td>
+                                                            <td>Ganancia por TON: 
+                                                        <asp:TextBox ID="notif_txbGananciaXTon" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0"></asp:TextBox>
+                                                        <asp:CompareValidator ID="vnotif_txbGananciaXTon" runat="server" ControlToValidate="notif_txbGananciaXTon" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                                                            </td>
+                                                            <td>% IVA: 
+                                                        <asp:TextBox ID="notif_txbIVA" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0"></asp:TextBox>
+                                                        <asp:CompareValidator ID="vnotif_txbIVA" runat="server" ControlToValidate="notif_txbIVA" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                                                            </td>
+                                                            <td> 
+                                                                <asp:LinkButton ID="LinkButton2" runat="server"
+                                                                CssClass="btn btn-info" OnClientClick="calcularPrecioVenta();">Calcular</asp:LinkButton>                                                        
+                                                            </td>
+                                                            <td>Precio de venta: 
+                                                                <label id="notif_lblPrecioVenta" runat="server" style="width: 50px;">0</label>
+                                                            </td>
+
+                                                        </tr>
+                                                    </table>
+
+                                                <hr style="margin-top: 5px; margin-bottom: 5px;" />
+                                                <div class="row">
+                                                    <div class="col-md-2 pull-right" style="padding: 10px;">
+                                                        <asp:LinkButton ID="lnkGuardarPrecioVenta" runat="server"
+                                                            CssClass="btn btn-info" OnClick="lnkGuardarPrecioVenta_Click" OnClientClick="">Guardar</asp:LinkButton>
+                                                    </div>
+                                                </div>
+
+                                                </div>
+
 
 
                                         </div>
@@ -494,9 +541,11 @@
 
 
                                     
-
-
                                 </ContentTemplate>
+
+                                <%--<Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="lnkViajeDestino" />
+                                </Triggers>--%>
                             </asp:UpdatePanel>
                         </div>
                         <!-- Modal Notificaciones END -->

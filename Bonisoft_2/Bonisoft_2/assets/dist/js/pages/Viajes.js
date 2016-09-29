@@ -1,6 +1,33 @@
+/**** Local variables ****/
 var upAdd = '<%=upAdd.ClientID%>';
 
+/**** Extras variables ****/
+
+// Variable object types
+var TYPES = {
+    'undefined': 'undefined',
+    'number': 'number',
+    'boolean': 'boolean',
+    'string': 'string',
+    '[object Function]': 'function',
+    '[object RegExp]': 'regexp',
+    '[object Array]': 'array',
+    '[object Date]': 'date',
+    '[object Error]': 'error'
+},
+ TOSTRING = Object.prototype.toString;
+
+
 $(document).ready(function () {
+    bindEvents();
+});
+
+// attach the event binding function to every partial update
+Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args) {
+    bindEvents();
+});
+
+function bindEvents() {
     $(".datepicker").datepicker();
     $("#tabsViajes").tabs();
     $("#tabsNotificaciones").tabs();
@@ -22,7 +49,7 @@ $(document).ready(function () {
         var count = "Resultados: " + $('#gridViajes tr:visible').length;
         $("#lblGridViajesCount").text(count);
     });
-});
+}
 
 function copiarPesadas(isOrigen) {
     if (isOrigen == 1) {
@@ -313,3 +340,72 @@ function showItems() {
         //document.getElementById("<%=btnSubmit_upAdd.ClientID %>").click();
     }
 }
+
+function calcularPrecioVenta() {
+    var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID");
+    var notif_lblPrecioCompra = $("label[id*='notif_lblPrecioCompra']");
+    var notif_txbPrecioFlete = $("#notif_txbPrecioFlete");
+    var notif_txbPrecioDescarga = $("#notif_txbPrecioDescarga");
+    var notif_txbGananciaXTon = $("#notif_txbGananciaXTon");
+    var notif_txbIVA = $("#notif_txbIVA");
+    var txb_pesada2Peso_neto = $("#txb_pesada2Peso_neto");
+    var notif_lblPrecioVenta = $("label[id*='notif_lblPrecioVenta']");
+
+    if (hdn_notificaciones_viajeID != null && hdn_notificaciones_viajeID.val() != null && hdn_notificaciones_viajeID.val().length > 0 &&
+        notif_lblPrecioCompra != null && notif_lblPrecioCompra.text() != null && notif_lblPrecioCompra.text().length > 0 &&
+        notif_txbPrecioFlete != null && notif_txbPrecioFlete.val() != null && notif_txbPrecioFlete.val().length > 0 &&
+        notif_txbPrecioDescarga != null && notif_txbPrecioDescarga.val() != null && notif_txbPrecioDescarga.val().length > 0 &&
+        notif_txbGananciaXTon != null && notif_txbGananciaXTon.val() != null && notif_txbGananciaXTon.val().length > 0 &&
+        notif_txbIVA != null && notif_txbGananciaXTon.val() != null && notif_txbIVA.val().length > 0 &&
+        txb_pesada2Peso_neto != null && txb_pesada2Peso_neto.val() != null && txb_pesada2Peso_neto.val().length > 0 &&
+        notif_lblPrecioVenta != null) {
+
+        var viajeID = hdn_notificaciones_viajeID.val();
+        var precioCompra = notif_lblPrecioCompra.text();
+        var precioFlete = notif_txbPrecioFlete.val();
+        var precioDescarga = notif_txbPrecioDescarga.val();
+        var gananciaXTon = notif_txbGananciaXTon.val();
+        var IVA = notif_txbIVA.val();
+        var peso_neto_destino = txb_pesada2Peso_neto.val();
+        
+        // AJAX CALL
+
+        console.log("Ajax call: Viajes.aspx/CalcularPrecioVenta. Params:");
+        console.log("viajeID, type: " + type(viajeID)); // Issue
+        console.log("precioCompra, type: " + type(precioCompra)); // Issue
+        console.log("precioFlete, type: " + type(precioFlete));
+        console.log("precioDescarga, type: " + type(precioDescarga));
+        console.log("gananciaXTon, type: " + type(gananciaXTon));
+        console.log("IVA, type: " + type(IVA));
+        console.log("peso_neto_destino, type: " + type(peso_neto_destino));
+        console.log("End Ajax call");
+
+        $.ajax({
+            type: "POST",
+            url: "Viajes.aspx/CalcularPrecioVenta",
+            data: '{viajeID: "' + viajeID + '",precioCompra: "' + precioCompra + '",precioFlete: "' + precioFlete + '",precioDescarga: "' + precioDescarga + 
+                '",gananciaXTon: "' + gananciaXTon + '",IVA: "' + IVA + '",peso_neto_destino: "' + peso_neto_destino + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                var precio_venta = response.d;
+                if (precio_venta != null) {
+                    notif_lblPrecioVenta.text(precio_venta);
+                }
+
+            }, // end success
+            failure: function (response) {
+                alert(response.d);
+            }
+        });
+    }
+}
+
+/******** Auxiliar Functions ********/
+
+// Get variable object type
+function type(o) {
+    return TYPES[typeof o] || TYPES[TOSTRING.call(o)] || (o ? 'object' : 'null');
+};
+
+

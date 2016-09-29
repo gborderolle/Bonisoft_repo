@@ -562,6 +562,114 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.LinkButton lnk_pesada1Guardar;
         
         /// <summary>
+        /// notif_lblPrecioCompra control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notif_lblPrecioCompra;
+        
+        /// <summary>
+        /// notif_txbPrecioFlete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox notif_txbPrecioFlete;
+        
+        /// <summary>
+        /// vnotif_txbPrecioFlete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbPrecioFlete;
+        
+        /// <summary>
+        /// notif_txbPrecioDescarga control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox notif_txbPrecioDescarga;
+        
+        /// <summary>
+        /// vnotif_txbPrecioDescarga control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbPrecioDescarga;
+        
+        /// <summary>
+        /// notif_txbGananciaXTon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox notif_txbGananciaXTon;
+        
+        /// <summary>
+        /// vnotif_txbGananciaXTon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbGananciaXTon;
+        
+        /// <summary>
+        /// notif_txbIVA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox notif_txbIVA;
+        
+        /// <summary>
+        /// vnotif_txbIVA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbIVA;
+        
+        /// <summary>
+        /// LinkButton2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        
+        /// <summary>
+        /// notif_lblPrecioVenta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notif_lblPrecioVenta;
+        
+        /// <summary>
+        /// lnkGuardarPrecioVenta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkGuardarPrecioVenta;
+        
+        /// <summary>
         /// gridViajes_lblMessage control.
         /// </summary>
         /// <remarks>

@@ -36,5 +36,7 @@ namespace Bonisoft_2
         public decimal precio_venta { get; set; }
         public string Comentarios { get; set; }
         public bool EnViaje { get; set; }
+        public decimal precio_flete { get; set; }
+        public decimal precio_descarga { get; set; }
     }
 }
