@@ -1,13 +1,16 @@
 ﻿$(document).ready(function () {
+    load_quicksearch();
+});
+
+function load_quicksearch() {
     // Source: https://www.youtube.com/watch?v=Sy2J7cUv0QM
-    var gridInternos = $("#gridInternos tbody tr").not(':first');
-    var gridFormas = $("#gridFormas tbody tr").not(':first');
-    var gridTipos = $("#gridTipos tbody tr").not(':first');
-    var gridVariedades = $("#gridVariedades tbody tr").not(':first');
-    var gridEjes = $("#gridEjes tbody tr").not(':first');
+    var gridInternos = $("#gridInternos tbody tr");
+    var gridFormas = $("#gridFormas tbody tr");
+    var gridTipos = $("#gridTipos tbody tr");
+    var gridVariedades = $("#gridVariedades tbody tr");
+    var gridEjes = $("#gridEjes tbody tr");
     $("#txbSearch").quicksearch(gridInternos);
     $("#txbSearch").quicksearch(gridFormas);
     $("#txbSearch").quicksearch(gridTipos);
     $("#txbSearch").quicksearch(gridEjes);
-});
-
+}

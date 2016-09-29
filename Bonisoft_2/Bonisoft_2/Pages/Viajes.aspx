@@ -14,8 +14,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
 
     <!-- PAGE SCRIPTS -->
-    <script src="/assets/dist/js/jquery.quicksearch.js"></script>
-    <script src="/assets/dist/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/jquery.quicksearch.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/jquery.modal.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/jquery.tablesorter.js"></script>
 
     <!-- Page JS -->
     <script src="/assets/dist/js/pages/Viajes.js"></script>
@@ -35,8 +36,8 @@
 
             <div id="tabsViajes">
                 <ul>
-                    <li><a href="#tabsViajes_1">Viajes en Curso</a></li>
-                    <li><a href="#tabsViajes_2">Histórico</a></li>
+                    <li><a href="#tabsViajes_1" class="tabViajes">Viajes en Curso</a></li>
+                    <li><a href="#tabsViajes_2" class="tabViajes">Histórico</a></li>
                 </ul>
 
                 <!-- Tab Viajes En Curso BEGIN -->
@@ -72,6 +73,7 @@
                                     </div>
                                 </div>
 
+                                <asp:Label ID="gridViajesEnCurso_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                                 <asp:GridView ID="gridViajesEnCurso" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
                                     AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped"
                                     DataKeyNames="Viaje_ID" 
@@ -353,7 +355,18 @@
 
                                     </div>
 
-                                    <h4>Asignar mercaderías</h4>
+
+
+                                    <div id="tabsNotificaciones">
+                <ul>
+                    <li><a href="#tabsNotificaciones_1" class="tabViajes">Mercaderías</a></li>
+                    <li><a href="#tabsNotificaciones_2" class="tabViajes">Pesadas</a></li>
+                    <li><a href="#tabsNotificaciones_3" class="tabViajes">Venta</a></li>
+                </ul>
+
+                                        <div id="tabsNotificaciones_1">
+
+                                            <h4>Asignar mercaderías</h4>
 
                                     <div class="divTables" id="divMercaderias" style="display: block;">
                                         <asp:UpdatePanel ID="upMercaderias" runat="server">
@@ -363,15 +376,15 @@
                                         </asp:UpdatePanel>
                                     </div>
 
-                                    <div class="panel panel-primary">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">Pesadas
-                                 
-                                        <div class="pull-right"><a href="#" data-perform="panel-collapse" class="btn btn-primary btn-xs pull-right"><i class="fa fa-plus"></i></a></div>
-                                            </h4>
+
                                         </div>
-                                        <div class="panel-wrapper collapse">
-                                            <div class="panel-body" style="padding-bottom: 0;">
+
+
+
+                                        <div id="tabsNotificaciones_2">
+
+
+
 
                                                 <div style="z-index:10001;">
                                                     <h4 style="width: 80%; float: left;">Pesada origen</h4> 
@@ -446,9 +459,42 @@
 
 
 
-                                            </div>
+
+
+
+
+
+
+
                                         </div>
-                                    </div>
+
+
+
+                                        <div id="tabsNotificaciones_3">
+
+                                            <h4>Precio de venta</h4>
+
+
+                                        </div>
+
+
+
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    
+
 
                                 </ContentTemplate>
                             </asp:UpdatePanel>
@@ -486,7 +532,7 @@
 
                                     <div style="text-align: center">
 
-                                        <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
+                                        <asp:Label ID="gridViajes_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                                         <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="False" CssClass="table table-hover table-striped"
                                             DataKeyNames="Viaje_ID"
                                             OnRowCommand="gridViajes_RowCommand"
@@ -523,10 +569,16 @@
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" 
                                                             CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
+                                                        
+                                                        
                                                         <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete"
-                                                            OnClientClick='return confirm("Está seguro que desea borrar este registro?");'
+                                                            OnClientClick='return confirm("Está seguro que desea borrar este registro?");' 
                                                             CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></asp:LinkButton>
-                                                    </ItemTemplate>
+
+                                    <%--<a id="lnkElementDownload" class="btn btn-default" type="button" style="margin-right: 4px;" href="#" onclick="javascript: $('#dialog p').text(hashMessages['SeleccioneElemento']); $('#dialog').dialog({ buttons: {'Confirmar': function () { $(this).dialog('close'); }} });">
+
+
+                                                    --%></ItemTemplate>
                                                     <EditItemTemplate>
                                                         <asp:LinkButton ID="lnkInsert" runat="server" Text="" CommandName="Update" 
                                                             CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-floppy-disk"></span></asp:LinkButton>

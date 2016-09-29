@@ -58,6 +58,15 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.HiddenField hdn_notificacionesPesadaDestinoID;
         
         /// <summary>
+        /// gridViajesEnCurso_lblMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label gridViajesEnCurso_lblMessage;
+        
+        /// <summary>
         /// gridViajesEnCurso control.
         /// </summary>
         /// <remarks>
@@ -553,13 +562,13 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.LinkButton lnk_pesada1Guardar;
         
         /// <summary>
-        /// lblMessage control.
+        /// gridViajes_lblMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.Label gridViajes_lblMessage;
         
         /// <summary>
         /// gridViajes control.

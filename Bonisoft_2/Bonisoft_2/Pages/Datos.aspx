@@ -76,7 +76,8 @@
     <script src="/assets/dist/js/jquery.quicksearch.js"></script>
 
     <!-- Page JS -->
-    <script src="/assets/dist/js/pages/Datos.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/pages/Datos.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/jquery.tablesorter.js"></script>
 
 </asp:Content>
 
@@ -103,7 +104,7 @@
 
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box box-selected" id="divBoxClientes">
+                    <div class="info-box box-selected" id="divBoxClientes" style="border-color: darkgray; background: lightblue;">
                         <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
 
                         <div class="info-box-content">

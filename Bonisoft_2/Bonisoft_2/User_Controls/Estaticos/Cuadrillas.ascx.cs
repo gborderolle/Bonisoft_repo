@@ -19,6 +19,8 @@ namespace Bonisoft_2.User_Controls
                 BindGrid();
             }
             lblMessage.Text = "";
+            gridCuadrillas.UseAccessibleHeader = true;
+            gridCuadrillas.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         private void BindGrid()

@@ -250,6 +250,7 @@
     <Content Include="assets\bootstrap\js\bootstrap.js" />
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="assets\bootstrap\js\npm.js" />
+    <Content Include="assets\dist\css\jquery.modal.css" />
     <Content Include="assets\dist\css\pages\Datos.css" />
     <Content Include="assets\dist\css\font-awesome.css" />
     <Content Include="assets\dist\css\pages\InfoBoxes.min.css" />
@@ -316,12 +317,16 @@
     <Content Include="assets\dist\js\app.min.js" />
     <Content Include="assets\dist\js\demo.js" />
     <Content Include="assets\dist\js\jquery-ui.js" />
+    <Content Include="assets\dist\js\jquery.modal.js" />
     <Content Include="assets\dist\js\jquery.quicksearch.js" />
+    <Content Include="assets\dist\js\jquery.tablesorter.js" />
     <Content Include="assets\dist\js\moment.js" />
+    <Content Include="assets\dist\js\pages\images\asc.gif" />
+    <Content Include="assets\dist\js\pages\images\bg.gif" />
+    <Content Include="assets\dist\js\pages\images\desc.gif" />
+    <Content Include="assets\dist\js\pages\images\style.css" />
     <Content Include="assets\dist\js\pages\Master.js" />
     <Content Include="assets\dist\js\pages\Datos.js" />
-    <Content Include="assets\dist\js\pages\Dashboard2_OLD.js" />
-    <Content Include="assets\dist\js\pages\Dashboard_OLD.js" />
     <Content Include="assets\dist\js\pages\Datos_configuracion.js" />
     <Content Include="assets\dist\js\pages\Detalles.js" />
     <Content Include="assets\dist\js\pages\Listados.js" />

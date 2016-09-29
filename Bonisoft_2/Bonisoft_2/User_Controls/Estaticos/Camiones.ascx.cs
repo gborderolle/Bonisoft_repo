@@ -18,6 +18,8 @@ namespace Bonisoft_2.Pages
                 BindGrid();
             }
             lblMessage.Text = "";
+            gridCamiones.UseAccessibleHeader = true;
+            gridCamiones.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         private void BindGrid()

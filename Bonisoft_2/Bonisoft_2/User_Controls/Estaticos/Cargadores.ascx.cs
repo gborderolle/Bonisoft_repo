@@ -16,6 +16,8 @@ namespace Bonisoft_2.User_Controls.Estaticos
                 BindGrid();
             }
             lblMessage.Text = "";
+            gridCargadores.UseAccessibleHeader = true;
+            gridCargadores.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         private void BindGrid()

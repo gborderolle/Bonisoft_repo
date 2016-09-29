@@ -3,10 +3,13 @@ var upAdd = '<%=upAdd.ClientID%>';
 $(document).ready(function () {
     $(".datepicker").datepicker();
     $("#tabsViajes").tabs();
+    $("#tabsNotificaciones").tabs();
+    $("#gridViajesEnCurso").tablesorter();
+    $("#gridViajes").tablesorter();
 
     // Source: https://www.youtube.com/watch?v=Sy2J7cUv0QM
-    var gridViajes = $("#gridViajes tbody tr").not(':first');
-    var gridViajesEnCurso = $("#gridViajesEnCurso tbody tr").not(':first');
+    var gridViajes = $("#gridViajes tbody tr");
+    var gridViajesEnCurso = $("#gridViajesEnCurso tbody tr");
     $("#txbSearchViajesEnCurso").quicksearch(gridViajesEnCurso);
     $("#txbSearchViajes").quicksearch(gridViajes);
 
@@ -232,6 +235,12 @@ $(document).ready(function () {
             var parent = $(this).closest('.panel');
             var wrapper = parent.find('.panel-wrapper');
             wrapper.collapse('toggle');
+
+            if ($(this).children('i').hasClass('fa-minus')) {
+                $(this).children('i').removeClass('fa-minus').addClass('fa-plus');
+            } else {
+                $(this).children('i').removeClass('fa-plus').addClass('fa-minus');
+            }
         });
     }(jQuery, window, document));
 
@@ -277,16 +286,6 @@ function DoPost_Mercaderias() {
 }
 
 function GetSelectedRow(lnk) {
-    //var row = lnk.parentNode.parentNode;
-    //var rowIndex = row.rowIndex - 1;
-    
-    //var variedad = $(row.cells[1]).val();
-    //var procesador = $(row.cells[2]).val();
-    //var fecha = $(row.cells[3]).val();
-    //var precio_compra = $(row.cells[4]).val();
-    //var precio_venta = $(row.cells[5]).val();
-    //var comentarios = $(row.cells[6]).val();
-
     var mercaderias_txb4 = $("#mercaderias_txb4").val();
     var mercaderias_txb5 = $("#mercaderias_txb5").val();
     var mercaderias_txb6 = $("#mercaderias_txb6").val();

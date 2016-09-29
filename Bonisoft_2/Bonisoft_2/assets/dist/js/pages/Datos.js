@@ -1,7 +1,10 @@
 
 $(document).ready(function () {
 
+    $(".datepicker").datepicker();
+    load_tableSorter();
     updateCounts();
+    load_quicksearch();
     
     $(".info-box").hover(function () {
         $(this).css("border-color", "#57c8da");
@@ -11,26 +14,45 @@ $(document).ready(function () {
         $(this).parent().find("span").css("color", "black");
     });
 
-    $(".datepicker").datepicker();
+});
 
+function load_tableSorter() {
+    $("#gridCamiones").tablesorter();
+    $("#gridChoferes").tablesorter();
+    $("#gridClientes").tablesorter();
+    $("#gridCuadrillas").tablesorter();
+    $("#gridProveedores").tablesorter();
+    $("#gridFleteros").tablesorter();
+    $("#gridCargadores").tablesorter();
+    $("#gridProcesadores").tablesorter();
+
+    $("#gridInternos").tablesorter();
+    $("#gridTipos").tablesorter();
+    $("#gridVariedades").tablesorter();
+    $("#gridFormas").tablesorter();
+    $("#gridEjes").tablesorter();
+}
+
+function load_quicksearch() {
     // Source: https://www.youtube.com/watch?v=Sy2J7cUv0QM
-    var gridCamiones = $("#gridCamiones tbody tr").not(':first');
-    var gridChoferes = $("#gridChoferes tbody tr").not(':first');
-    var gridClientes = $("#gridClientes tbody tr").not(':first');
-    var gridCuadrillas = $("#gridCuadrillas tbody tr").not(':first');
-    var gridProveedores = $("#gridProveedores tbody tr").not(':first');
-    var gridFleteros = $("#gridFleteros tbody tr").not(':first');
-    var gridCargadores = $("#gridCargadores tbody tr").not(':first');
-    var gridProcesadores = $("#gridProcesadores tbody tr").not(':first');
+    var gridClientes = $("#gridClientes tbody tr");
+    var gridProveedores = $("#gridProveedores tbody tr");
+    var gridCuadrillas = $("#gridCuadrillas tbody tr");
+    var gridCargadores = $("#gridCargadores tbody tr");
+    var gridCamiones = $("#gridCamiones tbody tr");
+    var gridChoferes = $("#gridChoferes tbody tr");
+    var gridFleteros = $("#gridFleteros tbody tr");
+    var gridProcesadores = $("#gridProcesadores tbody tr");
+
+    $("#txbSearch").quicksearch(gridClientes);
+    $("#txbSearch").quicksearch(gridProveedores);
+    $("#txbSearch").quicksearch(gridCuadrillas);
+    $("#txbSearch").quicksearch(gridCargadores);
     $("#txbSearch").quicksearch(gridCamiones);
     $("#txbSearch").quicksearch(gridChoferes);
-    $("#txbSearch").quicksearch(gridClientes);
-    $("#txbSearch").quicksearch(gridCuadrillas);
-    $("#txbSearch").quicksearch(gridProveedores);
     $("#txbSearch").quicksearch(gridFleteros);
-    $("#txbSearch").quicksearch(gridCargadores);
     $("#txbSearch").quicksearch(gridProcesadores);
-});
+}
 
 $(document).on('click', ".info-box", function () {
     show_grid($(this));
@@ -201,10 +223,10 @@ function box_collapse(element) {
 }
 
 $(document).on('click', ".btn-box-tool", function () {
-	box_collapse($(this));
+    box_collapse($(this));
+    load_tableSorter();
+
 });
-
-
 
 var QueryString = function () {
     // This function is anonymous, is executed immediately and 

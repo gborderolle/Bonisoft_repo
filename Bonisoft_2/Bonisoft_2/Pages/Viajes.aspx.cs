@@ -23,8 +23,14 @@ namespace Bonisoft_2.Pages
                 BindGrid_EnCurso();
 
                 BindAddModal();
+
+                gridViajes.UseAccessibleHeader = true;
+                gridViajes.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+                gridViajesEnCurso.UseAccessibleHeader = true;
+                gridViajesEnCurso.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
-            lblMessage.Text = string.Empty;
+            gridViajes_lblMessage.Text = string.Empty;
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -488,8 +494,8 @@ namespace Bonisoft_2.Pages
                                 viaje.EnViaje = false;
                                 context.SaveChanges();
 
-                                BindGrid();
                                 BindGrid_EnCurso();
+                                BindGrid();
 
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click2", "<script type='text/javascript'>show_message_accept('OK_FINViaje'); $.modal.close();</script>", false);
                             }
@@ -508,6 +514,16 @@ namespace Bonisoft_2.Pages
                     }
                 }
             }
+        }
+
+        protected void btnSubmit_upAdd_Click(object sender, EventArgs e)
+        {
+            BindAddModal();
+        }
+
+        protected void upAdd_Load(object sender, EventArgs e)
+        {
+            BindAddModal();
         }
 
         #endregion Events
@@ -1074,7 +1090,7 @@ namespace Bonisoft_2.Pages
                 {
                     #region InsertNew
 
-                    if (e.CommandName == "InsertNew")
+                    if (e.CommandName.Equals("InsertNew"))
                     {
                         int index = Convert.ToInt32(e.CommandArgument);
 
@@ -1208,14 +1224,14 @@ namespace Bonisoft_2.Pages
 
                                 context.viajes.Add(obj);
                                 context.SaveChanges();
-                                lblMessage.Text = "Agregado correctamente.";
+                                gridViajes_lblMessage.Text = "Agregado correctamente.";
                                 BindGrid();
                             }
                         }
                     }
                     #endregion
 
-                    else if (e.CommandName == "View")
+                    else if (e.CommandName.Equals("View"))
                     {
                         string[] values = e.CommandArgument.ToString().Split(new char[] { ',' });
                         if (values.Length > 1)
@@ -1381,7 +1397,7 @@ namespace Bonisoft_2.Pages
                     #endregion DDL logic
 
                     context.SaveChanges();
-                    lblMessage.Text = "Guardado correctamente.";
+                    gridViajes_lblMessage.Text = "Guardado correctamente.";
                     gridViajes.EditIndex = -1;
                     BindGrid();
                 }
@@ -1397,7 +1413,7 @@ namespace Bonisoft_2.Pages
                 context.viajes.Remove(obj);
                 context.SaveChanges();
                 BindGrid();
-                lblMessage.Text = "Borrado correctamente.";
+                gridViajes_lblMessage.Text = "Borrado correctamente.";
             }
         }
 
@@ -1410,7 +1426,7 @@ namespace Bonisoft_2.Pages
             //// Se Establece la propiedad PageIndex para visualizar la página seleccionada...
             gridViajes.PageIndex = pageList.SelectedIndex;
             //Quita el mensaje de información si lo hubiera...
-            lblMessage.Text = string.Empty;
+            gridViajes_lblMessage.Text = string.Empty;
         }
 
         protected void gridViajesEnCurso_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -1496,7 +1512,7 @@ namespace Bonisoft_2.Pages
 
                                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
                                 sb.Append(@"<script type='text/javascript'>");
-                                sb.Append("$('#notificacionesModal').modal('show'); $('.datepicker').datepicker();");
+                                sb.Append("$('#tabsNotificaciones').tabs(); $('#notificacionesModal').modal('show'); $('.datepicker').datepicker(); $('#gridMercaderias').tablesorter();");
                                 sb.Append(@"</script>");
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "NotificarModalScript", sb.ToString(), false);
                             }
@@ -1545,6 +1561,7 @@ namespace Bonisoft_2.Pages
                                 context.viajes.Remove(viaje);
                                 context.SaveChanges();
                                 BindGrid_EnCurso();
+                                gridViajesEnCurso_lblMessage.Text = "Borrado correctamente.";
                             }
                         }
 
@@ -1645,9 +1662,11 @@ namespace Bonisoft_2.Pages
                 }
             }
         }
+
         #endregion Events
 
         #region General methods
+
         private void BindAddModal()
         {
             // Proveedores --------------------------------------------------
@@ -1857,6 +1876,7 @@ namespace Bonisoft_2.Pages
                 }
             }
         }
+
         private void BindGrid()
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -1996,14 +2016,5 @@ namespace Bonisoft_2.Pages
 
         #endregion Events
 
-        protected void btnSubmit_upAdd_Click(object sender, EventArgs e)
-        {
-            BindAddModal();
-        }
-
-        protected void upAdd_Load(object sender, EventArgs e)
-        {
-            BindAddModal();
-        }
     }
 }
