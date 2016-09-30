@@ -238,6 +238,10 @@
     <EntitySetMapping Name="viajes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
         <MappingFragment StoreEntitySet="viaje">
+          <ScalarProperty Name="IVA" ColumnName="IVA" />
+          <ScalarProperty Name="GananciaXTon" ColumnName="GananciaXTon" />
+          <ScalarProperty Name="precio_descarga" ColumnName="precio_descarga" />
+          <ScalarProperty Name="precio_flete" ColumnName="precio_flete" />
           <ScalarProperty Name="EnViaje" ColumnName="EnViaje" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
           <ScalarProperty Name="precio_venta" ColumnName="precio_venta" />

@@ -453,12 +453,11 @@ namespace Bonisoft_2.Pages
                         if (save_ok)
                         {
                             CalcularSaldos(viaje_ID);
-                            //ScriptManager.RegisterStartupScript(this, this.GetType(), "lnk_pesadasGuardar_Click", "<script type='text/javascript'>show_message_accept('OK_Datos'); $.modal.close();</script>", false);
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "lnk_pesadasGuardar_Click", "<script type='text/javascript'>show_message_accept('OK_Datos'); </script>", false);
-
-                            FillData_Pesadas(viaje);
-
                         }
+
+                        FillData_Pesadas(viaje);
+                        FillData_Ventas(viaje);
                     }
                 }
             }
@@ -527,7 +526,6 @@ namespace Bonisoft_2.Pages
                         }
                     }
                     #endregion
-
                 }
             }
         }
@@ -538,7 +536,10 @@ namespace Bonisoft_2.Pages
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
-                    //notif_txbPrecioFlete.Text = viaje.
+                    notif_txbPrecioFlete.Text = viaje.precio_flete.ToString();
+                    notif_txbPrecioDescarga.Text = viaje.precio_descarga.ToString();
+                    notif_txbGananciaXTon.Text = viaje.GananciaXTon.ToString();
+                    notif_txbIVA.Text = viaje.IVA.ToString();
                 }
             }
         }
@@ -568,6 +569,9 @@ namespace Bonisoft_2.Pages
                         else
                         {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click1", "<script type='text/javascript'>show_message_accept('Error_DatosMercaderias'); </script>", false);
+
+                            FillData_Pesadas(viaje);
+                            FillData_Ventas(viaje);
                         }
                         if (save_ok)
                         {
@@ -576,6 +580,9 @@ namespace Bonisoft_2.Pages
                             {
                                 save_ok = false;
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click2", "<script type='text/javascript'>show_message_accept('Error_DatosPesadas'); </script>", false);
+
+                                FillData_Pesadas(viaje);
+                                FillData_Ventas(viaje);
                             }
                         }
                         if (save_ok)
@@ -585,6 +592,9 @@ namespace Bonisoft_2.Pages
                             {
                                 save_ok = false;
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click4", "<script type='text/javascript'>show_message_accept('Error_DatosPrecioVenta'); </script>", false);
+
+                                FillData_Pesadas(viaje);
+                                FillData_Ventas(viaje);
                             }
                         }
 
@@ -2158,6 +2168,9 @@ namespace Bonisoft_2.Pages
                             {
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkGuardarPrecioVenta_Click2", "<script type='text/javascript'>show_message_accept('Error_DatosPrecioVenta'); </script>", false);
                             }
+
+                            FillData_Pesadas(viaje);
+                            FillData_Ventas(viaje);
                         }
                     }
                 }

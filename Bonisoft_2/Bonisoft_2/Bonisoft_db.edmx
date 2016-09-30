@@ -270,6 +270,8 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="precio_venta" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="precio_flete" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="precio_descarga" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="GananciaXTon" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="IVA" Type="int" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="EnViaje" Type="bit" Nullable="false" />
         </EntityType>
@@ -589,6 +591,8 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="EnViaje" Type="Boolean" Nullable="false" />
           <Property Name="precio_flete" Type="Decimal" Nullable="false" />
           <Property Name="precio_descarga" Type="Decimal" Nullable="false" />
+          <Property Name="GananciaXTon" Type="Decimal" Nullable="false" />
+          <Property Name="IVA" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="camion_ejes">
           <Key>
@@ -861,6 +865,8 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySetMapping Name="viajes">
             <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
               <MappingFragment StoreEntitySet="viaje">
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="GananciaXTon" ColumnName="GananciaXTon" />
                 <ScalarProperty Name="precio_descarga" ColumnName="precio_descarga" />
                 <ScalarProperty Name="precio_flete" ColumnName="precio_flete" />
                 <ScalarProperty Name="EnViaje" ColumnName="EnViaje" />

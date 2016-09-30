@@ -38,5 +38,7 @@ namespace Bonisoft_2
         public bool EnViaje { get; set; }
         public decimal precio_flete { get; set; }
         public decimal precio_descarga { get; set; }
+        public decimal GananciaXTon { get; set; }
+        public int IVA { get; set; }
     }
 }
