@@ -643,33 +643,6 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbIVA;
         
         /// <summary>
-        /// LinkButton2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
-        
-        /// <summary>
-        /// notif_lblPrecioVenta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notif_lblPrecioVenta;
-        
-        /// <summary>
-        /// lnkGuardarPrecioVenta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkGuardarPrecioVenta;
-        
-        /// <summary>
         /// gridViajes_lblMessage control.
         /// </summary>
         /// <remarks>

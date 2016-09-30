@@ -481,7 +481,7 @@
                                                     <table class="table table-bordered table-hover" style="margin-bottom:0;">
                                                         <tr>
                                                             <td>Precio de compra: 
-                                                <label id="notif_lblPrecioCompra" runat="server" style="width: 50px;">0</label>
+                                                                <h2><label id="notif_lblPrecioCompra" runat="server" class="label label-danger">0</label></h2>
                                                             </td>
                                                             <td>Precio de flete: 
                                                         <asp:TextBox ID="notif_txbPrecioFlete" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0"></asp:TextBox>
@@ -500,11 +500,10 @@
                                                         <asp:CompareValidator ID="vnotif_txbIVA" runat="server" ControlToValidate="notif_txbIVA" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                                                             </td>
                                                             <td> 
-                                                                <asp:LinkButton ID="LinkButton2" runat="server"
-                                                                CssClass="btn btn-info" OnClientClick="calcularPrecioVenta();">Calcular</asp:LinkButton>                                                        
+                                                                <a class="btn btn-info" onClick="calcularPrecioVenta();">Calcular</a>                                                        
                                                             </td>
                                                             <td>Precio de venta: 
-                                                                <label id="notif_lblPrecioVenta" runat="server" style="width: 50px;">0</label>
+                                                                <h2><label id="notif_lblPrecioVenta" class="label label-success">0</label></h2>
                                                             </td>
 
                                                         </tr>
@@ -513,8 +512,7 @@
                                                 <hr style="margin-top: 5px; margin-bottom: 5px;" />
                                                 <div class="row">
                                                     <div class="col-md-2 pull-right" style="padding: 10px;">
-                                                        <asp:LinkButton ID="lnkGuardarPrecioVenta" runat="server"
-                                                            CssClass="btn btn-info" OnClick="lnkGuardarPrecioVenta_Click" OnClientClick="">Guardar</asp:LinkButton>
+                                                        <a ID="lnkGuardarPrecioVenta" class="btn btn-info" OnClick="GuardarPrecioVenta()">Guardar</a>
                                                     </div>
                                                 </div>
 

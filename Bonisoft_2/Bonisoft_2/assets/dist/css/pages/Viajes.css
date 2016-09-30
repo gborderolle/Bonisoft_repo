@@ -1,4 +1,7 @@
-﻿
+﻿.table tbody > tr > td{
+    vertical-align: middle;
+}
+
 .table-striped > tbody > tr:nth-child(odd) > th{
     background: #428bca;
 }

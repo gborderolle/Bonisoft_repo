@@ -362,11 +362,10 @@ function calcularPrecioVenta() {
         var IVA = notif_txbIVA.val();
         var peso_neto_destino = txb_pesada2Peso_neto.val();
         
-        // AJAX CALL
-
+        // Ajax call parameters
         console.log("Ajax call: Viajes.aspx/CalcularPrecioVenta. Params:");
-        console.log("viajeID, type: " + type(viajeID)); // Issue
-        console.log("precioCompra, type: " + type(precioCompra)); // Issue
+        console.log("viajeID, type: " + type(viajeID)); 
+        console.log("precioCompra, type: " + type(precioCompra)); 
         console.log("precioFlete, type: " + type(precioFlete));
         console.log("precioDescarga, type: " + type(precioDescarga));
         console.log("gananciaXTon, type: " + type(gananciaXTon));
@@ -377,14 +376,59 @@ function calcularPrecioVenta() {
         $.ajax({
             type: "POST",
             url: "Viajes.aspx/CalcularPrecioVenta",
-            data: '{viajeID: "' + viajeID + '",precioCompra: "' + precioCompra + '",precioFlete: "' + precioFlete + '",precioDescarga: "' + precioDescarga + 
-                '",gananciaXTon: "' + gananciaXTon + '",IVA: "' + IVA + '",peso_neto_destino: "' + peso_neto_destino + '"}',
+            data: '{viajeID: "' + viajeID + '",precio_compra_str: "' + precioCompra + '",precio_flete_str: "' + precioFlete + '",precio_descarga_str: "' + precioDescarga + 
+                '",gananciaXTon_str: "' + gananciaXTon + '",IVA_str: "' + IVA + '",peso_neto_destino_str: "' + peso_neto_destino + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
                 var precio_venta = response.d;
                 if (precio_venta != null) {
                     notif_lblPrecioVenta.text(precio_venta);
+
+                    bindEvents();
+                    $("#ui-id-14").click();
+                }
+
+            }, // end success
+            failure: function (response) {
+                alert(response.d);
+            }
+        });
+    }
+    else {
+        show_message_accept('Error_DatosPrecioVenta');
+    }
+}
+
+function GuardarPrecioVenta() {
+
+    var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID");
+    var notif_lblPrecioVenta = $("#notif_lblPrecioVenta");
+
+    if (hdn_notificaciones_viajeID != null && hdn_notificaciones_viajeID.val() != null && hdn_notificaciones_viajeID.val().length > 0 &&
+        notif_lblPrecioVenta != null && notif_lblPrecioVenta.val() != null && notif_lblPrecioVenta.val().length > 0) {
+
+        var viajeID = hdn_notificaciones_viajeID.val();
+        var precio_venta_str = notif_lblPrecioVenta.val();
+
+        // Ajax call parameters
+        console.log("Ajax call: Viajes.aspx/GuardarPrecioVenta. Params:");
+        console.log("viajeID, type: " + type(viajeID)); 
+        console.log("precio_venta_str, type: " + type(precio_venta_str)); 
+
+        $.ajax({
+            type: "POST",
+            url: "Viajes.aspx/GuardarPrecioVenta",
+            data: '{viajeID: "' + viajeID + '",precio_venta_str: "' + precio_venta_str + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                var precio_venta = response.d;
+                if (precio_venta != null) {
+                    notif_lblPrecioVenta.text(precio_venta);
+
+                    bindEvents();
+                    $("#ui-id-14").click();
                 }
 
             }, // end success

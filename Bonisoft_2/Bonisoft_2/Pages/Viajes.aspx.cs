@@ -2067,11 +2067,11 @@ namespace Bonisoft_2.Pages
         #region Web methods
 
         [System.Web.Services.WebMethod]
-        public static decimal CalcularPrecioVenta(string viajeID, string precioCompra, string precioFlete, string precioDescarga, string gananciaXTon, string IVA, string peso_neto_destino)
+        public static decimal CalcularPrecioVenta(string viajeID, string precio_compra_str, string precio_flete_str, string precio_descarga_str, string gananciaXTon_str, string IVA_str, string peso_neto_destino_str)
         {
             decimal result = 0;
-            if (!string.IsNullOrWhiteSpace(viajeID) && !string.IsNullOrWhiteSpace(precioCompra) && !string.IsNullOrWhiteSpace(precioFlete) &&
-                !string.IsNullOrWhiteSpace(precioDescarga) && !string.IsNullOrWhiteSpace(gananciaXTon) && !string.IsNullOrWhiteSpace(IVA) && !string.IsNullOrWhiteSpace(peso_neto_destino))
+            if (!string.IsNullOrWhiteSpace(viajeID) && !string.IsNullOrWhiteSpace(precio_compra_str) && !string.IsNullOrWhiteSpace(precio_flete_str) &&
+                !string.IsNullOrWhiteSpace(precio_descarga_str) && !string.IsNullOrWhiteSpace(gananciaXTon_str) && !string.IsNullOrWhiteSpace(IVA_str) && !string.IsNullOrWhiteSpace(peso_neto_destino_str))
             {
                 int viajeID_value = 0;
                 if (!int.TryParse(viajeID, out viajeID_value))
@@ -2081,49 +2081,49 @@ namespace Bonisoft_2.Pages
 
                 if (viajeID_value > 0)
                 {
-                    decimal precioCompra_value = 0;
-                    if (!decimal.TryParse(precioCompra, out precioCompra_value))
+                    decimal precio_compra = 0;
+                    if (!decimal.TryParse(precio_compra_str, out precio_compra))
                     {
-                        precioCompra_value = 0;
+                        precio_compra = 0;
                     }
 
-                    decimal precioFlete_value = 0;
-                    if (!decimal.TryParse(precioFlete, out precioFlete_value))
+                    decimal precio_flete = 0;
+                    if (!decimal.TryParse(precio_flete_str, out precio_flete))
                     {
-                        precioFlete_value = 0;
+                        precio_flete = 0;
                     }
 
-                    decimal precioDescarga_value = 0;
-                    if (!decimal.TryParse(precioDescarga, out precioDescarga_value))
+                    decimal precio_descarga = 0;
+                    if (!decimal.TryParse(precio_descarga_str, out precio_descarga))
                     {
-                        precioDescarga_value = 0;
+                        precio_descarga = 0;
                     }
 
-                    decimal gananciaXTon_value = 0;
-                    if (!decimal.TryParse(gananciaXTon, out gananciaXTon_value))
+                    decimal gananciaXTon = 0;
+                    if (!decimal.TryParse(gananciaXTon_str, out gananciaXTon))
                     {
-                        gananciaXTon_value = 0;
+                        gananciaXTon = 0;
                     }
 
-                    int IVA_value = 0;
-                    if (!int.TryParse(IVA, out IVA_value))
+                    int IVA = 0;
+                    if (!int.TryParse(IVA_str, out IVA))
                     {
-                        IVA_value = 0;
+                        IVA = 0;
                     }
 
-                    decimal peso_neto_destino_value = 0;
-                    if (!decimal.TryParse(peso_neto_destino, out peso_neto_destino_value))
+                    decimal peso_neto_destino = 0;
+                    if (!decimal.TryParse(peso_neto_destino_str, out peso_neto_destino))
                     {
-                        peso_neto_destino_value = 0;
+                        peso_neto_destino = 0;
                     }
 
                     //
-                    decimal ganancia_final = gananciaXTon_value * peso_neto_destino_value;
-                    decimal precio_venta = precioCompra_value + precioFlete_value + precioDescarga_value + ganancia_final;
+                    decimal ganancia_final = gananciaXTon * peso_neto_destino;
+                    decimal precio_venta = precio_compra + precio_flete + precio_descarga + ganancia_final;
 
-                    if(IVA_value > 0)
+                    if (IVA > 0)
                     {
-                        decimal IVA_solo = precio_venta * IVA_value / 100;
+                        decimal IVA_solo = precio_venta * IVA / 100;
                         precio_venta = precio_venta + IVA_solo;
                     }
                     result = precio_venta;
@@ -2133,24 +2133,24 @@ namespace Bonisoft_2.Pages
             return result;
         }
 
-        #endregion Web methods
-
-        protected void lnkGuardarPrecioVenta_Click(object sender, EventArgs e)
+        [System.Web.Services.WebMethod]
+        public static bool GuardarPrecioVenta(string viajeID, string precio_venta_str)
         {
+            bool save_ok = false;
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                int viaje_ID = 0;
-                if (!int.TryParse(hdn_notificaciones_viajeID.Value, out viaje_ID))
+                if (!string.IsNullOrWhiteSpace(viajeID) && !string.IsNullOrWhiteSpace(precio_venta_str))
                 {
-                    viaje_ID = 0;
-                }
-                if (viaje_ID > 0)
-                {
-                    viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
-                    if (viaje != null)
+                    int viajeID_value = 0;
+                    if (!int.TryParse(viajeID, out viajeID_value))
                     {
-                        string precio_venta_str = notif_lblPrecioVenta.InnerText;
-                        if (!string.IsNullOrWhiteSpace(precio_venta_str))
+                        viajeID_value = 0;
+                    }
+
+                    if (viajeID_value > 0)
+                    {
+                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viajeID_value);
+                        if (viaje != null)
                         {
                             decimal precio_venta = 0;
                             if (!decimal.TryParse(precio_venta_str, out precio_venta))
@@ -2162,19 +2162,60 @@ namespace Bonisoft_2.Pages
                                 viaje.precio_venta = precio_venta;
                                 context.SaveChanges();
 
-                                ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkGuardarPrecioVenta_Click1", "<script type='text/javascript'>show_message_accept('OK_Datos'); $.modal.close();</script>", false);
+                                save_ok = true;
                             }
-                            else
-                            {
-                                ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkGuardarPrecioVenta_Click2", "<script type='text/javascript'>show_message_accept('Error_DatosPrecioVenta'); </script>", false);
-                            }
-
-                            FillData_Pesadas(viaje);
-                            FillData_Ventas(viaje);
                         }
+
                     }
                 }
             }
+            return save_ok;
         }
+
+        #endregion Web methods
+
+        //protected void lnkGuardarPrecioVenta_Click(object sender, EventArgs e)
+        //{
+        //    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+        //    {
+        //        int viaje_ID = 0;
+        //        if (!int.TryParse(hdn_notificaciones_viajeID.Value, out viaje_ID))
+        //        {
+        //            viaje_ID = 0;
+        //        }
+        //        if (viaje_ID > 0)
+        //        {
+        //            viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
+        //            if (viaje != null)
+        //            {
+        //                string precio_venta_str = notif_lblPrecioVenta.InnerText;
+        //                if (!string.IsNullOrWhiteSpace(precio_venta_str))
+        //                {
+        //                    decimal precio_venta = 0;
+        //                    if (!decimal.TryParse(precio_venta_str, out precio_venta))
+        //                    {
+        //                        precio_venta = 0;
+        //                    }
+        //                    if (precio_venta > 0)
+        //                    {
+        //                        viaje.precio_venta = precio_venta;
+        //                        context.SaveChanges();
+
+        //                        ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkGuardarPrecioVenta_Click1", "<script type='text/javascript'>show_message_accept('OK_Datos'); $.modal.close();</script>", false);
+        //                    }
+        //                    else
+        //                    {
+        //                        ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkGuardarPrecioVenta_Click2", "<script type='text/javascript'>show_message_accept('Error_DatosPrecioVenta'); </script>", false);
+        //                    }
+
+        //                    FillData_Pesadas(viaje);
+        //                    FillData_Ventas(viaje);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+
     }
 }
