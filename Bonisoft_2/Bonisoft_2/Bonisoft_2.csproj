@@ -256,6 +256,7 @@
     <Content Include="assets\dist\css\pages\InfoBoxes.min.css" />
     <Content Include="assets\dist\css\jquery-ui.css" />
     <Content Include="assets\dist\css\pages\Login.css" />
+    <Content Include="assets\dist\css\pages\Resumen_clientes.css" />
     <Content Include="assets\dist\css\skins\skin-black-light.css" />
     <Content Include="assets\dist\css\skins\skin-black-light.min.css" />
     <Content Include="assets\dist\css\skins\skin-black.css" />
@@ -315,6 +316,7 @@
     <Content Include="assets\dist\img\user8-128x128.jpg" />
     <Content Include="assets\dist\js\app.js" />
     <Content Include="assets\dist\js\app.min.js" />
+    <Content Include="assets\dist\js\AuxiliarFunctions.js" />
     <Content Include="assets\dist\js\demo.js" />
     <Content Include="assets\dist\js\jquery-ui.js" />
     <Content Include="assets\dist\js\jquery.modal.js" />
@@ -330,6 +332,7 @@
     <Content Include="assets\dist\js\pages\Datos_configuracion.js" />
     <Content Include="assets\dist\js\pages\Detalles.js" />
     <Content Include="assets\dist\js\pages\Listados.js" />
+    <Content Include="assets\dist\js\pages\Resumen_clientes.js" />
     <Content Include="ExternalResources\Alert_Messages.js" />
     <Content Include="assets\dist\js\pages\login.js" />
     <Content Include="assets\dist\js\pages\Viajes.js" />
@@ -1179,9 +1182,11 @@
     <Content Include="Pages\Contabilidad.aspx" />
     <Content Include="Pages\Datos_configuracion.aspx" />
     <Content Include="Pages\Detalles.aspx" />
+    <Content Include="Pages\Deudores.aspx" />
     <Content Include="Pages\Listados.aspx" />
     <Content Include="Pages\Recordatorios.aspx" />
     <Content Include="Pages\Registros.aspx" />
+    <Content Include="Pages\Resumen_clientes.aspx" />
     <Content Include="Pages\Viajes.aspx" />
     <Content Include="SYS_NOTES.txt" />
     <Content Include="User_Controls\Configuracion\Bancos.ascx" />
@@ -1412,6 +1417,9 @@
     <Compile Include="cliente.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
+    <Compile Include="cliente_pagos.cs">
+      <DependentUpon>Bonisoft_db.tt</DependentUpon>
+    </Compile>
     <Compile Include="cliente_preferencias_cliente.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
@@ -1495,6 +1503,13 @@
     <Compile Include="Pages\Detalles.aspx.designer.cs">
       <DependentUpon>Detalles.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Deudores.aspx.cs">
+      <DependentUpon>Deudores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Deudores.aspx.designer.cs">
+      <DependentUpon>Deudores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Listados.aspx.cs">
       <DependentUpon>Listados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1512,6 +1527,13 @@
     </Compile>
     <Compile Include="Pages\Registros.aspx.designer.cs">
       <DependentUpon>Registros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Resumen_clientes.aspx.cs">
+      <DependentUpon>Resumen_clientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Resumen_clientes.aspx.designer.cs">
+      <DependentUpon>Resumen_clientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Viajes.aspx.cs">
       <DependentUpon>Viajes.aspx</DependentUpon>

@@ -7,8 +7,9 @@
     <!-- STYLES EXTENSION -->
     <link rel="stylesheet" href="/assets/dist/css/jquery.modal.css">
 
-    <!-- Page CSS -->
+    <!-- PAGE CSS -->
     <link rel="stylesheet" href="/assets/dist/css/pages/Viajes.css">
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
@@ -18,7 +19,8 @@
     <script type="text/javascript" src="/assets/dist/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/assets/dist/js/jquery.tablesorter.js"></script>
 
-    <!-- Page JS -->
+    <!-- PAGE JS -->
+    <script src="/assets/dist/js/AuxiliarFunctions.js"></script>
     <script src="/assets/dist/js/pages/Viajes.js"></script>
 
 </asp:Content>
@@ -56,10 +58,10 @@
 
                                 <div class="row" style="margin-bottom: 10px;">
                                     <div class="col-md-2 pull-left">
-                                        <a href="#addModal" rel="modal:open" class="btn btn-info pull-left">Iniciar viaje</a>
+                                        <a href="#addModal" rel="modal:open" class="btn btn-success pull-left">Iniciar viaje</a>
                                     </div>
 
-                                    <div class="col-md-2 pull-right">
+                                    <div class="col-md-3 pull-right">
                                         <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
                                             <div class="input-group ">
                                                 <input type="text" id="txbSearchViajesEnCurso" name="q" class="form-control" placeholder="Buscar...">
@@ -68,6 +70,13 @@
                                                         <i class="fa fa-search"></i>
                                                     </button>
                                                 </span>
+                                                
+                                                <asp:UpdatePanel ID="upUpdateViajesEnCurso" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:Button ID="btnUpdateViajesEnCurso" runat="server" Text="Actualizar" CssClass="btn btn-info btnUpdate" OnClick="btnUpdateViajesEnCurso_Click" UseSubmitBehavior="false" />
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
+
                                             </div>
                                         </form>
                                     </div>
@@ -80,7 +89,7 @@
                                     OnRowDataBound="gridViajesEnCurso_RowDataBound"
                                     OnRowCommand="gridViajesEnCurso_RowCommand" >
                                     <Columns>
-
+                                        <%--<asp:BoundField DataField="Fecha_registro" HeaderText="Fecha registro" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />--%>
                                         <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />
                                         <asp:TemplateField HeaderText = "Proveedor">
                                             <ItemTemplate>
@@ -246,13 +255,9 @@
                                                 <td>Chofer: 
                                                 <asp:DropDownList ID="modalEdit_ddlChoferes" runat="server" ClientIDMode="Static" CssClass="form-control" />
                                                 </td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Comentarios: 
-                                                <asp:TextBox ID="modalEdit_txbComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" />
+                                                <td>
+                                                    <asp:TextBox ID="modalEdit_txbComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" />
                                                 </td>
-                                                <td></td>
                                             </tr>
 
                                         </table>
@@ -347,9 +352,10 @@
                                             </div>
 
                                             <div class="col-md-2 pull-right" style="padding-top: 10px;">
-                                                <asp:LinkButton ID="lnkViajeDestino" runat="server" CssClass="btn btn-info" OnClick="lnkViajeDestino_Click">FIN del Viaje</asp:LinkButton>
+                                                <a id="lnkViajeDestino" class="btn btn-warning" onclick="FinDelViaje();">FIN del Viaje</a>
+                                                <%--<asp:LinkButton ID="lnkViajeDestino" runat="server" CssClass="btn btn-warning" OnClick="lnkViajeDestino_Click">FIN del Viaje</asp:LinkButton>--%>
                                                 <%--<asp:LinkButton ID="lnkViajeDestino" runat="server" CssClass="btn btn-info" OnClientClick="Javascript:return finalizarViaje();">FIN del Viaje</asp:LinkButton>--%>
-                                                    <%--<asp:Button ID="lnkViajeDestinoCandidate" runat="server" ClientIDMode="Static" Style="display: none;" OnClick="lnkViajeDestino_Click" />--%>
+                                                <%--<asp:Button ID="lnkViajeDestinoCandidate" runat="server" ClientIDMode="Static" Style="display: none;" OnClick="lnkViajeDestino_Click" />--%>
                                             </div>
                                         </div>
 
@@ -359,9 +365,9 @@
 
                                     <div id="tabsNotificaciones">
                 <ul>
-                    <li><a href="#tabsNotificaciones_1" class="tabViajes">Mercaderías</a></li>
-                    <li><a href="#tabsNotificaciones_2" class="tabViajes">Pesadas</a></li>
-                    <li><a href="#tabsNotificaciones_3" class="tabViajes">Venta</a></li>
+                    <li><a href="#tabsNotificaciones_1" class="tabViajes">#1 Mercaderías</a></li>
+                    <li><a href="#tabsNotificaciones_2" class="tabViajes">#2 Pesadas</a></li>
+                    <li><a href="#tabsNotificaciones_3" class="tabViajes">#3 Venta</a></li>
                 </ul>
 
                                         <div id="tabsNotificaciones_1">
@@ -387,8 +393,19 @@
 
 
                                                 <div style="z-index:10001;">
-                                                    <h4 style="width: 80%; float: left;">Pesada origen</h4> 
-                                                    <a id="aCopiarDestino" style="float:right; cursor:pointer;" onclick="copiarPesadas(1);">Copiar destino</a>
+                                                    <div class="row">
+                                                        <div class="col-md-8 pull-left">
+                                                            <h4 style="width: 80%; float: left;">Pesada origen</h4> 
+                                                        </div>
+                                                        <div class="col-md-3 pull-right">
+                                                            <div class="row">
+                                                                <a id="aOrigenCopiar" style="float:right; cursor:pointer;" onclick="copiarPesadas(1);">Copiar de destino</a>
+                                                            </div>
+                                                            <div class="row">
+                                                                <a id="aOrigenGuardar" style="float:right; cursor:pointer;" onclick="guardarPesadas(1);">Guardar</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                     <div class="modal-body" style="padding-bottom: 0; padding-top: 0; position:inherit;">
                                                     <table class="table table-bordered table-hover">
@@ -419,9 +436,21 @@
                                                     </table>
                                                 </div>
 
-                                                 <div style="z-index:10001;">
-                                                    <h4 style="width: 80%; float: left;">Pesada destino</h4> 
-                                                    <a id="aCopiarOrigen" style="float:right; cursor:pointer;" onclick="copiarPesadas(2);">Copiar origen</a>
+
+                                            <div style="z-index:10001;">
+                                                    <div class="row">
+                                                        <div class="col-md-8 pull-left">
+                                                            <h4 style="width: 80%; float: left;">Pesada destino</h4> 
+                                                        </div>
+                                                        <div class="col-md-3 pull-right">
+                                                            <div class="row">
+                                                                <a id="aDestinoCopiar" style="float:right; cursor:pointer;" onclick="copiarPesadas(2);">Copiar de origen</a>
+                                                            </div>
+                                                            <div class="row">
+                                                                <a id="aDestinoGuardar" style="float:right; cursor:pointer;" onclick="guardarPesadas(2);">Guardar</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="modal-body" style="padding-bottom: 0; padding-top: 0; position:inherit;">
                                                     <table class="table table-bordered table-hover">
@@ -452,8 +481,8 @@
                                                     </table>
 
                                                     <div class="col-md-2 pull-right" style="padding: 10px;">
-                                                    <asp:LinkButton ID="lnk_pesada1Guardar" runat="server"
-                                                        CssClass="btn btn-info" OnClick="lnk_pesadasGuardar_Click" OnClientClick="Javascript:DoPost_Pesadas();">Guardar</asp:LinkButton>
+                                                    <%--<asp:LinkButton ID="lnk_pesada1Guardar" runat="server"
+                                                        CssClass="btn btn-info" OnClick="lnk_pesadasGuardar_Click" OnClientClick="Javascript:DoPost_Pesadas();">Guardar</asp:LinkButton>--%>
                                                 </div>
                                                 </div>
 
@@ -475,7 +504,6 @@
                                         <div id="tabsNotificaciones_3">
 
                                             <h4>Precio de venta</h4>
-
 
                                             <div class="modal-body" style="padding: 0; position:inherit;">
                                                     <table class="table table-bordered table-hover" style="margin-bottom:0;">
@@ -512,7 +540,7 @@
                                                 <hr style="margin-top: 5px; margin-bottom: 5px;" />
                                                 <div class="row">
                                                     <div class="col-md-2 pull-right" style="padding: 10px;">
-                                                        <a ID="lnkGuardarPrecioVenta" class="btn btn-info" OnClick="GuardarPrecioVenta()">Guardar</a>
+                                                        <a ID="lnkGuardarPrecioVenta" class="btn btn-success" OnClick="GuardarPrecioVenta()">Guardar</a>
                                                     </div>
                                                 </div>
 
@@ -558,6 +586,9 @@
 
                     <div class="row">
 
+                        <asp:UpdatePanel ID="upGridViajes" runat="server">
+                            <ContentTemplate>
+
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-2 pull-right" style="margin-right: 10px; margin-bottom: 10px;">
@@ -569,6 +600,13 @@
                                                     <i class="fa fa-search"></i>
                                                 </button>
                                             </span>
+
+                                           <%-- <asp:UpdatePanel ID="upUpdateViajes" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:Button ID="btnUpdateViajes" runat="server" Text="Actualizar" CssClass="btn btn-info btnUpdate" OnClick="btnUpdateViajes_Click" UseSubmitBehavior="false" />
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>--%>
+
                                         </div>
                                     </form>
                                 </div>
@@ -617,15 +655,13 @@
                                                         <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" 
                                                             CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
                                                         
-                                                        
                                                         <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete"
                                                             OnClientClick='return confirm("Está seguro que desea borrar este registro?");' 
                                                             CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></asp:LinkButton>
 
-                                    <%--<a id="lnkElementDownload" class="btn btn-default" type="button" style="margin-right: 4px;" href="#" onclick="javascript: $('#dialog p').text(hashMessages['SeleccioneElemento']); $('#dialog').dialog({ buttons: {'Confirmar': function () { $(this).dialog('close'); }} });">
+                                                            <%--<a id="lnkElementDownload" class="btn btn-default" type="button" style="margin-right: 4px;" href="#" onclick="javascript: $('#dialog p').text(hashMessages['SeleccioneElemento']); $('#dialog').dialog({ buttons: {'Confirmar': function () { $(this).dialog('close'); }} });"> --%>
 
-
-                                                    --%></ItemTemplate>
+                                                    </ItemTemplate>
                                                     <EditItemTemplate>
                                                         <asp:LinkButton ID="lnkInsert" runat="server" Text="" CommandName="Update" 
                                                             CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-floppy-disk"></span></asp:LinkButton>
@@ -641,10 +677,10 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Fecha partida">
                                                     <EditItemTemplate>
-                                                        <asp:TextBox ID="txb11" runat="server" Text='<%# Bind("Fecha_partida", "{0:MMMM d, yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                                        <asp:TextBox ID="txb11" runat="server" Text='<%# Bind("Fecha_partida", "{0:d MMMM, yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                                                     </EditItemTemplate>
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lbl11" runat="server" Text='<%# Bind("Fecha_partida", "{0:MMMM d, yyyy}") %>'></asp:Label>
+                                                        <asp:Label ID="lbl11" runat="server" Text='<%# Bind("Fecha_partida", "{0:d MMMM, yyyy}") %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:TextBox ID="txbNew11" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
@@ -652,10 +688,10 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Fecha llegada">
                                                     <EditItemTemplate>
-                                                        <asp:TextBox ID="txb12" runat="server" Text='<%# Bind("Fecha_llegada", "{0:MMMM d, yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                                        <asp:TextBox ID="txb12" runat="server" Text='<%# Bind("Fecha_llegada", "{0:d MMMM, yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                                                     </EditItemTemplate>
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lbl12" runat="server" Text='<%# Bind("Fecha_llegada", "{0:MMMM d, yyyy}") %>'></asp:Label>
+                                                        <asp:Label ID="lbl12" runat="server" Text='<%# Bind("Fecha_llegada", "{0:d MMMM, yyyy}") %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:TextBox ID="txbNew12" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
@@ -709,7 +745,7 @@
                                                         <asp:CompareValidator ID="vtxbNew3" runat="server" ControlToValidate="txbNew3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                                                     </FooterTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Forma de pago">
+                                                <%--<asp:TemplateField HeaderText="Forma de pago">
                                                     <EditItemTemplate>
                                                         <asp:DropDownList ID="ddlFormas1" runat="server" CssClass="form-control" />
                                                     </EditItemTemplate>
@@ -719,7 +755,7 @@
                                                     <FooterTemplate>
                                                         <asp:DropDownList ID="ddlFormas2" runat="server" CssClass="form-control" />
                                                     </FooterTemplate>
-                                                </asp:TemplateField>
+                                                </asp:TemplateField>--%>
                                                 <asp:TemplateField HeaderText="Pesada origen">
                                                     <EditItemTemplate>
                                                         <asp:DropDownList ID="ddlPesadaOrigen1" runat="server" CssClass="form-control" />
@@ -764,7 +800,7 @@
                                                         <asp:TextBox ID="txbNew6" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </FooterTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Lugar de descarga">
+                                               <%-- <asp:TemplateField HeaderText="Lugar de descarga">
                                                     <EditItemTemplate>
                                                         <asp:TextBox ID="txb7" runat="server" Text='<%# Bind("Descarga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </EditItemTemplate>
@@ -774,7 +810,7 @@
                                                     <FooterTemplate>
                                                         <asp:TextBox ID="txbNew7" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </FooterTemplate>
-                                                </asp:TemplateField>
+                                                </asp:TemplateField>--%>
                                                 <asp:TemplateField HeaderText="Fletero">
                                                     <EditItemTemplate>
                                                         <asp:DropDownList ID="ddlFleteros1" runat="server" CssClass="form-control" />
@@ -833,6 +869,9 @@
 
                         </div>
 
+
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </div>
 
                 </div>
@@ -842,7 +881,7 @@
         </div>
     </div>
 
-    <div id="dialog" title="Mensaje Bonisoft">
+    <div id="dialog" title="Mensaje Bonisoft" style="height:0 !important;">
         <p style="text-align: left;"></p>
     </div>
 
@@ -889,7 +928,6 @@
     <!-- Mercaderia Hdn Fields - Add -->
     <asp:HiddenField ID="hdn_modalMercaderia_txbNew4" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalMercaderia_txbNew5" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalMercaderia_txbNew6" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalMercaderia_txbNew7" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalMercaderia_ddlVariedad2" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalMercaderia_ddlProcesador2" runat="server" ClientIDMode="Static" />
@@ -897,7 +935,6 @@
     <!-- Mercaderia Hdn Fields - Edit -->
     <asp:HiddenField ID="hdn_modalMercaderia_txb4" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalMercaderia_txb5" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalMercaderia_txb6" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalMercaderia_txb7" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalMercaderia_ddlVariedad1" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalMercaderia_ddlProcesador1" runat="server" ClientIDMode="Static" />

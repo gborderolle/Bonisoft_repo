@@ -70,20 +70,9 @@
                 <asp:DropDownList ID="mercaderias_ddlVariedad2" runat="server" CssClass="form-control" />
             </FooterTemplate>
         </asp:TemplateField>
-       <%-- <asp:TemplateField HeaderText="Procesador">
-            <EditItemTemplate>
-                <asp:DropDownList ID="mercaderias_ddlProcesador1" runat="server" CssClass="form-control" />
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:LinkButton ID="mercaderias_lbl2" runat="server" CommandName="View" Text='<%# Bind("Procesador_ID") %>'></asp:LinkButton>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:DropDownList ID="mercaderias_ddlProcesador2" runat="server" CssClass="form-control" />
-            </FooterTemplate>
-        </asp:TemplateField>--%>
         <asp:TemplateField HeaderText="Fecha de corte">
             <EditItemTemplate>
-                <asp:TextBox ID="mercaderias_txb4" runat="server" Text='<%# Bind("Fecha_corte", "{0:MMMM d, yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="mercaderias_txb4" runat="server" Text='<%# Bind("Fecha_corte", "{0:d MMMM, yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
                 <asp:Label ID="mercaderias_lbl4" runat="server" Text='<%# Bind("Fecha_corte", "{0:MMMM d, yyyy}") %>'></asp:Label>
@@ -105,19 +94,7 @@
                 <asp:CompareValidator ID="vtxbNew5" runat="server" ControlToValidate="mercaderias_txbNew5" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Precio Venta xTON">
-            <EditItemTemplate>
-                <asp:TextBox ID="mercaderias_txb6" runat="server" Text='<%# Bind("Precio_xTonelada_venta") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                <asp:CompareValidator ID="vtxb6" runat="server" ControlToValidate="mercaderias_txb6" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="mercaderias_lbl6" runat="server" Text='<%# Bind("Precio_xTonelada_venta", "{0:C0}") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="mercaderias_txbNew6" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                <asp:CompareValidator ID="vtxbNew6" runat="server" ControlToValidate="mercaderias_txbNew6" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
-            </FooterTemplate>
-        </asp:TemplateField>
+        
         <asp:TemplateField HeaderText="Comentarios">
             <EditItemTemplate>
                 <asp:TextBox ID="mercaderias_txb7" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="100"></asp:TextBox>

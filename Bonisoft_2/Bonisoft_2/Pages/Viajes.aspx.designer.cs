@@ -58,6 +58,24 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.HiddenField hdn_notificacionesPesadaDestinoID;
         
         /// <summary>
+        /// upUpdateViajesEnCurso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upUpdateViajesEnCurso;
+        
+        /// <summary>
+        /// btnUpdateViajesEnCurso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdateViajesEnCurso;
+        
+        /// <summary>
         /// gridViajesEnCurso_lblMessage control.
         /// </summary>
         /// <remarks>
@@ -418,15 +436,6 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.UpdatePanel upNotificaciones;
         
         /// <summary>
-        /// lnkViajeDestino control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkViajeDestino;
-        
-        /// <summary>
         /// upMercaderias control.
         /// </summary>
         /// <remarks>
@@ -553,15 +562,6 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.TextBox txb_pesada2Comentarios;
         
         /// <summary>
-        /// lnk_pesada1Guardar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnk_pesada1Guardar;
-        
-        /// <summary>
         /// notif_lblPrecioCompra control.
         /// </summary>
         /// <remarks>
@@ -641,6 +641,15 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbIVA;
+        
+        /// <summary>
+        /// upGridViajes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upGridViajes;
         
         /// <summary>
         /// gridViajes_lblMessage control.
@@ -985,15 +994,6 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.HiddenField hdn_modalMercaderia_txbNew5;
         
         /// <summary>
-        /// hdn_modalMercaderia_txbNew6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn_modalMercaderia_txbNew6;
-        
-        /// <summary>
         /// hdn_modalMercaderia_txbNew7 control.
         /// </summary>
         /// <remarks>
@@ -1037,15 +1037,6 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdn_modalMercaderia_txb5;
-        
-        /// <summary>
-        /// hdn_modalMercaderia_txb6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn_modalMercaderia_txb6;
         
         /// <summary>
         /// hdn_modalMercaderia_txb7 control.

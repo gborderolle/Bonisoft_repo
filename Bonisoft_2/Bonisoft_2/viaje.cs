@@ -21,7 +21,6 @@ namespace Bonisoft_2
         public decimal Precio_valor_total { get; set; }
         public decimal Importe_viaje { get; set; }
         public decimal Saldo { get; set; }
-        public int Forma_de_pago_ID { get; set; }
         public int Pesada_origen_ID { get; set; }
         public int Pesada_destino_ID { get; set; }
         public int Empresa_de_carga_ID { get; set; }
@@ -34,11 +33,12 @@ namespace Bonisoft_2
         public int Fletero_ID { get; set; }
         public decimal precio_compra { get; set; }
         public decimal precio_venta { get; set; }
-        public string Comentarios { get; set; }
-        public bool EnViaje { get; set; }
         public decimal precio_flete { get; set; }
         public decimal precio_descarga { get; set; }
         public decimal GananciaXTon { get; set; }
         public int IVA { get; set; }
+        public string Comentarios { get; set; }
+        public bool EnViaje { get; set; }
+        public Nullable<System.DateTime> Fecha_registro { get; set; }
     }
 }

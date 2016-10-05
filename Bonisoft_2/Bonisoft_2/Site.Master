@@ -89,6 +89,7 @@
                         <li><a runat="server" href="~/">Inicio</a></li>
                         <li><a runat="server" href="/Pages/Viajes">Viajes</a></li>
                         <li><a runat="server" href="/Pages/Datos">Base de Datos</a></li>
+                        <li><a runat="server" href="/Pages/Resumen_clientes">Resumen de Clientes</a></li>
                        <%-- <li><a runat="server" href="/Pages/Recordatorios">Recordatorios</a></li>
                         <li><a runat="server" href="/Pages/Contabilidad">Contabilidad</a></li>
                         <li><a runat="server" href="/Pages/Registros">Registros</a></li>

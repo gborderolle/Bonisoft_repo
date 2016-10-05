@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -38,7 +39,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                bool ok = false;             
+                bool ok = false;
                 hdnMercaderiasCount.Value = context.mercaderia_comprada.Count().ToString();
 
                 int viaje_ID = 0;
@@ -57,7 +58,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                         ok = true;
                     }
                 }
-                if(!ok)
+                if (!ok)
                 {
                     var obj = new List<mercaderia_comprada>();
                     obj.Add(new mercaderia_comprada());
@@ -265,20 +266,16 @@ namespace Bonisoft_2.User_Controls.Configuracion
             {
                 HiddenField hdn_modalMercaderia_txbNew4 = this.Parent.FindControl("hdn_modalMercaderia_txbNew4") as HiddenField;
                 HiddenField hdn_modalMercaderia_txbNew5 = this.Parent.FindControl("hdn_modalMercaderia_txbNew5") as HiddenField;
-                HiddenField hdn_modalMercaderia_txbNew6 = this.Parent.FindControl("hdn_modalMercaderia_txbNew6") as HiddenField;
                 HiddenField hdn_modalMercaderia_txbNew7 = this.Parent.FindControl("hdn_modalMercaderia_txbNew7") as HiddenField;
                 HiddenField hdn_modalMercaderia_ddlVariedad2 = this.Parent.FindControl("hdn_modalMercaderia_ddlVariedad2") as HiddenField;
-                //HiddenField hdn_modalMercaderia_ddlProcesador2 = this.Parent.FindControl("hdn_modalMercaderia_ddlProcesador2") as HiddenField;
 
-                if (hdn_modalMercaderia_txbNew4 != null && hdn_modalMercaderia_txbNew5 != null && hdn_modalMercaderia_txbNew6 != null &&
+                if (hdn_modalMercaderia_txbNew4 != null && hdn_modalMercaderia_txbNew5 != null &&
                     hdn_modalMercaderia_txbNew7 != null && hdn_modalMercaderia_ddlVariedad2 != null)
                 {
                     string txb4 = hdn_modalMercaderia_txbNew4.Value;
                     string txb5 = hdn_modalMercaderia_txbNew5.Value;
-                    string txb6 = hdn_modalMercaderia_txbNew6.Value;
                     string txb7 = hdn_modalMercaderia_txbNew7.Value;
                     string ddlVariedad2 = hdn_modalMercaderia_ddlVariedad2.Value;
-                    //string ddlProcesador2 = hdn_modalMercaderia_ddlProcesador2.Value;
 
                     int viaje_ID = 0;
                     if (!int.TryParse(Viaje_ID1, out viaje_ID))
@@ -293,18 +290,11 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             obj.Comentarios = txb7;
 
                             decimal valor = 0;
-                            if (!decimal.TryParse(txb5, out valor))
+                            if (!decimal.TryParse(txb5, NumberStyles.Number, CultureInfo.InvariantCulture, out valor))
                             {
                                 valor = 0;
                             }
                             obj.Precio_xTonelada_compra = valor;
-
-                            valor = 0;
-                            if (!decimal.TryParse(txb6, out valor))
-                            {
-                                valor = 0;
-                            }
-                            obj.Precio_xTonelada_venta = valor;
 
                             #region DDL logic
 
@@ -380,17 +370,15 @@ namespace Bonisoft_2.User_Controls.Configuracion
         {
             HiddenField hdn_modalMercaderia_txb4 = this.Parent.FindControl("hdn_modalMercaderia_txb4") as HiddenField;
             HiddenField hdn_modalMercaderia_txb5 = this.Parent.FindControl("hdn_modalMercaderia_txb5") as HiddenField;
-            HiddenField hdn_modalMercaderia_txb6 = this.Parent.FindControl("hdn_modalMercaderia_txb6") as HiddenField;
             HiddenField hdn_modalMercaderia_txb7 = this.Parent.FindControl("hdn_modalMercaderia_txb7") as HiddenField;
             HiddenField hdn_modalMercaderia_ddlVariedad1 = this.Parent.FindControl("hdn_modalMercaderia_ddlVariedad1") as HiddenField;
             //HiddenField hdn_modalMercaderia_ddlProcesador1 = this.Parent.FindControl("hdn_modalMercaderia_ddlProcesador1") as HiddenField;
 
-            if (hdn_modalMercaderia_txb4 != null && hdn_modalMercaderia_txb5 != null && hdn_modalMercaderia_txb6 != null &&
+            if (hdn_modalMercaderia_txb4 != null && hdn_modalMercaderia_txb5 != null &&
                 hdn_modalMercaderia_txb7 != null && hdn_modalMercaderia_ddlVariedad1 != null)
             {
                 string txb4 = hdn_modalMercaderia_txb4.Value;
                 string txb5 = hdn_modalMercaderia_txb5.Value;
-                string txb6 = hdn_modalMercaderia_txb6.Value;
                 string txb7 = hdn_modalMercaderia_txb7.Value;
                 string ddlVariedad1 = hdn_modalMercaderia_ddlVariedad1.Value;
                 //string ddlProcesador1 = hdn_modalMercaderia_ddlProcesador1.Value;
@@ -402,18 +390,11 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     obj.Comentarios = txb7;
 
                     decimal valor = obj.Precio_xTonelada_compra;
-                    if (!decimal.TryParse(txb5, out valor))
+                    if (!decimal.TryParse(txb5, NumberStyles.Number, CultureInfo.InvariantCulture, out valor))
                     {
                         valor = obj.Precio_xTonelada_compra;
                     }
                     obj.Precio_xTonelada_compra = valor;
-
-                    valor = obj.Precio_xTonelada_venta;
-                    if (!decimal.TryParse(txb6, out valor))
-                    {
-                        valor = obj.Precio_xTonelada_venta;
-                    }
-                    obj.Precio_xTonelada_venta = valor;
 
                     #region DDL logic
 
