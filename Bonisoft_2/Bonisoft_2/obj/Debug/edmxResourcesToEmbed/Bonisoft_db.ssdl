@@ -71,6 +71,7 @@
     <Property Name="Fecha_registro" Type="date" Nullable="false" />
     <Property Name="Fecha_pago" Type="date" Nullable="false" />
     <Property Name="Forma_de_pago_ID" Type="int" Nullable="false" />
+    <Property Name="Monto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:

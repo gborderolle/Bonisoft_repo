@@ -25,8 +25,6 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
-
-
     <div class="box box-default">
         <div class="box-header with-border" style="padding-bottom: 0;">
 
@@ -73,7 +71,7 @@
                                 OnSelectedIndexChanged = "gridClientes_OnSelectedIndexChanged">
 
                                 <Columns>
-                                    <asp:BoundField DataField="cliente_ID" HeaderText="Cliente_ID" Visible="false" HtmlEncode="false" />
+                                    <asp:BoundField DataField="cliente_ID" HeaderText="Cliente_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
                                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" HtmlEncode="false" />
                                     <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
                                 </Columns>
@@ -180,11 +178,51 @@
                         </div>
 
 
-
-
                     </div>
 
                     <div id="tabsClientes_2">
+
+                        <div style="overflow: auto;">
+                        
+                            <asp:UpdatePanel ID="upPagos" runat="server">
+                            <ContentTemplate>
+
+                                <div class="row" style="margin-bottom: 10px; margin-right: 0; margin-left: 0;">
+                                    <h3 class="pull-left">Saldo inicial: <label class="label label-warning">0</label></h3>
+                                    <h3 class="pull-right">Saldo final: <label class="label label-danger">0</label></h3>
+                                </div>
+
+                                <asp:Label ID="gridPagos_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
+                                <asp:GridView ID="gridPagos" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
+                                    AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped"
+                                    DataKeyNames="Cliente_pagos_ID" 
+                                    OnRowDataBound="gridPagos_RowDataBound"
+                                    OnRowCommand="gridPagos_RowCommand" >
+                                    <Columns>
+                                        <asp:BoundField DataField="Fecha_registro" HeaderText="Fecha de registro" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />
+                                        <asp:BoundField DataField="Fecha_pago" HeaderText="Fecha de pago" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="False" />
+                                        <asp:TemplateField HeaderText = "Forma de pago">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lblForma" runat="server" CommandName="View" Text='<%# Eval("Forma_de_pago_ID") %>'/>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:BoundField DataField="Monto" DataFormatString="{0:C0}" HeaderText="Monto" />
+                                        <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
+                                    </Columns>
+                                </asp:GridView>
+                                <asp:Label ID="lblGridPagosCount" runat="server" ClientIDMode="Static" Text="Resultados: 0" CssClass="lblResultados"></asp:Label>
+
+
+                                <div class="row" style="margin-right: 0; margin-left: 0;">
+                                        <a href="#addPagoModal" rel="modal:open" class="btn btn-info pull-right">Ingresar pago</a>
+                                </div>
+
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                        
+                        </div>
+
 
                     </div>
                 </div>
@@ -201,6 +239,50 @@
         <p style="text-align: left;"></p>
     </div>
 
+
+     <!-- Modal agregar pago BEGIN -->
+    <div id="addPagoModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" style="display: none; max-width: 500px; overflow: hidden;">
+
+        <div class="modal-header">
+            <h3 id="addModalLabel">Agregar pago</h3>
+        </div>
+        <asp:UpdatePanel ID="upAdd" runat="server">
+            <ContentTemplate>
+                <div class="modal-body">
+                    <table class="table table-bordered table-hover">
+                        <tr>
+                            <td>Fecha de pago: 
+                            <asp:TextBox ID="txbFecha1" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Forma de pago: 
+                            <asp:DropDownList ID="ddlFormas" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Monto: 
+                                <asp:TextBox ID="txbMonto" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" />
+                                <asp:CompareValidator ID="vtxbMonto" runat="server" ControlToValidate="txbMonto" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                            </td>
+                        </tr>
+                        <tr>
+                                <td>Comentarios: 
+                                <asp:TextBox ID="txbComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" />
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <a ID="aIngresarPago" class="btn btn-info" onClick="IngresarPago();">Guardar</a>                                                        
+                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cerrar</button>
+
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+    <!-- Modal agregar pago END -->
 
 
 

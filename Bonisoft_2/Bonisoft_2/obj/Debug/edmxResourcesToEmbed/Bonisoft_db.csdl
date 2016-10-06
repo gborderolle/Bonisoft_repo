@@ -283,6 +283,7 @@
     <Property Name="Fecha_pago" Type="DateTime" Nullable="false" />
     <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Monto" Type="Decimal" Nullable="false" />
   </EntityType>
   <EntityType Name="viaje">
     <Key>

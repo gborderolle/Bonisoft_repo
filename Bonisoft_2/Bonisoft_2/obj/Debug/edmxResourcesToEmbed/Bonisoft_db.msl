@@ -269,6 +269,7 @@
     <EntitySetMapping Name="cliente_pagos">
       <EntityTypeMapping TypeName="bonisoft_dbModel.cliente_pagos">
         <MappingFragment StoreEntitySet="cliente_pagos">
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
           <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
           <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />

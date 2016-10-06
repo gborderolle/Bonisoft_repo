@@ -1,11 +1,10 @@
-﻿
-.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
-    background-color: orange;
-    cursor: pointer;
-}
+﻿.hiddencol
+  {
+    display: none;
+  }
 
-#gridClientes tbody tr:hover {
-    background-color: orange;
+#gridClientes > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
+    background-color: #e6dac4;
     cursor: pointer;
 }
 
