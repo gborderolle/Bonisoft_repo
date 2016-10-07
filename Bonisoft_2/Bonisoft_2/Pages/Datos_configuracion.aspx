@@ -8,7 +8,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
 
-
     <!-- STYLES EXTENSION -->
 
     <!-- Theme style -->
@@ -211,7 +210,7 @@
                             <div class="form-group">
                                 <div id="divContent">
 
-                                    <div class="divTables" id="divInternos" style="display: none;">
+                                    <div class="divTables" id="divInternos" style="display: block;">
                                         <asp:UpdatePanel ID="upInternos" runat="server">
                                             <ContentTemplate>
                                                 <uc1:Internos runat="server" ID="Internos" />
@@ -219,7 +218,7 @@
                                         </asp:UpdatePanel>
                                     </div>
 
-                                    <div class="divTables" id="divTipos" style="display: block;">
+                                    <div class="divTables" id="divTipos" style="display: none;">
                                         <asp:UpdatePanel ID="upTipos" runat="server">
                                             <ContentTemplate>
                                                 <uc1:Tipos runat="server" ID="Tipos" />
