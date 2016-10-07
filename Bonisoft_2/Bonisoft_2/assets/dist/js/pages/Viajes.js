@@ -347,29 +347,6 @@ function DoPost_Pesadas() {
 
 }
 
-function finalizarViaje() {
-
-    $('#dialog p').text(hashMessages['Confirmacion']);
-    $("#dialog").dialog({
-        open: {},
-        resizable: false,
-        height: 140,
-        modal: true,
-        buttons: {
-            "Confirmar": function () {
-                $("#lnkViajeDestinoCandidate").click();
-                //__doPostBack('<%=lnkViajeDestinoCandidate.UniqueID%>', "");
-                //$(this).dialog("close");
-
-            },
-            "Cancelar": function () {
-                $(this).dialog("close");
-                return false;
-            }
-        }
-    });
-}
-
 function DoPost_Mercaderias() {
 
     // Hdn Fields - Pesada origen

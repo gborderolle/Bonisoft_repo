@@ -59,7 +59,7 @@
 
                                 <div class="row" style="margin-bottom: 10px;">
                                     <div class="col-md-2 pull-left">
-                                        <a href="#addModal" rel="modal:open" class="btn btn-success pull-left">Iniciar viaje</a>
+                                        <a href="#addModal" rel="modal:open" class="btn btn-warning pull-left">Iniciar viaje</a>
                                     </div>
 
                                     <div class="col-md-3 pull-right">
@@ -199,7 +199,7 @@
                                     <div class="modal-footer">
 
                                         <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cerrar</button>
-                                        <asp:Button ID="btnAdd" runat="server" Text="Agregar" CssClass="btn btn-info" OnClientClick="Javascript:DoCustomPost();" OnClick="btnAddRecord1_Click" UseSubmitBehavior="false" />
+                                        <asp:Button ID="btnAdd" runat="server" Text="Agregar" CssClass="btn btn-primary" OnClientClick="Javascript:DoCustomPost();" OnClick="btnAddRecord1_Click" UseSubmitBehavior="false" />
 
                                     </div>
                                 </ContentTemplate>
@@ -264,8 +264,8 @@
                                         </table>
                                     </div>
                                     <div class="modal-footer">
-                                        <asp:Button ID="btnEdit" runat="server" Text="Modificar" CssClass="btn btn-info" OnClientClick="Javascript:DoCustomPost();" OnClick="btnEdit_Click" UseSubmitBehavior="false" />
-                                        <button class="btn btn-info" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cancelar</button>
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cancelar</button>
+                                        <asp:Button ID="btnEdit" runat="server" Text="Modificar" CssClass="btn btn-primary" OnClientClick="Javascript:DoCustomPost();" OnClick="btnEdit_Click" UseSubmitBehavior="false" />
                                     </div>
                                 </ContentTemplate>
                                 <Triggers>
@@ -274,71 +274,6 @@
                             </asp:UpdatePanel>
                         </div>
                         <!-- Modal Editar END -->
-
-                        <!-- Modal Inspeccionar BEGIN -->
-                        <div id="inspectModal" tabindex="-1" role="dialog" aria-labelledby="inspectModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;" class="modal fade dark in">
-
-                            <div class="modal-header">
-                                <h3 id="inspectModalLabel">Inspeccionar viaje</h3>
-                            </div>
-                            <asp:UpdatePanel ID="upInspect" runat="server">
-                                <ContentTemplate>
-                                    <div class="modal-body">
-                                        <table class="table table-hover">
-                                            <tr>
-                                                <td>Fecha de inicio: 
-                                                <asp:Label ID="modalInspect_lblFecha1" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:Label>
-                                                </td>
-                                                <td>Fecha de llegada (tentativa): 
-                                                <asp:Label ID="modalInspect_lblFecha2" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:Label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Proveedor: 
-                                                <asp:Label ID="modalInspect_lblProveedor" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:Label>
-                                                </td>
-                                                <td>Cliente: 
-                                                <asp:Label ID="modalInspect_lblCliente" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:Label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cargadores: 
-                                                <asp:Label ID="modalInspect_lblCargadores" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:Label>
-                                                </td>
-                                                <td>Lugar de carga: 
-                                                <asp:Label ID="modalInspect_lblLugarCarga" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:Label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fletero: 
-                                                <asp:Label ID="modalInspect_lblFletero" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:Label>
-                                                </td>
-                                                <td>Camión: 
-                                                <asp:Label ID="modalInspect_lblCamion" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:Label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Chofer: 
-                                                <asp:Label ID="modalInspect_lblChofer" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:Label>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Comentarios: 
-                                                <asp:Label ID="modalInspect_lblComentarios" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:Label>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-
-                                        </table>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-info" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cerrar</button>
-                                    </div>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </div>
-                        <!-- Modal Inspeccionar END -->
 
                         <!-- Modal Notificaciones BEGIN -->
                         <div id="notificacionesModal" tabindex="-1" role="dialog" aria-labelledby="notificacionesModalLabel" aria-hidden="true" style="display: none; max-width: 1000px; overflow: hidden;" class="modal fade dark in">
@@ -352,7 +287,7 @@
                                             </div>
 
                                             <div class="col-md-2 pull-right" style="padding-top: 10px;">
-                                                <a id="lnkViajeDestino" class="btn btn-success" onclick="FinDelViaje();">FIN del Viaje</a>
+                                                <a id="lnkViajeDestino" class="btn btn-warning" onclick="FinDelViaje();">FIN del Viaje</a>
                                                 <%--<asp:LinkButton ID="lnkViajeDestino" runat="server" CssClass="btn btn-warning" OnClick="lnkViajeDestino_Click">FIN del Viaje</asp:LinkButton>--%>
                                                 <%--<asp:LinkButton ID="lnkViajeDestino" runat="server" CssClass="btn btn-info" OnClientClick="Javascript:return finalizarViaje();">FIN del Viaje</asp:LinkButton>--%>
                                                 <%--<asp:Button ID="lnkViajeDestinoCandidate" runat="server" ClientIDMode="Static" Style="display: none;" OnClick="lnkViajeDestino_Click" />--%>
@@ -486,20 +421,8 @@
                                                 </div>
                                                 </div>
 
-                                                
-
-
-
-
-
-
-
-
-
 
                                         </div>
-
-
 
                                         <div id="tabsNotificaciones_3">
 
