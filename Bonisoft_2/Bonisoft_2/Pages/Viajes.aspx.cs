@@ -85,7 +85,7 @@ namespace Bonisoft_2.Pages
                     {
                         ddl = 0;
                     }
-                    new_viaje.Empresa_de_carga_ID = ddl;
+                    new_viaje.Proveedor_ID = ddl;
 
                     ddl = 0;
                     if (!int.TryParse(ddlClientes, out ddl))
@@ -499,36 +499,6 @@ namespace Bonisoft_2.Pages
                 }
             }
 
-            //// Formas de pago --------------------------------------------------
-            //ddl = null;
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    ddl = e.Row.FindControl("ddlFormas1") as DropDownList;
-            //}
-            //if (e.Row.RowType == DataControlRowType.Footer)
-            //{
-            //    ddl = e.Row.FindControl("ddlFormas2") as DropDownList;
-            //}
-            //if (ddl != null)
-            //{
-            //    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-            //    {
-            //        DataTable dt1 = new DataTable();
-            //        dt1 = Extras.ToDataTable(context.forma_de_pago.ToList());
-
-            //        ddl.DataSource = dt1;
-            //        ddl.DataTextField = "Forma";
-            //        ddl.DataValueField = "Forma_de_pago_ID";
-            //        ddl.DataBind();
-            //        ddl.Items.Insert(0, new ListItem("Elegir", "0"));
-
-            //    }//Add Default Item in the DropDownList
-            //    if (e.Row.RowType == DataControlRowType.DataRow)
-            //    {
-            //        ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Empresa_de_carga_ID.ToString();
-            //    }
-            //}
-
             // Empresas de carga --------------------------------------------------
             ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -649,36 +619,6 @@ namespace Bonisoft_2.Pages
                 }
             }
 
-            // Cargadores --------------------------------------------------
-            ddl = null;
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                ddl = e.Row.FindControl("ddlCargadores1") as DropDownList;
-            }
-            if (e.Row.RowType == DataControlRowType.Footer)
-            {
-                ddl = e.Row.FindControl("ddlCargadores2") as DropDownList;
-            }
-            if (ddl != null)
-            {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                {
-                    DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.cargadores.ToList());
-
-                    ddl.DataSource = dt1;
-                    ddl.DataTextField = "Nombre";
-                    ddl.DataValueField = "Cargador_ID";
-                    ddl.DataBind();
-                    ddl.Items.Insert(0, new ListItem("Elegir", "0"));
-
-                }//Add Default Item in the DropDownList
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Empresa_de_carga_ID.ToString();
-                }
-            }
-
             // Pesadas origen --------------------------------------------------
             ddl = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -742,30 +682,6 @@ namespace Bonisoft_2.Pages
             #endregion
 
             #region DDL Default values
-
-            //// Forma de pago ----------------------------------------------------
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    LinkButton lbl = e.Row.FindControl("lbl5") as LinkButton;
-            //    if (lbl != null)
-            //    {
-            //        using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-            //        {
-            //            viaje viaje = (viaje)(e.Row.DataItem);
-            //            if (viaje != null)
-            //            {
-            //                int id = viaje.Forma_de_pago_ID;
-            //                forma_de_pago forma_de_pago = (forma_de_pago)context.forma_de_pago.FirstOrDefault(c => c.Forma_de_pago_ID == id);
-            //                if (forma_de_pago != null)
-            //                {
-            //                    string nombre = forma_de_pago.Forma;
-            //                    lbl.Text = nombre;
-            //                    lbl.CommandArgument = "formas," + forma_de_pago.Forma;
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
 
             // Empresa de carga ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -1006,7 +922,6 @@ namespace Bonisoft_2.Pages
                         TextBox txb11 = row.FindControl("txbNew11") as TextBox;
                         TextBox txb12 = row.FindControl("txbNew12") as TextBox;
                         TextBox txb15 = row.FindControl("txbNew15") as TextBox;
-                        //DropDownList ddlFormas2 = row.FindControl("ddlFormas2") as DropDownList;
                         DropDownList ddlCargadores2 = row.FindControl("ddlCargadores2") as DropDownList;
                         DropDownList ddlCamiones2 = row.FindControl("ddlCamiones2") as DropDownList;
                         DropDownList ddlChoferes2 = row.FindControl("ddlChoferes2") as DropDownList;
@@ -1081,13 +996,6 @@ namespace Bonisoft_2.Pages
                                 }
                                 obj.Chofer_ID = ddl;
 
-                                //ddl = 0;
-                                //if (!int.TryParse(ddlFormas2.SelectedValue, out ddl))
-                                //{
-                                //    ddl = 0;
-                                //}
-                                //obj.Forma_de_pago_ID = ddl;
-
                                 ddl = 0;
                                 if (!int.TryParse(ddlFleteros2.SelectedValue, out ddl))
                                 {
@@ -1148,10 +1056,6 @@ namespace Bonisoft_2.Pages
                         }
                     }
 
-                    else
-                    {
-                        //BindGrid();
-                    }
                 }
             }
         }

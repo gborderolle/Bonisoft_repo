@@ -111,17 +111,6 @@
                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <%--<asp:TemplateField HeaderText="Dueño contacto">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Dueno_contacto") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Dueno_contacto") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>--%>
         <asp:TemplateField HeaderText="Encargado leña">
             <EditItemTemplate>
                 <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Encargado_lena_nombre") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -133,17 +122,6 @@
                 <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <%--<asp:TemplateField HeaderText="Encargado leña contacto">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("Encargado_lena_contacto") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl4" runat="server" Text='<%# Bind("Encargado_lena_contacto") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew4" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>--%>
         <asp:TemplateField HeaderText="Encargado pagos">
             <EditItemTemplate>
                 <asp:TextBox ID="txb5" runat="server" Text='<%# Bind("Encargado_pagos_nombre") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -155,17 +133,6 @@
                 <asp:TextBox ID="txbNew5" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-       <%-- <asp:TemplateField HeaderText="Encargado pagos contacto">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb6" runat="server" Text='<%# Bind("Encargado_pagos_contacto") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl6" runat="server" Text='<%# Bind("Encargado_pagos_contacto") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew6" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>--%>
         <asp:TemplateField HeaderText="Superv leña">
             <EditItemTemplate>
                 <asp:TextBox ID="txb7" runat="server" Text='<%# Bind("Supervisor_lena_nombre") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -177,61 +144,6 @@
                 <asp:TextBox ID="txbNew7" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <%--<asp:TemplateField HeaderText="Superv leña contacto">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb8" runat="server" Text='<%# Bind("Supervisor_lena_contacto") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl8" runat="server" Text='<%# Bind("Supervisor_lena_contacto") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew8" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>--%>
-        <asp:TemplateField HeaderText="Contacto nuestro">
-            <EditItemTemplate>
-                <asp:DropDownList ID="ddlContactoNuestro1" runat="server" CssClass="form-control" />
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:LinkButton ID="lbl9" runat="server" CommandName="View" Text='<%# Bind("Contacto_nuestro_ID") %>'></asp:LinkButton>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:DropDownList ID="ddlContactoNuestro2" runat="server" CssClass="form-control" />
-            </FooterTemplate>
-        </asp:TemplateField>
-        <%--<asp:TemplateField HeaderText="Usual Forma de pago">
-            <EditItemTemplate>
-                <asp:DropDownList ID="ddlFormas1" runat="server" CssClass="form-control" />
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:LinkButton ID="lbl10" runat="server" CommandName="View" Text='<%# Bind("Forma_de_pago_ID") %>'></asp:LinkButton>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:DropDownList ID="ddlFormas2" runat="server" CssClass="form-control" />
-            </FooterTemplate>
-        </asp:TemplateField>--%>
-        <%--<asp:TemplateField HeaderText="Períodos de liq">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb11" runat="server" Text='<%# Bind("Periodos_liquidacion") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl11" runat="server" Text='<%# Bind("Periodos_liquidacion") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew11" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Fechas de pago">
-            <EditItemTemplate>
-                <asp:TextBox ID="txb12" runat="server" Text='<%# Bind("Fechas_pago") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="lbl12" runat="server" Text='<%# Bind("Fechas_pago") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="txbNew12" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>        --%>
         <asp:TemplateField HeaderText="Comentarios">
             <EditItemTemplate>
                 <asp:TextBox ID="txb22" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="100"></asp:TextBox>

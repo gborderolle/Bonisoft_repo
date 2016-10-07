@@ -9,6 +9,7 @@
 
     <!-- PAGE CSS -->
     <link rel="stylesheet" href="/assets/dist/css/pages/Viajes.css">
+    <link rel="stylesheet" href="/assets/dist/css/pages/Modal_styles.css">
 
 </asp:Content>
 
@@ -132,7 +133,7 @@
                         </asp:UpdatePanel>
 
                         <!-- Modal Iniciar viaje BEGIN -->
-                        <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
+                        <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;" class="modal fade dark in">
 
                             <div class="modal-header">
                                 <h3 id="addModalLabel">Iniciar viaje</h3>
@@ -141,7 +142,7 @@
                                 <ContentTemplate>
                                      <asp:Button ID="btnSubmit_upAdd" runat="server" OnClick="btnSubmit_upAdd_Click" style = "display:none" />
                                     <div class="modal-body">
-                                        <table class="table table-bordered table-hover">
+                                        <table class="table table-hover">
                                             <tr>
                                                 <td>Fecha de inicio: 
                                                 <asp:TextBox ID="modalAdd_txbFecha1" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
@@ -197,8 +198,8 @@
                                     </div>
                                     <div class="modal-footer">
 
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cerrar</button>
                                         <asp:Button ID="btnAdd" runat="server" Text="Agregar" CssClass="btn btn-info" OnClientClick="Javascript:DoCustomPost();" OnClick="btnAddRecord1_Click" UseSubmitBehavior="false" />
-                                        <button class="btn btn-info" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cerrar</button>
 
                                     </div>
                                 </ContentTemplate>
@@ -210,7 +211,7 @@
                         <!-- Modal Iniciar viaje END -->
 
                         <!-- Modal Editar BEGIN -->
-                        <div id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
+                        <div id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;" class="modal fade dark in">
 
                             <div class="modal-header">
                                 <h3 id="editModalLabel">Modificar viaje</h3>
@@ -218,7 +219,7 @@
                             <asp:UpdatePanel ID="upEdit" runat="server">
                                 <ContentTemplate>
                                     <div class="modal-body">
-                                        <table class="table table-bordered table-hover">
+                                        <table class="table table-hover">
                                             <tr>
                                                 <td>Fecha de inicio: 
                                                 <asp:TextBox ID="modalEdit_txbFecha1" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
@@ -275,7 +276,7 @@
                         <!-- Modal Editar END -->
 
                         <!-- Modal Inspeccionar BEGIN -->
-                        <div id="inspectModal" tabindex="-1" role="dialog" aria-labelledby="inspectModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;">
+                        <div id="inspectModal" tabindex="-1" role="dialog" aria-labelledby="inspectModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;" class="modal fade dark in">
 
                             <div class="modal-header">
                                 <h3 id="inspectModalLabel">Inspeccionar viaje</h3>
@@ -283,7 +284,7 @@
                             <asp:UpdatePanel ID="upInspect" runat="server">
                                 <ContentTemplate>
                                     <div class="modal-body">
-                                        <table class="table table-bordered table-hover">
+                                        <table class="table table-hover">
                                             <tr>
                                                 <td>Fecha de inicio: 
                                                 <asp:Label ID="modalInspect_lblFecha1" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:Label>
@@ -340,8 +341,7 @@
                         <!-- Modal Inspeccionar END -->
 
                         <!-- Modal Notificaciones BEGIN -->
-                        <div id="notificacionesModal" tabindex="-1" role="dialog" aria-labelledby="notificacionesModalLabel"
-                            aria-hidden="true" style="display: none; max-width: 1000px; overflow: hidden;">
+                        <div id="notificacionesModal" tabindex="-1" role="dialog" aria-labelledby="notificacionesModalLabel" aria-hidden="true" style="display: none; max-width: 1000px; overflow: hidden;" class="modal fade dark in">
                             <asp:UpdatePanel ID="upNotificaciones" runat="server">
                                 <ContentTemplate>
 
@@ -352,7 +352,7 @@
                                             </div>
 
                                             <div class="col-md-2 pull-right" style="padding-top: 10px;">
-                                                <a id="lnkViajeDestino" class="btn btn-warning" onclick="FinDelViaje();">FIN del Viaje</a>
+                                                <a id="lnkViajeDestino" class="btn btn-success" onclick="FinDelViaje();">FIN del Viaje</a>
                                                 <%--<asp:LinkButton ID="lnkViajeDestino" runat="server" CssClass="btn btn-warning" OnClick="lnkViajeDestino_Click">FIN del Viaje</asp:LinkButton>--%>
                                                 <%--<asp:LinkButton ID="lnkViajeDestino" runat="server" CssClass="btn btn-info" OnClientClick="Javascript:return finalizarViaje();">FIN del Viaje</asp:LinkButton>--%>
                                                 <%--<asp:Button ID="lnkViajeDestinoCandidate" runat="server" ClientIDMode="Static" Style="display: none;" OnClick="lnkViajeDestino_Click" />--%>
@@ -408,7 +408,7 @@
                                                     </div>
                                                 </div>
                                                     <div class="modal-body" style="padding-bottom: 0; padding-top: 0; position:inherit;">
-                                                    <table class="table table-bordered table-hover">
+                                                    <table class="table table-hover">
                                                         <tr>
                                                             <td>Lugar: 
                                                         <asp:TextBox ID="txb_pesada1Lugar" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -453,7 +453,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-body" style="padding-bottom: 0; padding-top: 0; position:inherit;">
-                                                    <table class="table table-bordered table-hover">
+                                                    <table class="table table-hover">
                                                         <tr>
                                                             <td>Lugar: 
                                                       <asp:TextBox ID="txb_pesada2Lugar" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -506,7 +506,7 @@
                                             <h4>Precio de venta</h4>
 
                                             <div class="modal-body" style="padding: 0; position:inherit;">
-                                                    <table class="table table-bordered table-hover" style="margin-bottom:0;">
+                                                    <table class="table table-hover" style="margin-bottom:0;">
                                                         <tr>
                                                             <td>Precio de compra: 
                                                                 <h2><label id="notif_lblPrecioCompra" runat="server" class="label label-danger">0</label></h2>
@@ -528,7 +528,7 @@
                                                         <asp:CompareValidator ID="vnotif_txbIVA" runat="server" ControlToValidate="notif_txbIVA" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                                                             </td>
                                                             <td> 
-                                                                <a class="btn btn-info" onClick="calcularPrecioVenta();">Calcular</a>                                                        
+                                                                <a class="btn" onClick="calcularPrecioVenta();">Calcular</a>                                                        
                                                             </td>
                                                             <td>Precio de venta: 
                                                                 <h2><label id="notif_lblPrecioVenta" class="label label-success">0</label></h2>
@@ -540,7 +540,7 @@
                                                 <hr style="margin-top: 5px; margin-bottom: 5px;" />
                                                 <div class="row">
                                                     <div class="col-md-2 pull-right" style="padding: 10px;">
-                                                        <a ID="lnkGuardarPrecioVenta" class="btn btn-success" OnClick="GuardarPrecioVenta()">Guardar</a>
+                                                        <a ID="lnkGuardarPrecioVenta" class="btn btn-primary" OnClick="GuardarPrecioVenta()">Guardar</a>
                                                     </div>
                                                 </div>
 
@@ -745,17 +745,6 @@
                                                         <asp:CompareValidator ID="vtxbNew3" runat="server" ControlToValidate="txbNew3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                                                     </FooterTemplate>
                                                 </asp:TemplateField>
-                                                <%--<asp:TemplateField HeaderText="Forma de pago">
-                                                    <EditItemTemplate>
-                                                        <asp:DropDownList ID="ddlFormas1" runat="server" CssClass="form-control" />
-                                                    </EditItemTemplate>
-                                                    <ItemTemplate>
-                                                        <asp:LinkButton ID="lbl5" runat="server" CommandName="View" Text='<%# Bind("Forma_de_pago_ID") %>'></asp:LinkButton>
-                                                    </ItemTemplate>
-                                                    <FooterTemplate>
-                                                        <asp:DropDownList ID="ddlFormas2" runat="server" CssClass="form-control" />
-                                                    </FooterTemplate>
-                                                </asp:TemplateField>--%>
                                                 <asp:TemplateField HeaderText="Pesada origen">
                                                     <EditItemTemplate>
                                                         <asp:DropDownList ID="ddlPesadaOrigen1" runat="server" CssClass="form-control" />

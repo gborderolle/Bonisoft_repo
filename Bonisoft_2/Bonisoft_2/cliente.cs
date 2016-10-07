@@ -24,7 +24,6 @@ namespace Bonisoft_2
         public string Encargado_pagos_contacto { get; set; }
         public string Supervisor_lena_nombre { get; set; }
         public string Supervisor_lena_contacto { get; set; }
-        public int Contacto_nuestro_ID { get; set; }
         public int Forma_de_pago_ID { get; set; }
         public string Periodos_liquidacion { get; set; }
         public string Fechas_pago { get; set; }

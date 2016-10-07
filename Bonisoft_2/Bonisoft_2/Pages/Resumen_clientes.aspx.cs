@@ -72,6 +72,177 @@ namespace Bonisoft_2.Pages
         protected void gridViajes_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
+            #region DDL Default values
+
+            // Empresa de carga ----------------------------------------------------
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lbl = e.Row.FindControl("lblCargador") as LinkButton;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        viaje viaje = (viaje)(e.Row.DataItem);
+                        if (viaje != null)
+                        {
+                            int id = viaje.Empresa_de_carga_ID;
+                            cargador cargador = (cargador)context.cargadores.FirstOrDefault(c => c.Cargador_ID == id);
+                            if (cargador != null)
+                            {
+                                string nombre = cargador.ToString();
+                                lbl.Text = nombre;
+                                lbl.CommandArgument = "cargadores," + cargador.Nombre;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Fleteros ----------------------------------------------------
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lbl = e.Row.FindControl("lblFletero") as LinkButton;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        viaje viaje = (viaje)(e.Row.DataItem);
+                        if (viaje != null)
+                        {
+                            int id = viaje.Fletero_ID;
+                            fletero fletero = (fletero)context.fleteros.FirstOrDefault(c => c.Fletero_ID == id);
+                            if (fletero != null)
+                            {
+                                string nombre = fletero.Nombre;
+                                lbl.Text = nombre;
+                                lbl.CommandArgument = "fleteros," + fletero.Nombre;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Camion ----------------------------------------------------
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lbl = e.Row.FindControl("lblCamion") as LinkButton;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        viaje viaje = (viaje)(e.Row.DataItem);
+                        if (viaje != null)
+                        {
+                            int id = viaje.Camion_ID;
+                            camion camion = (camion)context.camiones.FirstOrDefault(c => c.Camion_ID == id);
+                            if (camion != null)
+                            {
+                                string nombre = camion.ToString();
+                                lbl.Text = nombre;
+                                lbl.CommandArgument = "camiones," + camion.Marca;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Chofer ----------------------------------------------------
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lbl = e.Row.FindControl("lblChofer") as LinkButton;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        viaje viaje = (viaje)(e.Row.DataItem);
+                        if (viaje != null)
+                        {
+                            int id = viaje.Chofer_ID;
+                            chofer chofer = (chofer)context.choferes.FirstOrDefault(c => c.Chofer_ID == id);
+                            if (chofer != null)
+                            {
+                                string nombre = chofer.Nombre_completo;
+                                lbl.Text = nombre;
+                                lbl.CommandArgument = "choferes," + chofer.Nombre_completo;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Proveedor ----------------------------------------------------
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lbl = e.Row.FindControl("lblProveedor") as LinkButton;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        viaje viaje = (viaje)(e.Row.DataItem);
+                        if (viaje != null)
+                        {
+                            int id = viaje.Proveedor_ID;
+                            proveedor proveedor = (proveedor)context.proveedores.FirstOrDefault(c => c.Proveedor_ID == id);
+                            if (proveedor != null)
+                            {
+                                string nombre = proveedor.Nombre;
+                                lbl.Text = nombre;
+                                lbl.CommandArgument = "proveedores," + proveedor.Nombre;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Pesada origen ----------------------------------------------------
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label lbl = e.Row.FindControl("lblPesadaOrigen") as Label;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        viaje viaje = (viaje)(e.Row.DataItem);
+                        if (viaje != null)
+                        {
+                            int id = viaje.Pesada_origen_ID;
+                            pesada pesada = (pesada)context.pesadas.FirstOrDefault(c => c.pesada_ID == id);
+                            if (pesada != null)
+                            {
+                                string nombre = pesada.ToString();
+                                lbl.Text = nombre;
+                                //lbl.CommandArgument = "pesadas," + pesada.Nombre_balanza;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Pesada destino ----------------------------------------------------
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label lbl = e.Row.FindControl("lblPesadaDestino") as Label;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        viaje viaje = (viaje)(e.Row.DataItem);
+                        if (viaje != null)
+                        {
+                            int id = viaje.Pesada_destino_ID;
+                            pesada pesada = (pesada)context.pesadas.FirstOrDefault(c => c.pesada_ID == id);
+                            if (pesada != null)
+                            {
+                                string nombre = pesada.ToString();
+                                lbl.Text = nombre;
+                                //lbl.CommandArgument = "pesadas," + pesada.Nombre_balanza;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #endregion
         }
 
         protected void gridViajes_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -79,6 +250,19 @@ namespace Bonisoft_2.Pages
             if (e.CommandArgument != null)
             {
               
+            }
+            else if (e.CommandName.Equals("View"))
+            {
+                string[] values = e.CommandArgument.ToString().Split(new char[] { ',' });
+                if (values.Length > 1)
+                {
+                    string tabla = values[0];
+                    string dato = values[1];
+                    if (!string.IsNullOrWhiteSpace(tabla) && !string.IsNullOrWhiteSpace(dato))
+                    {
+                        Response.Redirect("Listados.aspx?tabla=" + tabla + "&dato=" + dato);
+                    }
+                }
             }
         }
 

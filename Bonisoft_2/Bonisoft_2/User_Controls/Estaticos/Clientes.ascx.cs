@@ -119,120 +119,6 @@ namespace Bonisoft_2.User_Controls
             }
 
             #endregion
-
-            #region Fill DDLs
-
-            //DropDownList ddl = null;
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    ddl = e.Row.FindControl("ddlFormas1") as DropDownList;
-            //}
-            //if (e.Row.RowType == DataControlRowType.Footer)
-            //{
-            //    ddl = e.Row.FindControl("ddlFormas2") as DropDownList;
-            //}
-            //if (ddl != null)
-            //{
-            //    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-            //    {
-            //        DataTable dt1 = new DataTable();
-            //        dt1 = Extras.ToDataTable(context.forma_de_pago.ToList());
-
-            //        ddl.DataSource = dt1;
-            //        ddl.DataTextField = "Forma";
-            //        ddl.DataValueField = "Forma_de_pago_ID";
-            //        ddl.DataBind();
-            //        ddl.Items.Insert(0, new ListItem("Elegir", "0"));
-
-            //    }//Add Default Item in the DropDownList
-            //    if (e.Row.RowType == DataControlRowType.DataRow)
-            //    {
-            //        ddl.SelectedValue = ((cliente)(e.Row.DataItem)).Forma_de_pago_ID.ToString();
-            //    }
-            //}
-
-            DropDownList ddl = null;
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                ddl = e.Row.FindControl("ddlContactoNuestro1") as DropDownList;
-            }
-            if (e.Row.RowType == DataControlRowType.Footer)
-            {
-                ddl = e.Row.FindControl("ddlContactoNuestro2") as DropDownList;
-            }
-            if (ddl != null)
-            {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                {
-                    DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.internos.ToList());
-
-                    ddl.DataSource = dt1;
-                    ddl.DataTextField = "Nombre_completo";
-                    ddl.DataValueField = "Interno_ID";
-                    ddl.DataBind();
-                    ddl.Items.Insert(0, new ListItem("Elegir", "0"));
-
-                }//Add Default Item in the DropDownList
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    ddl.SelectedValue = ((cliente)(e.Row.DataItem)).Contacto_nuestro_ID.ToString();
-                }
-            }
-
-            #endregion
-
-            #region DDL Default values
-
-            // Forma de pago ----------------------------------------------------
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    LinkButton lbl = e.Row.FindControl("lbl10") as LinkButton;
-            //    if (lbl != null)
-            //    {
-            //        using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-            //        {
-            //            cliente cliente = (cliente)(e.Row.DataItem);
-            //            if (cliente != null)
-            //            {
-            //                int id = cliente.Forma_de_pago_ID;
-            //                forma_de_pago forma_de_pago = (forma_de_pago)context.forma_de_pago.FirstOrDefault(c => c.Forma_de_pago_ID == id);
-            //                if (forma_de_pago != null)
-            //                {
-            //                    string nombre = forma_de_pago.Forma;
-            //                    lbl.Text = nombre;
-            //                    lbl.CommandArgument = "formas," + nombre;
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-
-            // Contacto nuestro ----------------------------------------------------
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                LinkButton lbl = e.Row.FindControl("lbl9") as LinkButton;
-                if (lbl != null)
-                {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                    {
-                        cliente cliente = (cliente)(e.Row.DataItem);
-                        if (cliente != null)
-                        {
-                            int id = cliente.Contacto_nuestro_ID;
-                            interno interno = (interno)context.internos.FirstOrDefault(c => c.Interno_ID == id);
-                            if (interno != null)
-                            {
-                                string nombre = interno.Nombre_completo;
-                                lbl.Text = nombre;
-                                lbl.CommandArgument = "internos," + nombre;
-                            }
-                        }
-                    }
-                }
-            }
-
-            #endregion
         }
 
         protected void gridClientes_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -249,9 +135,7 @@ namespace Bonisoft_2.User_Controls
                 TextBox txb16 = row.FindControl("txbNew16") as TextBox;
                 TextBox txb17 = row.FindControl("txbNew17") as TextBox;
                 TextBox txb22 = row.FindControl("txbNew22") as TextBox;
-                DropDownList ddlContactoNuestro2 = row.FindControl("ddlContactoNuestro2") as DropDownList;
-                if (txb1 != null && txb3 != null && txb5 != null && txb7 != null                     
-                    && ddlContactoNuestro2 != null &&
+                if (txb1 != null && txb3 != null && txb5 != null && txb7 != null &&                     
                     txb13 != null && txb15 != null && txb16 != null && txb17 != null && txb22 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -267,23 +151,6 @@ namespace Bonisoft_2.User_Controls
                         obj.Telefono = txb17.Text;
                         obj.Comentarios = txb22.Text;
 
-                        #region DDL logic
-
-                        //int ddl1 = 0;
-                        //if (!int.TryParse(ddlFormas2.SelectedValue, out ddl1))
-                        //{
-                        //    ddl1 = 0;
-                        //}
-                        //obj.Forma_de_pago_ID = ddl1;
-
-                        int ddl2 = 0;
-                        if (!int.TryParse(ddlContactoNuestro2.SelectedValue, out ddl2))
-                        {
-                            ddl2 = 0;
-                        }
-                        obj.Contacto_nuestro_ID = ddl2;
-
-                        #endregion DDL logic
                         //
                         obj.Forma_de_pago_ID = 0;
                         obj.Dueno_contacto = "";
@@ -343,9 +210,7 @@ namespace Bonisoft_2.User_Controls
             TextBox txb16 = row.FindControl("txb16") as TextBox;
             TextBox txb17 = row.FindControl("txb17") as TextBox;
             TextBox txb22 = row.FindControl("txb22") as TextBox;
-            DropDownList ddlContactoNuestro2 = row.FindControl("ddlContactoNuestro1") as DropDownList;
-            if (txb1 != null && txb3 != null && txb5 != null && txb7 != null                  
-                && ddlContactoNuestro2 != null &&
+            if (txb1 != null && txb3 != null && txb5 != null && txb7 != null &&                 
                 txb13 != null && txb15 != null && txb16 != null && txb17 != null && txb22 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -361,24 +226,6 @@ namespace Bonisoft_2.User_Controls
                     obj.Direccion = txb16.Text;
                     obj.Telefono = txb17.Text;
                     obj.Comentarios = txb22.Text;
-
-                    #region DDL logic
-
-                    //int ddl1 = obj.Forma_de_pago_ID;
-                    //if (!int.TryParse(ddlFormas2.SelectedValue, out ddl1))
-                    //{
-                    //    ddl1 = obj.Forma_de_pago_ID;
-                    //}
-                    //obj.Forma_de_pago_ID = ddl1;
-
-                    int ddl2 = obj.Contacto_nuestro_ID;
-                    if (!int.TryParse(ddlContactoNuestro2.SelectedValue, out ddl2))
-                    {
-                        ddl2 = obj.Contacto_nuestro_ID;
-                    }
-                    obj.Contacto_nuestro_ID = ddl2;
-
-                    #endregion DDL logic
 
                     context.SaveChanges();
                     lblMessage.Text = "Guardado correctamente.";

@@ -132,30 +132,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="clientes">
-      <EntityTypeMapping TypeName="bonisoft_dbModel.cliente">
-        <MappingFragment StoreEntitySet="cliente">
-          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-          <ScalarProperty Name="RUT" ColumnName="RUT" />
-          <ScalarProperty Name="Fechas_pago" ColumnName="Fechas_pago" />
-          <ScalarProperty Name="Periodos_liquidacion" ColumnName="Periodos_liquidacion" />
-          <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
-          <ScalarProperty Name="Contacto_nuestro_ID" ColumnName="Contacto_nuestro_ID" />
-          <ScalarProperty Name="Supervisor_lena_contacto" ColumnName="Supervisor_lena_contacto" />
-          <ScalarProperty Name="Supervisor_lena_nombre" ColumnName="Supervisor_lena_nombre" />
-          <ScalarProperty Name="Encargado_pagos_contacto" ColumnName="Encargado_pagos_contacto" />
-          <ScalarProperty Name="Encargado_pagos_nombre" ColumnName="Encargado_pagos_nombre" />
-          <ScalarProperty Name="Encargado_lena_contacto" ColumnName="Encargado_lena_contacto" />
-          <ScalarProperty Name="Encargado_lena_nombre" ColumnName="Encargado_lena_nombre" />
-          <ScalarProperty Name="Dueno_contacto" ColumnName="Dueno_contacto" />
-          <ScalarProperty Name="Dueno_nombre" ColumnName="Dueno_nombre" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="cliente_ID" ColumnName="cliente_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="pesadas">
       <EntityTypeMapping TypeName="bonisoft_dbModel.pesada">
         <MappingFragment StoreEntitySet="pesada">
@@ -308,6 +284,29 @@
           <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
           <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
           <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clientes">
+      <EntityTypeMapping TypeName="bonisoft_dbModel.cliente">
+        <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="RUT" ColumnName="RUT" />
+          <ScalarProperty Name="Fechas_pago" ColumnName="Fechas_pago" />
+          <ScalarProperty Name="Periodos_liquidacion" ColumnName="Periodos_liquidacion" />
+          <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
+          <ScalarProperty Name="Supervisor_lena_contacto" ColumnName="Supervisor_lena_contacto" />
+          <ScalarProperty Name="Supervisor_lena_nombre" ColumnName="Supervisor_lena_nombre" />
+          <ScalarProperty Name="Encargado_pagos_contacto" ColumnName="Encargado_pagos_contacto" />
+          <ScalarProperty Name="Encargado_pagos_nombre" ColumnName="Encargado_pagos_nombre" />
+          <ScalarProperty Name="Encargado_lena_contacto" ColumnName="Encargado_lena_contacto" />
+          <ScalarProperty Name="Encargado_lena_nombre" ColumnName="Encargado_lena_nombre" />
+          <ScalarProperty Name="Dueno_contacto" ColumnName="Dueno_contacto" />
+          <ScalarProperty Name="Dueno_nombre" ColumnName="Dueno_nombre" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="cliente_ID" ColumnName="cliente_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -7,6 +7,7 @@
 
     <!-- PAGE CSS -->
     <link rel="stylesheet" href="/assets/dist/css/pages/Resumen_clientes.css">
+    <link rel="stylesheet" href="/assets/dist/css/pages/Modal_styles.css">
 
 </asp:Content>
 
@@ -45,7 +46,7 @@
 
                             <div class="row" style="margin-bottom: 10px;">
                                 <div class="col-md-2 pull-left">
-                                    <a href="#addModal" rel="modal:open" class="btn btn-success pull-left">Iniciar viaje</a>
+                                    <%--<a href="#addModal" rel="modal:open" class="btn btn-success pull-left">Iniciar viaje</a>--%>
                                 </div>
 
                                 <div class="col-md-5 pull-right">
@@ -136,11 +137,6 @@
                                                 <asp:LinkButton ID="lblFletero" runat="server" CommandName="View" Text='<%# Eval("Fletero_ID") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText = "Cliente">
-                                            <ItemTemplate>
-                                                <asp:LinkButton ID="lblCliente" runat="server" CommandName="View" Text='<%# Eval("Cliente_ID") %>'/>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText = "Camión">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lblCamion" runat="server" CommandName="View" Text='<%# Eval("Camion_ID") %>'/>
@@ -158,12 +154,12 @@
 
                                         <asp:TemplateField HeaderText = "Pesada origen">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lblPesadaOrigen" runat="server" CommandName="View" Text='<%# Eval("Pesada_origen_ID") %>'/>
+                                                <asp:Label ID="lblPesadaOrigen" runat="server" Text='<%# Eval("Pesada_origen_ID") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText = "Pesada destino">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lblPesadaDestino" runat="server" CommandName="View" Text='<%# Eval("Pesada_destino_ID") %>'/>
+                                                <asp:Label ID="lblPesadaDestino" runat="server" Text='<%# Eval("Pesada_destino_ID") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -239,9 +235,11 @@
         <p style="text-align: left;"></p>
     </div>
 
+<%--    http://www.vandelaydesign.com/modal-bootstrap/
+    http://www.vandelaydesign.com/demos/bootstrap-modal/--%>
 
      <!-- Modal agregar pago BEGIN -->
-    <div id="addPagoModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" style="display: none; max-width: 500px; overflow: hidden;">
+    <div id="addPagoModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" style="display: none; max-width: 500px; overflow: hidden;" class="modal fade dark in">
 
         <div class="modal-header">
             <h3 id="addModalLabel">Agregar pago</h3>
@@ -249,7 +247,7 @@
         <asp:UpdatePanel ID="upAdd" runat="server">
             <ContentTemplate>
                 <div class="modal-body">
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-hover">
                         <tr>
                             <td>Fecha de pago: 
                             <asp:TextBox ID="txbFecha1" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
@@ -275,8 +273,8 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <a ID="aIngresarPago" class="btn btn-info" onClick="IngresarPago();">Guardar</a>                                                        
-                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cerrar</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cerrar</button>
+                    <a ID="aIngresarPago" class="btn btn-primary" onClick="IngresarPago();">Guardar</a>                                                        
 
                 </div>
             </ContentTemplate>

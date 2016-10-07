@@ -58,7 +58,6 @@
           <Property Name="Encargado_pagos_contacto" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Supervisor_lena_nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Supervisor_lena_contacto" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Contacto_nuestro_ID" Type="int" Nullable="false" />
           <Property Name="Forma_de_pago_ID" Type="int" Nullable="false" />
           <Property Name="Periodos_liquidacion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Fechas_pago" Type="varchar" MaxLength="100" Nullable="false" />
@@ -439,7 +438,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySet Name="roles_usuario" EntityType="bonisoft_dbModel.roles_usuario" />
           <EntitySet Name="variedad" EntityType="bonisoft_dbModel.variedad" />
           <EntitySet Name="fleteros" EntityType="bonisoft_dbModel.fletero" />
-          <EntitySet Name="clientes" EntityType="bonisoft_dbModel.cliente" />
           <EntitySet Name="pesadas" EntityType="bonisoft_dbModel.pesada" />
           <EntitySet Name="proveedores" EntityType="bonisoft_dbModel.proveedor" />
           <EntitySet Name="viaje_mercaderia" EntityType="bonisoft_dbModel.viaje_mercaderia" />
@@ -452,6 +450,7 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySet Name="internos" EntityType="bonisoft_dbModel.interno" />
           <EntitySet Name="cliente_pagos" EntityType="bonisoft_dbModel.cliente_pagos" />
           <EntitySet Name="viajes" EntityType="bonisoft_dbModel.viaje" />
+          <EntitySet Name="clientes" EntityType="bonisoft_dbModel.cliente" />
         </EntityContainer>
         <EntityType Name="roles_usuario">
           <Key>
@@ -480,29 +479,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="cliente">
-          <Key>
-            <PropertyRef Name="cliente_ID" />
-          </Key>
-          <Property Name="cliente_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Dueno_nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Dueno_contacto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Encargado_lena_nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Encargado_lena_contacto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Encargado_pagos_nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Encargado_pagos_contacto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Supervisor_lena_nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Supervisor_lena_contacto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Contacto_nuestro_ID" Type="Int32" Nullable="false" />
-          <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
-          <Property Name="Periodos_liquidacion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Fechas_pago" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="RUT" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="pesada">
           <Key>
@@ -648,6 +624,28 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="EnViaje" Type="Boolean" Nullable="false" />
           <Property Name="Fecha_registro" Type="DateTime" />
         </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="cliente_ID" />
+          </Key>
+          <Property Name="cliente_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dueno_nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dueno_contacto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Encargado_lena_nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Encargado_lena_contacto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Encargado_pagos_nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Encargado_pagos_contacto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Supervisor_lena_nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Supervisor_lena_contacto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
+          <Property Name="Periodos_liquidacion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Fechas_pago" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RUT" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -782,30 +780,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="clientes">
-            <EntityTypeMapping TypeName="bonisoft_dbModel.cliente">
-              <MappingFragment StoreEntitySet="cliente">
-                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="RUT" ColumnName="RUT" />
-                <ScalarProperty Name="Fechas_pago" ColumnName="Fechas_pago" />
-                <ScalarProperty Name="Periodos_liquidacion" ColumnName="Periodos_liquidacion" />
-                <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
-                <ScalarProperty Name="Contacto_nuestro_ID" ColumnName="Contacto_nuestro_ID" />
-                <ScalarProperty Name="Supervisor_lena_contacto" ColumnName="Supervisor_lena_contacto" />
-                <ScalarProperty Name="Supervisor_lena_nombre" ColumnName="Supervisor_lena_nombre" />
-                <ScalarProperty Name="Encargado_pagos_contacto" ColumnName="Encargado_pagos_contacto" />
-                <ScalarProperty Name="Encargado_pagos_nombre" ColumnName="Encargado_pagos_nombre" />
-                <ScalarProperty Name="Encargado_lena_contacto" ColumnName="Encargado_lena_contacto" />
-                <ScalarProperty Name="Encargado_lena_nombre" ColumnName="Encargado_lena_nombre" />
-                <ScalarProperty Name="Dueno_contacto" ColumnName="Dueno_contacto" />
-                <ScalarProperty Name="Dueno_nombre" ColumnName="Dueno_nombre" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="cliente_ID" ColumnName="cliente_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -961,6 +935,29 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
                 <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
                 <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
                 <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="bonisoft_dbModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="RUT" ColumnName="RUT" />
+                <ScalarProperty Name="Fechas_pago" ColumnName="Fechas_pago" />
+                <ScalarProperty Name="Periodos_liquidacion" ColumnName="Periodos_liquidacion" />
+                <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
+                <ScalarProperty Name="Supervisor_lena_contacto" ColumnName="Supervisor_lena_contacto" />
+                <ScalarProperty Name="Supervisor_lena_nombre" ColumnName="Supervisor_lena_nombre" />
+                <ScalarProperty Name="Encargado_pagos_contacto" ColumnName="Encargado_pagos_contacto" />
+                <ScalarProperty Name="Encargado_pagos_nombre" ColumnName="Encargado_pagos_nombre" />
+                <ScalarProperty Name="Encargado_lena_contacto" ColumnName="Encargado_lena_contacto" />
+                <ScalarProperty Name="Encargado_lena_nombre" ColumnName="Encargado_lena_nombre" />
+                <ScalarProperty Name="Dueno_contacto" ColumnName="Dueno_contacto" />
+                <ScalarProperty Name="Dueno_nombre" ColumnName="Dueno_nombre" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="cliente_ID" ColumnName="cliente_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
