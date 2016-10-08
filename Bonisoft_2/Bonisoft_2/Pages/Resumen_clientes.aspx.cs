@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -71,37 +72,12 @@ namespace Bonisoft_2.Pages
 
         protected void gridViajes_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
             #region DDL Default values
-
-            // Empresa de carga ----------------------------------------------------
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                LinkButton lbl = e.Row.FindControl("lblCargador") as LinkButton;
-                if (lbl != null)
-                {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                    {
-                        viaje viaje = (viaje)(e.Row.DataItem);
-                        if (viaje != null)
-                        {
-                            int id = viaje.Empresa_de_carga_ID;
-                            cargador cargador = (cargador)context.cargadores.FirstOrDefault(c => c.Cargador_ID == id);
-                            if (cargador != null)
-                            {
-                                string nombre = cargador.ToString();
-                                lbl.Text = nombre;
-                                lbl.CommandArgument = "cargadores," + cargador.Nombre;
-                            }
-                        }
-                    }
-                }
-            }
 
             // Fleteros ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                LinkButton lbl = e.Row.FindControl("lblFletero") as LinkButton;
+                Label lbl = e.Row.FindControl("lblFletero") as Label;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -115,7 +91,7 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = fletero.Nombre;
                                 lbl.Text = nombre;
-                                lbl.CommandArgument = "fleteros," + fletero.Nombre;
+                                //lbl.CommandArgument = "fleteros," + fletero.Nombre;
                             }
                         }
                     }
@@ -125,7 +101,7 @@ namespace Bonisoft_2.Pages
             // Camion ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                LinkButton lbl = e.Row.FindControl("lblCamion") as LinkButton;
+                Label lbl = e.Row.FindControl("lblCamion") as Label;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -139,7 +115,7 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = camion.ToString();
                                 lbl.Text = nombre;
-                                lbl.CommandArgument = "camiones," + camion.Marca;
+                                //lbl.CommandArgument = "camiones," + camion.Marca;
                             }
                         }
                     }
@@ -149,7 +125,7 @@ namespace Bonisoft_2.Pages
             // Chofer ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                LinkButton lbl = e.Row.FindControl("lblChofer") as LinkButton;
+                Label lbl = e.Row.FindControl("lblChofer") as Label;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -163,7 +139,7 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = chofer.Nombre_completo;
                                 lbl.Text = nombre;
-                                lbl.CommandArgument = "choferes," + chofer.Nombre_completo;
+                                //lbl.CommandArgument = "choferes," + chofer.Nombre_completo;
                             }
                         }
                     }
@@ -173,7 +149,7 @@ namespace Bonisoft_2.Pages
             // Proveedor ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                LinkButton lbl = e.Row.FindControl("lblProveedor") as LinkButton;
+                Label lbl = e.Row.FindControl("lblProveedor") as Label;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -187,7 +163,7 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = proveedor.Nombre;
                                 lbl.Text = nombre;
-                                lbl.CommandArgument = "proveedores," + proveedor.Nombre;
+                                //lbl.CommandArgument = "proveedores," + proveedor.Nombre;
                             }
                         }
                     }
@@ -211,7 +187,6 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = pesada.ToString();
                                 lbl.Text = nombre;
-                                //lbl.CommandArgument = "pesadas," + pesada.Nombre_balanza;
                             }
                         }
                     }
@@ -235,7 +210,6 @@ namespace Bonisoft_2.Pages
                             {
                                 string nombre = pesada.ToString();
                                 lbl.Text = nombre;
-                                //lbl.CommandArgument = "pesadas," + pesada.Nombre_balanza;
                             }
                         }
                     }
@@ -268,7 +242,33 @@ namespace Bonisoft_2.Pages
 
         protected void gridPagos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            #region DDL Default values
 
+            // Formas de pago ----------------------------------------------------
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label lbl = e.Row.FindControl("lblForma") as Label;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        cliente_pagos pago = (cliente_pagos)(e.Row.DataItem);
+                        if (pago != null)
+                        {
+                            int id = pago.Forma_de_pago_ID;
+                            forma_de_pago forma = (forma_de_pago)context.forma_de_pago.FirstOrDefault(c => c.Forma_de_pago_ID == id);
+                            if (forma != null)
+                            {
+                                string nombre = forma.Forma;
+                                lbl.Text = nombre;
+                                //lbl.CommandArgument = "formas," + nombre;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #endregion
         }
 
         protected void gridPagos_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -276,6 +276,19 @@ namespace Bonisoft_2.Pages
             if (e.CommandArgument != null)
             {
 
+            }
+            else if (e.CommandName.Equals("View"))
+            {
+                string[] values = e.CommandArgument.ToString().Split(new char[] { ',' });
+                if (values.Length > 1)
+                {
+                    string tabla = values[0];
+                    string dato = values[1];
+                    if (!string.IsNullOrWhiteSpace(tabla) && !string.IsNullOrWhiteSpace(dato))
+                    {
+                        Response.Redirect("Listados.aspx?tabla=" + tabla + "&dato=" + dato);
+                    }
+                }
             }
         }
 
@@ -300,6 +313,8 @@ namespace Bonisoft_2.Pages
                         {
                             BindGridViajes(cliente_ID);
                             BindGridPagos(cliente_ID);
+
+                            hdn_clientID.Value = cliente_ID_str;
                         }
                     }
                 }
@@ -457,6 +472,148 @@ namespace Bonisoft_2.Pages
 
         #endregion General methods
 
-       
+        #region Web methods
+
+        [System.Web.Services.WebMethod]
+        public static string Update_Saldos(string clienteID_str)
+        {
+            string ret = string.Empty;
+            if (!string.IsNullOrWhiteSpace(clienteID_str))
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    int cliente_ID = 0;
+                    if (!int.TryParse(clienteID_str, out cliente_ID))
+                    {
+                        cliente_ID = 0;
+                    }
+
+                    if (cliente_ID > 0)
+                    {
+                        #region Cálculo saldo inicial
+
+                        decimal saldo_inicial = 0;
+                        var viajes = context.viajes.Where(m => m.Cliente_ID == cliente_ID).ToList();
+                        if (viajes.Count() > 0)
+                        {
+                            foreach (viaje viaje in viajes)
+                            {
+                                saldo_inicial += viaje.precio_venta;
+                            }
+                        }
+
+                        #endregion Cálculo saldo inicial
+
+                        #region Cálculo saldo final
+
+                        decimal saldo_final = 0;
+                        decimal total_pagos = 0;
+                        var pagos = context.cliente_pagos.Where(m => m.Cliente_ID == cliente_ID).ToList();
+                        if (pagos.Count() > 0)
+                        {
+                            foreach (cliente_pagos pago in pagos)
+                            {
+                                total_pagos += pago.Monto;
+                            }
+                        }
+
+                        saldo_final = saldo_inicial - total_pagos;
+                        ret = saldo_inicial.ToString() + "|" + saldo_final.ToString();
+
+                        #endregion Cálculo saldo final
+
+                    }
+                }
+            }
+
+            return ret;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static bool IngresarPago(string clienteID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str)
+        {
+            bool ret = false;
+            if (!string.IsNullOrWhiteSpace(clienteID_str))
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    int cliente_ID = 0;
+                    if (!int.TryParse(clienteID_str, out cliente_ID))
+                    {
+                        cliente_ID = 0;
+                    }
+
+                    if (cliente_ID > 0)
+                    {
+                        cliente_pagos obj = new cliente_pagos();
+
+                        obj.Cliente_ID = cliente_ID;
+                        obj.Comentarios = comentarios_str;
+                        obj.Fecha_registro = DateTime.Now;
+
+                        DateTime date = DateTime.Now;
+                        if (!DateTime.TryParseExact(fecha_str, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
+                        {
+                            date = DateTime.Now;
+                        }
+                        obj.Fecha_pago = date;
+
+                        decimal value = 0;
+                        if (!decimal.TryParse(monto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
+                        {
+                            value = 0;
+                        }
+                        obj.Monto = value;
+
+                        int option = 0;
+                        if (!int.TryParse(ddlFormas, out option))
+                        {
+                            option = 0;
+                        }
+                        obj.Forma_de_pago_ID = option;
+
+                        context.cliente_pagos.Add(obj);
+                        context.SaveChanges();
+
+                        ret = true;
+                    }
+                }
+            }
+
+            return ret;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static bool BorrarPago(string pagoID_str)
+        {
+            bool ret = false;
+            if (!string.IsNullOrWhiteSpace(pagoID_str))
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    int pago_ID_str = 0;
+                    if (!int.TryParse(pagoID_str, out pago_ID_str))
+                    {
+                        pago_ID_str = 0;
+                    }
+
+                    if (pago_ID_str > 0)
+                    {
+                        cliente_pagos pago = (cliente_pagos)context.cliente_pagos.FirstOrDefault(v => v.Cliente_pagos_ID == pago_ID_str);
+                        if (pago != null)
+                        {
+                            context.cliente_pagos.Remove(pago);
+                            context.SaveChanges();
+
+                            ret = true;
+                        }
+                    }
+                }
+            }
+            return ret;
+        }
+
+        #endregion
+
     }
 }

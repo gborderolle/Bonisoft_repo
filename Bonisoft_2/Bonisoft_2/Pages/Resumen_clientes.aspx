@@ -81,6 +81,9 @@
                             <asp:Label ID="lblGridClientesCount" runat="server" ClientIDMode="Static" Text="Resultados: 0" CssClass="lblResultados"></asp:Label>
 
                         </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="gridClientes" EventName="SelectedIndexChanged"/>
+                            </Triggers>
                     </asp:UpdatePanel>
 
                     </div>                
@@ -129,22 +132,22 @@
                                         <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />
                                          <asp:TemplateField HeaderText = "Proveedor">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lblProveedor" runat="server" CommandName="View" Text='<%# Eval("Proveedor_ID") %>'/>
+                                                <asp:Label ID="lblProveedor" runat="server" CommandName="View" Text='<%# Eval("Proveedor_ID") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText = "Fletero">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lblFletero" runat="server" CommandName="View" Text='<%# Eval("Fletero_ID") %>'/>
+                                                <asp:Label ID="lblFletero" runat="server" CommandName="View" Text='<%# Eval("Fletero_ID") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText = "Camión">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lblCamion" runat="server" CommandName="View" Text='<%# Eval("Camion_ID") %>'/>
+                                                <asp:Label ID="lblCamion" runat="server" CommandName="View" Text='<%# Eval("Camion_ID") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText = "Chofer">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lblChofer" runat="server" CommandName="View" Text='<%# Eval("Chofer_ID") %>'/>
+                                                <asp:Label ID="lblChofer" runat="server" CommandName="View" Text='<%# Eval("Chofer_ID") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="Carga" HeaderText="Lugar de carga" />
@@ -182,10 +185,12 @@
                         
                             <asp:UpdatePanel ID="upPagos" runat="server">
                             <ContentTemplate>
+                            
+                                <asp:HiddenField ID="hdn_clientID" runat="server" ClientIDMode="Static" />
 
                                 <div class="row" style="margin-bottom: 10px; margin-right: 0; margin-left: 0;">
-                                    <h3 class="pull-left">Saldo inicial: <label class="label label-warning">0</label></h3>
-                                    <h3 class="pull-right">Saldo final: <label class="label label-danger">0</label></h3>
+                                    <h3 class="pull-left" title="Precio de venta total">Saldo inicial: <label id="lblSaldo_inicial" class="label label-warning">0</label></h3>
+                                    <h3 class="pull-right" title="Saldo final después de pagos">Saldo final: <label id="lblSaldo_final" class="label label-danger">0</label></h3>
                                 </div>
 
                                 <asp:Label ID="gridPagos_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
@@ -195,16 +200,27 @@
                                     OnRowDataBound="gridPagos_RowDataBound"
                                     OnRowCommand="gridPagos_RowCommand" >
                                     <Columns>
+                                        <asp:BoundField DataField="Cliente_pagos_ID" HeaderText="Cliente_pagos_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
                                         <asp:BoundField DataField="Fecha_registro" HeaderText="Fecha de registro" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />
                                         <asp:BoundField DataField="Fecha_pago" HeaderText="Fecha de pago" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="False" />
                                         <asp:TemplateField HeaderText = "Forma de pago">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lblForma" runat="server" CommandName="View" Text='<%# Eval("Forma_de_pago_ID") %>'/>
+                                                <asp:Label ID="lblForma" runat="server" CommandName="View" Text='<%# Eval("Forma_de_pago_ID") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:BoundField DataField="Monto" DataFormatString="{0:C0}" HeaderText="Monto" />
-                                        <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
+                                        <asp:BoundField DataField="Monto" DataFormatString="{0:C0}" HeaderText="Monto" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" HtmlEncode="False" />
+
+                                         <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="btnModificar" runat="server" CommandName="editPago">
+                                                    <span aria-hidden="true" class="glyphicon glyphicon-pencil"></asp:LinkButton>
+
+                                                    <a id="btnBorrar" role="button" onclick="BorrarPago();" class="btn btn-info btn-xs glyphicon glyphicon-remove"></a>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                     </Columns>
                                 </asp:GridView>
                                 <asp:Label ID="lblGridPagosCount" runat="server" ClientIDMode="Static" Text="Resultados: 0" CssClass="lblResultados"></asp:Label>
@@ -250,7 +266,7 @@
                     <table class="table table-hover">
                         <tr>
                             <td>Fecha de pago: 
-                            <asp:TextBox ID="txbFecha1" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                            <asp:TextBox ID="txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>

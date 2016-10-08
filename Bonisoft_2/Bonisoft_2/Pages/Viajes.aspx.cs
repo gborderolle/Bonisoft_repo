@@ -1417,10 +1417,9 @@ namespace Bonisoft_2.Pages
                         }
                     }
                 }
-
-                #endregion Labels
-
             }
+
+            #endregion Labels
         }
 
         #endregion Events
@@ -1765,7 +1764,7 @@ namespace Bonisoft_2.Pages
                             }
                         }
 
-                        if(peso_neto_destino == 0)
+                        if (peso_neto_destino == 0)
                         {
                             peso_neto_destino = peso_neto_origen;
                         }
@@ -1786,7 +1785,7 @@ namespace Bonisoft_2.Pages
         #region Web methods
 
         [System.Web.Services.WebMethod]
-        public static bool GuardarPrecioVenta(string viajeID, string precioFlete_str, string precioDescarga_str, string gananciaXTon_str, 
+        public static bool GuardarPrecioVenta(string viajeID, string precioFlete_str, string precioDescarga_str, string gananciaXTon_str,
             string IVA_str, string precio_venta_str)
         {
             bool save_ok = false;
@@ -1857,8 +1856,8 @@ namespace Bonisoft_2.Pages
         }
 
         [System.Web.Services.WebMethod]
-        public static string GuardarPesadas(string viajeID_str, int isOrigen, string pesadaID_str, string txb_pesadaLugar_str, 
-            string txb_pesadaFecha_str, string txb_pesadaPeso_bruto_str, string txb_pesadaPeso_neto_str, string txb_pesadaNombre_str, 
+        public static string GuardarPesadas(string viajeID_str, int isOrigen, string pesadaID_str, string txb_pesadaLugar_str,
+            string txb_pesadaFecha_str, string txb_pesadaPeso_bruto_str, string txb_pesadaPeso_neto_str, string txb_pesadaNombre_str,
             string txb_pesadaComentarios_str)
         {
             bool save_ok = false;
@@ -1888,7 +1887,7 @@ namespace Bonisoft_2.Pages
                             if (isOrigen == 1)
                             {
                                 #region Pesada origen
-                               
+
                                 if (pesada_ID > 0)
                                 {
                                     pesada pesada = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_ID);
@@ -2195,8 +2194,37 @@ namespace Bonisoft_2.Pages
             return result;
         }
 
+        [System.Web.Services.WebMethod]
+        public static bool BorrarViajeEnCurso(string viajeID_str)
+        {
+            bool ret = false;
+            if (!string.IsNullOrWhiteSpace(viajeID_str))
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    int viaje_ID = 0;
+                    if (!int.TryParse(viajeID_str, out viaje_ID))
+                    {
+                        viaje_ID = 0;
+                    }
+
+                    if (viaje_ID > 0)
+                    {
+                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
+                        if (viaje != null)
+                        {
+                            context.viajes.Remove(viaje);
+                            context.SaveChanges();
+
+                            ret = true;
+                        }
+                    }
+                }
+            }
+            return ret;
+        }
 
         #endregion Web methods
-        
+
     }
 }

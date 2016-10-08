@@ -13,13 +13,13 @@ namespace Bonisoft_2.Pages {
     public partial class Viajes {
         
         /// <summary>
-        /// upCrudGrid control.
+        /// upGridViajesEnCurso control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upCrudGrid;
+        protected global::System.Web.UI.UpdatePanel upGridViajesEnCurso;
         
         /// <summary>
         /// hdn_notificaciones_viajeID control.

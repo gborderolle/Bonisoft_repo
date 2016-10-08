@@ -49,7 +49,7 @@
 
                     <div style="text-align: center">
 
-                        <asp:UpdatePanel ID="upCrudGrid" runat="server">
+                        <asp:UpdatePanel ID="upGridViajesEnCurso" runat="server">
                             <ContentTemplate>
 
                                 <asp:HiddenField ID="hdn_notificaciones_viajeID" runat="server" ClientIDMode="Static" />
@@ -74,7 +74,7 @@
                                                 
                                                 <asp:UpdatePanel ID="upUpdateViajesEnCurso" runat="server">
                                                     <ContentTemplate>
-                                                        <asp:Button ID="btnUpdateViajesEnCurso" runat="server" Text="Actualizar" CssClass="btn btn-info btnUpdate" OnClick="btnUpdateViajesEnCurso_Click" UseSubmitBehavior="false" />
+                                                        <asp:Button ID="btnUpdateViajesEnCurso" runat="server" Text="Actualizar" CssClass="btn btnUpdate" OnClick="btnUpdateViajesEnCurso_Click" UseSubmitBehavior="false" ClientIDMode="Static" />
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
 
@@ -90,7 +90,7 @@
                                     OnRowDataBound="gridViajesEnCurso_RowDataBound"
                                     OnRowCommand="gridViajesEnCurso_RowCommand" >
                                     <Columns>
-                                        <%--<asp:BoundField DataField="Fecha_registro" HeaderText="Fecha registro" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />--%>
+                                        <asp:BoundField DataField="Viaje_ID" HeaderText="Viaje_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
                                         <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />
                                         <asp:TemplateField HeaderText = "Proveedor">
                                             <ItemTemplate>
@@ -120,9 +120,9 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btnModificar" runat="server" CommandName="editViajeEnCurso">
                                                     <span aria-hidden="true" class="glyphicon glyphicon-pencil"></asp:LinkButton>
-                                                <asp:LinkButton ID="btnBorrar" runat="server" CommandName="deleteViajeEnCurso" 
-                                                    OnClientClick="return confirm('¿Está seguro que desea borrar este registro?');">
-                                                    <span aria-hidden="true" class="glyphicon glyphicon-remove"></asp:LinkButton>
+
+                                                    <a id="btnBorrar" role="button" onclick="BorrarViajeEnCurso();" class="btn btn-info btn-xs glyphicon glyphicon-remove"></a>
+
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>

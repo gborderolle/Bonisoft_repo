@@ -103,6 +103,15 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.UpdatePanel upPagos;
         
         /// <summary>
+        /// hdn_clientID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_clientID;
+        
+        /// <summary>
         /// gridPagos_lblMessage control.
         /// </summary>
         /// <remarks>
@@ -139,13 +148,13 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.UpdatePanel upAdd;
         
         /// <summary>
-        /// txbFecha1 control.
+        /// txbFecha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbFecha1;
+        protected global::System.Web.UI.WebControls.TextBox txbFecha;
         
         /// <summary>
         /// ddlFormas control.
