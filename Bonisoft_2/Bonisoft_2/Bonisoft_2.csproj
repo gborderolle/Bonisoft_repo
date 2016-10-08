@@ -256,6 +256,7 @@
     <Content Include="assets\dist\css\pages\InfoBoxes.min.css" />
     <Content Include="assets\dist\css\jquery-ui.css" />
     <Content Include="assets\dist\css\pages\Login.css" />
+    <Content Include="assets\dist\css\pages\Modal_styles.css" />
     <Content Include="assets\dist\css\pages\Resumen_clientes.css" />
     <Content Include="assets\dist\css\skins\skin-black-light.css" />
     <Content Include="assets\dist\css\skins\skin-black-light.min.css" />

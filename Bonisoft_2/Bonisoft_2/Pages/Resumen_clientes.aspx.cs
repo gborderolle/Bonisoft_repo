@@ -21,9 +21,16 @@ namespace Bonisoft_2.Pages
             {
                 BindGridClientes();
                 BindModalAgregarPago();
+                BindModalModificarPago();
 
                 gridClientes.UseAccessibleHeader = true;
                 gridClientes.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+                //gridViajes.UseAccessibleHeader = true;
+                //gridViajes.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+                //gridPagos.UseAccessibleHeader = true;
+                //gridPagos.HeaderRow.TableSection = TableRowSection.TableHeader;
 
             }
             gridClientes_lblMessage.Text = string.Empty;
@@ -378,6 +385,9 @@ namespace Bonisoft_2.Pages
                         gridViajes.DataSource = elements;
                         gridViajes.DataBind();
 
+                        gridViajes.UseAccessibleHeader = true;
+                        gridViajes.HeaderRow.TableSection = TableRowSection.TableHeader;
+
                         lblGridViajesCount.Text = "Resultados: " + elements.Count();
                     }
                     else
@@ -419,6 +429,9 @@ namespace Bonisoft_2.Pages
                         gridPagos.DataSource = elements;
                         gridPagos.DataBind();
 
+                        gridPagos.UseAccessibleHeader = true;
+                        gridPagos.HeaderRow.TableSection = TableRowSection.TableHeader;
+
                         lblGridPagosCount.Text = "Resultados: " + elements.Count();
                     }
                     else
@@ -451,24 +464,42 @@ namespace Bonisoft_2.Pages
         private void BindModalAgregarPago()
         {
             // Formas de pago --------------------------------------------------
-            if (ddlFormas != null)
+            if (add_ddlFormas != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.forma_de_pago.ToList());
 
-                    ddlFormas.DataSource = dt1;
-                    ddlFormas.DataTextField = "Forma";
-                    ddlFormas.DataValueField = "Forma_de_pago_ID";
-                    ddlFormas.DataBind();
-                    ddlFormas.Items.Insert(0, new ListItem("Elegir", "0"));
+                    add_ddlFormas.DataSource = dt1;
+                    add_ddlFormas.DataTextField = "Forma";
+                    add_ddlFormas.DataValueField = "Forma_de_pago_ID";
+                    add_ddlFormas.DataBind();
+                    add_ddlFormas.Items.Insert(0, new ListItem("Elegir", "0"));
 
                 }
             }
         }
 
+        private void BindModalModificarPago()
+        {
+            // Formas de pago --------------------------------------------------
+            if (edit_ddlFormas != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.forma_de_pago.ToList());
 
+                    edit_ddlFormas.DataSource = dt1;
+                    edit_ddlFormas.DataTextField = "Forma";
+                    edit_ddlFormas.DataValueField = "Forma_de_pago_ID";
+                    edit_ddlFormas.DataBind();
+                    edit_ddlFormas.Items.Insert(0, new ListItem("Elegir", "0"));
+
+                }
+            }
+        }
 
         #endregion General methods
 
@@ -565,12 +596,12 @@ namespace Bonisoft_2.Pages
                         }
                         obj.Monto = value;
 
-                        int option = 0;
-                        if (!int.TryParse(ddlFormas, out option))
+                        int ddl = 0;
+                        if (!int.TryParse(ddlFormas, out ddl))
                         {
-                            option = 0;
+                            ddl = 0;
                         }
-                        obj.Forma_de_pago_ID = option;
+                        obj.Forma_de_pago_ID = ddl;
 
                         context.cliente_pagos.Add(obj);
                         context.SaveChanges();
@@ -603,6 +634,85 @@ namespace Bonisoft_2.Pages
                         if (pago != null)
                         {
                             context.cliente_pagos.Remove(pago);
+                            context.SaveChanges();
+
+                            ret = true;
+                        }
+                    }
+                }
+            }
+            return ret;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static string ModificarPago_1(string pagoID_str)
+        {
+            string ret = string.Empty;
+            if (!string.IsNullOrWhiteSpace(pagoID_str))
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    int pago_ID_str = 0;
+                    if (!int.TryParse(pagoID_str, out pago_ID_str))
+                    {
+                        pago_ID_str = 0;
+                    }
+
+                    if (pago_ID_str > 0)
+                    {
+                        cliente_pagos pago = (cliente_pagos)context.cliente_pagos.FirstOrDefault(v => v.Cliente_pagos_ID == pago_ID_str);
+                        if (pago != null)
+                        {
+                            ret = pago.Fecha_pago.ToShortDateString() + "|" + pago.Forma_de_pago_ID + "|" + pago.Monto + "|" + pago.Comentarios;
+                        }
+                    }
+                }
+            }
+            return ret;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static bool ModificarPago_2(string pagoID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str)
+        {
+            bool ret = false;
+            if (!string.IsNullOrWhiteSpace(pagoID_str))
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    int pago_ID = 0;
+                    if (!int.TryParse(pagoID_str, out pago_ID))
+                    {
+                        pago_ID = 0;
+                    }
+
+                    if (pago_ID > 0)
+                    {
+                        cliente_pagos pago = (cliente_pagos)context.cliente_pagos.FirstOrDefault(v => v.Cliente_pagos_ID == pago_ID);
+                        if (pago != null)
+                        {
+                            DateTime date = pago.Fecha_pago;
+                            if (!DateTime.TryParseExact(fecha_str, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
+                            {
+                                date = pago.Fecha_pago;
+                            }
+                            pago.Fecha_pago = date;
+
+                            int ddl = pago.Forma_de_pago_ID;
+                            if (!int.TryParse(ddlFormas, out ddl))
+                            {
+                                ddl = pago.Forma_de_pago_ID;
+                            }
+                            pago.Forma_de_pago_ID = ddl;
+
+                            decimal value = pago.Monto;
+                            if (!decimal.TryParse(monto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
+                            {
+                                value = pago.Monto;
+                            }
+                            pago.Monto = value;
+
+                            pago.Comentarios = comentarios_str;
+
                             context.SaveChanges();
 
                             ret = true;

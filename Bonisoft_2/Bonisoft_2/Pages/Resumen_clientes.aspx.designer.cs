@@ -148,48 +148,102 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.UpdatePanel upAdd;
         
         /// <summary>
-        /// txbFecha control.
+        /// add_txbFecha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbFecha;
+        protected global::System.Web.UI.WebControls.TextBox add_txbFecha;
         
         /// <summary>
-        /// ddlFormas control.
+        /// add_ddlFormas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFormas;
+        protected global::System.Web.UI.WebControls.DropDownList add_ddlFormas;
         
         /// <summary>
-        /// txbMonto control.
+        /// add_txbMonto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbMonto;
+        protected global::System.Web.UI.WebControls.TextBox add_txbMonto;
         
         /// <summary>
-        /// vtxbMonto control.
+        /// vadd_txbMonto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator vtxbMonto;
+        protected global::System.Web.UI.WebControls.CompareValidator vadd_txbMonto;
         
         /// <summary>
-        /// txbComentarios control.
+        /// add_txbComentarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbComentarios;
+        protected global::System.Web.UI.WebControls.TextBox add_txbComentarios;
+        
+        /// <summary>
+        /// upEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upEdit;
+        
+        /// <summary>
+        /// edit_txbFecha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox edit_txbFecha;
+        
+        /// <summary>
+        /// edit_ddlFormas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList edit_ddlFormas;
+        
+        /// <summary>
+        /// edit_txbMonto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox edit_txbMonto;
+        
+        /// <summary>
+        /// vedit_txbMonto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator vedit_txbMonto;
+        
+        /// <summary>
+        /// edit_txbComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox edit_txbComentarios;
     }
 }

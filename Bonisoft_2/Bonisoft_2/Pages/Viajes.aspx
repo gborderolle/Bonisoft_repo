@@ -333,11 +333,9 @@
                                                             <h4 style="width: 80%; float: left;">Pesada origen</h4> 
                                                         </div>
                                                         <div class="col-md-3 pull-right">
-                                                            <div class="row">
-                                                                <a id="aOrigenCopiar" style="float:right; cursor:pointer;" onclick="copiarPesadas(1);">Copiar de destino</a>
-                                                            </div>
-                                                            <div class="row">
-                                                                <a id="aOrigenGuardar" style="float:right; cursor:pointer;" onclick="guardarPesadas(1);">Guardar</a>
+                                                            <div class="row" style="float:right; cursor:pointer;">
+                                                                <a id="aOrigenCopiar" style="margin-right:5px; color:black;" onclick="copiarPesadas(1);" class="btn btn-sm btn-default">Copiar de destino</a>
+                                                                <a id="aOrigenGuardar" style="float:right;" onclick="guardarPesadas(1);" class="btn btn-sm btn-primary">Guardar</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -378,13 +376,12 @@
                                                             <h4 style="width: 80%; float: left;">Pesada destino</h4> 
                                                         </div>
                                                         <div class="col-md-3 pull-right">
-                                                            <div class="row">
-                                                                <a id="aDestinoCopiar" style="float:right; cursor:pointer;" onclick="copiarPesadas(2);">Copiar de origen</a>
-                                                            </div>
-                                                            <div class="row">
-                                                                <a id="aDestinoGuardar" style="float:right; cursor:pointer;" onclick="guardarPesadas(2);">Guardar</a>
+                                                            <div class="row" style="float:right; cursor:pointer;">
+                                                                <a id="aDestinoCopiar" style="margin-right:5px; color:black;" onclick="copiarPesadas(2);" class="btn btn-sm btn-default">Copiar de origen</a>
+                                                                <a id="aDestinoGuardar" style="float:right;" onclick="guardarPesadas(2);" class="btn btn-sm btn-primary">Guardar</a>
                                                             </div>
                                                         </div>
+
                                                     </div>
                                                 </div>
                                                 <div class="modal-body" style="padding-bottom: 0; padding-top: 0; position:inherit;">
@@ -451,7 +448,7 @@
                                                         <asp:CompareValidator ID="vnotif_txbIVA" runat="server" ControlToValidate="notif_txbIVA" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                                                             </td>
                                                             <td> 
-                                                                <a class="btn" onClick="calcularPrecioVenta();">Calcular</a>                                                        
+                                                                <a class="btn btn-default" style="color: black;" onClick="calcularPrecioVenta();">Calcular</a>                                                        
                                                             </td>
                                                             <td>Precio de venta: 
                                                                 <h2><label id="notif_lblPrecioVenta" class="label label-success">0</label></h2>
@@ -712,17 +709,6 @@
                                                         <asp:TextBox ID="txbNew6" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                     </FooterTemplate>
                                                 </asp:TemplateField>
-                                               <%-- <asp:TemplateField HeaderText="Lugar de descarga">
-                                                    <EditItemTemplate>
-                                                        <asp:TextBox ID="txb7" runat="server" Text='<%# Bind("Descarga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                    </EditItemTemplate>
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lbl7" runat="server" Text='<%# Bind("Descarga") %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                    <FooterTemplate>
-                                                        <asp:TextBox ID="txbNew7" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                    </FooterTemplate>
-                                                </asp:TemplateField>--%>
                                                 <asp:TemplateField HeaderText="Fletero">
                                                     <EditItemTemplate>
                                                         <asp:DropDownList ID="ddlFleteros1" runat="server" CssClass="form-control" />

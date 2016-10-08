@@ -214,9 +214,7 @@
 
                                          <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="btnModificar" runat="server" CommandName="editPago">
-                                                    <span aria-hidden="true" class="glyphicon glyphicon-pencil"></asp:LinkButton>
-
+                                                    <a id="btnModificar" role="button" onclick="ModificarPago_1();" class="btn btn-info btn-xs glyphicon glyphicon-pencil"></a>
                                                     <a id="btnBorrar" role="button" onclick="BorrarPago();" class="btn btn-info btn-xs glyphicon glyphicon-remove"></a>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -266,23 +264,23 @@
                     <table class="table table-hover">
                         <tr>
                             <td>Fecha de pago: 
-                            <asp:TextBox ID="txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                            <asp:TextBox ID="add_txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td>Forma de pago: 
-                            <asp:DropDownList ID="ddlFormas" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                            <asp:DropDownList ID="add_ddlFormas" runat="server" ClientIDMode="Static" CssClass="form-control" />
                             </td>
                         </tr>
                         <tr>
                             <td>Monto: 
-                                <asp:TextBox ID="txbMonto" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" />
-                                <asp:CompareValidator ID="vtxbMonto" runat="server" ControlToValidate="txbMonto" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                                <asp:TextBox ID="add_txbMonto" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" />
+                                <asp:CompareValidator ID="vadd_txbMonto" runat="server" ControlToValidate="add_txbMonto" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
                             </td>
                         </tr>
                         <tr>
                                 <td>Comentarios: 
-                                <asp:TextBox ID="txbComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" />
+                                <asp:TextBox ID="add_txbComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" />
                             </td>
                         </tr>
 
@@ -298,6 +296,48 @@
     </div>
     <!-- Modal agregar pago END -->
 
+      <!-- Modal modificar pago BEGIN -->
+    <div id="editPagoModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true" style="display: none; max-width: 500px; overflow: hidden;" class="modal fade dark in">
 
+        <div class="modal-header">
+            <h3 id="editModalLabel">Modificar pago</h3>
+        </div>
+        <asp:UpdatePanel ID="upEdit" runat="server">
+            <ContentTemplate>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <td>Fecha de pago: 
+                            <asp:TextBox ID="edit_txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Forma de pago: 
+                            <asp:DropDownList ID="edit_ddlFormas" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Monto: 
+                                <asp:TextBox ID="edit_txbMonto" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" />
+                                <asp:CompareValidator ID="vedit_txbMonto" runat="server" ControlToValidate="edit_txbMonto" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                            </td>
+                        </tr>
+                        <tr>
+                                <td>Comentarios: 
+                                <asp:TextBox ID="edit_txbComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" />
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cerrar</button>
+                    <a ID="aModificarPago" class="btn btn-primary" onClick="ModificarPago_2();">Guardar</a>                                                        
+
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+    <!-- Modal modificar pago END -->
 
 </asp:Content>
