@@ -528,6 +528,105 @@ function calcularPrecioVenta() {
     }
 }
 
+
+function NotificarViaje(viajeID) {
+
+    if (viajeID > 0) {
+        var viajeID_str = viajeID.toString();
+
+        var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID");
+        if (hdn_notificaciones_viajeID !== null) {
+            hdn_notificaciones_viajeID.val(viajeID_str);
+
+            // Ajax call parameters
+            console.log("Ajax call: Viajes.aspx/NotificarViaje. Params:");
+            console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
+
+            $.ajax({
+                type: "POST",
+                url: "Viajes.aspx/NotificarViaje",
+                data: '{viajeID_str: "' + viajeID_str + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var datos = response.d;
+                    if (datos) {
+
+                        var precio_compra = datos;
+                        var notif_lblPrecioCompra = $("#notif_lblPrecioCompra");
+                        if(notif_lblPrecioCompra != null){
+                            notif_lblPrecioCompra.text(precio_compra);
+
+                            var datos_array = datos.split("|");
+                            var precio_compra = datos_array[0];
+
+
+                            // Pesada origen
+                            var pesada_origen_array = datos_array[1].split("&");
+
+                            var pesada_origen_ID = pesada_origen_array[0];
+                            var pesada_origen = TryParseFloat(pesada_origen_ID, 0);
+                            if (pesada_origen > 0) {
+                                var pesada_origen_lugar = pesada_origen_array[1];
+                                var pesada_origen_fecha = pesada_origen_array[2];
+                                var pesada_origen_peso_bruto = pesada_origen_array[3];
+                                var pesada_origen_peso_neto = pesada_origen_array[4];
+                                var pesada_origen_comentarios = pesada_origen_array[5];
+
+                                var hdn_notificacionesPesadaOrigenID = $("#hdn_notificacionesPesadaOrigenID");
+                                if (hdn_notificacionesPesadaOrigenID !== null) {
+                                    hdn_notificacionesPesadaOrigenID.val(pesada_origen_ID);
+                                }
+                            }
+
+                            // Pesada destino
+                            var pesada_destino_array = datos_array[2].split("&");
+
+                            var pesada_destino_ID = pesada_destino_array[0];
+                            var pesada_destino = TryParseFloat(pesada_destino_ID, 0);
+                            if (pesada_destino > 0) {
+                                var pesada_destino_lugar = pesada_destino_array[1];
+                                var pesada_destino_fecha = pesada_destino_array[2];
+                                var pesada_destino_peso_bruto = pesada_destino_array[3];
+                                var pesada_destino_peso_neto = pesada_destino_array[4];
+                                var pesada_destino_comentarios = pesada_destino_array[5];
+
+                                var hdn_notificacionesPesadaDestinoID = $("#hdn_notificacionesPesadaDestinoID");
+                                if (hdn_notificacionesPesadaDestinoID !== null) {
+                                    hdn_notificacionesPesadaDestinoID.val(pesada_destino_ID);
+                                }
+                            }
+
+                            // Venta
+                            var venta_array = datos_array[3].split("&");
+
+                            var precio_flete = venta_array[0];
+                            var precio_descarga = venta_array[1];
+                            var GananciaXTon = venta_array[2];
+                            var IVA = venta_array[3];
+                            var precio_venta = venta_array[4];
+
+                            $('#notif_lblPrecioVenta').text(precio_venta);
+
+                            $('#tabsNotificaciones').tabs();
+                            $('#notificacionesModal').modal('show');
+
+                        }
+
+                    } else {
+                        show_message_info('Error_Datos');
+                    }
+
+                }, // end success
+                failure: function (response) {
+                    show_message_info('Error_Datos');
+                }
+            }); // Ajax
+
+        }
+    }
+}
+
 function ModificarViaje_1(viajeID) {
 
     if (viajeID > 0) {
@@ -729,79 +828,91 @@ function FinDelViaje() {
 
 function GuardarPrecioVenta() {
 
-    var ok_continue = false;
+    var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID").val();
+    var notif_txbPrecioFlete = $("#notif_txbPrecioFlete").val();
+    var notif_txbPrecioDescarga = $("#notif_txbPrecioDescarga").val();
+    var notif_txbGananciaXTon = $("#notif_txbGananciaXTon").val();
+    var notif_txbIVA = $("#notif_txbIVA").val();
+    var txb_pesada2Peso_neto = $("#txb_pesada2Peso_neto").val();
 
-    // Check existe cálculo
-    var notif_lblPrecioVenta = $("#notif_lblPrecioVenta");
-    if (notif_lblPrecioVenta !== null) {
-        var precio_venta_str = notif_lblPrecioVenta.text();
-        if (precio_venta_str !== null && precio_venta_str !== "" && precio_venta_str !== "0") {
-            
-            var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID");
-            var notif_txbPrecioFlete = $("#notif_txbPrecioFlete");
-            var notif_txbPrecioDescarga = $("#notif_txbPrecioDescarga");
-            var notif_txbGananciaXTon = $("#notif_txbGananciaXTon");
-            var notif_txbIVA = $("#notif_txbIVA");
-            var txb_pesada2Peso_neto = $("#txb_pesada2Peso_neto");
+    // Check viaje
+    if (hdn_notificaciones_viajeID !== null && hdn_notificaciones_viajeID.length > 0) {
 
-            if (hdn_notificaciones_viajeID !== null && hdn_notificaciones_viajeID.val() !== null && hdn_notificaciones_viajeID.val().length > 0 &&
-                notif_txbPrecioFlete !== null && notif_txbPrecioFlete.val() !== null && notif_txbPrecioFlete.val().length > 0 &&
-                notif_txbPrecioDescarga !== null && notif_txbPrecioDescarga.val() !== null && notif_txbPrecioDescarga.val().length > 0 &&
-                notif_txbGananciaXTon !== null && notif_txbGananciaXTon.val() !== null && notif_txbGananciaXTon.val().length > 0 &&
-                notif_txbIVA !== null && notif_txbIVA.val() !== null && notif_txbIVA.val().length > 0 &&
-                txb_pesada2Peso_neto !== null && txb_pesada2Peso_neto.val() !== null && txb_pesada2Peso_neto.val().length > 0) {
+        // Check datos pesadas
+        if (txb_pesada2Peso_neto !== null && txb_pesada2Peso_neto.length > 0) {
 
-                var viajeID = hdn_notificaciones_viajeID.val();
+            // Check existe cálculo
+            var notif_lblPrecioVenta = $("#notif_lblPrecioVenta");
+            if (notif_lblPrecioVenta !== null) {
+                var precio_venta_str = notif_lblPrecioVenta.text();
+                if (precio_venta_str !== null && precio_venta_str !== "" && precio_venta_str !== "0") {
 
-                var precioFlete_str = notif_txbPrecioFlete.val();
-                var precioDescarga_str = notif_txbPrecioDescarga.val();
-                var gananciaXTon_str = notif_txbGananciaXTon.val();
-                var IVA_str = notif_txbIVA.val();
+                    // Check datos venta
+                    if (notif_txbPrecioFlete !== null && notif_txbPrecioFlete.length > 0 &&
+                    notif_txbPrecioDescarga !== null && notif_txbPrecioDescarga.length > 0 &&
+                    notif_txbGananciaXTon !== null && notif_txbGananciaXTon.length > 0 &&
+                    notif_txbIVA !== null && notif_txbIVA.length > 0) {
 
-                if (precio_venta_str !== "" && precio_venta_str !== "0") {
+                        var viajeID = hdn_notificaciones_viajeID;
 
-                    // Ajax call parameters
-                    console.log("Ajax call: Viajes.aspx/GuardarPrecioVenta. Params:");
-                    console.log("viajeID, type: " + type(viajeID) + ", value: " + viajeID);
-                    console.log("precioFlete_str, type: " + type(precioFlete_str) + ", value: " + precioFlete_str);
-                    console.log("precioDescarga_str, type: " + type(precioDescarga_str) + ", value: " + precioDescarga_str);
-                    console.log("gananciaXTon_str, type: " + type(gananciaXTon_str) + ", value: " + gananciaXTon_str);
-                    console.log("IVA_str, type: " + type(IVA_str) + ", value: " + IVA_str);
-                    console.log("precio_venta_str, type: " + type(precio_venta_str) + ", value: " + precio_venta_str);
+                        var precioFlete_str = notif_txbPrecioFlete;
+                        var precioDescarga_str = notif_txbPrecioDescarga;
+                        var gananciaXTon_str = notif_txbGananciaXTon;
+                        var IVA_str = notif_txbIVA;
 
-                    $.ajax({
-                        type: "POST",
-                        url: "Viajes.aspx/GuardarPrecioVenta",
-                        data: '{viajeID: "' + viajeID + '",precioFlete_str: "' + precioFlete_str + '",precioDescarga_str: "' + precioDescarga_str + '",gananciaXTon_str: "' + gananciaXTon_str + '", ' +
-                            'IVA_str: "' + IVA_str + '", precio_venta_str: "' + precio_venta_str + '"}',
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function (response) {
-                            var precio_venta = response.d;
-                            if (precio_venta !== null) {
-                                show_message_info('OK_Datos');
-                            }
+                        if (precio_venta_str !== "" && precio_venta_str !== "0") {
 
-                        }, // end success
-                        failure: function (response) {
-                            alert(response.d);
+                            // Ajax call parameters
+                            console.log("Ajax call: Viajes.aspx/GuardarPrecioVenta. Params:");
+                            console.log("viajeID, type: " + type(viajeID) + ", value: " + viajeID);
+                            console.log("precioFlete_str, type: " + type(precioFlete_str) + ", value: " + precioFlete_str);
+                            console.log("precioDescarga_str, type: " + type(precioDescarga_str) + ", value: " + precioDescarga_str);
+                            console.log("gananciaXTon_str, type: " + type(gananciaXTon_str) + ", value: " + gananciaXTon_str);
+                            console.log("IVA_str, type: " + type(IVA_str) + ", value: " + IVA_str);
+                            console.log("precio_venta_str, type: " + type(precio_venta_str) + ", value: " + precio_venta_str);
+
+                            $.ajax({
+                                type: "POST",
+                                url: "Viajes.aspx/GuardarPrecioVenta",
+                                data: '{viajeID: "' + viajeID + '",precioFlete_str: "' + precioFlete_str + '",precioDescarga_str: "' + precioDescarga_str + '",gananciaXTon_str: "' + gananciaXTon_str + '", ' +
+                                    'IVA_str: "' + IVA_str + '", precio_venta_str: "' + precio_venta_str + '"}',
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (response) {
+                                    var precio_venta = response.d;
+                                    if (precio_venta !== null) {
+                                        show_message_info('OK_Datos');
+                                    }
+
+                                }, // end success
+                                failure: function (response) {
+                                    alert(response.d);
+                                }
+                            });
                         }
-                    });
+                        else {
+                            show_message_info('Error_DatosPrecioVenta');
+                        }
+                    } // venta
+                    else {
+                        show_message_info('Error_DatosPrecioVenta');
+                    }
+
                 }
                 else {
                     show_message_info('Error_DatosPrecioVenta');
                 }
-            }
 
-        }
+            } // pesadas
+            else {
+                show_message_info('Error_DatosPesadas');
+            }
+        } // viaje
         else {
             show_message_info('Error_DatosPrecioVenta');
         }
+
     }
-    else {
-        show_message_info('Error_DatosPrecioVenta');
-    }
-    
 }
 
 

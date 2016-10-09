@@ -1,7 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Mercaderias.ascx.cs" Inherits="Bonisoft_2.User_Controls.Configuracion.Mercaderias" %>
 
-
-
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
 <asp:GridView ID="gridMercaderias" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True" CssClass="table table-bordered bs-table" AllowPaging="true" EnableViewState="True"
     DataKeyNames="Mercaderia_ID"

@@ -111,19 +111,15 @@
                                         <asp:BoundField DataField="Precio_venta" HeaderText="Precio venta" DataFormatString="{0:C0}" HtmlEncode="False" />
                                         <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
 
-                                        <asp:ButtonField CommandName="notificar" ControlStyle-CssClass="btn btn-info" ButtonType="Link" Text="" HeaderText="Notificar">
+                                        <%--<asp:ButtonField CommandName="notificar" ControlStyle-CssClass="btn btn-info" ButtonType="Link" Text="" HeaderText="Notificar">
                                             <ControlStyle CssClass="btn btn-info btn-xs fa fa-bullhorn"></ControlStyle>
-                                        </asp:ButtonField>
+                                        </asp:ButtonField>--%>
 
                                         <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
                                             <ItemTemplate>
-                                                <%--<asp:LinkButton ID="btnModificar" runat="server" CommandName="editViajeEnCurso">
-                                                    <%--<span aria-hidden="true" class="glyphicon glyphicon-pencil"></asp:LinkButton>--%>
-
-                                                <a id="btnModificar" role="button" onclick='<%# "ModificarViaje_1(" +Eval("Viaje_ID") + " );" %>' class="btn btn-info btn-xs glyphicon glyphicon-pencil"></a>
-
-
-                                                <a id="btnBorrar" role="button" onclick='<%# "BorrarViajeEnCurso(" +Eval("Viaje_ID") + " );" %>' class="btn btn-info btn-xs glyphicon glyphicon-remove"></a>
+                                                <a id="btnNotificar" role="button" onclick='<%# "NotificarViaje(" +Eval("Viaje_ID") + ");" %>' class="btn btn-success btn-xs fa fa-bullhorn"></a>
+                                                <a id="btnModificar" role="button" onclick='<%# "ModificarViaje_1(" +Eval("Viaje_ID") + ");" %>' class="btn btn-info btn-xs glyphicon glyphicon-pencil"></a>
+                                                <a id="btnBorrar" role="button" onclick='<%# "BorrarViajeEnCurso(" +Eval("Viaje_ID") + ");" %>' class="btn btn-danger btn-xs glyphicon glyphicon-remove"></a>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -332,8 +328,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="modal-body" style="padding-bottom: 0; padding-top: 0; position: inherit;">
-                                                <table class="table table-hover">
+                                            <div class="modal-body panel panel-default" style="padding-bottom: 0; padding-top: 0; position: inherit; background: #e9e9e9; color: #333333;">
+                                                <table class="table">
                                                     <tr>
                                                         <td>Lugar: 
                                                         <asp:TextBox ID="txb_pesada1Lugar" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -375,8 +371,8 @@
 
                                                 </div>
                                             </div>
-                                            <div class="modal-body" style="padding-bottom: 0; padding-top: 0; position: inherit;">
-                                                <table class="table table-hover">
+                                            <div class="modal-body panel panel-default" style="padding-bottom: 0; padding-top: 0; position: inherit; background: #e9e9e9; color: #333333;">
+                                                <table class="table">
                                                     <tr>
                                                         <td>Lugar: 
                                                       <asp:TextBox ID="txb_pesada2Lugar" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -414,8 +410,8 @@
 
                                             <h4>Precio de venta</h4>
 
-                                            <div class="modal-body" style="padding: 0; position: inherit;">
-                                                <table class="table table-hover" style="margin-bottom: 0;">
+                                            <div class="modal-body panel panel-default" style="padding: 0; position: inherit; background: #e9e9e9; color: #333333;">
+                                                <table class="table" style="margin-bottom: 0;">
                                                     <tr>
                                                         <td>Precio de compra: 
                                                                 <h2>
@@ -503,7 +499,8 @@
                                             <div style="text-align: center">
 
                                                 <asp:Label ID="gridViajes_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-                                                <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="False" CssClass="table table-hover table-striped"
+                                                <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" 
+                                                    ShowFooter="False" CssClass="table table-hover table-striped"
                                                     DataKeyNames="Viaje_ID"
                                                     OnRowCommand="gridViajes_RowCommand"
                                                     OnRowCancelingEdit="gridViajes_RowCancelingEdit"

@@ -2513,6 +2513,85 @@ namespace Bonisoft_2.Pages
             return ret;
         }
 
+        [System.Web.Services.WebMethod]
+        public static string NotificarViaje(string viajeID_str)
+        {
+            string ret = string.Empty;
+            if (!string.IsNullOrWhiteSpace(viajeID_str))
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    int viaje_ID = 0;
+                    if (!int.TryParse(viajeID_str, out viaje_ID))
+                    {
+                        viaje_ID = 0;
+                    }
+
+                    if (viaje_ID > 0)
+                    {
+                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
+                        if (viaje != null)
+                        {
+                            // Precio compra
+                            ret = viaje.precio_compra.ToString() + "|";
+
+                            // Pesada origen
+                            int pesada_origen_ID = viaje.Pesada_origen_ID;
+                            ret += pesada_origen_ID.ToString();
+
+                            if (pesada_origen_ID > 0)
+                            {
+                                pesada pesada_origen = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_origen_ID);
+                                if (pesada_origen != null)
+                                {
+                                    //hdn_notificacionesPesadaOrigenID.Value = pesada_origen_ID.ToString();
+
+                                    // Fields
+                                    ret += "&" + pesada_origen.Lugar;
+                                    ret += "&" + pesada_origen.Fecha.ToShortDateString();
+                                    ret += "&" + pesada_origen.Nombre_balanza;
+                                    ret += "&" + pesada_origen.Peso_bruto.ToString();
+                                    ret += "&" + pesada_origen.Peso_neto.ToString();
+                                    ret += "&" + pesada_origen.Comentarios;
+                                }
+                            }
+
+                            ret += "|";
+
+                            // Pesada destino
+                            int pesada_destino_ID = viaje.Pesada_destino_ID;
+                            ret += pesada_destino_ID.ToString();
+                            if (pesada_destino_ID > 0)
+                            {
+                                pesada pesada_destino = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_origen_ID);
+                                if (pesada_destino != null)
+                                {
+                                    ret += pesada_destino_ID.ToString();
+                                    //hdn_notificacionesPesadaOrigenID.Value = pesada_origen_ID.ToString();
+
+                                    // Fields
+                                    ret += "&" + pesada_destino.Lugar;
+                                    ret += "&" + pesada_destino.Fecha.ToShortDateString();
+                                    ret += "&" + pesada_destino.Nombre_balanza;
+                                    ret += "&" + pesada_destino.Peso_bruto.ToString();
+                                    ret += "&" + pesada_destino.Peso_neto.ToString();
+                                    ret += "&" + pesada_destino.Comentarios;
+                                }
+                            }
+
+                            // Venta
+                            ret += "|" + viaje.precio_flete.ToString();
+                            ret += "&" + viaje.precio_descarga.ToString();
+                            ret += "&" + viaje.GananciaXTon.ToString();
+                            ret += "&" + viaje.IVA.ToString();
+                            ret += "&" + viaje.precio_venta.ToString();
+                        }
+                    }
+                }
+            }
+            return ret;
+        }
+
         #endregion Web methods
 
     }
