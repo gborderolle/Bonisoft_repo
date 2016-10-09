@@ -22,17 +22,11 @@ namespace Bonisoft_2.Pages
                 BindGridClientes();
                 BindModalAgregarPago();
                 BindModalModificarPago();
-
-                gridClientes.UseAccessibleHeader = true;
-                gridClientes.HeaderRow.TableSection = TableRowSection.TableHeader;
-
-                //gridViajes.UseAccessibleHeader = true;
-                //gridViajes.HeaderRow.TableSection = TableRowSection.TableHeader;
-
-                //gridPagos.UseAccessibleHeader = true;
-                //gridPagos.HeaderRow.TableSection = TableRowSection.TableHeader;
-
             }
+
+            gridClientes.UseAccessibleHeader = true;
+            gridClientes.HeaderRow.TableSection = TableRowSection.TableHeader;
+                       
             gridClientes_lblMessage.Text = string.Empty;
         }
 
@@ -70,10 +64,14 @@ namespace Bonisoft_2.Pages
 
             #endregion Labels
 
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.TableSection = TableRowSection.TableHeader;
+            }
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridClientes, "Select$" + e.Row.RowIndex);
-                e.Row.ToolTip = "Click to select this row.";
             }
         }
 
@@ -347,6 +345,9 @@ namespace Bonisoft_2.Pages
                     gridClientes.DataSource = elements;
                     gridClientes.DataBind();
 
+                    gridClientes.UseAccessibleHeader = true;
+                    gridClientes.HeaderRow.TableSection = TableRowSection.TableHeader;
+
                     lblGridClientesCount.Text = "Resultados: " + elements.Count();
                 }
                 else
@@ -606,6 +607,16 @@ namespace Bonisoft_2.Pages
                         context.cliente_pagos.Add(obj);
                         context.SaveChanges();
 
+                        #region Log
+
+                        log new_log = new log();
+                        new_log.Usuario_ID = 0;
+                        new_log.Fecha = DateTime.Now;
+                        //new_log.Descripcion="Nuevo pago: " + pago
+                        context.logs.Add(new_log);
+
+                        #endregion
+
                         ret = true;
                     }
                 }
@@ -635,6 +646,16 @@ namespace Bonisoft_2.Pages
                         {
                             context.cliente_pagos.Remove(pago);
                             context.SaveChanges();
+
+                            #region Log
+
+                            log new_log = new log();
+                            new_log.Usuario_ID = 0;
+                            new_log.Fecha = DateTime.Now;
+                            //new_log.Descripcion="Nuevo pago: " + pago
+                            context.logs.Add(new_log);
+
+                            #endregion
 
                             ret = true;
                         }
@@ -715,6 +736,16 @@ namespace Bonisoft_2.Pages
 
                             context.SaveChanges();
 
+                            #region Log
+
+                            log new_log = new log();
+                            new_log.Usuario_ID = 0;
+                            new_log.Fecha = DateTime.Now;
+                            //new_log.Descripcion="Nuevo pago: " + pago
+                            context.logs.Add(new_log);
+
+                            #endregion
+
                             ret = true;
                         }
                     }
@@ -727,3 +758,4 @@ namespace Bonisoft_2.Pages
 
     }
 }
+

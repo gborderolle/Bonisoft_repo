@@ -19,18 +19,16 @@ namespace Bonisoft_2.Pages
         {
             if (!IsPostBack)
             {
-                BindGrid();
-
-                BindGrid_EnCurso();
-
+                BindGridViajes();
+                BindGrid_ViajesEnCurso();
                 BindAddModal();
-
-                gridViajes.UseAccessibleHeader = true;
-                gridViajes.HeaderRow.TableSection = TableRowSection.TableHeader;
-
-                gridViajesEnCurso.UseAccessibleHeader = true;
-                gridViajesEnCurso.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
+            gridViajes.UseAccessibleHeader = true;
+            gridViajes.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+            gridViajesEnCurso.UseAccessibleHeader = true;
+            gridViajesEnCurso.HeaderRow.TableSection = TableRowSection.TableHeader;
+
             gridViajes_lblMessage.Text = string.Empty;
         }
 
@@ -132,9 +130,20 @@ namespace Bonisoft_2.Pages
                     new_viaje.Fecha_registro = DateTime.Now;
 
                     context.viajes.Add(new_viaje);
+
+                    #region Log
+
+                    log new_log = new log();
+                    new_log.Usuario_ID = 0;
+                    new_log.Fecha = DateTime.Now;
+                    //new_log.Descripcion="Nuevo pago: " + pago
+                    context.logs.Add(new_log);
+
+                    #endregion
+
                     context.SaveChanges();
 
-                    BindGrid_EnCurso();
+                    BindGrid_ViajesEnCurso();
                     ScriptManager.RegisterStartupScript(upAdd, this.GetType(), "btnAddRecord1_Click", "<script type='text/javascript'>show_message_info('OK_ViajeNuevo'); $.modal.close();</script>", false);
                 }
 
@@ -237,9 +246,19 @@ namespace Bonisoft_2.Pages
                                 viaje.Comentarios = txbComentarios;
                                 viaje.EnViaje = true;
 
+                                #region Log
+
+                                log new_log = new log();
+                                new_log.Usuario_ID = 0;
+                                new_log.Fecha = DateTime.Now;
+                                //new_log.Descripcion="Nuevo pago: " + pago
+                                context.logs.Add(new_log);
+
+                                #endregion
+
                                 context.SaveChanges();
 
-                                BindGrid_EnCurso();
+                                BindGrid_ViajesEnCurso();
                                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
                                 sb.Append(@"<script type='text/javascript'>");
                                 sb.Append("$.modal.close();");
@@ -394,17 +413,30 @@ namespace Bonisoft_2.Pages
                         if (save_ok)
                         {
                             viaje.EnViaje = false;
+
+                            #region Log
+
+                            log new_log = new log();
+                            new_log.Usuario_ID = 0;
+                            new_log.Fecha = DateTime.Now;
+                            //new_log.Descripcion="Nuevo pago: " + pago
+                            context.logs.Add(new_log);
+
+                            #endregion
+
                             context.SaveChanges();
 
-                            BindGrid_EnCurso();
-                            BindGrid();
+                            BindGrid_ViajesEnCurso();
+                            BindGridViajes();
 
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click3", "<script type='text/javascript'>show_message_info('OK_FINViaje'); $.modal.close();</script>", false);
                         }
                         else
                         {
                             Mercaderias.BindGrid();
+
                         }
+
 
                     }
                 }
@@ -423,12 +455,12 @@ namespace Bonisoft_2.Pages
 
         protected void btnUpdateViajesEnCurso_Click(object sender, EventArgs e)
         {
-            BindGrid_EnCurso();
+            BindGrid_ViajesEnCurso();
         }
 
         protected void btnUpdateViajes_Click(object sender, EventArgs e)
         {
-            BindGrid();
+            BindGridViajes();
         }
 
         #endregion Events
@@ -1034,9 +1066,21 @@ namespace Bonisoft_2.Pages
                                 #endregion DDL logic
 
                                 context.viajes.Add(obj);
+
+                                #region Log
+
+                                log new_log = new log();
+                                new_log.Usuario_ID = 0;
+                                new_log.Fecha = DateTime.Now;
+                                //new_log.Descripcion="Nuevo pago: " + pago
+                                context.logs.Add(new_log);
+
+                                #endregion
+
                                 context.SaveChanges();
+
                                 gridViajes_lblMessage.Text = "Agregado correctamente.";
-                                BindGrid();
+                                BindGridViajes();
                             }
                         }
                     }
@@ -1063,13 +1107,13 @@ namespace Bonisoft_2.Pages
         protected void gridViajes_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gridViajes.EditIndex = e.NewEditIndex;
-            BindGrid();
+            BindGridViajes();
         }
 
         protected void gridViajes_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             gridViajes.EditIndex = -1;
-            BindGrid();
+            BindGridViajes();
         }
 
         protected void gridViajes_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -1201,10 +1245,21 @@ namespace Bonisoft_2.Pages
 
                     #endregion DDL logic
 
+                    #region Log
+
+                    log new_log = new log();
+                    new_log.Usuario_ID = 0;
+                    new_log.Fecha = DateTime.Now;
+                    //new_log.Descripcion="Nuevo pago: " + pago
+                    context.logs.Add(new_log);
+
+                    #endregion
+
                     context.SaveChanges();
+
                     gridViajes_lblMessage.Text = "Guardado correctamente.";
                     gridViajes.EditIndex = -1;
-                    BindGrid();
+                    BindGridViajes();
                 }
             }
         }
@@ -1216,8 +1271,20 @@ namespace Bonisoft_2.Pages
             {
                 viaje obj = context.viajes.First(x => x.Viaje_ID == viaje_ID);
                 context.viajes.Remove(obj);
+
+                #region Log
+
+                log new_log = new log();
+                new_log.Usuario_ID = 0;
+                new_log.Fecha = DateTime.Now;
+                //new_log.Descripcion="Nuevo pago: " + pago
+                context.logs.Add(new_log);
+
+                #endregion
+
                 context.SaveChanges();
-                BindGrid();
+
+                BindGridViajes();
                 gridViajes_lblMessage.Text = "Borrado correctamente.";
             }
         }
@@ -1311,8 +1378,20 @@ namespace Bonisoft_2.Pages
                             if (viaje != null)
                             {
                                 context.viajes.Remove(viaje);
+
+                                #region Log
+
+                                log new_log = new log();
+                                new_log.Usuario_ID = 0;
+                                new_log.Fecha = DateTime.Now;
+                                //new_log.Descripcion="Nuevo pago: " + pago
+                                context.logs.Add(new_log);
+
+                                #endregion
+
                                 context.SaveChanges();
-                                BindGrid_EnCurso();
+
+                                BindGrid_ViajesEnCurso();
                                 gridViajesEnCurso_lblMessage.Text = "Borrado correctamente.";
                             }
                         }
@@ -1636,7 +1715,7 @@ namespace Bonisoft_2.Pages
             }
         }
 
-        private void BindGrid()
+        private void BindGridViajes()
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
@@ -1675,7 +1754,7 @@ namespace Bonisoft_2.Pages
             }
         }
 
-        public void BindGrid_EnCurso()
+        public void BindGrid_ViajesEnCurso()
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
@@ -1773,7 +1852,17 @@ namespace Bonisoft_2.Pages
                         viaje.precio_compra = precio_compra;
                         ret = precio_compra;
 
+                        #region Log
+
+                        log new_log = new log();
+                        new_log.Usuario_ID = 0;
+                        new_log.Fecha = DateTime.Now;
+                        //new_log.Descripcion="Nuevo pago: " + pago
+                        context.logs.Add(new_log);
+
                         context.SaveChanges();
+
+                        #endregion
                     }
                 }
             }
@@ -1842,6 +1931,16 @@ namespace Bonisoft_2.Pages
                                 viaje.precio_descarga = precioDescarga;
                                 viaje.GananciaXTon = gananciaXTon;
                                 viaje.IVA = IVA;
+
+                                #region Log
+
+                                log new_log = new log();
+                                new_log.Usuario_ID = 0;
+                                new_log.Fecha = DateTime.Now;
+                                //new_log.Descripcion="Nuevo pago: " + pago
+                                context.logs.Add(new_log);
+
+                                #endregion
 
                                 context.SaveChanges();
 
@@ -1919,7 +2018,18 @@ namespace Bonisoft_2.Pages
                                         }
                                         pesada.Peso_neto = value;
 
+                                        #region Log
+
+                                        log new_log = new log();
+                                        new_log.Usuario_ID = 0;
+                                        new_log.Fecha = DateTime.Now;
+                                        //new_log.Descripcion="Nuevo pago: " + pago
+                                        context.logs.Add(new_log);
+
+                                        #endregion
+
                                         context.SaveChanges();
+
                                         save_ok = true;
                                     }
                                 }
@@ -1954,6 +2064,17 @@ namespace Bonisoft_2.Pages
                                     pesada.Peso_neto = value;
 
                                     context.pesadas.Add(pesada);
+
+                                    #region Log
+
+                                    log new_log = new log();
+                                    new_log.Usuario_ID = 0;
+                                    new_log.Fecha = DateTime.Now;
+                                    //new_log.Descripcion="Nuevo pago: " + pago
+                                    context.logs.Add(new_log);
+
+                                    #endregion
+
                                     context.SaveChanges();
 
                                     int id = 1;
@@ -2005,7 +2126,18 @@ namespace Bonisoft_2.Pages
                                         }
                                         pesada.Peso_neto = value;
 
+                                        #region Log
+
+                                        log new_log = new log();
+                                        new_log.Usuario_ID = 0;
+                                        new_log.Fecha = DateTime.Now;
+                                        //new_log.Descripcion="Nuevo pago: " + pago
+                                        context.logs.Add(new_log);
+
+                                        #endregion
+
                                         context.SaveChanges();
+
                                         save_ok = true;
                                     }
                                 }
@@ -2183,7 +2315,19 @@ namespace Bonisoft_2.Pages
                             if (ok)
                             {
                                 viaje.EnViaje = false;
+
+                                #region Log
+
+                                log new_log = new log();
+                                new_log.Usuario_ID = 0;
+                                new_log.Fecha = DateTime.Now;
+                                //new_log.Descripcion="Nuevo pago: " + pago
+                                context.logs.Add(new_log);
+
+                                #endregion
+
                                 context.SaveChanges();
+
                                 result = 1;
                             }
 
@@ -2214,6 +2358,17 @@ namespace Bonisoft_2.Pages
                         if (viaje != null)
                         {
                             context.viajes.Remove(viaje);
+
+                            #region Log
+
+                            log new_log = new log();
+                            new_log.Usuario_ID = 0;
+                            new_log.Fecha = DateTime.Now;
+                            //new_log.Descripcion="Nuevo pago: " + pago
+                            context.logs.Add(new_log);
+
+                            #endregion
+
                             context.SaveChanges();
 
                             ret = true;
@@ -2228,3 +2383,4 @@ namespace Bonisoft_2.Pages
 
     }
 }
+
