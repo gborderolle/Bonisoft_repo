@@ -303,7 +303,6 @@ namespace Bonisoft_2.Pages
             {
                 if (row.RowIndex == gridClientes.SelectedIndex)
                 {
-                    row.BackColor = ColorTranslator.FromHtml("#A1DCF2");
 
                     string cliente_ID_str = gridClientes.SelectedRow.Cells[0].Text;
                     if (!string.IsNullOrWhiteSpace(cliente_ID_str))
@@ -320,12 +319,24 @@ namespace Bonisoft_2.Pages
                             BindGridPagos(cliente_ID);
 
                             hdn_clientID.Value = cliente_ID_str;
+
+                            gridViajes.UseAccessibleHeader = true;
+                            gridViajes.HeaderRow.TableSection = TableRowSection.TableHeader;
                         }
+                    }
+                    row.BackColor = ColorTranslator.FromHtml("#A1DCF2");
+                    foreach(TableCell cell in row.Cells)
+                    {
+                        cell.BackColor = ColorTranslator.FromHtml("#A1DCF2");
                     }
                 }
                 else
                 {
                     row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                    foreach (TableCell cell in row.Cells)
+                    {
+                        cell.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                    }
                 }
             }
         }
@@ -333,7 +344,6 @@ namespace Bonisoft_2.Pages
         #endregion Events
 
         #region General methods
-
 
         private void BindGridClientes()
         {
@@ -348,7 +358,7 @@ namespace Bonisoft_2.Pages
                     gridClientes.UseAccessibleHeader = true;
                     gridClientes.HeaderRow.TableSection = TableRowSection.TableHeader;
 
-                    lblGridClientesCount.Text = "Resultados: " + elements.Count();
+                    lblGridClientesCount.Text = "# " + elements.Count();
                 }
                 else
                 {
@@ -389,7 +399,7 @@ namespace Bonisoft_2.Pages
                         gridViajes.UseAccessibleHeader = true;
                         gridViajes.HeaderRow.TableSection = TableRowSection.TableHeader;
 
-                        lblGridViajesCount.Text = "Resultados: " + elements.Count();
+                        lblGridViajesCount.Text = "# " + elements.Count();
                     }
                     else
                     {
@@ -433,7 +443,7 @@ namespace Bonisoft_2.Pages
                         gridPagos.UseAccessibleHeader = true;
                         gridPagos.HeaderRow.TableSection = TableRowSection.TableHeader;
 
-                        lblGridPagosCount.Text = "Resultados: " + elements.Count();
+                        lblGridPagosCount.Text = "# " + elements.Count();
                     }
                     else
                     {
@@ -584,7 +594,7 @@ namespace Bonisoft_2.Pages
                         obj.Fecha_registro = DateTime.Now;
 
                         DateTime date = DateTime.Now;
-                        if (!DateTime.TryParseExact(fecha_str, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
+                        if (!DateTime.TryParseExact(fecha_str, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date))
                         {
                             date = DateTime.Now;
                         }
@@ -673,15 +683,15 @@ namespace Bonisoft_2.Pages
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
-                    int pago_ID_str = 0;
-                    if (!int.TryParse(pagoID_str, out pago_ID_str))
+                    int pago_ID = 0;
+                    if (!int.TryParse(pagoID_str, out pago_ID))
                     {
-                        pago_ID_str = 0;
+                        pago_ID = 0;
                     }
 
-                    if (pago_ID_str > 0)
+                    if (pago_ID > 0)
                     {
-                        cliente_pagos pago = (cliente_pagos)context.cliente_pagos.FirstOrDefault(v => v.Cliente_pagos_ID == pago_ID_str);
+                        cliente_pagos pago = (cliente_pagos)context.cliente_pagos.FirstOrDefault(v => v.Cliente_pagos_ID == pago_ID);
                         if (pago != null)
                         {
                             ret = pago.Fecha_pago.ToShortDateString() + "|" + pago.Forma_de_pago_ID + "|" + pago.Monto + "|" + pago.Comentarios;
@@ -712,7 +722,7 @@ namespace Bonisoft_2.Pages
                         if (pago != null)
                         {
                             DateTime date = pago.Fecha_pago;
-                            if (!DateTime.TryParseExact(fecha_str, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
+                            if (!DateTime.TryParseExact(fecha_str, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date))
                             {
                                 date = pago.Fecha_pago;
                             }

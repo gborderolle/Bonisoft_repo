@@ -22,6 +22,7 @@ namespace Bonisoft_2.Pages
                 BindGridViajes();
                 BindGrid_ViajesEnCurso();
                 BindAddModal();
+                BindEditModal();
             }
             gridViajes.UseAccessibleHeader = true;
             gridViajes.HeaderRow.TableSection = TableRowSection.TableHeader;
@@ -63,14 +64,14 @@ namespace Bonisoft_2.Pages
                     viaje new_viaje = new viaje();
 
                     DateTime date1 = DateTime.Now;
-                    if (!DateTime.TryParseExact(txbFecha1, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                    if (!DateTime.TryParseExact(txbFecha1, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                     {
                         date1 = DateTime.Now;
                     }
                     new_viaje.Fecha_partida = date1;
 
                     DateTime date2 = DateTime.Now;
-                    if (!DateTime.TryParseExact(txbFecha2, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date2))
+                    if (!DateTime.TryParseExact(txbFecha2, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date2))
                     {
                         date2 = DateTime.Now;
                     }
@@ -182,14 +183,14 @@ namespace Bonisoft_2.Pages
                                 ddlFleteros != null && ddlCamiones != null && ddlChoferes != null && txbComentarios != null)
                             {
                                 DateTime date1 = viaje.Fecha_partida;
-                                if (!DateTime.TryParseExact(txbFecha1, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                                if (!DateTime.TryParseExact(txbFecha1, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                                 {
                                     date1 = viaje.Fecha_partida;
                                 }
                                 viaje.Fecha_partida = date1;
 
                                 DateTime date2 = viaje.Fecha_llegada;
-                                if (!DateTime.TryParseExact(txbFecha2, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date2))
+                                if (!DateTime.TryParseExact(txbFecha2, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date2))
                                 {
                                     date2 = viaje.Fecha_llegada;
                                 }
@@ -990,14 +991,14 @@ namespace Bonisoft_2.Pages
                                 #region Datetime logic
 
                                 DateTime date1 = DateTime.Now;
-                                if (!DateTime.TryParseExact(txb11.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                                if (!DateTime.TryParseExact(txb11.Text, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                                 {
                                     date1 = DateTime.Now;
                                 }
                                 obj.Fecha_partida = date1;
 
                                 DateTime date2 = DateTime.Now;
-                                if (!DateTime.TryParseExact(txb12.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date2))
+                                if (!DateTime.TryParseExact(txb12.Text, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date2))
                                 {
                                     date2 = DateTime.Now;
                                 }
@@ -1163,14 +1164,14 @@ namespace Bonisoft_2.Pages
                     #region Datetime logic
 
                     DateTime date1 = obj.Fecha_partida;
-                    if (!DateTime.TryParseExact(txb11.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                    if (!DateTime.TryParseExact(txb11.Text, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                     {
                         date1 = obj.Fecha_partida;
                     }
                     obj.Fecha_partida = date1;
 
                     DateTime date2 = obj.Fecha_llegada;
-                    if (!DateTime.TryParseExact(txb12.Text, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date2))
+                    if (!DateTime.TryParseExact(txb12.Text, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date2))
                     {
                         date2 = obj.Fecha_partida;
                     }
@@ -1331,7 +1332,8 @@ namespace Bonisoft_2.Pages
 
                                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
                                 sb.Append(@"<script type='text/javascript'>");
-                                sb.Append("$('#tabsNotificaciones').tabs(); $('#notificacionesModal').modal('show'); $('.datepicker').datepicker(); $('#gridMercaderias').tablesorter();");
+                                sb.Append("$('#tabsNotificaciones').tabs(); $('#notificacionesModal').modal('show');");
+                                //sb.Append("$('#tabsNotificaciones').tabs(); $('#notificacionesModal').modal('show'); $('.datepicker').datepicker({ dateFormat: 'dd-MM-yyyy' }); $('#gridMercaderias').tablesorter();");
                                 sb.Append(@"</script>");
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "NotificarModalScript", sb.ToString(), false);
                             }
@@ -1362,7 +1364,8 @@ namespace Bonisoft_2.Pages
 
                                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
                                 sb.Append(@"<script type='text/javascript'>");
-                                sb.Append("$('#editModal').modal('show'); $('.datepicker').datepicker();");
+                                //sb.Append("$('#editModal').modal('show'); $('.datepicker').datepicker({ dateFormat: 'dd-MM-yyyy' });");
+                                sb.Append("$('#editModal').modal('show');");
                                 sb.Append(@"</script>");
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "EditModalScript", sb.ToString(), false);
                             }
@@ -1725,7 +1728,7 @@ namespace Bonisoft_2.Pages
                     gridViajes.DataSource = elements;
                     gridViajes.DataBind();
 
-                    lblGridViajesCount.Text = "Resultados: " + elements.Count();
+                    lblGridViajesCount.Text = "# " + elements.Count();
                 }
                 else
                 {
@@ -1750,7 +1753,7 @@ namespace Bonisoft_2.Pages
                     //set No Results found to the new added cell
                     gridViajes.Rows[0].Cells[0].Text = "No hay registros";
                 }
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "BindGrid", "<script type='text/javascript'>$('.datepicker').datepicker();  </script>", false);
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "BindGrid", "<script type='text/javascript'>$('.datepicker').datepicker({ dateFormat: 'dd-MM-yyyy' }); </script>", false);
             }
         }
 
@@ -1764,7 +1767,7 @@ namespace Bonisoft_2.Pages
                     gridViajesEnCurso.DataSource = elements;
                     gridViajesEnCurso.DataBind();
 
-                    lblGridViajesEnCursoCount.Text = "Resultados: " + elements.Count();
+                    lblGridViajesEnCursoCount.Text = "# " + elements.Count();
                 }
                 else
                 {
@@ -1789,7 +1792,7 @@ namespace Bonisoft_2.Pages
                     //set No Results found to the new added cell
                     gridViajesEnCurso.Rows[0].Cells[0].Text = "No hay registros";
                 }
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "BindGrid_EnCurso", "<script type='text/javascript'>$('.datepicker').datepicker();  </script>", false);
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "BindGrid_EnCurso", "<script type='text/javascript'>$('.datepicker').datepicker({ dateFormat: 'dd-MM-yyyy' }); </script>", false);
             }
         }
 
@@ -1998,7 +2001,7 @@ namespace Bonisoft_2.Pages
                                         pesada.Comentarios = txb_pesadaComentarios_str;
 
                                         DateTime date = pesada.Fecha;
-                                        if (!DateTime.TryParseExact(txb_pesadaFecha_str, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
+                                        if (!DateTime.TryParseExact(txb_pesadaFecha_str, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date))
                                         {
                                             date = pesada.Fecha;
                                         }
@@ -2043,7 +2046,7 @@ namespace Bonisoft_2.Pages
                                     pesada.Comentarios = txb_pesadaComentarios_str;
 
                                     DateTime date = pesada.Fecha;
-                                    if (!DateTime.TryParseExact(txb_pesadaFecha_str, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
+                                    if (!DateTime.TryParseExact(txb_pesadaFecha_str, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date))
                                     {
                                         date = pesada.Fecha;
                                     }
@@ -2106,7 +2109,7 @@ namespace Bonisoft_2.Pages
                                         pesada.Comentarios = txb_pesadaComentarios_str;
 
                                         DateTime date = pesada.Fecha;
-                                        if (!DateTime.TryParseExact(txb_pesadaFecha_str, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
+                                        if (!DateTime.TryParseExact(txb_pesadaFecha_str, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date))
                                         {
                                             date = pesada.Fecha;
                                         }
@@ -2151,7 +2154,7 @@ namespace Bonisoft_2.Pages
                                     pesada.Comentarios = txb_pesadaComentarios_str;
 
                                     DateTime date = pesada.Fecha;
-                                    if (!DateTime.TryParseExact(txb_pesadaFecha_str, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date))
+                                    if (!DateTime.TryParseExact(txb_pesadaFecha_str, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date))
                                     {
                                         date = pesada.Fecha;
                                     }
@@ -2358,6 +2361,137 @@ namespace Bonisoft_2.Pages
                         if (viaje != null)
                         {
                             context.viajes.Remove(viaje);
+
+                            #region Log
+
+                            log new_log = new log();
+                            new_log.Usuario_ID = 0;
+                            new_log.Fecha = DateTime.Now;
+                            //new_log.Descripcion="Nuevo pago: " + pago
+                            context.logs.Add(new_log);
+
+                            #endregion
+
+                            context.SaveChanges();
+
+                            ret = true;
+                        }
+                    }
+                }
+            }
+            return ret;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static string ModificarViaje_1(string viajeID_str)
+        {
+            string ret = string.Empty;
+            if (!string.IsNullOrWhiteSpace(viajeID_str))
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    int viaje_ID = 0;
+                    if (!int.TryParse(viajeID_str, out viaje_ID))
+                    {
+                        viaje_ID = 0;
+                    }
+
+                    if (viaje_ID > 0)
+                    {
+                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
+                        if (viaje != null)
+                        {
+                            ret = viaje.Fecha_partida.ToShortDateString() + "|" + viaje.Fecha_llegada.ToShortDateString() + "|" + viaje.Proveedor_ID + "|" + viaje.Cliente_ID + "|" + viaje.Empresa_de_carga_ID + "|" + viaje.Carga + "|" + viaje.Fletero_ID + "|" + viaje.Camion_ID + "|" + viaje.Chofer_ID + "|" + viaje.Comentarios;
+                        }
+                    }
+                }
+            }
+            return ret;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static bool ModificarViaje_2(string viajeID_str, string fecha1, string fecha2, string proveedor, string cliente, string cargador,
+            string lugar_carga, string fletero, string camion, string chofer, string comentarios)
+        {
+            bool ret = false;
+            if (!string.IsNullOrWhiteSpace(viajeID_str))
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    int viaje_ID = 0;
+                    if (!int.TryParse(viajeID_str, out viaje_ID))
+                    {
+                        viaje_ID = 0;
+                    }
+
+                    if (viaje_ID > 0)
+                    {
+                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
+                        if (viaje != null)
+                        {
+                            DateTime date1 = viaje.Fecha_partida;
+                            if (!DateTime.TryParseExact(fecha1, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                            {
+                                date1 = viaje.Fecha_partida;
+                            }
+                            viaje.Fecha_partida = date1;
+
+                            DateTime date2 = viaje.Fecha_llegada;
+                            if (!DateTime.TryParseExact(fecha2, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                            {
+                                date2 = viaje.Fecha_llegada;
+                            }
+                            viaje.Fecha_llegada = date2;
+
+                            #region DDL logic
+
+                            int ddl = viaje.Proveedor_ID;
+                            if (!int.TryParse(proveedor, out ddl))
+                            {
+                                ddl = viaje.Proveedor_ID;
+                            }
+                            viaje.Proveedor_ID = ddl;
+
+                            ddl = viaje.Cliente_ID;
+                            if (!int.TryParse(cliente, out ddl))
+                            {
+                                ddl = viaje.Cliente_ID;
+                            }
+                            viaje.Cliente_ID = ddl;
+
+                            ddl = viaje.Empresa_de_carga_ID;
+                            if (!int.TryParse(cargador, out ddl))
+                            {
+                                ddl = viaje.Empresa_de_carga_ID;
+                            }
+                            viaje.Empresa_de_carga_ID = ddl;
+
+                            ddl = viaje.Fletero_ID;
+                            if (!int.TryParse(fletero, out ddl))
+                            {
+                                ddl = viaje.Fletero_ID;
+                            }
+                            viaje.Fletero_ID = ddl;
+
+                            ddl = viaje.Camion_ID;
+                            if (!int.TryParse(camion, out ddl))
+                            {
+                                ddl = viaje.Camion_ID;
+                            }
+                            viaje.Camion_ID = ddl;
+
+                            ddl = viaje.Chofer_ID;
+                            if (!int.TryParse(chofer, out ddl))
+                            {
+                                ddl = viaje.Chofer_ID;
+                            }
+                            viaje.Chofer_ID = ddl;
+
+                            #endregion DDL logic
+
+                            viaje.Carga = lugar_carga;
+                            viaje.Descarga = string.Empty;
+                            viaje.Comentarios = comentarios;
 
                             #region Log
 

@@ -133,7 +133,7 @@
                 <asp:TextBox ID="txbNew5" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Superv leña">
+        <asp:TemplateField HeaderText="Supervisor leña">
             <EditItemTemplate>
                 <asp:TextBox ID="txb7" runat="server" Text='<%# Bind("Supervisor_lena_nombre") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>

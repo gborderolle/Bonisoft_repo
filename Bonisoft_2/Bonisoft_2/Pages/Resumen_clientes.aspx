@@ -36,7 +36,8 @@
             </div>
 
 
-            <div class="row">
+            <div class="row panel panel-default" style="margin-top: 10px; padding-top: 10px;">
+
                 <div class="col-md-4">
 
                     <div style="text-align: center">
@@ -78,7 +79,7 @@
                                 </Columns>
                             </asp:GridView>
                             <asp:LinkButton ID="lnkDummy" runat="server"></asp:LinkButton>
-                            <asp:Label ID="lblGridClientesCount" runat="server" ClientIDMode="Static" Text="Resultados: 0" CssClass="lblResultados"></asp:Label>
+                            <asp:Label ID="lblGridClientesCount" runat="server" ClientIDMode="Static" Text="0" CssClass="lblResultados label label-info"></asp:Label>
 
                         </ContentTemplate>
                             <Triggers>
@@ -169,7 +170,7 @@
                                         <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
                                     </Columns>
                                 </asp:GridView>
-                                <asp:Label ID="lblGridViajesCount" runat="server" ClientIDMode="Static" Text="Resultados: 0" CssClass="lblResultados"></asp:Label>
+                                <asp:Label ID="lblGridViajesCount" runat="server" ClientIDMode="Static" Text="# 0" CssClass="lblResultados label label-info"></asp:Label>
 
                             </ContentTemplate>
                         </asp:UpdatePanel>
@@ -190,7 +191,7 @@
 
                                 <div class="row" style="margin-bottom: 10px; margin-right: 0; margin-left: 0;">
                                     <h3 class="pull-left" title="Precio de venta total">Saldo inicial: <label id="lblSaldo_inicial" class="label label-warning">0</label></h3>
-                                    <h3 class="pull-right" title="Saldo final después de pagos">Saldo final: <label id="lblSaldo_final" class="label label-danger">0</label></h3>
+                                    <h3 class="pull-right" title="Saldo final después de pagos">Saldo final: <label id="lblSaldo_final" class="label label-success">0</label></h3>
                                 </div>
 
                                 <asp:Label ID="gridPagos_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
@@ -201,6 +202,7 @@
                                     OnRowCommand="gridPagos_RowCommand" >
                                     <Columns>
                                         <asp:BoundField DataField="Cliente_pagos_ID" HeaderText="Cliente_pagos_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
+                                        <asp:BoundField DataField="Cliente_ID" HeaderText="Cliente_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
                                         <asp:BoundField DataField="Fecha_registro" HeaderText="Fecha de registro" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />
                                         <asp:BoundField DataField="Fecha_pago" HeaderText="Fecha de pago" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="False" />
                                         <asp:TemplateField HeaderText = "Forma de pago">
@@ -214,14 +216,14 @@
 
                                          <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
                                             <ItemTemplate>
-                                                    <a id="btnModificar" role="button" onclick="ModificarPago_1();" class="btn btn-info btn-xs glyphicon glyphicon-pencil"></a>
-                                                    <a id="btnBorrar" role="button" onclick="BorrarPago();" class="btn btn-info btn-xs glyphicon glyphicon-remove"></a>
+                                                    <a id="btnModificar" role="button" onclick='<%# "ModificarPago_1(" +Eval("Cliente_pagos_ID") + " );" %>' class="btn btn-info btn-xs glyphicon glyphicon-pencil"></a>
+                                                    <a id="btnBorrar" role="button" onclick='<%# "BorrarPago(" +Eval("Cliente_ID") + " );" %>' class="btn btn-info btn-xs glyphicon glyphicon-remove"></a>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                     </Columns>
                                 </asp:GridView>
-                                <asp:Label ID="lblGridPagosCount" runat="server" ClientIDMode="Static" Text="Resultados: 0" CssClass="lblResultados"></asp:Label>
+                                <asp:Label ID="lblGridPagosCount" runat="server" ClientIDMode="Static" Text="Resultados: 0" CssClass="lblResultados label label-info"></asp:Label>
 
 
                                 <div class="row" style="margin-right: 0; margin-left: 0;">
@@ -264,7 +266,7 @@
                     <table class="table table-hover">
                         <tr>
                             <td>Fecha de pago: 
-                            <asp:TextBox ID="add_txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                            <asp:TextBox ID="add_txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:d MMMM, yyyy}"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -308,7 +310,7 @@
                     <table class="table table-hover">
                         <tr>
                             <td>Fecha de pago: 
-                            <asp:TextBox ID="edit_txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                            <asp:TextBox ID="edit_txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:d MMMM, yyyy}"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>

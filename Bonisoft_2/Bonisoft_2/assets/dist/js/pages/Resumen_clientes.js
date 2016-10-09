@@ -1,6 +1,7 @@
 ﻿/**** Local variables ****/
 var upClientes = '<%=upClientes.ClientID%>';
 var PAGO_ID_SELECTED;
+var CLIENTE_ID_SELECTED;
 
 $(document).ready(function () {
     bindEvents();
@@ -35,17 +36,26 @@ function actualizarSaldos() {
                 if (saldos !== null && saldos.length > 0) {
 
                     var saldos_array = saldos.split("|");
-                    var saldo_inicial = saldos_array[0];
-                    var saldo_final = saldos_array[1];
+                    var saldo_inicial_str = saldos_array[0];
+                    var saldo_final_str = saldos_array[1];
 
                     var lblSaldo_inicial = $("#lblSaldo_inicial");
                     if (lblSaldo_inicial !== null) {
-                        lblSaldo_inicial.text(saldo_inicial);
+                        lblSaldo_inicial.text(saldo_inicial_str);
                     }
 
                     var lblSaldo_final = $("#lblSaldo_final");
                     if (lblSaldo_final !== null) {
-                        lblSaldo_final.text(saldo_final);
+                        lblSaldo_final.text(saldo_final_str);
+
+                        var saldo_final = TryParseFloat(saldo_final_str, 0);
+                        if (saldo_final <= 0) {
+                            lblSaldo_final.removeClass("label-danger");
+                            lblSaldo_final.addClass("label-success");
+                        } else {
+                            lblSaldo_final.removeClass("label-success");
+                            lblSaldo_final.addClass("label-danger");
+                        }
                     }
 
                 }
@@ -54,10 +64,10 @@ function actualizarSaldos() {
     }
 }
 
-function ModificarPago_1() {
+function ModificarPago_1(pagoID) {
 
-    if (PAGO_ID_SELECTED != null && PAGO_ID_SELECTED != "") {
-        var pagoID_str = PAGO_ID_SELECTED;
+    if (pagoID > 0) {
+        var pagoID_str = pagoID.toString();
 
         // Ajax call parameters
         console.log("Ajax call: Resumen_clientes.aspx/ModificarPago_1. Params:");
@@ -79,7 +89,7 @@ function ModificarPago_1() {
                     var monto = datos_array[2];
                     var comentarios = datos_array[3];
 
-                    $("#edit_txbFecha").val(fecha_pago);
+                    $("#edit_txbFecha").val(moment(fecha_pago).format("DD-MM-YYYY"));
                     $("#edit_ddlFormas").val(forma);
                     $("#edit_txbMonto").val(monto);
                     $("#edit_txbComentarios").val(comentarios);
@@ -98,7 +108,6 @@ function ModificarPago_1() {
 
     }
 }
-
 
 function ModificarPago_2() {
 
@@ -141,7 +150,15 @@ function ModificarPago_2() {
                             var monto = TryParseFloat(txbMonto, 0);
                             saldo_final -= monto;
 
-                            lblSaldo_final.text(saldo_final);
+                            lblSaldo_final.text(saldo_final_str);
+
+                            if (saldo_final <= 0) {
+                                lblSaldo_final.removeClass("label-danger");
+                                lblSaldo_final.addClass("label-success");
+                            } else {
+                                lblSaldo_final.removeClass("label-success");
+                                lblSaldo_final.addClass("label-danger");
+                            }
 
                             show_message_info('OK_Datos');
                             $.modal.close();
@@ -208,7 +225,15 @@ function IngresarPago() {
 
                             saldo_final -= monto;
 
-                            lblSaldo_final.text(saldo_final);
+                            lblSaldo_final.text(saldo_final_str);
+
+                            if (saldo_final <= 0) {
+                                lblSaldo_final.removeClass("label-danger");
+                                lblSaldo_final.addClass("label-success");
+                            } else {
+                                lblSaldo_final.removeClass("label-success");
+                                lblSaldo_final.addClass("label-danger");
+                            }
 
                             show_message_info('OK_Datos');
                             $.modal.close();
@@ -239,7 +264,7 @@ function IngresarPago() {
 }
 
 function bindEvents() {
-    $(".datepicker").datepicker();
+    $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
     $("#tabsClientes").tabs();
     $("#gridClientes").tablesorter();
     $("#gridViajes").tablesorter();
@@ -248,6 +273,13 @@ function bindEvents() {
     $("#gridPagos tr").click(function () {
         PAGO_ID_SELECTED = $(this).find(".hiddencol").html();
     });
+
+    $("#gridClientes tr").click(function () {
+        CLIENTE_ID_SELECTED = $(this).find(".hiddencol").html();
+        //$(this).css("background-color", "black");
+        //$(this).find("td").css("background-color", "black");
+    });
+    
 
     // Source: https://www.youtube.com/watch?v=Sy2J7cUv0QM
     var gridClientes = $("#gridClientes tbody tr");
@@ -260,29 +292,22 @@ function bindEvents() {
     $("#txbSearchPagos").quicksearch(gridPagos);
 
     $('#txbSearchClientes').keydown(function () {
-        var count = "Resultados: " + $('#gridClientes tr:visible').length;
+        var count = "# " + $('#gridClientes tbody tr:visible').length;
         $("#lblGridClientesCount").text(count);
     });
 
     $('#txbSearchViajes').keydown(function () {
-        var count = "Resultados: " + $('#gridViajes tr:visible').length;
+        var count = "# " + $('#gridViajes tbody tr:visible').length;
         $("#lblGridViajesCount").text(count);
     });
-
-    $('#txbSearchPagos').keydown(function () {
-        var count = "Resultados: " + $('#gridPagos tr:visible').length;
-        $("#lblGridPagosCount").text(count);
-    });
-
 
 }
 
 
-function BorrarPago() {
+function BorrarPago(clienteID) {
 
-    var hdn_clientID = $("#hdn_clientID");
-    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
-        var clienteID_str = hdn_clientID.val();
+    if (clienteID > 0) {
+        var clienteID_str = clienteID.toString();
 
         $('#dialog p').text(hashMessages['Confirmacion']);
         $("#dialog").dialog({

@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
 
-    $(".datepicker").datepicker();
+    $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
     load_tableSorter();
     updateCounts();
     load_quicksearch();

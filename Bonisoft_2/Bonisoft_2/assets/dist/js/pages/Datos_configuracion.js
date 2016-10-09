@@ -12,5 +12,6 @@ function load_quicksearch() {
     $("#txbSearch").quicksearch(gridInternos);
     $("#txbSearch").quicksearch(gridFormas);
     $("#txbSearch").quicksearch(gridTipos);
+    $("#txbSearch").quicksearch(gridVariedades);
     $("#txbSearch").quicksearch(gridEjes);
 }

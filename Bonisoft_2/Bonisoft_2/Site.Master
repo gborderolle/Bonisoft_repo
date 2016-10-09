@@ -68,6 +68,7 @@
 
      <!-- PAGE SCRIPTS -->
     <script src="/assets/dist/js/pages/Master.js"></script>
+    <script src="/assets/dist/js/moment.js"></script>
     <script src="/ExternalResources/Alert_Messages.js"></script>
 
          <asp:ContentPlaceHolder ID="SubbodyContent" runat="server">

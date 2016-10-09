@@ -76,7 +76,7 @@ Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args
 });
 
 function bindEvents() {
-    $(".datepicker").datepicker();
+    $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
     $("#tabsViajes").tabs();
     $("#tabsNotificaciones").tabs();
     $("#gridViajesEnCurso").tablesorter();
@@ -140,7 +140,7 @@ function copiarPesadas(isOrigen) {
     }
 }
 
-function BorrarViajeEnCurso() {
+function BorrarViajeEnCurso(viaje_ID) {
 
     $('#dialog p').text(hashMessages['Confirmacion']);
     $("#dialog").dialog({
@@ -151,8 +151,8 @@ function BorrarViajeEnCurso() {
         buttons: {
             "Confirmar": function () {
 
-                if (VIAJE_EN_CURSO_ID_SELECTED != null && VIAJE_EN_CURSO_ID_SELECTED != "") {
-                    var viajeID_str = VIAJE_EN_CURSO_ID_SELECTED;
+                if (viaje_ID > 0) {
+                    var viajeID_str = viaje_ID.toString();
 
                     // Check existen mercaderías
                     $.ajax({
@@ -527,6 +527,136 @@ function calcularPrecioVenta() {
 
     }
 }
+
+function ModificarViaje_1(viajeID) {
+
+    if (viajeID > 0) {
+        var viajeID_str = viajeID.toString();
+
+        var hdn_editViaje_viajeID = $("#hdn_editViaje_viajeID");
+        if (hdn_editViaje_viajeID !== null) {
+            hdn_editViaje_viajeID.val(viajeID_str);
+
+            // Ajax call parameters
+            console.log("Ajax call: Viajes.aspx/ModificarViaje_1. Params:");
+            console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
+
+            $.ajax({
+                type: "POST",
+                url: "Viajes.aspx/ModificarViaje_1",
+                data: '{viajeID_str: "' + viajeID_str + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var datos = response.d;
+                    if (datos) {
+
+                        var datos_array = datos.split("|");
+                        var fecha1 = datos_array[0];
+                        var fecha2 = datos_array[1];
+                        var proveedor = datos_array[2];
+                        var cliente = datos_array[3];
+                        var cargador = datos_array[4];
+                        var lugar_carga = datos_array[5];
+                        var fletero = datos_array[6];
+                        var camion = datos_array[7];
+                        var chofer = datos_array[8];
+                        var comentarios = datos_array[9];
+
+                        $("#modalEdit_txbFecha1").val(moment(fecha1).format("DD-MM-YYYY"));
+                        $("#modalEdit_txbFecha2").val(moment(fecha2).format("DD-MM-YYYY"));
+                        $("#modalEdit_ddlProveedores").val(proveedor);
+                        $("#modalEdit_ddlClientes").val(cliente);
+                        $("#modalEdit_ddlCargadores").val(cargador);
+                        $("#modalEdit_txbLugarCarga").val(lugar_carga);
+                        $("#modalEdit_ddlFleteros").val(fletero);
+                        $("#modalEdit_ddlCamiones").val(camion);
+                        $("#modalEdit_ddlChoferes").val(chofer);
+                        $("#modalEdit_txbComentarios").val(comentarios);
+
+                        $('#editModal').modal('show');
+
+                    } else {
+                        show_message_info('Error_Datos');
+                    }
+
+                }, // end success
+                failure: function (response) {
+                    show_message_info('Error_Datos');
+                }
+            }); // Ajax
+
+        }
+    }
+}
+
+function ModificarViaje_2() {
+
+    var hdn_editViaje_viajeID = $("#hdn_editViaje_viajeID");
+    if (hdn_editViaje_viajeID !== null && hdn_editViaje_viajeID.val() !== null && hdn_editViaje_viajeID.val().length > 0) {
+        var viajeID_str = hdn_editViaje_viajeID.val();
+
+        var fecha1 = $("#modalEdit_txbFecha1").val();
+        var fecha2 = $("#modalEdit_txbFecha2").val();
+        var proveedor = $("#modalEdit_ddlProveedores").val();
+        var cliente = $("#modalEdit_ddlClientes").val();
+        var cargador = $("#modalEdit_ddlCargadores").val();
+        var lugar_carga = $("#modalEdit_txbLugarCarga").val();
+        var fletero = $("#modalEdit_ddlFleteros").val();
+        var camion = $("#modalEdit_ddlCamiones").val();
+        var chofer = $("#modalEdit_ddlChoferes").val();
+        var comentarios = $("#modalEdit_txbComentarios").val();
+
+        // Ajax call parameters
+        console.log("Ajax call: Viajes.aspx/ModificarViaje_2. Params:");
+        console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
+        console.log("fecha1, type: " + type(fecha1) + ", value: " + fecha1);
+        console.log("fecha2, type: " + type(fecha2) + ", value: " + fecha2);
+        console.log("proveedor, type: " + type(proveedor) + ", value: " + proveedor);
+        console.log("cliente, type: " + type(cliente) + ", value: " + cliente);
+        console.log("cargador, type: " + type(cargador) + ", value: " + cargador);
+        console.log("lugar_carga, type: " + type(lugar_carga) + ", value: " + lugar_carga);
+        console.log("fletero, type: " + type(fletero) + ", value: " + fletero);
+        console.log("camion, type: " + type(camion) + ", value: " + camion);
+        console.log("chofer, type: " + type(chofer) + ", value: " + chofer);
+        console.log("comentarios, type: " + type(comentarios) + ", value: " + comentarios);
+
+        $.ajax({
+            type: "POST",
+            url: "Viajes.aspx/ModificarViaje_2",
+            data: '{viajeID_str: "' + viajeID_str + '",fecha1: "' + fecha1 + '",fecha2: "' + fecha2 + '",proveedor: "' + proveedor +
+                '",cliente: "' + cliente + '",cargador: "' + cargador + '",lugar_carga: "' + lugar_carga + '",fletero: "' + fletero +
+                '",camion: "' + camion + '",chofer: "' + chofer + '",comentarios: "' + comentarios + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                var ok = response.d;
+                if (ok !== null && ok) {
+
+                    show_message_info('OK_Datos');
+                    $.modal.close();
+
+                    $("#btnUpdateViajesEnCurso").click();
+
+                    //// Actualizar datos
+                    //var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
+                    //if (selected_row !== null) {
+                    //    selected_row.click();
+                    //}
+
+                } else {
+                    show_message_info('Error_Datos');
+                }
+
+            }, // end success
+            failure: function (response) {
+                show_message_info('Error_Datos');
+
+            }
+        }); // Ajax
+    }
+}
+
 
 function FinDelViaje() {
 
