@@ -243,7 +243,6 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Interno_ID" Type="int" Nullable="false" />
           <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Clave" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Ultima_conexion" Type="date" Nullable="false" />
           <Property Name="Rol_usuario_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="variedad">
@@ -405,17 +404,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
           <Property Name="Mercaderia_ID" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="usuario">
-          <Key>
-            <PropertyRef Name="Usuario_ID" />
-          </Key>
-          <Property Name="Usuario_ID" Type="Int32" Nullable="false" />
-          <Property Name="Interno_ID" Type="Int32" Nullable="false" />
-          <Property Name="Usuario1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Clave" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Ultima_conexion" Type="DateTime" Nullable="false" />
-          <Property Name="Rol_usuario_ID" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="cliente_preferencias_cliente">
           <Key>
             <PropertyRef Name="Cliente_ID" />
@@ -433,7 +421,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySet Name="preferencias_cliente" EntityType="Self.preferencias_cliente" />
           <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" />
           <EntitySet Name="proveedor_mercaderia" EntityType="Self.proveedor_mercaderia" />
-          <EntitySet Name="usuarios" EntityType="Self.usuario" />
           <EntitySet Name="cliente_preferencias_cliente" EntityType="Self.cliente_preferencias_cliente" />
           <EntitySet Name="roles_usuario" EntityType="bonisoft_dbModel.roles_usuario" />
           <EntitySet Name="variedad" EntityType="bonisoft_dbModel.variedad" />
@@ -451,6 +438,7 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySet Name="cliente_pagos" EntityType="bonisoft_dbModel.cliente_pagos" />
           <EntitySet Name="viajes" EntityType="bonisoft_dbModel.viaje" />
           <EntitySet Name="clientes" EntityType="bonisoft_dbModel.cliente" />
+          <EntitySet Name="usuarios" EntityType="bonisoft_dbModel.usuario" />
         </EntityContainer>
         <EntityType Name="roles_usuario">
           <Key>
@@ -646,6 +634,16 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="Usuario_ID" />
+          </Key>
+          <Property Name="Usuario_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Interno_ID" Type="Int32" Nullable="false" />
+          <Property Name="Usuario1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Clave" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Rol_usuario_ID" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -729,18 +727,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
               <MappingFragment StoreEntitySet="proveedor_mercaderia">
                 <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
                 <ScalarProperty Name="Mercaderia_ID" ColumnName="Mercaderia_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="usuarios">
-            <EntityTypeMapping TypeName="bonisoft_dbModel.usuario">
-              <MappingFragment StoreEntitySet="usuario">
-                <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
-                <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
-                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
-                <ScalarProperty Name="Clave" ColumnName="Clave" />
-                <ScalarProperty Name="Ultima_conexion" ColumnName="Ultima_conexion" />
-                <ScalarProperty Name="Rol_usuario_ID" ColumnName="Rol_usuario_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -958,6 +944,17 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
                 <ScalarProperty Name="Dueno_nombre" ColumnName="Dueno_nombre" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="cliente_ID" ColumnName="cliente_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="bonisoft_dbModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="Rol_usuario_ID" ColumnName="Rol_usuario_ID" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
+                <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

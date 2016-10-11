@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="bonisoft_dbModel.preferencias_cliente" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoft_dbModel.proveedor_carga" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoft_dbModel.proveedor_mercaderia" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bonisoft_dbModel.usuario" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoft_dbModel.cliente_preferencias_cliente" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoft_dbModel.roles_usuario" Width="1.5" PointX="11.375" PointY="11.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.variedad" Width="1.5" PointX="0.75" PointY="13.75" />
@@ -31,6 +30,7 @@
         <EntityTypeShape EntityType="bonisoft_dbModel.cliente_pagos" Width="1.5" PointX="15.375" PointY="0.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.viaje" Width="1.5" PointX="15.375" PointY="9.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.cliente" Width="1.5" PointX="0.75" PointY="16.75" />
+        <EntityTypeShape EntityType="bonisoft_dbModel.usuario" Width="1.5" PointX="3.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

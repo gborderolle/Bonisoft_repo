@@ -69,7 +69,16 @@ namespace Bonisoft_2
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UserID"] != null && Session["UserName"] != null)
+            {
+                if (!IsPostBack)
+                {
+                }
+            }
+            else
+            {
+                Response.Redirect("/Login.aspx");
+            }
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

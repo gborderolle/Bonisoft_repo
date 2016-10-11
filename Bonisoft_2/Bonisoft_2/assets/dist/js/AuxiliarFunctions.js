@@ -50,7 +50,7 @@ function show_message_confirm(msg) {
     $("#dialog").dialog({
         open: {},
         resizable: false,
-        height: 140,
+        height: 150,
         modal: true,
         buttons: {
             "Confirmar": function () {
@@ -71,7 +71,7 @@ function show_message_info(msg) {
     $("#dialog").dialog({
         open: {},
         resizable: false,
-        height: 140,
+        height: 150,
         modal: true,
         buttons: {
             "Aceptar": function () {

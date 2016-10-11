@@ -251,6 +251,7 @@
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="assets\bootstrap\js\npm.js" />
     <Content Include="assets\dist\css\jquery.modal.css" />
+    <Content Include="assets\dist\css\Login_2.css" />
     <Content Include="assets\dist\css\pages\Datos.css" />
     <Content Include="assets\dist\css\font-awesome.css" />
     <Content Include="assets\dist\css\pages\InfoBoxes.min.css" />
@@ -258,6 +259,7 @@
     <Content Include="assets\dist\css\pages\Login.css" />
     <Content Include="assets\dist\css\pages\Modal_styles.css" />
     <Content Include="assets\dist\css\pages\Resumen_clientes.css" />
+    <Content Include="assets\dist\css\popbox.css" />
     <Content Include="assets\dist\css\skins\skin-black-light.css" />
     <Content Include="assets\dist\css\skins\skin-black-light.min.css" />
     <Content Include="assets\dist\css\skins\skin-black.css" />
@@ -323,6 +325,7 @@
     <Content Include="assets\dist\js\jquery.modal.js" />
     <Content Include="assets\dist\js\jquery.quicksearch.js" />
     <Content Include="assets\dist\js\jquery.tablesorter.js" />
+    <Content Include="assets\dist\js\Login_2.js" />
     <Content Include="assets\dist\js\moment.js" />
     <Content Include="assets\dist\js\pages\images\asc.gif" />
     <Content Include="assets\dist\js\pages\images\bg.gif" />
@@ -334,8 +337,9 @@
     <Content Include="assets\dist\js\pages\Detalles.js" />
     <Content Include="assets\dist\js\pages\Listados.js" />
     <Content Include="assets\dist\js\pages\Resumen_clientes.js" />
+    <Content Include="assets\dist\js\popbox.js" />
     <Content Include="ExternalResources\Alert_Messages.js" />
-    <Content Include="assets\dist\js\pages\login.js" />
+    <Content Include="assets\dist\js\pages\Login.js" />
     <Content Include="assets\dist\js\pages\Viajes.js" />
     <Content Include="assets\plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="assets\plugins\bootstrap-slider\slider.css" />
@@ -1178,6 +1182,7 @@
     <Content Include="assets\dist\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="assets\dist\fonts\TradeGothicLTStd-Bd2.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Login.aspx" />
     <Content Include="Pages\Ajustes.aspx" />
     <Content Include="Pages\Bancos.aspx" />
     <Content Include="Pages\Contabilidad.aspx" />
@@ -1260,6 +1265,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\web.config" />
+    <Content Include="Site1.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1434,6 +1440,9 @@
     <Compile Include="cuadrilla_descarga.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data Generic\DataAccessContext_MySQL.cs" />
+    <Compile Include="Data Generic\DataAccessObject.cs" />
+    <Compile Include="Data Objects\ExternalMethodsDAO.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1453,6 +1462,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Global Objects\GlobalMethods.cs" />
     <Compile Include="Helpers\Extras.cs" />
     <Compile Include="Helpers\TestController.cs" />
     <Compile Include="Helpers\WebFormController.cs" />
@@ -1464,6 +1474,13 @@
     </Compile>
     <Compile Include="log.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="mercaderia_comprada.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
@@ -1548,6 +1565,13 @@
     </Compile>
     <Compile Include="roles_usuario.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site1.Master.designer.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\Configuracion\Bancos.ascx.cs">
       <DependentUpon>Bancos.ascx</DependentUpon>

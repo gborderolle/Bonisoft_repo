@@ -33,7 +33,6 @@ namespace Bonisoft_2
         public virtual DbSet<preferencias_cliente> preferencias_cliente { get; set; }
         public virtual DbSet<proveedor_carga> proveedor_carga { get; set; }
         public virtual DbSet<proveedor_mercaderia> proveedor_mercaderia { get; set; }
-        public virtual DbSet<usuario> usuarios { get; set; }
         public virtual DbSet<cliente_preferencias_cliente> cliente_preferencias_cliente { get; set; }
         public virtual DbSet<roles_usuario> roles_usuario { get; set; }
         public virtual DbSet<variedad> variedad { get; set; }
@@ -51,5 +50,6 @@ namespace Bonisoft_2
         public virtual DbSet<cliente_pagos> cliente_pagos { get; set; }
         public virtual DbSet<viaje> viajes { get; set; }
         public virtual DbSet<cliente> clientes { get; set; }
+        public virtual DbSet<usuario> usuarios { get; set; }
     }
 }

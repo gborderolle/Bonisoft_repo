@@ -1,7 +1,11 @@
-
 $(document).ready(function () {
-    updateClock(); 
+    initVariables();
+    updateClock();
 });
+
+function initVariables() {
+    $('.usernameInfo').html(globalUserName);
+}
 
 function timenow(){
     var now= new Date(), 

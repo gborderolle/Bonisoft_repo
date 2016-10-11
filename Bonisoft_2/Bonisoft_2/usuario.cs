@@ -18,7 +18,6 @@ namespace Bonisoft_2
         public int Interno_ID { get; set; }
         public string Usuario1 { get; set; }
         public string Clave { get; set; }
-        public System.DateTime Ultima_conexion { get; set; }
         public int Rol_usuario_ID { get; set; }
     }
 }

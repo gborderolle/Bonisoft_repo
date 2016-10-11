@@ -74,17 +74,6 @@
     <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
     <Property Name="Mercaderia_ID" Type="Int32" Nullable="false" />
   </EntityType>
-  <EntityType Name="usuario">
-    <Key>
-      <PropertyRef Name="Usuario_ID" />
-    </Key>
-    <Property Name="Usuario_ID" Type="Int32" Nullable="false" />
-    <Property Name="Interno_ID" Type="Int32" Nullable="false" />
-    <Property Name="Usuario1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Clave" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Ultima_conexion" Type="DateTime" Nullable="false" />
-    <Property Name="Rol_usuario_ID" Type="Int32" Nullable="false" />
-  </EntityType>
   <EntityType Name="cliente_preferencias_cliente">
     <Key>
       <PropertyRef Name="Cliente_ID" />
@@ -102,7 +91,6 @@
     <EntitySet Name="preferencias_cliente" EntityType="Self.preferencias_cliente" />
     <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" />
     <EntitySet Name="proveedor_mercaderia" EntityType="Self.proveedor_mercaderia" />
-    <EntitySet Name="usuarios" EntityType="Self.usuario" />
     <EntitySet Name="cliente_preferencias_cliente" EntityType="Self.cliente_preferencias_cliente" />
     <EntitySet Name="roles_usuario" EntityType="bonisoft_dbModel.roles_usuario" />
     <EntitySet Name="variedad" EntityType="bonisoft_dbModel.variedad" />
@@ -120,6 +108,7 @@
     <EntitySet Name="cliente_pagos" EntityType="bonisoft_dbModel.cliente_pagos" />
     <EntitySet Name="viajes" EntityType="bonisoft_dbModel.viaje" />
     <EntitySet Name="clientes" EntityType="bonisoft_dbModel.cliente" />
+    <EntitySet Name="usuarios" EntityType="bonisoft_dbModel.usuario" />
   </EntityContainer>
   <EntityType Name="roles_usuario">
     <Key>
@@ -314,5 +303,15 @@
     <Property Name="Direccion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="Usuario_ID" />
+    </Key>
+    <Property Name="Usuario_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Interno_ID" Type="Int32" Nullable="false" />
+    <Property Name="Usuario1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Clave" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Rol_usuario_ID" Type="Int32" Nullable="false" />
   </EntityType>
 </Schema>

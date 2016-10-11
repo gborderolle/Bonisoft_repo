@@ -5,6 +5,7 @@ var hashMessages = {};
 hashMessages["Confirmacion"] = "¿Está seguro?";
 hashMessages["OK_Datos"] = "Información guardada.";
 hashMessages["Error_Datos"] = "Ocurrió un error en el servidor.";
+hashMessages["Error_IngreseClave"] = "Ingrese su contraseña de usuario para continuar.";
 
 // Viajes
 hashMessages["OK_FINViaje"] = "Viaje finalizado.";

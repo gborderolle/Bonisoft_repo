@@ -4,9 +4,9 @@
 
     <div class="jumbotron">
         <h1>Bonisoft software</h1>
-        <p class="lead">¡Bienvenido Gonzalo!</p>
+        <p class="lead">¡Bienvenido <label class="usernameInfo"></label>!</p>
     </div>
-
+    
     <div class="row">
         <div class="col-md-4">
             <h2>Viajes</h2>
@@ -27,15 +27,15 @@
                 <a class="btn btn-default" href="/Pages/Datos">Acceder &raquo;</a>
             </p>
         </div>
-       <%-- <div class="col-md-4">
-            <h2>Recordatorios</h2>
+        <div class="col-md-4">
+            <h2>Resumen de Clientes</h2>
             <p>
                 You can easily find a web hosting company that offers the right mix of features and price for your applications.
             </p>
             <p>
-                <a class="btn btn-default" href="/Pages/Recordatorios">Acceder &raquo;</a>
+                <a class="btn btn-default" href="/Pages/Resumen_clientes">Acceder &raquo;</a>
             </p>
-        </div>--%>
+        </div>
     </div>
 
         <%--<div class="row">

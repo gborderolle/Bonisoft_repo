@@ -40,6 +40,5 @@ namespace Bonisoft_2
         public string Comentarios { get; set; }
         public bool EnViaje { get; set; }
         public Nullable<System.DateTime> Fecha_registro { get; set; }
-
     }
 }

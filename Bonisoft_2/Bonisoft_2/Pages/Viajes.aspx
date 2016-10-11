@@ -6,10 +6,12 @@
 
     <!-- STYLES EXTENSION -->
     <link rel="stylesheet" href="/assets/dist/css/jquery.modal.css">
+    <link rel="stylesheet" href="/assets/dist/css/popbox.css">
 
     <!-- PAGE CSS -->
     <link rel="stylesheet" href="/assets/dist/css/pages/Viajes.css">
     <link rel="stylesheet" href="/assets/dist/css/pages/Modal_styles.css">
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
@@ -18,6 +20,7 @@
     <script type="text/javascript" src="/assets/dist/js/jquery.quicksearch.js"></script>
     <script type="text/javascript" src="/assets/dist/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/assets/dist/js/jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/popbox.js"></script>
 
     <!-- PAGE JS -->
     <script src="/assets/dist/js/AuxiliarFunctions.js"></script>
@@ -73,7 +76,8 @@
 
                                                 <asp:UpdatePanel ID="upUpdateViajesEnCurso" runat="server">
                                                     <ContentTemplate>
-                                                        <asp:Button ID="btnUpdateViajesEnCurso" runat="server" Text="Actualizar" CssClass="btn btnUpdate" OnClick="btnUpdateViajesEnCurso_Click" UseSubmitBehavior="false" ClientIDMode="Static" />
+                                                        <asp:Button ID="btnUpdateViajesEnCurso" runat="server" Text="Actualizar" CssClass="btn btnUpdate" 
+                                                            OnClick="btnUpdateViajesEnCurso_Click" UseSubmitBehavior="false" ClientIDMode="Static" />
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
 
@@ -111,15 +115,17 @@
                                         <asp:BoundField DataField="Precio_venta" HeaderText="Precio venta" DataFormatString="{0:C0}" HtmlEncode="False" />
                                         <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
 
-                                        <%--<asp:ButtonField CommandName="notificar" ControlStyle-CssClass="btn btn-info" ButtonType="Link" Text="" HeaderText="Notificar">
-                                            <ControlStyle CssClass="btn btn-info btn-xs fa fa-bullhorn"></ControlStyle>
-                                        </asp:ButtonField>--%>
+                                        <asp:ButtonField CommandName="notificar" ControlStyle-CssClass="btn btn-info btn-xs" ButtonType="Link" Text="" HeaderText="Notificar">
+                                            <ControlStyle CssClass="btn btn-success btn-xs fa fa-bullhorn"></ControlStyle>
+                                        </asp:ButtonField>
 
                                         <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
                                             <ItemTemplate>
-                                                <a id="btnNotificar" role="button" onclick='<%# "NotificarViaje(" +Eval("Viaje_ID") + ");" %>' class="btn btn-success btn-xs fa fa-bullhorn"></a>
+                                                <%--<a id="btnNotificar" role="button" onclick='<%# "NotificarViaje(" +Eval("Viaje_ID") + ");" %>' class="btn btn-success btn-xs fa fa-bullhorn"></a>--%>
                                                 <a id="btnModificar" role="button" onclick='<%# "ModificarViaje_1(" +Eval("Viaje_ID") + ");" %>' class="btn btn-info btn-xs glyphicon glyphicon-pencil"></a>
                                                 <a id="btnBorrar" role="button" onclick='<%# "BorrarViajeEnCurso(" +Eval("Viaje_ID") + ");" %>' class="btn btn-danger btn-xs glyphicon glyphicon-remove"></a>
+
+                                                <%--<a id="btnBorrar" role="button" onclick="confirmar_borrarViajeEnCurso()" class="btn btn-danger btn-xs glyphicon glyphicon-remove"></a>--%>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -739,6 +745,47 @@
 
     <div id="dialog" title="Mensaje Bonisoft" style="height: 0 !important;">
         <p style="text-align: left;"></p>
+    </div>
+
+
+     <div id="dialog_borrarViaje" title="Mensaje Bonisoft" style="height: 0 !important;">
+        <p style="text-align: left;"></p>
+
+          <div class="form-group">
+            <div class="row row-short" style="padding: 10px;">
+
+                <input type="password" id="txbClave" class="form-control" style="width:90%; display:none;" placeholder="Ingrese su contraseña" 
+                    name="login-username" required="required" />
+                <!--  -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- popbox: Remove element -->
+    <div class='popbox' style="margin-top: 15px; margin-right: 6px; display: none;"></div>
+    <div class='msg-box popbox' id="divPopbox" style="width: 300px; height: 240px; margin-top: 10px; right: 10%;">
+        <div class='arrow' style="left: 250px;"></div>
+        <div class='arrow-border' style="left: 250px;"></div>
+        <div class="row row-short" style="padding: 10px;">
+            <label class="label" style="font-size: 100%; color: rgba(68, 89, 156, 1); font-size: 16px;">Borrar elemento seleccionado</label>
+        </div>
+        <div class="form-group">
+            <div class="row row-short" style="padding: 10px;">
+
+                <div id="divRemoveElementMessage" class="alert alert-warning" role="alert">
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Info:</span> Está a punto de borrar el elemento, confirme su contraseña para continuar
+                </div>
+                <input type="password" class="form-control" id="txbConfirmRemoveElement" placeholder="Contraseña" name="login-username" required="required" />
+                <!--  -->
+            </div>
+            <div id="popbox_footer" class="row row-short pull-right" style="margin-right: 15px; margin-top: -7px;">
+                <button id="btnConfirmRemoveElement" type="button" class="btn btn-default" title="Confirmar borrar elemento" runat="server">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- Add Hdn Fields -->

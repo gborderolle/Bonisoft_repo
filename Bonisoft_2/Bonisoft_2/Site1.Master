@@ -1,20 +1,22 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Bonisoft_2.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="Bonisoft_2.Site1" %>
 
 <!DOCTYPE html>
 
 <html lang="es-Es">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
     <title><%: Page.Title %> - Bonisoft</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
-    <!-- STYLES -->
+     <!-- STYLES -->
 
     <!-- Font Awesome -->
     <%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">--%>
@@ -25,22 +27,14 @@
     <%--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">--%>
     <link rel="stylesheet" href="/assets/dist/css/jquery-ui.css">
 
-    <script type="text/javascript">
-
-        /*** global variables ***/
-
-        window.globalUserID = '<%= Session["UserID"] %>';
-        window.globalUserName = '<%:Session["UserName"]%>';
-
-    </script>
-
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+
     </asp:ContentPlaceHolder>
 
 </head>
 <body>
     <form runat="server">
-        <asp:ScriptManager runat="server">
+        <asp:ScriptManager runat="server">            
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
@@ -61,14 +55,16 @@
             </Scripts>
         </asp:ScriptManager>
         <script type="text/javascript" language="javascript">
-            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
-            function EndRequestHandler(sender, args) {
-                if (args.get_error() != undefined) {
-                    args.set_errorHandled(true);
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+                function EndRequestHandler(sender, args){
+                    if (args.get_error() != undefined){
+                        args.set_errorHandled(true);
+                    }
                 }
-            }
-        </script>
-<!-- GENERAL SCRIPTS -->
+            </script>
+
+        
+     <!-- GENERAL SCRIPTS -->
     <%--<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>--%>
     <script src="/assets/dist/js/jquery-ui.js"></script>
 
@@ -89,35 +85,20 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Bonisoft</a>
+                    <a class="navbar-brand" runat="server" href="">Bonisoft</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Inicio</a></li>
-                        <li><a runat="server" href="/Pages/Viajes">Viajes</a></li>
-                        <li><a runat="server" href="/Pages/Datos">Base de Datos</a></li>
-                        <li><a runat="server" href="/Pages/Resumen_clientes">Resumen de Clientes</a></li>
-                       <%-- <li><a runat="server" href="/Pages/Recordatorios">Recordatorios</a></li>
-                        <li><a runat="server" href="/Pages/Contabilidad">Contabilidad</a></li>
-                        <li><a runat="server" href="/Pages/Registros">Registros</a></li>
-                        <li><a runat="server" href="/Pages/Ajustes">Ajustes</a></li>--%>
+                        <li><a runat="server" href="/Login">Ingresar</a></li>
+                        
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a id="lblUsername" href="#" class="usernameInfo">-</a></li>
-                                <li><a id="lblDatetime" href="#">-</a></li>
-                                <li><a runat="server" href="~/Login">Salir</a></li>
-                            </ul>
+                           
                         </AnonymousTemplate>
-                       <%-- <LoggedInTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-                                <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                </li>
-                            </ul>
-                        </LoggedInTemplate>--%>
+                        <LoggedInTemplate>
+                           
+                        </LoggedInTemplate>
                     </asp:LoginView>
                 </div>
             </div>

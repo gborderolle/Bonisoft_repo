@@ -1,4 +1,5 @@
 /**** Local variables ****/
+
 var upAdd = '<%=upAdd.ClientID%>';
 var upGridViajesEnCurso = '<%=upGridViajesEnCurso.ClientID%>';
 
@@ -8,7 +9,12 @@ var VIAJE_ID_SELECTED;
 /**** Extras variables ****/
 
 $(document).ready(function () {
+
+    $('.popbox').popbox();
+
     bindEvents();
+
+    //loadClickRemoveButton_event();
 
     (function ($, window, document) {
         var panelSelector = '[data-perform="panel-collapse"]';
@@ -142,23 +148,30 @@ function copiarPesadas(isOrigen) {
 
 function BorrarViajeEnCurso(viaje_ID) {
 
-    $('#dialog p').text(hashMessages['Confirmacion']);
-    $("#dialog").dialog({
+    $("#txbClave").val("");
+    $("#txbClave").show();
+
+    $('#dialog_borrarViaje p').text(hashMessages['Confirmacion']);
+    $("#dialog_borrarViaje").dialog({
         open: {},
         resizable: false,
-        height: 140,
+        height: 230,
         modal: true,
         buttons: {
             "Confirmar": function () {
 
-                if (viaje_ID > 0) {
+                var userID = globalUserID;
+                if (viaje_ID > 0 && userID != null && userID != "") {
                     var viajeID_str = viaje_ID.toString();
+
+                    var txbClave = $("#txbClave").val();
+                    if (txbClave != null && txbClave.length > 0) {
 
                     // Check existen mercaderías
                     $.ajax({
                         type: "POST",
                         url: "Viajes.aspx/BorrarViajeEnCurso",
-                        data: '{viajeID_str: "' + viajeID_str + '"}',
+                        data: '{viajeID_str: "' + viajeID_str + ', userID: "' + userID + ', clave_str: "' + txbClave + '"}',
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
@@ -173,16 +186,24 @@ function BorrarViajeEnCurso(viaje_ID) {
                                 show_message_info('Error_Datos');
                             }
 
+                            $("#txbClave").hide();
+
                         }, // end success
                         failure: function (response) {
                             show_message_info('Error_Datos');
+                            $("#txbClave").hide();
                         }
                     }); // Ajax
 
+                    } else {
+                        show_message_info('Error_IngreseClave');
+                    }
                 }
             },
             "Cancelar": function () {
                 $(this).dialog("close");
+                $("#txbClave").hide();
+
                 return false;
             }
         }
@@ -192,7 +213,6 @@ function BorrarViajeEnCurso(viaje_ID) {
 function guardarPesadas(isOrigen) {
 
     var ok_continue = false;
-
     var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID");
     if (hdn_notificaciones_viajeID !== null && hdn_notificaciones_viajeID.val() !== null && hdn_notificaciones_viajeID.val().length > 0) {
         var viajeID_str = hdn_notificaciones_viajeID.val();
@@ -528,7 +548,7 @@ function calcularPrecioVenta() {
     }
 }
 
-
+// No se usa
 function NotificarViaje(viajeID) {
 
     if (viajeID > 0) {
@@ -552,14 +572,13 @@ function NotificarViaje(viajeID) {
                     var datos = response.d;
                     if (datos) {
 
-                        var precio_compra = datos;
+                        //var precio_compra = datos;
                         var notif_lblPrecioCompra = $("#notif_lblPrecioCompra");
                         if(notif_lblPrecioCompra != null){
                             notif_lblPrecioCompra.text(precio_compra);
 
                             var datos_array = datos.split("|");
                             var precio_compra = datos_array[0];
-
 
                             // Pesada origen
                             var pesada_origen_array = datos_array[1].split("&");
@@ -610,7 +629,6 @@ function NotificarViaje(viajeID) {
 
                             $('#tabsNotificaciones').tabs();
                             $('#notificacionesModal').modal('show');
-
                         }
 
                     } else {
@@ -763,7 +781,7 @@ function FinDelViaje() {
     $("#dialog").dialog({
         open: {},
         resizable: false,
-        height: 140,
+        height: 150,
         modal: true,
         buttons: {
             "Confirmar": function () {
@@ -915,5 +933,64 @@ function GuardarPrecioVenta() {
     }
 }
 
+/**** Event: OnClick Load on click event remove button (btnRemoveElement) ****/
+//function loadClickRemoveButton_event() {
+//    var btnRemoveElement = $("#btnBorrar");
+//    btnRemoveElement.bind("click", function () {
+//        if (!$('#btnBorrar').hasClass("opened")) {
 
+//            $('.popbox3').popbox3();
+//            $(".box3.popbox3").show("highlight", 700);
+//            $('#txbConfirmRemoveElement').focus();
+//            $('#btnBorrar').addClass("opened");
+
+//            // Popup re-location
+//            $(".popbox3").position({
+//                my: "left top",
+//                at: "left bottom",
+//                of: "#btnBorrar"
+//            });
+
+//            var btn_width = (parseInt(btnBorrar.css("width"), 10) / 2) + 2;
+
+//            // X and Y Axis
+//            $("#divPopbox3").offset({ left: $("#divPopbox3").offset().left + btn_width });
+//            $("#divPopbox3").offset({ top: $("#divPopbox3").offset().top + 5 });
+
+//        } else {
+//            $(".box3.popbox3").hide(200);
+//            $('#btnBorrar').removeClass("opened");
+//        }
+//    });
+//}
+
+function confirmar_borrarViajeEnCurso() {
+
+    var btnBorrar = $("#btnBorrar");
+    if (btnBorrar != null) {
+        if (!btnBorrar.hasClass("opened")) {
+            $(".msg-box.popbox").show("highlight", 700);
+            $('#txbConfirmRemoveElement').focus();
+            btnBorrar.addClass("opened");
+
+            // Popup re-location
+            $(".popbox").position({
+                my: "left top",
+                at: "left bottom",
+                of: "#btnBorrar"
+            });
+
+            var btn_width = (parseInt(btnBorrar.css("width"), 10) / 2) + 2;
+
+            // X and Y Axis
+            $("#divPopbox").offset({ left: $("#divPopbox").offset().left + btn_width });
+            $("#divPopbox").offset({ top: $("#divPopbox").offset().top + 5 });
+
+        } else {
+            //$(".msg-box.popbox").hide(200);
+            btnBorrar.removeClass("opened");
+        }
+    }
+
+}
 

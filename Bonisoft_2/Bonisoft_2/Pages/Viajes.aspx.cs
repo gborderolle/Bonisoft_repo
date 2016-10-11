@@ -5,6 +5,7 @@ using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -1332,7 +1333,7 @@ namespace Bonisoft_2.Pages
 
                                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
                                 sb.Append(@"<script type='text/javascript'>");
-                                sb.Append("$('#tabsNotificaciones').tabs(); $('#notificacionesModal').modal('show');");
+                                sb.Append("$('#tabsNotificaciones').tabs(); $('#notificacionesModal').modal('show'); bindEvents();");
                                 //sb.Append("$('#tabsNotificaciones').tabs(); $('#notificacionesModal').modal('show'); $('.datepicker').datepicker({ dateFormat: 'dd-MM-yyyy' }); $('#gridMercaderias').tablesorter();");
                                 sb.Append(@"</script>");
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "NotificarModalScript", sb.ToString(), false);
@@ -1876,7 +1877,7 @@ namespace Bonisoft_2.Pages
 
         #region Web methods
 
-        [System.Web.Services.WebMethod]
+        [WebMethod]
         public static bool GuardarPrecioVenta(string viajeID, string precioFlete_str, string precioDescarga_str, string gananciaXTon_str,
             string IVA_str, string precio_venta_str)
         {
@@ -1957,7 +1958,7 @@ namespace Bonisoft_2.Pages
             return save_ok;
         }
 
-        [System.Web.Services.WebMethod]
+        [WebMethod]
         public static string GuardarPesadas(string viajeID_str, int isOrigen, string pesadaID_str, string txb_pesadaLugar_str,
             string txb_pesadaFecha_str, string txb_pesadaPeso_bruto_str, string txb_pesadaPeso_neto_str, string txb_pesadaNombre_str,
             string txb_pesadaComentarios_str)
@@ -2203,7 +2204,7 @@ namespace Bonisoft_2.Pages
             return save_ok.ToString() + "|" + precio_compra;
         }
 
-        [System.Web.Services.WebMethod]
+        [WebMethod]
         public static bool Check_Mercaderias(string viajeID_str)
         {
             bool check_ok = false;
@@ -2230,7 +2231,7 @@ namespace Bonisoft_2.Pages
             return check_ok;
         }
 
-        [System.Web.Services.WebMethod]
+        [WebMethod]
         public static bool Check_Pesadas(string viajeID_str)
         {
             bool check_ok = false;
@@ -2257,7 +2258,7 @@ namespace Bonisoft_2.Pages
             return check_ok;
         }
 
-        [System.Web.Services.WebMethod]
+        [WebMethod]
         public static int FinDelViaje(string viajeID_str)
         {
             int result = 0;
@@ -2341,11 +2342,11 @@ namespace Bonisoft_2.Pages
             return result;
         }
 
-        [System.Web.Services.WebMethod]
-        public static bool BorrarViajeEnCurso(string viajeID_str)
+        [WebMethod]
+        public static bool BorrarViajeEnCurso(string viajeID_str, string userID, string clave_str)
         {
             bool ret = false;
-            if (!string.IsNullOrWhiteSpace(viajeID_str))
+            if (!string.IsNullOrWhiteSpace(viajeID_str) && !string.IsNullOrWhiteSpace(userID) && !string.IsNullOrWhiteSpace(clave_str))
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -2360,15 +2361,28 @@ namespace Bonisoft_2.Pages
                         viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                         if (viaje != null)
                         {
+                            // Check usuario
+                            //User user = new User(userID, "");
+                            //if (user != null)
+                            //{
+                            //    string uID = Global.GlobalMethods.CheckLogin(user.userName, password_input);
+                            //    {
+                            //        if (!string.IsNullOrWhiteSpace(uID))
+                            //        {
+                            //            result = 1; // OK
+                            //        }
+                            //    }
+                            //}
+
                             context.viajes.Remove(viaje);
 
                             #region Log
 
-                            log new_log = new log();
-                            new_log.Usuario_ID = 0;
-                            new_log.Fecha = DateTime.Now;
-                            //new_log.Descripcion="Nuevo pago: " + pago
-                            context.logs.Add(new_log);
+                            //log new_log = new log();
+                            //new_log.Usuario_ID = 0;
+                            //new_log.Fecha = DateTime.Now;
+                            ////new_log.Descripcion="Nuevo pago: " + pago
+                            //context.logs.Add(new_log);
 
                             #endregion
 
@@ -2382,7 +2396,7 @@ namespace Bonisoft_2.Pages
             return ret;
         }
 
-        [System.Web.Services.WebMethod]
+        [WebMethod]
         public static string ModificarViaje_1(string viajeID_str)
         {
             string ret = string.Empty;
@@ -2409,7 +2423,7 @@ namespace Bonisoft_2.Pages
             return ret;
         }
 
-        [System.Web.Services.WebMethod]
+        [WebMethod]
         public static bool ModificarViaje_2(string viajeID_str, string fecha1, string fecha2, string proveedor, string cliente, string cargador,
             string lugar_carga, string fletero, string camion, string chofer, string comentarios)
         {
@@ -2495,11 +2509,11 @@ namespace Bonisoft_2.Pages
 
                             #region Log
 
-                            log new_log = new log();
-                            new_log.Usuario_ID = 0;
-                            new_log.Fecha = DateTime.Now;
-                            //new_log.Descripcion="Nuevo pago: " + pago
-                            context.logs.Add(new_log);
+                            //log new_log = new log();
+                            //new_log.Usuario_ID = 0;
+                            //new_log.Fecha = DateTime.Now;
+                            ////new_log.Descripcion="Nuevo pago: " + pago
+                            //context.logs.Add(new_log);
 
                             #endregion
 
@@ -2513,7 +2527,7 @@ namespace Bonisoft_2.Pages
             return ret;
         }
 
-        [System.Web.Services.WebMethod]
+        [WebMethod]
         public static string NotificarViaje(string viajeID_str)
         {
             string ret = string.Empty;
@@ -2532,6 +2546,8 @@ namespace Bonisoft_2.Pages
                         viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                         if (viaje != null)
                         {
+                            #region Cargar datos
+
                             // Precio compra
                             ret = viaje.precio_compra.ToString() + "|";
 
@@ -2585,6 +2601,9 @@ namespace Bonisoft_2.Pages
                             ret += "&" + viaje.GananciaXTon.ToString();
                             ret += "&" + viaje.IVA.ToString();
                             ret += "&" + viaje.precio_venta.ToString();
+
+                            #endregion
+
                         }
                     }
                 }
