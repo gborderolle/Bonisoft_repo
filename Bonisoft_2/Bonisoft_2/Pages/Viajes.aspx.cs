@@ -135,11 +135,11 @@ namespace Bonisoft_2.Pages
 
                     #region Log
 
-                    log new_log = new log();
-                    new_log.Usuario_ID = 0;
-                    new_log.Fecha = DateTime.Now;
-                    //new_log.Descripcion="Nuevo pago: " + pago
-                    context.logs.Add(new_log);
+                    //log new_log = new log();
+                    //new_log.Usuario_ID = 0;
+                    //new_log.Fecha = DateTime.Now;
+                    ////new_log.Descripcion="Nuevo pago: " + pago
+                    //context.logs.Add(new_log);
 
                     #endregion
 
@@ -250,11 +250,11 @@ namespace Bonisoft_2.Pages
 
                                 #region Log
 
-                                log new_log = new log();
-                                new_log.Usuario_ID = 0;
-                                new_log.Fecha = DateTime.Now;
-                                //new_log.Descripcion="Nuevo pago: " + pago
-                                context.logs.Add(new_log);
+                                //log new_log = new log();
+                                //new_log.Usuario_ID = 0;
+                                //new_log.Fecha = DateTime.Now;
+                                ////new_log.Descripcion="Nuevo pago: " + pago
+                                //context.logs.Add(new_log);
 
                                 #endregion
 
@@ -418,11 +418,11 @@ namespace Bonisoft_2.Pages
 
                             #region Log
 
-                            log new_log = new log();
-                            new_log.Usuario_ID = 0;
-                            new_log.Fecha = DateTime.Now;
-                            //new_log.Descripcion="Nuevo pago: " + pago
-                            context.logs.Add(new_log);
+                            //log new_log = new log();
+                            //new_log.Usuario_ID = 0;
+                            //new_log.Fecha = DateTime.Now;
+                            ////new_log.Descripcion="Nuevo pago: " + pago
+                            //context.logs.Add(new_log);
 
                             #endregion
 
@@ -1071,11 +1071,11 @@ namespace Bonisoft_2.Pages
 
                                 #region Log
 
-                                log new_log = new log();
-                                new_log.Usuario_ID = 0;
-                                new_log.Fecha = DateTime.Now;
-                                //new_log.Descripcion="Nuevo pago: " + pago
-                                context.logs.Add(new_log);
+                                //log new_log = new log();
+                                //new_log.Usuario_ID = 0;
+                                //new_log.Fecha = DateTime.Now;
+                                ////new_log.Descripcion="Nuevo pago: " + pago
+                                //context.logs.Add(new_log);
 
                                 #endregion
 
@@ -1249,11 +1249,11 @@ namespace Bonisoft_2.Pages
 
                     #region Log
 
-                    log new_log = new log();
-                    new_log.Usuario_ID = 0;
-                    new_log.Fecha = DateTime.Now;
-                    //new_log.Descripcion="Nuevo pago: " + pago
-                    context.logs.Add(new_log);
+                    //log new_log = new log();
+                    //new_log.Usuario_ID = 0;
+                    //new_log.Fecha = DateTime.Now;
+                    ////new_log.Descripcion="Nuevo pago: " + pago
+                    //context.logs.Add(new_log);
 
                     #endregion
 
@@ -1276,11 +1276,11 @@ namespace Bonisoft_2.Pages
 
                 #region Log
 
-                log new_log = new log();
-                new_log.Usuario_ID = 0;
-                new_log.Fecha = DateTime.Now;
-                //new_log.Descripcion="Nuevo pago: " + pago
-                context.logs.Add(new_log);
+                //log new_log = new log();
+                //new_log.Usuario_ID = 0;
+                //new_log.Fecha = DateTime.Now;
+                ////new_log.Descripcion="Nuevo pago: " + pago
+                //context.logs.Add(new_log);
 
                 #endregion
 
@@ -1385,11 +1385,11 @@ namespace Bonisoft_2.Pages
 
                                 #region Log
 
-                                log new_log = new log();
-                                new_log.Usuario_ID = 0;
-                                new_log.Fecha = DateTime.Now;
-                                //new_log.Descripcion="Nuevo pago: " + pago
-                                context.logs.Add(new_log);
+                                //log new_log = new log();
+                                //new_log.Usuario_ID = 0;
+                                //new_log.Fecha = DateTime.Now;
+                                ////new_log.Descripcion="Nuevo pago: " + pago
+                                //context.logs.Add(new_log);
 
                                 #endregion
 
@@ -1794,6 +1794,8 @@ namespace Bonisoft_2.Pages
                     gridViajesEnCurso.Rows[0].Cells[0].Text = "No hay registros";
                 }
                 //ScriptManager.RegisterStartupScript(this, this.GetType(), "BindGrid_EnCurso", "<script type='text/javascript'>$('.datepicker').datepicker({ dateFormat: 'dd-MM-yyyy' }); </script>", false);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "BindGrid_EnCurso", "<script type='text/javascript'>bindEvents(); </script>", false);
+
             }
         }
 
@@ -1858,11 +1860,11 @@ namespace Bonisoft_2.Pages
 
                         #region Log
 
-                        log new_log = new log();
-                        new_log.Usuario_ID = 0;
-                        new_log.Fecha = DateTime.Now;
-                        //new_log.Descripcion="Nuevo pago: " + pago
-                        context.logs.Add(new_log);
+                        //log new_log = new log();
+                        //new_log.Usuario_ID = 0;
+                        //new_log.Fecha = DateTime.Now;
+                        ////new_log.Descripcion="Nuevo pago: " + pago
+                        //context.logs.Add(new_log);
 
                         context.SaveChanges();
 
@@ -1938,11 +1940,11 @@ namespace Bonisoft_2.Pages
 
                                 #region Log
 
-                                log new_log = new log();
-                                new_log.Usuario_ID = 0;
-                                new_log.Fecha = DateTime.Now;
-                                //new_log.Descripcion="Nuevo pago: " + pago
-                                context.logs.Add(new_log);
+                                //log new_log = new log();
+                                //new_log.Usuario_ID = 0;
+                                //new_log.Fecha = DateTime.Now;
+                                ////new_log.Descripcion="Nuevo pago: " + pago
+                                //context.logs.Add(new_log);
 
                                 #endregion
 
@@ -2024,11 +2026,11 @@ namespace Bonisoft_2.Pages
 
                                         #region Log
 
-                                        log new_log = new log();
-                                        new_log.Usuario_ID = 0;
-                                        new_log.Fecha = DateTime.Now;
-                                        //new_log.Descripcion="Nuevo pago: " + pago
-                                        context.logs.Add(new_log);
+                                        //log new_log = new log();
+                                        //new_log.Usuario_ID = 0;
+                                        //new_log.Fecha = DateTime.Now;
+                                        ////new_log.Descripcion="Nuevo pago: " + pago
+                                        //context.logs.Add(new_log);
 
                                         #endregion
 
@@ -2071,11 +2073,11 @@ namespace Bonisoft_2.Pages
 
                                     #region Log
 
-                                    log new_log = new log();
-                                    new_log.Usuario_ID = 0;
-                                    new_log.Fecha = DateTime.Now;
-                                    //new_log.Descripcion="Nuevo pago: " + pago
-                                    context.logs.Add(new_log);
+                                    //log new_log = new log();
+                                    //new_log.Usuario_ID = 0;
+                                    //new_log.Fecha = DateTime.Now;
+                                    ////new_log.Descripcion="Nuevo pago: " + pago
+                                    //context.logs.Add(new_log);
 
                                     #endregion
 
@@ -2132,11 +2134,11 @@ namespace Bonisoft_2.Pages
 
                                         #region Log
 
-                                        log new_log = new log();
-                                        new_log.Usuario_ID = 0;
-                                        new_log.Fecha = DateTime.Now;
-                                        //new_log.Descripcion="Nuevo pago: " + pago
-                                        context.logs.Add(new_log);
+                                        //log new_log = new log();
+                                        //new_log.Usuario_ID = 0;
+                                        //new_log.Fecha = DateTime.Now;
+                                        ////new_log.Descripcion="Nuevo pago: " + pago
+                                        //context.logs.Add(new_log);
 
                                         #endregion
 
@@ -2322,11 +2324,11 @@ namespace Bonisoft_2.Pages
 
                                 #region Log
 
-                                log new_log = new log();
-                                new_log.Usuario_ID = 0;
-                                new_log.Fecha = DateTime.Now;
-                                //new_log.Descripcion="Nuevo pago: " + pago
-                                context.logs.Add(new_log);
+                                //log new_log = new log();
+                                //new_log.Usuario_ID = 0;
+                                //new_log.Fecha = DateTime.Now;
+                                ////new_log.Descripcion="Nuevo pago: " + pago
+                                //context.logs.Add(new_log);
 
                                 #endregion
 
@@ -2523,6 +2525,101 @@ namespace Bonisoft_2.Pages
                         }
                     }
                 }
+            }
+            return ret;
+        }
+
+        [WebMethod]
+        public static bool NuevoViaje(string fecha1, string fecha2, string proveedor, string cliente, string cargador,
+           string lugar_carga, string fletero, string camion, string chofer, string comentarios)
+        {
+            bool ret = false;
+            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            {
+                viaje new_viaje = new viaje();
+
+                DateTime date1 = DateTime.Now;
+                if (!DateTime.TryParseExact(fecha1, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                {
+                    date1 = DateTime.Now;
+                }
+                new_viaje.Fecha_partida = date1;
+
+                DateTime date2 = DateTime.Now;
+                if (!DateTime.TryParseExact(fecha2, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date2))
+                {
+                    date2 = DateTime.Now;
+                }
+                new_viaje.Fecha_llegada = date2;
+
+                #region DDL logic
+
+                int ddl = 0;
+                if (!int.TryParse(proveedor, out ddl))
+                {
+                    ddl = 0;
+                }
+                new_viaje.Proveedor_ID = ddl;
+
+                ddl = 0;
+                if (!int.TryParse(cliente, out ddl))
+                {
+                    ddl = 0;
+                }
+                new_viaje.Cliente_ID = ddl;
+
+                ddl = 0;
+                if (!int.TryParse(cargador, out ddl))
+                {
+                    ddl = 0;
+                }
+                new_viaje.Empresa_de_carga_ID = ddl;
+
+                ddl = 0;
+                if (!int.TryParse(fletero, out ddl))
+                {
+                    ddl = 0;
+                }
+                new_viaje.Fletero_ID = ddl;
+
+                ddl = 0;
+                if (!int.TryParse(camion, out ddl))
+                {
+                    ddl = 0;
+                }
+                new_viaje.Camion_ID = ddl;
+
+                ddl = 0;
+                if (!int.TryParse(chofer, out ddl))
+                {
+                    ddl = 0;
+                }
+                new_viaje.Chofer_ID = ddl;
+
+                #endregion DDL logic
+
+                new_viaje.Carga = lugar_carga;
+                new_viaje.Descarga = string.Empty;
+                new_viaje.Comentarios = comentarios;
+                new_viaje.EnViaje = true;
+
+                new_viaje.Fecha_registro = DateTime.Now;
+
+                context.viajes.Add(new_viaje);
+
+                #region Log
+
+                //log new_log = new log();
+                //new_log.Usuario_ID = 0;
+                //new_log.Fecha = DateTime.Now;
+                ////new_log.Descripcion="Nuevo pago: " + pago
+                //context.logs.Add(new_log);
+
+                #endregion
+
+                context.SaveChanges();
+
+                ret = true;
             }
             return ret;
         }

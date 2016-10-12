@@ -619,11 +619,11 @@ namespace Bonisoft_2.Pages
 
                         #region Log
 
-                        log new_log = new log();
-                        new_log.Usuario_ID = 0;
-                        new_log.Fecha = DateTime.Now;
-                        //new_log.Descripcion="Nuevo pago: " + pago
-                        context.logs.Add(new_log);
+                        //log new_log = new log();
+                        //new_log.Usuario_ID = 0;
+                        //new_log.Fecha = DateTime.Now;
+                        ////new_log.Descripcion="Nuevo pago: " + pago
+                        //context.logs.Add(new_log);
 
                         #endregion
 
@@ -659,11 +659,11 @@ namespace Bonisoft_2.Pages
 
                             #region Log
 
-                            log new_log = new log();
-                            new_log.Usuario_ID = 0;
-                            new_log.Fecha = DateTime.Now;
-                            //new_log.Descripcion="Nuevo pago: " + pago
-                            context.logs.Add(new_log);
+                            //log new_log = new log();
+                            //new_log.Usuario_ID = 0;
+                            //new_log.Fecha = DateTime.Now;
+                            ////new_log.Descripcion="Nuevo pago: " + pago
+                            //context.logs.Add(new_log);
 
                             #endregion
 
@@ -748,11 +748,11 @@ namespace Bonisoft_2.Pages
 
                             #region Log
 
-                            log new_log = new log();
-                            new_log.Usuario_ID = 0;
-                            new_log.Fecha = DateTime.Now;
-                            //new_log.Descripcion="Nuevo pago: " + pago
-                            context.logs.Add(new_log);
+                            //log new_log = new log();
+                            //new_log.Usuario_ID = 0;
+                            //new_log.Fecha = DateTime.Now;
+                            ////new_log.Descripcion="Nuevo pago: " + pago
+                            //context.logs.Add(new_log);
 
                             #endregion
 

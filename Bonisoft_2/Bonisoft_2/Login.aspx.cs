@@ -41,7 +41,7 @@ namespace Bonisoft_2
                             Session["UserID"] = usuario.Usuario_ID;
                             Session["UserName"] = username;
 
-                            Response.Redirect("Default", false);
+                            Response.Redirect("Pages/Viajes", false);
                         }
                         else
                         {

@@ -11,7 +11,6 @@
     <!-- PAGE CSS -->
     <link rel="stylesheet" href="/assets/dist/css/pages/Viajes.css">
     <link rel="stylesheet" href="/assets/dist/css/pages/Modal_styles.css">
-
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
@@ -76,7 +75,7 @@
 
                                                 <asp:UpdatePanel ID="upUpdateViajesEnCurso" runat="server">
                                                     <ContentTemplate>
-                                                        <asp:Button ID="btnUpdateViajesEnCurso" runat="server" Text="Actualizar" CssClass="btn btnUpdate" 
+                                                        <asp:Button ID="btnUpdateViajesEnCurso" runat="server" Text="Actualizar" CssClass="btn btnUpdate"
                                                             OnClick="btnUpdateViajesEnCurso_Click" UseSubmitBehavior="false" ClientIDMode="Static" />
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
@@ -126,7 +125,6 @@
                                                 <a id="btnBorrar" role="button" onclick='<%# "BorrarViajeEnCurso(" +Eval("Viaje_ID") + ");" %>' class="btn btn-danger btn-xs glyphicon glyphicon-remove"></a>
 
                                                 <%--<a id="btnBorrar" role="button" onclick="confirmar_borrarViajeEnCurso()" class="btn btn-danger btn-xs glyphicon glyphicon-remove"></a>--%>
-
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
@@ -189,9 +187,7 @@
                                                 <td>Comentarios: 
                                                 <asp:TextBox ID="modalAdd_txbComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" />
                                                 </td>
-                                                <td>
-
-                                                </td>
+                                                <td></td>
                                             </tr>
 
                                         </table>
@@ -199,13 +195,15 @@
                                     <div class="modal-footer">
 
                                         <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cerrar</button>
-                                        <asp:Button ID="btnAdd" runat="server" Text="Agregar" CssClass="btn btn-primary" OnClientClick="Javascript:DoCustomPost();" OnClick="btnAddRecord1_Click" UseSubmitBehavior="false" />
+                                        <a id="aNuevoViaje" class="btn btn-primary" onclick="NuevoViaje();">Agregar</a>
+
+                                        <%--<asp:Button ID="btnAdd" runat="server" Text="Agregar" CssClass="btn btn-primary" OnClientClick="Javascript:DoCustomPost();" OnClick="btnAddRecord1_Click" UseSubmitBehavior="false" />--%>
 
                                     </div>
                                 </ContentTemplate>
-                                <Triggers>
+                               <%-- <Triggers>
                                     <asp:AsyncPostBackTrigger ControlID="btnAdd" EventName="Click" />
-                                </Triggers>
+                                </Triggers>--%>
                             </asp:UpdatePanel>
                         </div>
                         <!-- Modal Iniciar viaje END -->
@@ -256,8 +254,7 @@
                                                 <td>Chofer: 
                                                 <asp:DropDownList ID="modalEdit_ddlChoferes" runat="server" ClientIDMode="Static" CssClass="form-control" />
                                                 </td>
-                                                <td>
-                                                    Comentarios:
+                                                <td>Comentarios:
                                                     <asp:TextBox ID="modalEdit_txbComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" />
                                                 </td>
                                             </tr>
@@ -269,7 +266,7 @@
                                         <%--<asp:Button ID="btnEdit" runat="server" Text="Modificar" CssClass="btn btn-primary" OnClientClick="Javascript:DoCustomPost();" OnClick="btnEdit_Click" UseSubmitBehavior="false" />--%>
                                         <%--<asp:Button ID="btnEdit" runat="server" Text="Modificar" CssClass="btn btn-primary" OnClientClick="Javascript:DoCustomPost();" OnClick="btnEdit_Click" UseSubmitBehavior="false" />--%>
 
-                                        <a ID="aModificarViaje" class="btn btn-primary" onClick="ModificarViaje_2();">Guardar</a>                                                        
+                                        <a id="aModificarViaje" class="btn btn-primary" onclick="ModificarViaje_2();">Guardar</a>
 
                                     </div>
                                 </ContentTemplate>
@@ -505,7 +502,7 @@
                                             <div style="text-align: center">
 
                                                 <asp:Label ID="gridViajes_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-                                                <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" 
+                                                <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False"
                                                     ShowFooter="False" CssClass="table table-hover table-striped"
                                                     DataKeyNames="Viaje_ID"
                                                     OnRowCommand="gridViajes_RowCommand"
@@ -748,13 +745,13 @@
     </div>
 
 
-     <div id="dialog_borrarViaje" title="Mensaje Bonisoft" style="height: 0 !important;">
+    <div id="dialog_borrarViaje" title="Mensaje Bonisoft" style="height: 0 !important;">
         <p style="text-align: left;"></p>
 
-          <div class="form-group">
+        <div class="form-group">
             <div class="row row-short" style="padding: 10px;">
 
-                <input type="password" id="txbClave" class="form-control" style="width:90%; display:none;" placeholder="Ingrese su contraseña" 
+                <input type="password" id="txbClave" class="form-control" style="width: 90%; display: none;" placeholder="Ingrese su contraseña"
                     name="login-username" required="required" />
                 <!--  -->
             </div>

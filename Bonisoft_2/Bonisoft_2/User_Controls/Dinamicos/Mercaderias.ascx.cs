@@ -316,7 +316,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             #region Datetime logic
 
                             DateTime date1 = DateTime.Now;
-                            if (!DateTime.TryParseExact(txb4, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                            if (!DateTime.TryParseExact(txb4, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                             {
                                 date1 = DateTime.Now;
                             }
@@ -416,7 +416,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     #region Datetime logic
 
                     DateTime date1 = obj.Fecha_corte;
-                    if (!DateTime.TryParseExact(txb4, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                    if (!DateTime.TryParseExact(txb4, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                     {
                         date1 = obj.Fecha_corte;
                     }
