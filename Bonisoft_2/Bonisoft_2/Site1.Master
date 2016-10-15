@@ -89,7 +89,6 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="/Login">Ingresar</a></li>
                         
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">

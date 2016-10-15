@@ -120,16 +120,6 @@ namespace Bonisoft_2.User_Controls.Configuracion
                 }
 
                 lnk = null;
-                if (e.Row.RowType == DataControlRowType.Footer)
-                {
-                    lnk = e.Row.FindControl("lnkInsert") as LinkButton;
-                }
-                if (lnk != null)
-                {
-                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
-                }
-
-                lnk = null;
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
                     lnk = e.Row.FindControl("lnkCancel") as LinkButton;
@@ -175,37 +165,6 @@ namespace Bonisoft_2.User_Controls.Configuracion
                 }
             }
 
-            // Procesador ----------------------------------------------------
-
-            //ddl = null;
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    ddl = e.Row.FindControl("mercaderias_ddlProcesador1") as DropDownList;
-            //}
-            //if (e.Row.RowType == DataControlRowType.Footer)
-            //{
-            //    ddl = e.Row.FindControl("mercaderias_ddlProcesador2") as DropDownList;
-            //}
-            //if (ddl != null)
-            //{
-            //    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-            //    {
-            //        DataTable dt1 = new DataTable();
-            //        dt1 = Extras.ToDataTable(context.procesadores.ToList());
-
-            //        ddl.DataSource = dt1;
-            //        ddl.DataTextField = "Nombre";
-            //        ddl.DataValueField = "Procesador_ID";
-            //        ddl.DataBind();
-            //        ddl.Items.Insert(0, new ListItem("Elegir", "0"));
-
-            //    }//Add Default Item in the DropDownList
-            //    if (e.Row.RowType == DataControlRowType.DataRow)
-            //    {
-            //        ddl.SelectedValue = ((mercaderia_comprada)(e.Row.DataItem)).Procesador_ID.ToString();
-            //    }
-            //}
-
             #endregion
 
             #region DDL Default values
@@ -233,27 +192,6 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     }
                 }
 
-                // Procesador ----------------------------------------------------
-                //    LinkButton lbl = e.Row.FindControl("mercaderias_lbl2") as LinkButton;
-                //    if (lbl != null)
-                //    {
-                //        using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                //        {
-                //            mercaderia_comprada mercaderia_comprada = (mercaderia_comprada)(e.Row.DataItem);
-                //            if (mercaderia_comprada != null)
-                //            {
-                //                int id = mercaderia_comprada.Procesador_ID;
-                //                procesador procesador = (procesador)context.procesadores.FirstOrDefault(c => c.Procesador_ID == id);
-                //                if (procesador != null)
-                //                {
-                //                    string nombre = procesador.Nombre;
-                //                    lbl.Text = nombre;
-                //                    lbl.CommandArgument = "procesadores," + nombre;
-                //                }
-                //            }
-                //        }
-                //    }
-
             }
             #endregion
 
@@ -261,6 +199,9 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
         protected void gridMercaderias_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+
+            #region InsertNew
+
             if (e.CommandName == "InsertNew")
             {
                 HiddenField hdn_modalMercaderia_txbNew4 = this.Parent.FindControl("hdn_modalMercaderia_txbNew4") as HiddenField;
@@ -329,13 +270,15 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             context.mercaderia_comprada.Add(obj);
                             context.SaveChanges();
                             lblMessage.Text = "Agregado correctamente.";
-                            BindGrid();
+                            //BindGrid();
 
                             //ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('OK_Datos'); $.modal.close();</script>", false);
                         }
                     }
                 }
             }
+
+            #endregion
 
             else if (e.CommandName == "View")
             {

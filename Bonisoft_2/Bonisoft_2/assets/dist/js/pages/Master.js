@@ -4,7 +4,9 @@ $(document).ready(function () {
 });
 
 function initVariables() {
-    $('.usernameInfo').html(globalUserName);
+    if (typeof globalUserName != 'undefined') {
+        $('.usernameInfo').html(globalUserName);
+    }
 }
 
 function timenow(){

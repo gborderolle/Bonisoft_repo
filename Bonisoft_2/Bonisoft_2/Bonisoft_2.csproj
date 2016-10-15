@@ -251,12 +251,11 @@
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="assets\bootstrap\js\npm.js" />
     <Content Include="assets\dist\css\jquery.modal.css" />
-    <Content Include="assets\dist\css\Login_2.css" />
+    <Content Include="assets\dist\css\pages\Login.css" />
     <Content Include="assets\dist\css\pages\Datos.css" />
     <Content Include="assets\dist\css\font-awesome.css" />
     <Content Include="assets\dist\css\pages\InfoBoxes.min.css" />
     <Content Include="assets\dist\css\jquery-ui.css" />
-    <Content Include="assets\dist\css\pages\Login.css" />
     <Content Include="assets\dist\css\pages\Modal_styles.css" />
     <Content Include="assets\dist\css\pages\Resumen_clientes.css" />
     <Content Include="assets\dist\css\popbox.css" />
@@ -325,7 +324,7 @@
     <Content Include="assets\dist\js\jquery.modal.js" />
     <Content Include="assets\dist\js\jquery.quicksearch.js" />
     <Content Include="assets\dist\js\jquery.tablesorter.js" />
-    <Content Include="assets\dist\js\Login_2.js" />
+    <Content Include="assets\dist\js\pages\Login.js" />
     <Content Include="assets\dist\js\moment.js" />
     <Content Include="assets\dist\js\pages\images\asc.gif" />
     <Content Include="assets\dist\js\pages\images\bg.gif" />
@@ -339,7 +338,6 @@
     <Content Include="assets\dist\js\pages\Resumen_clientes.js" />
     <Content Include="assets\dist\js\popbox.js" />
     <Content Include="ExternalResources\Alert_Messages.js" />
-    <Content Include="assets\dist\js\pages\Login.js" />
     <Content Include="assets\dist\js\pages\Viajes.js" />
     <Content Include="assets\plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="assets\plugins\bootstrap-slider\slider.css" />
@@ -1201,7 +1199,6 @@
     <Content Include="User_Controls\Configuracion\Variedad.ascx" />
     <Content Include="User_Controls\Dinamicos\Mercaderias.ascx" />
     <Content Include="User_Controls\Configuracion\Tipo_lena.ascx" />
-    <Content Include="User_Controls\Dinamicos\ViajeMercaderia.ascx" />
     <Content Include="User_Controls\Estaticos\Camiones.ascx" />
     <Content Include="Pages\Datos.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
@@ -1245,7 +1242,7 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="User_Controls\Estaticos\Cargadores.ascx" />
-    <Content Include="User_Controls\Estaticos\Choferes2.ascx" />
+    <Content Include="User_Controls\Estaticos\Choferes.ascx" />
     <Content Include="User_Controls\Estaticos\Clientes.ascx" />
     <Content Include="User_Controls\Estaticos\Cuadrillas.ascx" />
     <Content Include="User_Controls\Estaticos\Fleteros.ascx" />
@@ -1615,13 +1612,6 @@
     <Compile Include="User_Controls\Configuracion\Tipo_lena.ascx.designer.cs">
       <DependentUpon>Tipo_lena.ascx</DependentUpon>
     </Compile>
-    <Compile Include="User_Controls\Dinamicos\ViajeMercaderia.ascx.cs">
-      <DependentUpon>ViajeMercaderia.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User_Controls\Dinamicos\ViajeMercaderia.ascx.designer.cs">
-      <DependentUpon>ViajeMercaderia.ascx</DependentUpon>
-    </Compile>
     <Compile Include="User_Controls\Estaticos\Camiones.ascx.cs">
       <DependentUpon>Camiones.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1674,12 +1664,12 @@
     <Compile Include="User_Controls\Estaticos\Cargadores.ascx.designer.cs">
       <DependentUpon>Cargadores.ascx</DependentUpon>
     </Compile>
-    <Compile Include="User_Controls\Estaticos\Choferes2.ascx.cs">
-      <DependentUpon>Choferes2.ascx</DependentUpon>
+    <Compile Include="User_Controls\Estaticos\Choferes.ascx.cs">
+      <DependentUpon>Choferes.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="User_Controls\Estaticos\Choferes2.ascx.designer.cs">
-      <DependentUpon>Choferes2.ascx</DependentUpon>
+    <Compile Include="User_Controls\Estaticos\Choferes.ascx.designer.cs">
+      <DependentUpon>Choferes.ascx</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\Estaticos\Clientes.ascx.cs">
       <DependentUpon>Clientes.ascx</DependentUpon>
@@ -1730,9 +1720,6 @@
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
     <Compile Include="viaje.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="viaje_mercaderia.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">

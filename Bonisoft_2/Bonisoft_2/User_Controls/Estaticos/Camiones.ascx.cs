@@ -57,7 +57,7 @@ namespace Bonisoft_2.Pages
 
         protected void gridCamiones_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            #region Action buttons
+            #region Updatepanel triggers
 
             ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
             if (ScriptManager1 != null)
@@ -66,50 +66,28 @@ namespace Bonisoft_2.Pages
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
                     lnk = e.Row.FindControl("lnkEdit") as LinkButton;
-                }
-                if (lnk != null)
-                {
-                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
-                }
+                    if (lnk != null)
+                    {
+                        ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                    }
 
-                lnk = null;
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
                     lnk = e.Row.FindControl("lnkDelete") as LinkButton;
-                }
-                if (lnk != null)
-                {
-                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
-                }
+                    if (lnk != null)
+                    {
+                        ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                    }
 
-                lnk = null;
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
                     lnk = e.Row.FindControl("lnkInsert") as LinkButton;
-                }
-                if (lnk != null)
-                {
-                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
-                }
+                    if (lnk != null)
+                    {
+                        ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                    }
 
-                lnk = null;
-                if (e.Row.RowType == DataControlRowType.Footer)
-                {
-                    lnk = e.Row.FindControl("lnkInsert") as LinkButton;
-                }
-                if (lnk != null)
-                {
-                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
-                }
-
-                lnk = null;
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
                     lnk = e.Row.FindControl("lnkCancel") as LinkButton;
-                }
-                if (lnk != null)
-                {
-                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                    if (lnk != null)
+                    {
+                        ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                    }
                 }
             }
 

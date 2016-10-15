@@ -5,12 +5,14 @@ var hashMessages = {};
 hashMessages["Confirmacion"] = "¿Está seguro?";
 hashMessages["OK_Datos"] = "Información guardada.";
 hashMessages["Error_Datos"] = "Ocurrió un error en el servidor.";
-hashMessages["Error_IngreseClave"] = "Ingrese su contraseña de usuario para continuar.";
+hashMessages["IngresarClave"] = "Ingrese su contraseña de usuario para continuar.";
+hashMessages["Error_usuario"] = "El usuario no existe.";
+hashMessages["Error_clave"] = "La clave es incorrecta.";
 
 // Viajes
 hashMessages["OK_FINViaje"] = "Viaje finalizado.";
 hashMessages["OK_ViajeNuevo"] = "Viaje agregado.";
-hashMessages["OK_ViajeBorrado"] = "Viaje borrado.";
+hashMessages["OK_BorrarViaje"] = "Viaje borrado.";
 
 // Pesadas
 hashMessages["Error_DatosPesadas"] = "Faltan datos de Pesadas.";

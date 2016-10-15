@@ -276,7 +276,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Descarga" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Fletero_ID" Type="int" Nullable="false" />
           <Property Name="precio_compra" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="precio_venta" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="precio_venta" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="precio_flete" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="precio_descarga" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="GananciaXTon" Type="decimal" Precision="10" Scale="0" Nullable="false" />
@@ -284,14 +284,6 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="EnViaje" Type="bit" Nullable="false" />
           <Property Name="Fecha_registro" Type="date" />
-        </EntityType>
-        <EntityType Name="viaje_mercaderia">
-          <Key>
-            <PropertyRef Name="Viaje_ID" />
-            <PropertyRef Name="Mercaderia_comprada_ID" />
-          </Key>
-          <Property Name="Viaje_ID" Type="int" Nullable="false" />
-          <Property Name="Mercaderia_comprada_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="bonisoft_dbModelStoreContainer">
           <EntitySet Name="camion" EntityType="Self.camion" Schema="bonisoft_db" store:Type="Tables" />
@@ -318,7 +310,6 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="variedad" EntityType="Self.variedad" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="viaje" EntityType="Self.viaje" Schema="bonisoft_db" store:Type="Tables" />
-          <EntitySet Name="viaje_mercaderia" EntityType="Self.viaje_mercaderia" Schema="bonisoft_db" store:Type="Tables" />
           <EntitySet Name="cliente_preferencias_cliente" EntityType="Self.cliente_preferencias_cliente" store:Type="Tables" store:Schema="bonisoft_db">
             <DefiningQuery>SELECT
 `cliente_preferencias_cliente`.`Cliente_ID`, 
@@ -427,7 +418,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySet Name="fleteros" EntityType="bonisoft_dbModel.fletero" />
           <EntitySet Name="pesadas" EntityType="bonisoft_dbModel.pesada" />
           <EntitySet Name="proveedores" EntityType="bonisoft_dbModel.proveedor" />
-          <EntitySet Name="viaje_mercaderia" EntityType="bonisoft_dbModel.viaje_mercaderia" />
           <EntitySet Name="cargadores" EntityType="bonisoft_dbModel.cargador" />
           <EntitySet Name="procesadores" EntityType="bonisoft_dbModel.procesador" />
           <EntitySet Name="logs" EntityType="bonisoft_dbModel.log" />
@@ -436,9 +426,9 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <EntitySet Name="camiones" EntityType="bonisoft_dbModel.camion" />
           <EntitySet Name="internos" EntityType="bonisoft_dbModel.interno" />
           <EntitySet Name="cliente_pagos" EntityType="bonisoft_dbModel.cliente_pagos" />
-          <EntitySet Name="viajes" EntityType="bonisoft_dbModel.viaje" />
           <EntitySet Name="clientes" EntityType="bonisoft_dbModel.cliente" />
           <EntitySet Name="usuarios" EntityType="bonisoft_dbModel.usuario" />
+          <EntitySet Name="viajes" EntityType="bonisoft_dbModel.viaje" />
         </EntityContainer>
         <EntityType Name="roles_usuario">
           <Key>
@@ -490,14 +480,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Direccion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="viaje_mercaderia">
-          <Key>
-            <PropertyRef Name="Viaje_ID" />
-            <PropertyRef Name="Mercaderia_comprada_ID" />
-          </Key>
-          <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
-          <Property Name="Mercaderia_comprada_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="cargador">
           <Key>
@@ -581,37 +563,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Monto" Type="Decimal" Nullable="false" />
         </EntityType>
-        <EntityType Name="viaje">
-          <Key>
-            <PropertyRef Name="Viaje_ID" />
-          </Key>
-          <Property Name="Viaje_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
-          <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
-          <Property Name="Precio_compra_por_tonelada" Type="Decimal" Nullable="false" />
-          <Property Name="Precio_valor_total" Type="Decimal" Nullable="false" />
-          <Property Name="Importe_viaje" Type="Decimal" Nullable="false" />
-          <Property Name="Saldo" Type="Decimal" Nullable="false" />
-          <Property Name="Pesada_origen_ID" Type="Int32" Nullable="false" />
-          <Property Name="Pesada_destino_ID" Type="Int32" Nullable="false" />
-          <Property Name="Empresa_de_carga_ID" Type="Int32" Nullable="false" />
-          <Property Name="Fecha_partida" Type="DateTime" Nullable="false" />
-          <Property Name="Fecha_llegada" Type="DateTime" Nullable="false" />
-          <Property Name="Camion_ID" Type="Int32" Nullable="false" />
-          <Property Name="Chofer_ID" Type="Int32" Nullable="false" />
-          <Property Name="Carga" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Descarga" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Fletero_ID" Type="Int32" Nullable="false" />
-          <Property Name="precio_compra" Type="Decimal" Nullable="false" />
-          <Property Name="precio_venta" Type="Decimal" Nullable="false" />
-          <Property Name="precio_flete" Type="Decimal" Nullable="false" />
-          <Property Name="precio_descarga" Type="Decimal" Nullable="false" />
-          <Property Name="GananciaXTon" Type="Decimal" Nullable="false" />
-          <Property Name="IVA" Type="Int32" Nullable="false" />
-          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="EnViaje" Type="Boolean" Nullable="false" />
-          <Property Name="Fecha_registro" Type="DateTime" />
-        </EntityType>
         <EntityType Name="cliente">
           <Key>
             <PropertyRef Name="cliente_ID" />
@@ -643,6 +594,37 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
           <Property Name="Usuario1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Clave" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Rol_usuario_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="viaje">
+          <Key>
+            <PropertyRef Name="Viaje_ID" />
+          </Key>
+          <Property Name="Viaje_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
+          <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
+          <Property Name="Precio_compra_por_tonelada" Type="Decimal" Nullable="false" />
+          <Property Name="Precio_valor_total" Type="Decimal" Nullable="false" />
+          <Property Name="Importe_viaje" Type="Decimal" Nullable="false" />
+          <Property Name="Saldo" Type="Decimal" Nullable="false" />
+          <Property Name="Pesada_origen_ID" Type="Int32" Nullable="false" />
+          <Property Name="Pesada_destino_ID" Type="Int32" Nullable="false" />
+          <Property Name="Empresa_de_carga_ID" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_partida" Type="DateTime" Nullable="false" />
+          <Property Name="Fecha_llegada" Type="DateTime" Nullable="false" />
+          <Property Name="Camion_ID" Type="Int32" Nullable="false" />
+          <Property Name="Chofer_ID" Type="Int32" Nullable="false" />
+          <Property Name="Carga" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descarga" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Fletero_ID" Type="Int32" Nullable="false" />
+          <Property Name="precio_compra" Type="Decimal" Nullable="false" />
+          <Property Name="precio_venta" Type="Decimal" Nullable="false" />
+          <Property Name="precio_flete" Type="Decimal" Nullable="false" />
+          <Property Name="precio_descarga" Type="Decimal" Nullable="false" />
+          <Property Name="GananciaXTon" Type="Decimal" Nullable="false" />
+          <Property Name="IVA" Type="Int32" Nullable="false" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EnViaje" Type="Boolean" Nullable="false" />
+          <Property Name="Fecha_registro" Type="DateTime" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -794,14 +776,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="viaje_mercaderia">
-            <EntityTypeMapping TypeName="bonisoft_dbModel.viaje_mercaderia">
-              <MappingFragment StoreEntitySet="viaje_mercaderia">
-                <ScalarProperty Name="Mercaderia_comprada_ID" ColumnName="Mercaderia_comprada_ID" />
-                <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="cargadores">
             <EntityTypeMapping TypeName="bonisoft_dbModel.cargador">
               <MappingFragment StoreEntitySet="cargador">
@@ -892,38 +866,6 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="viajes">
-            <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
-              <MappingFragment StoreEntitySet="viaje">
-                <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
-                <ScalarProperty Name="EnViaje" ColumnName="EnViaje" />
-                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-                <ScalarProperty Name="IVA" ColumnName="IVA" />
-                <ScalarProperty Name="GananciaXTon" ColumnName="GananciaXTon" />
-                <ScalarProperty Name="precio_descarga" ColumnName="precio_descarga" />
-                <ScalarProperty Name="precio_flete" ColumnName="precio_flete" />
-                <ScalarProperty Name="precio_venta" ColumnName="precio_venta" />
-                <ScalarProperty Name="precio_compra" ColumnName="precio_compra" />
-                <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />
-                <ScalarProperty Name="Descarga" ColumnName="Descarga" />
-                <ScalarProperty Name="Carga" ColumnName="Carga" />
-                <ScalarProperty Name="Chofer_ID" ColumnName="Chofer_ID" />
-                <ScalarProperty Name="Camion_ID" ColumnName="Camion_ID" />
-                <ScalarProperty Name="Fecha_llegada" ColumnName="Fecha_llegada" />
-                <ScalarProperty Name="Fecha_partida" ColumnName="Fecha_partida" />
-                <ScalarProperty Name="Empresa_de_carga_ID" ColumnName="Empresa_de_carga_ID" />
-                <ScalarProperty Name="Pesada_destino_ID" ColumnName="Pesada_destino_ID" />
-                <ScalarProperty Name="Pesada_origen_ID" ColumnName="Pesada_origen_ID" />
-                <ScalarProperty Name="Saldo" ColumnName="Saldo" />
-                <ScalarProperty Name="Importe_viaje" ColumnName="Importe_viaje" />
-                <ScalarProperty Name="Precio_valor_total" ColumnName="Precio_valor_total" />
-                <ScalarProperty Name="Precio_compra_por_tonelada" ColumnName="Precio_compra_por_tonelada" />
-                <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
-                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
-                <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="clientes">
             <EntityTypeMapping TypeName="bonisoft_dbModel.cliente">
               <MappingFragment StoreEntitySet="cliente">
@@ -955,6 +897,38 @@ FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQ
                 <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
                 <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
                 <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viajes">
+            <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
+              <MappingFragment StoreEntitySet="viaje">
+                <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
+                <ScalarProperty Name="EnViaje" ColumnName="EnViaje" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="GananciaXTon" ColumnName="GananciaXTon" />
+                <ScalarProperty Name="precio_descarga" ColumnName="precio_descarga" />
+                <ScalarProperty Name="precio_flete" ColumnName="precio_flete" />
+                <ScalarProperty Name="precio_venta" ColumnName="precio_venta" />
+                <ScalarProperty Name="precio_compra" ColumnName="precio_compra" />
+                <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />
+                <ScalarProperty Name="Descarga" ColumnName="Descarga" />
+                <ScalarProperty Name="Carga" ColumnName="Carga" />
+                <ScalarProperty Name="Chofer_ID" ColumnName="Chofer_ID" />
+                <ScalarProperty Name="Camion_ID" ColumnName="Camion_ID" />
+                <ScalarProperty Name="Fecha_llegada" ColumnName="Fecha_llegada" />
+                <ScalarProperty Name="Fecha_partida" ColumnName="Fecha_partida" />
+                <ScalarProperty Name="Empresa_de_carga_ID" ColumnName="Empresa_de_carga_ID" />
+                <ScalarProperty Name="Pesada_destino_ID" ColumnName="Pesada_destino_ID" />
+                <ScalarProperty Name="Pesada_origen_ID" ColumnName="Pesada_origen_ID" />
+                <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+                <ScalarProperty Name="Importe_viaje" ColumnName="Importe_viaje" />
+                <ScalarProperty Name="Precio_valor_total" ColumnName="Precio_valor_total" />
+                <ScalarProperty Name="Precio_compra_por_tonelada" ColumnName="Precio_compra_por_tonelada" />
+                <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
+                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+                <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

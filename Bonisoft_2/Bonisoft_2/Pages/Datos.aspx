@@ -4,7 +4,7 @@
 <%@ Register Src="~/User_Controls/Estaticos/Proveedores.ascx" TagPrefix="uc1" TagName="Proveedores" %>
 <%@ Register Src="~/User_Controls/Estaticos/Cuadrillas.ascx" TagPrefix="uc1" TagName="Cuadrillas" %>
 <%@ Register Src="~/User_Controls/Estaticos/Camiones.ascx" TagPrefix="uc1" TagName="Camiones" %>
-<%@ Register Src="~/User_Controls/Estaticos/Choferes2.ascx" TagPrefix="uc1" TagName="Choferes2" %>
+<%@ Register Src="~/User_Controls/Estaticos/Choferes.ascx" TagPrefix="uc1" TagName="Choferes" %>
 <%@ Register Src="~/User_Controls/Estaticos/Procesadores.ascx" TagPrefix="uc1" TagName="Procesadores" %>
 <%@ Register Src="~/User_Controls/Estaticos/Fleteros.ascx" TagPrefix="uc1" TagName="Fleteros" %>
 <%@ Register Src="~/User_Controls/Estaticos/Cargadores.ascx" TagPrefix="uc1" TagName="Cargadores" %>
@@ -279,7 +279,7 @@
                                     <div class="divTables" id="divChoferes" style="display: none;">
                                         <asp:UpdatePanel ID="upChoferes" runat="server">
                                             <ContentTemplate>
-                                                <uc1:Choferes2 runat="server" ID="Choferes2" />
+                                                <uc1:Choferes runat="server" ID="Choferes" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>

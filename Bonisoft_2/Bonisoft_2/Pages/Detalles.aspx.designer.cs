@@ -100,7 +100,7 @@ namespace Bonisoft_2.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Bonisoft_2.User_Controls.Choferes2 Choferes2;
+        protected global::Bonisoft_2.User_Controls.Choferes Choferes2;
         
         /// <summary>
         /// upInternos control.

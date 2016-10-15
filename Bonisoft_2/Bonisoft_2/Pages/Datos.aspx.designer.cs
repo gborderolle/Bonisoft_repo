@@ -94,13 +94,13 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.UpdatePanel upChoferes;
         
         /// <summary>
-        /// Choferes2 control.
+        /// Choferes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Bonisoft_2.User_Controls.Choferes2 Choferes2;
+        protected global::Bonisoft_2.User_Controls.Choferes Choferes;
         
         /// <summary>
         /// upCargadores control.

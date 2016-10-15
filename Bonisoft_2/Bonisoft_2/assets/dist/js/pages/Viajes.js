@@ -171,38 +171,57 @@ function BorrarViajeEnCurso(viaje_ID) {
                     $.ajax({
                         type: "POST",
                         url: "Viajes.aspx/BorrarViajeEnCurso",
-                        data: '{viajeID_str: "' + viajeID_str + ', userID: "' + userID + ', clave_str: "' + txbClave + '"}',
+                        data: '{viajeID_str: "' + viajeID_str + '", userID: "' + userID + '", clave_str: "' + txbClave + '"}',
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
-                            var ok = response.d;
-                            if (ok) {
-                                show_message_info('OK_ViajeBorrado');
+                            var resultado = response.d;
+                            switch (resultado) {
+                                case 0: {
+                                    // Error interno
+                                    show_message_info('Error_Datos');
+                                    break;
+                                }
+                                case 1: {
+                                    // OK
+                                    show_message_info('OK_BorrarViaje');
 
-                                // Actualizar tabla
-                                $("#btnUpdateViajesEnCurso").click();
+                                    $(this).dialog("close");
 
-                            } else {
-                                show_message_info('Error_Datos');
+                                    // Actualizar tabla
+                                    $("#btnUpdateViajesEnCurso").click();
+
+                                    break;
+                                }
+                                case 2: {
+                                    // Error de clave
+                                    show_message_info('Error_clave');
+                                    break;
+                                }
+                                case 3: {
+                                    // Error de usuario
+                                    show_message_info('Error_usuario');
+                                    break;
+                                }
                             }
 
-                            $("#txbClave").hide();
+                            $("#txbClave").val("");
 
                         }, // end success
                         failure: function (response) {
                             show_message_info('Error_Datos');
-                            $("#txbClave").hide();
+                            $("#txbClave").val("");
                         }
                     }); // Ajax
 
                     } else {
-                        show_message_info('Error_IngreseClave');
+                        show_message_info('IngresarClave');
                     }
                 }
             },
             "Cancelar": function () {
                 $(this).dialog("close");
-                $("#txbClave").hide();
+                $("#txbClave").val("");
 
                 return false;
             }

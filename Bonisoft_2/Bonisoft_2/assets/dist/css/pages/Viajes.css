@@ -1,4 +1,12 @@
-﻿.btnUpdate{
+﻿.btn-command{
+    margin:2px;
+}
+
+.with_border{
+    border: 1px #FF0000 solid;
+}
+
+.btnUpdate{
     margin-left: 10px;
     color: #313131 !important;
 }

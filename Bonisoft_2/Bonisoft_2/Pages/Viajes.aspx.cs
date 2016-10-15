@@ -458,6 +458,12 @@ namespace Bonisoft_2.Pages
         protected void btnUpdateViajesEnCurso_Click(object sender, EventArgs e)
         {
             BindGrid_ViajesEnCurso();
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append(@"<script type='text/javascript'>");
+            sb.Append("bindEvents();");
+            sb.Append(@"</script>");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "btnUpdateViajesEnCurso_Click", sb.ToString(), false);
         }
 
         protected void btnUpdateViajes_Click(object sender, EventArgs e)
@@ -471,6 +477,34 @@ namespace Bonisoft_2.Pages
 
         protected void gridViajes_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            #region Updatepanel triggers
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnk = e.Row.FindControl("lnkEdit") as LinkButton;
+                if (lnk != null)
+                {
+                    ScriptManager.GetCurrent(this).RegisterAsyncPostBackControl(lnk);
+                }
+                lnk = e.Row.FindControl("lnkDelete") as LinkButton;
+                if (lnk != null)
+                {
+                    ScriptManager.GetCurrent(this).RegisterAsyncPostBackControl(lnk);
+                }
+                lnk = e.Row.FindControl("lnkInsert") as LinkButton;
+                if (lnk != null)
+                {
+                    ScriptManager.GetCurrent(this).RegisterAsyncPostBackControl(lnk);
+                }
+                lnk = e.Row.FindControl("lnkCancel") as LinkButton;
+                if (lnk != null)
+                {
+                    ScriptManager.GetCurrent(this).RegisterAsyncPostBackControl(lnk);
+                }
+            }
+
+            #endregion
+
             #region Fill DDLs 
 
             // Camiones --------------------------------------------------
@@ -1331,10 +1365,11 @@ namespace Bonisoft_2.Pages
                                 FillData_Pesadas(viaje);
                                 FillData_Ventas(viaje);
 
+                                BindGridViajes();
+
                                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
                                 sb.Append(@"<script type='text/javascript'>");
                                 sb.Append("$('#tabsNotificaciones').tabs(); $('#notificacionesModal').modal('show'); bindEvents();");
-                                //sb.Append("$('#tabsNotificaciones').tabs(); $('#notificacionesModal').modal('show'); $('.datepicker').datepicker({ dateFormat: 'dd-MM-yyyy' }); $('#gridMercaderias').tablesorter();");
                                 sb.Append(@"</script>");
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "NotificarModalScript", sb.ToString(), false);
                             }
@@ -1421,20 +1456,21 @@ namespace Bonisoft_2.Pages
 
         protected void gridViajesEnCurso_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            #region Buttons
+            #region Updatepanel triggers
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                LinkButton btnModificar = e.Row.FindControl("btnModificar") as LinkButton;
-                if (btnModificar != null)
+                LinkButton btn = e.Row.FindControl("btnModificar") as LinkButton;
+                if (btn != null)
                 {
-                    btnModificar.CommandArgument = e.Row.DataItemIndex.ToString();
-                    ScriptManager.GetCurrent(this).RegisterAsyncPostBackControl(btnModificar);
+                    btn.CommandArgument = e.Row.DataItemIndex.ToString();
+                    ScriptManager.GetCurrent(this).RegisterAsyncPostBackControl(btn);
                 }
-                LinkButton btnBorrar = e.Row.FindControl("btnBorrar") as LinkButton;
-                if (btnBorrar != null)
+                btn = e.Row.FindControl("btnBorrar") as LinkButton;
+                if (btn != null)
                 {
-                    btnBorrar.CommandArgument = e.Row.DataItemIndex.ToString();
-                    ScriptManager.GetCurrent(this).RegisterAsyncPostBackControl(btnBorrar);
+                    btn.CommandArgument = e.Row.DataItemIndex.ToString();
+                    ScriptManager.GetCurrent(this).RegisterAsyncPostBackControl(btn);
                 }
             }
 
@@ -1755,6 +1791,9 @@ namespace Bonisoft_2.Pages
                     gridViajes.Rows[0].Cells[0].Text = "No hay registros";
                 }
                 //ScriptManager.RegisterStartupScript(this, this.GetType(), "BindGrid", "<script type='text/javascript'>$('.datepicker').datepicker({ dateFormat: 'dd-MM-yyyy' }); </script>", false);
+
+                gridViajes.UseAccessibleHeader = true;
+                gridViajes.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
         }
 
@@ -1793,9 +1832,10 @@ namespace Bonisoft_2.Pages
                     //set No Results found to the new added cell
                     gridViajesEnCurso.Rows[0].Cells[0].Text = "No hay registros";
                 }
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "BindGrid_EnCurso", "<script type='text/javascript'>$('.datepicker').datepicker({ dateFormat: 'dd-MM-yyyy' }); </script>", false);
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "BindGrid_EnCurso", "<script type='text/javascript'>bindEvents(); </script>", false);
 
+                gridViajesEnCurso.UseAccessibleHeader = true;
+                gridViajesEnCurso.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
         }
 
@@ -2345,9 +2385,9 @@ namespace Bonisoft_2.Pages
         }
 
         [WebMethod]
-        public static bool BorrarViajeEnCurso(string viajeID_str, string userID, string clave_str)
+        public static int BorrarViajeEnCurso(string viajeID_str, string userID, string clave_str)
         {
-            bool ret = false;
+            int resultado = 0;
             if (!string.IsNullOrWhiteSpace(viajeID_str) && !string.IsNullOrWhiteSpace(userID) && !string.IsNullOrWhiteSpace(clave_str))
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -2363,39 +2403,51 @@ namespace Bonisoft_2.Pages
                         viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                         if (viaje != null)
                         {
-                            // Check usuario
-                            //User user = new User(userID, "");
-                            //if (user != null)
-                            //{
-                            //    string uID = Global.GlobalMethods.CheckLogin(user.userName, password_input);
-                            //    {
-                            //        if (!string.IsNullOrWhiteSpace(uID))
-                            //        {
-                            //            result = 1; // OK
-                            //        }
-                            //    }
-                            //}
+                            int userID_int = 0;
+                            if(!int.TryParse(userID, out userID_int))
+                            {
+                                userID_int = 0;
+                            }
+                            if (userID_int > 0)
+                            {
+                                // Check usuario
+                                usuario usuario = (usuario)context.usuarios.FirstOrDefault(v => v.Usuario_ID == userID_int);
+                                if (usuario != null)
+                                {
+                                    if (usuario.Clave.ToLowerInvariant().Equals(clave_str.ToLowerInvariant()))
+                                    {
+                                        resultado = 1; // OK
 
-                            context.viajes.Remove(viaje);
+                                        context.viajes.Remove(viaje);
 
-                            #region Log
+                                        #region Log
 
-                            //log new_log = new log();
-                            //new_log.Usuario_ID = 0;
-                            //new_log.Fecha = DateTime.Now;
-                            ////new_log.Descripcion="Nuevo pago: " + pago
-                            //context.logs.Add(new_log);
+                                        //log new_log = new log();
+                                        //new_log.Usuario_ID = 0;
+                                        //new_log.Fecha = DateTime.Now;
+                                        ////new_log.Descripcion="Nuevo pago: " + pago
+                                        //context.logs.Add(new_log);
 
-                            #endregion
+                                        #endregion
 
-                            context.SaveChanges();
+                                        context.SaveChanges();
+                                    }
+                                    else
+                                    {
+                                        resultado = 2; // Error clave
 
-                            ret = true;
+                                    }
+                                }
+                                else
+                                {
+                                    resultado = 3; // Error usuario
+                                }
+                            }
                         }
                     }
                 }
             }
-            return ret;
+            return resultado;
         }
 
         [WebMethod]

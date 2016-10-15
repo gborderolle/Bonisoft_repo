@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bonisoft_2.User_Controls.Dinamicos {
+namespace Bonisoft_2.User_Controls {
     
     
-    public partial class ViajeMercaderia {
+    public partial class Choferes {
         
         /// <summary>
         /// lblMessage control.
@@ -22,21 +22,21 @@ namespace Bonisoft_2.User_Controls.Dinamicos {
         protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
-        /// gridViajeMercaderia control.
+        /// gridChoferes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridViajeMercaderia;
+        protected global::System.Web.UI.WebControls.GridView gridChoferes;
         
         /// <summary>
-        /// hdnMercaderiasCount control.
+        /// hdnChoferesCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnMercaderiasCount;
+        protected global::System.Web.UI.WebControls.HiddenField hdnChoferesCount;
     }
 }

@@ -62,59 +62,35 @@ namespace Bonisoft_2.User_Controls
         {
             #region Action buttons
 
-            LinkButton lnk = null;
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
+            if (ScriptManager1 != null)
             {
-                lnk = e.Row.FindControl("lnkEdit") as LinkButton;
-            }
-            if (lnk != null)
-            {
-                ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
-                if (ScriptManager1 != null)
+                LinkButton lnk = null;
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
-                }
-            }
+                    lnk = e.Row.FindControl("lnkEdit") as LinkButton;
+                    if (lnk != null)
+                    {
+                        ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                    }
 
-            lnk = null;
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                lnk = e.Row.FindControl("lnkDelete") as LinkButton;
-            }
-            if (lnk != null)
-            {
-                ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
-                if (ScriptManager1 != null)
-                {
-                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
-                }
-            }
+                    lnk = e.Row.FindControl("lnkDelete") as LinkButton;
+                    if (lnk != null)
+                    {
+                        ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                    }
 
-            lnk = null;
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                lnk = e.Row.FindControl("lnkInsert") as LinkButton;
-            }
-            if (lnk != null)
-            {
-                ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
-                if (ScriptManager1 != null)
-                {
-                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
-                }
-            }
+                    lnk = e.Row.FindControl("lnkInsert") as LinkButton;
+                    if (lnk != null)
+                    {
+                        ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                    }
 
-            lnk = null;
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                lnk = e.Row.FindControl("lnkCancel") as LinkButton;
-            }
-            if (lnk != null)
-            {
-                ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
-                if (ScriptManager1 != null)
-                {
-                    ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                    lnk = e.Row.FindControl("lnkCancel") as LinkButton;
+                    if (lnk != null)
+                    {
+                        ScriptManager1.RegisterAsyncPostBackControl(lnk);
+                    }
                 }
             }
 

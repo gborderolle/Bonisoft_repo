@@ -38,7 +38,7 @@
 
             <div class="row panel panel-default" style="margin-top: 10px; padding-top: 10px;">
 
-                <div class="col-md-4">
+                <div class="col-md-3">
 
                     <div style="text-align: center">
 
@@ -46,11 +46,7 @@
                         <ContentTemplate>
 
                             <div class="row" style="margin-bottom: 10px;">
-                                <div class="col-md-2 pull-left">
-                                    <%--<a href="#addModal" rel="modal:open" class="btn btn-success pull-left">Iniciar viaje</a>--%>
-                                </div>
-
-                                <div class="col-md-5 pull-right">
+                                <div class="col-md-7 pull-right">
                                     <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
                                         <div class="input-group ">
                                             <input type="text" id="txbSearchClientes" name="q" class="form-control" placeholder="Buscar...">
@@ -65,17 +61,17 @@
                             </div>
 
                             <asp:Label ID="gridClientes_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-                            <asp:GridView ID="gridClientes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" 
+                            <asp:GridView ID="gridClientes" runat="server" ClientIDMode="Static" HorizontalAlign="Left" 
                                 AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped"
                                 DataKeyNames="Cliente_ID"
                                 OnRowDataBound="gridClientes_RowDataBound"
                                 OnRowCommand="gridClientes_RowCommand"
                                 OnSelectedIndexChanged = "gridClientes_OnSelectedIndexChanged">
 
+                                <RowStyle HorizontalAlign="Left" />
                                 <Columns>
                                     <asp:BoundField DataField="cliente_ID" HeaderText="Cliente_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
                                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" HtmlEncode="false" />
-                                    <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
                                 </Columns>
                             </asp:GridView>
                             <asp:LinkButton ID="lnkDummy" runat="server"></asp:LinkButton>
@@ -91,16 +87,75 @@
 
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-md-9">
 
                     <div id="tabsClientes">
                     <ul>
-                        <li><a href="#tabsClientes_1" class="tabsClientes">Viajes</a></li>
-                        <li><a href="#tabsClientes_2" class="tabsClientes">Pagos</a></li>
+                        <li><a href="#tabsClientes_1" class="tabsClientes">Pagos</a></li>
+                        <li><a href="#tabsClientes_2" class="tabsClientes">Viajes</a></li>
                     </ul>
 
                     <!-- Tab Viajes BEGIN -->
                     <div id="tabsClientes_1">
+
+                        <div style="overflow: auto;">
+                        
+                            <asp:UpdatePanel ID="upPagos" runat="server">
+                            <ContentTemplate>
+                            
+                                <asp:HiddenField ID="hdn_clientID" runat="server" ClientIDMode="Static" />
+
+                                <div class="row" style="margin-bottom: 10px; margin-right: 0; margin-left: 0;">
+                                    <h3 class="pull-left" title="Precio de venta total">Saldo inicial: <label id="lblSaldo_inicial" class="label label-warning">0</label></h3>
+                                    <h3 class="pull-right" title="Saldo final después de pagos">Saldo final: <label id="lblSaldo_final" class="label label-success">0</label></h3>
+                                </div>
+
+                                <asp:Label ID="gridPagos_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
+                                <asp:GridView ID="gridPagos" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
+                                    AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped"
+                                    DataKeyNames="Cliente_pagos_ID" 
+                                    OnRowDataBound="gridPagos_RowDataBound"
+                                    OnRowCommand="gridPagos_RowCommand" >
+                                    <Columns>
+                                        <asp:BoundField DataField="Cliente_pagos_ID" HeaderText="Cliente_pagos_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
+                                        <asp:BoundField DataField="Cliente_ID" HeaderText="Cliente_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
+                                        <asp:BoundField DataField="Fecha_registro" HeaderText="Fecha de registro" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />
+                                        <asp:BoundField DataField="Fecha_pago" HeaderText="Fecha de pago" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="False" />
+                                        <asp:TemplateField HeaderText = "Forma de pago">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblForma" runat="server" CommandName="View" Text='<%# Eval("Forma_de_pago_ID") %>'/>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:BoundField DataField="Monto" DataFormatString="{0:C0}" HeaderText="Monto" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" HtmlEncode="False" />
+
+                                         <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
+                                            <ItemTemplate>
+                                                    <a id="btnModificar" role="button" onclick='<%# "ModificarPago_1(" +Eval("Cliente_pagos_ID") + " );" %>' class="btn btn-info btn-xs glyphicon glyphicon-pencil"></a>
+                                                    <a id="btnBorrar" role="button" onclick='<%# "BorrarPago(" +Eval("Cliente_ID") + " );" %>' class="btn btn-danger btn-xs glyphicon glyphicon-remove"></a>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                    </Columns>
+                                </asp:GridView>
+                                <asp:Label ID="lblGridPagosCount" runat="server" ClientIDMode="Static" Text="Resultados: 0" CssClass="lblResultados label label-info"></asp:Label>
+
+
+                                <div class="row" style="margin-right: 0; margin-left: 0;">
+                                        <a href="#addPagoModal" rel="modal:open" class="btn btn-info pull-right">Ingresar pago</a>
+                                </div>
+
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                        
+                        </div>
+
+
+
+                    </div>
+
+                    <div id="tabsClientes_2">
 
 
                         <div style="overflow: auto;">
@@ -124,11 +179,14 @@
                                 </div>
 
                                 <asp:Label ID="gridViajeslblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-                                <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
+                                <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Left" HeaderStyle-VerticalAlign="Middle"
                                     AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped"
                                     DataKeyNames="Viaje_ID" 
                                     OnRowDataBound="gridViajes_RowDataBound"
                                     OnRowCommand="gridViajes_RowCommand" >
+                                <HeaderStyle VerticalAlign="Middle" />
+                                    <RowStyle Font-Size="Smaller" />
+
                                     <Columns>
                                         <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />
                                          <asp:TemplateField HeaderText = "Proveedor">
@@ -177,63 +235,6 @@
                         
                         </div>
 
-
-                    </div>
-
-                    <div id="tabsClientes_2">
-
-                        <div style="overflow: auto;">
-                        
-                            <asp:UpdatePanel ID="upPagos" runat="server">
-                            <ContentTemplate>
-                            
-                                <asp:HiddenField ID="hdn_clientID" runat="server" ClientIDMode="Static" />
-
-                                <div class="row" style="margin-bottom: 10px; margin-right: 0; margin-left: 0;">
-                                    <h3 class="pull-left" title="Precio de venta total">Saldo inicial: <label id="lblSaldo_inicial" class="label label-warning">0</label></h3>
-                                    <h3 class="pull-right" title="Saldo final después de pagos">Saldo final: <label id="lblSaldo_final" class="label label-success">0</label></h3>
-                                </div>
-
-                                <asp:Label ID="gridPagos_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-                                <asp:GridView ID="gridPagos" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
-                                    AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped"
-                                    DataKeyNames="Cliente_pagos_ID" 
-                                    OnRowDataBound="gridPagos_RowDataBound"
-                                    OnRowCommand="gridPagos_RowCommand" >
-                                    <Columns>
-                                        <asp:BoundField DataField="Cliente_pagos_ID" HeaderText="Cliente_pagos_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
-                                        <asp:BoundField DataField="Cliente_ID" HeaderText="Cliente_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
-                                        <asp:BoundField DataField="Fecha_registro" HeaderText="Fecha de registro" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />
-                                        <asp:BoundField DataField="Fecha_pago" HeaderText="Fecha de pago" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="False" />
-                                        <asp:TemplateField HeaderText = "Forma de pago">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblForma" runat="server" CommandName="View" Text='<%# Eval("Forma_de_pago_ID") %>'/>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:BoundField DataField="Monto" DataFormatString="{0:C0}" HeaderText="Monto" HtmlEncode="False" />
-                                        <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" HtmlEncode="False" />
-
-                                         <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
-                                            <ItemTemplate>
-                                                    <a id="btnModificar" role="button" onclick='<%# "ModificarPago_1(" +Eval("Cliente_pagos_ID") + " );" %>' class="btn btn-info btn-xs glyphicon glyphicon-pencil"></a>
-                                                    <a id="btnBorrar" role="button" onclick='<%# "BorrarPago(" +Eval("Cliente_ID") + " );" %>' class="btn btn-info btn-xs glyphicon glyphicon-remove"></a>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                    </Columns>
-                                </asp:GridView>
-                                <asp:Label ID="lblGridPagosCount" runat="server" ClientIDMode="Static" Text="Resultados: 0" CssClass="lblResultados label label-info"></asp:Label>
-
-
-                                <div class="row" style="margin-right: 0; margin-left: 0;">
-                                        <a href="#addPagoModal" rel="modal:open" class="btn btn-info pull-right">Ingresar pago</a>
-                                </div>
-
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
-                        
-                        </div>
 
 
                     </div>

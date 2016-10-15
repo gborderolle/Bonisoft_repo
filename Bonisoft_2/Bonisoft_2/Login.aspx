@@ -3,56 +3,58 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
     <!-- STYLES EXTENSION -->
+    <link rel="stylesheet" href="/assets/dist/css/jquery.modal.css">
 
     <!-- PAGE CSS -->
-    <link rel="stylesheet" href="/assets/dist/css/Login_2.css">
+    <link rel="stylesheet" href="/assets/dist/css/pages/Login.css">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
 
     <!-- PAGE SCRIPTS -->
 
     <!-- PAGE JS -->
-    <script src="/assets/dist/js/Login_2.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/pages/Login.js"></script>
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="box box-default">
-        <div class="box-header with-border" style="padding-bottom: 0;">
+        <div class="box-header with-border dark in" style="padding-bottom: 0; overflow-y: hidden; display: block;">
 
             <div class="row">
-                <div class="col-md-9">
-                    <h2>Ingreso de usuarios al sistema</h2>
+                <div class="col-md-9 modal-header" style="background: #2d3032; border-bottom: 1px solid #2a2c2e;">
+                    <h2 style="color: #ccc;">Bienvenido a Bonisoft software!</h2>
                 </div>
             </div>
 
-            <div class="sub-form">
-            <div id="login">
-                <h1>Introduzca sus datos</h1>
+                <div class="sub-form panel panel-default" style="position: fixed; left:0; right:0; background: #40464b; color: #ccc;">
+        <div id="login">
+            <%--<h1>Introduzca sus datos</h1>--%>
                   
-                    <input type="text" id="txbUser1" runat="server" placeholder="Usuario" class="txbUser" />
-                    <input type="password" id="txbPassword1" runat="server" placeholder="Contraseña" class="txbPassword" />
+                <input type="text" id="txbUser1" runat="server" placeholder="Usuario" class="txbUser" />
+                <input type="password" id="txbPassword1" runat="server" placeholder="Contraseña" class="txbPassword" />
 
-                    <button type="button" id="btnSubmit" class="submit" onclick="checkSubmit();">
-                      <i class="fa fa-check"></i> Ingresar
-                    </button>
-                    <input type="submit" id="btnSubmit_candidato1" runat="server" onserverclick="btnSubmit_candidato1_ServerClick" 
-                        style="display:none;" class="btnSubmit_candidato" />
+                <button type="button" id="btnSubmit" class="btn btn-primary submit" style="font-size: 140%; line-height: 1.1;" onclick="checkSubmit();">
+                    <i class="fa fa-check"></i> Ingresar
+                </button>
+                <input type="submit" id="btnSubmit_candidato1" runat="server" onserverclick="btnSubmit_candidato1_ServerClick" 
+                    style="display:none;" class="btnSubmit_candidato" />
 
-                <div class="loginFormMessageContainer" style="box-sizing: inherit; width: 100%;">
-				<div class="loginWaitingMessage" style="display:none">
-					<div></div>
-				</div>
-				<div id="divMessages" class="alert alert-danger" role="alert" style="display:none;">
-                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                    <span class="sr-only">Error:</span>
-                    <label id="lblMessages" style="font-weight: normal;"/>
-                </div>
+            <div class="loginFormMessageContainer" style="box-sizing: inherit; width: 100%;">
+			<div class="loginWaitingMessage" style="display:none">
+				<div></div>
 			</div>
+			<div id="divMessages" class="alert alert-danger" role="alert" style="display:none;">
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                <label id="lblMessages" style="font-weight: normal;"/>
+            </div>
+		</div>
 
 
-            </div>
-            </div>
+        </div>
+        </div>
 
         </div>
     </div>

@@ -1,16 +1,16 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Variedad.ascx.cs" Inherits="Bonisoft_2.User_Controls.Configuracion.Variedad" %>
-<h2>Lista de Variedades</h2>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Choferes.ascx.cs" Inherits="Bonisoft_2.User_Controls.Choferes" %>
+<h2>Lista de Choferes</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridVariedades" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
-    CssClass="table table-hover table-striped" AllowPaging="true"
-    DataKeyNames="Variedad_ID"
-    OnRowCommand="gridVariedades_RowCommand"
-    OnRowCancelingEdit="gridVariedades_RowCancelingEdit"
-    OnRowEditing="gridVariedades_RowEditing"
-    OnRowUpdating="gridVariedades_RowUpdating"
-    OnRowDataBound="gridVariedades_RowDataBound"
-    OnRowDeleting="gridVariedades_RowDeleting">
+<asp:GridView ID="gridChoferes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True"
+    CssClass="table table-hover table-striped" 
+    DataKeyNames="Chofer_ID"
+    OnRowCommand="gridChoferes_RowCommand" 
+    OnRowCancelingEdit="gridChoferes_RowCancelingEdit"
+    OnRowEditing="gridChoferes_RowEditing" 
+    OnRowUpdating="gridChoferes_RowUpdating" 
+    OnRowDataBound="gridChoferes_RowDataBound"
+    OnRowDeleting="gridChoferes_RowDeleting">
 
     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
     <EmptyDataTemplate>
@@ -35,62 +35,56 @@
     </PagerTemplate>
 
     <Columns>
-       
-        <asp:TemplateField HeaderText="Nombre">
+        
+        <asp:TemplateField HeaderText="Nombre completo">
             <EditItemTemplate>
-                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Nombre") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Nombre_completo") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
+                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Nombre_completo") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-         <asp:TemplateField HeaderText="Tipo de Leña">
+          <asp:TemplateField HeaderText="Empresa">
             <EditItemTemplate>
-                <asp:DropDownList ID="ddlTipo1" runat="server" CssClass="form-control" />
+                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Empresa") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:LinkButton ID="lbl3" runat="server" CommandName="View" Text='<%# Bind("Lena_tipo_ID") %>'></asp:LinkButton>
+                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Empresa") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:DropDownList ID="ddlTipo2" runat="server" CssClass="form-control" />
+                <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Comentarios">
             <EditItemTemplate>
-                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="100"></asp:TextBox>
+                <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="100"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
+                <asp:Label ID="lbl4" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                <asp:TextBox ID="txbNew4" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-         <asp:TemplateField HeaderText="">
+        <asp:TemplateField HeaderText="">
             <ItemTemplate>
-                <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" ClientIDMode="AutoID"
                     CommandArgument=''><span aria-hidden="true" class="btn btn-info btn-xs glyphicon glyphicon-pencil"></span></asp:LinkButton>
-                <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete" ClientIDMode="AutoID"
                     OnClientClick='return confirm("Está seguro que desea borrar este registro?");'
                     CommandArgument=''><span aria-hidden="true" class="btn btn-danger btn-xs glyphicon glyphicon-remove"></span></asp:LinkButton>
             </ItemTemplate>
             <EditItemTemplate>
-                <asp:LinkButton ID="lnkInsert" runat="server" Text="" CommandName="Update" ClientIDMode="AutoID"
                     CommandArgument=''><span aria-hidden="true" class="btn btn-success btn-xs glyphicon glyphicon-floppy-disk"></span></asp:LinkButton>
-                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="Cancel" ClientIDMode="AutoID"
                     CommandArgument=''><span aria-hidden="true" class="btn btn-warning btn-xs glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </EditItemTemplate>
             <FooterTemplate>
-                <asp:LinkButton ID="lnkInsert" runat="server" Text="" ValidationGroup="newGrp" CommandName="InsertNew" ClientIDMode="AutoID"
                     CommandArgument=''><span aria-hidden="true" class="btn btn-success btn-xs glyphicon glyphicon-plus"></span></asp:LinkButton>
-                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew" ClientIDMode="AutoID"
                     CommandArgument=''><span aria-hidden="true" class="btn btn-warning btn-xs glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </FooterTemplate>
         </asp:TemplateField>
     </Columns>
 
 </asp:GridView>
-<asp:HiddenField ClientIDMode="Static" ID="hdnVariedadCount" runat="server" />
+<asp:HiddenField ClientIDMode="Static" ID="hdnChoferesCount" runat="server" />

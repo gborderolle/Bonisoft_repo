@@ -47,7 +47,6 @@
                 <!-- Tab Viajes En Curso BEGIN -->
                 <div id="tabsViajes_1">
 
-
                     <div style="text-align: center">
 
                         <asp:UpdatePanel ID="upGridViajesEnCurso" runat="server">
@@ -60,7 +59,7 @@
 
                                 <div class="row" style="margin-bottom: 10px;">
                                     <div class="col-md-2 pull-left">
-                                        <a href="#addModal" rel="modal:open" class="btn btn-warning pull-left">Iniciar viaje</a>
+                                        <a href="#addModal" rel="modal:open" class="btn btn-success pull-left">Iniciar viaje</a>
                                     </div>
 
                                     <div class="col-md-3 pull-right">
@@ -75,8 +74,10 @@
 
                                                 <asp:UpdatePanel ID="upUpdateViajesEnCurso" runat="server">
                                                     <ContentTemplate>
+
                                                         <asp:Button ID="btnUpdateViajesEnCurso" runat="server" Text="Actualizar" CssClass="btn btnUpdate"
-                                                            OnClick="btnUpdateViajesEnCurso_Click" UseSubmitBehavior="false" ClientIDMode="Static" />
+                                                            OnClick="btnUpdateViajesEnCurso_Click" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" />
+
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
 
@@ -93,7 +94,7 @@
                                     OnRowCommand="gridViajesEnCurso_RowCommand">
                                     <Columns>
                                         <asp:BoundField DataField="Viaje_ID" HeaderText="Viaje_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
-                                        <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />
+                                        <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
                                         <asp:TemplateField HeaderText="Proveedor">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lblProveedor" runat="server" CommandName="View" Text='<%# Eval("Proveedor_ID") %>' />
@@ -115,16 +116,13 @@
                                         <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
 
                                         <asp:ButtonField CommandName="notificar" ControlStyle-CssClass="btn btn-info btn-xs" ButtonType="Link" Text="" HeaderText="Notificar">
-                                            <ControlStyle CssClass="btn btn-success btn-xs fa fa-bullhorn"></ControlStyle>
+                                            <ControlStyle CssClass="btn btn-warning btn-xs fa fa-bullhorn"></ControlStyle>
                                         </asp:ButtonField>
 
                                         <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
                                             <ItemTemplate>
-                                                <%--<a id="btnNotificar" role="button" onclick='<%# "NotificarViaje(" +Eval("Viaje_ID") + ");" %>' class="btn btn-success btn-xs fa fa-bullhorn"></a>--%>
                                                 <a id="btnModificar" role="button" onclick='<%# "ModificarViaje_1(" +Eval("Viaje_ID") + ");" %>' class="btn btn-info btn-xs glyphicon glyphicon-pencil"></a>
                                                 <a id="btnBorrar" role="button" onclick='<%# "BorrarViajeEnCurso(" +Eval("Viaje_ID") + ");" %>' class="btn btn-danger btn-xs glyphicon glyphicon-remove"></a>
-
-                                                <%--<a id="btnBorrar" role="button" onclick="confirmar_borrarViajeEnCurso()" class="btn btn-danger btn-xs glyphicon glyphicon-remove"></a>--%>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
@@ -135,7 +133,8 @@
                         </asp:UpdatePanel>
 
                         <!-- Modal Iniciar viaje BEGIN -->
-                        <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" style="display: none; max-width: 800px; overflow: hidden;" class="modal fade dark in">
+                        <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" 
+                            style="display: none; max-width: 800px; overflow: hidden;" class="modal fade dark in">
 
                             <div class="modal-header">
                                 <h3 id="addModalLabel">Iniciar viaje</h3>
@@ -193,17 +192,10 @@
                                         </table>
                                     </div>
                                     <div class="modal-footer">
-
                                         <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cerrar</button>
                                         <a id="aNuevoViaje" class="btn btn-primary" onclick="NuevoViaje();">Agregar</a>
-
-                                        <%--<asp:Button ID="btnAdd" runat="server" Text="Agregar" CssClass="btn btn-primary" OnClientClick="Javascript:DoCustomPost();" OnClick="btnAddRecord1_Click" UseSubmitBehavior="false" />--%>
-
                                     </div>
                                 </ContentTemplate>
-                               <%-- <Triggers>
-                                    <asp:AsyncPostBackTrigger ControlID="btnAdd" EventName="Click" />
-                                </Triggers>--%>
                             </asp:UpdatePanel>
                         </div>
                         <!-- Modal Iniciar viaje END -->
@@ -263,16 +255,9 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cancelar</button>
-                                        <%--<asp:Button ID="btnEdit" runat="server" Text="Modificar" CssClass="btn btn-primary" OnClientClick="Javascript:DoCustomPost();" OnClick="btnEdit_Click" UseSubmitBehavior="false" />--%>
-                                        <%--<asp:Button ID="btnEdit" runat="server" Text="Modificar" CssClass="btn btn-primary" OnClientClick="Javascript:DoCustomPost();" OnClick="btnEdit_Click" UseSubmitBehavior="false" />--%>
-
                                         <a id="aModificarViaje" class="btn btn-primary" onclick="ModificarViaje_2();">Guardar</a>
-
                                     </div>
                                 </ContentTemplate>
-                                <Triggers>
-                                    <%--<asp:AsyncPostBackTrigger ControlID="btnEdit" EventName="Click" />--%>
-                                </Triggers>
                             </asp:UpdatePanel>
                         </div>
                         <!-- Modal Editar END -->
@@ -335,18 +320,22 @@
                                                 <table class="table">
                                                     <tr>
                                                         <td>Lugar: 
-                                                        <asp:TextBox ID="txb_pesada1Lugar" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                        <asp:TextBox ID="txb_pesada1Lugar" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30"></asp:TextBox>
+                                                            <asp:RequiredFieldValidator id="vtxb_pesada1Lugar" runat="server" ControlToValidate="txb_pesada1Lugar" 
+                                                                ErrorMessage="Este es un campo obligatorio" ForeColor="Red"/>
                                                         </td>
-                                                        <td>Fecha: 
-                                                        <asp:TextBox ID="txb_pesada1Fecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:d MMMM, yyyy}"></asp:TextBox>
+                                                        <td>Peso neto: 
+                                                        <asp:TextBox ID="txb_pesada1Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30"></asp:TextBox>
+                                                            <asp:RequiredFieldValidator id="vtxb_pesada1Peso_neto" runat="server" ControlToValidate="txb_pesada1Peso_neto" 
+                                                                ErrorMessage="Este es un campo obligatorio" ForeColor="Red"/>
                                                         </td>
                                                     </tr>
                                                     <tr>
+                                                        <td>Fecha: 
+                                                        <asp:TextBox ID="txb_pesada1Fecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:d-MM-yyyy}"></asp:TextBox>
+                                                        </td>
                                                         <td>Peso bruto: 
                                                         <asp:TextBox ID="txb_pesada1Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                        </td>
-                                                        <td>Peso neto: 
-                                                        <asp:TextBox ID="txb_pesada1Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -378,18 +367,22 @@
                                                 <table class="table">
                                                     <tr>
                                                         <td>Lugar: 
-                                                      <asp:TextBox ID="txb_pesada2Lugar" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                      <asp:TextBox ID="txb_pesada2Lugar" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30"></asp:TextBox>
+                                                            <asp:RequiredFieldValidator id="vtxb_pesada2Lugar" runat="server" ControlToValidate="txb_pesada2Lugar" 
+                                                                ErrorMessage="Este es un campo obligatorio" ForeColor="Red"/>
                                                         </td>
-                                                        <td>Fecha: 
-                                                        <asp:TextBox ID="txb_pesada2Fecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:d MMMM, yyyy}"></asp:TextBox>
+                                                        <td>Peso neto: 
+                                                       <asp:TextBox ID="txb_pesada2Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30"></asp:TextBox>
+                                                            <asp:RequiredFieldValidator id="vtxb_pesada2Peso_neto" runat="server" ControlToValidate="txb_pesada2Peso_neto" 
+                                                                ErrorMessage="Este es un campo obligatorio" ForeColor="Red"/>
                                                         </td>
                                                     </tr>
                                                     <tr>
+                                                        <td>Fecha: 
+                                                        <asp:TextBox ID="txb_pesada2Fecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:d-MM-yyyy}"></asp:TextBox>
+                                                        </td>
                                                         <td>Peso bruto: 
                                                          <asp:TextBox ID="txb_pesada2Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                        </td>
-                                                        <td>Peso neto: 
-                                                       <asp:TextBox ID="txb_pesada2Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -422,19 +415,19 @@
                                                         </td>
                                                         <td>Precio de flete: 
                                                         <asp:TextBox ID="notif_txbPrecioFlete" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0"></asp:TextBox>
-                                                            <asp:CompareValidator ID="vnotif_txbPrecioFlete" runat="server" ControlToValidate="notif_txbPrecioFlete" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                                                            <asp:CompareValidator ForeColor="Red" ID="vnotif_txbPrecioFlete" runat="server" ControlToValidate="notif_txbPrecioFlete" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                         </td>
                                                         <td>Precio de descarga: 
                                                         <asp:TextBox ID="notif_txbPrecioDescarga" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0"></asp:TextBox>
-                                                            <asp:CompareValidator ID="vnotif_txbPrecioDescarga" runat="server" ControlToValidate="notif_txbPrecioDescarga" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                                                            <asp:CompareValidator ForeColor="Red" ID="vnotif_txbPrecioDescarga" runat="server" ControlToValidate="notif_txbPrecioDescarga" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                         </td>
                                                         <td>Ganancia por TON: 
                                                         <asp:TextBox ID="notif_txbGananciaXTon" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0"></asp:TextBox>
-                                                            <asp:CompareValidator ID="vnotif_txbGananciaXTon" runat="server" ControlToValidate="notif_txbGananciaXTon" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                                                            <asp:CompareValidator ForeColor="Red" ID="vnotif_txbGananciaXTon" runat="server" ControlToValidate="notif_txbGananciaXTon" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                         </td>
-                                                        <td>% IVA: 
+                                                        <td>% IVA (0 = no aplica): 
                                                         <asp:TextBox ID="notif_txbIVA" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0"></asp:TextBox>
-                                                            <asp:CompareValidator ID="vnotif_txbIVA" runat="server" ControlToValidate="notif_txbIVA" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                                                            <asp:CompareValidator ForeColor="Red" ID="vnotif_txbIVA" runat="server" ControlToValidate="notif_txbIVA" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                         </td>
                                                         <td>
                                                             <a class="btn btn-default" style="color: black;" onclick="calcularPrecioVenta();">Calcular</a>
@@ -477,8 +470,7 @@
 
                     <div class="row">
 
-                        <asp:UpdatePanel ID="upGridViajes" runat="server">
-                            <ContentTemplate>
+                        
 
                                 <div class="col-md-12">
                                     <div class="row">
@@ -501,6 +493,9 @@
 
                                             <div style="text-align: center">
 
+                                                <asp:UpdatePanel ID="upGridViajes" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+
                                                 <asp:Label ID="gridViajes_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                                                 <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False"
                                                     ShowFooter="False" CssClass="table table-hover table-striped"
@@ -511,7 +506,8 @@
                                                     OnRowUpdating="gridViajes_RowUpdating"
                                                     OnRowDeleting="gridViajes_RowDeleting"
                                                     OnRowDataBound="gridViajes_RowDataBound">
-
+                                    
+                                                    <RowStyle Font-Size="Smaller" />
                                                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                                                     <EmptyDataTemplate>
                                                         ¡No hay clientes con los parámetros seleccionados!  
@@ -534,35 +530,13 @@
                                                         </div>
                                                     </PagerTemplate>
 
-                                                    <Columns>
-                                                        <asp:TemplateField HeaderText="">
-                                                            <ItemTemplate>
-                                                                <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit"
-                                                                    CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
-
-                                                                <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete"
-                                                                    OnClientClick='return confirm("Está seguro que desea borrar este registro?");'
-                                                                    CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></asp:LinkButton>
-                                                            </ItemTemplate>
-                                                            <EditItemTemplate>
-                                                                <asp:LinkButton ID="lnkInsert" runat="server" Text="" CommandName="Update"
-                                                                    CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-floppy-disk"></span></asp:LinkButton>
-                                                                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="Cancel"
-                                                                    CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
-                                                            </EditItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:LinkButton ID="lnkInsert" runat="server" Text="" ValidationGroup="newGrp" CommandName="InsertNew"
-                                                                    CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-plus"></span></asp:LinkButton>
-                                                                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew"
-                                                                    CommandArgument='' CssClass="btn btn-info btn-xs"><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>
+                                                    <Columns>                                                       
                                                         <asp:TemplateField HeaderText="Fecha partida">
                                                             <EditItemTemplate>
-                                                                <asp:TextBox ID="txb11" runat="server" Text='<%# Bind("Fecha_partida", "{0:d MMMM, yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                                                <asp:TextBox ID="txb11" runat="server" Text='<%# Bind("Fecha_partida", "{0:dd-MM-yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                                                             </EditItemTemplate>
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lbl11" runat="server" Text='<%# Bind("Fecha_partida", "{0:d MMMM, yyyy}") %>'></asp:Label>
+                                                                <asp:Label ID="lbl11" runat="server" Text='<%# Bind("Fecha_partida", "{0:dd-MM-yyyy}") %>'></asp:Label>
                                                             </ItemTemplate>
                                                             <FooterTemplate>
                                                                 <asp:TextBox ID="txbNew11" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
@@ -570,10 +544,10 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Fecha llegada">
                                                             <EditItemTemplate>
-                                                                <asp:TextBox ID="txb12" runat="server" Text='<%# Bind("Fecha_llegada", "{0:d MMMM, yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                                                <asp:TextBox ID="txb12" runat="server" Text='<%# Bind("Fecha_llegada", "{0:dd-MM-yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                                                             </EditItemTemplate>
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lbl12" runat="server" Text='<%# Bind("Fecha_llegada", "{0:d MMMM, yyyy}") %>'></asp:Label>
+                                                                <asp:Label ID="lbl12" runat="server" Text='<%# Bind("Fecha_llegada", "{0:dd-MM-yyyy}") %>'></asp:Label>
                                                             </ItemTemplate>
                                                             <FooterTemplate>
                                                                 <asp:TextBox ID="txbNew12" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
@@ -604,27 +578,27 @@
                                                         <asp:TemplateField HeaderText="Precio compra">
                                                             <EditItemTemplate>
                                                                 <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Precio_compra") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                                <asp:CompareValidator ID="vtxb2" runat="server" ControlToValidate="txb2" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                                                                <asp:CompareValidator ForeColor="Red" ID="vtxb2" runat="server" ControlToValidate="txb2" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                             </EditItemTemplate>
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Precio_compra", "{0:C0}") %>'></asp:Label>
                                                             </ItemTemplate>
                                                             <FooterTemplate>
                                                                 <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                                <asp:CompareValidator ID="vtxbNew2" runat="server" ControlToValidate="txbNew2" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                                                                <asp:CompareValidator ForeColor="Red" ID="vtxbNew2" runat="server" ControlToValidate="txbNew2" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                             </FooterTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Precio venta">
                                                             <EditItemTemplate>
                                                                 <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Precio_venta") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                                <asp:CompareValidator ID="vtxb3" runat="server" ControlToValidate="txb3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                                                                <asp:CompareValidator ForeColor="Red" ID="vtxb3" runat="server" ControlToValidate="txb3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                             </EditItemTemplate>
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Precio_venta", "{0:C0}") %>'></asp:Label>
                                                             </ItemTemplate>
                                                             <FooterTemplate>
                                                                 <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                                <asp:CompareValidator ID="vtxbNew3" runat="server" ControlToValidate="txbNew3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Integer" />
+                                                                <asp:CompareValidator ForeColor="Red" ID="vtxbNew3" runat="server" ControlToValidate="txbNew3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                             </FooterTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Pesada origen">
@@ -715,7 +689,27 @@
                                                                 <asp:TextBox ID="txbNew15" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
                                                             </FooterTemplate>
                                                         </asp:TemplateField>
-
+                                                         <asp:TemplateField HeaderText="">
+                                                            <ItemTemplate>
+                                                                <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" ClientIDMode="AutoID"
+                                                                    CommandArgument='' CssClass="btn btn-info btn-xs btn-command" CausesValidation="false"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
+                                                                <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete" ClientIDMode="AutoID"
+                                                                    OnClientClick='return confirm("Está seguro que desea borrar este registro?");'
+                                                                    CommandArgument='' CssClass="btn btn-danger btn-xs btn-command"><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></asp:LinkButton>
+                                                            </ItemTemplate>
+                                                            <EditItemTemplate>
+                                                                <asp:LinkButton ID="lnkInsert" runat="server" Text="" CommandName="Update" CausesValidation="false" ClientIDMode="AutoID"
+                                                                    CommandArgument='' CssClass="btn btn-success btn-xs btn-command"><span aria-hidden="true" class="glyphicon glyphicon-floppy-disk"></span></asp:LinkButton>
+                                                                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="Cancel" CausesValidation="false" ClientIDMode="AutoID"
+                                                                    CommandArgument='' CssClass="btn btn-warning btn-xs btn-command"><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
+                                                            </EditItemTemplate>
+                                                            <FooterTemplate>
+                                                                <asp:LinkButton ID="lnkInsert" runat="server" Text="" ValidationGroup="newGrp" CommandName="InsertNew" ClientIDMode="AutoID"
+                                                                    CommandArgument='' CssClass="btn btn-info btn-xs btn-command"><span aria-hidden="true" class="glyphicon glyphicon-plus"></span></asp:LinkButton>
+                                                                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew" ClientIDMode="AutoID"
+                                                                    CommandArgument='' CssClass="btn btn-warning btn-xs btn-command"><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
+                                                            </FooterTemplate>
+                                                        </asp:TemplateField>
                                                     </Columns>
 
                                                 </asp:GridView>
@@ -723,14 +717,19 @@
 
                                                 <asp:HiddenField ClientIDMode="Static" ID="hdnViajesCount" runat="server" />
 
+                                </ContentTemplate>
+                                                    <Triggers>
+                                                        <%--<asp:AsyncPostBackTrigger ControlID="lnkEdit" />--%>
+                                                    </Triggers>
+                        </asp:UpdatePanel>
+
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
 
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
+                            
                     </div>
 
                 </div>
@@ -752,7 +751,7 @@
             <div class="row row-short" style="padding: 10px;">
 
                 <input type="password" id="txbClave" class="form-control" style="width: 90%; display: none;" placeholder="Ingrese su contraseña"
-                    name="login-username" required="required" />
+                    name="login-username"/>
                 <!--  -->
             </div>
         </div>
@@ -774,7 +773,7 @@
                     <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                     <span class="sr-only">Info:</span> Está a punto de borrar el elemento, confirme su contraseña para continuar
                 </div>
-                <input type="password" class="form-control" id="txbConfirmRemoveElement" placeholder="Contraseña" name="login-username" required="required" />
+                <input type="password" class="form-control" id="txbConfirmRemoveElement" placeholder="Contraseña" name="login-username" />
                 <!--  -->
             </div>
             <div id="popbox_footer" class="row row-short pull-right" style="margin-right: 15px; margin-top: -7px;">
