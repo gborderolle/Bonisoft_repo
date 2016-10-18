@@ -16,6 +16,13 @@ namespace Bonisoft_2
             Logout();
         }
 
+        protected void btnSubmit_candidato1_ServerClick(object sender, EventArgs e)
+        {
+            string username = txbUser1.Value;
+            string password = txbPassword1.Value;
+            Perform_login(username, password, false);
+        }
+
         #endregion Events
 
         #region Methods
@@ -64,11 +71,5 @@ namespace Bonisoft_2
 
         #endregion Methods
 
-        protected void btnSubmit_candidato1_ServerClick(object sender, EventArgs e)
-        {
-            string username = txbUser1.Value;
-            string password = txbPassword1.Value;
-            Perform_login(username, password, false);
-        }
     }
 }

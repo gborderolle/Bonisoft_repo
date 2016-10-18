@@ -95,6 +95,11 @@ namespace Bonisoft_2.User_Controls.Estaticos
 
         protected void gridCargadores_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             if (e.CommandName == "InsertNew")
             {
                 GridViewRow row = gridCargadores.FooterRow;
@@ -114,6 +119,27 @@ namespace Bonisoft_2.User_Controls.Estaticos
 
                         context.cargadores.Add(obj);
                         context.SaveChanges();
+
+                        #region Guardar log 
+try 
+{
+                        int id = 1;
+                        cargador cargador = (cargador)context.cargadores.OrderByDescending(p => p.Cargador_ID).FirstOrDefault();
+                        if (cargador != null)
+                        {
+                            id = cargador.Cargador_ID;
+                        }
+
+                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                        string username = HttpContext.Current.Session["UserName"].ToString();
+                        Global_Objects.Logs.AddUserLog("Agrega cargador", id, userID1, username);
+                        }
+                        catch (Exception ex)
+                        {
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                        }
+                        #endregion
+
                         lblMessage.Text = "Agregado correctamente.";
                         BindGrid();
                     }
@@ -137,6 +163,11 @@ namespace Bonisoft_2.User_Controls.Estaticos
         }
         protected void gridCargadores_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             GridViewRow row = gridCargadores.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
@@ -154,6 +185,20 @@ namespace Bonisoft_2.User_Controls.Estaticos
                     obj.Telefono = txb4.Text;
 
                     context.SaveChanges();
+
+                    #region Guardar log 
+try 
+{
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Global_Objects.Logs.AddUserLog("Modifica cargador", obj.Cargador_ID, userID1, username);
+                    }
+                    catch (Exception ex)
+                    {
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                    }
+                    #endregion
+
                     lblMessage.Text = "Guardado correctamente.";
                     gridCargadores.EditIndex = -1;
                     BindGrid();
@@ -163,12 +208,31 @@ namespace Bonisoft_2.User_Controls.Estaticos
 
         protected void gridCargadores_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             int cargador_ID = Convert.ToInt32(gridCargadores.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 cargador obj = context.cargadores.First(x => x.Cargador_ID == cargador_ID);
                 context.cargadores.Remove(obj);
                 context.SaveChanges();
+
+                #region Guardar log 
+try 
+{
+                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                string username = HttpContext.Current.Session["UserName"].ToString();
+                Global_Objects.Logs.AddUserLog("Borra cargador", obj.Cargador_ID, userID1, username);
+                }
+                catch (Exception ex)
+                {
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                }
+                #endregion
+
                 BindGrid();
                 lblMessage.Text = "Borrado correctamente.";
             }

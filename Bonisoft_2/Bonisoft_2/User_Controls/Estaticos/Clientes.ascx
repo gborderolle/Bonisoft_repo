@@ -35,7 +35,7 @@
     </PagerTemplate>
 
     <Columns>
-        
+        <asp:BoundField DataField="Cliente_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true"/>
         <asp:TemplateField HeaderText="Nombre">
             <EditItemTemplate>
                 <asp:TextBox ID="txb13" runat="server" Text='<%# Bind("Nombre") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>

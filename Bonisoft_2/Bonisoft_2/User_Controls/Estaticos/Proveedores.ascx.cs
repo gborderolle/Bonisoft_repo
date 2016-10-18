@@ -95,6 +95,11 @@ namespace Bonisoft_2.User_Controls
 
         protected void gridProveedores_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             if (e.CommandName == "InsertNew")
             {
                 GridViewRow row = gridProveedores.FooterRow;
@@ -116,6 +121,27 @@ namespace Bonisoft_2.User_Controls
 
                         context.proveedores.Add(obj);
                         context.SaveChanges();
+
+                        #region Guardar log 
+try 
+{
+                        int id = 1;
+                        proveedor proveedor = (proveedor)context.proveedores.OrderByDescending(p => p.Proveedor_ID).FirstOrDefault();
+                        if (proveedor != null)
+                        {
+                            id = proveedor.Proveedor_ID;
+                        }
+
+                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                        string username = HttpContext.Current.Session["UserName"].ToString();
+                        Global_Objects.Logs.AddUserLog("Agrega proveedor", id, userID1, username);
+                        }
+                        catch (Exception ex)
+                        {
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                        }
+                        #endregion
+
                         lblMessage.Text = "Agregado correctamente.";
                         BindGrid();
                     }
@@ -139,6 +165,11 @@ namespace Bonisoft_2.User_Controls
         }
         protected void gridProveedores_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             GridViewRow row = gridProveedores.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb3 = row.FindControl("txb3") as TextBox;
@@ -158,6 +189,21 @@ namespace Bonisoft_2.User_Controls
                     obj.Comentarios = txb10.Text;
 
                     context.SaveChanges();
+
+                    #region Guardar log 
+try 
+{
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Global_Objects.Logs.AddUserLog("Modifica proveedor", obj.Proveedor_ID, userID1, username); 
+} 
+catch (Exception ex)
+{
+Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+}
+#endregion
+
+
                     lblMessage.Text = "Guardado correctamente.";
                     gridProveedores.EditIndex = -1;
                     BindGrid();
@@ -167,12 +213,31 @@ namespace Bonisoft_2.User_Controls
 
         protected void gridProveedores_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             int proveedor_ID = Convert.ToInt32(gridProveedores.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 proveedor obj = context.proveedores.First(x => x.Proveedor_ID == proveedor_ID);
                 context.proveedores.Remove(obj);
                 context.SaveChanges();
+
+                #region Guardar log 
+try 
+{
+                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                string username = HttpContext.Current.Session["UserName"].ToString();
+                Global_Objects.Logs.AddUserLog("Borra proveedor", obj.Proveedor_ID, userID1, username);
+                }
+                catch (Exception ex)
+                {
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                }
+                #endregion
+
                 BindGrid();
                 lblMessage.Text = "Borrado correctamente.";
             }

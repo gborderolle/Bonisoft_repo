@@ -46,18 +46,6 @@
     <Property Name="Tipo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
-  <EntityType Name="preferencias_cliente">
-    <Key>
-      <PropertyRef Name="Preferencias_cliente_ID" />
-    </Key>
-    <Property Name="Preferencias_cliente_ID" Type="Int32" Nullable="false" />
-    <Property Name="Tipo_lena_ID" Type="Int32" Nullable="false" />
-    <Property Name="Largo_lena" Type="Decimal" Nullable="false" />
-    <Property Name="Diametro_lena" Type="Decimal" Nullable="false" />
-    <Property Name="Lena_tipo_1_ID" Type="Int32" Nullable="false" />
-    <Property Name="Lena_tipo_2_ID" Type="Int32" Nullable="false" />
-    <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-  </EntityType>
   <EntityType Name="proveedor_carga">
     <Key>
       <PropertyRef Name="Proveedor_ID" />
@@ -74,24 +62,14 @@
     <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
     <Property Name="Mercaderia_ID" Type="Int32" Nullable="false" />
   </EntityType>
-  <EntityType Name="cliente_preferencias_cliente">
-    <Key>
-      <PropertyRef Name="Cliente_ID" />
-      <PropertyRef Name="Cliente_Preferencias_cliente_ID" />
-    </Key>
-    <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
-    <Property Name="Cliente_Preferencias_cliente_ID" Type="Int32" Nullable="false" />
-  </EntityType>
   <EntityContainer Name="bonisoft_dbEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="choferes" EntityType="Self.chofer" />
     <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" />
     <EntitySet Name="descarga_viaje" EntityType="Self.descarga_viaje" />
     <EntitySet Name="forma_de_pago" EntityType="Self.forma_de_pago" />
     <EntitySet Name="lena_tipo" EntityType="Self.lena_tipo" />
-    <EntitySet Name="preferencias_cliente" EntityType="Self.preferencias_cliente" />
     <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" />
     <EntitySet Name="proveedor_mercaderia" EntityType="Self.proveedor_mercaderia" />
-    <EntitySet Name="cliente_preferencias_cliente" EntityType="Self.cliente_preferencias_cliente" />
     <EntitySet Name="roles_usuario" EntityType="bonisoft_dbModel.roles_usuario" />
     <EntitySet Name="variedad" EntityType="bonisoft_dbModel.variedad" />
     <EntitySet Name="fleteros" EntityType="bonisoft_dbModel.fletero" />
@@ -99,15 +77,15 @@
     <EntitySet Name="proveedores" EntityType="bonisoft_dbModel.proveedor" />
     <EntitySet Name="cargadores" EntityType="bonisoft_dbModel.cargador" />
     <EntitySet Name="procesadores" EntityType="bonisoft_dbModel.procesador" />
-    <EntitySet Name="logs" EntityType="bonisoft_dbModel.log" />
     <EntitySet Name="mercaderia_comprada" EntityType="bonisoft_dbModel.mercaderia_comprada" />
     <EntitySet Name="camion_ejes" EntityType="bonisoft_dbModel.camion_ejes" />
     <EntitySet Name="camiones" EntityType="bonisoft_dbModel.camion" />
     <EntitySet Name="internos" EntityType="bonisoft_dbModel.interno" />
     <EntitySet Name="cliente_pagos" EntityType="bonisoft_dbModel.cliente_pagos" />
     <EntitySet Name="clientes" EntityType="bonisoft_dbModel.cliente" />
-    <EntitySet Name="usuarios" EntityType="bonisoft_dbModel.usuario" />
     <EntitySet Name="viajes" EntityType="bonisoft_dbModel.viaje" />
+    <EntitySet Name="usuarios" EntityType="bonisoft_dbModel.usuario" />
+    <EntitySet Name="logs" EntityType="bonisoft_dbModel.log" />
   </EntityContainer>
   <EntityType Name="roles_usuario">
     <Key>
@@ -179,15 +157,6 @@
     <Property Name="Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="log">
-    <Key>
-      <PropertyRef Name="Log_ID" />
-    </Key>
-    <Property Name="Log_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Fecha" Type="DateTime" Nullable="false" />
-    <Property Name="Usuario_ID" Type="Int32" Nullable="false" />
-    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="mercaderia_comprada">
     <Key>
@@ -264,16 +233,6 @@
     <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityType Name="usuario">
-    <Key>
-      <PropertyRef Name="Usuario_ID" />
-    </Key>
-    <Property Name="Usuario_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Interno_ID" Type="Int32" Nullable="false" />
-    <Property Name="Usuario1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Clave" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Rol_usuario_ID" Type="Int32" Nullable="false" />
-  </EntityType>
   <EntityType Name="viaje">
     <Key>
       <PropertyRef Name="Viaje_ID" />
@@ -304,5 +263,27 @@
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="EnViaje" Type="Boolean" Nullable="false" />
     <Property Name="Fecha_registro" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="Usuario_ID" />
+    </Key>
+    <Property Name="Usuario_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Interno_ID" Type="Int32" Nullable="false" />
+    <Property Name="Usuario1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Clave" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Rol_usuario_ID" Type="Int32" Nullable="false" />
+    <Property Name="EsAdmin" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="log">
+    <Key>
+      <PropertyRef Name="Log_ID" />
+    </Key>
+    <Property Name="Log_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" />
+    <Property Name="Usuario_ID" Type="Int32" Nullable="false" />
+    <Property Name="Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Dato" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

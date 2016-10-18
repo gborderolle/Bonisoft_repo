@@ -26,7 +26,7 @@ namespace Bonisoft_2.Pages
 
             gridClientes.UseAccessibleHeader = true;
             gridClientes.HeaderRow.TableSection = TableRowSection.TableHeader;
-                       
+
             gridClientes_lblMessage.Text = string.Empty;
         }
 
@@ -228,7 +228,7 @@ namespace Bonisoft_2.Pages
         {
             if (e.CommandArgument != null)
             {
-              
+
             }
             else if (e.CommandName.Equals("View"))
             {
@@ -299,6 +299,11 @@ namespace Bonisoft_2.Pages
 
         protected void gridClientes_OnSelectedIndexChanged(object sender, EventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             foreach (GridViewRow row in gridClientes.Rows)
             {
                 if (row.RowIndex == gridClientes.SelectedIndex)
@@ -308,12 +313,13 @@ namespace Bonisoft_2.Pages
                     if (!string.IsNullOrWhiteSpace(cliente_ID_str))
                     {
                         int cliente_ID = 0;
-                        if(!int.TryParse(cliente_ID_str, out cliente_ID))
+                        if (!int.TryParse(cliente_ID_str, out cliente_ID))
                         {
                             cliente_ID = 0;
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, cliente_ID_str);
                         }
 
-                        if(cliente_ID > 0)
+                        if (cliente_ID > 0)
                         {
                             BindGridViajes(cliente_ID);
                             BindGridPagos(cliente_ID);
@@ -325,7 +331,7 @@ namespace Bonisoft_2.Pages
                         }
                     }
                     row.BackColor = ColorTranslator.FromHtml("#A1DCF2");
-                    foreach(TableCell cell in row.Cells)
+                    foreach (TableCell cell in row.Cells)
                     {
                         cell.BackColor = ColorTranslator.FromHtml("#A1DCF2");
                     }
@@ -519,6 +525,11 @@ namespace Bonisoft_2.Pages
         [System.Web.Services.WebMethod]
         public static string Update_Saldos(string clienteID_str)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             string ret = string.Empty;
             if (!string.IsNullOrWhiteSpace(clienteID_str))
             {
@@ -528,6 +539,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(clienteID_str, out cliente_ID))
                     {
                         cliente_ID = 0;
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
                     }
 
                     if (cliente_ID > 0)
@@ -574,6 +586,11 @@ namespace Bonisoft_2.Pages
         [System.Web.Services.WebMethod]
         public static bool IngresarPago(string clienteID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             bool ret = false;
             if (!string.IsNullOrWhiteSpace(clienteID_str))
             {
@@ -583,6 +600,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(clienteID_str, out cliente_ID))
                     {
                         cliente_ID = 0;
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
                     }
 
                     if (cliente_ID > 0)
@@ -597,6 +615,7 @@ namespace Bonisoft_2.Pages
                         if (!DateTime.TryParseExact(fecha_str, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date))
                         {
                             date = DateTime.Now;
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha_str);
                         }
                         obj.Fecha_pago = date;
 
@@ -604,6 +623,7 @@ namespace Bonisoft_2.Pages
                         if (!decimal.TryParse(monto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                         {
                             value = 0;
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, monto_str);
                         }
                         obj.Monto = value;
 
@@ -611,20 +631,31 @@ namespace Bonisoft_2.Pages
                         if (!int.TryParse(ddlFormas, out ddl))
                         {
                             ddl = 0;
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFormas);
                         }
                         obj.Forma_de_pago_ID = ddl;
 
                         context.cliente_pagos.Add(obj);
                         context.SaveChanges();
 
-                        #region Log
+                        #region Guardar log 
+try 
+{
+                        int id = 1;
+                        cliente_pagos cliente_pago1 = (cliente_pagos)context.cliente_pagos.OrderByDescending(p => p.Cliente_pagos_ID).FirstOrDefault();
+                        if (cliente_pago1 != null)
+                        {
+                            id = cliente_pago1.Cliente_pagos_ID;
+                        }
 
-                        //log new_log = new log();
-                        //new_log.Usuario_ID = 0;
-                        //new_log.Fecha = DateTime.Now;
-                        ////new_log.Descripcion="Nuevo pago: " + pago
-                        //context.logs.Add(new_log);
-
+                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                        string username = HttpContext.Current.Session["UserName"].ToString();
+                        Global_Objects.Logs.AddUserLog("Agrega pago", id, userID1, username);
+                        }
+                        catch (Exception ex)
+                        {
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                        }
                         #endregion
 
                         ret = true;
@@ -638,6 +669,11 @@ namespace Bonisoft_2.Pages
         [System.Web.Services.WebMethod]
         public static bool BorrarPago(string pagoID_str)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             bool ret = false;
             if (!string.IsNullOrWhiteSpace(pagoID_str))
             {
@@ -647,6 +683,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(pagoID_str, out pago_ID_str))
                     {
                         pago_ID_str = 0;
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, pagoID_str);
                     }
 
                     if (pago_ID_str > 0)
@@ -657,14 +694,17 @@ namespace Bonisoft_2.Pages
                             context.cliente_pagos.Remove(pago);
                             context.SaveChanges();
 
-                            #region Log
-
-                            //log new_log = new log();
-                            //new_log.Usuario_ID = 0;
-                            //new_log.Fecha = DateTime.Now;
-                            ////new_log.Descripcion="Nuevo pago: " + pago
-                            //context.logs.Add(new_log);
-
+                            #region Guardar log 
+try 
+{
+                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                            string username = HttpContext.Current.Session["UserName"].ToString();
+                            Global_Objects.Logs.AddUserLog("Borra pago", pago.Cliente_pagos_ID, userID1, username);
+                            }
+                            catch (Exception ex)
+                            {
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                            }
                             #endregion
 
                             ret = true;
@@ -678,6 +718,11 @@ namespace Bonisoft_2.Pages
         [System.Web.Services.WebMethod]
         public static string ModificarPago_1(string pagoID_str)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             string ret = string.Empty;
             if (!string.IsNullOrWhiteSpace(pagoID_str))
             {
@@ -687,6 +732,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(pagoID_str, out pago_ID))
                     {
                         pago_ID = 0;
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, pagoID_str);
                     }
 
                     if (pago_ID > 0)
@@ -705,6 +751,11 @@ namespace Bonisoft_2.Pages
         [System.Web.Services.WebMethod]
         public static bool ModificarPago_2(string pagoID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             bool ret = false;
             if (!string.IsNullOrWhiteSpace(pagoID_str))
             {
@@ -714,6 +765,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(pagoID_str, out pago_ID))
                     {
                         pago_ID = 0;
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, pagoID_str);
                     }
 
                     if (pago_ID > 0)
@@ -725,6 +777,7 @@ namespace Bonisoft_2.Pages
                             if (!DateTime.TryParseExact(fecha_str, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date))
                             {
                                 date = pago.Fecha_pago;
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha_str);
                             }
                             pago.Fecha_pago = date;
 
@@ -732,6 +785,7 @@ namespace Bonisoft_2.Pages
                             if (!int.TryParse(ddlFormas, out ddl))
                             {
                                 ddl = pago.Forma_de_pago_ID;
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFormas);
                             }
                             pago.Forma_de_pago_ID = ddl;
 
@@ -739,6 +793,7 @@ namespace Bonisoft_2.Pages
                             if (!decimal.TryParse(monto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                             {
                                 value = pago.Monto;
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, monto_str);
                             }
                             pago.Monto = value;
 
@@ -746,14 +801,17 @@ namespace Bonisoft_2.Pages
 
                             context.SaveChanges();
 
-                            #region Log
-
-                            //log new_log = new log();
-                            //new_log.Usuario_ID = 0;
-                            //new_log.Fecha = DateTime.Now;
-                            ////new_log.Descripcion="Nuevo pago: " + pago
-                            //context.logs.Add(new_log);
-
+                            #region Guardar log 
+try 
+{
+                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                            string username = HttpContext.Current.Session["UserName"].ToString();
+                            Global_Objects.Logs.AddUserLog("Modifica pago", pago.Cliente_pagos_ID, userID1, username);
+                            }
+                            catch (Exception ex)
+                            {
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                            }
                             #endregion
 
                             ret = true;

@@ -77,7 +77,7 @@ namespace Bonisoft_2
             }
             else
             {
-                Response.Redirect("/Login.aspx");
+                //Response.Redirect("/Login.aspx");
             }
         }
 

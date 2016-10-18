@@ -37,15 +37,20 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
         public void BindGrid()
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 bool ok = false;
-                hdnMercaderiasCount.Value = context.mercaderia_comprada.Count().ToString();
 
                 int viaje_ID = 0;
                 if (!int.TryParse(Viaje_ID1, out viaje_ID))
                 {
                     viaje_ID = 0;
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, Viaje_ID1);
                 }
                 if (viaje_ID > 0)
                 {
@@ -54,6 +59,8 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     {
                         gridMercaderias.DataSource = elements;
                         gridMercaderias.DataBind();
+
+                        hdnMercaderiasCount.Value = elements.Count().ToString();
 
                         ok = true;
                     }
@@ -84,7 +91,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
         protected void gridMercaderias_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            #region Action buttons
+            #region Updatepanel triggers
 
             ScriptManager ScriptManager1 = ScriptManager.GetCurrent(this.Page);
             if (ScriptManager1 != null)
@@ -199,11 +206,19 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
         protected void gridMercaderias_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
 
             #region InsertNew
 
             if (e.CommandName == "InsertNew")
             {
+
+                GridViewRow row = gridMercaderias.FooterRow;
+                TextBox txb2 = row.FindControl("mercaderias_txbNew4") as TextBox;
+
                 HiddenField hdn_modalMercaderia_txbNew4 = this.Parent.FindControl("hdn_modalMercaderia_txbNew4") as HiddenField;
                 HiddenField hdn_modalMercaderia_txbNew5 = this.Parent.FindControl("hdn_modalMercaderia_txbNew5") as HiddenField;
                 HiddenField hdn_modalMercaderia_txbNew7 = this.Parent.FindControl("hdn_modalMercaderia_txbNew7") as HiddenField;
@@ -221,6 +236,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     if (!int.TryParse(Viaje_ID1, out viaje_ID))
                     {
                         viaje_ID = 0;
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, Viaje_ID1);
                     }
                     if (viaje_ID > 0)
                     {
@@ -233,6 +249,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             if (!decimal.TryParse(txb5, NumberStyles.Number, CultureInfo.InvariantCulture, out valor))
                             {
                                 valor = 0;
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb5);
                             }
                             obj.Precio_xTonelada_compra = valor;
 
@@ -242,15 +259,9 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             if (!int.TryParse(ddlVariedad2, out ddl1))
                             {
                                 ddl1 = 0;
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlVariedad2);
                             }
                             obj.Variedad_ID = ddl1;
-
-                            //int ddl2 = 0;
-                            //if (!int.TryParse(ddlProcesador2, out ddl2))
-                            //{
-                            //    ddl2 = 0;
-                            //}
-                            //obj.Procesador_ID = ddl2;
 
                             #endregion DDL logic
 
@@ -260,6 +271,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             if (!DateTime.TryParseExact(txb4, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                             {
                                 date1 = DateTime.Now;
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
                             }
                             obj.Fecha_corte = date1;
 
@@ -269,8 +281,29 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
                             context.mercaderia_comprada.Add(obj);
                             context.SaveChanges();
+
+                            #region Guardar log 
+try 
+{
+                            int id = 1;
+                            mercaderia_comprada mercaderia_comprada1 = (mercaderia_comprada)context.mercaderia_comprada.OrderByDescending(p => p.Mercaderia_ID).FirstOrDefault();
+                            if (mercaderia_comprada1 != null)
+                            {
+                                id = mercaderia_comprada1.Mercaderia_ID;
+                            }
+
+                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                            string username = HttpContext.Current.Session["UserName"].ToString();
+                            Global_Objects.Logs.AddUserLog("Agrega mercadería", id, userID1, username);
+                            }
+                            catch (Exception ex)
+                            {
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                            }
+                            #endregion
+
                             lblMessage.Text = "Agregado correctamente.";
-                            //BindGrid();
+                            BindGrid();
 
                             //ScriptManager.RegisterStartupScript(this, this.GetType(), "OpenModalDialog", "<script type='text/javascript'>show_message_accept('OK_Datos'); $.modal.close();</script>", false);
                         }
@@ -310,11 +343,15 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
         protected void gridMercaderias_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             HiddenField hdn_modalMercaderia_txb4 = this.Parent.FindControl("hdn_modalMercaderia_txb4") as HiddenField;
             HiddenField hdn_modalMercaderia_txb5 = this.Parent.FindControl("hdn_modalMercaderia_txb5") as HiddenField;
             HiddenField hdn_modalMercaderia_txb7 = this.Parent.FindControl("hdn_modalMercaderia_txb7") as HiddenField;
             HiddenField hdn_modalMercaderia_ddlVariedad1 = this.Parent.FindControl("hdn_modalMercaderia_ddlVariedad1") as HiddenField;
-            //HiddenField hdn_modalMercaderia_ddlProcesador1 = this.Parent.FindControl("hdn_modalMercaderia_ddlProcesador1") as HiddenField;
 
             if (hdn_modalMercaderia_txb4 != null && hdn_modalMercaderia_txb5 != null &&
                 hdn_modalMercaderia_txb7 != null && hdn_modalMercaderia_ddlVariedad1 != null)
@@ -323,7 +360,6 @@ namespace Bonisoft_2.User_Controls.Configuracion
                 string txb5 = hdn_modalMercaderia_txb5.Value;
                 string txb7 = hdn_modalMercaderia_txb7.Value;
                 string ddlVariedad1 = hdn_modalMercaderia_ddlVariedad1.Value;
-                //string ddlProcesador1 = hdn_modalMercaderia_ddlProcesador1.Value;
 
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -335,6 +371,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     if (!decimal.TryParse(txb5, NumberStyles.Number, CultureInfo.InvariantCulture, out valor))
                     {
                         valor = obj.Precio_xTonelada_compra;
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb5);
                     }
                     obj.Precio_xTonelada_compra = valor;
 
@@ -344,15 +381,9 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     if (!int.TryParse(ddlVariedad1, out ddl1))
                     {
                         ddl1 = obj.Variedad_ID;
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlVariedad1);
                     }
                     obj.Variedad_ID = ddl1;
-
-                    //int ddl2 = obj.Procesador_ID;
-                    //if (!int.TryParse(ddlProcesador1, out ddl2))
-                    //{
-                    //    ddl2 = obj.Procesador_ID;
-                    //}
-                    //obj.Procesador_ID = ddl2;
 
                     #endregion DDL logic
 
@@ -362,12 +393,27 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     if (!DateTime.TryParseExact(txb4, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
                     {
                         date1 = obj.Fecha_corte;
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
                     }
                     obj.Fecha_corte = date1;
 
                     #endregion Datetime logic
 
                     context.SaveChanges();
+
+                    #region Guardar log 
+try 
+{
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Global_Objects.Logs.AddUserLog("Modifica mercadería", obj.Mercaderia_ID, userID1, username);
+                    }
+                    catch (Exception ex)
+                    {
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                    }
+                    #endregion
+
                     lblMessage.Text = "Guardado correctamente.";
                     gridMercaderias.EditIndex = -1;
                     BindGrid();
@@ -377,12 +423,31 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
         protected void gridMercaderias_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             int mercaderias_ID = Convert.ToInt32(gridMercaderias.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 mercaderia_comprada obj = context.mercaderia_comprada.First(x => x.Mercaderia_ID == mercaderias_ID);
                 context.mercaderia_comprada.Remove(obj);
                 context.SaveChanges();
+
+                #region Guardar log 
+try 
+{
+                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                string username = HttpContext.Current.Session["UserName"].ToString();
+                Global_Objects.Logs.AddUserLog("Borra mercadería", obj.Mercaderia_ID, userID1, username);
+                }
+                catch (Exception ex)
+                {
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                }
+                #endregion
+
                 BindGrid();
                 lblMessage.Text = "Borrado correctamente.";
             }

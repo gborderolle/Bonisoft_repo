@@ -152,6 +152,11 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
         protected void gridVariedades_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             if (e.CommandName == "InsertNew")
             {
                 GridViewRow row = gridVariedades.FooterRow;
@@ -179,6 +184,27 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
                         context.variedad.Add(obj);
                         context.SaveChanges();
+
+                        #region Guardar log 
+try 
+{
+                        int id = 1;
+                        variedad variedad1 = (variedad)context.variedad.OrderByDescending(p => p.Variedad_ID).FirstOrDefault();
+                        if (variedad1 != null)
+                        {
+                            id = variedad1.Variedad_ID;
+                        }
+
+                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                        string username = HttpContext.Current.Session["UserName"].ToString();
+                        Global_Objects.Logs.AddUserLog("Agrega variedad", id, userID1, username);
+                        }
+                        catch (Exception ex)
+                        {
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                        }
+                        #endregion
+
                         lblMessage.Text = "Agregado correctamente.";
                         BindGrid();
                     }
@@ -211,6 +237,11 @@ namespace Bonisoft_2.User_Controls.Configuracion
         }
         protected void gridVariedades_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             GridViewRow row = gridVariedades.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
@@ -236,6 +267,20 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     #endregion
 
                     context.SaveChanges();
+
+                    #region Guardar log 
+try 
+{
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Global_Objects.Logs.AddUserLog("Modifica variedad", obj.Variedad_ID, userID1, username);
+                    }
+                    catch (Exception ex)
+                    {
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                    }
+                    #endregion
+
                     lblMessage.Text = "Guardado correctamente.";
                     gridVariedades.EditIndex = -1;
                     BindGrid();
@@ -245,12 +290,31 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
         protected void gridVariedades_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             int variedad_ID = Convert.ToInt32(gridVariedades.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 variedad obj = context.variedad.First(x => x.Variedad_ID == variedad_ID);
                 context.variedad.Remove(obj);
                 context.SaveChanges();
+
+                #region Guardar log 
+try 
+{
+                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                string username = HttpContext.Current.Session["UserName"].ToString();
+                Global_Objects.Logs.AddUserLog("Borra variedad", obj.Variedad_ID, userID1, username);
+                }
+                catch (Exception ex)
+                {
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                }
+                #endregion
+
                 BindGrid();
                 lblMessage.Text = "Borrado correctamente.";
             }

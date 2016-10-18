@@ -32,8 +32,10 @@
         <div id="login">
             <%--<h1>Introduzca sus datos</h1>--%>
                   
-                <input type="text" id="txbUser1" runat="server" placeholder="Usuario" class="txbUser" />
-                <input type="password" id="txbPassword1" runat="server" placeholder="Contraseña" class="txbPassword" />
+                Usuario:
+                <input type="text" id="txbUser1" runat="server" placeholder="Usuario" class="txbUser form-control" style="padding:25px;" />
+                Contraseña:
+                <input type="password" id="txbPassword1" runat="server" placeholder="Contraseña" class="txbPassword form-control" style="padding:25px;" />
 
                 <button type="button" id="btnSubmit" class="btn btn-primary submit" style="font-size: 140%; line-height: 1.1;" onclick="checkSubmit();">
                     <i class="fa fa-check"></i> Ingresar

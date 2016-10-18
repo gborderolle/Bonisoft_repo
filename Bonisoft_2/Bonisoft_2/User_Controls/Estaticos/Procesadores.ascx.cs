@@ -95,6 +95,11 @@ namespace Bonisoft_2.User_Controls.Estaticos
 
         protected void gridProcesadores_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             if (e.CommandName == "InsertNew")
             {
                 GridViewRow row = gridProcesadores.FooterRow;
@@ -114,6 +119,27 @@ namespace Bonisoft_2.User_Controls.Estaticos
 
                         context.procesadores.Add(obj);
                         context.SaveChanges();
+
+                        #region Guardar log 
+try 
+{
+                        int id = 1;
+                        procesador procesador = (procesador)context.procesadores.OrderByDescending(p => p.Procesador_ID).FirstOrDefault();
+                        if (procesador != null)
+                        {
+                            id = procesador.Procesador_ID;
+                        }
+
+                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                        string username = HttpContext.Current.Session["UserName"].ToString();
+                        Global_Objects.Logs.AddUserLog("Agrega procesador", id, userID1, username);
+                        }
+                        catch (Exception ex)
+                        {
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                        }
+                        #endregion
+
                         lblMessage.Text = "Agregado correctamente.";
                         BindGrid();
                     }
@@ -137,6 +163,11 @@ namespace Bonisoft_2.User_Controls.Estaticos
         }
         protected void gridProcesadores_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             GridViewRow row = gridProcesadores.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
@@ -154,6 +185,20 @@ namespace Bonisoft_2.User_Controls.Estaticos
                     obj.Telefono = txb4.Text;
 
                     context.SaveChanges();
+
+                    #region Guardar log 
+try 
+{
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Global_Objects.Logs.AddUserLog("Modifica procesador", obj.Procesador_ID, userID1, username);
+                    }
+                    catch (Exception ex)
+                    {
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                    }
+                    #endregion
+
                     lblMessage.Text = "Guardado correctamente.";
                     gridProcesadores.EditIndex = -1;
                     BindGrid();
@@ -163,12 +208,31 @@ namespace Bonisoft_2.User_Controls.Estaticos
 
         protected void gridProcesadores_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             int procesador_ID = Convert.ToInt32(gridProcesadores.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 procesador obj = context.procesadores.First(x => x.Procesador_ID == procesador_ID);
                 context.procesadores.Remove(obj);
                 context.SaveChanges();
+
+                #region Guardar log 
+try 
+{
+                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                string username = HttpContext.Current.Session["UserName"].ToString();
+                Global_Objects.Logs.AddUserLog("Borra procesador", obj.Procesador_ID, userID1, username);
+                }
+                catch (Exception ex)
+                {
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                }
+                #endregion
+
                 BindGrid();
                 lblMessage.Text = "Borrado correctamente.";
             }

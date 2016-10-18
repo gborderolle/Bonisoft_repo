@@ -73,16 +73,6 @@
     <Property Name="Monto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="cliente_preferencias_cliente">
-    <Key>
-      <PropertyRef Name="Cliente_ID" />
-      <PropertyRef Name="Cliente_Preferencias_cliente_ID" />
-    </Key>
-    <Property Name="Cliente_ID" Type="int" Nullable="false" />
-    <Property Name="Cliente_Preferencias_cliente_ID" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="cuadrilla_descarga">
     <Key>
       <PropertyRef Name="Cuadrilla_descarga_ID" />
@@ -145,7 +135,9 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
     <Property Name="Log_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Fecha" Type="date" Nullable="false" />
     <Property Name="Usuario_ID" Type="int" Nullable="false" />
+    <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Dato" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="mercaderia_comprada">
     <Key>
@@ -170,18 +162,6 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
     <Property Name="Nombre_balanza" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Peso_bruto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="Peso_neto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
-  </EntityType>
-  <EntityType Name="preferencias_cliente">
-    <Key>
-      <PropertyRef Name="Preferencias_cliente_ID" />
-    </Key>
-    <Property Name="Preferencias_cliente_ID" Type="int" Nullable="false" />
-    <Property Name="Tipo_lena_ID" Type="int" Nullable="false" />
-    <Property Name="Largo_lena" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="Diametro_lena" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="Lena_tipo_1_ID" Type="int" Nullable="false" />
-    <Property Name="Lena_tipo_2_ID" Type="int" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
   <EntityType Name="procesador">
@@ -239,6 +219,7 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
     <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Clave" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Rol_usuario_ID" Type="int" Nullable="false" />
+    <Property Name="EsAdmin" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="variedad">
     <Key>
@@ -296,7 +277,6 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
     <EntitySet Name="log" EntityType="Self.log" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="mercaderia_comprada" EntityType="Self.mercaderia_comprada" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="pesada" EntityType="Self.pesada" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="preferencias_cliente" EntityType="Self.preferencias_cliente" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="procesador" EntityType="Self.procesador" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" Schema="bonisoft_db" store:Type="Tables" />
@@ -305,11 +285,5 @@ warning 6002: The table/view 'def.bonisoft_db.cliente_preferencias_cliente' does
     <EntitySet Name="usuario" EntityType="Self.usuario" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="variedad" EntityType="Self.variedad" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="viaje" EntityType="Self.viaje" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="cliente_preferencias_cliente" EntityType="Self.cliente_preferencias_cliente" store:Type="Tables" store:Schema="bonisoft_db">
-      <DefiningQuery>SELECT
-`cliente_preferencias_cliente`.`Cliente_ID`, 
-`cliente_preferencias_cliente`.`Cliente_Preferencias_cliente_ID`
-FROM `cliente_preferencias_cliente` AS `cliente_preferencias_cliente`</DefiningQuery>
-    </EntitySet>
   </EntityContainer>
 </Schema>

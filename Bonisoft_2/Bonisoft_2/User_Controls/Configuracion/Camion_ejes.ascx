@@ -36,6 +36,7 @@
 
     <Columns>
        
+        <asp:BoundField DataField="Camion_ejes_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true"/>
         <asp:TemplateField HeaderText="Ejes">
             <EditItemTemplate>
                 <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Ejes") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>

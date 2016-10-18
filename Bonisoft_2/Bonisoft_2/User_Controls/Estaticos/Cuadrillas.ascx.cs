@@ -97,6 +97,11 @@ namespace Bonisoft_2.User_Controls
 
         protected void gridCuadrillas_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             if (e.CommandName == "InsertNew")
             {
                 GridViewRow row = gridCuadrillas.FooterRow;
@@ -116,6 +121,27 @@ namespace Bonisoft_2.User_Controls
 
                         context.cuadrilla_descarga.Add(obj);
                         context.SaveChanges();
+
+                        #region Guardar log 
+                        try
+                        {
+                            int id = 1;
+                            cuadrilla_descarga cuadrilla_descarga = (cuadrilla_descarga)context.cuadrilla_descarga.OrderByDescending(p => p.Cuadrilla_descarga_ID).FirstOrDefault();
+                            if (cuadrilla_descarga != null)
+                            {
+                                id = cuadrilla_descarga.Cuadrilla_descarga_ID;
+                            }
+
+                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                            string username = HttpContext.Current.Session["UserName"].ToString();
+                            Global_Objects.Logs.AddUserLog("Agrega descargador", id, userID1, username);
+                        }
+                        catch (Exception ex)
+                        {
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                        }
+                        #endregion
+
                         lblMessage.Text = "Agregado correctamente.";
                         BindGrid();
                     }
@@ -135,6 +161,11 @@ namespace Bonisoft_2.User_Controls
         }
         protected void gridCuadrillas_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             GridViewRow row = gridCuadrillas.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
@@ -152,6 +183,20 @@ namespace Bonisoft_2.User_Controls
                     obj.Telefono = txb4.Text;
 
                     context.SaveChanges();
+
+                    #region Guardar log 
+                    try
+                    {
+                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                        string username = HttpContext.Current.Session["UserName"].ToString();
+                        Global_Objects.Logs.AddUserLog("Modifica descargador", obj.Cuadrilla_descarga_ID, userID1, username);
+                    }
+                    catch (Exception ex)
+                    {
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                    }
+                    #endregion
+
                     lblMessage.Text = "Guardado correctamente.";
                     gridCuadrillas.EditIndex = -1;
                     BindGrid();
@@ -161,12 +206,31 @@ namespace Bonisoft_2.User_Controls
 
         protected void gridCuadrillas_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             int cuadrilla_descarga_ID = Convert.ToInt32(gridCuadrillas.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 cuadrilla_descarga obj = context.cuadrilla_descarga.First(x => x.Cuadrilla_descarga_ID == cuadrilla_descarga_ID);
                 context.cuadrilla_descarga.Remove(obj);
                 context.SaveChanges();
+
+                #region Guardar log 
+                try
+                {
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Global_Objects.Logs.AddUserLog("Borra descargador", obj.Cuadrilla_descarga_ID, userID1, username);
+                }
+                catch (Exception ex)
+                {
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                }
+                #endregion
+
                 BindGrid();
                 lblMessage.Text = "Borrado correctamente.";
             }

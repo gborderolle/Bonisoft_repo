@@ -1182,20 +1182,21 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Login.aspx" />
     <Content Include="Pages\Ajustes.aspx" />
-    <Content Include="Pages\Bancos.aspx" />
     <Content Include="Pages\Contabilidad.aspx" />
     <Content Include="Pages\Datos_configuracion.aspx" />
     <Content Include="Pages\Detalles.aspx" />
     <Content Include="Pages\Deudores.aspx" />
     <Content Include="Pages\Listados.aspx" />
+    <Content Include="Pages\Menu_logs.aspx" />
     <Content Include="Pages\Recordatorios.aspx" />
     <Content Include="Pages\Registros.aspx" />
     <Content Include="Pages\Resumen_clientes.aspx" />
+    <Content Include="Pages\Test.aspx" />
     <Content Include="Pages\Viajes.aspx" />
     <Content Include="SYS_NOTES.txt" />
-    <Content Include="User_Controls\Configuracion\Bancos.ascx" />
     <Content Include="User_Controls\Configuracion\Camion_ejes.ascx" />
     <Content Include="User_Controls\Configuracion\Formas_pago.ascx" />
+    <Content Include="User_Controls\Configuracion\Usuarios.ascx" />
     <Content Include="User_Controls\Configuracion\Variedad.ascx" />
     <Content Include="User_Controls\Dinamicos\Mercaderias.ascx" />
     <Content Include="User_Controls\Configuracion\Tipo_lena.ascx" />
@@ -1246,7 +1247,6 @@
     <Content Include="User_Controls\Estaticos\Clientes.ascx" />
     <Content Include="User_Controls\Estaticos\Cuadrillas.ascx" />
     <Content Include="User_Controls\Estaticos\Fleteros.ascx" />
-    <Content Include="User_Controls\Estaticos\Internos.ascx" />
     <Content Include="User_Controls\Estaticos\Procesadores.ascx" />
     <Content Include="User_Controls\Estaticos\Proveedores.ascx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -1424,9 +1424,6 @@
     <Compile Include="cliente_pagos.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
-    <Compile Include="cliente_preferencias_cliente.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1459,7 +1456,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Global Objects\GlobalMethods.cs" />
+    <Compile Include="Global_Objects\Logs.cs" />
     <Compile Include="Helpers\Extras.cs" />
     <Compile Include="Helpers\TestController.cs" />
     <Compile Include="Helpers\WebFormController.cs" />
@@ -1489,13 +1486,6 @@
     </Compile>
     <Compile Include="Pages\Ajustes.aspx.designer.cs">
       <DependentUpon>Ajustes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Bancos.aspx.cs">
-      <DependentUpon>Bancos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Bancos.aspx.designer.cs">
-      <DependentUpon>Bancos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Contabilidad.aspx.cs">
       <DependentUpon>Contabilidad.aspx</DependentUpon>
@@ -1529,6 +1519,13 @@
       <DependentUpon>Listados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Pages\Menu_logs.aspx.cs">
+      <DependentUpon>Menu_logs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Menu_logs.aspx.designer.cs">
+      <DependentUpon>Menu_logs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Recordatorios.aspx.cs">
       <DependentUpon>Recordatorios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1550,6 +1547,13 @@
     <Compile Include="Pages\Resumen_clientes.aspx.designer.cs">
       <DependentUpon>Resumen_clientes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Viajes.aspx.cs">
       <DependentUpon>Viajes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1570,13 +1574,6 @@
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
-    <Compile Include="User_Controls\Configuracion\Bancos.ascx.cs">
-      <DependentUpon>Bancos.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User_Controls\Configuracion\Bancos.ascx.designer.cs">
-      <DependentUpon>Bancos.ascx</DependentUpon>
-    </Compile>
     <Compile Include="User_Controls\Configuracion\Camion_ejes.ascx.cs">
       <DependentUpon>Camion_ejes.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1590,6 +1587,13 @@
     </Compile>
     <Compile Include="User_Controls\Configuracion\Formas_pago.ascx.designer.cs">
       <DependentUpon>Formas_pago.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\Configuracion\Usuarios.ascx.cs">
+      <DependentUpon>Usuarios.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User_Controls\Configuracion\Usuarios.ascx.designer.cs">
+      <DependentUpon>Usuarios.ascx</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\Configuracion\Variedad.ascx.cs">
       <DependentUpon>Variedad.ascx</DependentUpon>
@@ -1627,9 +1631,6 @@
       <DependentUpon>Datos.aspx</DependentUpon>
     </Compile>
     <Compile Include="pesada.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="preferencias_cliente.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1691,13 +1692,6 @@
     </Compile>
     <Compile Include="User_Controls\Estaticos\Fleteros.ascx.designer.cs">
       <DependentUpon>Fleteros.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="User_Controls\Estaticos\Internos.ascx.cs">
-      <DependentUpon>Internos.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User_Controls\Estaticos\Internos.ascx.designer.cs">
-      <DependentUpon>Internos.ascx</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\Estaticos\Procesadores.ascx.cs">
       <DependentUpon>Procesadores.ascx</DependentUpon>

@@ -1,16 +1,16 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Formas_pago.ascx.cs" Inherits="Bonisoft_2.User_Controls.Configuracion.Formas_pago" %>
-<h2>Lista de Formas de Pago</h2>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Usuarios.ascx.cs" Inherits="Bonisoft_2.User_Controls.Configuracion.Usuarios" %>
+<h2>Lista de Usuarios</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridFormas" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
+<asp:GridView ID="gridUsuarios" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
     CssClass="table table-hover table-striped" AllowPaging="true"
-    DataKeyNames="Forma_de_pago_ID"
-    OnRowCommand="gridFormas_RowCommand"
-    OnRowCancelingEdit="gridFormas_RowCancelingEdit"
-    OnRowEditing="gridFormas_RowEditing"
-    OnRowUpdating="gridFormas_RowUpdating"
-    OnRowDataBound="gridFormas_RowDataBound"
-    OnRowDeleting="gridFormas_RowDeleting">
+    DataKeyNames="Usuario_ID"
+    OnRowCommand="gridUsuarios_RowCommand"
+    OnRowCancelingEdit="gridUsuarios_RowCancelingEdit"
+    OnRowEditing="gridUsuarios_RowEditing"
+    OnRowUpdating="gridUsuarios_RowUpdating"
+    OnRowDataBound="gridUsuarios_RowDataBound"
+    OnRowDeleting="gridUsuarios_RowDeleting">
 
     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
     <EmptyDataTemplate>
@@ -35,27 +35,38 @@
     </PagerTemplate>
 
     <Columns>
-       <asp:BoundField DataField="Forma_de_pago_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true"/>
-        <asp:TemplateField HeaderText="Nombre">
+       <asp:BoundField DataField="Usuario_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true"/>
+        <asp:TemplateField HeaderText="Usuario">
             <EditItemTemplate>
-                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Forma") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Usuario1") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Forma") %>'></asp:Label>
+                <asp:Label ID="lbl1" runat="server" Text='<%# Bind("Usuario1") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Comentarios">
+         <asp:TemplateField HeaderText="Contraseña">
             <EditItemTemplate>
-                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="100"></asp:TextBox>
+                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Clave") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
+                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Clave") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+            </FooterTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Es Administrador?">
+            <EditItemTemplate>
+                <asp:CheckBox ID="chk1" runat="server" Checked='<%# Bind("EsAdmin") %>' CssClass="form-control"/>
+            </EditItemTemplate>
+            <ItemTemplate>
+                <asp:CheckBox ID="chk2" runat="server" Checked='<%# Bind("EsAdmin") %>' CssClass="form-control" Enabled="false"/>
+            </ItemTemplate>
+            <FooterTemplate>
+                <asp:CheckBox ID="chkNew" runat="server" Checked='<%# Bind("EsAdmin") %>' CssClass="form-control"/>
             </FooterTemplate>
         </asp:TemplateField>
          <asp:TemplateField HeaderText="">
@@ -82,4 +93,4 @@
     </Columns>
 
 </asp:GridView>
-<asp:HiddenField ClientIDMode="Static" ID="hdnFormaCount" runat="server" />
+<asp:HiddenField ClientIDMode="Static" ID="hdnUsuarioCount" runat="server" />

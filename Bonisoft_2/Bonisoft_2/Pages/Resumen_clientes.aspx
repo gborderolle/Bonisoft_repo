@@ -70,7 +70,7 @@
 
                                 <RowStyle HorizontalAlign="Left" />
                                 <Columns>
-                                    <asp:BoundField DataField="cliente_ID" HeaderText="Cliente_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
+                                    <asp:BoundField DataField="cliente_ID" HeaderText="Cliente_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol hiddencol_real" HeaderStyle-CssClass="hiddencol hiddencol_real" />
                                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" HtmlEncode="false" />
                                 </Columns>
                             </asp:GridView>
@@ -117,8 +117,8 @@
                                     OnRowDataBound="gridPagos_RowDataBound"
                                     OnRowCommand="gridPagos_RowCommand" >
                                     <Columns>
-                                        <asp:BoundField DataField="Cliente_pagos_ID" HeaderText="Cliente_pagos_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
-                                        <asp:BoundField DataField="Cliente_ID" HeaderText="Cliente_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
+                                        <asp:BoundField DataField="Cliente_pagos_ID" HeaderText="ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
+                                        <asp:BoundField DataField="Cliente_ID" HeaderText="Cliente_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol hiddencol_real" HeaderStyle-CssClass="hiddencol hiddencol_real" />
                                         <asp:BoundField DataField="Fecha_registro" HeaderText="Fecha de registro" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />
                                         <asp:BoundField DataField="Fecha_pago" HeaderText="Fecha de pago" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="False" />
                                         <asp:TemplateField HeaderText = "Forma de pago">

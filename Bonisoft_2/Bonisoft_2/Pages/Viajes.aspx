@@ -22,8 +22,8 @@
     <script type="text/javascript" src="/assets/dist/js/popbox.js"></script>
 
     <!-- PAGE JS -->
-    <script src="/assets/dist/js/AuxiliarFunctions.js"></script>
-    <script src="/assets/dist/js/pages/Viajes.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/AuxiliarFunctions.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/pages/Viajes.js"></script>
 
 </asp:Content>
 
@@ -93,7 +93,7 @@
                                     OnRowDataBound="gridViajesEnCurso_RowDataBound"
                                     OnRowCommand="gridViajesEnCurso_RowCommand">
                                     <Columns>
-                                        <asp:BoundField DataField="Viaje_ID" HeaderText="Viaje_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
+                                        <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
                                         <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
                                         <asp:TemplateField HeaderText="Proveedor">
                                             <ItemTemplate>
@@ -215,7 +215,7 @@
                                                 <asp:TextBox ID="modalEdit_txbFecha1" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{dd-mm-yyyy}"></asp:TextBox>
                                                 </td>
                                                 <td>Fecha de llegada (tentativa): 
-                                                <asp:TextBox ID="modalEdit_txbFecha2" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{mm-dd-yyyy}"></asp:TextBox>
+                                                <asp:TextBox ID="modalEdit_txbFecha2" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{dd-mm-yyyy}"></asp:TextBox>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -530,7 +530,8 @@
                                                         </div>
                                                     </PagerTemplate>
 
-                                                    <Columns>                                                       
+                                                    <Columns>                      
+                                                        <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
                                                         <asp:TemplateField HeaderText="Fecha partida">
                                                             <EditItemTemplate>
                                                                 <asp:TextBox ID="txb11" runat="server" Text='<%# Bind("Fecha_partida", "{0:dd-MM-yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>

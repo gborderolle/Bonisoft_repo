@@ -26,11 +26,13 @@ function load_tableSorter() {
     $("#gridCargadores").tablesorter();
     $("#gridProcesadores").tablesorter();
 
+    // Página Configuración
     $("#gridInternos").tablesorter();
     $("#gridTipos").tablesorter();
     $("#gridVariedades").tablesorter();
     $("#gridFormas").tablesorter();
     $("#gridEjes").tablesorter();
+    $("#gridUsuarios").tablesorter();
 }
 
 function load_quicksearch() {
@@ -85,11 +87,13 @@ function updateCounts() {
     var cargadores_count = $("#divContent #hdnCargadoresCount").val();
     var procesadores_count = $("#divContent #hdnProcesadoresCount").val();
 
+    // Página Configuración
     var internos_count = $("#divContent #hdnInternosCount").val();
     var tipos_count = $("#divContent #hdnTiposCount").val();
     var variedades_count = $("#divContent #hdnVariedadCount").val();
     var formas_count = $("#divContent #hdnFormaCount").val();
     var ejes_count = $("#divContent #hdnEjesCount").val();
+    var hdnUsuarioCount = $("#divContent #hdnUsuarioCount").val();
 
     $("#divBoxClientes .info-box-number").text(clientes_count);
     $("#divBoxProveedores .info-box-number").text(proveedores_count);
@@ -100,11 +104,13 @@ function updateCounts() {
     $("#divBoxCargadores .info-box-number").text(cargadores_count);
     $("#divBoxProcesadores .info-box-number").text(procesadores_count);
 
+    // Página Configuración
     $("#divBoxInternos .info-box-number").text(internos_count);
     $("#divBoxTipos .info-box-number").text(tipos_count);
     $("#divBoxVariedades .info-box-number").text(variedades_count);
     $("#divBoxFormas .info-box-number").text(formas_count);
     $("#divBoxEjes .info-box-number").text(ejes_count);
+    $("#divBoxUsuarios .info-box-number").text(hdnUsuarioCount);
 }
 
 function show_grid(element) {
@@ -152,6 +158,7 @@ function show_grid(element) {
                 break;
             }
 
+            // Página Configuración
             case "internos": {
                 $("#divInternos").show();
                 break;
@@ -170,6 +177,10 @@ function show_grid(element) {
             }
             case "ejes": {
                 $("#divEjes").show();
+                break;
+            }
+            case "usuarios": {
+                $("#divUsuarios").show();
                 break;
             }
         }

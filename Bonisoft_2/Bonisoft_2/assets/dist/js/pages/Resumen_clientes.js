@@ -89,7 +89,8 @@ function ModificarPago_1(pagoID) {
                     var monto = datos_array[2];
                     var comentarios = datos_array[3];
 
-                    $("#edit_txbFecha").val(moment(fecha_pago).format("DD-MM-YYYY"));
+                    //$("#edit_txbFecha").val(moment(fecha_pago, "DD-MM-YYYY").format("DD-MM-YYYY"));
+                    $("#edit_txbFecha").val(fecha_pago);
                     $("#edit_ddlFormas").val(forma);
                     $("#edit_txbMonto").val(monto);
                     $("#edit_txbComentarios").val(comentarios);

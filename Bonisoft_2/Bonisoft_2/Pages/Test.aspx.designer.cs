@@ -7,36 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bonisoft_2.User_Controls {
+namespace Bonisoft_2.Pages {
     
     
-    public partial class Internos {
+    public partial class Test {
         
         /// <summary>
-        /// lblMessage control.
+        /// upMercaderias control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.UpdatePanel upMercaderias;
         
         /// <summary>
-        /// gridInternos control.
+        /// Mercaderias control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridInternos;
-        
-        /// <summary>
-        /// hdnInternosCount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnInternosCount;
+        protected global::Bonisoft_2.User_Controls.Configuracion.Mercaderias Mercaderias;
     }
 }

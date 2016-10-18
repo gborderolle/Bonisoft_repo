@@ -83,5 +83,23 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Bonisoft_2.User_Controls.Configuracion.Camion_ejes Ejes;
+        
+        /// <summary>
+        /// upInternos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upInternos;
+        
+        /// <summary>
+        /// Usuarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Bonisoft_2.User_Controls.Configuracion.Usuarios Usuarios;
     }
 }

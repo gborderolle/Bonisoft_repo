@@ -19,5 +19,6 @@ namespace Bonisoft_2
         public string Usuario1 { get; set; }
         public string Clave { get; set; }
         public int Rol_usuario_ID { get; set; }
+        public bool EsAdmin { get; set; }
     }
 }

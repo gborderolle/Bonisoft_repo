@@ -167,6 +167,12 @@ function BorrarViajeEnCurso(viaje_ID) {
                     var txbClave = $("#txbClave").val();
                     if (txbClave != null && txbClave.length > 0) {
 
+                    // Ajax call parameters
+                        console.log("Ajax call: Viajes.aspx/BorrarViajeEnCurso. Params:");
+                        console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
+                        console.log("userID, type: " + type(userID) + ", value: " + userID);
+                        console.log("txbClave, type: " + type(txbClave) + ", value: " + txbClave);
+                    
                     // Check existen mercaderías
                     $.ajax({
                         type: "POST",
@@ -235,6 +241,10 @@ function guardarPesadas(isOrigen) {
     var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID");
     if (hdn_notificaciones_viajeID !== null && hdn_notificaciones_viajeID.val() !== null && hdn_notificaciones_viajeID.val().length > 0) {
         var viajeID_str = hdn_notificaciones_viajeID.val();
+
+        // Ajax call parameters
+        console.log("Ajax call: Viajes.aspx/Check_Mercaderias. Params:");
+        console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
 
         // Check existen mercaderías
         $.ajax({
@@ -494,20 +504,18 @@ function DoPost_Pesadas() {
 
 }
 
-function DoPost_Mercaderias() {
+function guardarMercaderias() {
 
     // Hdn Fields - Pesada origen
     var mercaderias_txbNew4 = $("#mercaderias_txbNew4").val();
     var mercaderias_txbNew5 = $("#mercaderias_txbNew5").val();
     var mercaderias_txbNew7 = $("#mercaderias_txbNew7").val();
     var mercaderias_ddlVariedad2 = $("#mercaderias_ddlVariedad2").val();
-    var mercaderias_ddlProcesador2 = $("#mercaderias_ddlProcesador2").val();
 
     $("#hdn_modalMercaderia_txbNew4").val(mercaderias_txbNew4);
     $("#hdn_modalMercaderia_txbNew5").val(mercaderias_txbNew5);
     $("#hdn_modalMercaderia_txbNew7").val(mercaderias_txbNew7);
     $("#hdn_modalMercaderia_ddlVariedad2").val(mercaderias_ddlVariedad2);
-    $("#hdn_modalMercaderia_ddlProcesador2").val(mercaderias_ddlProcesador2);
 
 }
 
@@ -549,6 +557,10 @@ function calcularPrecioVenta() {
 
         var viajeID_str = hdn_notificaciones_viajeID.val();
 
+        // Ajax call parameters
+        console.log("Ajax call: Viajes.aspx/Check_Pesadas. Params:");
+        console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
+        
         // Check existen pesadas
         $.ajax({
             type: "POST",
@@ -766,8 +778,11 @@ function ModificarViaje_1(viajeID) {
                         var chofer = datos_array[8];
                         var comentarios = datos_array[9];
 
-                        $("#modalEdit_txbFecha1").val(moment(fecha1).format("DD-MM-YYYY"));
-                        $("#modalEdit_txbFecha2").val(moment(fecha2).format("DD-MM-YYYY"));
+                        //$("#modalEdit_txbFecha1").val(moment(fecha1, "DD-MM-YYYY").format("DD-MM-YYYY"));
+                        //$("#modalEdit_txbFecha2").val(moment(fecha2, "DD-MM-YYYY").format("DD-MM-YYYY"));
+
+                        $("#modalEdit_txbFecha1").val(fecha1);
+                        $("#modalEdit_txbFecha2").val(fecha2);
                         $("#modalEdit_ddlProveedores").val(proveedor);
                         $("#modalEdit_ddlClientes").val(cliente);
                         $("#modalEdit_ddlCargadores").val(cargador);
@@ -886,6 +901,10 @@ function FinDelViaje() {
                 var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID");
                 if (hdn_notificaciones_viajeID !== null && hdn_notificaciones_viajeID.val() !== null && hdn_notificaciones_viajeID.val().length > 0) {
                     var viajeID_str = hdn_notificaciones_viajeID.val();
+
+                    // Ajax call parameters
+                    console.log("Ajax call: Viajes.aspx/FinDelViaje. Params:");
+                    console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
 
                     $.ajax({
                         type: "POST",

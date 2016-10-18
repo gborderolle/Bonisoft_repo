@@ -52,19 +52,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="preferencias_cliente">
-      <EntityTypeMapping TypeName="bonisoft_dbModel.preferencias_cliente">
-        <MappingFragment StoreEntitySet="preferencias_cliente">
-          <ScalarProperty Name="Preferencias_cliente_ID" ColumnName="Preferencias_cliente_ID" />
-          <ScalarProperty Name="Tipo_lena_ID" ColumnName="Tipo_lena_ID" />
-          <ScalarProperty Name="Largo_lena" ColumnName="Largo_lena" />
-          <ScalarProperty Name="Diametro_lena" ColumnName="Diametro_lena" />
-          <ScalarProperty Name="Lena_tipo_1_ID" ColumnName="Lena_tipo_1_ID" />
-          <ScalarProperty Name="Lena_tipo_2_ID" ColumnName="Lena_tipo_2_ID" />
-          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="proveedor_carga">
       <EntityTypeMapping TypeName="bonisoft_dbModel.proveedor_carga">
         <MappingFragment StoreEntitySet="proveedor_carga">
@@ -78,14 +65,6 @@
         <MappingFragment StoreEntitySet="proveedor_mercaderia">
           <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
           <ScalarProperty Name="Mercaderia_ID" ColumnName="Mercaderia_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="cliente_preferencias_cliente">
-      <EntityTypeMapping TypeName="bonisoft_dbModel.cliente_preferencias_cliente">
-        <MappingFragment StoreEntitySet="cliente_preferencias_cliente">
-          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
-          <ScalarProperty Name="Cliente_Preferencias_cliente_ID" ColumnName="Cliente_Preferencias_cliente_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -164,16 +143,6 @@
           <ScalarProperty Name="Direccion" ColumnName="Direccion" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Procesador_ID" ColumnName="Procesador_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="logs">
-      <EntityTypeMapping TypeName="bonisoft_dbModel.log">
-        <MappingFragment StoreEntitySet="log">
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
-          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-          <ScalarProperty Name="Log_ID" ColumnName="Log_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -258,17 +227,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="usuarios">
-      <EntityTypeMapping TypeName="bonisoft_dbModel.usuario">
-        <MappingFragment StoreEntitySet="usuario">
-          <ScalarProperty Name="Rol_usuario_ID" ColumnName="Rol_usuario_ID" />
-          <ScalarProperty Name="Clave" ColumnName="Clave" />
-          <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
-          <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
-          <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="viajes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
         <MappingFragment StoreEntitySet="viaje">
@@ -298,6 +256,30 @@
           <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
           <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
           <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarios">
+      <EntityTypeMapping TypeName="bonisoft_dbModel.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="EsAdmin" ColumnName="EsAdmin" />
+          <ScalarProperty Name="Rol_usuario_ID" ColumnName="Rol_usuario_ID" />
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+          <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+          <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
+          <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="logs">
+      <EntityTypeMapping TypeName="bonisoft_dbModel.log">
+        <MappingFragment StoreEntitySet="log">
+          <ScalarProperty Name="Dato" ColumnName="Dato" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Log_ID" ColumnName="Log_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

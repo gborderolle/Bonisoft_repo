@@ -17,6 +17,8 @@ namespace Bonisoft_2
         public int Log_ID { get; set; }
         public System.DateTime Fecha { get; set; }
         public int Usuario_ID { get; set; }
+        public string Usuario { get; set; }
         public string Descripcion { get; set; }
+        public string Dato { get; set; }
     }
 }
