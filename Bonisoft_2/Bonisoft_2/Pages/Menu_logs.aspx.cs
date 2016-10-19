@@ -32,8 +32,8 @@ namespace Bonisoft_2.Pages
                 }
                 else
                 {
-                    var obj = new List<viaje>();
-                    obj.Add(new viaje());
+                    var obj = new List<log>();
+                    obj.Add(new log());
 
                     /* Grid Viajes */
 
