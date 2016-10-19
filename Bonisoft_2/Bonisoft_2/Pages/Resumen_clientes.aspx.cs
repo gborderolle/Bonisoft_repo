@@ -31,6 +31,64 @@ namespace Bonisoft_2.Pages
             gridClientes_lblMessage.Text = string.Empty;
         }
 
+        protected void grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            gridPagos.PageIndex = e.NewPageIndex;
+
+            string client_ID_str = hdn_clientID.Value;
+            if (!string.IsNullOrWhiteSpace(client_ID_str))
+            {
+                int cliente_ID = 0;
+                if (!int.TryParse(client_ID_str, out cliente_ID))
+                {
+                    cliente_ID = 0;
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, client_ID_str);
+                }
+
+                if (cliente_ID > 0)
+                {
+                    BindGridPagos(cliente_ID);
+                }
+            }
+        }
+
+        protected void grid2_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gridClientes.PageIndex = e.NewPageIndex;
+            BindGridClientes();
+        }
+
+        protected void grid3_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            gridViajes.PageIndex = e.NewPageIndex;
+
+            string client_ID_str = hdn_clientID.Value;
+            if (!string.IsNullOrWhiteSpace(client_ID_str))
+            {
+                int cliente_ID = 0;
+                if (!int.TryParse(client_ID_str, out cliente_ID))
+                {
+                    cliente_ID = 0;
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, client_ID_str);
+                }
+
+                if (cliente_ID > 0)
+                {
+                    BindGridViajes(cliente_ID);
+                }
+            }
+        }
+
         protected void gridClientes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandArgument != null)
@@ -642,18 +700,18 @@ namespace Bonisoft_2.Pages
                         context.SaveChanges();
 
                         #region Guardar log 
-try 
-{
-                        int id = 1;
-                        cliente_pagos cliente_pago1 = (cliente_pagos)context.cliente_pagos.OrderByDescending(p => p.Cliente_pagos_ID).FirstOrDefault();
-                        if (cliente_pago1 != null)
+                        try
                         {
-                            id = cliente_pago1.Cliente_pagos_ID;
-                        }
+                            int id = 1;
+                            cliente_pagos cliente_pago1 = (cliente_pagos)context.cliente_pagos.OrderByDescending(p => p.Cliente_pagos_ID).FirstOrDefault();
+                            if (cliente_pago1 != null)
+                            {
+                                id = cliente_pago1.Cliente_pagos_ID;
+                            }
 
-                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                        string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Agrega pago", id, userID1, username);
+                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                            string username = HttpContext.Current.Session["UserName"].ToString();
+                            Global_Objects.Logs.AddUserLog("Agrega pago", obj.GetType().Name + ": " + id, userID1, username);
                         }
                         catch (Exception ex)
                         {
@@ -698,11 +756,11 @@ try
                             context.SaveChanges();
 
                             #region Guardar log 
-try 
-{
-                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                            string username = HttpContext.Current.Session["UserName"].ToString();
-                            Global_Objects.Logs.AddUserLog("Borra pago", pago.Cliente_pagos_ID, userID1, username);
+                            try
+                            {
+                                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                                string username = HttpContext.Current.Session["UserName"].ToString();
+                                Global_Objects.Logs.AddUserLog("Borra pago", pago.GetType().Name + ": " + pago.Cliente_pagos_ID, userID1, username);
                             }
                             catch (Exception ex)
                             {
@@ -805,11 +863,11 @@ try
                             context.SaveChanges();
 
                             #region Guardar log 
-try 
-{
-                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                            string username = HttpContext.Current.Session["UserName"].ToString();
-                            Global_Objects.Logs.AddUserLog("Modifica pago", pago.Cliente_pagos_ID, userID1, username);
+                            try
+                            {
+                                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                                string username = HttpContext.Current.Session["UserName"].ToString();
+                                Global_Objects.Logs.AddUserLog("Modifica pago", pago.GetType().Name + ": " + pago.Cliente_pagos_ID, userID1, username);
                             }
                             catch (Exception ex)
                             {

@@ -38,7 +38,7 @@ namespace Bonisoft_2.Global_Objects
             catch (Exception) { }
         }
 
-        public static void AddUserLog(string message, int object_ID, string userID_str, string username)
+        public static void AddUserLog(string message, string object_ID, string userID_str, string username)
         {
             // Logger variables
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
@@ -51,7 +51,7 @@ namespace Bonisoft_2.Global_Objects
                 new_log.Fecha = DateTime.Now;
                 new_log.Usuario = username;
                 new_log.Descripcion = message;
-                new_log.Dato = object_ID.ToString();
+                new_log.Dato = object_ID;
 
                 int userID = 0;
                 if (!int.TryParse(userID_str, out userID))

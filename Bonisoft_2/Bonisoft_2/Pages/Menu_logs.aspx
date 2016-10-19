@@ -37,24 +37,10 @@
                 <asp:Label ID="gridLogs_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                 <asp:GridView ID="gridLogs" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
                     AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped"
-                    DataKeyNames="Log_ID">
+                    DataKeyNames="Log_ID" PageSize="30"
+                    OnPageIndexChanging="grid_PageIndexChanging">
 
-                    <%-- Paginador --%>
-                    <PagerTemplate>
-                        <div class="row" style="margin-top: 20px;">
-                            <div class="col-lg-1" style="text-align: right;">
-                                <h5>
-                                    <asp:Label ID="MessageLabel" Text="Ir a la pág." runat="server" /></h5>
-                            </div>
-                            <div class="col-lg-1" style="text-align: left;">
-                                <asp:DropDownList ID="PageDropDownList" Width="50px" AutoPostBack="true" OnSelectedIndexChanged="PageDropDownList_SelectedIndexChanged" runat="server" CssClass="form-control" /></h3>
-                            </div>
-                            <div class="col-lg-10" style="text-align: right;">
-                                <h3>
-                                    <asp:Label ID="CurrentPageLabel" runat="server" CssClass="label label-warning" /></h3>
-                            </div>
-                        </div>
-                    </PagerTemplate>
+                    <RowStyle Font-Size="Smaller" />
 
                     <Columns>
                         <asp:BoundField DataField="Log_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" ItemStyle-CssClass="hiddencol_real" HeaderStyle-CssClass="hiddencol_real" />

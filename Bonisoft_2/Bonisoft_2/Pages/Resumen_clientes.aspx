@@ -62,11 +62,12 @@
 
                             <asp:Label ID="gridClientes_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                             <asp:GridView ID="gridClientes" runat="server" ClientIDMode="Static" HorizontalAlign="Left" 
-                                AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped"
+                                AutoGenerateColumns="false" CssClass="table table-hover table-striped" AllowPaging="true" PageSize="30"
                                 DataKeyNames="Cliente_ID"
                                 OnRowDataBound="gridClientes_RowDataBound"
                                 OnRowCommand="gridClientes_RowCommand"
-                                OnSelectedIndexChanged = "gridClientes_OnSelectedIndexChanged">
+                                OnSelectedIndexChanged = "gridClientes_OnSelectedIndexChanged"
+                                OnPageIndexChanging="grid2_PageIndexChanging">
 
                                 <RowStyle HorizontalAlign="Left" />
                                 <Columns>
@@ -112,10 +113,12 @@
 
                                 <asp:Label ID="gridPagos_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                                 <asp:GridView ID="gridPagos" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
-                                    AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped"
+                                    AutoGenerateColumns="false" CssClass="table table-hover table-striped" AllowPaging="true" PageSize="30"
                                     DataKeyNames="Cliente_pagos_ID" 
                                     OnRowDataBound="gridPagos_RowDataBound"
-                                    OnRowCommand="gridPagos_RowCommand" >
+                                    OnRowCommand="gridPagos_RowCommand"
+                                    OnPageIndexChanging="grid_PageIndexChanging">
+
                                     <Columns>
                                         <asp:BoundField DataField="Cliente_pagos_ID" HeaderText="ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
                                         <asp:BoundField DataField="Cliente_ID" HeaderText="Cliente_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol hiddencol_real" HeaderStyle-CssClass="hiddencol hiddencol_real" />
@@ -180,10 +183,12 @@
 
                                 <asp:Label ID="gridViajeslblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                                 <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Left" HeaderStyle-VerticalAlign="Middle"
-                                    AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped"
+                                    AutoGenerateColumns="false" CssClass="table table-hover table-striped" AllowPaging="true" PageSize="30"
                                     DataKeyNames="Viaje_ID" 
                                     OnRowDataBound="gridViajes_RowDataBound"
-                                    OnRowCommand="gridViajes_RowCommand" >
+                                    OnRowCommand="gridViajes_RowCommand" 
+                                    OnPageIndexChanging="grid3_PageIndexChanging">
+
                                 <HeaderStyle VerticalAlign="Middle" />
                                     <RowStyle Font-Size="Smaller" />
 

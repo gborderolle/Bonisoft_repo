@@ -59,16 +59,10 @@ namespace Bonisoft_2.Pages
             }
         }
 
-        protected void PageDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        protected void grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            // Recupera la fila.
-            GridViewRow pagerRow = gridLogs.BottomPagerRow;
-            // Recupera el control DropDownList...
-            DropDownList pageList = (DropDownList)pagerRow.Cells[0].FindControl("PageDropDownList");
-            // Se Establece la propiedad PageIndex para visualizar la página seleccionada...
-            gridLogs.PageIndex = pageList.SelectedIndex;
-            // Quita el mensaje de información si lo hubiera...
-            gridLogs_lblMessage.Text = string.Empty;
+            gridLogs.PageIndex = e.NewPageIndex;
+            BindGridLogs();
         }
 
     }

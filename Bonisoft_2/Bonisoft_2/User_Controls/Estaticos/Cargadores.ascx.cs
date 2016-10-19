@@ -132,7 +132,7 @@ try
 
                         string userID1 = HttpContext.Current.Session["UserID"].ToString();
                         string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Agrega cargador", id, userID1, username);
+                        Global_Objects.Logs.AddUserLog("Agrega cargador", cargador.GetType().Name + ": " + id, userID1, username);
                         }
                         catch (Exception ex)
                         {
@@ -191,7 +191,7 @@ try
 {
                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                     string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Modifica cargador", obj.Cargador_ID, userID1, username);
+                    Global_Objects.Logs.AddUserLog("Modifica cargador", obj.GetType().Name + ": " +obj.Cargador_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -225,7 +225,7 @@ try
 {
                 string userID1 = HttpContext.Current.Session["UserID"].ToString();
                 string username = HttpContext.Current.Session["UserName"].ToString();
-                Global_Objects.Logs.AddUserLog("Borra cargador", obj.Cargador_ID, userID1, username);
+                Global_Objects.Logs.AddUserLog("Borra cargador", obj.GetType().Name + ": " +obj.Cargador_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {

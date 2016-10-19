@@ -123,18 +123,18 @@ namespace Bonisoft_2.User_Controls
                         context.SaveChanges();
 
                         #region Guardar log 
-try 
-{
-                        int id = 1;
-                        proveedor proveedor = (proveedor)context.proveedores.OrderByDescending(p => p.Proveedor_ID).FirstOrDefault();
-                        if (proveedor != null)
+                        try
                         {
-                            id = proveedor.Proveedor_ID;
-                        }
+                            int id = 1;
+                            proveedor proveedor = (proveedor)context.proveedores.OrderByDescending(p => p.Proveedor_ID).FirstOrDefault();
+                            if (proveedor != null)
+                            {
+                                id = proveedor.Proveedor_ID;
+                            }
 
-                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                        string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Agrega proveedor", id, userID1, username);
+                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                            string username = HttpContext.Current.Session["UserName"].ToString();
+                            Global_Objects.Logs.AddUserLog("Agrega proveedor", proveedor.GetType().Name + ": " + id, userID1, username);
                         }
                         catch (Exception ex)
                         {
@@ -191,17 +191,17 @@ try
                     context.SaveChanges();
 
                     #region Guardar log 
-try 
-{
-                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                    string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Modifica proveedor", obj.Proveedor_ID, userID1, username); 
-} 
-catch (Exception ex)
-{
-Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
-}
-#endregion
+                    try
+                    {
+                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                        string username = HttpContext.Current.Session["UserName"].ToString();
+                        Global_Objects.Logs.AddUserLog("Modifica proveedor", obj.GetType().Name + ": " + obj.GetType().Name + ": " +obj.Proveedor_ID, userID1, username);
+                    }
+                    catch (Exception ex)
+                    {
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                    }
+                    #endregion
 
 
                     lblMessage.Text = "Guardado correctamente.";
@@ -226,11 +226,11 @@ Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, m
                 context.SaveChanges();
 
                 #region Guardar log 
-try 
-{
-                string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                string username = HttpContext.Current.Session["UserName"].ToString();
-                Global_Objects.Logs.AddUserLog("Borra proveedor", obj.Proveedor_ID, userID1, username);
+                try
+                {
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Global_Objects.Logs.AddUserLog("Borra proveedor", obj.GetType().Name + ": " +obj.Proveedor_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {

@@ -88,10 +88,12 @@
 
                                 <asp:Label ID="gridViajesEnCurso_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                                 <asp:GridView ID="gridViajesEnCurso" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
-                                    AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped"
+                                    AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped" PageSize="30"
                                     DataKeyNames="Viaje_ID"
                                     OnRowDataBound="gridViajesEnCurso_RowDataBound"
-                                    OnRowCommand="gridViajesEnCurso_RowCommand">
+                                    OnRowCommand="gridViajesEnCurso_RowCommand"
+                                    OnPageIndexChanging="grid2_PageIndexChanging">
+
                                     <Columns>
                                         <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
                                         <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
@@ -498,37 +500,21 @@
 
                                                 <asp:Label ID="gridViajes_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                                                 <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False"
-                                                    ShowFooter="False" CssClass="table table-hover table-striped"
+                                                    ShowFooter="False" CssClass="table table-hover table-striped" PageSize="30" AllowPaging="true"
                                                     DataKeyNames="Viaje_ID"
                                                     OnRowCommand="gridViajes_RowCommand"
                                                     OnRowCancelingEdit="gridViajes_RowCancelingEdit"
                                                     OnRowEditing="gridViajes_RowEditing"
                                                     OnRowUpdating="gridViajes_RowUpdating"
                                                     OnRowDeleting="gridViajes_RowDeleting"
-                                                    OnRowDataBound="gridViajes_RowDataBound">
+                                                    OnRowDataBound="gridViajes_RowDataBound"
+                                                    OnPageIndexChanging="grid_PageIndexChanging">
 
                                                     <RowStyle Font-Size="Smaller" />
                                                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                                                     <EmptyDataTemplate>
                                                         ¡No hay clientes con los parámetros seleccionados!  
                                                     </EmptyDataTemplate>
-
-                                                    <%--Paginador...--%>
-                                                    <PagerTemplate>
-                                                        <div class="row" style="margin-top: 20px;">
-                                                            <div class="col-lg-1" style="text-align: right;">
-                                                                <h5>
-                                                                    <asp:Label ID="MessageLabel" Text="Ir a la pág." runat="server" /></h5>
-                                                            </div>
-                                                            <div class="col-lg-1" style="text-align: left;">
-                                                                <asp:DropDownList ID="PageDropDownList" Width="50px" AutoPostBack="true" OnSelectedIndexChanged="PageDropDownList_SelectedIndexChanged" runat="server" CssClass="form-control" /></h3>
-                                                            </div>
-                                                            <div class="col-lg-10" style="text-align: right;">
-                                                                <h3>
-                                                                    <asp:Label ID="CurrentPageLabel" runat="server" CssClass="label label-warning" /></h3>
-                                                            </div>
-                                                        </div>
-                                                    </PagerTemplate>
 
                                                     <Columns>
                                                         <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />

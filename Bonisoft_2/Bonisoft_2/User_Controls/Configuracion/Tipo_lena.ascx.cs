@@ -128,7 +128,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
                             string userID1 = HttpContext.Current.Session["UserID"].ToString();
                             string username = HttpContext.Current.Session["UserName"].ToString();
-                            Global_Objects.Logs.AddUserLog("Agrega tipo de leña", id, userID1, username);
+                            Global_Objects.Logs.AddUserLog("Agrega tipo de leña", lena_tipo1.GetType().Name + ": " + id, userID1, username);
                         }
                         catch (Exception ex)
                         {
@@ -179,7 +179,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     {
                         string userID1 = HttpContext.Current.Session["UserID"].ToString();
                         string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Modifica tipo de leña", obj.Lena_tipo_ID, userID1, username);
+                        Global_Objects.Logs.AddUserLog("Modifica tipo de leña", obj.GetType().Name + ": " +obj.Lena_tipo_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -213,7 +213,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                 {
                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                     string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Borra tipo de leña", obj.Lena_tipo_ID, userID1, username);
+                    Global_Objects.Logs.AddUserLog("Borra tipo de leña", obj.GetType().Name + ": " +obj.Lena_tipo_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {

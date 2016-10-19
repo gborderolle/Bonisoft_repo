@@ -134,7 +134,7 @@ namespace Bonisoft_2.User_Controls
 
                             string userID1 = HttpContext.Current.Session["UserID"].ToString();
                             string username = HttpContext.Current.Session["UserName"].ToString();
-                            Global_Objects.Logs.AddUserLog("Agrega descargador", id, userID1, username);
+                            Global_Objects.Logs.AddUserLog("Agrega descargador", cuadrilla_descarga.GetType().Name + ": " + id, userID1, username);
                         }
                         catch (Exception ex)
                         {
@@ -189,7 +189,7 @@ namespace Bonisoft_2.User_Controls
                     {
                         string userID1 = HttpContext.Current.Session["UserID"].ToString();
                         string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Modifica descargador", obj.Cuadrilla_descarga_ID, userID1, username);
+                        Global_Objects.Logs.AddUserLog("Modifica descargador", obj.GetType().Name + ": " +obj.Cuadrilla_descarga_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -223,7 +223,7 @@ namespace Bonisoft_2.User_Controls
                 {
                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                     string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Borra descargador", obj.Cuadrilla_descarga_ID, userID1, username);
+                    Global_Objects.Logs.AddUserLog("Borra descargador", obj.GetType().Name + ": " +obj.Cuadrilla_descarga_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {

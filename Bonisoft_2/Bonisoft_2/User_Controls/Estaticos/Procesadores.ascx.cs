@@ -121,18 +121,18 @@ namespace Bonisoft_2.User_Controls.Estaticos
                         context.SaveChanges();
 
                         #region Guardar log 
-try 
-{
-                        int id = 1;
-                        procesador procesador = (procesador)context.procesadores.OrderByDescending(p => p.Procesador_ID).FirstOrDefault();
-                        if (procesador != null)
+                        try
                         {
-                            id = procesador.Procesador_ID;
-                        }
+                            int id = 1;
+                            procesador procesador = (procesador)context.procesadores.OrderByDescending(p => p.Procesador_ID).FirstOrDefault();
+                            if (procesador != null)
+                            {
+                                id = procesador.Procesador_ID;
+                            }
 
-                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                        string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Agrega procesador", id, userID1, username);
+                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                            string username = HttpContext.Current.Session["UserName"].ToString();
+                            Global_Objects.Logs.AddUserLog("Agrega procesador", procesador.GetType().Name + ": " + id, userID1, username);
                         }
                         catch (Exception ex)
                         {
@@ -187,11 +187,11 @@ try
                     context.SaveChanges();
 
                     #region Guardar log 
-try 
-{
-                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                    string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Modifica procesador", obj.Procesador_ID, userID1, username);
+                    try
+                    {
+                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                        string username = HttpContext.Current.Session["UserName"].ToString();
+                        Global_Objects.Logs.AddUserLog("Modifica procesador", obj.GetType().Name + ": " + obj.Procesador_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -221,11 +221,11 @@ try
                 context.SaveChanges();
 
                 #region Guardar log 
-try 
-{
-                string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                string username = HttpContext.Current.Session["UserName"].ToString();
-                Global_Objects.Logs.AddUserLog("Borra procesador", obj.Procesador_ID, userID1, username);
+                try
+                {
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Global_Objects.Logs.AddUserLog("Borra procesador", obj.GetType().Name + ": " + obj.Procesador_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {

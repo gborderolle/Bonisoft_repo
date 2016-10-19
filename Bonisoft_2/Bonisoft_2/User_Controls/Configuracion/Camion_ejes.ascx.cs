@@ -127,7 +127,7 @@ try
 
                         string userID1 = HttpContext.Current.Session["UserID"].ToString();
                         string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Agrega ejes de camión", id, userID1, username);
+                        Global_Objects.Logs.AddUserLog("Agrega ejes de camión", camion_ejes1.GetType().Name + ": " + id, userID1, username);
                         }
                         catch (Exception ex)
                         {
@@ -178,7 +178,7 @@ try
 {
                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                     string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Modifica ejes de camión", obj.Camion_ejes_ID, userID1, username);
+                    Global_Objects.Logs.AddUserLog("Modifica ejes de camión", obj.GetType().Name + ": " +obj.Camion_ejes_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -212,7 +212,7 @@ try
 {
                 string userID1 = HttpContext.Current.Session["UserID"].ToString();
                 string username = HttpContext.Current.Session["UserName"].ToString();
-                Global_Objects.Logs.AddUserLog("Borra ejes de camión", obj.Camion_ejes_ID, userID1, username);
+                Global_Objects.Logs.AddUserLog("Borra ejes de camión", obj.GetType().Name + ": " +obj.Camion_ejes_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {

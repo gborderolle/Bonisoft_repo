@@ -133,7 +133,7 @@ try
 
                         string userID1 = HttpContext.Current.Session["UserID"].ToString();
                         string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Agrega variedad", id, userID1, username);
+                        Global_Objects.Logs.AddUserLog("Agrega variedad", usuario1.GetType().Name + ": " + id, userID1, username);
                         }
                         catch (Exception ex)
                         {
@@ -187,7 +187,7 @@ try
 {
                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                     string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Modifica usuario", obj.Usuario_ID, userID1, username);
+                    Global_Objects.Logs.AddUserLog("Modifica usuario", obj.GetType().Name + ": " +obj.Usuario_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -221,7 +221,7 @@ try
 {
                 string userID1 = HttpContext.Current.Session["UserID"].ToString();
                 string username = HttpContext.Current.Session["UserName"].ToString();
-                Global_Objects.Logs.AddUserLog("Borra usuario", obj.Usuario_ID, userID1, username);
+                Global_Objects.Logs.AddUserLog("Borra usuario", obj.GetType().Name + ": " +obj.Usuario_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {

@@ -117,18 +117,18 @@ namespace Bonisoft_2.User_Controls.Configuracion
                         context.SaveChanges();
 
                         #region Guardar log 
-try 
-{
-                        int id = 1;
-                        forma_de_pago forma_de_pago1 = (forma_de_pago)context.forma_de_pago.OrderByDescending(p => p.Forma_de_pago_ID).FirstOrDefault();
-                        if (forma_de_pago1 != null)
+                        try
                         {
-                            id = forma_de_pago1.Forma_de_pago_ID;
-                        }
+                            int id = 1;
+                            forma_de_pago forma_de_pago1 = (forma_de_pago)context.forma_de_pago.OrderByDescending(p => p.Forma_de_pago_ID).FirstOrDefault();
+                            if (forma_de_pago1 != null)
+                            {
+                                id = forma_de_pago1.Forma_de_pago_ID;
+                            }
 
-                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                        string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Agrega forma de pago", id, userID1, username);
+                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                            string username = HttpContext.Current.Session["UserName"].ToString();
+                            Global_Objects.Logs.AddUserLog("Agrega forma de pago", obj.GetType().Name + ": " + id, userID1, username);
                         }
                         catch (Exception ex)
                         {
@@ -175,11 +175,11 @@ try
                     context.SaveChanges();
 
                     #region Guardar log 
-try 
-{
-                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                    string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Modifica formas de pago", obj.Forma_de_pago_ID, userID1, username);
+                    try
+                    {
+                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                        string username = HttpContext.Current.Session["UserName"].ToString();
+                        Global_Objects.Logs.AddUserLog("Modifica formas de pago", obj.GetType().Name + ": " + obj.Forma_de_pago_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -209,11 +209,11 @@ try
                 context.SaveChanges();
 
                 #region Guardar log 
-try 
-{
-                string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                string username = HttpContext.Current.Session["UserName"].ToString();
-                Global_Objects.Logs.AddUserLog("Borra formas de pago", obj.Forma_de_pago_ID, userID1, username);
+                try
+                {
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Global_Objects.Logs.AddUserLog("Borra formas de pago", obj.GetType().Name + ": " + obj.Forma_de_pago_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {

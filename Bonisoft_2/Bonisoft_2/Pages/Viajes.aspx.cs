@@ -36,6 +36,18 @@ namespace Bonisoft_2.Pages
             gridViajes_lblMessage.Text = string.Empty;
         }
 
+        protected void grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gridViajes.PageIndex = e.NewPageIndex;
+            BindGridViajes();
+        }
+
+        protected void grid2_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gridViajesEnCurso.PageIndex = e.NewPageIndex;
+            BindGrid_ViajesEnCurso();
+        }
+
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
@@ -163,7 +175,7 @@ namespace Bonisoft_2.Pages
                                 {
                                     string userID = HttpContext.Current.Session["UserID"].ToString();
                                     string username = HttpContext.Current.Session["UserName"].ToString();
-                                    Global_Objects.Logs.AddUserLog("Modifica viaje", viaje.Viaje_ID, userID, username);
+                                    Global_Objects.Logs.AddUserLog("Modifica viaje", viaje.GetType().Name + ": " + viaje.GetType().Name + ": " + viaje.Viaje_ID, userID, username);
                                 }
                                 catch (Exception ex)
                                 {
@@ -258,7 +270,7 @@ namespace Bonisoft_2.Pages
                             {
                                 string userID = HttpContext.Current.Session["UserID"].ToString();
                                 string username = HttpContext.Current.Session["UserName"].ToString();
-                                Global_Objects.Logs.AddUserLog("Marca viaje llega a destino", viaje.Viaje_ID, userID, username);
+                                Global_Objects.Logs.AddUserLog("Marca viaje llega a destino", viaje.GetType().Name + ": " + viaje.GetType().Name + ": " + viaje.Viaje_ID, userID, username);
                             }
                             catch (Exception ex)
                             {
@@ -1004,7 +1016,7 @@ namespace Bonisoft_2.Pages
 
                                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                                     string username = HttpContext.Current.Session["UserName"].ToString();
-                                    Global_Objects.Logs.AddUserLog("Agrega viaje", viaje.Viaje_ID, userID1, username);
+                                    Global_Objects.Logs.AddUserLog("Agrega viaje", viaje.GetType().Name + ": " + viaje.Viaje_ID, userID1, username); 
                                 }
                                 catch (Exception ex)
                                 {
@@ -1210,7 +1222,7 @@ namespace Bonisoft_2.Pages
                     {
                         string userID1 = HttpContext.Current.Session["UserID"].ToString();
                         string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Modifica viaje", obj.Viaje_ID, userID1, username);
+                        Global_Objects.Logs.AddUserLog("Modifica viaje", obj.GetType().Name + ": " +obj.GetType().Name + ": " +obj.Viaje_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -1245,7 +1257,7 @@ namespace Bonisoft_2.Pages
                 {
                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                     string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Borra viaje", obj.Viaje_ID, userID1, username);
+                    Global_Objects.Logs.AddUserLog("Borra viaje", obj.GetType().Name + ": " +obj.Viaje_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {
@@ -1363,7 +1375,7 @@ namespace Bonisoft_2.Pages
                                 {
                                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                                     string username = HttpContext.Current.Session["UserName"].ToString();
-                                    Global_Objects.Logs.AddUserLog("Borra viaje en curso", viaje.Viaje_ID, userID1, username);
+                                    Global_Objects.Logs.AddUserLog("Borra viaje en curso", viaje.GetType().Name + ": " + viaje.Viaje_ID, userID1, username);
                                 }
                                 catch (Exception ex)
                                 {
@@ -1908,7 +1920,7 @@ namespace Bonisoft_2.Pages
                             {
                                 string userID1 = HttpContext.Current.Session["UserID"].ToString();
                                 string username = HttpContext.Current.Session["UserName"].ToString();
-                                Global_Objects.Logs.AddUserLog("Modifica precio de compra de viaje", viaje.Viaje_ID, userID1, username);
+                                Global_Objects.Logs.AddUserLog("Modifica precio de compra de viaje", viaje.GetType().Name + ": " + viaje.Viaje_ID, userID1, username);
                             }
                             catch (Exception ex)
                             {
@@ -2005,7 +2017,7 @@ namespace Bonisoft_2.Pages
                                 {
                                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                                     string username = HttpContext.Current.Session["UserName"].ToString();
-                                    Global_Objects.Logs.AddUserLog("Guarda precio de venta", viaje.Viaje_ID, userID1, username);
+                                    Global_Objects.Logs.AddUserLog("Guarda precio de venta", viaje.GetType().Name + ": " + viaje.Viaje_ID, userID1, username);
                                 }
                                 catch (Exception ex)
                                 {
@@ -2022,293 +2034,6 @@ namespace Bonisoft_2.Pages
             }
             return save_ok;
         }
-
-        //[WebMethod]
-        //public static string GuardarPesadas(string viajeID_str, int isOrigen, string pesadaID_str, string txb_pesadaLugar_str,
-        //    string txb_pesadaFecha_str, string txb_pesadaPeso_bruto_str, string txb_pesadaPeso_neto_str, string txb_pesadaNombre_str,
-        //    string txb_pesadaComentarios_str)
-        //{
-        //    // Logger variables
-        //    System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
-        //    string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //    string methodName = stackFrame.GetMethod().Name;
-
-        //    bool save_ok = false;
-        //    decimal precio_compra = 0;
-
-        //    if (!string.IsNullOrWhiteSpace(viajeID_str))
-        //    {
-        //        using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-        //        {
-        //            int viaje_ID = 0;
-        //            if (!int.TryParse(viajeID_str, out viaje_ID))
-        //            {
-        //                viaje_ID = 0;
-        //                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viajeID_str);
-        //            }
-
-        //            int pesada_ID = 0;
-        //            if (!int.TryParse(pesadaID_str, out pesada_ID))
-        //            {
-        //                pesada_ID = 0;
-        //                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, pesadaID_str);
-        //            }
-
-        //            if (viaje_ID > 0)
-        //            {
-        //                viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
-        //                if (viaje != null)
-        //                {
-        //                    if (isOrigen == 1)
-        //                    {
-        //                        #region Pesada origen
-
-        //                        if (pesada_ID > 0)
-        //                        {
-        //                            pesada pesada = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_ID);
-        //                            if (pesada != null)
-        //                            {
-        //                                // Ya existe
-        //                                pesada.Lugar = txb_pesadaLugar_str;
-        //                                pesada.Nombre_balanza = txb_pesadaNombre_str;
-        //                                pesada.Comentarios = txb_pesadaComentarios_str;
-
-        //                                DateTime date = pesada.Fecha;
-        //                                if (!DateTime.TryParseExact(txb_pesadaFecha_str, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-        //                                {
-        //                                    date = pesada.Fecha;
-        //                                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb_pesadaFecha_str);
-        //                                }
-        //                                pesada.Fecha = date;
-
-        //                                decimal value = pesada.Peso_bruto;
-        //                                if (!decimal.TryParse(txb_pesadaPeso_bruto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
-        //                                {
-        //                                    value = pesada.Peso_bruto;
-        //                                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb_pesadaPeso_bruto_str);
-        //                                }
-        //                                pesada.Peso_bruto = value;
-
-        //                                value = pesada.Peso_neto;
-        //                                if (!decimal.TryParse(txb_pesadaPeso_neto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
-        //                                {
-        //                                    value = pesada.Peso_neto;
-        //                                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb_pesadaPeso_neto_str);
-        //                                }
-        //                                pesada.Peso_neto = value;
-
-        //                                context.SaveChanges();
-
-        //                                #region Guardar log
-        //                                try
-        //                                {
-        //                                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
-        //                                    string username = HttpContext.Current.Session["UserName"].ToString();
-        //                                    Global_Objects.Logs.AddUserLog("Modifica pesada origen", pesada.pesada_ID, userID1, username);
-        //                                }
-        //                                catch (Exception ex)
-        //                                {
-        //                                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
-        //                                }
-        //                                #endregion
-
-        //                                save_ok = true;
-        //                            }
-        //                        }
-        //                        else
-        //                        {
-        //                            // No existe
-        //                            pesada pesada = new pesada();
-
-        //                            pesada.Lugar = txb_pesadaLugar_str;
-        //                            pesada.Nombre_balanza = txb_pesadaNombre_str;
-        //                            pesada.Comentarios = txb_pesadaComentarios_str;
-
-        //                            DateTime date = pesada.Fecha;
-        //                            if (!DateTime.TryParseExact(txb_pesadaFecha_str, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-        //                            {
-        //                                date = pesada.Fecha;
-        //                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb_pesadaFecha_str);
-        //                            }
-        //                            pesada.Fecha = date;
-
-        //                            decimal value = pesada.Peso_bruto;
-        //                            if (!decimal.TryParse(txb_pesadaPeso_bruto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
-        //                            {
-        //                                value = pesada.Peso_bruto;
-        //                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb_pesadaPeso_bruto_str);
-        //                            }
-        //                            pesada.Peso_bruto = value;
-
-        //                            value = pesada.Peso_neto;
-        //                            if (!decimal.TryParse(txb_pesadaPeso_neto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
-        //                            {
-        //                                value = pesada.Peso_neto;
-        //                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb_pesadaPeso_neto_str);
-        //                            }
-        //                            pesada.Peso_neto = value;
-
-        //                            context.pesadas.Add(pesada);
-
-        //                            context.SaveChanges();
-
-        //                            int id = 1;
-        //                            pesada max_pesada = (pesada)context.pesadas.OrderByDescending(p => p.pesada_ID).FirstOrDefault();
-        //                            if (max_pesada != null)
-        //                            {
-        //                                id = max_pesada.pesada_ID;
-        //                            }
-        //                            viaje.Pesada_origen_ID = id;
-        //                            context.SaveChanges();
-
-        //                            #region Guardar log
-        //                            try
-        //                            {
-        //                                string userID = HttpContext.Current.Session["UserID"].ToString();
-        //                                string username = HttpContext.Current.Session["UserName"].ToString();
-        //                                Global_Objects.Logs.AddUserLog("Agrega pesada origen", id, userID, username);
-        //                            }
-        //                            catch (Exception ex)
-        //                            {
-        //                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
-        //                            }
-        //                            #endregion
-
-        //                            save_ok = true;
-        //                        }
-
-        //                        #endregion Pesada origen
-        //                    }
-        //                    else
-        //                    {
-        //                        #region Pesada destino
-
-        //                        if (pesada_ID > 0)
-        //                        {
-        //                            pesada pesada = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_ID);
-        //                            if (pesada != null)
-        //                            {
-        //                                // Ya existe
-        //                                pesada.Lugar = txb_pesadaLugar_str;
-        //                                pesada.Nombre_balanza = txb_pesadaNombre_str;
-        //                                pesada.Comentarios = txb_pesadaComentarios_str;
-
-        //                                DateTime date = pesada.Fecha;
-        //                                if (!DateTime.TryParseExact(txb_pesadaFecha_str, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-        //                                {
-        //                                    date = pesada.Fecha;
-        //                                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb_pesadaFecha_str);
-        //                                }
-        //                                pesada.Fecha = date;
-
-        //                                decimal value = pesada.Peso_bruto;
-        //                                if (!decimal.TryParse(txb_pesadaPeso_bruto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
-        //                                {
-        //                                    value = pesada.Peso_bruto;
-        //                                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb_pesadaPeso_bruto_str);
-        //                                }
-        //                                pesada.Peso_bruto = value;
-
-        //                                value = pesada.Peso_neto;
-        //                                if (!decimal.TryParse(txb_pesadaPeso_neto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
-        //                                {
-        //                                    value = pesada.Peso_neto;
-        //                                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb_pesadaPeso_neto_str);
-        //                                }
-        //                                pesada.Peso_neto = value;
-
-        //                                context.SaveChanges();
-
-        //                                #region Guardar log
-        //                                try
-        //                                {
-        //                                    string userID = HttpContext.Current.Session["UserID"].ToString();
-        //                                    string username = HttpContext.Current.Session["UserName"].ToString();
-        //                                    Global_Objects.Logs.AddUserLog("Modifica pesada destino", pesada.pesada_ID, userID, username);
-        //                                }
-        //                                catch (Exception ex)
-        //                                {
-        //                                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
-        //                                }
-        //                                #endregion
-
-        //                                save_ok = true;
-        //                            }
-        //                        }
-        //                        else
-        //                        {
-        //                            // No existe
-        //                            pesada pesada = new pesada();
-
-        //                            pesada.Lugar = txb_pesadaLugar_str;
-        //                            pesada.Nombre_balanza = txb_pesadaNombre_str;
-        //                            pesada.Comentarios = txb_pesadaComentarios_str;
-
-        //                            DateTime date = pesada.Fecha;
-        //                            if (!DateTime.TryParseExact(txb_pesadaFecha_str, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-        //                            {
-        //                                date = pesada.Fecha;
-        //                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb_pesadaFecha_str);
-        //                            }
-        //                            pesada.Fecha = date;
-
-        //                            decimal value = pesada.Peso_bruto;
-        //                            if (!decimal.TryParse(txb_pesadaPeso_bruto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
-        //                            {
-        //                                value = pesada.Peso_bruto;
-        //                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb_pesadaPeso_bruto_str);
-        //                            }
-        //                            pesada.Peso_bruto = value;
-
-        //                            value = pesada.Peso_neto;
-        //                            if (!decimal.TryParse(txb_pesadaPeso_neto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
-        //                            {
-        //                                value = pesada.Peso_neto;
-        //                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb_pesadaPeso_neto_str);
-        //                            }
-        //                            pesada.Peso_neto = value;
-
-        //                            context.pesadas.Add(pesada);
-        //                            context.SaveChanges();
-
-        //                            int id = 1;
-        //                            pesada max_pesada = (pesada)context.pesadas.OrderByDescending(p => p.pesada_ID).FirstOrDefault();
-        //                            if (max_pesada != null)
-        //                            {
-        //                                id = max_pesada.pesada_ID;
-        //                            }
-        //                            viaje.Pesada_destino_ID = id;
-        //                            context.SaveChanges();
-
-        //                            #region Guardar log
-        //                            try
-        //                            {
-        //                                string userID = HttpContext.Current.Session["UserID"].ToString();
-        //                                string username = HttpContext.Current.Session["UserName"].ToString();
-        //                                Global_Objects.Logs.AddUserLog("Guarda pesada destino", id, userID, username);
-        //                            }
-        //                            catch (Exception ex)
-        //                            {
-        //                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
-        //                            }
-        //                            #endregion
-
-        //                            save_ok = true;
-        //                        }
-
-        //                        #endregion Pesada destino
-        //                    }
-
-        //                    if (save_ok)
-        //                    {
-        //                        precio_compra = CalcularPrecioCompra(viaje_ID);
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return save_ok.ToString() + "|" + precio_compra;
-        //}
 
         [WebMethod]
         public static string GuardarPesadas2(string viajeID_str,
@@ -2417,7 +2142,7 @@ namespace Bonisoft_2.Pages
                                     {
                                         string userID1 = HttpContext.Current.Session["UserID"].ToString();
                                         string username = HttpContext.Current.Session["UserName"].ToString();
-                                        Global_Objects.Logs.AddUserLog("Modifica pesada origen", pesada.pesada_ID, userID1, username);
+                                        Global_Objects.Logs.AddUserLog("Modifica pesada origen", pesada.GetType().Name + ": " + pesada.GetType().Name + ": " + pesada.pesada_ID, userID1, username);
                                     }
                                     catch (Exception ex)
                                     {
@@ -2581,7 +2306,7 @@ namespace Bonisoft_2.Pages
                                 {
                                     string userID = HttpContext.Current.Session["UserID"].ToString();
                                     string username = HttpContext.Current.Session["UserName"].ToString();
-                                    Global_Objects.Logs.AddUserLog("Finaliza viaje", viaje.Viaje_ID, userID, username);
+                                    Global_Objects.Logs.AddUserLog("Finaliza viaje", viaje.GetType().Name + ": " + viaje.GetType().Name + ": " + viaje.Viaje_ID, userID, username);
                                 }
                                 catch (Exception ex)
                                 {
@@ -2649,7 +2374,7 @@ namespace Bonisoft_2.Pages
                                         {
                                             string userID1 = HttpContext.Current.Session["UserID"].ToString();
                                             string username = HttpContext.Current.Session["UserName"].ToString();
-                                            Global_Objects.Logs.AddUserLog("Borra viaje en curso", viaje.Viaje_ID, userID1, username);
+                                            Global_Objects.Logs.AddUserLog("Borra viaje en curso", viaje.GetType().Name + ": " + viaje.Viaje_ID, userID1, username);
                                         }
                                         catch (Exception ex)
                                         {
@@ -2814,7 +2539,7 @@ namespace Bonisoft_2.Pages
                             {
                                 string userID1 = HttpContext.Current.Session["UserID"].ToString();
                                 string username = HttpContext.Current.Session["UserName"].ToString();
-                                Global_Objects.Logs.AddUserLog("Modifica viaje", viaje.Viaje_ID, userID1, username);
+                                Global_Objects.Logs.AddUserLog("Modifica viaje", viaje.GetType().Name + ": " + viaje.Viaje_ID, userID1, username);
                             }
                             catch (Exception ex)
                             {
@@ -2963,7 +2688,7 @@ namespace Bonisoft_2.Pages
 
                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                     string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Agrega viaje", viaje.Viaje_ID, userID1, username);
+                    Global_Objects.Logs.AddUserLog("Agrega viaje", viaje.GetType().Name + ": " + viaje.Viaje_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {

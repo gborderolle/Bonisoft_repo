@@ -295,7 +295,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
                                 string userID1 = HttpContext.Current.Session["UserID"].ToString();
                                 string username = HttpContext.Current.Session["UserName"].ToString();
-                                Global_Objects.Logs.AddUserLog("Agrega mercadería", id, userID1, username);
+                                Global_Objects.Logs.AddUserLog("Agrega mercadería", mercaderia_comprada1.GetType().Name + ": " + id, userID1, username);
                             }
                             catch (Exception ex)
                             {
@@ -407,7 +407,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     {
                         string userID1 = HttpContext.Current.Session["UserID"].ToString();
                         string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Modifica mercadería", obj.Mercaderia_ID, userID1, username);
+                        Global_Objects.Logs.AddUserLog("Modifica mercadería", obj.GetType().Name + ": " +obj.GetType().Name + ": " +obj.Mercaderia_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -441,7 +441,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                 {
                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                     string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Borra mercadería", obj.Mercaderia_ID, userID1, username);
+                    Global_Objects.Logs.AddUserLog("Borra mercadería", obj.GetType().Name + ": " +obj.Mercaderia_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {
