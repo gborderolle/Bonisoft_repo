@@ -133,7 +133,7 @@
       <PropertyRef Name="Log_ID" />
     </Key>
     <Property Name="Log_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Fecha" Type="date" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Precision="0" Nullable="false" />
     <Property Name="Usuario_ID" Type="int" Nullable="false" />
     <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
@@ -157,12 +157,17 @@
       <PropertyRef Name="pesada_ID" />
     </Key>
     <Property Name="pesada_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Lugar" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Fecha" Type="date" Nullable="false" />
-    <Property Name="Nombre_balanza" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Peso_bruto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="Peso_neto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Origen_lugar" Type="varchar" MaxLength="100" />
+    <Property Name="Origen_fecha" Type="date" Nullable="false" />
+    <Property Name="Origen_nombre_balanza" Type="varchar" MaxLength="100" />
+    <Property Name="Origen_peso_bruto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Origen_peso_neto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Destino_lugar" Type="varchar" MaxLength="100" />
+    <Property Name="Destino_fecha" Type="date" Nullable="false" />
+    <Property Name="Destino_nombre_balanza" Type="varchar" MaxLength="100" />
+    <Property Name="Destino_peso_bruto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Destino_peso_neto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Comentarios" Type="varchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="procesador">
     <Key>
@@ -241,8 +246,7 @@
     <Property Name="Precio_valor_total" Type="decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="Importe_viaje" Type="decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="Saldo" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="Pesada_origen_ID" Type="int" Nullable="false" />
-    <Property Name="Pesada_destino_ID" Type="int" Nullable="false" />
+    <Property Name="Pesada_ID" Type="int" Nullable="false" />
     <Property Name="Empresa_de_carga_ID" Type="int" Nullable="false" />
     <Property Name="Fecha_partida" Type="date" Nullable="false" />
     <Property Name="Fecha_llegada" Type="date" Nullable="false" />

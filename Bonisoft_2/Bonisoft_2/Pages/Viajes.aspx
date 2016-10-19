@@ -133,7 +133,7 @@
                         </asp:UpdatePanel>
 
                         <!-- Modal Iniciar viaje BEGIN -->
-                        <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" 
+                        <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true"
                             style="display: none; max-width: 800px; overflow: hidden;" class="modal fade dark in">
 
                             <div class="modal-header">
@@ -212,10 +212,10 @@
                                         <table class="table table-hover">
                                             <tr>
                                                 <td>Fecha de inicio: 
-                                                <asp:TextBox ID="modalEdit_txbFecha1" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{dd-mm-yyyy}"></asp:TextBox>
+                                                <asp:TextBox ID="modalEdit_txbFecha1" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                                                 </td>
                                                 <td>Fecha de llegada (tentativa): 
-                                                <asp:TextBox ID="modalEdit_txbFecha2" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{dd-mm-yyyy}"></asp:TextBox>
+                                                <asp:TextBox ID="modalEdit_txbFecha2" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -311,7 +311,7 @@
                                                     <div class="col-md-3 pull-right">
                                                         <div class="row" style="float: right; cursor: pointer;">
                                                             <a id="aOrigenCopiar" style="margin-right: 5px; color: black;" onclick="copiarPesadas(1);" class="btn btn-sm btn-default">Copiar de destino</a>
-                                                            <a id="aOrigenGuardar" style="float: right;" onclick="guardarPesadas(1);" class="btn btn-sm btn-primary">Guardar</a>
+                                                            <%--<a id="aOrigenGuardar" style="float: right;" onclick="guardarPesadas(1);" class="btn btn-sm btn-primary">Guardar</a>--%>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -321,29 +321,22 @@
                                                     <tr>
                                                         <td>Lugar: 
                                                         <asp:TextBox ID="txb_pesada1Lugar" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30"></asp:TextBox>
-                                                            <asp:RequiredFieldValidator id="vtxb_pesada1Lugar" runat="server" ControlToValidate="txb_pesada1Lugar" 
-                                                                ErrorMessage="Este es un campo obligatorio" ForeColor="Red"/>
                                                         </td>
-                                                        <td>Peso neto: 
-                                                        <asp:TextBox ID="txb_pesada1Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30"></asp:TextBox>
-                                                            <asp:RequiredFieldValidator id="vtxb_pesada1Peso_neto" runat="server" ControlToValidate="txb_pesada1Peso_neto" 
-                                                                ErrorMessage="Este es un campo obligatorio" ForeColor="Red"/>
+                                                        <td>Fecha: 
+                                                        <asp:TextBox ID="txb_pesada1Fecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{dd-mm-yyyy}"></asp:TextBox>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Fecha: 
-                                                        <asp:TextBox ID="txb_pesada1Fecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:d-MM-yyyy}"></asp:TextBox>
-                                                        </td>
                                                         <td>Peso bruto: 
-                                                        <asp:TextBox ID="txb_pesada1Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                        <asp:TextBox ID="txb_pesada1Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" DataFormatString="{dd-mm-yyyy}"></asp:TextBox>
+                                                        </td>
+                                                        <td>Peso neto: 
+                                                        <asp:TextBox ID="txb_pesada1Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30"></asp:TextBox>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Nombre balanza: 
                                                         <asp:TextBox ID="txb_pesada1Nombre" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                        </td>
-                                                        <td>Comentarios: 
-                                                        <asp:TextBox ID="txb_pesada1Comentarios" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="100"></asp:TextBox>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -357,7 +350,7 @@
                                                     <div class="col-md-3 pull-right">
                                                         <div class="row" style="float: right; cursor: pointer;">
                                                             <a id="aDestinoCopiar" style="margin-right: 5px; color: black;" onclick="copiarPesadas(2);" class="btn btn-sm btn-default">Copiar de origen</a>
-                                                            <a id="aDestinoGuardar" style="float: right;" onclick="guardarPesadas(2);" class="btn btn-sm btn-primary">Guardar</a>
+                                                            <%--<a id="aDestinoGuardar" style="float: right;" onclick="guardarPesadas(2);" class="btn btn-sm btn-primary">Guardar</a>--%>
                                                         </div>
                                                     </div>
 
@@ -368,37 +361,40 @@
                                                     <tr>
                                                         <td>Lugar: 
                                                       <asp:TextBox ID="txb_pesada2Lugar" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30"></asp:TextBox>
-                                                            <asp:RequiredFieldValidator id="vtxb_pesada2Lugar" runat="server" ControlToValidate="txb_pesada2Lugar" 
-                                                                ErrorMessage="Este es un campo obligatorio" ForeColor="Red"/>
                                                         </td>
-                                                        <td>Peso neto: 
-                                                       <asp:TextBox ID="txb_pesada2Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30"></asp:TextBox>
-                                                            <asp:RequiredFieldValidator id="vtxb_pesada2Peso_neto" runat="server" ControlToValidate="txb_pesada2Peso_neto" 
-                                                                ErrorMessage="Este es un campo obligatorio" ForeColor="Red"/>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
                                                         <td>Fecha: 
                                                         <asp:TextBox ID="txb_pesada2Fecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:d-MM-yyyy}"></asp:TextBox>
                                                         </td>
+                                                    </tr>
+                                                    <tr>
                                                         <td>Peso bruto: 
                                                          <asp:TextBox ID="txb_pesada2Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                        </td>
+                                                        <td>Peso neto: 
+                                                       <asp:TextBox ID="txb_pesada2Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30"></asp:TextBox>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Nombre balanza: 
                                                         <asp:TextBox ID="txb_pesada2Nombre" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                         </td>
-                                                        <td>Comentarios: 
-                                                       <asp:TextBox ID="txb_pesada2Comentarios" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="100"></asp:TextBox>
-                                                        </td>
+                                                        <td></td>
                                                     </tr>
+
                                                 </table>
 
-                                                <div class="col-md-2 pull-right" style="padding: 10px;">
-                                                </div>
                                             </div>
 
+                                            <div class="modal-body panel panel-default row" style="padding-bottom: 0; padding-top: 0; position: inherit; background: #e9e9e9; color: #333333; margin: 0;">
+                                                    <div class="col-md-10 pull-left" style="padding: 10px;">
+                                                        Comentarios:
+                                                           <asp:TextBox ID="txb_pesadaComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                                                    </div>
+
+                                                    <div class="col-md-2 pull-right" style="padding: 2% 0;">
+                                                        <a id="aGuardarPesadas" style="float: right;" onclick="guardarAmbasPesadas();" class="btn btn-primary">Guardar</a>
+                                                    </div>
+                                                </div>
 
                                         </div>
 
@@ -410,8 +406,7 @@
                                                 <table class="table" style="margin-bottom: 0;">
                                                     <tr>
                                                         <td>Precio de compra: 
-                                                                <h2>
-                                                                    <label id="notif_lblPrecioCompra" runat="server" class="label label-danger">0</label></h2>
+                                                                <h2><label id="notif_lblPrecioCompra" runat="server" class="label label-danger">0</label></h2>
                                                         </td>
                                                         <td>Precio de flete: 
                                                         <asp:TextBox ID="notif_txbPrecioFlete" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0"></asp:TextBox>
@@ -442,7 +437,12 @@
                                                 </table>
 
                                                 <hr style="margin-top: 5px; margin-bottom: 5px;" />
-                                                <div class="row">
+                                                <div class="row" style="margin: 0;">
+                                                    <div class="col-md-10 pull-left" style="padding: 10px;">
+                                                        <p class="text-info">1) Precio de compra = Peso destino neto * Precio por tonelada de todas las mercaderías.</p>
+                                                        <p class="text-info">2) Precio de venta = Precio de compra + Flete + Descarga + Ganancia + % IVA.</p>
+                                                </div>
+
                                                     <div class="col-md-2 pull-right" style="padding: 10px;">
                                                         <a id="lnkGuardarPrecioVenta" class="btn btn-primary" onclick="GuardarPrecioVenta()">Guardar</a>
                                                     </div>
@@ -470,31 +470,31 @@
 
                     <div class="row">
 
-                        
 
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-2 pull-right" style="margin-right: 10px; margin-bottom: 10px;">
-                                            <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
-                                                <div class="input-group ">
-                                                    <input type="text" id="txbSearchViajes" name="q" class="form-control" placeholder="Buscar...">
-                                                    <span class="input-group-btn">
-                                                        <button type="button" name="search" id="search-btn" class="btn btn-flat">
-                                                            <i class="fa fa-search"></i>
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                            </form>
+
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-2 pull-right" style="margin-right: 10px; margin-bottom: 10px;">
+                                    <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
+                                        <div class="input-group ">
+                                            <input type="text" id="txbSearchViajes" name="q" class="form-control" placeholder="Buscar...">
+                                            <span class="input-group-btn">
+                                                <button type="button" name="search" id="search-btn" class="btn btn-flat">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
                                         </div>
-                                    </div>
+                                    </form>
+                                </div>
+                            </div>
 
-                                    <div class="row">
-                                        <div id="divContent" style="overflow: auto;">
+                            <div class="row">
+                                <div id="divContent" style="overflow: auto;">
 
-                                            <div style="text-align: center">
+                                    <div style="text-align: center">
 
-                                                <asp:UpdatePanel ID="upGridViajes" runat="server" UpdateMode="Conditional">
-                            <ContentTemplate>
+                                        <asp:UpdatePanel ID="upGridViajes" runat="server" UpdateMode="Conditional">
+                                            <ContentTemplate>
 
                                                 <asp:Label ID="gridViajes_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                                                 <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False"
@@ -506,7 +506,7 @@
                                                     OnRowUpdating="gridViajes_RowUpdating"
                                                     OnRowDeleting="gridViajes_RowDeleting"
                                                     OnRowDataBound="gridViajes_RowDataBound">
-                                    
+
                                                     <RowStyle Font-Size="Smaller" />
                                                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                                                     <EmptyDataTemplate>
@@ -530,7 +530,7 @@
                                                         </div>
                                                     </PagerTemplate>
 
-                                                    <Columns>                      
+                                                    <Columns>
                                                         <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
                                                         <asp:TemplateField HeaderText="Fecha partida">
                                                             <EditItemTemplate>
@@ -602,26 +602,26 @@
                                                                 <asp:CompareValidator ForeColor="Red" ID="vtxbNew3" runat="server" ControlToValidate="txbNew3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                             </FooterTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Pesada origen">
+                                                        <asp:TemplateField HeaderText="Pesada origen/Neto">
                                                             <EditItemTemplate>
-                                                                <asp:DropDownList ID="ddlPesadaOrigen1" runat="server" CssClass="form-control" />
+                                                                <asp:TextBox ID="ddlPesadaOrigen1" runat="server" Text='<%# Bind("Carga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                             </EditItemTemplate>
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lbl8" runat="server" Text='<%# Bind("Pesada_origen_ID") %>'></asp:Label>
+                                                                <asp:Label ID="lbl8" runat="server" Text='<%# Bind("Pesada_ID") %>'></asp:Label>
                                                             </ItemTemplate>
                                                             <FooterTemplate>
-                                                                <asp:DropDownList ID="ddlPesadaOrigen2" runat="server" CssClass="form-control" />
+                                                                <asp:TextBox ID="ddlPesadaOrigen2" runat="server" Text='<%# Bind("Carga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                             </FooterTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Pesada destino">
+                                                        <asp:TemplateField HeaderText="Pesada destino/Neto">
                                                             <EditItemTemplate>
-                                                                <asp:DropDownList ID="ddlPesadaDestino1" runat="server" CssClass="form-control" />
+                                                                <asp:TextBox ID="ddlPesadaDestino1" runat="server" Text='<%# Bind("Carga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                             </EditItemTemplate>
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lbl9" runat="server" Text='<%# Bind("Pesada_destino_ID") %>'></asp:Label>
+                                                                <asp:Label ID="lbl9" runat="server" Text='<%# Bind("Pesada_ID") %>'></asp:Label>
                                                             </ItemTemplate>
                                                             <FooterTemplate>
-                                                                <asp:DropDownList ID="ddlPesadaDestino2" runat="server" CssClass="form-control" />
+                                                                <asp:TextBox ID="ddlPesadaDestino2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                             </FooterTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Cargadores">
@@ -635,7 +635,7 @@
                                                                 <asp:DropDownList ID="ddlCargadores2" runat="server" CssClass="form-control" />
                                                             </FooterTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Lugar de carga">
+                                                        <asp:TemplateField HeaderText="Lugar carga">
                                                             <EditItemTemplate>
                                                                 <asp:TextBox ID="txb6" runat="server" Text='<%# Bind("Carga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                             </EditItemTemplate>
@@ -690,7 +690,7 @@
                                                                 <asp:TextBox ID="txbNew15" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
                                                             </FooterTemplate>
                                                         </asp:TemplateField>
-                                                         <asp:TemplateField HeaderText="">
+                                                        <asp:TemplateField HeaderText="">
                                                             <ItemTemplate>
                                                                 <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" ClientIDMode="AutoID"
                                                                     CommandArgument='' CssClass="btn btn-info btn-xs btn-command" CausesValidation="false"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
@@ -718,19 +718,19 @@
 
                                                 <asp:HiddenField ClientIDMode="Static" ID="hdnViajesCount" runat="server" />
 
-                                </ContentTemplate>
-                                                    <Triggers>
-                                                        <%--<asp:AsyncPostBackTrigger ControlID="lnkEdit" />--%>
-                                                    </Triggers>
-                        </asp:UpdatePanel>
+                                            </ContentTemplate>
+                                            <Triggers>
+                                                <%--<asp:AsyncPostBackTrigger ControlID="lnkEdit" />--%>
+                                            </Triggers>
+                                        </asp:UpdatePanel>
 
-                                            </div>
-                                        </div>
                                     </div>
-
                                 </div>
+                            </div>
 
-                            
+                        </div>
+
+
                     </div>
 
                 </div>
@@ -752,7 +752,7 @@
             <div class="row row-short" style="padding: 10px;">
 
                 <input type="password" id="txbClave" class="form-control" style="width: 90%; display: none;" placeholder="Ingrese su contraseña"
-                    name="login-username"/>
+                    name="login-username" />
                 <!--  -->
             </div>
         </div>

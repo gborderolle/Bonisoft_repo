@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="bonisoft_dbModel.roles_usuario" Width="1.5" PointX="11.375" PointY="11.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.variedad" Width="1.5" PointX="0.75" PointY="13.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.fletero" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="bonisoft_dbModel.pesada" Width="1.5" PointX="3.75" PointY="14.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.proveedor" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.cargador" Width="1.5" PointX="8.375" PointY="14.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.procesador" Width="1.5" PointX="13.375" PointY="10.75" />
@@ -25,9 +24,10 @@
         <EntityTypeShape EntityType="bonisoft_dbModel.interno" Width="1.5" PointX="15.375" PointY="6.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.cliente_pagos" Width="1.5" PointX="15.375" PointY="0.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.cliente" Width="1.5" PointX="0.75" PointY="16.75" />
-        <EntityTypeShape EntityType="bonisoft_dbModel.viaje" Width="1.5" PointX="15.375" PointY="9.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.usuario" Width="1.5" PointX="3.375" PointY="9.75" />
         <EntityTypeShape EntityType="bonisoft_dbModel.log" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="bonisoft_dbModel.viaje" Width="1.5" PointX="3.375" PointY="14.75" />
+        <EntityTypeShape EntityType="bonisoft_dbModel.pesada" Width="1.5" PointX="5.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

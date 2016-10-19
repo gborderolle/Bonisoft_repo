@@ -1,4 +1,5 @@
-﻿using Bonisoft_2.Helpers;
+﻿using Bonisoft_2.Global_Objects;
+using Bonisoft_2.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -186,12 +187,13 @@ namespace Bonisoft_2.Pages
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
                         {
-                            int id = viaje.Pesada_origen_ID;
+                            int id = viaje.Pesada_ID;
                             pesada pesada = (pesada)context.pesadas.FirstOrDefault(c => c.pesada_ID == id);
                             if (pesada != null)
                             {
-                                string nombre = pesada.ToString();
-                                lbl.Text = nombre;
+                                lbl.Text = pesada.Origen_lugar + ": " + pesada.Origen_peso_neto;
+                                //string nombre = pesada.ToString();
+                                //lbl.Text = nombre;
                             }
                         }
                     }
@@ -209,12 +211,13 @@ namespace Bonisoft_2.Pages
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
                         {
-                            int id = viaje.Pesada_destino_ID;
+                            int id = viaje.Pesada_ID;
                             pesada pesada = (pesada)context.pesadas.FirstOrDefault(c => c.pesada_ID == id);
                             if (pesada != null)
                             {
-                                string nombre = pesada.ToString();
-                                lbl.Text = nombre;
+                                lbl.Text = pesada.Destino_lugar + ": " + pesada.Destino_peso_neto;
+                                //string nombre = pesada.ToString();
+                                //lbl.Text = nombre;
                             }
                         }
                     }
@@ -612,7 +615,7 @@ namespace Bonisoft_2.Pages
                         obj.Fecha_registro = DateTime.Now;
 
                         DateTime date = DateTime.Now;
-                        if (!DateTime.TryParseExact(fecha_str, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date))
+                        if (!DateTime.TryParseExact(fecha_str, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out date))
                         {
                             date = DateTime.Now;
                             Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha_str);
@@ -774,7 +777,7 @@ try
                         if (pago != null)
                         {
                             DateTime date = pago.Fecha_pago;
-                            if (!DateTime.TryParseExact(fecha_str, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date))
+                            if (!DateTime.TryParseExact(fecha_str, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
                             {
                                 date = pago.Fecha_pago;
                                 Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha_str);

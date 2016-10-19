@@ -15,11 +15,16 @@ namespace Bonisoft_2
     public partial class pesada
     {
         public int pesada_ID { get; set; }
-        public string Lugar { get; set; }
-        public System.DateTime Fecha { get; set; }
-        public string Nombre_balanza { get; set; }
-        public decimal Peso_bruto { get; set; }
-        public decimal Peso_neto { get; set; }
+        public string Origen_lugar { get; set; }
+        public System.DateTime Origen_fecha { get; set; }
+        public string Origen_nombre_balanza { get; set; }
+        public decimal Origen_peso_bruto { get; set; }
+        public decimal Origen_peso_neto { get; set; }
+        public string Destino_lugar { get; set; }
+        public System.DateTime Destino_fecha { get; set; }
+        public string Destino_nombre_balanza { get; set; }
+        public decimal Destino_peso_bruto { get; set; }
+        public decimal Destino_peso_neto { get; set; }
         public string Comentarios { get; set; }
     }
 }

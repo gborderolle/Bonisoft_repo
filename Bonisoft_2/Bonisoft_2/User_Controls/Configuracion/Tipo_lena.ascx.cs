@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bonisoft_2.Global_Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -116,18 +117,18 @@ namespace Bonisoft_2.User_Controls.Configuracion
                         context.SaveChanges();
 
                         #region Guardar log 
-try 
-{
-                        int id = 1;
-                        lena_tipo lena_tipo1 = (lena_tipo)context.lena_tipo.OrderByDescending(p => p.Lena_tipo_ID).FirstOrDefault();
-                        if (lena_tipo1 != null)
+                        try
                         {
-                            id = lena_tipo1.Lena_tipo_ID;
-                        }
+                            int id = 1;
+                            lena_tipo lena_tipo1 = (lena_tipo)context.lena_tipo.OrderByDescending(p => p.Lena_tipo_ID).FirstOrDefault();
+                            if (lena_tipo1 != null)
+                            {
+                                id = lena_tipo1.Lena_tipo_ID;
+                            }
 
-                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                        string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Agrega tipo de leña", id, userID1, username);
+                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                            string username = HttpContext.Current.Session["UserName"].ToString();
+                            Global_Objects.Logs.AddUserLog("Agrega tipo de leña", id, userID1, username);
                         }
                         catch (Exception ex)
                         {
@@ -174,11 +175,11 @@ try
                     context.SaveChanges();
 
                     #region Guardar log 
-try 
-{
-                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                    string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Modifica tipo de leña", obj.Lena_tipo_ID, userID1, username);
+                    try
+                    {
+                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                        string username = HttpContext.Current.Session["UserName"].ToString();
+                        Global_Objects.Logs.AddUserLog("Modifica tipo de leña", obj.Lena_tipo_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -208,11 +209,11 @@ try
                 context.SaveChanges();
 
                 #region Guardar log 
-try 
-{
-                string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                string username = HttpContext.Current.Session["UserName"].ToString();
-                Global_Objects.Logs.AddUserLog("Borra tipo de leña", obj.Lena_tipo_ID, userID1, username);
+                try
+                {
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Global_Objects.Logs.AddUserLog("Borra tipo de leña", obj.Lena_tipo_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {

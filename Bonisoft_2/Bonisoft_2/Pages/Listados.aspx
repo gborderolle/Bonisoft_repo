@@ -3,8 +3,7 @@
 <%@ Register Src="~/User_Controls/Estaticos/Proveedores.ascx" TagPrefix="uc1" TagName="Proveedores" %>
 <%@ Register Src="~/User_Controls/Estaticos/Cuadrillas.ascx" TagPrefix="uc1" TagName="Cuadrillas" %>
 <%@ Register Src="~/User_Controls/Estaticos/Camiones.ascx" TagPrefix="uc1" TagName="Camiones" %>
-<%@ Register Src="~/User_Controls/Estaticos/Choferes2.ascx" TagPrefix="uc1" TagName="Choferes2" %>
-<%@ Register Src="~/User_Controls/Estaticos/Internos.ascx" TagPrefix="uc1" TagName="Internos" %>
+<%@ Register Src="~/User_Controls/Estaticos/Choferes.ascx" TagPrefix="uc1" TagName="Choferes" %>
 <%@ Register Src="~/User_Controls/Estaticos/Fleteros.ascx" TagPrefix="uc1" TagName="Fleteros" %>
 <%@ Register Src="~/User_Controls/Estaticos/Cargadores.ascx" TagPrefix="uc1" TagName="Cargadores" %>
 <%@ Register Src="~/User_Controls/Estaticos/Procesadores.ascx" TagPrefix="uc1" TagName="Procesadores" %>
@@ -19,8 +18,8 @@
     <!-- STYLES EXTENSION -->
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="/assets/dist/css/InfoBoxes.min.css">
-    <link rel="stylesheet" href="/assets/dist/css/Datos.css">
+    <link rel="stylesheet" href="/assets/dist/css/pages/InfoBoxes.min.css">
+    <link rel="stylesheet" href="/assets/dist/css/pages/Datos.css">
 
     <!-- AdminLTE Skins. Choose a skin from the css/skins
      folder instead of downloading all of them to reduce the load. -->
@@ -172,14 +171,7 @@
                                     <div class="divTables" id="divChoferes" style="display: none;">
                                         <asp:UpdatePanel ID="upChoferes" runat="server">
                                             <ContentTemplate>
-                                                <uc1:Choferes2 runat="server" ID="Choferes2" />
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </div>
-                                    <div class="divTables" id="divInternos" style="display: none;">
-                                        <asp:UpdatePanel ID="upInternos" runat="server">
-                                            <ContentTemplate>
-                                                <uc1:Internos runat="server" ID="Internos" />
+                                                <uc1:Choferes runat="server" ID="Choferes" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>

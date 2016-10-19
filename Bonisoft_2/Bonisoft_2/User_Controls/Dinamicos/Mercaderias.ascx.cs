@@ -1,4 +1,5 @@
-﻿using Bonisoft_2.Helpers;
+﻿using Bonisoft_2.Global_Objects;
+using Bonisoft_2.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -268,7 +269,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             #region Datetime logic
 
                             DateTime date1 = DateTime.Now;
-                            if (!DateTime.TryParseExact(txb4, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                            if (!DateTime.TryParseExact(txb4, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                             {
                                 date1 = DateTime.Now;
                                 Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
@@ -283,18 +284,18 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             context.SaveChanges();
 
                             #region Guardar log 
-try 
-{
-                            int id = 1;
-                            mercaderia_comprada mercaderia_comprada1 = (mercaderia_comprada)context.mercaderia_comprada.OrderByDescending(p => p.Mercaderia_ID).FirstOrDefault();
-                            if (mercaderia_comprada1 != null)
+                            try
                             {
-                                id = mercaderia_comprada1.Mercaderia_ID;
-                            }
+                                int id = 1;
+                                mercaderia_comprada mercaderia_comprada1 = (mercaderia_comprada)context.mercaderia_comprada.OrderByDescending(p => p.Mercaderia_ID).FirstOrDefault();
+                                if (mercaderia_comprada1 != null)
+                                {
+                                    id = mercaderia_comprada1.Mercaderia_ID;
+                                }
 
-                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                            string username = HttpContext.Current.Session["UserName"].ToString();
-                            Global_Objects.Logs.AddUserLog("Agrega mercadería", id, userID1, username);
+                                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                                string username = HttpContext.Current.Session["UserName"].ToString();
+                                Global_Objects.Logs.AddUserLog("Agrega mercadería", id, userID1, username);
                             }
                             catch (Exception ex)
                             {
@@ -390,10 +391,10 @@ try
                     #region Datetime logic
 
                     DateTime date1 = obj.Fecha_corte;
-                    if (!DateTime.TryParseExact(txb4, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+                    if (!DateTime.TryParseExact(txb4, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                     {
                         date1 = obj.Fecha_corte;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
                     }
                     obj.Fecha_corte = date1;
 
@@ -402,11 +403,11 @@ try
                     context.SaveChanges();
 
                     #region Guardar log 
-try 
-{
-                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                    string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Modifica mercadería", obj.Mercaderia_ID, userID1, username);
+                    try
+                    {
+                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                        string username = HttpContext.Current.Session["UserName"].ToString();
+                        Global_Objects.Logs.AddUserLog("Modifica mercadería", obj.Mercaderia_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -436,11 +437,11 @@ try
                 context.SaveChanges();
 
                 #region Guardar log 
-try 
-{
-                string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                string username = HttpContext.Current.Session["UserName"].ToString();
-                Global_Objects.Logs.AddUserLog("Borra mercadería", obj.Mercaderia_ID, userID1, username);
+                try
+                {
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Global_Objects.Logs.AddUserLog("Borra mercadería", obj.Mercaderia_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {

@@ -21,8 +21,7 @@ namespace Bonisoft_2
         public decimal Precio_valor_total { get; set; }
         public decimal Importe_viaje { get; set; }
         public decimal Saldo { get; set; }
-        public int Pesada_origen_ID { get; set; }
-        public int Pesada_destino_ID { get; set; }
+        public int Pesada_ID { get; set; }
         public int Empresa_de_carga_ID { get; set; }
         public System.DateTime Fecha_partida { get; set; }
         public System.DateTime Fecha_llegada { get; set; }

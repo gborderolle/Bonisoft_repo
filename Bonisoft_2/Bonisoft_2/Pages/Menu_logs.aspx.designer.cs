@@ -13,6 +13,15 @@ namespace Bonisoft_2.Pages {
     public partial class Menu_logs {
         
         /// <summary>
+        /// gridLogs_lblMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label gridLogs_lblMessage;
+        
+        /// <summary>
         /// gridLogs control.
         /// </summary>
         /// <remarks>

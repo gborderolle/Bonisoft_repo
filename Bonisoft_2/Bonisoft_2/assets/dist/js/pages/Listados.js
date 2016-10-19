@@ -8,19 +8,19 @@ $(document).ready(function () {
 
 function load_quicksearch() {
     // Source: https://www.youtube.com/watch?v=Sy2J7cUv0QM
-    var gridCamiones = $("#gridCamiones tbody tr").not(':first');
-    var gridChoferes = $("#gridChoferes tbody tr").not(':first');
-    var gridClientes = $("#gridClientes tbody tr").not(':first');
-    var gridCuadrillas = $("#gridCuadrillas tbody tr").not(':first');
-    var gridProveedores = $("#gridProveedores tbody tr").not(':first');
-    var gridInternos = $("#gridInternos tbody tr").not(':first');
-    var gridFleteros = $("#gridFleteros tbody tr").not(':first');
-    var gridCargadores = $("#gridCargadores tbody tr").not(':first');
-    var gridProcesadores = $("#gridProcesadores tbody tr").not(':first');
-    var gridFormas = $("#gridFormas tbody tr").not(':first');
-    var gridTipos = $("#gridTipos tbody tr").not(':first');
-    var gridVariedades = $("#gridVariedades tbody tr").not(':first');
-    var gridEjes = $("#gridEjes tbody tr").not(':first');
+    var gridCamiones = $("#gridCamiones tbody tr");
+    var gridChoferes = $("#gridChoferes tbody tr");
+    var gridClientes = $("#gridClientes tbody tr");
+    var gridCuadrillas = $("#gridCuadrillas tbody tr");
+    var gridProveedores = $("#gridProveedores tbody tr");
+    var gridInternos = $("#gridInternos tbody tr");
+    var gridFleteros = $("#gridFleteros tbody tr");
+    var gridCargadores = $("#gridCargadores tbody tr");
+    var gridProcesadores = $("#gridProcesadores tbody tr");
+    var gridFormas = $("#gridFormas tbody tr");
+    var gridTipos = $("#gridTipos tbody tr");
+    var gridVariedades = $("#gridVariedades tbody tr");
+    var gridEjes = $("#gridEjes tbody tr");
 
     $("#txbSearch").quicksearch(gridCamiones);
     $("#txbSearch").quicksearch(gridChoferes);

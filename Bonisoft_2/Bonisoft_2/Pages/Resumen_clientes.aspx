@@ -19,8 +19,8 @@
     <script type="text/javascript" src="/assets/dist/js/jquery.tablesorter.js"></script>
 
     <!-- PAGE JS -->
-    <script src="/assets/dist/js/AuxiliarFunctions.js"></script>
-    <script src="/assets/dist/js/pages/Resumen_clientes.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/AuxiliarFunctions.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/pages/Resumen_clientes.js"></script>
 
 </asp:Content>
 
@@ -119,8 +119,8 @@
                                     <Columns>
                                         <asp:BoundField DataField="Cliente_pagos_ID" HeaderText="ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
                                         <asp:BoundField DataField="Cliente_ID" HeaderText="Cliente_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol hiddencol_real" HeaderStyle-CssClass="hiddencol hiddencol_real" />
-                                        <asp:BoundField DataField="Fecha_registro" HeaderText="Fecha de registro" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />
-                                        <asp:BoundField DataField="Fecha_pago" HeaderText="Fecha de pago" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Fecha_registro" HeaderText="Fecha de registro" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
+                                        <asp:BoundField DataField="Fecha_pago" HeaderText="Fecha de pago" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="False" />
                                         <asp:TemplateField HeaderText = "Forma de pago">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblForma" runat="server" CommandName="View" Text='<%# Eval("Forma_de_pago_ID") %>'/>
@@ -143,7 +143,7 @@
 
 
                                 <div class="row" style="margin-right: 0; margin-left: 0;">
-                                        <a href="#addPagoModal" rel="modal:open" class="btn btn-info pull-right">Ingresar pago</a>
+                                        <a href="#addPagoModal" rel="modal:open" class="btn btn-primary pull-right">Ingresar pago</a>
                                 </div>
 
                             </ContentTemplate>
@@ -188,7 +188,8 @@
                                     <RowStyle Font-Size="Smaller" />
 
                                     <Columns>
-                                        <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:d MMMM, yyyy}" HtmlEncode="false" />
+                                    <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" />
+                                        <asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
                                          <asp:TemplateField HeaderText = "Proveedor">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblProveedor" runat="server" CommandName="View" Text='<%# Eval("Proveedor_ID") %>'/>
@@ -209,19 +210,19 @@
                                                 <asp:Label ID="lblChofer" runat="server" CommandName="View" Text='<%# Eval("Chofer_ID") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="Carga" HeaderText="Lugar de carga" />
+                                        <asp:BoundField DataField="Carga" HeaderText="Lugar carga" />
 
                                         <asp:BoundField DataField="Precio_compra" HeaderText="Precio compra" DataFormatString="{0:C0}" HtmlEncode="False" />
                                         <asp:BoundField DataField="Precio_venta" HeaderText="Precio venta" DataFormatString="{0:C0}" HtmlEncode="False" />
 
-                                        <asp:TemplateField HeaderText = "Pesada origen">
+                                        <asp:TemplateField HeaderText = "Pesada origen/Neto">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblPesadaOrigen" runat="server" Text='<%# Eval("Pesada_origen_ID") %>'/>
+                                                <asp:Label ID="lblPesadaOrigen" runat="server" Text='<%# Eval("Pesada_ID") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText = "Pesada destino">
+                                        <asp:TemplateField HeaderText = "Pesada destino/Neto">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblPesadaDestino" runat="server" Text='<%# Eval("Pesada_destino_ID") %>'/>
+                                                <asp:Label ID="lblPesadaDestino" runat="server" Text='<%# Eval("Pesada_ID") %>'/>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -267,7 +268,7 @@
                     <table class="table table-hover">
                         <tr>
                             <td>Fecha de pago: 
-                            <asp:TextBox ID="add_txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:d MMMM, yyyy}"></asp:TextBox>
+                            <asp:TextBox ID="add_txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:dd-MM-yyyy}"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -311,7 +312,7 @@
                     <table class="table table-hover">
                         <tr>
                             <td>Fecha de pago: 
-                            <asp:TextBox ID="edit_txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:d MMMM, yyyy}"></asp:TextBox>
+                            <asp:TextBox ID="edit_txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:dd-MM-yyyy}"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
