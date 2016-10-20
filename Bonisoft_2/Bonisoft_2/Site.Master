@@ -1,10 +1,10 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Bonisoft_2.SiteMaster" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Bonisoft_2.SiteMaster" %>
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="es-Es" xmlns="http://www.w3.org/1999/xhtml">
 
-<html lang="es-Es">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Bonisoft</title>
 
@@ -96,7 +96,7 @@
                         <li><a runat="server" href="/Pages/Viajes">Viajes</a></li>
                         <li><a runat="server" href="/Pages/Datos">Base de Datos</a></li>
                         <li><a runat="server" href="/Pages/Resumen_clientes">Resumen de Clientes</a></li>
-                        <li><a runat="server" href="/Pages/Menu_logs">Menú de Logs</a></li>
+                        <li><a runat="server" href="/Pages/Menu_logs">Men� de Logs</a></li>
                         <%--<li><a runat="server" href="~/">Inicio</a></li>--%>
                        <%-- <li><a runat="server" href="/Pages/Recordatorios">Recordatorios</a></li>
                         <li><a runat="server" href="/Pages/Contabilidad">Contabilidad</a></li>

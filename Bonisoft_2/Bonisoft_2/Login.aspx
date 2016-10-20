@@ -3,10 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
     <!-- STYLES EXTENSION -->
-    <link rel="stylesheet" href="/assets/dist/css/jquery.modal.css">
+    <link rel="stylesheet" href="/assets/dist/css/jquery.modal.css"/>
 
     <!-- PAGE CSS -->
-    <link rel="stylesheet" href="/assets/dist/css/pages/Login.css">
+    <link rel="stylesheet" href="/assets/dist/css/pages/Login.css"/>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
