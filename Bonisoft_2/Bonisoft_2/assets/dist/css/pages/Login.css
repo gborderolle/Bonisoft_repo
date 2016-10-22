@@ -11,6 +11,14 @@ body{
   font-family:'Open Sans',sans-serif;
 }*/
 
+.login-container{
+    position: fixed; 
+    left: 0; 
+    right: 0; 
+    background: #40464b; 
+    color: #ccc;
+}
+
 .button{
   width:100px;
   background:#3399cc;
@@ -58,7 +66,7 @@ body{
 }
 
 .sub-form{
-  background:rgb(85, 102, 119);
+  /*background:rgb(85, 102, 119);*/
   padding:6% 4%;
 }
 

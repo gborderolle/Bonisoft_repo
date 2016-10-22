@@ -98,6 +98,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
+int lineNumber = stackFrame.GetFileLineNumber();
 
             if (e.CommandName == "InsertNew")
             {
@@ -116,22 +117,22 @@ namespace Bonisoft_2.User_Controls.Configuracion
                         context.SaveChanges();
 
                         #region Guardar log 
-try 
-{
-                        int id = 1;
-                        camion_ejes camion_ejes1 = (camion_ejes)context.camion_ejes.OrderByDescending(p => p.Camion_ejes_ID).FirstOrDefault();
-                        if (camion_ejes1 != null)
+                        try
                         {
-                            id = camion_ejes1.Camion_ejes_ID;
-                        }
+                            int id = 1;
+                            camion_ejes camion_ejes1 = (camion_ejes)context.camion_ejes.OrderByDescending(p => p.Camion_ejes_ID).FirstOrDefault();
+                            if (camion_ejes1 != null)
+                            {
+                                id = camion_ejes1.Camion_ejes_ID;
+                            }
 
-                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                        string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Agrega ejes de camión", camion_ejes1.GetType().Name + ": " + id, userID1, username);
+                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                            string username = HttpContext.Current.Session["UserName"].ToString();
+                            Global_Objects.Logs.AddUserLog("Agrega ejes de camión", camion_ejes1.GetType().Name + ": " + id, userID1, username);
                         }
                         catch (Exception ex)
                         {
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
                         }
                         #endregion
 
@@ -158,6 +159,7 @@ try
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
+int lineNumber = stackFrame.GetFileLineNumber();
 
             GridViewRow row = gridEjes.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
@@ -174,15 +176,15 @@ try
                     context.SaveChanges();
 
                     #region Guardar log 
-try 
-{
-                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                    string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Modifica ejes de camión", obj.GetType().Name + ": " +obj.Camion_ejes_ID, userID1, username);
+                    try
+                    {
+                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                        string username = HttpContext.Current.Session["UserName"].ToString();
+                        Global_Objects.Logs.AddUserLog("Modifica ejes de camión", obj.GetType().Name + ": " + obj.Camion_ejes_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
                     }
                     #endregion
 
@@ -199,6 +201,7 @@ try
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
+int lineNumber = stackFrame.GetFileLineNumber();
 
             int camion_ejes_ID = Convert.ToInt32(gridEjes.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -208,15 +211,15 @@ try
                 context.SaveChanges();
 
                 #region Guardar log 
-try 
-{
-                string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                string username = HttpContext.Current.Session["UserName"].ToString();
-                Global_Objects.Logs.AddUserLog("Borra ejes de camión", obj.GetType().Name + ": " +obj.Camion_ejes_ID, userID1, username);
+                try
+                {
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Global_Objects.Logs.AddUserLog("Borra ejes de camión", obj.GetType().Name + ": " + obj.Camion_ejes_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {
-                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
                 }
                 #endregion
 

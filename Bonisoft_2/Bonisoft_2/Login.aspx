@@ -1,5 +1,4 @@
-﻿<%--<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Bonisoft_2.Login" %>--%>
-<%@ Page Title="Login" Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Bonisoft_2.Login" %>
+﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Bonisoft_2.Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
@@ -29,12 +28,17 @@
                 </div>
             </div>
 
-            <div class="sub-form panel panel-default" style="position: fixed; left: 0; right: 0; background: #40464b; color: #ccc;">
+            <div class="login-container sub-form panel panel-default">
                 <div id="login">
-                    Usuario:
+
+                    <div class="form-group">
+                        Usuario:
                 <input type="text" id="txbUser1" runat="server" placeholder="Usuario" class="txbUser form-control" style="padding: 25px;" />
-                    Contraseña:
+                    </div>
+                    <div class="form-group">
+                        Contraseña:
                 <input type="password" id="txbPassword1" runat="server" placeholder="Contraseña" class="txbPassword form-control" style="padding: 25px;" />
+                    </div>
 
                     <button type="button" id="btnSubmit" class="btn btn-primary submit" style="font-size: 140%; line-height: 1.1;" onclick="checkSubmit();">
                         <i class="fa fa-check"></i>Ingresar
@@ -52,13 +56,9 @@
                             <label id="lblMessages" style="font-weight: normal;" />
                         </div>
                     </div>
-
-
                 </div>
             </div>
-
         </div>
     </div>
-
 
 </asp:Content>

@@ -156,6 +156,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
+int lineNumber = stackFrame.GetFileLineNumber();
 
             if (e.CommandName == "InsertNew")
             {
@@ -201,7 +202,7 @@ try
                         }
                         catch (Exception ex)
                         {
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
                         }
                         #endregion
 
@@ -241,6 +242,7 @@ try
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
+int lineNumber = stackFrame.GetFileLineNumber();
 
             GridViewRow row = gridVariedades.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
@@ -277,7 +279,7 @@ try
                     }
                     catch (Exception ex)
                     {
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
                     }
                     #endregion
 
@@ -294,6 +296,7 @@ try
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
+int lineNumber = stackFrame.GetFileLineNumber();
 
             int variedad_ID = Convert.ToInt32(gridVariedades.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -311,7 +314,7 @@ try
                 }
                 catch (Exception ex)
                 {
-                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
                 }
                 #endregion
 

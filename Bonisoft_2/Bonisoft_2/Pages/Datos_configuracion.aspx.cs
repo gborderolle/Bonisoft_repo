@@ -24,6 +24,7 @@ namespace Bonisoft_2.Pages
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
+int lineNumber = stackFrame.GetFileLineNumber();
 
             bool isAdmin = false;
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -34,8 +35,8 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(userID_str, out userID))
                     {
                         userID = 0;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, userID_str);
-                        //Global_Objects.ErrorLog.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, e.Message);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, userID_str);
+                        //Global_Objects.ErrorLog.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, e.Message);
                     }
 
                     if (userID > 0)

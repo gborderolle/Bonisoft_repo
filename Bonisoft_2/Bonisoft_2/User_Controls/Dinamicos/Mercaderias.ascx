@@ -50,10 +50,10 @@
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Fecha de corte">
             <EditItemTemplate>
-                <asp:TextBox ID="mercaderias_txb4" runat="server" Text='<%# Bind("Fecha_corte") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="mercaderias_txb4" runat="server" Text='<%# Bind("Fecha_corte", "{0:dd-MM-yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="mercaderias_lbl4" runat="server" Text='<%# Bind("Fecha_corte", "{0:d-MM-yyyy}") %>'></asp:Label>
+                <asp:Label ID="mercaderias_lbl4" runat="server" Text='<%# Bind("Fecha_corte", "{0:dd-MM-yyyy}") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="mercaderias_txbNew4" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>

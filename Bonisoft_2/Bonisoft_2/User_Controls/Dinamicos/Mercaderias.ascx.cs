@@ -42,28 +42,32 @@ namespace Bonisoft_2.User_Controls.Configuracion
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
+int lineNumber = stackFrame.GetFileLineNumber();
 
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 bool ok = false;
 
-                int viaje_ID = 0;
-                if (!int.TryParse(Viaje_ID1, out viaje_ID))
+                if (!string.IsNullOrWhiteSpace(Viaje_ID1))
                 {
-                    viaje_ID = 0;
-                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, Viaje_ID1);
-                }
-                if (viaje_ID > 0)
-                {
-                    var elements = context.mercaderia_comprada.Where(e => e.Viaje_ID == viaje_ID).ToList();
-                    if (elements.Count() > 0)
+                    int viaje_ID = 0;
+                    if (!int.TryParse(Viaje_ID1, out viaje_ID))
                     {
-                        gridMercaderias.DataSource = elements;
-                        gridMercaderias.DataBind();
+                        viaje_ID = 0;
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, Viaje_ID1);
+                    }
+                    if (viaje_ID > 0)
+                    {
+                        var elements = context.mercaderia_comprada.Where(e => e.Viaje_ID == viaje_ID).ToList();
+                        if (elements.Count() > 0)
+                        {
+                            gridMercaderias.DataSource = elements;
+                            gridMercaderias.DataBind();
 
-                        hdnMercaderiasCount.Value = elements.Count().ToString();
+                            hdnMercaderiasCount.Value = elements.Count().ToString();
 
-                        ok = true;
+                            ok = true;
+                        }
                     }
                 }
                 if (!ok)
@@ -211,6 +215,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
+int lineNumber = stackFrame.GetFileLineNumber();
 
             #region InsertNew
 
@@ -237,7 +242,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     if (!int.TryParse(Viaje_ID1, out viaje_ID))
                     {
                         viaje_ID = 0;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, Viaje_ID1);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, Viaje_ID1);
                     }
                     if (viaje_ID > 0)
                     {
@@ -250,7 +255,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             if (!decimal.TryParse(txb5, NumberStyles.Number, CultureInfo.InvariantCulture, out valor))
                             {
                                 valor = 0;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb5);
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, txb5);
                             }
                             obj.Precio_xTonelada_compra = valor;
 
@@ -260,7 +265,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             if (!int.TryParse(ddlVariedad2, out ddl1))
                             {
                                 ddl1 = 0;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlVariedad2);
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlVariedad2);
                             }
                             obj.Variedad_ID = ddl1;
 
@@ -272,7 +277,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             if (!DateTime.TryParseExact(txb4, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                             {
                                 date1 = DateTime.Now;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, txb4);
                             }
                             obj.Fecha_corte = date1;
 
@@ -284,6 +289,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             context.SaveChanges();
 
                             #region Guardar log 
+
                             try
                             {
                                 int id = 1;
@@ -299,8 +305,9 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             }
                             catch (Exception ex)
                             {
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
                             }
+
                             #endregion
 
                             lblMessage.Text = "Agregado correctamente.";
@@ -348,6 +355,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
+int lineNumber = stackFrame.GetFileLineNumber();
 
             HiddenField hdn_modalMercaderia_txb4 = this.Parent.FindControl("hdn_modalMercaderia_txb4") as HiddenField;
             HiddenField hdn_modalMercaderia_txb5 = this.Parent.FindControl("hdn_modalMercaderia_txb5") as HiddenField;
@@ -372,7 +380,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     if (!decimal.TryParse(txb5, NumberStyles.Number, CultureInfo.InvariantCulture, out valor))
                     {
                         valor = obj.Precio_xTonelada_compra;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb5);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, txb5);
                     }
                     obj.Precio_xTonelada_compra = valor;
 
@@ -382,7 +390,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     if (!int.TryParse(ddlVariedad1, out ddl1))
                     {
                         ddl1 = obj.Variedad_ID;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlVariedad1);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlVariedad1);
                     }
                     obj.Variedad_ID = ddl1;
 
@@ -394,7 +402,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     if (!DateTime.TryParseExact(txb4, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                     {
                         date1 = obj.Fecha_corte;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, txb4);
                     }
                     obj.Fecha_corte = date1;
 
@@ -407,11 +415,11 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     {
                         string userID1 = HttpContext.Current.Session["UserID"].ToString();
                         string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Modifica mercadería", obj.GetType().Name + ": " +obj.GetType().Name + ": " +obj.Mercaderia_ID, userID1, username);
+                        Global_Objects.Logs.AddUserLog("Modifica mercadería", obj.GetType().Name + ": " + obj.Mercaderia_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
                     }
                     #endregion
 
@@ -428,6 +436,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
+int lineNumber = stackFrame.GetFileLineNumber();
 
             int mercaderias_ID = Convert.ToInt32(gridMercaderias.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -441,11 +450,11 @@ namespace Bonisoft_2.User_Controls.Configuracion
                 {
                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                     string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Borra mercadería", obj.GetType().Name + ": " +obj.Mercaderia_ID, userID1, username);
+                    Global_Objects.Logs.AddUserLog("Borra mercadería", obj.GetType().Name + ": " + obj.Mercaderia_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {
-                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
                 }
                 #endregion
 
