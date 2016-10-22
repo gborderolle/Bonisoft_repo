@@ -1189,6 +1189,7 @@
     <Content Include="Pages\Detalles.aspx" />
     <Content Include="Pages\Deudores.aspx" />
     <Content Include="Pages\Listados.aspx" />
+    <Content Include="Pages\Login1.aspx" />
     <Content Include="Pages\Menu_logs.aspx" />
     <Content Include="Pages\Recordatorios.aspx" />
     <Content Include="Pages\Registros.aspx" />
@@ -1521,6 +1522,13 @@
     <Compile Include="Pages\Listados.aspx.cs">
       <DependentUpon>Listados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Login1.aspx.cs">
+      <DependentUpon>Login1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Login1.aspx.designer.cs">
+      <DependentUpon>Login1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Menu_logs.aspx.cs">
       <DependentUpon>Menu_logs.aspx</DependentUpon>

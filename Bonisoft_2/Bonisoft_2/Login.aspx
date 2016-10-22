@@ -1,12 +1,13 @@
-﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Bonisoft_2.Login" %>
+﻿<%--<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Bonisoft_2.Login" %>--%>
+<%@ Page Title="Login" Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Bonisoft_2.Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
     <!-- STYLES EXTENSION -->
-    <link rel="stylesheet" href="/assets/dist/css/jquery.modal.css"/>
+    <link rel="stylesheet" href="/assets/dist/css/jquery.modal.css" />
 
     <!-- PAGE CSS -->
-    <link rel="stylesheet" href="/assets/dist/css/pages/Login.css"/>
+    <link rel="stylesheet" href="/assets/dist/css/pages/Login.css" />
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
@@ -28,35 +29,33 @@
                 </div>
             </div>
 
-                <div class="sub-form panel panel-default" style="position: fixed; left:0; right:0; background: #40464b; color: #ccc;">
-        <div id="login">
-            <%--<h1>Introduzca sus datos</h1>--%>
-                  
-                Usuario:
-                <input type="text" id="txbUser1" runat="server" placeholder="Usuario" class="txbUser form-control" style="padding:25px;" />
-                Contraseña:
-                <input type="password" id="txbPassword1" runat="server" placeholder="Contraseña" class="txbPassword form-control" style="padding:25px;" />
+            <div class="sub-form panel panel-default" style="position: fixed; left: 0; right: 0; background: #40464b; color: #ccc;">
+                <div id="login">
+                    Usuario:
+                <input type="text" id="txbUser1" runat="server" placeholder="Usuario" class="txbUser form-control" style="padding: 25px;" />
+                    Contraseña:
+                <input type="password" id="txbPassword1" runat="server" placeholder="Contraseña" class="txbPassword form-control" style="padding: 25px;" />
 
-                <button type="button" id="btnSubmit" class="btn btn-primary submit" style="font-size: 140%; line-height: 1.1;" onclick="checkSubmit();">
-                    <i class="fa fa-check"></i> Ingresar
-                </button>
-                <input type="submit" id="btnSubmit_candidato1" runat="server" onserverclick="btnSubmit_candidato1_ServerClick" 
-                    style="display:none;" class="btnSubmit_candidato" />
+                    <button type="button" id="btnSubmit" class="btn btn-primary submit" style="font-size: 140%; line-height: 1.1;" onclick="checkSubmit();">
+                        <i class="fa fa-check"></i>Ingresar
+                    </button>
+                    <input type="submit" id="btnSubmit_candidato1" runat="server" onserverclick="btnSubmit_candidato1_ServerClick"
+                        style="display: none;" class="btnSubmit_candidato" />
 
-            <div class="loginFormMessageContainer" style="box-sizing: inherit; width: 100%;">
-			<div class="loginWaitingMessage" style="display:none">
-				<div></div>
-			</div>
-			<div id="divMessages" class="alert alert-danger" role="alert" style="display:none;">
-                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                <span class="sr-only">Error:</span>
-                <label id="lblMessages" style="font-weight: normal;"/>
+                    <div class="loginFormMessageContainer" style="box-sizing: inherit; width: 100%;">
+                        <div class="loginWaitingMessage" style="display: none">
+                            <div></div>
+                        </div>
+                        <div id="divMessages" class="alert alert-danger" role="alert" style="display: none;">
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                            <span class="sr-only">Error:</span>
+                            <label id="lblMessages" style="font-weight: normal;" />
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
-		</div>
-
-
-        </div>
-        </div>
 
         </div>
     </div>

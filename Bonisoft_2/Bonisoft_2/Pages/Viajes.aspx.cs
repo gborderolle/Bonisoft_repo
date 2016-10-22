@@ -319,6 +319,37 @@ namespace Bonisoft_2.Pages
             ScriptManager.RegisterStartupScript(this, this.GetType(), "btnUpdateViajesEnCurso_Click", sb.ToString(), false);
         }
 
+        protected void upMercaderias_Load(object sender, EventArgs e)
+        {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            {
+                string viaje_ID_str = Mercaderias.Viaje_ID1;
+                if (!string.IsNullOrWhiteSpace(viaje_ID_str))
+                {
+                    int viaje_ID = 0;
+                    if (!int.TryParse(viaje_ID_str, out viaje_ID))
+                    {
+                        viaje_ID = 0;
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viaje_ID_str);
+                    }
+                    if (viaje_ID > 0)
+                    {
+                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
+                        if (viaje != null)
+                        {
+                            FillData_Pesadas(viaje);
+                            FillData_Ventas(viaje);
+                        }
+                    }
+                }
+            }
+        }
+
         #endregion Events
 
         #region GridView methods
@@ -2703,36 +2734,6 @@ namespace Bonisoft_2.Pages
 
         #endregion Web methods
 
-        protected void upMercaderias_Load(object sender, EventArgs e)
-        {
-            // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
-            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-            string methodName = stackFrame.GetMethod().Name;
-
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-            {
-                string viaje_ID_str = Mercaderias.Viaje_ID1;
-                if (!string.IsNullOrWhiteSpace(viaje_ID_str))
-                {
-                    int viaje_ID = 0;
-                    if (!int.TryParse(viaje_ID_str, out viaje_ID))
-                    {
-                        viaje_ID = 0;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viaje_ID_str);
-                    }
-                    if (viaje_ID > 0)
-                    {
-                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
-                        if (viaje != null)
-                        {
-                            FillData_Pesadas(viaje);
-                            FillData_Ventas(viaje);
-                        }
-                    }
-                }
-            }
-        }
     }
 }
 
