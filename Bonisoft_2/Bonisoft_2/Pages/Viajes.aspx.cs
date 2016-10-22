@@ -197,7 +197,7 @@ namespace Bonisoft_2.Pages
             }
         }
 
-       
+
 
         protected void lnkViajeDestino_Click(object sender, EventArgs e)
         {
@@ -864,7 +864,7 @@ namespace Bonisoft_2.Pages
                             {
                                 viaje obj = new viaje();
                                 obj.Carga = txb6.Text;
-                                obj.Comentarios = txb15.Text;                                
+                                obj.Comentarios = txb15.Text;
 
                                 decimal value = obj.precio_compra;
                                 if (!decimal.TryParse(txb2.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
@@ -1016,7 +1016,7 @@ namespace Bonisoft_2.Pages
 
                                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                                     string username = HttpContext.Current.Session["UserName"].ToString();
-                                    Global_Objects.Logs.AddUserLog("Agrega viaje", viaje.GetType().Name + ": " + viaje.Viaje_ID, userID1, username); 
+                                    Global_Objects.Logs.AddUserLog("Agrega viaje", viaje.GetType().Name + ": " + viaje.Viaje_ID, userID1, username);
                                 }
                                 catch (Exception ex)
                                 {
@@ -1222,7 +1222,7 @@ namespace Bonisoft_2.Pages
                     {
                         string userID1 = HttpContext.Current.Session["UserID"].ToString();
                         string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Modifica viaje", obj.GetType().Name + ": " +obj.GetType().Name + ": " +obj.Viaje_ID, userID1, username);
+                        Global_Objects.Logs.AddUserLog("Modifica viaje", obj.GetType().Name + ": " + obj.GetType().Name + ": " + obj.Viaje_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -1257,7 +1257,7 @@ namespace Bonisoft_2.Pages
                 {
                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                     string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Borra viaje", obj.GetType().Name + ": " +obj.Viaje_ID, userID1, username);
+                    Global_Objects.Logs.AddUserLog("Borra viaje", obj.GetType().Name + ": " + obj.Viaje_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {
@@ -2066,7 +2066,7 @@ namespace Bonisoft_2.Pages
                         if (viaje != null)
                         {
                             int pesada_ID = viaje.Pesada_ID;
-                            if(pesada_ID > 0)
+                            if (pesada_ID > 0)
                             {
                                 pesada pesada = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_ID);
                                 if (pesada != null)
@@ -2703,6 +2703,36 @@ namespace Bonisoft_2.Pages
 
         #endregion Web methods
 
+        protected void upMercaderias_Load(object sender, EventArgs e)
+        {
+            // Logger variables
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            {
+                string viaje_ID_str = Mercaderias.Viaje_ID1;
+                if (!string.IsNullOrWhiteSpace(viaje_ID_str))
+                {
+                    int viaje_ID = 0;
+                    if (!int.TryParse(viaje_ID_str, out viaje_ID))
+                    {
+                        viaje_ID = 0;
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viaje_ID_str);
+                    }
+                    if (viaje_ID > 0)
+                    {
+                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
+                        if (viaje != null)
+                        {
+                            FillData_Pesadas(viaje);
+                            FillData_Ventas(viaje);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

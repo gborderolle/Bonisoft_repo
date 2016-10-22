@@ -294,7 +294,7 @@
                                             <h4>Asignar mercaderías</h4>
 
                                             <div class="divTables" id="divMercaderias" style="display: block;">
-                                                <asp:UpdatePanel ID="upMercaderias" runat="server">
+                                                <asp:UpdatePanel ID="upMercaderias" runat="server" OnLoad="upMercaderias_Load">
                                                     <ContentTemplate>
                                                         <uc1:Mercaderias runat="server" ID="Mercaderias" />
                                                     </ContentTemplate>
@@ -441,7 +441,7 @@
                                                 <hr style="margin-top: 5px; margin-bottom: 5px;" />
                                                 <div class="row" style="margin: 0;">
                                                     <div class="col-md-10 pull-left" style="padding: 10px;">
-                                                        <p class="text-info">1) Precio de compra = Peso destino neto * Precio por tonelada de todas las mercaderías.</p>
+                                                        <p class="text-info">1) Precio de compra = Peso neto destino * Precio por tonelada de todas las mercaderías.</p>
                                                         <p class="text-info">2) Precio de venta = Precio de compra + Flete + Descarga + Ganancia + % IVA.</p>
                                                 </div>
 
