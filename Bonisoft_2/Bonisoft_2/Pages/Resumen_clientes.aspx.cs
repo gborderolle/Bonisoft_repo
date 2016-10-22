@@ -34,10 +34,11 @@ namespace Bonisoft_2.Pages
         protected void grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             gridPagos.PageIndex = e.NewPageIndex;
 
@@ -48,7 +49,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                 if (!int.TryParse(client_ID_str, out cliente_ID))
                 {
                     cliente_ID = 0;
-                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, client_ID_str);
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, client_ID_str);
                 }
 
                 if (cliente_ID > 0)
@@ -67,10 +68,11 @@ int lineNumber = stackFrame.GetFileLineNumber();
         protected void grid3_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             gridViajes.PageIndex = e.NewPageIndex;
 
@@ -81,7 +83,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                 if (!int.TryParse(client_ID_str, out cliente_ID))
                 {
                     cliente_ID = 0;
-                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, client_ID_str);
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, client_ID_str);
                 }
 
                 if (cliente_ID > 0)
@@ -363,10 +365,11 @@ int lineNumber = stackFrame.GetFileLineNumber();
         protected void gridClientes_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             foreach (GridViewRow row in gridClientes.Rows)
             {
@@ -380,7 +383,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                         if (!int.TryParse(cliente_ID_str, out cliente_ID))
                         {
                             cliente_ID = 0;
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, cliente_ID_str);
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, cliente_ID_str);
                         }
 
                         if (cliente_ID > 0)
@@ -590,10 +593,11 @@ int lineNumber = stackFrame.GetFileLineNumber();
         public static string Update_Saldos(string clienteID_str)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             string ret = string.Empty;
             if (!string.IsNullOrWhiteSpace(clienteID_str))
@@ -604,7 +608,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                     if (!int.TryParse(clienteID_str, out cliente_ID))
                     {
                         cliente_ID = 0;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, clienteID_str);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
                     }
 
                     if (cliente_ID > 0)
@@ -652,10 +656,11 @@ int lineNumber = stackFrame.GetFileLineNumber();
         public static bool IngresarPago(string clienteID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             bool ret = false;
             if (!string.IsNullOrWhiteSpace(clienteID_str))
@@ -666,7 +671,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                     if (!int.TryParse(clienteID_str, out cliente_ID))
                     {
                         cliente_ID = 0;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, clienteID_str);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
                     }
 
                     if (cliente_ID > 0)
@@ -681,7 +686,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                         if (!DateTime.TryParseExact(fecha_str, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out date))
                         {
                             date = DateTime.Now;
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, fecha_str);
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha_str);
                         }
                         obj.Fecha_pago = date;
 
@@ -689,7 +694,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                         if (!decimal.TryParse(monto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                         {
                             value = 0;
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, monto_str);
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, monto_str);
                         }
                         obj.Monto = value;
 
@@ -697,7 +702,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                         if (!int.TryParse(ddlFormas, out ddl))
                         {
                             ddl = 0;
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlFormas);
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFormas);
                         }
                         obj.Forma_de_pago_ID = ddl;
 
@@ -720,7 +725,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                         }
                         catch (Exception ex)
                         {
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                         }
                         #endregion
 
@@ -736,10 +741,11 @@ int lineNumber = stackFrame.GetFileLineNumber();
         public static bool BorrarPago(string pagoID_str)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             bool ret = false;
             if (!string.IsNullOrWhiteSpace(pagoID_str))
@@ -750,7 +756,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                     if (!int.TryParse(pagoID_str, out pago_ID_str))
                     {
                         pago_ID_str = 0;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, pagoID_str);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, pagoID_str);
                     }
 
                     if (pago_ID_str > 0)
@@ -770,7 +776,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                             }
                             catch (Exception ex)
                             {
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                             }
                             #endregion
 
@@ -786,10 +792,11 @@ int lineNumber = stackFrame.GetFileLineNumber();
         public static string ModificarPago_1(string pagoID_str)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             string ret = string.Empty;
             if (!string.IsNullOrWhiteSpace(pagoID_str))
@@ -800,7 +807,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                     if (!int.TryParse(pagoID_str, out pago_ID))
                     {
                         pago_ID = 0;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, pagoID_str);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, pagoID_str);
                     }
 
                     if (pago_ID > 0)
@@ -820,10 +827,11 @@ int lineNumber = stackFrame.GetFileLineNumber();
         public static bool ModificarPago_2(string pagoID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             bool ret = false;
             if (!string.IsNullOrWhiteSpace(pagoID_str))
@@ -834,7 +842,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                     if (!int.TryParse(pagoID_str, out pago_ID))
                     {
                         pago_ID = 0;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, pagoID_str);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, pagoID_str);
                     }
 
                     if (pago_ID > 0)
@@ -846,7 +854,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                             if (!DateTime.TryParseExact(fecha_str, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
                             {
                                 date = pago.Fecha_pago;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, fecha_str);
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha_str);
                             }
                             pago.Fecha_pago = date;
 
@@ -854,7 +862,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                             if (!int.TryParse(ddlFormas, out ddl))
                             {
                                 ddl = pago.Forma_de_pago_ID;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlFormas);
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFormas);
                             }
                             pago.Forma_de_pago_ID = ddl;
 
@@ -862,7 +870,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                             if (!decimal.TryParse(monto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                             {
                                 value = pago.Monto;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, monto_str);
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, monto_str);
                             }
                             pago.Monto = value;
 
@@ -879,7 +887,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                             }
                             catch (Exception ex)
                             {
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                             }
                             #endregion
 

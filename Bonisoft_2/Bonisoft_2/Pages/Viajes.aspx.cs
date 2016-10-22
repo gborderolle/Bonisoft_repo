@@ -61,10 +61,11 @@ namespace Bonisoft_2.Pages
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
@@ -75,7 +76,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(value, out viaje_ID))
                     {
                         viaje_ID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, value);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, value);
                     }
                     if (viaje_ID > 0)
                     {
@@ -103,7 +104,7 @@ namespace Bonisoft_2.Pages
                                     if (!DateTime.TryParseExact(txbFecha1, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                                     {
                                         date1 = viaje.Fecha_partida;
-                                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, txbFecha1);
+                                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txbFecha1);
                                     }
                                 }
                                 viaje.Fecha_partida = date1;
@@ -114,7 +115,7 @@ namespace Bonisoft_2.Pages
                                     if (!DateTime.TryParseExact(txbFecha2, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
                                     {
                                         date2 = viaje.Fecha_llegada;
-                                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, txbFecha2);
+                                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txbFecha2);
                                     }
                                 }
                                 viaje.Fecha_llegada = date2;
@@ -125,7 +126,7 @@ namespace Bonisoft_2.Pages
                                 if (!int.TryParse(ddlProveedores, out ddl))
                                 {
                                     ddl = viaje.Proveedor_ID;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlProveedores);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlProveedores);
                                 }
                                 viaje.Proveedor_ID = ddl;
 
@@ -133,7 +134,7 @@ namespace Bonisoft_2.Pages
                                 if (!int.TryParse(ddlClientes, out ddl))
                                 {
                                     ddl = viaje.Cliente_ID;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlClientes);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlClientes);
                                 }
                                 viaje.Cliente_ID = ddl;
 
@@ -141,7 +142,7 @@ namespace Bonisoft_2.Pages
                                 if (!int.TryParse(ddlCargadores, out ddl))
                                 {
                                     ddl = viaje.Empresa_de_carga_ID;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlCargadores);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlCargadores);
                                 }
                                 viaje.Empresa_de_carga_ID = ddl;
 
@@ -149,7 +150,7 @@ namespace Bonisoft_2.Pages
                                 if (!int.TryParse(ddlFleteros, out ddl))
                                 {
                                     ddl = viaje.Fletero_ID;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlFleteros);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFleteros);
                                 }
                                 viaje.Fletero_ID = ddl;
 
@@ -157,7 +158,7 @@ namespace Bonisoft_2.Pages
                                 if (!int.TryParse(ddlCamiones, out ddl))
                                 {
                                     ddl = viaje.Camion_ID;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlCamiones);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlCamiones);
                                 }
                                 viaje.Camion_ID = ddl;
 
@@ -165,7 +166,7 @@ namespace Bonisoft_2.Pages
                                 if (!int.TryParse(ddlChoferes, out ddl))
                                 {
                                     ddl = viaje.Chofer_ID;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlChoferes);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlChoferes);
                                 }
                                 viaje.Chofer_ID = ddl;
 
@@ -187,7 +188,7 @@ namespace Bonisoft_2.Pages
                                 }
                                 catch (Exception ex)
                                 {
-                                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                                 }
                                 #endregion
 
@@ -210,10 +211,11 @@ namespace Bonisoft_2.Pages
         protected void lnkViajeDestino_Click(object sender, EventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
@@ -223,7 +225,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(hdn_notificaciones_viajeID.Value, out viaje_ID))
                     {
                         viaje_ID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, hdn_notificaciones_viajeID.Value);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, hdn_notificaciones_viajeID.Value);
                     }
                 }
                 if (viaje_ID > 0)
@@ -286,7 +288,7 @@ namespace Bonisoft_2.Pages
                             }
                             catch (Exception ex)
                             {
-                                Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                                Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                             }
                             #endregion
 
@@ -334,10 +336,11 @@ namespace Bonisoft_2.Pages
         protected void upMercaderias_Load(object sender, EventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
@@ -348,7 +351,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(viaje_ID_str, out viaje_ID))
                     {
                         viaje_ID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, viaje_ID_str);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viaje_ID_str);
                     }
                     if (viaje_ID > 0)
                     {
@@ -868,10 +871,11 @@ namespace Bonisoft_2.Pages
         protected void gridViajes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             if (e.CommandArgument != null)
             {
@@ -917,7 +921,7 @@ namespace Bonisoft_2.Pages
                                     if (!decimal.TryParse(txb2.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                                     {
                                         value = obj.precio_compra;
-                                        Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, txb2.Text);
+                                        Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb2.Text);
                                     }
                                 }
                                 obj.precio_compra = value;
@@ -928,7 +932,7 @@ namespace Bonisoft_2.Pages
                                     if (!decimal.TryParse(txb3.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                                     {
                                         value = obj.precio_venta;
-                                        Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, txb3.Text);
+                                        Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb3.Text);
                                     }
                                 }
                                 obj.precio_venta = value;
@@ -941,7 +945,7 @@ namespace Bonisoft_2.Pages
                                     if (!DateTime.TryParseExact(txb11.Text, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                                     {
                                         date1 = DateTime.Now;
-                                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, txb11.Text);
+                                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb11.Text);
                                     }
                                 }
                                 obj.Fecha_partida = date1;
@@ -952,7 +956,7 @@ namespace Bonisoft_2.Pages
                                     if (!DateTime.TryParseExact(txb12.Text, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
                                     {
                                         date2 = DateTime.Now;
-                                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, txb12.Text);
+                                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb12.Text);
                                     }
                                 }
                                 obj.Fecha_llegada = date2;
@@ -965,7 +969,7 @@ namespace Bonisoft_2.Pages
                                 if (!int.TryParse(ddlCargadores2.SelectedValue, out ddl))
                                 {
                                     ddl = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlCargadores2.SelectedValue);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlCargadores2.SelectedValue);
                                 }
                                 obj.Empresa_de_carga_ID = ddl;
 
@@ -973,7 +977,7 @@ namespace Bonisoft_2.Pages
                                 if (!int.TryParse(ddlCamiones2.SelectedValue, out ddl))
                                 {
                                     ddl = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlCamiones2.SelectedValue);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlCamiones2.SelectedValue);
                                 }
                                 obj.Camion_ID = ddl;
 
@@ -981,7 +985,7 @@ namespace Bonisoft_2.Pages
                                 if (!int.TryParse(ddlChoferes2.SelectedValue, out ddl))
                                 {
                                     ddl = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlChoferes2.SelectedValue);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlChoferes2.SelectedValue);
                                 }
                                 obj.Chofer_ID = ddl;
 
@@ -989,7 +993,7 @@ namespace Bonisoft_2.Pages
                                 if (!int.TryParse(ddlFleteros2.SelectedValue, out ddl))
                                 {
                                     ddl = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlFleteros2.SelectedValue);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFleteros2.SelectedValue);
                                 }
                                 obj.Fletero_ID = ddl;
 
@@ -997,7 +1001,7 @@ namespace Bonisoft_2.Pages
                                 if (!int.TryParse(ddlProveedores2.SelectedValue, out ddl))
                                 {
                                     ddl = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlProveedores2.SelectedValue);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlProveedores2.SelectedValue);
                                 }
                                 obj.Proveedor_ID = ddl;
 
@@ -1005,7 +1009,7 @@ namespace Bonisoft_2.Pages
                                 if (!int.TryParse(ddlClientes2.SelectedValue, out ddl))
                                 {
                                     ddl = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlClientes2.SelectedValue);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlClientes2.SelectedValue);
                                 }
                                 obj.Cliente_ID = ddl;
 
@@ -1031,7 +1035,7 @@ namespace Bonisoft_2.Pages
                                 if (!decimal.TryParse(ddlPesadaOrigen2.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                                 {
                                     value = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, ddlPesadaOrigen2.Text);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, ddlPesadaOrigen2.Text);
                                 }
                                 new_pesada.Origen_peso_neto = value;
 
@@ -1040,7 +1044,7 @@ namespace Bonisoft_2.Pages
                                 if (!decimal.TryParse(ddlPesadaDestino2.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                                 {
                                     value = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, ddlPesadaDestino2.Text);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, ddlPesadaDestino2.Text);
                                 }
                                 new_pesada.Destino_peso_neto = value;
 
@@ -1077,7 +1081,7 @@ namespace Bonisoft_2.Pages
                                 }
                                 catch (Exception ex)
                                 {
-                                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                                 }
                                 #endregion
 
@@ -1121,10 +1125,11 @@ namespace Bonisoft_2.Pages
         protected void gridViajes_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             GridViewRow row = gridViajes.Rows[e.RowIndex];
             TextBox txb2 = row.FindControl("txb2") as TextBox;
@@ -1161,7 +1166,7 @@ namespace Bonisoft_2.Pages
                         if (!decimal.TryParse(txb2.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                         {
                             value = 0;
-                            Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, txb2.Text);
+                            Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb2.Text);
                         }
                     }
                     obj.precio_compra = value;
@@ -1172,7 +1177,7 @@ namespace Bonisoft_2.Pages
                         if (!decimal.TryParse(txb3.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                         {
                             value = 0;
-                            Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, txb3.Text);
+                            Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb3.Text);
                         }
                     }
                     obj.precio_venta = value;
@@ -1183,7 +1188,7 @@ namespace Bonisoft_2.Pages
                     if (!DateTime.TryParseExact(txb11.Text, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                     {
                         date1 = obj.Fecha_partida;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, txb11.Text);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb11.Text);
                     }
                     obj.Fecha_partida = date1;
 
@@ -1191,7 +1196,7 @@ namespace Bonisoft_2.Pages
                     if (!DateTime.TryParseExact(txb12.Text, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
                     {
                         date2 = obj.Fecha_partida;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, txb12.Text);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb12.Text);
                     }
                     obj.Fecha_llegada = date2;
 
@@ -1203,7 +1208,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(ddlCargadores2.SelectedValue, out ddl1))
                     {
                         ddl1 = obj.Empresa_de_carga_ID;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlCargadores2.SelectedValue);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlCargadores2.SelectedValue);
                     }
                     obj.Empresa_de_carga_ID = ddl1;
 
@@ -1211,7 +1216,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(ddlCamiones2.SelectedValue, out ddl2))
                     {
                         ddl2 = obj.Camion_ID;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlCamiones2.SelectedValue);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlCamiones2.SelectedValue);
                     }
                     obj.Camion_ID = ddl2;
 
@@ -1219,7 +1224,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(ddlChoferes2.SelectedValue, out ddl3))
                     {
                         ddl3 = obj.Chofer_ID;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlChoferes2.SelectedValue);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlChoferes2.SelectedValue);
                     }
                     obj.Chofer_ID = ddl3;
 
@@ -1227,7 +1232,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(ddlFleteros2.SelectedValue, out ddl5))
                     {
                         ddl5 = obj.Fletero_ID;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlFleteros2.SelectedValue);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFleteros2.SelectedValue);
                     }
                     obj.Fletero_ID = ddl5;
 
@@ -1235,7 +1240,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(ddlProveedores2.SelectedValue, out ddl6))
                     {
                         ddl6 = obj.Proveedor_ID;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlProveedores2.SelectedValue);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlProveedores2.SelectedValue);
                     }
                     obj.Proveedor_ID = ddl6;
 
@@ -1243,7 +1248,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(ddlClientes2.SelectedValue, out ddl7))
                     {
                         ddl7 = obj.Cliente_ID;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlClientes2.SelectedValue);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlClientes2.SelectedValue);
                     }
                     obj.Cliente_ID = ddl7;
 
@@ -1262,7 +1267,7 @@ namespace Bonisoft_2.Pages
                             if (!decimal.TryParse(ddlPesadaOrigen2.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                             {
                                 value = pesada.Origen_peso_neto;
-                                Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, ddlPesadaOrigen2.Text);
+                                Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, ddlPesadaOrigen2.Text);
                             }
                             pesada.Origen_peso_neto = value;
 
@@ -1271,7 +1276,7 @@ namespace Bonisoft_2.Pages
                             if (!decimal.TryParse(ddlPesadaDestino2.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                             {
                                 value = pesada.Destino_peso_neto;
-                                Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, ddlPesadaDestino2.Text);
+                                Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, ddlPesadaDestino2.Text);
                             }
                             pesada.Destino_peso_neto = value;
                         }
@@ -1290,7 +1295,7 @@ namespace Bonisoft_2.Pages
                     }
                     catch (Exception ex)
                     {
-                        Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                        Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                     }
                     #endregion
 
@@ -1304,10 +1309,11 @@ namespace Bonisoft_2.Pages
         protected void gridViajes_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             int viaje_ID = Convert.ToInt32(gridViajes.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -1326,7 +1332,7 @@ namespace Bonisoft_2.Pages
                 }
                 catch (Exception ex)
                 {
-                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                 }
                 #endregion
 
@@ -1350,10 +1356,11 @@ namespace Bonisoft_2.Pages
         protected void gridViajesEnCurso_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             if (e.CommandArgument != null)
             {
@@ -1445,7 +1452,7 @@ namespace Bonisoft_2.Pages
                                 }
                                 catch (Exception ex)
                                 {
-                                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                                 }
                                 #endregion
 
@@ -1932,10 +1939,11 @@ namespace Bonisoft_2.Pages
         private static decimal CalcularPrecioCompra(int viaje_ID)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             decimal ret = 0;
             if (viaje_ID > 0)
@@ -1991,7 +1999,7 @@ namespace Bonisoft_2.Pages
                             }
                             catch (Exception ex)
                             {
-                                Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                                Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                             }
                             #endregion
 
@@ -2012,10 +2020,11 @@ namespace Bonisoft_2.Pages
             string IVA_str, string precio_venta_str)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             bool save_ok = false;
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -2027,7 +2036,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(viajeID, out viajeID_value))
                     {
                         viajeID_value = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, viajeID);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viajeID);
                     }
 
                     if (viajeID_value > 0)
@@ -2041,7 +2050,7 @@ namespace Bonisoft_2.Pages
                                 if (!decimal.TryParse(precioFlete_str, NumberStyles.Number, CultureInfo.InvariantCulture, out precioFlete))
                                 {
                                     precioFlete = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, precioFlete_str);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, precioFlete_str);
                                 }
                             }
 
@@ -2051,7 +2060,7 @@ namespace Bonisoft_2.Pages
                                 if (!decimal.TryParse(precioDescarga_str, NumberStyles.Number, CultureInfo.InvariantCulture, out precioDescarga))
                                 {
                                     precioDescarga = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, precioDescarga_str);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, precioDescarga_str);
                                 }
                             }
                             decimal gananciaXTon = 0;
@@ -2060,7 +2069,7 @@ namespace Bonisoft_2.Pages
                                 if (!decimal.TryParse(gananciaXTon_str, NumberStyles.Number, CultureInfo.InvariantCulture, out gananciaXTon))
                                 {
                                     gananciaXTon = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, gananciaXTon_str);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, gananciaXTon_str);
                                 }
                             }
                             int IVA = 0;
@@ -2069,7 +2078,7 @@ namespace Bonisoft_2.Pages
                                 if (!int.TryParse(IVA_str, NumberStyles.Number, CultureInfo.InvariantCulture, out IVA))
                                 {
                                     IVA = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, IVA_str);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, IVA_str);
                                 }
                             }
 
@@ -2079,7 +2088,7 @@ namespace Bonisoft_2.Pages
                                 if (!decimal.TryParse(precio_venta_str, NumberStyles.Number, CultureInfo.InvariantCulture, out precio_venta))
                                 {
                                     precio_venta = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, precio_venta_str);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, precio_venta_str);
                                 }
                             }
                             if (precio_venta > 0)
@@ -2102,7 +2111,7 @@ namespace Bonisoft_2.Pages
                                 }
                                 catch (Exception ex)
                                 {
-                                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                                 }
                                 #endregion
 
@@ -2123,10 +2132,11 @@ namespace Bonisoft_2.Pages
             string txb_pesadaComentarios)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             bool save_ok = false;
             decimal precio_compra = 0;
@@ -2139,7 +2149,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(viajeID_str, out viaje_ID))
                     {
                         viaje_ID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, viajeID_str);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viajeID_str);
                     }
 
                     if (viaje_ID > 0)
@@ -2166,7 +2176,7 @@ namespace Bonisoft_2.Pages
                                         if (!DateTime.TryParseExact(txb_pesadaFecha1, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out date))
                                         {
                                             date = pesada.Origen_fecha;
-                                            Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, txb_pesadaFecha1);
+                                            Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb_pesadaFecha1);
                                         }
                                     }
                                     pesada.Origen_fecha = date;
@@ -2177,7 +2187,7 @@ namespace Bonisoft_2.Pages
                                         if (!decimal.TryParse(txb_pesadaPeso_bruto1, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                                         {
                                             value = pesada.Origen_peso_bruto;
-                                            Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, txb_pesadaPeso_bruto1);
+                                            Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb_pesadaPeso_bruto1);
                                         }
                                     }
                                     pesada.Origen_peso_bruto = value;
@@ -2188,7 +2198,7 @@ namespace Bonisoft_2.Pages
                                         if (!decimal.TryParse(txb_pesadaPeso_neto1, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                                         {
                                             value = pesada.Origen_peso_neto;
-                                            Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, txb_pesadaPeso_neto1);
+                                            Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb_pesadaPeso_neto1);
                                         }
                                     }
                                     pesada.Origen_peso_neto = value;
@@ -2206,7 +2216,7 @@ namespace Bonisoft_2.Pages
                                         if (!DateTime.TryParseExact(txb_pesadaFecha2, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
                                         {
                                             date = pesada.Destino_fecha;
-                                            Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, txb_pesadaFecha2);
+                                            Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb_pesadaFecha2);
                                         }
                                     }
                                     pesada.Destino_fecha = date;
@@ -2217,7 +2227,7 @@ namespace Bonisoft_2.Pages
                                         if (!decimal.TryParse(txb_pesadaPeso_bruto2, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                                         {
                                             value = pesada.Destino_peso_bruto;
-                                            Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, txb_pesadaPeso_bruto2);
+                                            Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb_pesadaPeso_bruto2);
                                         }
                                     }
                                     pesada.Destino_peso_bruto = value;
@@ -2228,7 +2238,7 @@ namespace Bonisoft_2.Pages
                                         if (!decimal.TryParse(txb_pesadaPeso_neto2, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                                         {
                                             value = pesada.Destino_peso_neto;
-                                            Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, txb_pesadaPeso_neto2);
+                                            Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb_pesadaPeso_neto2);
                                         }
                                     }
                                     pesada.Destino_peso_neto = value;
@@ -2246,7 +2256,7 @@ namespace Bonisoft_2.Pages
                                     }
                                     catch (Exception ex)
                                     {
-                                        Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                                        Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                                     }
                                     #endregion
 
@@ -2270,10 +2280,11 @@ namespace Bonisoft_2.Pages
         public static bool Check_Mercaderias(string viajeID_str)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             bool check_ok = false;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
@@ -2284,7 +2295,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(viajeID_str, out viaje_ID))
                     {
                         viaje_ID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, viajeID_str);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viajeID_str);
                     }
 
                     if (viaje_ID > 0)
@@ -2304,10 +2315,11 @@ namespace Bonisoft_2.Pages
         public static bool Check_Pesadas(string viajeID_str)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             bool check_ok = false;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
@@ -2318,7 +2330,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(viajeID_str, out viaje_ID))
                     {
                         viaje_ID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, viajeID_str);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viajeID_str);
                     }
 
                     if (viaje_ID > 0)
@@ -2338,10 +2350,11 @@ namespace Bonisoft_2.Pages
         public static int FinDelViaje(string viajeID_str)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             int result = 0;
             bool ok = false;
@@ -2413,7 +2426,7 @@ namespace Bonisoft_2.Pages
                                 }
                                 catch (Exception ex)
                                 {
-                                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                                 }
                                 #endregion
 
@@ -2431,10 +2444,11 @@ namespace Bonisoft_2.Pages
         public static int BorrarViajeEnCurso(string viajeID_str, string userID, string clave_str)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             int resultado = 0;
             if (!string.IsNullOrWhiteSpace(viajeID_str) && !string.IsNullOrWhiteSpace(userID) && !string.IsNullOrWhiteSpace(clave_str))
@@ -2445,7 +2459,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(viajeID_str, out viaje_ID))
                     {
                         viaje_ID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, viajeID_str);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viajeID_str);
                     }
 
                     if (viaje_ID > 0)
@@ -2457,7 +2471,7 @@ namespace Bonisoft_2.Pages
                             if (!int.TryParse(userID, out userID_int))
                             {
                                 userID_int = 0;
-                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, userID);
+                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, userID);
                             }
                             if (userID_int > 0)
                             {
@@ -2482,7 +2496,7 @@ namespace Bonisoft_2.Pages
                                         }
                                         catch (Exception ex)
                                         {
-                                            Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                                            Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                                         }
                                         #endregion
 
@@ -2509,10 +2523,11 @@ namespace Bonisoft_2.Pages
         public static string ModificarViaje_1(string viajeID_str)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             string ret = string.Empty;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
@@ -2523,7 +2538,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(viajeID_str, out viaje_ID))
                     {
                         viaje_ID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, viajeID_str);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viajeID_str);
                     }
 
                     if (viaje_ID > 0)
@@ -2544,10 +2559,11 @@ namespace Bonisoft_2.Pages
             string lugar_carga, string fletero, string camion, string chofer, string comentarios)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             bool ret = false;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
@@ -2558,7 +2574,7 @@ namespace Bonisoft_2.Pages
                     if (!int.TryParse(viajeID_str, out viaje_ID))
                     {
                         viaje_ID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, viajeID_str);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viajeID_str);
                     }
 
                     if (viaje_ID > 0)
@@ -2572,7 +2588,7 @@ namespace Bonisoft_2.Pages
                                 if (!DateTime.TryParseExact(fecha1, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                                 {
                                     date1 = viaje.Fecha_partida;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, fecha1);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha1);
                                 }
                             }
                             viaje.Fecha_partida = date1;
@@ -2583,7 +2599,7 @@ namespace Bonisoft_2.Pages
                                 if (!DateTime.TryParseExact(fecha2, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
                                 {
                                     date2 = viaje.Fecha_llegada;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, fecha2);
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha2);
                                 }
                             }
                             viaje.Fecha_llegada = date2;
@@ -2594,7 +2610,7 @@ namespace Bonisoft_2.Pages
                             if (!int.TryParse(proveedor, out ddl))
                             {
                                 ddl = viaje.Proveedor_ID;
-                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, proveedor);
+                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, proveedor);
                             }
                             viaje.Proveedor_ID = ddl;
 
@@ -2602,7 +2618,7 @@ namespace Bonisoft_2.Pages
                             if (!int.TryParse(cliente, out ddl))
                             {
                                 ddl = viaje.Cliente_ID;
-                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, cliente);
+                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, cliente);
                             }
                             viaje.Cliente_ID = ddl;
 
@@ -2610,7 +2626,7 @@ namespace Bonisoft_2.Pages
                             if (!int.TryParse(cargador, out ddl))
                             {
                                 ddl = viaje.Empresa_de_carga_ID;
-                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, cargador);
+                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, cargador);
                             }
                             viaje.Empresa_de_carga_ID = ddl;
 
@@ -2618,7 +2634,7 @@ namespace Bonisoft_2.Pages
                             if (!int.TryParse(fletero, out ddl))
                             {
                                 ddl = viaje.Fletero_ID;
-                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, fletero);
+                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, fletero);
                             }
                             viaje.Fletero_ID = ddl;
 
@@ -2626,7 +2642,7 @@ namespace Bonisoft_2.Pages
                             if (!int.TryParse(camion, out ddl))
                             {
                                 ddl = viaje.Camion_ID;
-                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, camion);
+                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, camion);
                             }
                             viaje.Camion_ID = ddl;
 
@@ -2634,7 +2650,7 @@ namespace Bonisoft_2.Pages
                             if (!int.TryParse(chofer, out ddl))
                             {
                                 ddl = viaje.Chofer_ID;
-                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, chofer);
+                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, chofer);
                             }
                             viaje.Chofer_ID = ddl;
 
@@ -2655,7 +2671,7 @@ namespace Bonisoft_2.Pages
                             }
                             catch (Exception ex)
                             {
-                                Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                                Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                             }
                             #endregion
 
@@ -2672,10 +2688,11 @@ namespace Bonisoft_2.Pages
            string lugar_carga, string fletero, string camion, string chofer, string comentarios)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            int lineNumber = stackFrame.GetFileLineNumber();
+            
 
             bool ret = false;
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -2688,7 +2705,7 @@ namespace Bonisoft_2.Pages
                     if (!DateTime.TryParseExact(fecha1, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                     {
                         date1 = DateTime.Now;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, fecha1);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha1);
                     }
                 }
                 new_viaje.Fecha_partida = date1;
@@ -2699,7 +2716,7 @@ namespace Bonisoft_2.Pages
                     if (!DateTime.TryParseExact(fecha2, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
                     {
                         date2 = DateTime.Now;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, fecha2);
+                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha2);
                     }
                 }
                 new_viaje.Fecha_llegada = date2;
@@ -2710,7 +2727,7 @@ namespace Bonisoft_2.Pages
                 if (!int.TryParse(proveedor, out ddl))
                 {
                     ddl = 0;
-                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, proveedor);
+                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, proveedor);
                 }
                 new_viaje.Proveedor_ID = ddl;
 
@@ -2718,7 +2735,7 @@ namespace Bonisoft_2.Pages
                 if (!int.TryParse(cliente, out ddl))
                 {
                     ddl = 0;
-                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, cliente);
+                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, cliente);
                 }
                 new_viaje.Cliente_ID = ddl;
 
@@ -2726,7 +2743,7 @@ namespace Bonisoft_2.Pages
                 if (!int.TryParse(cargador, out ddl))
                 {
                     ddl = 0;
-                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, cargador);
+                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, cargador);
                 }
                 new_viaje.Empresa_de_carga_ID = ddl;
 
@@ -2734,7 +2751,7 @@ namespace Bonisoft_2.Pages
                 if (!int.TryParse(fletero, out ddl))
                 {
                     ddl = 0;
-                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, fletero);
+                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, fletero);
                 }
                 new_viaje.Fletero_ID = ddl;
 
@@ -2742,7 +2759,7 @@ namespace Bonisoft_2.Pages
                 if (!int.TryParse(camion, out ddl))
                 {
                     ddl = 0;
-                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, camion);
+                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, camion);
                 }
                 new_viaje.Camion_ID = ddl;
 
@@ -2750,7 +2767,7 @@ namespace Bonisoft_2.Pages
                 if (!int.TryParse(chofer, out ddl))
                 {
                     ddl = 0;
-                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, chofer);
+                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, chofer);
                 }
                 new_viaje.Chofer_ID = ddl;
 
@@ -2811,7 +2828,7 @@ namespace Bonisoft_2.Pages
                 }
                 catch (Exception ex)
                 {
-                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                 }
                 #endregion
 

@@ -96,10 +96,11 @@ namespace Bonisoft_2.User_Controls.Estaticos
         protected void gridFleteros_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             if (e.CommandName == "InsertNew")
             {
@@ -137,7 +138,7 @@ try
                         }
                         catch (Exception ex)
                         {
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                         }
                         #endregion
 
@@ -165,10 +166,11 @@ try
         protected void gridFleteros_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             GridViewRow row = gridFleteros.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
@@ -197,7 +199,7 @@ try
                     }
                     catch (Exception ex)
                     {
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                     }
                     #endregion
 
@@ -211,10 +213,11 @@ try
         protected void gridFleteros_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             int fletero_ID = Convert.ToInt32(gridFleteros.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -232,7 +235,7 @@ try
                 }
                 catch (Exception ex)
                 {
-                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                 }
                 #endregion
 

@@ -39,10 +39,11 @@ namespace Bonisoft_2.User_Controls.Configuracion
         public void BindGrid()
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
@@ -54,7 +55,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                     if (!int.TryParse(Viaje_ID1, out viaje_ID))
                     {
                         viaje_ID = 0;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, Viaje_ID1);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, Viaje_ID1);
                     }
                     if (viaje_ID > 0)
                     {
@@ -212,10 +213,11 @@ int lineNumber = stackFrame.GetFileLineNumber();
         protected void gridMercaderias_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             #region InsertNew
 
@@ -242,7 +244,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                     if (!int.TryParse(Viaje_ID1, out viaje_ID))
                     {
                         viaje_ID = 0;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, Viaje_ID1);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, Viaje_ID1);
                     }
                     if (viaje_ID > 0)
                     {
@@ -255,7 +257,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                             if (!decimal.TryParse(txb5, NumberStyles.Number, CultureInfo.InvariantCulture, out valor))
                             {
                                 valor = 0;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, txb5);
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb5);
                             }
                             obj.Precio_xTonelada_compra = valor;
 
@@ -265,7 +267,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                             if (!int.TryParse(ddlVariedad2, out ddl1))
                             {
                                 ddl1 = 0;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlVariedad2);
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlVariedad2);
                             }
                             obj.Variedad_ID = ddl1;
 
@@ -277,7 +279,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                             if (!DateTime.TryParseExact(txb4, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                             {
                                 date1 = DateTime.Now;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, txb4);
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
                             }
                             obj.Fecha_corte = date1;
 
@@ -305,7 +307,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                             }
                             catch (Exception ex)
                             {
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                             }
 
                             #endregion
@@ -352,10 +354,11 @@ int lineNumber = stackFrame.GetFileLineNumber();
         protected void gridMercaderias_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             HiddenField hdn_modalMercaderia_txb4 = this.Parent.FindControl("hdn_modalMercaderia_txb4") as HiddenField;
             HiddenField hdn_modalMercaderia_txb5 = this.Parent.FindControl("hdn_modalMercaderia_txb5") as HiddenField;
@@ -380,7 +383,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                     if (!decimal.TryParse(txb5, NumberStyles.Number, CultureInfo.InvariantCulture, out valor))
                     {
                         valor = obj.Precio_xTonelada_compra;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", lineNumber, className, methodName, txb5);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb5);
                     }
                     obj.Precio_xTonelada_compra = valor;
 
@@ -390,7 +393,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                     if (!int.TryParse(ddlVariedad1, out ddl1))
                     {
                         ddl1 = obj.Variedad_ID;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, ddlVariedad1);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlVariedad1);
                     }
                     obj.Variedad_ID = ddl1;
 
@@ -402,7 +405,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                     if (!DateTime.TryParseExact(txb4, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                     {
                         date1 = obj.Fecha_corte;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", lineNumber, className, methodName, txb4);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
                     }
                     obj.Fecha_corte = date1;
 
@@ -419,7 +422,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                     }
                     catch (Exception ex)
                     {
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                     }
                     #endregion
 
@@ -433,10 +436,11 @@ int lineNumber = stackFrame.GetFileLineNumber();
         protected void gridMercaderias_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             int mercaderias_ID = Convert.ToInt32(gridMercaderias.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -454,7 +458,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                 }
                 catch (Exception ex)
                 {
-                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", lineNumber, className, methodName, ex.Message);
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
                 }
                 #endregion
 

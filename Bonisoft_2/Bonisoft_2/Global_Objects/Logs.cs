@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Web;
 
 namespace Bonisoft_2.Global_Objects
 {
     public static class Logs
     {
-        public static void AddErrorLog(string message, int lineNumber, string className, string methodName, string obj)
+        public static void AddErrorLog(string message, string className, string methodName, string obj, [CallerLineNumber] int numberNumber = 0)
         {
             try
             {
@@ -31,7 +32,7 @@ namespace Bonisoft_2.Global_Objects
                 }
                 using (StreamWriter writer = new StreamWriter(Path_Data + File_ErrorLog, true))
                 {
-                    string text = DateTime.Now.ToString() + ": [ln:" + lineNumber +"] " + className + ": " + methodName + "() - " + message + " " + obj + ".";
+                    string text = DateTime.Now.ToString() + ": [ln:" + numberNumber + "] " + className + ": " + methodName + "() - " + message + " " + obj + ".";
                     writer.WriteLine(text);
                 }
             }
@@ -41,10 +42,11 @@ namespace Bonisoft_2.Global_Objects
         public static void AddUserLog(string message, string object_ID, string userID_str, string username)
         {
             // Logger variables
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-int lineNumber = stackFrame.GetFileLineNumber();
+
 
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
@@ -58,7 +60,7 @@ int lineNumber = stackFrame.GetFileLineNumber();
                 if (!int.TryParse(userID_str, out userID))
                 {
                     userID = 0;
-                    AddErrorLog("Excepcion. Convirtiendo int. ERROR:", lineNumber, className, methodName, userID_str);
+                    AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, userID_str);
                 }
 
                 new_log.Usuario_ID = userID;
