@@ -214,10 +214,10 @@
                                         <table class="table table-hover">
                                             <tr>
                                                 <td>Fecha de inicio: 
-                                                <asp:TextBox ID="modalEdit_txbFecha1" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" TabIndex="11"></asp:TextBox>
+                                                <asp:TextBox ID="modalEdit_txbFecha1" DataFormatString="{dd-mm-yyyy}" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" TabIndex="11"></asp:TextBox>
                                                 </td>
                                                 <td>Fecha de llegada (tentativa): 
-                                                <asp:TextBox ID="modalEdit_txbFecha2" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" TabIndex="12"></asp:TextBox>
+                                                <asp:TextBox ID="modalEdit_txbFecha2" DataFormatString="{dd-mm-yyyy}" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" TabIndex="12"></asp:TextBox>
                                                 </td>
                                             </tr>
                                             <tr>

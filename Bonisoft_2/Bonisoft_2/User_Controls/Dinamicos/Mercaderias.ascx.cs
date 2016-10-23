@@ -39,8 +39,8 @@ namespace Bonisoft_2.User_Controls.Configuracion
         public void BindGrid()
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -213,17 +213,15 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         protected void gridMercaderias_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-
 
             #region InsertNew
 
             if (e.CommandName == "InsertNew")
             {
-
                 GridViewRow row = gridMercaderias.FooterRow;
                 TextBox txb2 = row.FindControl("mercaderias_txbNew4") as TextBox;
 
@@ -254,10 +252,13 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                             obj.Comentarios = txb7;
 
                             decimal valor = 0;
-                            if (!decimal.TryParse(txb5, NumberStyles.Number, CultureInfo.InvariantCulture, out valor))
+                            if (!string.IsNullOrWhiteSpace(txb5))
                             {
-                                valor = 0;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb5);
+                                if (!decimal.TryParse(txb5, NumberStyles.Number, CultureInfo.InvariantCulture, out valor))
+                                {
+                                    valor = 0;
+                                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb5);
+                                }
                             }
                             obj.Precio_xTonelada_compra = valor;
 
@@ -276,10 +277,13 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                             #region Datetime logic
 
                             DateTime date1 = DateTime.Now;
-                            if (!DateTime.TryParseExact(txb4, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
+                            if (!string.IsNullOrWhiteSpace(txb4))
                             {
-                                date1 = DateTime.Now;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
+                                if (!DateTime.TryParseExact(txb4, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
+                                {
+                                    date1 = DateTime.Now;
+                                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
+                                }
                             }
                             obj.Fecha_corte = date1;
 
@@ -354,8 +358,8 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         protected void gridMercaderias_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -402,10 +406,13 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                     #region Datetime logic
 
                     DateTime date1 = obj.Fecha_corte;
-                    if (!DateTime.TryParseExact(txb4, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
+                    if (!string.IsNullOrWhiteSpace(txb4))
                     {
-                        date1 = obj.Fecha_corte;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
+                        if (!DateTime.TryParseExact(txb4, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
+                        {
+                            date1 = obj.Fecha_corte;
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
+                        }
                     }
                     obj.Fecha_corte = date1;
 
@@ -436,8 +443,8 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         protected void gridMercaderias_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 

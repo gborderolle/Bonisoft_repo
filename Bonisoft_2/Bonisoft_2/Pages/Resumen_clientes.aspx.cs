@@ -683,10 +683,13 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                         obj.Fecha_registro = DateTime.Now;
 
                         DateTime date = DateTime.Now;
-                        if (!DateTime.TryParseExact(fecha_str, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out date))
+                        if (!string.IsNullOrWhiteSpace(fecha_str))
                         {
-                            date = DateTime.Now;
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha_str);
+                            if (!DateTime.TryParseExact(fecha_str, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out date))
+                            {
+                                date = DateTime.Now;
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha_str);
+                            }
                         }
                         obj.Fecha_pago = date;
 
@@ -815,7 +818,8 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                         cliente_pagos pago = (cliente_pagos)context.cliente_pagos.FirstOrDefault(v => v.Cliente_pagos_ID == pago_ID);
                         if (pago != null)
                         {
-                            ret = pago.Fecha_pago.ToShortDateString() + "|" + pago.Forma_de_pago_ID + "|" + pago.Monto + "|" + pago.Comentarios;
+                            string fecha = pago.Fecha_pago.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+                            ret = fecha + "|" + pago.Forma_de_pago_ID + "|" + pago.Monto + "|" + pago.Comentarios;
                         }
                     }
                 }
@@ -851,10 +855,13 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                         if (pago != null)
                         {
                             DateTime date = pago.Fecha_pago;
-                            if (!DateTime.TryParseExact(fecha_str, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                            if (!string.IsNullOrWhiteSpace(fecha_str))
                             {
-                                date = pago.Fecha_pago;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha_str);
+                                if (!DateTime.TryParseExact(fecha_str, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                                {
+                                    date = pago.Fecha_pago;
+                                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha_str);
+                                }
                             }
                             pago.Fecha_pago = date;
 

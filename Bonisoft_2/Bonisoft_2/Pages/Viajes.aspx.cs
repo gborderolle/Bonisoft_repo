@@ -61,11 +61,11 @@ namespace Bonisoft_2.Pages
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
@@ -100,7 +100,6 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                                 DateTime date1 = viaje.Fecha_partida;
                                 if (!string.IsNullOrWhiteSpace(txbFecha1))
                                 {
-
                                     if (!DateTime.TryParseExact(txbFecha1, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                                     {
                                         date1 = viaje.Fecha_partida;
@@ -211,11 +210,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         protected void lnkViajeDestino_Click(object sender, EventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
@@ -336,11 +335,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         protected void upMercaderias_Load(object sender, EventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
@@ -871,11 +870,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         protected void gridViajes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             if (e.CommandArgument != null)
             {
@@ -1125,11 +1124,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         protected void gridViajes_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             GridViewRow row = gridViajes.Rows[e.RowIndex];
             TextBox txb2 = row.FindControl("txb2") as TextBox;
@@ -1309,11 +1308,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         protected void gridViajes_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             int viaje_ID = Convert.ToInt32(gridViajes.DataKeys[e.RowIndex].Value);
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -1356,11 +1355,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         protected void gridViajesEnCurso_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             if (e.CommandArgument != null)
             {
@@ -1409,8 +1408,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                             {
                                 BindEditModal();
 
-                                modalEdit_txbFecha1.Text = viaje.Fecha_partida.ToShortDateString();
-                                modalEdit_txbFecha2.Text = viaje.Fecha_llegada.ToShortDateString();
+                                string fecha_1 = viaje.Fecha_partida.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+                                string fecha_2 = viaje.Fecha_llegada.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+
+                                modalEdit_txbFecha1.Text = fecha_1;
+                                modalEdit_txbFecha2.Text = fecha_2;
                                 modalEdit_txbLugarCarga.Text = viaje.Carga;
                                 modalEdit_txbComentarios.Text = viaje.Comentarios;
 
@@ -1939,11 +1941,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         private static decimal CalcularPrecioCompra(int viaje_ID)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             decimal ret = 0;
             if (viaje_ID > 0)
@@ -2020,11 +2022,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
             string IVA_str, string precio_venta_str)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             bool save_ok = false;
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -2132,11 +2134,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
             string txb_pesadaComentarios)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             bool save_ok = false;
             decimal precio_compra = 0;
@@ -2280,11 +2282,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         public static bool Check_Mercaderias(string viajeID_str)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             bool check_ok = false;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
@@ -2315,11 +2317,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         public static bool Check_Pesadas(string viajeID_str)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             bool check_ok = false;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
@@ -2350,11 +2352,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         public static int FinDelViaje(string viajeID_str)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             int result = 0;
             bool ok = false;
@@ -2444,11 +2446,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         public static int BorrarViajeEnCurso(string viajeID_str, string userID, string clave_str)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             int resultado = 0;
             if (!string.IsNullOrWhiteSpace(viajeID_str) && !string.IsNullOrWhiteSpace(userID) && !string.IsNullOrWhiteSpace(clave_str))
@@ -2523,11 +2525,10 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         public static string ModificarViaje_1(string viajeID_str)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
 
             string ret = string.Empty;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
@@ -2546,7 +2547,9 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                         viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                         if (viaje != null)
                         {
-                            ret = viaje.Fecha_partida.ToShortDateString() + "|" + viaje.Fecha_llegada.ToShortDateString() + "|" + viaje.Proveedor_ID + "|" + viaje.Cliente_ID + "|" + viaje.Empresa_de_carga_ID + "|" + viaje.Carga + "|" + viaje.Fletero_ID + "|" + viaje.Camion_ID + "|" + viaje.Chofer_ID + "|" + viaje.Comentarios;
+                            string fecha_1 = viaje.Fecha_partida.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+                            string fecha_2 = viaje.Fecha_llegada.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+                            ret = fecha_1 + "|" + fecha_2 + "|" + viaje.Proveedor_ID + "|" + viaje.Cliente_ID + "|" + viaje.Empresa_de_carga_ID + "|" + viaje.Carga + "|" + viaje.Fletero_ID + "|" + viaje.Camion_ID + "|" + viaje.Chofer_ID + "|" + viaje.Comentarios;
                         }
                     }
                 }
@@ -2559,11 +2562,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
             string lugar_carga, string fletero, string camion, string chofer, string comentarios)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             bool ret = false;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
@@ -2688,11 +2691,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
            string lugar_carga, string fletero, string camion, string chofer, string comentarios)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-            
+
 
             bool ret = false;
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
