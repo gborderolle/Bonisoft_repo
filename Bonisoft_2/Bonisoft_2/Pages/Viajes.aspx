@@ -5,12 +5,12 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
 
     <!-- STYLES EXTENSION -->
-    <link rel="stylesheet" href="/assets/dist/css/jquery.modal.css">
-    <link rel="stylesheet" href="/assets/dist/css/popbox.css">
+    <link rel="stylesheet" href="/assets/dist/css/jquery.modal.css" />
+    <link rel="stylesheet" href="/assets/dist/css/popbox.css" />
 
     <!-- PAGE CSS -->
-    <link rel="stylesheet" href="/assets/dist/css/pages/Viajes.css">
-    <link rel="stylesheet" href="/assets/dist/css/pages/Modal_styles.css">
+    <link rel="stylesheet" href="/assets/dist/css/pages/Viajes.css" />
+    <link rel="stylesheet" href="/assets/dist/css/pages/Modal_styles.css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
@@ -388,15 +388,15 @@
                                             </div>
 
                                             <div class="modal-body panel panel-default row" style="padding-bottom: 0; padding-top: 0; position: inherit; background: #e9e9e9; color: #333333; margin: 0;">
-                                                    <div class="col-md-10 pull-left" style="padding: 10px;">
-                                                        Comentarios:
+                                                <div class="col-md-10 pull-left" style="padding: 10px;">
+                                                    Comentarios:
                                                            <asp:TextBox ID="txb_pesadaComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="100"></asp:TextBox>
-                                                    </div>
-
-                                                    <div class="col-md-2 pull-right" style="padding: 2% 0;">
-                                                        <a id="aGuardarPesadas" style="float: right;" onclick="guardarAmbasPesadas();" class="btn btn-primary">Guardar</a>
-                                                    </div>
                                                 </div>
+
+                                                <div class="col-md-2 pull-right" style="padding: 2% 0;">
+                                                    <a id="aGuardarPesadas" style="float: right;" onclick="guardarAmbasPesadas();" class="btn btn-primary">Guardar</a>
+                                                </div>
+                                            </div>
 
                                         </div>
 
@@ -406,26 +406,83 @@
 
                                             <div class="modal-body panel panel-default" style="padding: 0; position: inherit; background: #e9e9e9; color: #333333;">
                                                 <table class="table" style="margin-bottom: 0;">
+
                                                     <tr>
-                                                        <td>Precio de compra: 
-                                                                <h2><label id="notif_lblPrecioCompra" runat="server" class="label label-danger">0</label></h2>
+                                                        <td>
+                                                            <h4>Cálculo Mercadería</h4>
                                                         </td>
+
+                                                        <td>Peso neto: 
+                                                        </td>
+                                                        <td>X 
+                                                        </td>
+                                                        <td>Total Mercadería: 
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                        <td>
+                                                            <h3>
+                                                                <label class="label label-warning">0</label></h3>
+                                                        </td>
+
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <h4>Cálculo Flete</h4>
+                                                        </td>
+
+                                                        <td>Peso neto: 
+                                                        </td>
+                                                        <td>X 
+                                                        </td>
+                                                        <td>Precio Flete: 
+                                                        </td>
+                                                        <td>+ 
+                                                        </td>
+                                                        <td>% IVA (0 = no aplica): 
+                                                                <asp:TextBox ID="notif_txbIVA" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="34"></asp:TextBox>
+                                                            <asp:CompareValidator ForeColor="Red" ID="vnotif_txbIVA" runat="server" ControlToValidate="notif_txbIVA" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
+                                                        </td>
+
+                                                        <td>
+                                                            <h3>
+                                                                <label class="label label-warning">0</label></h3>
+                                                        </td>
+
+
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td>
+                                                            <h4>Cálculo Precio de Venta</h4>
+                                                        </td>
+                                                        <td>Precio de compra: 
+                                                            <h2>
+                                                                <label id="notif_lblPrecioCompra" runat="server" class="label label-danger">0</label></h2>
+                                                        </td>
+
+
+
+
+
+
                                                         <td>Precio de flete: 
                                                         <asp:TextBox ID="notif_txbPrecioFlete" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="31"></asp:TextBox>
                                                             <asp:CompareValidator ForeColor="Red" ID="vnotif_txbPrecioFlete" runat="server" ControlToValidate="notif_txbPrecioFlete" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                         </td>
+
                                                         <td>Precio de descarga: 
                                                         <asp:TextBox ID="notif_txbPrecioDescarga" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="32"></asp:TextBox>
                                                             <asp:CompareValidator ForeColor="Red" ID="vnotif_txbPrecioDescarga" runat="server" ControlToValidate="notif_txbPrecioDescarga" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                         </td>
-                                                        <td>Ganancia por TON: 
+                                                        <%--<td>Ganancia por TON: 
                                                         <asp:TextBox ID="notif_txbGananciaXTon" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="33"></asp:TextBox>
                                                             <asp:CompareValidator ForeColor="Red" ID="vnotif_txbGananciaXTon" runat="server" ControlToValidate="notif_txbGananciaXTon" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
-                                                        </td>
-                                                        <td>% IVA (0 = no aplica): 
-                                                        <asp:TextBox ID="notif_txbIVA" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="34"></asp:TextBox>
-                                                            <asp:CompareValidator ForeColor="Red" ID="vnotif_txbIVA" runat="server" ControlToValidate="notif_txbIVA" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
-                                                        </td>
+                                                        </td>--%>
                                                         <td>
                                                             <a class="btn btn-default" style="color: black;" onclick="calcularPrecioVenta();">Calcular</a>
                                                         </td>
@@ -443,7 +500,7 @@
                                                     <div class="col-md-10 pull-left" style="padding: 10px;">
                                                         <p class="text-info">1) Precio de compra = Peso neto destino * Precio por tonelada de todas las mercaderías.</p>
                                                         <p class="text-info">2) Precio de venta = Precio de compra + Flete + Descarga + Ganancia + % IVA.</p>
-                                                </div>
+                                                    </div>
 
                                                     <div class="col-md-2 pull-right" style="padding: 10px;">
                                                         <a id="lnkGuardarPrecioVenta" class="btn btn-primary" onclick="GuardarPrecioVenta()">Guardar</a>

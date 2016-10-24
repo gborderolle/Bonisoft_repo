@@ -436,6 +436,24 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.TextBox txb_pesadaComentarios;
         
         /// <summary>
+        /// notif_txbIVA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox notif_txbIVA;
+        
+        /// <summary>
+        /// vnotif_txbIVA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbIVA;
+        
+        /// <summary>
         /// notif_lblPrecioCompra control.
         /// </summary>
         /// <remarks>
@@ -479,42 +497,6 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbPrecioDescarga;
-        
-        /// <summary>
-        /// notif_txbGananciaXTon control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox notif_txbGananciaXTon;
-        
-        /// <summary>
-        /// vnotif_txbGananciaXTon control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbGananciaXTon;
-        
-        /// <summary>
-        /// notif_txbIVA control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox notif_txbIVA;
-        
-        /// <summary>
-        /// vnotif_txbIVA control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbIVA;
         
         /// <summary>
         /// upGridViajes control.

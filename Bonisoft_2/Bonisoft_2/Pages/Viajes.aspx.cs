@@ -1929,7 +1929,7 @@ namespace Bonisoft_2.Pages
                 {
                     notif_txbPrecioFlete.Text = viaje.precio_flete.ToString();
                     notif_txbPrecioDescarga.Text = viaje.precio_descarga.ToString();
-                    notif_txbGananciaXTon.Text = viaje.GananciaXTon.ToString();
+                    //notif_txbGananciaXTon.Text = viaje.GananciaXTon.ToString();
                     notif_txbIVA.Text = viaje.IVA.ToString();
 
                     string precio_venta_str = viaje.precio_venta.ToString();

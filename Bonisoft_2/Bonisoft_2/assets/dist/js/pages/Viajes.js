@@ -685,7 +685,7 @@ function calcularPrecioVenta() {
                     var notif_lblPrecioCompra = $("label[id*='notif_lblPrecioCompra']");
                     var notif_txbPrecioFlete = $("#notif_txbPrecioFlete");
                     var notif_txbPrecioDescarga = $("#notif_txbPrecioDescarga");
-                    var notif_txbGananciaXTon = $("#notif_txbGananciaXTon");
+                    //var notif_txbGananciaXTon = $("#notif_txbGananciaXTon");
                     var notif_txbIVA = $("#notif_txbIVA");
                     var notif_lblPrecioVenta = $("label[id*='notif_lblPrecioVenta']");
 
@@ -695,8 +695,8 @@ function calcularPrecioVenta() {
                     if (notif_lblPrecioCompra !== null && notif_lblPrecioCompra.text() !== null && notif_lblPrecioCompra.text().length > 0 &&
                     notif_txbPrecioFlete !== null && notif_txbPrecioFlete.val() !== null && notif_txbPrecioFlete.val().length > 0 &&
                     notif_txbPrecioDescarga !== null && notif_txbPrecioDescarga.val() !== null && notif_txbPrecioDescarga.val().length > 0 &&
-                    notif_txbGananciaXTon !== null && notif_txbGananciaXTon.val() !== null && notif_txbGananciaXTon.val().length > 0 &&
-                    notif_txbIVA !== null && notif_txbGananciaXTon.val() !== null && notif_txbIVA.val().length > 0 &&
+                    //notif_txbGananciaXTon !== null && notif_txbGananciaXTon.val() !== null && notif_txbGananciaXTon.val().length > 0 &&
+                    notif_txbIVA !== null && notif_txbIVA.val() !== null && notif_txbIVA.val().length > 0 &&
                     txb_pesada1Peso_neto !== null && txb_pesada2Peso_neto !== null && 
                     notif_lblPrecioVenta !== null) {
 
