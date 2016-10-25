@@ -4,10 +4,8 @@
 <%@ Register Src="~/User_Controls/Estaticos/Proveedores.ascx" TagPrefix="uc1" TagName="Proveedores" %>
 <%@ Register Src="~/User_Controls/Estaticos/Cuadrillas.ascx" TagPrefix="uc1" TagName="Cuadrillas" %>
 <%@ Register Src="~/User_Controls/Estaticos/Camiones.ascx" TagPrefix="uc1" TagName="Camiones" %>
-<%@ Register Src="~/User_Controls/Estaticos/Choferes2.ascx" TagPrefix="uc1" TagName="Choferes2" %>
-<%@ Register Src="~/User_Controls/Estaticos/Internos.ascx" TagPrefix="uc1" TagName="Internos" %>
+<%@ Register Src="~/User_Controls/Estaticos/Choferes.ascx" TagPrefix="uc1" TagName="Choferes2" %>
 <%@ Register Src="~/User_Controls/Configuracion/Tipo_lena.ascx" TagPrefix="uc1" TagName="Tipos" %>
-<%@ Register Src="~/User_Controls/Configuracion/Variedad.ascx" TagPrefix="uc1" TagName="Variedades" %>
 <%@ Register Src="~/User_Controls/Configuracion/Formas_pago.ascx" TagPrefix="uc1" TagName="Formas" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
@@ -170,24 +168,10 @@
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>
-                                    <div class="divTables" id="divInternos" style="display: none;">
-                                        <asp:UpdatePanel ID="upInternos" runat="server">
-                                            <ContentTemplate>
-                                                <uc1:Internos runat="server" ID="Internos" />
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </div>
                                     <div class="divTables" id="divTipos" style="display: none;">
                                         <asp:UpdatePanel ID="upTipos" runat="server">
                                             <ContentTemplate>
                                                 <uc1:Tipos runat="server" ID="Tipos" />
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </div>
-                                    <div class="divTables" id="divVariedades" style="display: none;">
-                                        <asp:UpdatePanel ID="upVariedades" runat="server">
-                                            <ContentTemplate>
-                                                <uc1:Variedades runat="server" ID="Variedades" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>

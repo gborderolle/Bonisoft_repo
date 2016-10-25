@@ -37,10 +37,6 @@ function show_details() {
                     $("#divTipos").show();
                     break;
                 }
-                case "variedades": {
-                    $("#divVariedades").show();
-                    break;
-                }
                 case "formas": {
                     $("#divFormas").show();
                     break;

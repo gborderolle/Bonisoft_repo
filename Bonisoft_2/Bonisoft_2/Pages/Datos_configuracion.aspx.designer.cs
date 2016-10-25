@@ -31,24 +31,6 @@ namespace Bonisoft_2.Pages {
         protected global::Bonisoft_2.User_Controls.Configuracion.Tipo_lena Tipos;
         
         /// <summary>
-        /// upVariedades control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upVariedades;
-        
-        /// <summary>
-        /// Variedades control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Bonisoft_2.User_Controls.Configuracion.Variedad Variedades;
-        
-        /// <summary>
         /// upFormas control.
         /// </summary>
         /// <remarks>

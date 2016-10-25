@@ -33,20 +33,18 @@ namespace Bonisoft_2
         public virtual DbSet<proveedor_carga> proveedor_carga { get; set; }
         public virtual DbSet<proveedor_mercaderia> proveedor_mercaderia { get; set; }
         public virtual DbSet<roles_usuario> roles_usuario { get; set; }
-        public virtual DbSet<variedad> variedad { get; set; }
         public virtual DbSet<fletero> fleteros { get; set; }
         public virtual DbSet<proveedor> proveedores { get; set; }
         public virtual DbSet<cargador> cargadores { get; set; }
         public virtual DbSet<procesador> procesadores { get; set; }
-        public virtual DbSet<mercaderia_comprada> mercaderia_comprada { get; set; }
         public virtual DbSet<camion_ejes> camion_ejes { get; set; }
         public virtual DbSet<camion> camiones { get; set; }
-        public virtual DbSet<interno> internos { get; set; }
         public virtual DbSet<cliente_pagos> cliente_pagos { get; set; }
         public virtual DbSet<cliente> clientes { get; set; }
         public virtual DbSet<usuario> usuarios { get; set; }
         public virtual DbSet<log> logs { get; set; }
-        public virtual DbSet<viaje> viajes { get; set; }
         public virtual DbSet<pesada> pesadas { get; set; }
+        public virtual DbSet<mercaderia_comprada> mercaderia_comprada { get; set; }
+        public virtual DbSet<viaje> viajes { get; set; }
     }
 }

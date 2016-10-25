@@ -11,4 +11,6 @@
 
 function bindEvents() {
     $("#gridLogs").tablesorter();
+    $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
+
 }

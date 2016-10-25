@@ -112,14 +112,6 @@
     <Property Name="Forma" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
-  <EntityType Name="interno">
-    <Key>
-      <PropertyRef Name="Interno_ID" />
-    </Key>
-    <Property Name="Interno_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre_completo" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
-  </EntityType>
   <EntityType Name="lena_tipo">
     <Key>
       <PropertyRef Name="Lena_tipo_ID" />
@@ -148,7 +140,7 @@
     <Property Name="Variedad_ID" Type="int" Nullable="false" />
     <Property Name="Procesador_ID" Type="int" Nullable="false" />
     <Property Name="Fecha_corte" Type="date" Nullable="false" />
-    <Property Name="Precio_xTonelada_compra" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Precio_xTonelada_compra" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="Precio_xTonelada_venta" Type="decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
@@ -226,15 +218,6 @@
     <Property Name="Rol_usuario_ID" Type="int" Nullable="false" />
     <Property Name="EsAdmin" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="variedad">
-    <Key>
-      <PropertyRef Name="Variedad_ID" />
-    </Key>
-    <Property Name="Variedad_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Lena_tipo_ID" Type="int" Nullable="false" />
-    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
-  </EntityType>
   <EntityType Name="viaje">
     <Key>
       <PropertyRef Name="Viaje_ID" />
@@ -242,10 +225,10 @@
     <Property Name="Viaje_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Cliente_ID" Type="int" Nullable="false" />
     <Property Name="Proveedor_ID" Type="int" Nullable="false" />
-    <Property Name="Precio_compra_por_tonelada" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="Precio_valor_total" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="Importe_viaje" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="Saldo" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Precio_compra_por_tonelada" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Precio_valor_total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Importe_viaje" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Saldo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="Pesada_ID" Type="int" Nullable="false" />
     <Property Name="Empresa_de_carga_ID" Type="int" Nullable="false" />
     <Property Name="Fecha_partida" Type="date" Nullable="false" />
@@ -255,11 +238,11 @@
     <Property Name="Carga" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Descarga" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Fletero_ID" Type="int" Nullable="false" />
-    <Property Name="precio_compra" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="precio_venta" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="precio_flete" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="precio_descarga" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="GananciaXTon" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="precio_compra" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="precio_venta" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="precio_flete" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="precio_descarga" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="GananciaXTon" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="IVA" Type="int" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="EnViaje" Type="bit" Nullable="false" />
@@ -276,7 +259,6 @@
     <EntitySet Name="descarga_viaje" EntityType="Self.descarga_viaje" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="fletero" EntityType="Self.fletero" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="forma_de_pago" EntityType="Self.forma_de_pago" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="interno" EntityType="Self.interno" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="lena_tipo" EntityType="Self.lena_tipo" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="log" EntityType="Self.log" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="mercaderia_comprada" EntityType="Self.mercaderia_comprada" Schema="bonisoft_db" store:Type="Tables" />
@@ -287,7 +269,6 @@
     <EntitySet Name="proveedor_mercaderia" EntityType="Self.proveedor_mercaderia" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="roles_usuario" EntityType="Self.roles_usuario" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="usuario" EntityType="Self.usuario" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="variedad" EntityType="Self.variedad" Schema="bonisoft_db" store:Type="Tables" />
     <EntitySet Name="viaje" EntityType="Self.viaje" Schema="bonisoft_db" store:Type="Tables" />
   </EntityContainer>
 </Schema>

@@ -78,16 +78,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="variedad">
-      <EntityTypeMapping TypeName="bonisoft_dbModel.variedad">
-        <MappingFragment StoreEntitySet="variedad">
-          <ScalarProperty Name="Lena_tipo_ID" ColumnName="Lena_tipo_ID" />
-          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Variedad_ID" ColumnName="Variedad_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="fleteros">
       <EntityTypeMapping TypeName="bonisoft_dbModel.fletero">
         <MappingFragment StoreEntitySet="fletero">
@@ -133,20 +123,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="mercaderia_comprada">
-      <EntityTypeMapping TypeName="bonisoft_dbModel.mercaderia_comprada">
-        <MappingFragment StoreEntitySet="mercaderia_comprada">
-          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-          <ScalarProperty Name="Precio_xTonelada_venta" ColumnName="Precio_xTonelada_venta" />
-          <ScalarProperty Name="Precio_xTonelada_compra" ColumnName="Precio_xTonelada_compra" />
-          <ScalarProperty Name="Fecha_corte" ColumnName="Fecha_corte" />
-          <ScalarProperty Name="Procesador_ID" ColumnName="Procesador_ID" />
-          <ScalarProperty Name="Variedad_ID" ColumnName="Variedad_ID" />
-          <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
-          <ScalarProperty Name="Mercaderia_ID" ColumnName="Mercaderia_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="camion_ejes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.camion_ejes">
         <MappingFragment StoreEntitySet="camion_ejes">
@@ -166,15 +142,6 @@
           <ScalarProperty Name="Matricula_camion" ColumnName="Matricula_camion" />
           <ScalarProperty Name="Ejes_ID" ColumnName="Ejes_ID" />
           <ScalarProperty Name="Camion_ID" ColumnName="Camion_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="internos">
-      <EntityTypeMapping TypeName="bonisoft_dbModel.interno">
-        <MappingFragment StoreEntitySet="interno">
-          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-          <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
-          <ScalarProperty Name="Interno_ID" ColumnName="Interno_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -238,6 +205,38 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="pesadas">
+      <EntityTypeMapping TypeName="bonisoft_dbModel.pesada">
+        <MappingFragment StoreEntitySet="pesada">
+          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+          <ScalarProperty Name="Destino_peso_neto" ColumnName="Destino_peso_neto" />
+          <ScalarProperty Name="Destino_peso_bruto" ColumnName="Destino_peso_bruto" />
+          <ScalarProperty Name="Destino_nombre_balanza" ColumnName="Destino_nombre_balanza" />
+          <ScalarProperty Name="Destino_fecha" ColumnName="Destino_fecha" />
+          <ScalarProperty Name="Destino_lugar" ColumnName="Destino_lugar" />
+          <ScalarProperty Name="Origen_peso_neto" ColumnName="Origen_peso_neto" />
+          <ScalarProperty Name="Origen_peso_bruto" ColumnName="Origen_peso_bruto" />
+          <ScalarProperty Name="Origen_nombre_balanza" ColumnName="Origen_nombre_balanza" />
+          <ScalarProperty Name="Origen_fecha" ColumnName="Origen_fecha" />
+          <ScalarProperty Name="Origen_lugar" ColumnName="Origen_lugar" />
+          <ScalarProperty Name="pesada_ID" ColumnName="pesada_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mercaderia_comprada">
+      <EntityTypeMapping TypeName="bonisoft_dbModel.mercaderia_comprada">
+        <MappingFragment StoreEntitySet="mercaderia_comprada">
+          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+          <ScalarProperty Name="Precio_xTonelada_venta" ColumnName="Precio_xTonelada_venta" />
+          <ScalarProperty Name="Precio_xTonelada_compra" ColumnName="Precio_xTonelada_compra" />
+          <ScalarProperty Name="Fecha_corte" ColumnName="Fecha_corte" />
+          <ScalarProperty Name="Procesador_ID" ColumnName="Procesador_ID" />
+          <ScalarProperty Name="Variedad_ID" ColumnName="Variedad_ID" />
+          <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+          <ScalarProperty Name="Mercaderia_ID" ColumnName="Mercaderia_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="viajes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
         <MappingFragment StoreEntitySet="viaje">
@@ -266,24 +265,6 @@
           <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
           <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
           <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="pesadas">
-      <EntityTypeMapping TypeName="bonisoft_dbModel.pesada">
-        <MappingFragment StoreEntitySet="pesada">
-          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-          <ScalarProperty Name="Destino_peso_neto" ColumnName="Destino_peso_neto" />
-          <ScalarProperty Name="Destino_peso_bruto" ColumnName="Destino_peso_bruto" />
-          <ScalarProperty Name="Destino_nombre_balanza" ColumnName="Destino_nombre_balanza" />
-          <ScalarProperty Name="Destino_fecha" ColumnName="Destino_fecha" />
-          <ScalarProperty Name="Destino_lugar" ColumnName="Destino_lugar" />
-          <ScalarProperty Name="Origen_peso_neto" ColumnName="Origen_peso_neto" />
-          <ScalarProperty Name="Origen_peso_bruto" ColumnName="Origen_peso_bruto" />
-          <ScalarProperty Name="Origen_nombre_balanza" ColumnName="Origen_nombre_balanza" />
-          <ScalarProperty Name="Origen_fecha" ColumnName="Origen_fecha" />
-          <ScalarProperty Name="Origen_lugar" ColumnName="Origen_lugar" />
-          <ScalarProperty Name="pesada_ID" ColumnName="pesada_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -75,7 +75,7 @@
                                                 <asp:UpdatePanel ID="upUpdateViajesEnCurso" runat="server">
                                                     <ContentTemplate>
 
-                                                        <asp:Button ID="btnUpdateViajesEnCurso" runat="server" Text="Actualizar" CssClass="btn btnUpdate"
+                                                        <asp:Button ID="btnUpdateViajesEnCurso" runat="server" Text="Actualizar" CssClass="btn btnUpdate btn-sm"
                                                             OnClick="btnUpdateViajesEnCurso_Click" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" />
 
                                                     </ContentTemplate>
@@ -286,7 +286,7 @@
                                         <ul>
                                             <li><a href="#tabsNotificaciones_1" class="tabViajes">#1 Mercaderías</a></li>
                                             <li><a href="#tabsNotificaciones_2" class="tabViajes">#2 Pesadas</a></li>
-                                            <li><a href="#tabsNotificaciones_3" class="tabViajes" onclick="calcularPrecioVenta();">#3 Venta</a></li>
+                                            <li><a href="#tabsNotificaciones_3" class="tabViajes" onclick="cargarDatos_PrecioVenta();">#3 Venta</a></li>
                                         </ul>
 
                                         <div id="tabsNotificaciones_1">
@@ -401,17 +401,17 @@
                                                         </td>
                                                         <td>Peso neto: 
                                                             <h3 style="margin: 0;">
-                                                                <label runat="server" id="notif_lblPesoNeto1" class="notif_lblPesoNeto label label-default">0</label></h3>
+                                                                <label runat="server" id="notif_Mercaderia1" class="notif_lblPesoNeto label label-default">0</label></h3>
                                                         </td>
                                                         <td>X Precio Mercadería: 
                                                             <h3 style="margin: 0;">
-                                                                <label id="notif_lblMercaderia" class="label label-default">0</label></h3>
+                                                                <label id="notif_Mercaderia2" class="label label-default">0</label></h3>
                                                         </td>
                                                         <td></td>
                                                         <td>=</td>
                                                         <td>
                                                             <h3>
-                                                                <label id="notif_lblPrecioMercaderia" class="label label-warning">0</label></h3>
+                                                                <label id="notif_Mercaderia3" class="label label-warning">0</label></h3>
                                                         </td>
                                                     </tr>
 
@@ -422,24 +422,19 @@
                                                         </td>
                                                         <td>Peso neto: 
                                                             <h3 style="margin: 0;">
-                                                                <label runat="server" id="notif_lblPesoNeto2" class="notif_lblPesoNeto label label-default">0</label></h3>
+                                                                <label runat="server" id="notif_Flete1" class="notif_lblPesoNeto label label-default">0</label></h3>
                                                         </td>
                                                         <td>X Precio Flete: 
-                                                             <asp:TextBox ID="notif_txbPrecioFlete" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="31" Width="100"></asp:TextBox>
-                                                            <%--<asp:CompareValidator ForeColor="Red" ID="vnotif_txbPrecioFlete" runat="server" ControlToValidate="notif_txbPrecioFlete" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />--%>
-
-                                                            <%--<asp:RequiredFieldValidator runat="server" ID="notif_txbPrecioFlete1" Display="Dynamic" ControlToValidate="notif_txbPrecioFlete" ErrorMessage="Required!" />--%>
-                                                            <%--<asp:RegularExpressionValidator ID="notif_txbPrecioFlete2" runat="server" ControlToValidate="notif_txbPrecioFlete" EnableClientScript="True" ErrorMessage="Se admiten sólo números" Display="Dynamic" ForeColor="Red" ValidationExpression="(\d{1,3}(,\d{3})*\.\d{2})|(\d+(\.\d{2})?)" />--%>
+                                                             <asp:TextBox ID="notif_Flete2" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="31" Width="100"></asp:TextBox>
                                                         </td>
                                                         <td>+ % IVA (0 = no aplica): 
-                                                                <asp:TextBox ID="notif_txbIVA" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="34" Width="100"></asp:TextBox>
-                                                            <%--<asp:CompareValidator ForeColor="Red" ID="vnotif_txbIVA" runat="server" ControlToValidate="notif_txbIVA" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />--%>
+                                                                <asp:TextBox ID="notif_Flete3" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="34" Width="100"></asp:TextBox>
                                                         </td>
                                                         <td>=
                                                         </td>
                                                         <td>
                                                             <h3>
-                                                                <label id="notif_lblPrecioFlete" class="label label-warning">0</label></h3>
+                                                                <label id="notif_Flete4" class="label label-warning">0</label></h3>
                                                         </td>
                                                     </tr>
 
@@ -450,18 +445,17 @@
                                                         </td>
                                                         <td>Mercadería + Flete: 
                                                             <h3 style="margin: 0;">
-                                                                <label id="notif_lblMercaderiaFlete" class="label label-default">0</label></h3>
+                                                                <label id="notif_Venta1" class="label label-default">0</label></h3>
                                                         </td>
                                                         <td>+ Precio de descarga: 
-                                                        <asp:TextBox ID="notif_txbPrecioDescarga" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="32" Width="100"></asp:TextBox>
-                                                            <%--<asp:CompareValidator ForeColor="Red" ID="vnotif_txbPrecioDescarga" runat="server" ControlToValidate="notif_txbPrecioDescarga" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />--%>
+                                                        <asp:TextBox ID="notif_Venta2" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="32" Width="100"></asp:TextBox>
                                                         </td>
                                                         <td></td>
                                                         <td>=
                                                         </td>
                                                         <td>
                                                             <h2>
-                                                                <label id="notif_lblPrecioVenta" class="label label-success">0</label>
+                                                                <label id="notif_Venta3" class="label label-success">0</label>
                                                             </h2>
                                                         </td>
 
@@ -471,7 +465,7 @@
                                                 <hr style="margin-top: 5px; margin-bottom: 5px;" />
                                                 <div class="row" style="margin: 0;">
                                                     <div class="col-md-9 pull-left" style="padding: 10px;">
-                                                        <p class="text-info">NOTA: Para los números decimales usar "puntos", no "comas". Ej: 1.2</p>
+                                                        <p class="text-info">IMPORTANTE: Para los números decimales usar "puntos", no "comas". Ej: 1.2</p>
                                                     </div>
 
                                                     <div class="col-md-3 pull-right" style="padding: 10px;">
@@ -505,6 +499,20 @@
 
                         <div class="col-md-12">
                             <div class="row">
+                                <div class="col-md-8 pull-left" style="margin-right: 10px; margin-bottom: 10px;">
+                                    <div class="input-group">
+                                        <input type="text" id="txbFiltro1" class="form-control datepicker" placeholder="Desde" runat="server">
+                                        <span class="input-group-btn"></span>
+
+                                        <input type="text" id="txbFiltro2" class="form-control datepicker" placeholder="Hasta" runat="server">
+                                        <span class="input-group-btn"></span>
+
+                                        <asp:Button ID="btnSearch" runat="server" Text="Buscar" CssClass="btn btnUpdate btn-sm"
+                                            OnClick="btnSearch_Click" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" />
+                                    </div>
+                                </div>
+
+
                                 <div class="col-md-2 pull-right" style="margin-right: 10px; margin-bottom: 10px;">
                                     <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
                                         <div class="input-group ">
@@ -520,6 +528,7 @@
                             </div>
 
                             <div class="row">
+
                                 <div id="divContent" style="overflow: auto;">
 
                                     <div style="text-align: center">
@@ -617,7 +626,7 @@
                                                                 <asp:CompareValidator ForeColor="Red" ID="vtxbNew3" runat="server" ControlToValidate="txbNew3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                             </FooterTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Pesada origen/Neto">
+                                                        <%--<asp:TemplateField HeaderText="Pesada origen/Neto">
                                                             <EditItemTemplate>
                                                                 <asp:TextBox ID="ddlPesadaOrigen1" runat="server" Text='<%# Bind("Carga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                             </EditItemTemplate>
@@ -627,8 +636,8 @@
                                                             <FooterTemplate>
                                                                 <asp:TextBox ID="ddlPesadaOrigen2" runat="server" Text='<%# Bind("Carga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                             </FooterTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Pesada destino/Neto">
+                                                        </asp:TemplateField>--%>
+                                                        <asp:TemplateField HeaderText="P. destino Nombre/Neto">
                                                             <EditItemTemplate>
                                                                 <asp:TextBox ID="ddlPesadaDestino1" runat="server" Text='<%# Bind("Carga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                             </EditItemTemplate>
@@ -705,8 +714,17 @@
                                                                 <asp:TextBox ID="txbNew15" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
                                                             </FooterTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="">
+                                                        <asp:TemplateField HeaderText="Volver a En Curso">
+                                                            <HeaderStyle Width="100" />
                                                             <ItemTemplate>
+                                                                <%--<asp:LinkButton ID="btnVolverAEnCurso" runat="server" Text="" CommandName="VolverAEnCurso" ClientIDMode="AutoID"
+                                                                    CommandArgument='VolverAEnCurso' CssClass="btn btn-info btn-xs btn-command btnVolverAEnCurso" CausesValidation="false" OnClientClick='return confirm("Está seguro que desea poner este viaje En Curso?");'><span aria-hidden="true" class="fa fa-plane"></span></asp:LinkButton>--%>
+
+                                                                <a id="btnVolverAEnCurso" role="button" onclick='<%# "volverAEnCurso(" +Eval("Viaje_ID") + ");" %>' class="btn btn-warning btn-xs fa fa-plane"></a>
+
+                                                            </ItemTemplate>
+
+                                                            <%--<ItemTemplate>
                                                                 <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" ClientIDMode="AutoID"
                                                                     CommandArgument='' CssClass="btn btn-info btn-xs btn-command" CausesValidation="false"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
                                                                 <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete" ClientIDMode="AutoID"
@@ -724,25 +742,31 @@
                                                                     CommandArgument='' CssClass="btn btn-info btn-xs btn-command"><span aria-hidden="true" class="glyphicon glyphicon-plus"></span></asp:LinkButton>
                                                                 <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew" ClientIDMode="AutoID"
                                                                     CommandArgument='' CssClass="btn btn-warning btn-xs btn-command"><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
-                                                            </FooterTemplate>
+                                                            </FooterTemplate>--%>
                                                         </asp:TemplateField>
                                                     </Columns>
 
                                                 </asp:GridView>
                                                 <asp:Label ID="lblGridViajesCount" runat="server" ClientIDMode="Static" Text="# 0" CssClass="lblResultados label label-info"></asp:Label>
 
+                                                <hr style="margin-top: 5px; margin-bottom: 5px;" />
+                                                <div class="row" style="margin: 0;">
+                                                    <div class="col-md-9 pull-left" style="padding: 10px;">
+                                                        <p class="text-info" style="text-align: left;">Importante: El filtro de fechas toma en cuenta únicamente la fecha de Partida de los viajes. </p>
+                                                    </div>
+                                                </div>
+
                                                 <asp:HiddenField ClientIDMode="Static" ID="hdnViajesCount" runat="server" />
 
                                             </ContentTemplate>
                                             <Triggers>
-                                                <%--<asp:AsyncPostBackTrigger ControlID="lnkEdit" />--%>
+                                                <asp:AsyncPostBackTrigger ControlID="btnSearch" />
                                             </Triggers>
                                         </asp:UpdatePanel>
 
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
                     </div>
@@ -843,14 +867,12 @@
     <%--<asp:HiddenField ID="hdn_modalMercaderia_txbNew4" runat="server" ClientIDMode="Static" />--%>
     <asp:HiddenField ID="hdn_modalMercaderia_txbNew5" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalMercaderia_txbNew7" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalMercaderia_ddlVariedad2" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalMercaderia_ddlProcesador2" runat="server" ClientIDMode="Static" />
 
     <!-- Mercaderia Hdn Fields - Edit -->
     <asp:HiddenField ID="hdn_modalMercaderia_txb4" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalMercaderia_txb5" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalMercaderia_txb7" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalMercaderia_ddlVariedad1" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalMercaderia_ddlProcesador1" runat="server" ClientIDMode="Static" />
 
 </asp:Content>

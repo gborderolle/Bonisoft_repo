@@ -625,12 +625,10 @@ function guardarMercaderias() {
     //var mercaderias_txbNew4 = $("#mercaderias_txbNew4").val();
     var mercaderias_txbNew5 = $("#mercaderias_txbNew5").val();
     var mercaderias_txbNew7 = $("#mercaderias_txbNew7").val();
-    var mercaderias_ddlVariedad2 = $("#mercaderias_ddlVariedad2").val();
 
     //$("#hdn_modalMercaderia_txbNew4").val(mercaderias_txbNew4);
     $("#hdn_modalMercaderia_txbNew5").val(mercaderias_txbNew5);
     $("#hdn_modalMercaderia_txbNew7").val(mercaderias_txbNew7);
-    $("#hdn_modalMercaderia_ddlVariedad2").val(mercaderias_ddlVariedad2);
 
 }
 
@@ -639,14 +637,12 @@ function GetSelectedRow(lnk) {
     var mercaderias_txb5 = $("#mercaderias_txb5").val();
     var mercaderias_txb6 = $("#mercaderias_txb6").val();
     var mercaderias_txb7 = $("#mercaderias_txb7").val();
-    var mercaderias_ddlVariedad1 = $("#mercaderias_ddlVariedad1").val();
     var mercaderias_ddlProcesador1 = $("#mercaderias_ddlProcesador1").val();
     
     $("#hdn_modalMercaderia_txb4").val(mercaderias_txb4);
     $("#hdn_modalMercaderia_txb5").val(mercaderias_txb5);
     $("#hdn_modalMercaderia_txb6").val(mercaderias_txb6);
     $("#hdn_modalMercaderia_txb7").val(mercaderias_txb7);
-    $("#hdn_modalMercaderia_ddlVariedad1").val(mercaderias_ddlVariedad1);
     $("#hdn_modalMercaderia_ddlProcesador1").val(mercaderias_ddlProcesador1);
 }
 
@@ -663,6 +659,130 @@ function showItems() {
     }
 }
 
+function cargarDatos_PrecioVenta() {
+
+    var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID");
+    if (hdn_notificaciones_viajeID !== null && hdn_notificaciones_viajeID.val() !== null && hdn_notificaciones_viajeID.val().length > 0) {
+
+        var viajeID_str = hdn_notificaciones_viajeID.val();
+
+        // Ajax call parameters
+        console.log("Ajax call: Viajes.aspx/Get_DatosVenta. Params:");
+        console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
+
+        // Obtengo datos de precio de venta
+        $.ajax({
+            type: "POST",
+            url: "Viajes.aspx/Get_DatosVenta",
+            data: '{viajeID_str: "' + viajeID_str + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+
+                var datos = response.d;
+                if (datos) {
+
+                    /* ------------------------ OBTENGO DATOS ------------------------ */
+
+                    var datos_array = datos.split("|");
+                    var precio_flete_str = datos_array[0];
+                    var iva_str = datos_array[1];
+                    var precio_descarga_str = datos_array[2];
+                    var precio_mercaderia_str = datos_array[3];
+
+                    /* ------------------------ OBTENGO CAMPOS ------------------------ */
+
+                    // Datos Mercaderia
+                    var notif_Mercaderia2 = $("#notif_Mercaderia2");
+                    var notif_Mercaderia3 = $("#notif_Mercaderia3");
+
+                    // Datos Flete
+                    var notif_Flete2 = $("#notif_Flete2");
+                    var notif_Flete3 = $("#notif_Flete3");
+                    var notif_Flete4 = $("#notif_Flete4");
+                    
+                    // Datos Venta
+                    var notif_Venta1 = $("label[id*=notif_Venta1]");
+                    var notif_Venta2 = $("#notif_Venta2");
+                    var notif_Venta3 = $("#notif_Venta3");
+
+                    // Otros datos
+                    var notif_lblPesoNeto = $(".notif_lblPesoNeto");
+                    var txb_pesada1Peso_neto = $("#txb_pesada1Peso_neto");
+                    var txb_pesada2Peso_neto = $("#txb_pesada2Peso_neto");
+
+                    if (notif_Mercaderia2 !== null && notif_Mercaderia3 !== null && notif_Flete2 !== null && notif_Flete3 !== null && notif_Flete4 !== null && notif_Venta1 !== null && notif_Venta2 !== null 
+                         && notif_Venta3 !== null && notif_lblPesoNeto !== null && txb_pesada1Peso_neto !== null && txb_pesada2Peso_neto !== null) {
+
+                        /* ------------------------ SETEO DATOS ------------------------ */
+
+                        // peso neto
+                        var peso_neto_origen_str = txb_pesada1Peso_neto.val();
+                        var peso_neto_destino_str = txb_pesada2Peso_neto.val();
+
+                        var peso_neto_origen = TryParseFloat(peso_neto_origen_str, 0);
+                        var peso_neto_destino = TryParseFloat(peso_neto_destino_str, 0);
+
+                        // Si no tiene peso neto destino, tomo peso neto origen
+                        if (peso_neto_destino === 0) {
+                            peso_neto_destino = peso_neto_origen;
+                        }
+                        notif_lblPesoNeto.text(peso_neto_destino);
+
+                        // Datos Mercaderia
+                        notif_Mercaderia2.text(precio_mercaderia_str);
+
+                        // Datos Flete
+                        notif_Flete2.val(precio_flete_str);
+                        notif_Flete3.val(iva_str);
+
+                        // Datos Venta
+                        notif_Venta2.val(precio_descarga_str);
+
+                        /* ------------------------ CALCULO SUBTOTALES ------------------------ */
+
+                        // Parseo valores
+                        var precioMercaderia = TryParseFloat(precio_mercaderia_str, 0);
+                        var precioFlete = TryParseFloat(precio_flete_str, 0);
+                        var IVA = TryParseInt(iva_str, 0);
+                        var precioDescarga = TryParseFloat(precio_descarga_str, 0);
+
+                        // Subtotal Mercaderia
+                        var valor1 = peso_neto_destino * precioMercaderia;
+                        valor1 = Math.round(valor1 * 100) / 100;
+                        notif_Mercaderia3.text(valor1);
+
+                        // Subtotal Flete
+                        var valor2 = peso_neto_destino * precioFlete;
+                        if (IVA > 0) {
+                            var IVA_solo = valor2 * IVA / 100;
+                            valor2 = valor2 + IVA_solo;
+                        }
+                        valor2 = Math.round(valor2 * 100) / 100;
+                        notif_Flete4.text(valor2);
+
+                        // Subtotal Venta
+                        var valor3 = valor1 + valor2;
+                        valor3 = Math.round(valor3 * 100) / 100;
+                        notif_Venta1.text(valor3);
+
+                        var valor4 = valor3 + precioDescarga;
+                        valor4 = Math.round(valor4 * 100) / 100;
+                        notif_Venta3.text(valor4);
+                    }
+                }
+
+            }, // end success
+            failure: function (response) {
+                show_message_info('Error_Datos');
+
+            }
+        }); // Ajax
+
+        //calcularPrecioVenta();
+    }
+}
+
 function calcularPrecioVenta() {
 
     var ok_continue = false;
@@ -672,137 +792,76 @@ function calcularPrecioVenta() {
 
         var viajeID_str = hdn_notificaciones_viajeID.val();
 
-        var notif_txbPrecioFlete = $("#notif_txbPrecioFlete");
-        var notif_txbPrecioDescarga = $("#notif_txbPrecioDescarga");
-        var notif_txbIVA = $("#notif_txbIVA");
-        var notif_lblPrecioVenta = $("label[id*='notif_lblPrecioVenta']");
+        /* ------------------------ OBTENGO CAMPOS ------------------------ */
 
-        var txb_pesada1Peso_neto = $("#txb_pesada1Peso_neto");
-        var txb_pesada2Peso_neto = $("#txb_pesada2Peso_neto");
+        // Datos Mercaderia
+        var notif_Mercaderia1 = $(".notif_lblPesoNeto").first();
+        var notif_Mercaderia2 = $("#notif_Mercaderia2");
+        var notif_Mercaderia3 = $("#notif_Mercaderia3");
 
-        if (notif_txbPrecioFlete !== null && notif_txbPrecioFlete.val() !== null && notif_txbPrecioFlete.val().length > 0 &&
-        notif_txbPrecioDescarga !== null && notif_txbPrecioDescarga.val() !== null && notif_txbPrecioDescarga.val().length > 0 &&
-        notif_txbIVA !== null && notif_txbIVA.val() !== null && notif_txbIVA.val().length > 0 &&
-        txb_pesada1Peso_neto !== null && txb_pesada2Peso_neto !== null &&
-        notif_lblPrecioVenta !== null) {
+        // Datos Flete
+        var notif_Flete2 = $("#notif_Flete2");
+        var notif_Flete3 = $("#notif_Flete3");
+        var notif_Flete4 = $("#notif_Flete4");
 
-            // Obtengo strings
-            var precioFlete_str = notif_txbPrecioFlete.val();
-            var precioDescarga_str = notif_txbPrecioDescarga.val();
-            var IVA_str = notif_txbIVA.val();
-            var peso_neto_origen_str = txb_pesada1Peso_neto.val();
-            var peso_neto_destino_str = txb_pesada2Peso_neto.val();
+        // Datos Venta
+        var notif_Venta1 = $("label[id*=notif_Venta1]");
+        var notif_Venta2 = $("#notif_Venta2");
+        var notif_Venta3 = $("#notif_Venta3");
+
+        // Otros datos
+
+        if (notif_Mercaderia1 !== null && notif_Mercaderia2 !== null && notif_Mercaderia3 !== null && notif_Flete2 !== null && notif_Flete3 !== null && notif_Flete4 !== null && notif_Venta1 !== null && notif_Venta2 !== null
+             && notif_Venta3 !== null) {
+
+            /* ------------------------ SETEO DATOS ------------------------ */
+
+            // peso neto
+            var peso_neto_destino_str = notif_Mercaderia1.text();
+
+            // Datos Mercaderia
+            var precio_mercaderia_str = notif_Mercaderia2.text();
+
+            // Datos Flete
+            var precio_flete_str = notif_Flete2.val();
+            var iva_str = notif_Flete3.val();
+
+            // Datos Venta
+            var precio_descarga_str = notif_Venta2.val();
+
+            /* ------------------------ CALCULO SUBTOTALES ------------------------ */
 
             // Parseo valores
-            var precioFlete = TryParseFloat(precioFlete_str, 0);
-            var precioDescarga = TryParseFloat(precioDescarga_str, 0);
-            var IVA = TryParseInt(IVA_str, 0);
-            var peso_neto_origen = TryParseFloat(peso_neto_origen_str, 0);
             var peso_neto_destino = TryParseFloat(peso_neto_destino_str, 0);
+            var precioMercaderia = TryParseFloat(precio_mercaderia_str, 0);
+            var precioFlete = TryParseFloat(precio_flete_str, 0);
+            var IVA = TryParseInt(iva_str, 0);
+            var precioDescarga = TryParseFloat(precio_descarga_str, 0);
 
-            // Si no tiene peso neto destino, tomo peso neto origen
-            if (peso_neto_destino === 0) {
-                peso_neto_destino = peso_neto_origen;
+            // Subtotal Mercaderia
+            var valor1 = peso_neto_destino * precioMercaderia;
+            valor1 = Math.round(valor1 * 100) / 100;
+            notif_Mercaderia3.text(valor1);
+
+            // Subtotal Flete
+            var valor2 = peso_neto_destino * precioFlete;
+            if (IVA > 0) {
+                var IVA_solo = valor2 * IVA / 100;
+                valor2 = valor2 + IVA_solo;
             }
-            if (peso_neto_destino !== 0) {
+            valor2 = Math.round(valor2 * 100) / 100;
+            notif_Flete4.text(valor2);
 
-                // 1- Lógica Cálculo Precio Mercadería ------------------------------------------------------
+            // Subtotal Venta
+            var valor3 = valor1 + valor2;
+            valor3 = Math.round(valor3 * 100) / 100;
+            notif_Venta1.text(valor3);
 
-                // Ajax call parameters
-                console.log("Ajax call: Viajes.aspx/Get_CostoMercaderias. Params:");
-                console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
-
-                // Obtengo costos de mercaderias
-                $.ajax({
-                    type: "POST",
-                    url: "Viajes.aspx/Get_CostoMercaderias",
-                    data: '{viajeID_str: "' + viajeID_str + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        var costo_mercaderias = response.d;
-                        if (costo_mercaderias > 0) {
-                            //var notif_lblMercaderia = $("label[id*=notif_lblMercaderia]");
-                            var notif_lblMercaderia = $("#notif_lblMercaderia");
-                            if (notif_lblMercaderia != null) {
-
-                                var final_value = Math.round(costo_mercaderias * 100) / 100;
-                                notif_lblMercaderia.text(final_value);
-
-                                // Set SUB-TOTAL
-                                var notif_lblPrecioMercaderia = $("#notif_lblPrecioMercaderia");
-                                if (notif_lblPrecioMercaderia != null) {
-                                    var value = peso_neto_destino + final_value;
-                                    final_value = Math.round(value * 100) / 100;
-                                    notif_lblPrecioMercaderia.text(final_value);
-                                }
-                            }
-
-                            // 2- Lógica Cálculo Precio Flete ------------------------------------------------------
-
-                            // Actualizo campos de Peso neto
-                            var notif_lblPesoNeto = $(".notif_lblPesoNeto");
-                            if (notif_lblPesoNeto != null) {
-                                notif_lblPesoNeto.text(peso_neto_destino);
-                            }
-
-                            // Calcular precio flete
-                            var calculo_precio_flete = peso_neto_destino * precioFlete;
-
-                            if (IVA > 0) {
-                                var IVA_solo = calculo_precio_flete * IVA / 100;
-                                calculo_precio_flete = calculo_precio_flete + IVA_solo;
-                            }
-
-                            var notif_lblPrecioFlete = $("#notif_lblPrecioFlete");
-                            if (notif_lblPrecioFlete != null) {
-
-                                // Set SUB-TOTAL
-                                var final_value = Math.round(calculo_precio_flete * 100) / 100;
-                                notif_lblPrecioFlete.text(final_value);
-                            }
-
-                            // 3- Lógica Cálculo Precio Venta ------------------------------------------------------
-
-                            var notif_lblMercaderiaFlete_int = 0;
-                            var notif_lblPrecioMercaderia_int = 0;
-                            var notif_lblPrecioMercaderia = $("#notif_lblPrecioMercaderia");
-                            if (notif_lblPrecioMercaderia != null) {
-                                notif_lblPrecioMercaderia_int = TryParseFloat(notif_lblPrecioMercaderia.text(), 0);
-
-                                if (notif_lblPrecioMercaderia_int > 0) {
-                                    notif_lblMercaderiaFlete_int = calculo_precio_flete + notif_lblPrecioMercaderia_int;
-                                }
-
-                            }
-
-                            var notif_lblMercaderiaFlete = $("label[id*=notif_lblMercaderiaFlete]");
-                            if (notif_lblMercaderiaFlete != null) {
-                                notif_lblMercaderiaFlete.text(notif_lblMercaderiaFlete_int);
-                            }
-
-                            // Set SUB-TOTAL
-                            var value = notif_lblMercaderiaFlete_int + precioDescarga;
-                            var final_value = Math.round(value * 100) / 100;
-                            notif_lblPrecioVenta.text(final_value);
-
-                        }
-                    }, // end success
-                    failure: function (response) {
-                        show_message_info('Error_Datos');
-
-                    }
-                }); // Ajax
-
-            } else {
-                show_message_info('Error_DatosPesadas');
-            }
+            var valor4 = valor3 + precioDescarga;
+            valor4 = Math.round(valor4 * 100) / 100;
+            notif_Venta3.text(valor4);
 
         }
-        else {
-            show_message_info('Error_DatosPrecioVenta');
-        }
-
     }
 }
 
@@ -985,7 +1044,7 @@ function FinDelViaje() {
 
                                 case 1: {
                                     show_message_info('OK_FINViaje');
-                                    location.reload();
+                                    setTimeout("location.reload(true);", 1000);
                                     break;
                                 }
 
@@ -1028,9 +1087,9 @@ function GuardarPrecioVenta() {
     calcularPrecioVenta();
 
     var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID").val();
-    var notif_txbPrecioFlete = $("#notif_txbPrecioFlete").val();
-    var notif_txbPrecioDescarga = $("#notif_txbPrecioDescarga").val();
-    var notif_txbIVA = $("#notif_txbIVA").val();
+    var notif_Flete2 = $("#notif_Flete2").val();
+    var notif_Venta2 = $("#notif_Venta2").val();
+    var notif_Flete3 = $("#notif_Flete3").val();
     var txb_pesada2Peso_neto = $("#txb_pesada2Peso_neto").val();
 
     // Check viaje
@@ -1040,21 +1099,21 @@ function GuardarPrecioVenta() {
         if (txb_pesada2Peso_neto !== null && txb_pesada2Peso_neto.length > 0) {
 
             // Check existe cálculo
-            var notif_lblPrecioVenta = $("#notif_lblPrecioVenta");
-            if (notif_lblPrecioVenta !== null) {
-                var precio_venta_str = notif_lblPrecioVenta.text();
+            var notif_Venta3 = $("#notif_Venta3");
+            if (notif_Venta3 !== null) {
+                var precio_venta_str = notif_Venta3.text();
                 if (precio_venta_str !== null && precio_venta_str !== "" && precio_venta_str !== "0") {
 
                     // Check datos venta
-                    if (notif_txbPrecioFlete !== null && notif_txbPrecioFlete.length > 0 &&
-                    notif_txbPrecioDescarga !== null && notif_txbPrecioDescarga.length > 0 &&
-                    notif_txbIVA !== null && notif_txbIVA.length > 0) {
+                    if (notif_Flete2 !== null && notif_Flete2.length > 0 &&
+                    notif_Venta2 !== null && notif_Venta2.length > 0 &&
+                    notif_Flete3 !== null && notif_Flete3.length > 0) {
 
                         var viajeID = hdn_notificaciones_viajeID;
 
-                        var precioFlete_str = notif_txbPrecioFlete;
-                        var precioDescarga_str = notif_txbPrecioDescarga;
-                        var IVA_str = notif_txbIVA;
+                        var precioFlete_str = notif_Flete2;
+                        var precioDescarga_str = notif_Venta2;
+                        var IVA_str = notif_Flete3;
 
                         if (precio_venta_str !== "" && precio_venta_str !== "0") {
 
@@ -1170,3 +1229,56 @@ function confirmar_borrarViajeEnCurso() {
     }
 
 }
+
+function volverAEnCurso(viajeID) {
+
+    if (viajeID > 0) {
+        var viajeID_str = viajeID.toString();
+
+        $('#dialog p').text(hashMessages['ConfirmacionVolverAEnCurso']);
+        $("#dialog").dialog({
+            open: {},
+            resizable: false,
+            height: 150,
+            modal: true,
+            buttons: {
+                "Confirmar": function () {
+
+                    // Ajax call parameters
+                    console.log("Ajax call: Viajes.aspx/VolverAEnCurso. Params:");
+                    console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "Viajes.aspx/VolverAEnCurso",
+                        data: '{viajeID_str: "' + viajeID_str + '"}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            var result = response.d;
+                            
+                            // OK
+                            show_message_info('OK_VolverAEnCurso');
+
+                            setTimeout("location.reload(true);", 1000);
+                            $(this).dialog("close");
+
+                        }, // end success
+                        failure: function (response) {
+                            show_message_info('Error_Datos');
+
+                        }
+                    }); // Ajax
+
+                },
+                "Cancelar": function () {
+                    $(this).dialog("close");
+                    return false;
+                }
+            }
+        });
+
+    }
+
+}
+

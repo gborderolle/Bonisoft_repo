@@ -1175,13 +1175,11 @@
     <Content Include="Pages\Recordatorios.aspx" />
     <Content Include="Pages\Registros.aspx" />
     <Content Include="Pages\Resumen_clientes.aspx" />
-    <Content Include="Pages\Test.aspx" />
     <Content Include="Pages\Viajes.aspx" />
     <Content Include="SYS_NOTES.txt" />
     <Content Include="User_Controls\Configuracion\Camion_ejes.ascx" />
     <Content Include="User_Controls\Configuracion\Formas_pago.ascx" />
     <Content Include="User_Controls\Configuracion\Usuarios.ascx" />
-    <Content Include="User_Controls\Configuracion\Variedad.ascx" />
     <Content Include="User_Controls\Dinamicos\Mercaderias.ascx" />
     <Content Include="User_Controls\Configuracion\Tipo_lena.ascx" />
     <Content Include="User_Controls\Estaticos\Camiones.ascx" />
@@ -1326,9 +1324,6 @@
     <Compile Include="Helpers\Extras.cs" />
     <Compile Include="Helpers\TestController.cs" />
     <Compile Include="Helpers\WebFormController.cs" />
-    <Compile Include="interno.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
     <Compile Include="lena_tipo.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
@@ -1413,13 +1408,6 @@
     <Compile Include="Pages\Resumen_clientes.aspx.designer.cs">
       <DependentUpon>Resumen_clientes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Test.aspx.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Test.aspx.designer.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Viajes.aspx.cs">
       <DependentUpon>Viajes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1460,13 +1448,6 @@
     </Compile>
     <Compile Include="User_Controls\Configuracion\Usuarios.ascx.designer.cs">
       <DependentUpon>Usuarios.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="User_Controls\Configuracion\Variedad.ascx.cs">
-      <DependentUpon>Variedad.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User_Controls\Configuracion\Variedad.ascx.designer.cs">
-      <DependentUpon>Variedad.ascx</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\Dinamicos\Mercaderias.ascx.cs">
       <DependentUpon>Mercaderias.ascx</DependentUpon>
@@ -1574,9 +1555,6 @@
       <DependentUpon>Proveedores.ascx</DependentUpon>
     </Compile>
     <Compile Include="usuario.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="variedad.cs">
       <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
     <Compile Include="viaje.cs">

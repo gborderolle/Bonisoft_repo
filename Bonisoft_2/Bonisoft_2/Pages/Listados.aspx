@@ -8,7 +8,6 @@
 <%@ Register Src="~/User_Controls/Estaticos/Cargadores.ascx" TagPrefix="uc1" TagName="Cargadores" %>
 <%@ Register Src="~/User_Controls/Estaticos/Procesadores.ascx" TagPrefix="uc1" TagName="Procesadores" %>
 <%@ Register Src="~/User_Controls/Configuracion/Tipo_lena.ascx" TagPrefix="uc1" TagName="Tipos" %>
-<%@ Register Src="~/User_Controls/Configuracion/Variedad.ascx" TagPrefix="uc1" TagName="Variedades" %>
 <%@ Register Src="~/User_Controls/Configuracion/Formas_pago.ascx" TagPrefix="uc1" TagName="Formas" %>
 <%@ Register Src="~/User_Controls/Configuracion/Camion_ejes.ascx" TagPrefix="uc1" TagName="Ejes" %>
 
@@ -202,13 +201,6 @@
                                         <asp:UpdatePanel ID="upTipos" runat="server">
                                             <ContentTemplate>
                                                 <uc1:Tipos runat="server" ID="Tipos" />
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </div>
-                                    <div class="divTables" id="divVariedades" style="display: none;">
-                                        <asp:UpdatePanel ID="upVariedades" runat="server">
-                                            <ContentTemplate>
-                                                <uc1:Variedades runat="server" ID="Variedades" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>

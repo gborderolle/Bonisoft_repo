@@ -37,29 +37,7 @@
 
     <Columns>
         <asp:BoundField DataField="Mercaderia_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true"/>
-        <asp:TemplateField HeaderText="Variedad">
-            <EditItemTemplate>
-                <asp:DropDownList ID="mercaderias_ddlVariedad1" runat="server" CssClass="form-control" />
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:LinkButton ID="mercaderias_lbl1" runat="server" CommandName="View" Text='<%# Bind("Variedad_ID") %>'></asp:LinkButton>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:DropDownList ID="mercaderias_ddlVariedad2" runat="server" CssClass="form-control" />
-            </FooterTemplate>
-        </asp:TemplateField>
-        <%--<asp:TemplateField HeaderText="Fecha de corte">
-            <EditItemTemplate>
-                <asp:TextBox ID="mercaderias_txb4" runat="server" Text='<%# Bind("Fecha_corte", "{0:dd-MM-yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="mercaderias_lbl4" runat="server" Text='<%# Bind("Fecha_corte", "{0:dd-MM-yyyy}") %>'></asp:Label>
-            </ItemTemplate>
-            <FooterTemplate>
-                <asp:TextBox ID="mercaderias_txbNew4" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
-            </FooterTemplate>
-        </asp:TemplateField>--%>
-        <asp:TemplateField HeaderText="Precio Compra xTON">
+        <asp:TemplateField HeaderText="Precio Compra / Tonelada">
             <HeaderStyle Width="170" />
             <ItemStyle Width="170" />
             <EditItemTemplate>
@@ -67,7 +45,8 @@
                 <asp:CompareValidator ID="vtxb5" runat="server" ControlToValidate="mercaderias_txb5" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="mercaderias_lbl5" runat="server" Text='<%# Bind("Precio_xTonelada_compra", "{0:C0}") %>'></asp:Label>
+                <asp:Label ID="mercaderias_lbl5" runat="server" Text='<%# Bind("Precio_xTonelada_compra", "{0:n2}") %>'></asp:Label>
+                <%--<asp:Label ID="mercaderias_lbl5" runat="server" Text='<%# Bind("Precio_xTonelada_compra", "{0:C0}") %>'></asp:Label>--%>
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="mercaderias_txbNew5" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>

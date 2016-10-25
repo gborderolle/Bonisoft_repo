@@ -338,7 +338,6 @@ namespace Bonisoft_2.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 string viaje_ID_str = Mercaderias.Viaje_ID1;
@@ -579,35 +578,35 @@ namespace Bonisoft_2.Pages
                 }
             }
 
-            // Pesadas origen --------------------------------------------------
-            ddl = null;
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                ddl = e.Row.FindControl("ddlPesadaOrigen1") as DropDownList;
-            }
-            if (e.Row.RowType == DataControlRowType.Footer)
-            {
-                ddl = e.Row.FindControl("ddlPesadaOrigen2") as DropDownList;
-            }
-            if (ddl != null)
-            {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                {
-                    DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.pesadas.ToList());
+            //// Pesadas origen --------------------------------------------------
+            //ddl = null;
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //    ddl = e.Row.FindControl("ddlPesadaOrigen1") as DropDownList;
+            //}
+            //if (e.Row.RowType == DataControlRowType.Footer)
+            //{
+            //    ddl = e.Row.FindControl("ddlPesadaOrigen2") as DropDownList;
+            //}
+            //if (ddl != null)
+            //{
+            //    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            //    {
+            //        DataTable dt1 = new DataTable();
+            //        dt1 = Extras.ToDataTable(context.pesadas.ToList());
 
-                    ddl.DataSource = dt1;
-                    ddl.DataTextField = "Nombre_balanza";
-                    ddl.DataValueField = "Pesada_ID";
-                    ddl.DataBind();
-                    ddl.Items.Insert(0, new ListItem("Elegir", "0"));
+            //        ddl.DataSource = dt1;
+            //        ddl.DataTextField = "Nombre_balanza";
+            //        ddl.DataValueField = "Pesada_ID";
+            //        ddl.DataBind();
+            //        ddl.Items.Insert(0, new ListItem("Elegir", "0"));
 
-                }//Add Default Item in the DropDownList
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Pesada_ID.ToString();
-                }
-            }
+            //    }//Add Default Item in the DropDownList
+            //    if (e.Row.RowType == DataControlRowType.DataRow)
+            //    {
+            //        ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Pesada_ID.ToString();
+            //    }
+            //}
 
             // Pesadas destino --------------------------------------------------
             ddl = null;
@@ -811,30 +810,30 @@ namespace Bonisoft_2.Pages
                 }
             }
 
-            // Pesada origen ----------------------------------------------------
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                Label lbl = e.Row.FindControl("lbl8") as Label;
-                if (lbl != null)
-                {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                    {
-                        viaje viaje = (viaje)(e.Row.DataItem);
-                        if (viaje != null)
-                        {
-                            int id = viaje.Pesada_ID;
-                            pesada pesada = (pesada)context.pesadas.FirstOrDefault(c => c.pesada_ID == id);
-                            if (pesada != null)
-                            {
-                                lbl.Text = pesada.Origen_lugar + ": " + pesada.Origen_peso_neto;
-                                //string nombre = pesada.ToString();
-                                //lbl.Text = nombre;
-                                //lbl.CommandArgument = "pesadas," + pesada.Nombre_balanza;
-                            }
-                        }
-                    }
-                }
-            }
+            //// Pesada origen ----------------------------------------------------
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //    Label lbl = e.Row.FindControl("lbl8") as Label;
+            //    if (lbl != null)
+            //    {
+            //        using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            //        {
+            //            viaje viaje = (viaje)(e.Row.DataItem);
+            //            if (viaje != null)
+            //            {
+            //                int id = viaje.Pesada_ID;
+            //                pesada pesada = (pesada)context.pesadas.FirstOrDefault(c => c.pesada_ID == id);
+            //                if (pesada != null)
+            //                {
+            //                    lbl.Text = pesada.Origen_lugar + ": " + pesada.Origen_peso_neto;
+            //                    //string nombre = pesada.ToString();
+            //                    //lbl.Text = nombre;
+            //                    //lbl.CommandArgument = "pesadas," + pesada.Nombre_balanza;
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
 
             // Pesada destino ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -873,236 +872,232 @@ namespace Bonisoft_2.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             if (e.CommandArgument != null)
             {
-                if (!string.IsNullOrWhiteSpace(e.CommandArgument.ToString()) && !string.IsNullOrWhiteSpace(e.CommandName))
+                if (!string.IsNullOrWhiteSpace(e.CommandName.ToString()))
                 {
-                    #region InsertNew
 
-                    if (e.CommandName.Equals("InsertNew"))
+                    if (!string.IsNullOrWhiteSpace(e.CommandArgument.ToString()))
                     {
-                        int index = Convert.ToInt32(e.CommandArgument);
+                        #region InsertNew
 
-                        GridViewRow row = gridViajes.FooterRow;
-                        TextBox txb2 = row.FindControl("txbNew2") as TextBox;
-                        TextBox txb3 = row.FindControl("txbNew3") as TextBox;
-                        TextBox txb6 = row.FindControl("txbNew6") as TextBox;
-                        TextBox txb11 = row.FindControl("txbNew11") as TextBox;
-                        TextBox txb12 = row.FindControl("txbNew12") as TextBox;
-                        TextBox txb15 = row.FindControl("txbNew15") as TextBox;
-                        DropDownList ddlCargadores2 = row.FindControl("ddlCargadores2") as DropDownList;
-                        DropDownList ddlCamiones2 = row.FindControl("ddlCamiones2") as DropDownList;
-                        DropDownList ddlChoferes2 = row.FindControl("ddlChoferes2") as DropDownList;
-                        DropDownList ddlFleteros2 = row.FindControl("ddlFleteros2") as DropDownList;
-                        DropDownList ddlProveedores2 = row.FindControl("ddlProveedores2") as DropDownList;
-                        DropDownList ddlClientes2 = row.FindControl("ddlClientes2") as DropDownList;
-
-                        TextBox ddlPesadaOrigen2 = row.FindControl("ddlPesadaOrigen2") as TextBox;
-                        TextBox ddlPesadaDestino2 = row.FindControl("ddlPesadaDestino2") as TextBox;
-
-                        if (txb2 != null && txb3 != null && txb6 != null && ddlChoferes2 != null && txb15 != null &&
-                            txb11 != null && txb12 != null && txb3 != null && ddlCargadores2 != null && ddlCamiones2 != null &&
-                            ddlFleteros2 != null && ddlProveedores2 != null && ddlClientes2 != null
-                            && ddlPesadaOrigen2 != null && ddlPesadaDestino2 != null)
+                        if (e.CommandName.Equals("InsertNew"))
                         {
-                            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                            int index = Convert.ToInt32(e.CommandArgument);
+
+                            GridViewRow row = gridViajes.FooterRow;
+                            TextBox txb2 = row.FindControl("txbNew2") as TextBox;
+                            TextBox txb3 = row.FindControl("txbNew3") as TextBox;
+                            TextBox txb6 = row.FindControl("txbNew6") as TextBox;
+                            TextBox txb11 = row.FindControl("txbNew11") as TextBox;
+                            TextBox txb12 = row.FindControl("txbNew12") as TextBox;
+                            TextBox txb15 = row.FindControl("txbNew15") as TextBox;
+                            DropDownList ddlCargadores2 = row.FindControl("ddlCargadores2") as DropDownList;
+                            DropDownList ddlCamiones2 = row.FindControl("ddlCamiones2") as DropDownList;
+                            DropDownList ddlChoferes2 = row.FindControl("ddlChoferes2") as DropDownList;
+                            DropDownList ddlFleteros2 = row.FindControl("ddlFleteros2") as DropDownList;
+                            DropDownList ddlProveedores2 = row.FindControl("ddlProveedores2") as DropDownList;
+                            DropDownList ddlClientes2 = row.FindControl("ddlClientes2") as DropDownList;
+
+                            //TextBox ddlPesadaOrigen2 = row.FindControl("ddlPesadaOrigen2") as TextBox;
+                            TextBox ddlPesadaDestino2 = row.FindControl("ddlPesadaDestino2") as TextBox;
+
+                            if (txb2 != null && txb3 != null && txb6 != null && ddlChoferes2 != null && txb15 != null &&
+                                txb11 != null && txb12 != null && txb3 != null && ddlCargadores2 != null && ddlCamiones2 != null &&
+                                ddlFleteros2 != null && ddlProveedores2 != null && ddlClientes2 != null
+                                && ddlPesadaDestino2 != null)
                             {
-                                viaje obj = new viaje();
-                                obj.Carga = txb6.Text;
-                                obj.Comentarios = txb15.Text;
-
-                                decimal value = obj.precio_compra;
-                                if (!string.IsNullOrWhiteSpace(txb2.Text))
+                                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                                 {
-                                    if (!decimal.TryParse(txb2.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
+                                    viaje obj = new viaje();
+                                    obj.Carga = txb6.Text;
+                                    obj.Comentarios = txb15.Text;
+
+                                    decimal value = obj.precio_compra;
+                                    if (!string.IsNullOrWhiteSpace(txb2.Text))
                                     {
-                                        value = obj.precio_compra;
-                                        Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb2.Text);
+                                        if (!decimal.TryParse(txb2.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
+                                        {
+                                            value = obj.precio_compra;
+                                            Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb2.Text);
+                                        }
                                     }
-                                }
-                                obj.precio_compra = value;
+                                    obj.precio_compra = value;
 
-                                value = obj.precio_venta;
-                                if (!string.IsNullOrWhiteSpace(txb3.Text))
-                                {
-                                    if (!decimal.TryParse(txb3.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
+                                    value = obj.precio_venta;
+                                    if (!string.IsNullOrWhiteSpace(txb3.Text))
                                     {
-                                        value = obj.precio_venta;
-                                        Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb3.Text);
+                                        if (!decimal.TryParse(txb3.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
+                                        {
+                                            value = obj.precio_venta;
+                                            Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb3.Text);
+                                        }
                                     }
-                                }
-                                obj.precio_venta = value;
+                                    obj.precio_venta = value;
 
-                                #region Datetime logic
+                                    #region Datetime logic
 
-                                DateTime date1 = DateTime.Now;
-                                if (!string.IsNullOrWhiteSpace(txb11.Text))
-                                {
-                                    if (!DateTime.TryParseExact(txb11.Text, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
+                                    DateTime date1 = DateTime.Now;
+                                    if (!string.IsNullOrWhiteSpace(txb11.Text))
                                     {
-                                        date1 = DateTime.Now;
-                                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb11.Text);
+                                        if (!DateTime.TryParseExact(txb11.Text, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
+                                        {
+                                            date1 = DateTime.Now;
+                                            Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb11.Text);
+                                        }
                                     }
-                                }
-                                obj.Fecha_partida = date1;
+                                    obj.Fecha_partida = date1;
 
-                                DateTime date2 = DateTime.Now;
-                                if (!string.IsNullOrWhiteSpace(txb12.Text))
-                                {
-                                    if (!DateTime.TryParseExact(txb12.Text, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
+                                    DateTime date2 = DateTime.Now;
+                                    if (!string.IsNullOrWhiteSpace(txb12.Text))
                                     {
-                                        date2 = DateTime.Now;
-                                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb12.Text);
+                                        if (!DateTime.TryParseExact(txb12.Text, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
+                                        {
+                                            date2 = DateTime.Now;
+                                            Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb12.Text);
+                                        }
                                     }
-                                }
-                                obj.Fecha_llegada = date2;
+                                    obj.Fecha_llegada = date2;
 
-                                #endregion Datetime logic
+                                    #endregion Datetime logic
 
-                                #region DDL logic
+                                    #region DDL logic
 
-                                int ddl = 0;
-                                if (!int.TryParse(ddlCargadores2.SelectedValue, out ddl))
-                                {
+                                    int ddl = 0;
+                                    if (!int.TryParse(ddlCargadores2.SelectedValue, out ddl))
+                                    {
+                                        ddl = 0;
+                                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlCargadores2.SelectedValue);
+                                    }
+                                    obj.Empresa_de_carga_ID = ddl;
+
                                     ddl = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlCargadores2.SelectedValue);
-                                }
-                                obj.Empresa_de_carga_ID = ddl;
+                                    if (!int.TryParse(ddlCamiones2.SelectedValue, out ddl))
+                                    {
+                                        ddl = 0;
+                                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlCamiones2.SelectedValue);
+                                    }
+                                    obj.Camion_ID = ddl;
 
-                                ddl = 0;
-                                if (!int.TryParse(ddlCamiones2.SelectedValue, out ddl))
-                                {
                                     ddl = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlCamiones2.SelectedValue);
-                                }
-                                obj.Camion_ID = ddl;
+                                    if (!int.TryParse(ddlChoferes2.SelectedValue, out ddl))
+                                    {
+                                        ddl = 0;
+                                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlChoferes2.SelectedValue);
+                                    }
+                                    obj.Chofer_ID = ddl;
 
-                                ddl = 0;
-                                if (!int.TryParse(ddlChoferes2.SelectedValue, out ddl))
-                                {
                                     ddl = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlChoferes2.SelectedValue);
-                                }
-                                obj.Chofer_ID = ddl;
+                                    if (!int.TryParse(ddlFleteros2.SelectedValue, out ddl))
+                                    {
+                                        ddl = 0;
+                                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFleteros2.SelectedValue);
+                                    }
+                                    obj.Fletero_ID = ddl;
 
-                                ddl = 0;
-                                if (!int.TryParse(ddlFleteros2.SelectedValue, out ddl))
-                                {
                                     ddl = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFleteros2.SelectedValue);
-                                }
-                                obj.Fletero_ID = ddl;
+                                    if (!int.TryParse(ddlProveedores2.SelectedValue, out ddl))
+                                    {
+                                        ddl = 0;
+                                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlProveedores2.SelectedValue);
+                                    }
+                                    obj.Proveedor_ID = ddl;
 
-                                ddl = 0;
-                                if (!int.TryParse(ddlProveedores2.SelectedValue, out ddl))
-                                {
                                     ddl = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlProveedores2.SelectedValue);
-                                }
-                                obj.Proveedor_ID = ddl;
+                                    if (!int.TryParse(ddlClientes2.SelectedValue, out ddl))
+                                    {
+                                        ddl = 0;
+                                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlClientes2.SelectedValue);
+                                    }
+                                    obj.Cliente_ID = ddl;
 
-                                ddl = 0;
-                                if (!int.TryParse(ddlClientes2.SelectedValue, out ddl))
-                                {
-                                    ddl = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlClientes2.SelectedValue);
-                                }
-                                obj.Cliente_ID = ddl;
+                                    #endregion DDL logic
 
-                                #endregion DDL logic
+                                    #region Create pesada
 
-                                #region Create pesada
+                                    pesada new_pesada = new pesada();
+                                    new_pesada.Origen_fecha = DateTime.Now;
+                                    new_pesada.Origen_lugar = string.Empty;
+                                    new_pesada.Origen_nombre_balanza = string.Empty;
+                                    new_pesada.Origen_peso_bruto = 0;
+                                    new_pesada.Origen_peso_neto = 0;
+                                    new_pesada.Destino_fecha = DateTime.Now;
+                                    new_pesada.Destino_lugar = string.Empty;
+                                    new_pesada.Destino_nombre_balanza = string.Empty;
+                                    new_pesada.Destino_peso_bruto = 0;
+                                    new_pesada.Destino_peso_neto = 0;
+                                    new_pesada.Comentarios = string.Empty;
 
-                                pesada new_pesada = new pesada();
-                                new_pesada.Origen_fecha = DateTime.Now;
-                                new_pesada.Origen_lugar = string.Empty;
-                                new_pesada.Origen_nombre_balanza = string.Empty;
-                                new_pesada.Origen_peso_bruto = 0;
-                                new_pesada.Origen_peso_neto = 0;
-                                new_pesada.Destino_fecha = DateTime.Now;
-                                new_pesada.Destino_lugar = string.Empty;
-                                new_pesada.Destino_nombre_balanza = string.Empty;
-                                new_pesada.Destino_peso_bruto = 0;
-                                new_pesada.Destino_peso_neto = 0;
-                                new_pesada.Comentarios = string.Empty;
-
-                                // Origen
-                                value = 0;
-                                if (!decimal.TryParse(ddlPesadaOrigen2.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
-                                {
+                                    // Destino
                                     value = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, ddlPesadaOrigen2.Text);
-                                }
-                                new_pesada.Origen_peso_neto = value;
-
-                                // Destino
-                                value = 0;
-                                if (!decimal.TryParse(ddlPesadaDestino2.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
-                                {
-                                    value = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, ddlPesadaDestino2.Text);
-                                }
-                                new_pesada.Destino_peso_neto = value;
-
-                                context.pesadas.Add(new_pesada);
-                                context.SaveChanges();
-
-                                int pesada_id = 1;
-                                pesada pesada1 = (pesada)context.pesadas.OrderByDescending(p => p.pesada_ID).FirstOrDefault();
-                                if (pesada1 != null)
-                                {
-                                    pesada_id = pesada1.pesada_ID;
-                                }
-
-                                obj.Pesada_ID = pesada_id;
-
-                                #endregion
-
-                                context.viajes.Add(obj);
-                                context.SaveChanges();
-
-                                #region Guardar log
-                                try
-                                {
-                                    int id = 1;
-                                    viaje viaje = (viaje)context.viajes.OrderByDescending(p => p.Viaje_ID).FirstOrDefault();
-                                    if (viaje != null)
+                                    if (!decimal.TryParse(ddlPesadaDestino2.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                                     {
-                                        id = viaje.Viaje_ID;
+                                        value = 0;
+                                        Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, ddlPesadaDestino2.Text);
+                                    }
+                                    new_pesada.Destino_peso_neto = value;
+
+                                    context.pesadas.Add(new_pesada);
+                                    context.SaveChanges();
+
+                                    int pesada_id = 1;
+                                    pesada pesada1 = (pesada)context.pesadas.OrderByDescending(p => p.pesada_ID).FirstOrDefault();
+                                    if (pesada1 != null)
+                                    {
+                                        pesada_id = pesada1.pesada_ID;
                                     }
 
-                                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                                    string username = HttpContext.Current.Session["UserName"].ToString();
-                                    Global_Objects.Logs.AddUserLog("Agrega viaje", viaje.GetType().Name + ": " + viaje.Viaje_ID, userID1, username);
-                                }
-                                catch (Exception ex)
-                                {
-                                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
-                                }
-                                #endregion
+                                    obj.Pesada_ID = pesada_id;
 
-                                gridViajes_lblMessage.Text = "Agregado correctamente.";
-                                BindGridViajes();
+                                    #endregion
+
+                                    context.viajes.Add(obj);
+                                    context.SaveChanges();
+
+                                    #region Guardar log
+                                    try
+                                    {
+                                        int id = 1;
+                                        viaje viaje = (viaje)context.viajes.OrderByDescending(p => p.Viaje_ID).FirstOrDefault();
+                                        if (viaje != null)
+                                        {
+                                            id = viaje.Viaje_ID;
+                                        }
+
+                                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                                        string username = HttpContext.Current.Session["UserName"].ToString();
+                                        Global_Objects.Logs.AddUserLog("Agrega viaje", viaje.GetType().Name + ": " + viaje.Viaje_ID, userID1, username);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                                    }
+                                    #endregion
+
+                                    gridViajes_lblMessage.Text = "Agregado correctamente.";
+                                    BindGridViajes();
+                                }
                             }
                         }
-                    }
-                    #endregion
+                        #endregion
 
-                    else if (e.CommandName.Equals("View"))
-                    {
-                        string[] values = e.CommandArgument.ToString().Split(new char[] { ',' });
-                        if (values.Length > 1)
+
+
+                        else if (e.CommandName.Equals("View"))
                         {
-                            string tabla = values[0];
-                            string dato = values[1];
-                            if (!string.IsNullOrWhiteSpace(tabla) && !string.IsNullOrWhiteSpace(dato))
+                            string[] values = e.CommandArgument.ToString().Split(new char[] { ',' });
+                            if (values.Length > 1)
                             {
-                                Response.Redirect("Listados.aspx?tabla=" + tabla + "&dato=" + dato);
+                                string tabla = values[0];
+                                string dato = values[1];
+                                if (!string.IsNullOrWhiteSpace(tabla) && !string.IsNullOrWhiteSpace(dato))
+                                {
+                                    Response.Redirect("Listados.aspx?tabla=" + tabla + "&dato=" + dato);
+                                }
                             }
                         }
-                    }
 
+                    }
                 }
             }
         }
@@ -1127,7 +1122,6 @@ namespace Bonisoft_2.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             GridViewRow row = gridViajes.Rows[e.RowIndex];
             TextBox txb2 = row.FindControl("txb2") as TextBox;
             TextBox txb3 = row.FindControl("txb3") as TextBox;
@@ -1142,13 +1136,11 @@ namespace Bonisoft_2.Pages
             DropDownList ddlProveedores2 = row.FindControl("ddlProveedores1") as DropDownList;
             DropDownList ddlClientes2 = row.FindControl("ddlClientes1") as DropDownList;
 
-            TextBox ddlPesadaOrigen2 = row.FindControl("ddlPesadaOrigen1") as TextBox;
             TextBox ddlPesadaDestino2 = row.FindControl("ddlPesadaDestino1") as TextBox;
 
             if (txb2 != null && txb3 != null && txb6 != null && ddlChoferes2 != null && txb15 != null &&
                 txb11 != null && txb12 != null && txb3 != null && ddlCargadores2 != null && ddlCamiones2 != null &&
-                ddlFleteros2 != null && ddlProveedores2 != null && ddlClientes2 != null
-                && ddlPesadaOrigen2 != null && ddlPesadaDestino2 != null)
+                ddlFleteros2 != null && ddlProveedores2 != null && ddlClientes2 != null && ddlPesadaDestino2 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -1259,15 +1251,6 @@ namespace Bonisoft_2.Pages
                         pesada pesada = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_ID);
                         if (pesada != null)
                         {
-                            // Origen
-                            value = pesada.Origen_peso_neto;
-                            if (!decimal.TryParse(ddlPesadaOrigen2.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
-                            {
-                                value = pesada.Origen_peso_neto;
-                                Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, ddlPesadaOrigen2.Text);
-                            }
-                            pesada.Origen_peso_neto = value;
-
                             // Destino
                             value = pesada.Destino_peso_neto;
                             if (!decimal.TryParse(ddlPesadaDestino2.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
@@ -1381,21 +1364,9 @@ namespace Bonisoft_2.Pages
                                     pesada pesada = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == viaje.Pesada_ID);
                                     if (pesada != null)
                                     {
-                                        notif_lblPesoNeto1.InnerText = pesada.Destino_peso_neto.ToString();
-                                        notif_lblPesoNeto2.InnerText = pesada.Destino_peso_neto.ToString();
+                                        notif_Mercaderia1.InnerText = pesada.Destino_peso_neto.ToString();
+                                        notif_Flete1.InnerText = pesada.Destino_peso_neto.ToString();
                                     }
-
-                                    //decimal totalCostos = 0;
-                                    //var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
-                                    //if (elements.Count() > 0)
-                                    //{
-                                    //    foreach (mercaderia_comprada mercaderia in elements)
-                                    //    {
-                                    //        totalCostos += mercaderia.Precio_xTonelada_compra;
-                                    //    }
-                                    //}
-                                    //notif_lblMercaderia.InnerText = totalCostos.ToString();
-
                                 }
 
                                 // http://asp.net-tutorials.com/user-controls/using/
@@ -1803,19 +1774,56 @@ namespace Bonisoft_2.Pages
             }
         }
 
-        private void BindGridViajes()
+        private void BindGridViajes(string date_start = "", string date_end = "")
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                var elements = context.viajes.Where(e => e.EnViaje == false).OrderByDescending(e => e.Fecha_partida).ToList();
-                if (elements.Count() > 0)
-                {
-                    gridViajes.DataSource = elements;
-                    gridViajes.DataBind();
+                // Logger variables
+                System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+                string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+                string methodName = stackFrame.GetMethod().Name;
 
-                    lblGridViajesCount.Text = "# " + elements.Count();
+                bool isResult = false;
+
+                if (!string.IsNullOrWhiteSpace(date_start) && !string.IsNullOrWhiteSpace(date_end))
+                {
+                    DateTime date1 = DateTime.Now;
+                    if (!DateTime.TryParseExact(date_start, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
+                    {
+                        date1 = DateTime.Now;
+                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, date_start);
+                    }
+
+                    DateTime date2 = DateTime.Now;
+                    if (!DateTime.TryParseExact(date_end, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
+                    {
+                        date2 = DateTime.Now;
+                        Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, date_end);
+                    }
+
+                    var elements = context.viajes.Where(e => e.Fecha_partida >= date1 && e.Fecha_partida <= date2).OrderByDescending(e => e.Fecha_partida).ToList();
+                    if (elements.Count() > 0)
+                    {
+                        gridViajes.DataSource = elements;
+                        gridViajes.DataBind();
+
+                        isResult = true;
+                    }
                 }
                 else
+                {
+                    var elements = context.viajes.Where(e => e.EnViaje == false).OrderByDescending(e => e.Fecha_partida).ToList();
+                    if (elements.Count() > 0)
+                    {
+                        gridViajes.DataSource = elements;
+                        gridViajes.DataBind();
+
+                        lblGridViajesCount.Text = "# " + elements.Count();
+                        isResult = true;
+                    }
+                }
+                if (!isResult)
                 {
                     var obj = new List<viaje>();
                     obj.Add(new viaje());
@@ -1947,22 +1955,9 @@ namespace Bonisoft_2.Pages
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
-                    notif_txbPrecioFlete.Text = viaje.precio_flete.ToString();
-                    notif_txbPrecioDescarga.Text = viaje.precio_descarga.ToString();
-                    //notif_txbGananciaXTon.Text = viaje.GananciaXTon.ToString();
-                    notif_txbIVA.Text = viaje.IVA.ToString();
-
-                    // Mercadería
-                    //decimal totalCostos = 0;
-                    //var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje.Viaje_ID).ToList();
-                    //if (elements.Count() > 0)
-                    //{
-                    //    foreach (mercaderia_comprada mercaderia in elements)
-                    //    {
-                    //        totalCostos += mercaderia.Precio_xTonelada_compra;
-                    //    }
-                    //}
-                    //notif_lblMercaderia.InnerText = totalCostos.ToString();
+                    notif_Flete2.Text = viaje.precio_flete.ToString();
+                    notif_Flete3.Text = viaje.IVA.ToString();
+                    notif_Venta2.Text = viaje.precio_descarga.ToString();
 
                     // Cálculo mercadería
                     decimal peso_neto_origen = 0;
@@ -2400,6 +2395,51 @@ namespace Bonisoft_2.Pages
         }
 
         [WebMethod]
+        public static string Get_DatosVenta(string viajeID_str)
+        {
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            string ret = string.Empty;
+            if (!string.IsNullOrWhiteSpace(viajeID_str))
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    int viaje_ID = 0;
+                    if (!int.TryParse(viajeID_str, out viaje_ID))
+                    {
+                        viaje_ID = 0;
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viajeID_str);
+                    }
+
+                    if (viaje_ID > 0)
+                    {
+                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
+                        if (viaje != null)
+                        {
+                            decimal totalCostos = 0;
+                            var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
+                            if (elements.Count() > 0)
+                            {
+                                foreach (mercaderia_comprada mercaderia in elements)
+                                {
+                                    totalCostos += mercaderia.Precio_xTonelada_compra;
+                                }
+                            }
+
+                            ret = viaje.precio_flete + "|" + viaje.IVA + "|" + viaje.precio_descarga + "|" + totalCostos; ;
+
+                        }
+                    }
+                }
+            }
+            return ret;
+        }
+
+        [WebMethod]
         public static int FinDelViaje(string viajeID_str)
         {
             // Logger variables
@@ -2494,6 +2534,51 @@ namespace Bonisoft_2.Pages
         }
 
         [WebMethod]
+        public static void VolverAEnCurso(string viajeID_str)
+        {
+            if (!string.IsNullOrWhiteSpace(viajeID_str))
+            {
+                // Logger variables
+                System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+                string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+                string methodName = stackFrame.GetMethod().Name;
+
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    int viaje_ID = 0;
+                    if (!int.TryParse(viajeID_str, out viaje_ID))
+                    {
+                        viaje_ID = 0;
+                    }
+
+                    if (viaje_ID > 0)
+                    {
+                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
+                        if (viaje != null)
+                        {
+                            viaje.EnViaje = true;
+                            context.SaveChanges();
+
+                            #region Guardar log
+                            try
+                            {
+                                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                                string username = HttpContext.Current.Session["UserName"].ToString();
+                                Global_Objects.Logs.AddUserLog("Vuelve viaje a En curso", viaje.GetType().Name + ": " + viaje.Viaje_ID, userID1, username);
+                            }
+                            catch (Exception ex)
+                            {
+                                Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                            }
+                            #endregion
+                        }
+                    }
+                }
+            }
+        }
+
+        [WebMethod]
         public static int BorrarViajeEnCurso(string viajeID_str, string userID, string clave_str)
         {
             // Logger variables
@@ -2501,7 +2586,6 @@ namespace Bonisoft_2.Pages
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-
 
             int resultado = 0;
             if (!string.IsNullOrWhiteSpace(viajeID_str) && !string.IsNullOrWhiteSpace(userID) && !string.IsNullOrWhiteSpace(clave_str))
@@ -2617,7 +2701,6 @@ namespace Bonisoft_2.Pages
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-
 
             bool ret = false;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
@@ -2893,6 +2976,12 @@ namespace Bonisoft_2.Pages
 
         #endregion Web methods
 
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string date1 = txbFiltro1.Value;
+            string date2 = txbFiltro2.Value;
+            BindGridViajes(date1, date2);
+        }
     }
 }
 

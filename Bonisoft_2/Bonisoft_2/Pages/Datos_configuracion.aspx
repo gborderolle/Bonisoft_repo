@@ -2,7 +2,6 @@
 
 <%@ Register Src="~/User_Controls/Configuracion/Usuarios.ascx" TagPrefix="uc1" TagName="Usuarios" %>
 <%@ Register Src="~/User_Controls/Configuracion/Tipo_lena.ascx" TagPrefix="uc1" TagName="Tipos" %>
-<%@ Register Src="~/User_Controls/Configuracion/Variedad.ascx" TagPrefix="uc1" TagName="Variedades" %>
 <%@ Register Src="~/User_Controls/Configuracion/Formas_pago.ascx" TagPrefix="uc1" TagName="Formas" %>
 <%@ Register Src="~/User_Controls/Configuracion/Camion_ejes.ascx" TagPrefix="uc1" TagName="Ejes" %>
 
@@ -106,19 +105,6 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box" id="divBoxVariedades">
-                        <span class="info-box-icon bg-light-blue"><i class="fa fa-suitcase"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Variedades</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box" id="divBoxFormas">
                         <span class="info-box-icon bg-green"><i class="fa fa-thumbs-o-up"></i></span>
 
@@ -145,11 +131,7 @@
                 </div>
                 <!-- /.col -->
 
-            </div>
-
-            <div id="row_admin" class="row" style="display:none;">
-
-           <div class="col-md-3 col-sm-6 col-xs-12">
+                 <div class="col-md-3 col-sm-6 col-xs-12" id="row_admin" style="display:none;">
                     <div class="info-box" id="divBoxUsuarios">
                         <span class="info-box-icon bg-teal"><i class="fa fa-users"></i></span>
 
@@ -162,6 +144,12 @@
                     <!-- /.info-box -->
                     </div>
                 <!-- /.col -->
+
+            </div>
+
+            <div  class="row" style="display:none;">
+
+          
 
             </div>
 
@@ -206,13 +194,6 @@
                                         <asp:UpdatePanel ID="upTipos" runat="server">
                                             <ContentTemplate>
                                                 <uc1:Tipos runat="server" ID="Tipos" />
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </div>
-                                    <div class="divTables" id="divVariedades" style="display: none;">
-                                        <asp:UpdatePanel ID="upVariedades" runat="server">
-                                            <ContentTemplate>
-                                                <uc1:Variedades runat="server" ID="Variedades" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>

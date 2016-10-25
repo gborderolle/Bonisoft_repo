@@ -29,7 +29,6 @@ function load_tableSorter() {
     // Página Configuración
     $("#gridInternos").tablesorter();
     $("#gridTipos").tablesorter();
-    $("#gridVariedades").tablesorter();
     $("#gridFormas").tablesorter();
     $("#gridEjes").tablesorter();
     $("#gridUsuarios").tablesorter();
@@ -90,7 +89,6 @@ function updateCounts() {
     // Página Configuración
     var internos_count = $("#divContent #hdnInternosCount").val();
     var tipos_count = $("#divContent #hdnTiposCount").val();
-    var variedades_count = $("#divContent #hdnVariedadCount").val();
     var formas_count = $("#divContent #hdnFormaCount").val();
     var ejes_count = $("#divContent #hdnEjesCount").val();
     var hdnUsuarioCount = $("#divContent #hdnUsuarioCount").val();
@@ -107,7 +105,6 @@ function updateCounts() {
     // Página Configuración
     $("#divBoxInternos .info-box-number").text(internos_count);
     $("#divBoxTipos .info-box-number").text(tipos_count);
-    $("#divBoxVariedades .info-box-number").text(variedades_count);
     $("#divBoxFormas .info-box-number").text(formas_count);
     $("#divBoxEjes .info-box-number").text(ejes_count);
     $("#divBoxUsuarios .info-box-number").text(hdnUsuarioCount);
@@ -165,10 +162,6 @@ function show_grid(element) {
             }
             case "tipos": {
                 $("#divTipos").show();
-                break;
-            }
-            case "variedades": {
-                $("#divVariedades").show();
                 break;
             }
             case "formas": {

@@ -1,4 +1,8 @@
-﻿.tr_border{
+﻿.btnVolverAEnCurso{
+    width: inherit !important;
+}
+
+.tr_border{
     border-color: black;
     border-width: thin;
     border-style: dashed;

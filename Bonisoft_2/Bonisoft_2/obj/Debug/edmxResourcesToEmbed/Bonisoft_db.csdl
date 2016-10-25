@@ -71,21 +71,19 @@
     <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" />
     <EntitySet Name="proveedor_mercaderia" EntityType="Self.proveedor_mercaderia" />
     <EntitySet Name="roles_usuario" EntityType="bonisoft_dbModel.roles_usuario" />
-    <EntitySet Name="variedad" EntityType="bonisoft_dbModel.variedad" />
     <EntitySet Name="fleteros" EntityType="bonisoft_dbModel.fletero" />
     <EntitySet Name="proveedores" EntityType="bonisoft_dbModel.proveedor" />
     <EntitySet Name="cargadores" EntityType="bonisoft_dbModel.cargador" />
     <EntitySet Name="procesadores" EntityType="bonisoft_dbModel.procesador" />
-    <EntitySet Name="mercaderia_comprada" EntityType="bonisoft_dbModel.mercaderia_comprada" />
     <EntitySet Name="camion_ejes" EntityType="bonisoft_dbModel.camion_ejes" />
     <EntitySet Name="camiones" EntityType="bonisoft_dbModel.camion" />
-    <EntitySet Name="internos" EntityType="bonisoft_dbModel.interno" />
     <EntitySet Name="cliente_pagos" EntityType="bonisoft_dbModel.cliente_pagos" />
     <EntitySet Name="clientes" EntityType="bonisoft_dbModel.cliente" />
     <EntitySet Name="usuarios" EntityType="bonisoft_dbModel.usuario" />
     <EntitySet Name="logs" EntityType="bonisoft_dbModel.log" />
-    <EntitySet Name="viajes" EntityType="bonisoft_dbModel.viaje" />
     <EntitySet Name="pesadas" EntityType="bonisoft_dbModel.pesada" />
+    <EntitySet Name="mercaderia_comprada" EntityType="bonisoft_dbModel.mercaderia_comprada" />
+    <EntitySet Name="viajes" EntityType="bonisoft_dbModel.viaje" />
   </EntityContainer>
   <EntityType Name="roles_usuario">
     <Key>
@@ -95,15 +93,6 @@
     <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Nivel" Type="Int32" Nullable="false" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="variedad">
-    <Key>
-      <PropertyRef Name="Variedad_ID" />
-    </Key>
-    <Property Name="Variedad_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="Lena_tipo_ID" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="fletero">
     <Key>
@@ -146,19 +135,6 @@
     <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityType Name="mercaderia_comprada">
-    <Key>
-      <PropertyRef Name="Mercaderia_ID" />
-    </Key>
-    <Property Name="Mercaderia_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
-    <Property Name="Variedad_ID" Type="Int32" Nullable="false" />
-    <Property Name="Procesador_ID" Type="Int32" Nullable="false" />
-    <Property Name="Fecha_corte" Type="DateTime" Nullable="false" />
-    <Property Name="Precio_xTonelada_compra" Type="Decimal" Nullable="false" />
-    <Property Name="Precio_xTonelada_venta" Type="Decimal" Nullable="false" />
-    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-  </EntityType>
   <EntityType Name="camion_ejes">
     <Key>
       <PropertyRef Name="Camion_ejes_ID" />
@@ -177,14 +153,6 @@
     <Property Name="Matricula_zorra" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Marca" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Tara" Type="Decimal" Nullable="false" />
-    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="interno">
-    <Key>
-      <PropertyRef Name="Interno_ID" />
-    </Key>
-    <Property Name="Interno_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre_completo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="cliente_pagos">
@@ -243,6 +211,36 @@
     <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Dato" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
+  <EntityType Name="pesada">
+    <Key>
+      <PropertyRef Name="pesada_ID" />
+    </Key>
+    <Property Name="pesada_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Origen_lugar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Origen_fecha" Type="DateTime" Nullable="false" />
+    <Property Name="Origen_nombre_balanza" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Origen_peso_bruto" Type="Decimal" Nullable="false" />
+    <Property Name="Origen_peso_neto" Type="Decimal" Nullable="false" />
+    <Property Name="Destino_lugar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Destino_fecha" Type="DateTime" Nullable="false" />
+    <Property Name="Destino_nombre_balanza" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Destino_peso_bruto" Type="Decimal" Nullable="false" />
+    <Property Name="Destino_peso_neto" Type="Decimal" Nullable="false" />
+    <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="mercaderia_comprada">
+    <Key>
+      <PropertyRef Name="Mercaderia_ID" />
+    </Key>
+    <Property Name="Mercaderia_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
+    <Property Name="Variedad_ID" Type="Int32" Nullable="false" />
+    <Property Name="Procesador_ID" Type="Int32" Nullable="false" />
+    <Property Name="Fecha_corte" Type="DateTime" Nullable="false" />
+    <Property Name="Precio_xTonelada_compra" Type="Decimal" Nullable="false" />
+    <Property Name="Precio_xTonelada_venta" Type="Decimal" Nullable="false" />
+    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
   <EntityType Name="viaje">
     <Key>
       <PropertyRef Name="Viaje_ID" />
@@ -272,22 +270,5 @@
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="EnViaje" Type="Boolean" Nullable="false" />
     <Property Name="Fecha_registro" Type="DateTime" />
-  </EntityType>
-  <EntityType Name="pesada">
-    <Key>
-      <PropertyRef Name="pesada_ID" />
-    </Key>
-    <Property Name="pesada_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Origen_lugar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Origen_fecha" Type="DateTime" Nullable="false" />
-    <Property Name="Origen_nombre_balanza" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Origen_peso_bruto" Type="Decimal" Nullable="false" />
-    <Property Name="Origen_peso_neto" Type="Decimal" Nullable="false" />
-    <Property Name="Destino_lugar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Destino_fecha" Type="DateTime" Nullable="false" />
-    <Property Name="Destino_nombre_balanza" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Destino_peso_bruto" Type="Decimal" Nullable="false" />
-    <Property Name="Destino_peso_neto" Type="Decimal" Nullable="false" />
-    <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

@@ -8,14 +8,12 @@ function load_quicksearch() {
     var gridInternos = $("#gridInternos tbody tr");
     var gridFormas = $("#gridFormas tbody tr");
     var gridTipos = $("#gridTipos tbody tr");
-    var gridVariedades = $("#gridVariedades tbody tr");
     var gridEjes = $("#gridEjes tbody tr");
     var gridUsuarios = $("#gridUsuarios tbody tr");
 
     $("#txbSearch").quicksearch(gridInternos);
     $("#txbSearch").quicksearch(gridFormas);
     $("#txbSearch").quicksearch(gridTipos);
-    $("#txbSearch").quicksearch(gridVariedades);
     $("#txbSearch").quicksearch(gridEjes);
     $("#txbSearch").quicksearch(gridUsuarios);
 }

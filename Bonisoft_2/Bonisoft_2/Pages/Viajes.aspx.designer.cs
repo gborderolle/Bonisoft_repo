@@ -436,49 +436,76 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.TextBox txb_pesadaComentarios;
         
         /// <summary>
-        /// notif_lblPesoNeto1 control.
+        /// notif_Mercaderia1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notif_lblPesoNeto1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notif_Mercaderia1;
         
         /// <summary>
-        /// notif_lblPesoNeto2 control.
+        /// notif_Flete1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notif_lblPesoNeto2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notif_Flete1;
         
         /// <summary>
-        /// notif_txbPrecioFlete control.
+        /// notif_Flete2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox notif_txbPrecioFlete;
+        protected global::System.Web.UI.WebControls.TextBox notif_Flete2;
         
         /// <summary>
-        /// notif_txbIVA control.
+        /// notif_Flete3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox notif_txbIVA;
+        protected global::System.Web.UI.WebControls.TextBox notif_Flete3;
         
         /// <summary>
-        /// notif_txbPrecioDescarga control.
+        /// notif_Venta2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox notif_txbPrecioDescarga;
+        protected global::System.Web.UI.WebControls.TextBox notif_Venta2;
+        
+        /// <summary>
+        /// txbFiltro1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txbFiltro1;
+        
+        /// <summary>
+        /// txbFiltro2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txbFiltro2;
+        
+        /// <summary>
+        /// btnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
         /// upGridViajes control.
@@ -841,15 +868,6 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.HiddenField hdn_modalMercaderia_txbNew7;
         
         /// <summary>
-        /// hdn_modalMercaderia_ddlVariedad2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn_modalMercaderia_ddlVariedad2;
-        
-        /// <summary>
         /// hdn_modalMercaderia_ddlProcesador2 control.
         /// </summary>
         /// <remarks>
@@ -884,15 +902,6 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdn_modalMercaderia_txb7;
-        
-        /// <summary>
-        /// hdn_modalMercaderia_ddlVariedad1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn_modalMercaderia_ddlVariedad1;
         
         /// <summary>
         /// hdn_modalMercaderia_ddlProcesador1 control.

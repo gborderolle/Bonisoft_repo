@@ -145,69 +145,6 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
             #endregion
 
-            #region Fill DDLs
-
-            // Variedad ----------------------------------------------------
-
-            DropDownList ddl = null;
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                ddl = e.Row.FindControl("mercaderias_ddlVariedad1") as DropDownList;
-            }
-            if (e.Row.RowType == DataControlRowType.Footer)
-            {
-                ddl = e.Row.FindControl("mercaderias_ddlVariedad2") as DropDownList;
-            }
-            if (ddl != null)
-            {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                {
-                    DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.variedad.ToList());
-
-                    ddl.DataSource = dt1;
-                    ddl.DataTextField = "Nombre";
-                    ddl.DataValueField = "Variedad_ID";
-                    ddl.DataBind();
-                    ddl.Items.Insert(0, new ListItem("Elegir", "0"));
-
-                }//Add Default Item in the DropDownList
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    ddl.SelectedValue = ((mercaderia_comprada)(e.Row.DataItem)).Variedad_ID.ToString();
-                }
-            }
-
-            #endregion
-
-            #region DDL Default values
-
-            // Variedad ----------------------------------------------------
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                LinkButton lbl = e.Row.FindControl("mercaderias_lbl1") as LinkButton;
-                if (lbl != null)
-                {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-                    {
-                        mercaderia_comprada mercaderia_comprada = (mercaderia_comprada)(e.Row.DataItem);
-                        if (mercaderia_comprada != null)
-                        {
-                            int id = mercaderia_comprada.Variedad_ID;
-                            variedad variedad = (variedad)context.variedad.FirstOrDefault(c => c.Variedad_ID == id);
-                            if (variedad != null)
-                            {
-                                string nombre = variedad.Nombre;
-                                lbl.Text = nombre;
-                                lbl.CommandArgument = "variedades," + nombre;
-                            }
-                        }
-                    }
-                }
-
-            }
-            #endregion
-
         }
 
         protected void gridMercaderias_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -227,14 +164,12 @@ namespace Bonisoft_2.User_Controls.Configuracion
                 //HiddenField hdn_modalMercaderia_txbNew4 = this.Parent.FindControl("hdn_modalMercaderia_txbNew4") as HiddenField;
                 HiddenField hdn_modalMercaderia_txbNew5 = this.Parent.FindControl("hdn_modalMercaderia_txbNew5") as HiddenField;
                 HiddenField hdn_modalMercaderia_txbNew7 = this.Parent.FindControl("hdn_modalMercaderia_txbNew7") as HiddenField;
-                HiddenField hdn_modalMercaderia_ddlVariedad2 = this.Parent.FindControl("hdn_modalMercaderia_ddlVariedad2") as HiddenField;
 
-                if (hdn_modalMercaderia_txbNew5 != null && hdn_modalMercaderia_txbNew7 != null && hdn_modalMercaderia_ddlVariedad2 != null)
+                if (hdn_modalMercaderia_txbNew5 != null && hdn_modalMercaderia_txbNew7 != null)
                 {
                     //string txb4 = hdn_modalMercaderia_txbNew4.Value;
                     string txb5 = hdn_modalMercaderia_txbNew5.Value;
                     string txb7 = hdn_modalMercaderia_txbNew7.Value;
-                    string ddlVariedad2 = hdn_modalMercaderia_ddlVariedad2.Value;
 
                     int viaje_ID = 0;
                     if (!int.TryParse(Viaje_ID1, out viaje_ID))
@@ -259,18 +194,6 @@ namespace Bonisoft_2.User_Controls.Configuracion
                                 }
                             }
                             obj.Precio_xTonelada_compra = valor;
-
-                            #region DDL logic
-
-                            int ddl1 = 0;
-                            if (!int.TryParse(ddlVariedad2, out ddl1))
-                            {
-                                ddl1 = 0;
-                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlVariedad2);
-                            }
-                            obj.Variedad_ID = ddl1;
-
-                            #endregion DDL logic
 
                             #region Datetime logic
 
@@ -364,14 +287,12 @@ namespace Bonisoft_2.User_Controls.Configuracion
             //HiddenField hdn_modalMercaderia_txb4 = this.Parent.FindControl("hdn_modalMercaderia_txb4") as HiddenField;
             HiddenField hdn_modalMercaderia_txb5 = this.Parent.FindControl("hdn_modalMercaderia_txb5") as HiddenField;
             HiddenField hdn_modalMercaderia_txb7 = this.Parent.FindControl("hdn_modalMercaderia_txb7") as HiddenField;
-            HiddenField hdn_modalMercaderia_ddlVariedad1 = this.Parent.FindControl("hdn_modalMercaderia_ddlVariedad1") as HiddenField;
 
-            if (hdn_modalMercaderia_txb5 != null && hdn_modalMercaderia_txb7 != null && hdn_modalMercaderia_ddlVariedad1 != null)
+            if (hdn_modalMercaderia_txb5 != null && hdn_modalMercaderia_txb7 != null)
             {
                 //string txb4 = hdn_modalMercaderia_txb4.Value;
                 string txb5 = hdn_modalMercaderia_txb5.Value;
                 string txb7 = hdn_modalMercaderia_txb7.Value;
-                string ddlVariedad1 = hdn_modalMercaderia_ddlVariedad1.Value;
 
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -386,18 +307,6 @@ namespace Bonisoft_2.User_Controls.Configuracion
                         Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txb5);
                     }
                     obj.Precio_xTonelada_compra = valor;
-
-                    #region DDL logic
-
-                    int ddl1 = obj.Variedad_ID;
-                    if (!int.TryParse(ddlVariedad1, out ddl1))
-                    {
-                        ddl1 = obj.Variedad_ID;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlVariedad1);
-                    }
-                    obj.Variedad_ID = ddl1;
-
-                    #endregion DDL logic
 
                     #region Datetime logic
 

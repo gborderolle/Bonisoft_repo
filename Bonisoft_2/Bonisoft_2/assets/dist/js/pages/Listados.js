@@ -19,7 +19,6 @@ function load_quicksearch() {
     var gridProcesadores = $("#gridProcesadores tbody tr");
     var gridFormas = $("#gridFormas tbody tr");
     var gridTipos = $("#gridTipos tbody tr");
-    var gridVariedades = $("#gridVariedades tbody tr");
     var gridEjes = $("#gridEjes tbody tr");
 
     $("#txbSearch").quicksearch(gridCamiones);
@@ -33,7 +32,6 @@ function load_quicksearch() {
     $("#txbSearch").quicksearch(gridProcesadores);
     $("#txbSearch").quicksearch(gridFormas);
     $("#txbSearch").quicksearch(gridTipos);
-    $("#txbSearch").quicksearch(gridVariedades);
     $("#txbSearch").quicksearch(gridEjes);
 }
 
@@ -82,10 +80,6 @@ function show_tabla() {
 
                 case "tipos": {
                     $("#divTipos").show();
-                    break;
-                }
-                case "variedades": {
-                    $("#divVariedades").show();
                     break;
                 }
                 case "formas": {
