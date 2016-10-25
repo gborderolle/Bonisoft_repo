@@ -36,13 +36,13 @@
 
                 <div class="row" style="padding: 20px; padding-top: 3px">
                     <div class="input-group pull-right">
-                        <input type="text" id="txbFiltro1" class="form-control datepicker" placeholder="Desde" runat="server">
+                        <input type="text" id="txbFiltro1" class="form-control datepicker" placeholder="Desde" runat="server" style="width: 120px;">
                         <span class="input-group-btn"></span>
 
-                        <input type="text" id="txbFiltro2" class="form-control datepicker" placeholder="Hasta" runat="server">
+                        <input type="text" id="txbFiltro2" class="form-control datepicker" placeholder="Hasta" runat="server" style="width: 120px;">
                         <span class="input-group-btn"></span>
 
-                        <asp:Button ID="btnSearch" runat="server" Text="Buscar" CssClass="btn btnUpdate btn-sm"
+                        <asp:Button ID="btnSearch" runat="server" Text="Filtrar" CssClass="btn btnUpdate btn-sm"
                             OnClick="btnSearch_Click" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" />
                     </div>
                 </div>
