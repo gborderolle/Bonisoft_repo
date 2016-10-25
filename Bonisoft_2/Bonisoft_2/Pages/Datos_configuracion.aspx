@@ -29,7 +29,6 @@
     <link rel="stylesheet" href="/assets/plugins/daterangepicker/daterangepicker.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-    
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="SubbodyContent" runat="server">

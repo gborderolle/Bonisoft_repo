@@ -286,7 +286,7 @@
                                         <ul>
                                             <li><a href="#tabsNotificaciones_1" class="tabViajes">#1 Mercaderías</a></li>
                                             <li><a href="#tabsNotificaciones_2" class="tabViajes">#2 Pesadas</a></li>
-                                            <li><a href="#tabsNotificaciones_3" class="tabViajes">#3 Venta</a></li>
+                                            <li><a href="#tabsNotificaciones_3" class="tabViajes" onclick="calcularPrecioVenta();">#3 Venta</a></li>
                                         </ul>
 
                                         <div id="tabsNotificaciones_1">
@@ -391,50 +391,49 @@
 
                                         <div id="tabsNotificaciones_3">
 
-                                            <%--<h4>Precio de venta</h4>--%>
-
                                             <div class="modal-body panel panel-default" style="padding: 0; position: inherit; background: #e9e9e9; color: #333333;">
                                                 <table class="table" style="margin-bottom: 0;">
 
+                                                    <%-- 1) Cálculo Precio Mercadería ****************************************** --%>
                                                     <tr class="tr_border">
                                                         <td>
-                                                            <h4>Cálculo Precio Mercadería</h4>
+                                                            <h4>1) Cálculo Precio Mercadería</h4>
                                                         </td>
-
                                                         <td>Peso neto: 
-                                                            <h3 style="margin: 0;"><label runat="server" id="notif_lblPesoNeto1" class="notif_lblPesoNeto label label-default">0</label></h3>
+                                                            <h3 style="margin: 0;">
+                                                                <label runat="server" id="notif_lblPesoNeto1" class="notif_lblPesoNeto label label-default">0</label></h3>
                                                         </td>
                                                         <td>X Precio Mercadería: 
-                                                            <h3 style="margin: 0;"><label runat="server" id="notif_lblMercaderia" class="label label-default">0</label></h3>
+                                                            <h3 style="margin: 0;">
+                                                                <label id="notif_lblMercaderia" class="label label-default">0</label></h3>
                                                         </td>
                                                         <td></td>
-                                                        <td></td>
                                                         <td>=</td>
-
                                                         <td>
                                                             <h3>
-                                                                <label runat="server" id="notif_lblPrecioMercaderia" class="label label-warning">0</label></h3>
+                                                                <label id="notif_lblPrecioMercaderia" class="label label-warning">0</label></h3>
                                                         </td>
                                                     </tr>
 
+                                                    <%-- 2) Cálculo Precio Flete ****************************************** --%>
                                                     <tr class="tr_border">
                                                         <td>
-                                                            <h4>Cálculo Precio Flete</h4>
+                                                            <h4>2) Cálculo Precio Flete</h4>
                                                         </td>
-
                                                         <td>Peso neto: 
-                                                            <h3 style="margin: 0;"><label runat="server" id="notif_lblPesoNeto2" class="notif_lblPesoNeto label label-default">0</label></h3>
+                                                            <h3 style="margin: 0;">
+                                                                <label runat="server" id="notif_lblPesoNeto2" class="notif_lblPesoNeto label label-default">0</label></h3>
                                                         </td>
-                                                        
                                                         <td>X Precio Flete: 
                                                              <asp:TextBox ID="notif_txbPrecioFlete" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="31" Width="100"></asp:TextBox>
-                                                            <asp:CompareValidator ForeColor="Red" ID="vnotif_txbPrecioFlete" runat="server" ControlToValidate="notif_txbPrecioFlete" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
+                                                            <%--<asp:CompareValidator ForeColor="Red" ID="vnotif_txbPrecioFlete" runat="server" ControlToValidate="notif_txbPrecioFlete" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />--%>
+
+                                                            <%--<asp:RequiredFieldValidator runat="server" ID="notif_txbPrecioFlete1" Display="Dynamic" ControlToValidate="notif_txbPrecioFlete" ErrorMessage="Required!" />--%>
+                                                            <%--<asp:RegularExpressionValidator ID="notif_txbPrecioFlete2" runat="server" ControlToValidate="notif_txbPrecioFlete" EnableClientScript="True" ErrorMessage="Se admiten sólo números" Display="Dynamic" ForeColor="Red" ValidationExpression="(\d{1,3}(,\d{3})*\.\d{2})|(\d+(\.\d{2})?)" />--%>
                                                         </td>
-                                                        <td>+ 
-                                                        </td>
-                                                        <td>% IVA (0 = no aplica): 
+                                                        <td>+ % IVA (0 = no aplica): 
                                                                 <asp:TextBox ID="notif_txbIVA" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="34" Width="100"></asp:TextBox>
-                                                            <asp:CompareValidator ForeColor="Red" ID="vnotif_txbIVA" runat="server" ControlToValidate="notif_txbIVA" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
+                                                            <%--<asp:CompareValidator ForeColor="Red" ID="vnotif_txbIVA" runat="server" ControlToValidate="notif_txbIVA" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />--%>
                                                         </td>
                                                         <td>=
                                                         </td>
@@ -442,37 +441,23 @@
                                                             <h3>
                                                                 <label id="notif_lblPrecioFlete" class="label label-warning">0</label></h3>
                                                         </td>
-
                                                     </tr>
 
+                                                    <%-- 13) Cálculo Precio de Venta ****************************************** --%>
                                                     <tr class="tr_border">
                                                         <td>
-                                                            <h4>Cálculo Precio de Venta</h4>
+                                                            <h4>3) Cálculo Precio de Venta</h4>
                                                         </td>
                                                         <td>Mercadería + Flete: 
-                                                            <h3 style="margin: 0;"><label id="notif_lblMercaderiaFlete" class="label label-default">0</label></h3>
-
+                                                            <h3 style="margin: 0;">
+                                                                <label id="notif_lblMercaderiaFlete" class="label label-default">0</label></h3>
                                                         </td>
-
                                                         <td>+ Precio de descarga: 
                                                         <asp:TextBox ID="notif_txbPrecioDescarga" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="32" Width="100"></asp:TextBox>
-                                                            <asp:CompareValidator ForeColor="Red" ID="vnotif_txbPrecioDescarga" runat="server" ControlToValidate="notif_txbPrecioDescarga" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
+                                                            <%--<asp:CompareValidator ForeColor="Red" ID="vnotif_txbPrecioDescarga" runat="server" ControlToValidate="notif_txbPrecioDescarga" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />--%>
                                                         </td>
-
-                                                        
-                                                        <td>
-                                                       
-                                                        </td>
-
-                                                        <%--<td>Ganancia por TON: 
-                                                        <asp:TextBox ID="notif_txbGananciaXTon" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="33"></asp:TextBox>
-                                                            <asp:CompareValidator ForeColor="Red" ID="vnotif_txbGananciaXTon" runat="server" ControlToValidate="notif_txbGananciaXTon" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
-                                                        </td>--%>
-                                                        <td>
-                                                            <%--<a class="btn btn-default" style="color: black;" onclick="calcularPrecioVenta();">Calcular</a>--%>
-                                                        </td>
-                                                        <td>
-                                                            =
+                                                        <td></td>
+                                                        <td>=
                                                         </td>
                                                         <td>
                                                             <h2>
@@ -486,14 +471,13 @@
                                                 <hr style="margin-top: 5px; margin-bottom: 5px;" />
                                                 <div class="row" style="margin: 0;">
                                                     <div class="col-md-9 pull-left" style="padding: 10px;">
-                                                        <p class="text-info">1) Precio de compra = Peso neto destino * Precio por tonelada de todas las mercaderías.</p>
-                                                        <p class="text-info">2) Precio de venta = Precio de compra + Flete + Descarga + Ganancia + % IVA.</p>
+                                                        <p class="text-info">NOTA: Para los números decimales usar "puntos", no "comas". Ej: 1.2</p>
                                                     </div>
 
                                                     <div class="col-md-3 pull-right" style="padding: 10px;">
-                                                        <a class="btn btn-default" style="color: black;" onclick="calcularPrecioVenta();">Calcular</a>
+                                                        <a class="btn btn-default" style="color: black;" onclick="calcularPrecioVenta();">Recalcular</a>
 
-                                                        <a id="lnkGuardarPrecioVenta" class="btn btn-primary" style="margin-left:30px;" onclick="GuardarPrecioVenta()">Guardar</a>
+                                                        <a id="lnkGuardarPrecioVenta" class="btn btn-primary" style="margin-left: 30px;" onclick="GuardarPrecioVenta()">Guardar</a>
                                                     </div>
                                                 </div>
 
@@ -518,8 +502,6 @@
                 <div id="tabsViajes_2">
 
                     <div class="row">
-
-
 
                         <div class="col-md-12">
                             <div class="row">
@@ -762,7 +744,6 @@
                             </div>
 
                         </div>
-
 
                     </div>
 

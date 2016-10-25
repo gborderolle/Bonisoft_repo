@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
     load_quicksearch();
-
     check_admin();
 });
 
@@ -49,7 +48,5 @@ function check_admin() {
 
             }
         }); // Ajax
-
-
     }
 }

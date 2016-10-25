@@ -68,17 +68,18 @@
                 }
             }
         </script>
-<!-- GENERAL SCRIPTS -->
-    <%--<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>--%>
-    <script src="/assets/dist/js/jquery-ui.js"></script>
 
-     <!-- PAGE SCRIPTS -->
-    <script src="/assets/dist/js/pages/Master.js"></script>
-    <script src="/assets/dist/js/moment.js"></script>
-    <script src="/ExternalResources/Alert_Messages.js"></script>
+        <!-- GENERAL SCRIPTS -->
 
-         <asp:ContentPlaceHolder ID="SubbodyContent" runat="server">
+        <%--<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>--%>
+        <script type="text/javascript" src="/assets/dist/js/jquery-ui.js"></script>
 
+        <!-- PAGE SCRIPTS -->
+        <script type="text/javascript" src="/assets/dist/js/pages/Master.js"></script>
+        <script type="text/javascript" src="/assets/dist/js/moment.js"></script>
+        <script type="text/javascript" src="/ExternalResources/Alert_Messages.js"></script>
+
+        <asp:ContentPlaceHolder ID="SubbodyContent" runat="server">
         </asp:ContentPlaceHolder>
 
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -96,9 +97,9 @@
                         <li><a runat="server" href="/Pages/Viajes">Viajes</a></li>
                         <li><a runat="server" href="/Pages/Datos">Base de Datos</a></li>
                         <li><a runat="server" href="/Pages/Resumen_clientes">Resumen de Clientes</a></li>
-                        <li><a runat="server" href="/Pages/Menu_logs">Menú de Logs</a></li>
+                        <li><a runat="server" id="aMenuLogs" clientidmode="Static" style="display:none;" href="/Pages/Menu_logs">Menú de Logs</a></li>
                         <%--<li><a runat="server" href="~/">Inicio</a></li>--%>
-                       <%-- <li><a runat="server" href="/Pages/Recordatorios">Recordatorios</a></li>
+                        <%-- <li><a runat="server" href="/Pages/Recordatorios">Recordatorios</a></li>
                         <li><a runat="server" href="/Pages/Contabilidad">Contabilidad</a></li>
                         <li><a runat="server" href="/Pages/Registros">Registros</a></li>
                         <li><a runat="server" href="/Pages/Ajustes">Ajustes</a></li>--%>
@@ -111,7 +112,7 @@
                                 <li><a runat="server" href="~/Login">Salir</a></li>
                             </ul>
                         </AnonymousTemplate>
-                       <%-- <LoggedInTemplate>
+                        <%-- <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                 <li>

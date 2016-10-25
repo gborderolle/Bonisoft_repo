@@ -21,11 +21,10 @@ namespace Bonisoft_2.Pages
         public static bool CheckUserAdmin(string userID_str)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-
 
             bool isAdmin = false;
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())

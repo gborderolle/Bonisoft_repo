@@ -672,67 +672,75 @@ function calcularPrecioVenta() {
 
         var viajeID_str = hdn_notificaciones_viajeID.val();
 
-        // Ajax call parameters
-        console.log("Ajax call: Viajes.aspx/Check_Pesadas. Params:");
-        console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
-        
-        // Check existen pesadas
-        $.ajax({
-            type: "POST",
-            url: "Viajes.aspx/Check_Pesadas",
-            data: '{viajeID_str: "' + viajeID_str + '"}',
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (response) {
-                var ok = response.d;
-                if (ok) {
+        var notif_txbPrecioFlete = $("#notif_txbPrecioFlete");
+        var notif_txbPrecioDescarga = $("#notif_txbPrecioDescarga");
+        var notif_txbIVA = $("#notif_txbIVA");
+        var notif_lblPrecioVenta = $("label[id*='notif_lblPrecioVenta']");
 
-                    //var notif_lblPrecioCompra = $("label[id*='notif_lblPrecioCompra']");
-                    var notif_txbPrecioFlete = $("#notif_txbPrecioFlete");
-                    var notif_txbPrecioDescarga = $("#notif_txbPrecioDescarga");
-                    //var notif_txbGananciaXTon = $("#notif_txbGananciaXTon");
-                    var notif_txbIVA = $("#notif_txbIVA");
-                    var notif_lblPrecioVenta = $("label[id*='notif_lblPrecioVenta']");
+        var txb_pesada1Peso_neto = $("#txb_pesada1Peso_neto");
+        var txb_pesada2Peso_neto = $("#txb_pesada2Peso_neto");
 
-                    var txb_pesada1Peso_neto = $("#txb_pesada1Peso_neto");
-                    var txb_pesada2Peso_neto = $("#txb_pesada2Peso_neto");
+        if (notif_txbPrecioFlete !== null && notif_txbPrecioFlete.val() !== null && notif_txbPrecioFlete.val().length > 0 &&
+        notif_txbPrecioDescarga !== null && notif_txbPrecioDescarga.val() !== null && notif_txbPrecioDescarga.val().length > 0 &&
+        notif_txbIVA !== null && notif_txbIVA.val() !== null && notif_txbIVA.val().length > 0 &&
+        txb_pesada1Peso_neto !== null && txb_pesada2Peso_neto !== null &&
+        notif_lblPrecioVenta !== null) {
 
-                    //if (notif_lblPrecioCompra !== null && notif_lblPrecioCompra.text() !== null && notif_lblPrecioCompra.text().length > 0 &&
-                    if(notif_txbPrecioFlete !== null && notif_txbPrecioFlete.val() !== null && notif_txbPrecioFlete.val().length > 0 &&
-                    notif_txbPrecioDescarga !== null && notif_txbPrecioDescarga.val() !== null && notif_txbPrecioDescarga.val().length > 0 &&
-                    //notif_txbGananciaXTon !== null && notif_txbGananciaXTon.val() !== null && notif_txbGananciaXTon.val().length > 0 &&
-                    notif_txbIVA !== null && notif_txbIVA.val() !== null && notif_txbIVA.val().length > 0 &&
-                    txb_pesada1Peso_neto !== null && txb_pesada2Peso_neto !== null && 
-                    notif_lblPrecioVenta !== null) {
+            // Obtengo strings
+            var precioFlete_str = notif_txbPrecioFlete.val();
+            var precioDescarga_str = notif_txbPrecioDescarga.val();
+            var IVA_str = notif_txbIVA.val();
+            var peso_neto_origen_str = txb_pesada1Peso_neto.val();
+            var peso_neto_destino_str = txb_pesada2Peso_neto.val();
 
-                        //var precioCompra_str = notif_lblPrecioCompra.text();
-                        var precioFlete_str = notif_txbPrecioFlete.val();
-                        var precioDescarga_str = notif_txbPrecioDescarga.val();
-                        //var gananciaXTon_str = notif_txbGananciaXTon.val();
-                        var IVA_str = notif_txbIVA.val();
+            // Parseo valores
+            var precioFlete = TryParseFloat(precioFlete_str, 0);
+            var precioDescarga = TryParseFloat(precioDescarga_str, 0);
+            var IVA = TryParseInt(IVA_str, 0);
+            var peso_neto_origen = TryParseFloat(peso_neto_origen_str, 0);
+            var peso_neto_destino = TryParseFloat(peso_neto_destino_str, 0);
 
-                        var peso_neto_origen_str = txb_pesada1Peso_neto.val();
-                        var peso_neto_destino_str = txb_pesada2Peso_neto.val();
+            // Si no tiene peso neto destino, tomo peso neto origen
+            if (peso_neto_destino === 0) {
+                peso_neto_destino = peso_neto_origen;
+            }
+            if (peso_neto_destino !== 0) {
 
-                        //var precioCompra = TryParseFloat(precioCompra_str, 0);
-                        var precioFlete = TryParseFloat(precioFlete_str, 0);
-                        var precioDescarga = TryParseFloat(precioDescarga_str, 0);
-                        //var gananciaXTon = TryParseFloat(gananciaXTon_str, 0);
-                        var IVA = TryParseInt(IVA_str, 0);
+                // 1- Lógica Cálculo Precio Mercadería ------------------------------------------------------
 
-                        var peso_neto_origen = TryParseFloat(peso_neto_origen_str, 0);
-                        var peso_neto_destino = TryParseFloat(peso_neto_destino_str, 0);
+                // Ajax call parameters
+                console.log("Ajax call: Viajes.aspx/Get_CostoMercaderias. Params:");
+                console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
 
-                        if (peso_neto_destino === 0) {
-                            peso_neto_destino = peso_neto_origen;
-                        }
-                        if (peso_neto_destino !== 0) {
-                            //var ganancia_final = gananciaXTon * peso_neto_destino;
-                            //var precio_venta = precioCompra + precioFlete + precioDescarga + ganancia_final;
+                // Obtengo costos de mercaderias
+                $.ajax({
+                    type: "POST",
+                    url: "Viajes.aspx/Get_CostoMercaderias",
+                    data: '{viajeID_str: "' + viajeID_str + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        var costo_mercaderias = response.d;
+                        if (costo_mercaderias > 0) {
+                            //var notif_lblMercaderia = $("label[id*=notif_lblMercaderia]");
+                            var notif_lblMercaderia = $("#notif_lblMercaderia");
+                            if (notif_lblMercaderia != null) {
 
-                            // Calcular precio flete **************************************************
+                                var final_value = Math.round(costo_mercaderias * 100) / 100;
+                                notif_lblMercaderia.text(final_value);
 
-                            // Llenar campos de Peso neto
+                                // Set SUB-TOTAL
+                                var notif_lblPrecioMercaderia = $("#notif_lblPrecioMercaderia");
+                                if (notif_lblPrecioMercaderia != null) {
+                                    var value = peso_neto_destino + final_value;
+                                    final_value = Math.round(value * 100) / 100;
+                                    notif_lblPrecioMercaderia.text(final_value);
+                                }
+                            }
+
+                            // 2- Lógica Cálculo Precio Flete ------------------------------------------------------
+
+                            // Actualizo campos de Peso neto
                             var notif_lblPesoNeto = $(".notif_lblPesoNeto");
                             if (notif_lblPesoNeto != null) {
                                 notif_lblPesoNeto.text(peso_neto_destino);
@@ -740,7 +748,7 @@ function calcularPrecioVenta() {
 
                             // Calcular precio flete
                             var calculo_precio_flete = peso_neto_destino * precioFlete;
-                            
+
                             if (IVA > 0) {
                                 var IVA_solo = calculo_precio_flete * IVA / 100;
                                 calculo_precio_flete = calculo_precio_flete + IVA_solo;
@@ -748,14 +756,17 @@ function calcularPrecioVenta() {
 
                             var notif_lblPrecioFlete = $("#notif_lblPrecioFlete");
                             if (notif_lblPrecioFlete != null) {
-                                notif_lblPrecioFlete.text(calculo_precio_flete);
+
+                                // Set SUB-TOTAL
+                                var final_value = Math.round(calculo_precio_flete * 100) / 100;
+                                notif_lblPrecioFlete.text(final_value);
                             }
 
-                            // Calcular precio de venta **************************************************
+                            // 3- Lógica Cálculo Precio Venta ------------------------------------------------------
 
                             var notif_lblMercaderiaFlete_int = 0;
                             var notif_lblPrecioMercaderia_int = 0;
-                            var notif_lblPrecioMercaderia = $("label[id*=notif_lblPrecioMercaderia]");
+                            var notif_lblPrecioMercaderia = $("#notif_lblPrecioMercaderia");
                             if (notif_lblPrecioMercaderia != null) {
                                 notif_lblPrecioMercaderia_int = TryParseFloat(notif_lblPrecioMercaderia.text(), 0);
 
@@ -764,35 +775,33 @@ function calcularPrecioVenta() {
                                 }
 
                             }
-                            
+
                             var notif_lblMercaderiaFlete = $("label[id*=notif_lblMercaderiaFlete]");
                             if (notif_lblMercaderiaFlete != null) {
                                 notif_lblMercaderiaFlete.text(notif_lblMercaderiaFlete_int);
                             }
 
-                            notif_lblPrecioVenta.text(notif_lblMercaderiaFlete_int + precioDescarga);
+                            // Set SUB-TOTAL
+                            var value = notif_lblMercaderiaFlete_int + precioDescarga;
+                            var final_value = Math.round(value * 100) / 100;
+                            notif_lblPrecioVenta.text(final_value);
 
-                           
-
-                        } else {
-                            show_message_info('Error_DatosPesadas');
                         }
-                        
+                    }, // end success
+                    failure: function (response) {
+                        show_message_info('Error_Datos');
+
                     }
-                    else {
-                        show_message_info('Error_DatosPrecioVenta');
-                    }
+                }); // Ajax
 
-                } else {
-                    show_message_info('Error_DatosPesadas');
-                }
-
-            }, // end success
-            failure: function (response) {
-                show_message_info('Error_Datos');
-
+            } else {
+                show_message_info('Error_DatosPesadas');
             }
-        });
+
+        }
+        else {
+            show_message_info('Error_DatosPrecioVenta');
+        }
 
     }
 }
@@ -1016,10 +1025,11 @@ function FinDelViaje() {
 
 function GuardarPrecioVenta() {
 
+    calcularPrecioVenta();
+
     var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID").val();
     var notif_txbPrecioFlete = $("#notif_txbPrecioFlete").val();
     var notif_txbPrecioDescarga = $("#notif_txbPrecioDescarga").val();
-    var notif_txbGananciaXTon = $("#notif_txbGananciaXTon").val();
     var notif_txbIVA = $("#notif_txbIVA").val();
     var txb_pesada2Peso_neto = $("#txb_pesada2Peso_neto").val();
 
@@ -1038,14 +1048,12 @@ function GuardarPrecioVenta() {
                     // Check datos venta
                     if (notif_txbPrecioFlete !== null && notif_txbPrecioFlete.length > 0 &&
                     notif_txbPrecioDescarga !== null && notif_txbPrecioDescarga.length > 0 &&
-                    notif_txbGananciaXTon !== null && notif_txbGananciaXTon.length > 0 &&
                     notif_txbIVA !== null && notif_txbIVA.length > 0) {
 
                         var viajeID = hdn_notificaciones_viajeID;
 
                         var precioFlete_str = notif_txbPrecioFlete;
                         var precioDescarga_str = notif_txbPrecioDescarga;
-                        var gananciaXTon_str = notif_txbGananciaXTon;
                         var IVA_str = notif_txbIVA;
 
                         if (precio_venta_str !== "" && precio_venta_str !== "0") {
@@ -1055,14 +1063,13 @@ function GuardarPrecioVenta() {
                             console.log("viajeID, type: " + type(viajeID) + ", value: " + viajeID);
                             console.log("precioFlete_str, type: " + type(precioFlete_str) + ", value: " + precioFlete_str);
                             console.log("precioDescarga_str, type: " + type(precioDescarga_str) + ", value: " + precioDescarga_str);
-                            console.log("gananciaXTon_str, type: " + type(gananciaXTon_str) + ", value: " + gananciaXTon_str);
                             console.log("IVA_str, type: " + type(IVA_str) + ", value: " + IVA_str);
                             console.log("precio_venta_str, type: " + type(precio_venta_str) + ", value: " + precio_venta_str);
 
                             $.ajax({
                                 type: "POST",
                                 url: "Viajes.aspx/GuardarPrecioVenta",
-                                data: '{viajeID: "' + viajeID + '",precioFlete_str: "' + precioFlete_str + '",precioDescarga_str: "' + precioDescarga_str + '",gananciaXTon_str: "' + gananciaXTon_str + '", ' +
+                                data: '{viajeID: "' + viajeID + '",precioFlete_str: "' + precioFlete_str + '",precioDescarga_str: "' + precioDescarga_str + '", ' +
                                     'IVA_str: "' + IVA_str + '", precio_venta_str: "' + precio_venta_str + '"}',
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",

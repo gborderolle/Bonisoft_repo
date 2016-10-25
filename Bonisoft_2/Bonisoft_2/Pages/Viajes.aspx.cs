@@ -243,7 +243,7 @@ namespace Bonisoft_2.Pages
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click1", "<script type='text/javascript'>show_message_info('Error_DatosMercaderias'); </script>", false);
 
                             FillData_Pesadas(viaje);
-                            FillData_Ventas(viaje);
+                            //FillData_Ventas(viaje);
                         }
                         if (save_ok)
                         {
@@ -254,7 +254,7 @@ namespace Bonisoft_2.Pages
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click2", "<script type='text/javascript'>show_message_info('Error_DatosPesadas'); </script>", false);
 
                                 FillData_Pesadas(viaje);
-                                FillData_Ventas(viaje);
+                                //FillData_Ventas(viaje);
                             }
                         }
                         if (save_ok)
@@ -266,7 +266,7 @@ namespace Bonisoft_2.Pages
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click4", "<script type='text/javascript'>show_message_info('Error_DatosPrecioVenta'); </script>", false);
 
                                 FillData_Pesadas(viaje);
-                                FillData_Ventas(viaje);
+                                //FillData_Ventas(viaje);
                             }
                         }
 
@@ -356,7 +356,7 @@ namespace Bonisoft_2.Pages
                         if (viaje != null)
                         {
                             FillData_Pesadas(viaje);
-                            FillData_Ventas(viaje);
+                            //FillData_Ventas(viaje);
                         }
                     }
                 }
@@ -1385,16 +1385,16 @@ namespace Bonisoft_2.Pages
                                         notif_lblPesoNeto2.InnerText = pesada.Destino_peso_neto.ToString();
                                     }
 
-                                    decimal totalCostos = 0;
-                                    var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
-                                    if (elements.Count() > 0)
-                                    {
-                                        foreach (mercaderia_comprada mercaderia in elements)
-                                        {
-                                            totalCostos += mercaderia.Precio_xTonelada_compra;
-                                        }
-                                    }
-                                    notif_lblMercaderia.InnerText = totalCostos.ToString();
+                                    //decimal totalCostos = 0;
+                                    //var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
+                                    //if (elements.Count() > 0)
+                                    //{
+                                    //    foreach (mercaderia_comprada mercaderia in elements)
+                                    //    {
+                                    //        totalCostos += mercaderia.Precio_xTonelada_compra;
+                                    //    }
+                                    //}
+                                    //notif_lblMercaderia.InnerText = totalCostos.ToString();
 
                                 }
 
@@ -1405,7 +1405,7 @@ namespace Bonisoft_2.Pages
                                 Mercaderias.BindGrid();
 
                                 FillData_Pesadas(viaje);
-                                FillData_Ventas(viaje);
+                                //FillData_Ventas(viaje);
 
                                 //BindGridViajes();
 
@@ -1953,16 +1953,16 @@ namespace Bonisoft_2.Pages
                     notif_txbIVA.Text = viaje.IVA.ToString();
 
                     // Mercadería
-                    decimal totalCostos = 0;
-                    var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje.Viaje_ID).ToList();
-                    if (elements.Count() > 0)
-                    {
-                        foreach (mercaderia_comprada mercaderia in elements)
-                        {
-                            totalCostos += mercaderia.Precio_xTonelada_compra;
-                        }
-                    }
-                    notif_lblMercaderia.InnerText = totalCostos.ToString();
+                    //decimal totalCostos = 0;
+                    //var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje.Viaje_ID).ToList();
+                    //if (elements.Count() > 0)
+                    //{
+                    //    foreach (mercaderia_comprada mercaderia in elements)
+                    //    {
+                    //        totalCostos += mercaderia.Precio_xTonelada_compra;
+                    //    }
+                    //}
+                    //notif_lblMercaderia.InnerText = totalCostos.ToString();
 
                     // Cálculo mercadería
                     decimal peso_neto_origen = 0;
@@ -1983,8 +1983,8 @@ namespace Bonisoft_2.Pages
                         }
                     }
 
-                    decimal precio_mercaderia = totalCostos * peso_neto_destino;
-                    notif_lblPrecioMercaderia.InnerText = precio_mercaderia.ToString();
+                    //decimal precio_mercaderia = totalCostos * peso_neto_destino;
+                    //notif_lblPrecioMercaderia.InnerText = precio_mercaderia.ToString();
 
                     string precio_venta_str = viaje.precio_venta.ToString();
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "FillData_Ventas", "<script type='text/javascript'>$('#notif_lblPrecioVenta').text(" + precio_venta_str + "); </script>", false);
@@ -2072,8 +2072,7 @@ namespace Bonisoft_2.Pages
         #region Web methods
 
         [WebMethod]
-        public static bool GuardarPrecioVenta(string viajeID, string precioFlete_str, string precioDescarga_str, string gananciaXTon_str,
-            string IVA_str, string precio_venta_str)
+        public static bool GuardarPrecioVenta(string viajeID, string precioFlete_str, string precioDescarga_str, string IVA_str, string precio_venta_str)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -2081,11 +2080,10 @@ namespace Bonisoft_2.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             bool save_ok = false;
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                if (!string.IsNullOrWhiteSpace(viajeID) && precioFlete_str != null && precioDescarga_str != null && gananciaXTon_str != null &&
+                if (!string.IsNullOrWhiteSpace(viajeID) && precioFlete_str != null && precioDescarga_str != null &&
                     IVA_str != null && precio_venta_str != null)
                 {
                     int viajeID_value = 0;
@@ -2119,15 +2117,7 @@ namespace Bonisoft_2.Pages
                                     Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, precioDescarga_str);
                                 }
                             }
-                            decimal gananciaXTon = 0;
-                            if (!string.IsNullOrWhiteSpace(gananciaXTon_str))
-                            {
-                                if (!decimal.TryParse(gananciaXTon_str, NumberStyles.Number, CultureInfo.InvariantCulture, out gananciaXTon))
-                                {
-                                    gananciaXTon = 0;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, gananciaXTon_str);
-                                }
-                            }
+                            
                             int IVA = 0;
                             if (!string.IsNullOrWhiteSpace(IVA_str))
                             {
@@ -2153,7 +2143,6 @@ namespace Bonisoft_2.Pages
 
                                 viaje.precio_flete = precioFlete;
                                 viaje.precio_descarga = precioDescarga;
-                                viaje.GananciaXTon = gananciaXTon;
                                 viaje.IVA = IVA;
 
                                 context.SaveChanges();
@@ -2368,7 +2357,7 @@ namespace Bonisoft_2.Pages
         }
 
         [WebMethod]
-        public static bool Check_Pesadas(string viajeID_str)
+        public static decimal Get_CostoMercaderias(string viajeID_str)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -2376,8 +2365,7 @@ namespace Bonisoft_2.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
-            bool check_ok = false;
+            decimal costo_mercaderias = 0;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -2394,12 +2382,21 @@ namespace Bonisoft_2.Pages
                         viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                         if (viaje != null)
                         {
-                            check_ok = viaje.Pesada_ID > 0;
+                            decimal totalCostos = 0;
+                            var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
+                            if (elements.Count() > 0)
+                            {
+                                foreach (mercaderia_comprada mercaderia in elements)
+                                {
+                                    totalCostos += mercaderia.Precio_xTonelada_compra;
+                                }
+                                costo_mercaderias = totalCostos;
+                            }
                         }
                     }
                 }
             }
-            return check_ok;
+            return costo_mercaderias;
         }
 
         [WebMethod]

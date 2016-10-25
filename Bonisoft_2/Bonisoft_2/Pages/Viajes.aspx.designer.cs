@@ -445,24 +445,6 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl notif_lblPesoNeto1;
         
         /// <summary>
-        /// notif_lblMercaderia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notif_lblMercaderia;
-        
-        /// <summary>
-        /// notif_lblPrecioMercaderia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notif_lblPrecioMercaderia;
-        
-        /// <summary>
         /// notif_lblPesoNeto2 control.
         /// </summary>
         /// <remarks>
@@ -481,15 +463,6 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.TextBox notif_txbPrecioFlete;
         
         /// <summary>
-        /// vnotif_txbPrecioFlete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbPrecioFlete;
-        
-        /// <summary>
         /// notif_txbIVA control.
         /// </summary>
         /// <remarks>
@@ -499,15 +472,6 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.TextBox notif_txbIVA;
         
         /// <summary>
-        /// vnotif_txbIVA control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbIVA;
-        
-        /// <summary>
         /// notif_txbPrecioDescarga control.
         /// </summary>
         /// <remarks>
@@ -515,15 +479,6 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox notif_txbPrecioDescarga;
-        
-        /// <summary>
-        /// vnotif_txbPrecioDescarga control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbPrecioDescarga;
         
         /// <summary>
         /// upGridViajes control.
