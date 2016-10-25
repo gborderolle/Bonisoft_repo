@@ -1,4 +1,22 @@
-﻿.btn-command{
+﻿.tr_border{
+    border-color: black;
+    border-width: thin;
+    border-style: dashed;
+}
+
+.txb_short{
+    width:45%;
+}
+
+#txb_pesada1Peso_bruto{
+    float:left;
+}
+
+#txb_pesada1Peso_neto{
+    float:right;
+}
+
+.btn-command{
     margin:2px;
 }
 

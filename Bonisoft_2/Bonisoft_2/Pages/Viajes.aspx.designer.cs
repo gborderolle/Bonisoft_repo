@@ -436,31 +436,40 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.TextBox txb_pesadaComentarios;
         
         /// <summary>
-        /// notif_txbIVA control.
+        /// notif_lblPesoNeto1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox notif_txbIVA;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notif_lblPesoNeto1;
         
         /// <summary>
-        /// vnotif_txbIVA control.
+        /// notif_lblMercaderia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbIVA;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notif_lblMercaderia;
         
         /// <summary>
-        /// notif_lblPrecioCompra control.
+        /// notif_lblPrecioMercaderia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notif_lblPrecioCompra;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notif_lblPrecioMercaderia;
+        
+        /// <summary>
+        /// notif_lblPesoNeto2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notif_lblPesoNeto2;
         
         /// <summary>
         /// notif_txbPrecioFlete control.
@@ -479,6 +488,24 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbPrecioFlete;
+        
+        /// <summary>
+        /// notif_txbIVA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox notif_txbIVA;
+        
+        /// <summary>
+        /// vnotif_txbIVA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator vnotif_txbIVA;
         
         /// <summary>
         /// notif_txbPrecioDescarga control.
@@ -839,15 +866,6 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdn_modalNotificaciones_pesadas2_txbComentarios;
-        
-        /// <summary>
-        /// hdn_modalMercaderia_txbNew4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn_modalMercaderia_txbNew4;
         
         /// <summary>
         /// hdn_modalMercaderia_txbNew5 control.

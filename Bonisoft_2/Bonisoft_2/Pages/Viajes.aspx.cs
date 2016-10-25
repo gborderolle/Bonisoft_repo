@@ -205,8 +205,6 @@ namespace Bonisoft_2.Pages
             }
         }
 
-
-
         protected void lnkViajeDestino_Click(object sender, EventArgs e)
         {
             // Logger variables
@@ -1376,7 +1374,29 @@ namespace Bonisoft_2.Pages
                             viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                             if (viaje != null)
                             {
-                                notif_lblPrecioCompra.InnerText = viaje.precio_compra.ToString();
+                                //notif_lblPrecioCompra.InnerText = viaje.precio_compra.ToString();
+
+                                if (viaje.Pesada_ID > 0)
+                                {
+                                    pesada pesada = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == viaje.Pesada_ID);
+                                    if (pesada != null)
+                                    {
+                                        notif_lblPesoNeto1.InnerText = pesada.Destino_peso_neto.ToString();
+                                        notif_lblPesoNeto2.InnerText = pesada.Destino_peso_neto.ToString();
+                                    }
+
+                                    decimal totalCostos = 0;
+                                    var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
+                                    if (elements.Count() > 0)
+                                    {
+                                        foreach (mercaderia_comprada mercaderia in elements)
+                                        {
+                                            totalCostos += mercaderia.Precio_xTonelada_compra;
+                                        }
+                                    }
+                                    notif_lblMercaderia.InnerText = totalCostos.ToString();
+
+                                }
 
                                 // http://asp.net-tutorials.com/user-controls/using/
                                 hdn_notificaciones_viajeID.Value = viaje_ID.ToString();
@@ -1931,6 +1951,40 @@ namespace Bonisoft_2.Pages
                     notif_txbPrecioDescarga.Text = viaje.precio_descarga.ToString();
                     //notif_txbGananciaXTon.Text = viaje.GananciaXTon.ToString();
                     notif_txbIVA.Text = viaje.IVA.ToString();
+
+                    // Mercadería
+                    decimal totalCostos = 0;
+                    var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje.Viaje_ID).ToList();
+                    if (elements.Count() > 0)
+                    {
+                        foreach (mercaderia_comprada mercaderia in elements)
+                        {
+                            totalCostos += mercaderia.Precio_xTonelada_compra;
+                        }
+                    }
+                    notif_lblMercaderia.InnerText = totalCostos.ToString();
+
+                    // Cálculo mercadería
+                    decimal peso_neto_origen = 0;
+                    decimal peso_neto_destino = 0;
+                    int pesada_ID = viaje.Pesada_ID;
+                    if (pesada_ID > 0)
+                    {
+                        pesada pesada = (pesada)context.pesadas.FirstOrDefault(v => v.pesada_ID == pesada_ID);
+                        if (pesada != null)
+                        {
+                            peso_neto_origen = pesada.Origen_peso_neto;
+                            peso_neto_destino = pesada.Destino_peso_neto;
+                        }
+
+                        if (peso_neto_destino == 0)
+                        {
+                            peso_neto_destino = peso_neto_origen;
+                        }
+                    }
+
+                    decimal precio_mercaderia = totalCostos * peso_neto_destino;
+                    notif_lblPrecioMercaderia.InnerText = precio_mercaderia.ToString();
 
                     string precio_venta_str = viaje.precio_venta.ToString();
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "FillData_Ventas", "<script type='text/javascript'>$('#notif_lblPrecioVenta').text(" + precio_venta_str + "); </script>", false);

@@ -314,11 +314,16 @@ function guardarPesadas(isOrigen) {
                                 if (precio_compra_str !== null) {
                                     var precio_compra = TryParseFloat(precio_compra_str, 0);
                                     if (precio_compra > 0) {
-                                        var notif_lblPrecioCompra = $("label[id*='notif_lblPrecioCompra']");
-                                        if (notif_lblPrecioCompra !== null) {
-                                            notif_lblPrecioCompra.text(precio_compra);
-                                        }
+                                        //var notif_lblPrecioCompra = $("label[id*='notif_lblPrecioCompra']");
+                                        //if (notif_lblPrecioCompra !== null) {
+                                        //    notif_lblPrecioCompra.text(precio_compra);
+                                        //}
                                     }
+                                }
+
+                                var notif_lblPesoNeto = $(".notif_lblPesoNeto");
+                                if (notif_lblPesoNeto !== null) {
+                                    notif_lblPesoNeto.text(txb_pesadaPeso_neto);
                                 }
 
                                 if (ok === "True") {
@@ -428,10 +433,10 @@ function guardarAmbasPesadas() {
                                 if (precio_compra_str !== null) {
                                     var precio_compra = TryParseFloat(precio_compra_str, 0);
                                     if (precio_compra > 0) {
-                                        var notif_lblPrecioCompra = $("label[id*='notif_lblPrecioCompra']");
-                                        if (notif_lblPrecioCompra !== null) {
-                                            notif_lblPrecioCompra.text(precio_compra);
-                                        }
+                                        //var notif_lblPrecioCompra = $("label[id*='notif_lblPrecioCompra']");
+                                        //if (notif_lblPrecioCompra !== null) {
+                                        //    notif_lblPrecioCompra.text(precio_compra);
+                                        //}
                                     }
                                 }
 
@@ -617,12 +622,12 @@ function DoPost_Pesadas() {
 function guardarMercaderias() {
 
     // Hdn Fields - Pesada origen
-    var mercaderias_txbNew4 = $("#mercaderias_txbNew4").val();
+    //var mercaderias_txbNew4 = $("#mercaderias_txbNew4").val();
     var mercaderias_txbNew5 = $("#mercaderias_txbNew5").val();
     var mercaderias_txbNew7 = $("#mercaderias_txbNew7").val();
     var mercaderias_ddlVariedad2 = $("#mercaderias_ddlVariedad2").val();
 
-    $("#hdn_modalMercaderia_txbNew4").val(mercaderias_txbNew4);
+    //$("#hdn_modalMercaderia_txbNew4").val(mercaderias_txbNew4);
     $("#hdn_modalMercaderia_txbNew5").val(mercaderias_txbNew5);
     $("#hdn_modalMercaderia_txbNew7").val(mercaderias_txbNew7);
     $("#hdn_modalMercaderia_ddlVariedad2").val(mercaderias_ddlVariedad2);
@@ -682,7 +687,7 @@ function calcularPrecioVenta() {
                 var ok = response.d;
                 if (ok) {
 
-                    var notif_lblPrecioCompra = $("label[id*='notif_lblPrecioCompra']");
+                    //var notif_lblPrecioCompra = $("label[id*='notif_lblPrecioCompra']");
                     var notif_txbPrecioFlete = $("#notif_txbPrecioFlete");
                     var notif_txbPrecioDescarga = $("#notif_txbPrecioDescarga");
                     //var notif_txbGananciaXTon = $("#notif_txbGananciaXTon");
@@ -692,27 +697,27 @@ function calcularPrecioVenta() {
                     var txb_pesada1Peso_neto = $("#txb_pesada1Peso_neto");
                     var txb_pesada2Peso_neto = $("#txb_pesada2Peso_neto");
 
-                    if (notif_lblPrecioCompra !== null && notif_lblPrecioCompra.text() !== null && notif_lblPrecioCompra.text().length > 0 &&
-                    notif_txbPrecioFlete !== null && notif_txbPrecioFlete.val() !== null && notif_txbPrecioFlete.val().length > 0 &&
+                    //if (notif_lblPrecioCompra !== null && notif_lblPrecioCompra.text() !== null && notif_lblPrecioCompra.text().length > 0 &&
+                    if(notif_txbPrecioFlete !== null && notif_txbPrecioFlete.val() !== null && notif_txbPrecioFlete.val().length > 0 &&
                     notif_txbPrecioDescarga !== null && notif_txbPrecioDescarga.val() !== null && notif_txbPrecioDescarga.val().length > 0 &&
                     //notif_txbGananciaXTon !== null && notif_txbGananciaXTon.val() !== null && notif_txbGananciaXTon.val().length > 0 &&
                     notif_txbIVA !== null && notif_txbIVA.val() !== null && notif_txbIVA.val().length > 0 &&
                     txb_pesada1Peso_neto !== null && txb_pesada2Peso_neto !== null && 
                     notif_lblPrecioVenta !== null) {
 
-                        var precioCompra_str = notif_lblPrecioCompra.text();
+                        //var precioCompra_str = notif_lblPrecioCompra.text();
                         var precioFlete_str = notif_txbPrecioFlete.val();
                         var precioDescarga_str = notif_txbPrecioDescarga.val();
-                        var gananciaXTon_str = notif_txbGananciaXTon.val();
+                        //var gananciaXTon_str = notif_txbGananciaXTon.val();
                         var IVA_str = notif_txbIVA.val();
 
                         var peso_neto_origen_str = txb_pesada1Peso_neto.val();
                         var peso_neto_destino_str = txb_pesada2Peso_neto.val();
 
-                        var precioCompra = TryParseFloat(precioCompra_str, 0);
+                        //var precioCompra = TryParseFloat(precioCompra_str, 0);
                         var precioFlete = TryParseFloat(precioFlete_str, 0);
                         var precioDescarga = TryParseFloat(precioDescarga_str, 0);
-                        var gananciaXTon = TryParseFloat(gananciaXTon_str, 0);
+                        //var gananciaXTon = TryParseFloat(gananciaXTon_str, 0);
                         var IVA = TryParseInt(IVA_str, 0);
 
                         var peso_neto_origen = TryParseFloat(peso_neto_origen_str, 0);
@@ -722,17 +727,53 @@ function calcularPrecioVenta() {
                             peso_neto_destino = peso_neto_origen;
                         }
                         if (peso_neto_destino !== 0) {
-                            var ganancia_final = gananciaXTon * peso_neto_destino;
-                            var precio_venta = precioCompra + precioFlete + precioDescarga + ganancia_final;
+                            //var ganancia_final = gananciaXTon * peso_neto_destino;
+                            //var precio_venta = precioCompra + precioFlete + precioDescarga + ganancia_final;
 
+                            // Calcular precio flete **************************************************
+
+                            // Llenar campos de Peso neto
+                            var notif_lblPesoNeto = $(".notif_lblPesoNeto");
+                            if (notif_lblPesoNeto != null) {
+                                notif_lblPesoNeto.text(peso_neto_destino);
+                            }
+
+                            // Calcular precio flete
+                            var calculo_precio_flete = peso_neto_destino * precioFlete;
+                            
                             if (IVA > 0) {
-                                var IVA_solo = precio_venta * IVA / 100;
-                                precio_venta = precio_venta + IVA_solo;
+                                var IVA_solo = calculo_precio_flete * IVA / 100;
+                                calculo_precio_flete = calculo_precio_flete + IVA_solo;
                             }
 
-                            if (precio_venta > 0) {
-                                notif_lblPrecioVenta.text(precio_venta);
+                            var notif_lblPrecioFlete = $("#notif_lblPrecioFlete");
+                            if (notif_lblPrecioFlete != null) {
+                                notif_lblPrecioFlete.text(calculo_precio_flete);
                             }
+
+                            // Calcular precio de venta **************************************************
+
+                            var notif_lblMercaderiaFlete_int = 0;
+                            var notif_lblPrecioMercaderia_int = 0;
+                            var notif_lblPrecioMercaderia = $("label[id*=notif_lblPrecioMercaderia]");
+                            if (notif_lblPrecioMercaderia != null) {
+                                notif_lblPrecioMercaderia_int = TryParseFloat(notif_lblPrecioMercaderia.text(), 0);
+
+                                if (notif_lblPrecioMercaderia_int > 0) {
+                                    notif_lblMercaderiaFlete_int = calculo_precio_flete + notif_lblPrecioMercaderia_int;
+                                }
+
+                            }
+                            
+                            var notif_lblMercaderiaFlete = $("label[id*=notif_lblMercaderiaFlete]");
+                            if (notif_lblMercaderiaFlete != null) {
+                                notif_lblMercaderiaFlete.text(notif_lblMercaderiaFlete_int);
+                            }
+
+                            notif_lblPrecioVenta.text(notif_lblMercaderiaFlete_int + precioDescarga);
+
+                           
+
                         } else {
                             show_message_info('Error_DatosPesadas');
                         }

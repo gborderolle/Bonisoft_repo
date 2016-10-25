@@ -223,17 +223,15 @@ namespace Bonisoft_2.User_Controls.Configuracion
             if (e.CommandName == "InsertNew")
             {
                 GridViewRow row = gridMercaderias.FooterRow;
-                TextBox txb2 = row.FindControl("mercaderias_txbNew4") as TextBox;
-
-                HiddenField hdn_modalMercaderia_txbNew4 = this.Parent.FindControl("hdn_modalMercaderia_txbNew4") as HiddenField;
+                
+                //HiddenField hdn_modalMercaderia_txbNew4 = this.Parent.FindControl("hdn_modalMercaderia_txbNew4") as HiddenField;
                 HiddenField hdn_modalMercaderia_txbNew5 = this.Parent.FindControl("hdn_modalMercaderia_txbNew5") as HiddenField;
                 HiddenField hdn_modalMercaderia_txbNew7 = this.Parent.FindControl("hdn_modalMercaderia_txbNew7") as HiddenField;
                 HiddenField hdn_modalMercaderia_ddlVariedad2 = this.Parent.FindControl("hdn_modalMercaderia_ddlVariedad2") as HiddenField;
 
-                if (hdn_modalMercaderia_txbNew4 != null && hdn_modalMercaderia_txbNew5 != null &&
-                    hdn_modalMercaderia_txbNew7 != null && hdn_modalMercaderia_ddlVariedad2 != null)
+                if (hdn_modalMercaderia_txbNew5 != null && hdn_modalMercaderia_txbNew7 != null && hdn_modalMercaderia_ddlVariedad2 != null)
                 {
-                    string txb4 = hdn_modalMercaderia_txbNew4.Value;
+                    //string txb4 = hdn_modalMercaderia_txbNew4.Value;
                     string txb5 = hdn_modalMercaderia_txbNew5.Value;
                     string txb7 = hdn_modalMercaderia_txbNew7.Value;
                     string ddlVariedad2 = hdn_modalMercaderia_ddlVariedad2.Value;
@@ -277,14 +275,14 @@ namespace Bonisoft_2.User_Controls.Configuracion
                             #region Datetime logic
 
                             DateTime date1 = DateTime.Now;
-                            if (!string.IsNullOrWhiteSpace(txb4))
-                            {
-                                if (!DateTime.TryParseExact(txb4, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
-                                {
-                                    date1 = DateTime.Now;
-                                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
-                                }
-                            }
+                            //if (!string.IsNullOrWhiteSpace(txb4))
+                            //{
+                            //    if (!DateTime.TryParseExact(txb4, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
+                            //    {
+                            //        date1 = DateTime.Now;
+                            //        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
+                            //    }
+                            //}
                             obj.Fecha_corte = date1;
 
                             #endregion
@@ -363,16 +361,14 @@ namespace Bonisoft_2.User_Controls.Configuracion
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
-            HiddenField hdn_modalMercaderia_txb4 = this.Parent.FindControl("hdn_modalMercaderia_txb4") as HiddenField;
+            //HiddenField hdn_modalMercaderia_txb4 = this.Parent.FindControl("hdn_modalMercaderia_txb4") as HiddenField;
             HiddenField hdn_modalMercaderia_txb5 = this.Parent.FindControl("hdn_modalMercaderia_txb5") as HiddenField;
             HiddenField hdn_modalMercaderia_txb7 = this.Parent.FindControl("hdn_modalMercaderia_txb7") as HiddenField;
             HiddenField hdn_modalMercaderia_ddlVariedad1 = this.Parent.FindControl("hdn_modalMercaderia_ddlVariedad1") as HiddenField;
 
-            if (hdn_modalMercaderia_txb4 != null && hdn_modalMercaderia_txb5 != null &&
-                hdn_modalMercaderia_txb7 != null && hdn_modalMercaderia_ddlVariedad1 != null)
+            if (hdn_modalMercaderia_txb5 != null && hdn_modalMercaderia_txb7 != null && hdn_modalMercaderia_ddlVariedad1 != null)
             {
-                string txb4 = hdn_modalMercaderia_txb4.Value;
+                //string txb4 = hdn_modalMercaderia_txb4.Value;
                 string txb5 = hdn_modalMercaderia_txb5.Value;
                 string txb7 = hdn_modalMercaderia_txb7.Value;
                 string ddlVariedad1 = hdn_modalMercaderia_ddlVariedad1.Value;
@@ -406,14 +402,14 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     #region Datetime logic
 
                     DateTime date1 = obj.Fecha_corte;
-                    if (!string.IsNullOrWhiteSpace(txb4))
-                    {
-                        if (!DateTime.TryParseExact(txb4, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
-                        {
-                            date1 = obj.Fecha_corte;
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
-                        }
-                    }
+                    //if (!string.IsNullOrWhiteSpace(txb4))
+                    //{
+                    //    if (!DateTime.TryParseExact(txb4, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
+                    //    {
+                    //        date1 = obj.Fecha_corte;
+                    //        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb4);
+                    //    }
+                    //}
                     obj.Fecha_corte = date1;
 
                     #endregion Datetime logic

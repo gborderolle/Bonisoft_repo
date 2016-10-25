@@ -305,90 +305,79 @@
 
                                         <div id="tabsNotificaciones_2">
 
-                                            <div style="z-index: 10001;">
-                                                <div class="row">
-                                                    <div class="col-md-8 pull-left">
-                                                        <h4 style="width: 80%; float: left;">Pesada origen</h4>
-                                                    </div>
-                                                    <div class="col-md-3 pull-right">
-                                                        <div class="row" style="float: right; cursor: pointer;">
-                                                            <a id="aOrigenCopiar" style="margin-right: 5px; color: black;" onclick="copiarPesadas(1);" class="btn btn-sm btn-default">Copiar de destino</a>
-                                                            <%--<a id="aOrigenGuardar" style="float: right;" onclick="guardarPesadas(1);" class="btn btn-sm btn-primary">Guardar</a>--%>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-body panel panel-default" style="padding-bottom: 0; padding-top: 0; position: inherit; background: #e9e9e9; color: #333333;">
-                                                <table class="table">
-                                                    <tr>
-                                                        <td>Lugar: 
-                                                        <asp:TextBox ID="txb_pesada1Lugar" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30" TabIndex="21"></asp:TextBox>
-                                                        </td>
-                                                        <td>Fecha: 
+                                            <div class="row">
+                                                <div class="col-md-6">
+
+                                                    <h4>Pesada origen</h4>
+                                                    <a id="aOrigenCopiar" style="margin: 5px; color: black;" onclick="copiarPesadas(1);" class="btn btn-xs btn-default pull-right">Copiar de destino</a>
+                                                    <div class="modal-body panel panel-default" style="padding-bottom: 0; padding-top: 0; margin-bottom: 5px; position: inherit; background: #e9e9e9; color: #333333; position: initial;">
+                                                        <table class="table">
+                                                            <tr>
+                                                                <td>Lugar: 
+                                                        <asp:TextBox ID="txb_pesada1Lugar" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="21"></asp:TextBox>
+                                                                </td>
+                                                                <td>Fecha: 
                                                         <asp:TextBox ID="txb_pesada1Fecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{dd-mm-yyyy}" TabIndex="22"></asp:TextBox>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Peso bruto: 
-                                                        <asp:TextBox ID="txb_pesada1Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" DataFormatString="{dd-mm-yyyy}" TabIndex="23"></asp:TextBox>
-                                                        </td>
-                                                        <td>Peso neto: 
-                                                        <asp:TextBox ID="txb_pesada1Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30" TabIndex="24"></asp:TextBox>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Nombre balanza: 
-                                                        <asp:TextBox ID="txb_pesada1Nombre" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="25"></asp:TextBox>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
 
-                                            <div style="z-index: 10001;">
-                                                <div class="row">
-                                                    <div class="col-md-8 pull-left">
-                                                        <h4 style="width: 80%; float: left;">Pesada destino</h4>
-                                                    </div>
-                                                    <div class="col-md-3 pull-right">
-                                                        <div class="row" style="float: right; cursor: pointer;">
-                                                            <a id="aDestinoCopiar" style="margin-right: 5px; color: black;" onclick="copiarPesadas(2);" class="btn btn-sm btn-default">Copiar de origen</a>
-                                                            <%--<a id="aDestinoGuardar" style="float: right;" onclick="guardarPesadas(2);" class="btn btn-sm btn-primary">Guardar</a>--%>
-                                                        </div>
+                                                                <td>Peso bruto: 
+                                                         <asp:TextBox ID="txb_pesada1Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="28"></asp:TextBox>
+                                                                </td>
+                                                                <td>Peso neto: 
+                                                       <asp:TextBox ID="txb_pesada1Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30" TabIndex="29"></asp:TextBox>
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Nombre balanza: 
+                                                        <asp:TextBox ID="txb_pesada1Nombre" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="25"></asp:TextBox>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
                                                     </div>
 
                                                 </div>
-                                            </div>
-                                            <div class="modal-body panel panel-default" style="padding-bottom: 0; padding-top: 0; position: inherit; background: #e9e9e9; color: #333333;">
-                                                <table class="table">
-                                                    <tr>
-                                                        <td>Lugar: 
-                                                      <asp:TextBox ID="txb_pesada2Lugar" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30" TabIndex="26"></asp:TextBox>
-                                                        </td>
-                                                        <td>Fecha: 
+
+                                                <div class="col-md-6">
+
+                                                    <h4>Pesada destino</h4>
+                                                    <a id="aDestinoCopiar" style="margin: 5px; color: black;" onclick="copiarPesadas(2);" class="btn btn-xs btn-default pull-right">Copiar de origen</a>
+                                                    <div class="modal-body panel panel-default" style="padding-bottom: 0; padding-top: 0; margin-bottom: 5px; position: inherit; background: #e9e9e9; color: #333333; position: initial;">
+                                                        <table class="table">
+                                                            <tr>
+                                                                <td>Lugar: 
+                                                      <asp:TextBox ID="txb_pesada2Lugar" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="26"></asp:TextBox>
+                                                                </td>
+                                                                <td>Fecha: 
                                                         <asp:TextBox ID="txb_pesada2Fecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:d-MM-yyyy}" TabIndex="27"></asp:TextBox>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Peso bruto: 
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Peso bruto: 
                                                          <asp:TextBox ID="txb_pesada2Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="28"></asp:TextBox>
-                                                        </td>
-                                                        <td>Peso neto: 
+                                                                </td>
+                                                                <td>Peso neto: 
                                                        <asp:TextBox ID="txb_pesada2Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30" TabIndex="29"></asp:TextBox>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Nombre balanza: 
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Nombre balanza: 
                                                         <asp:TextBox ID="txb_pesada2Nombre" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="30"></asp:TextBox>
-                                                        </td>
-                                                        <td></td>
-                                                    </tr>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
 
-                                                </table>
+                                                        </table>
 
+                                                    </div>
+
+                                                </div>
                                             </div>
 
                                             <div class="modal-body panel panel-default row" style="padding-bottom: 0; padding-top: 0; position: inherit; background: #e9e9e9; color: #333333; margin: 0;">
-                                                <div class="col-md-10 pull-left" style="padding: 10px;">
+                                                <div class="col-md-6 pull-left" style="padding: 10px;">
                                                     Comentarios:
                                                            <asp:TextBox ID="txb_pesadaComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="100"></asp:TextBox>
                                                 </div>
@@ -402,91 +391,90 @@
 
                                         <div id="tabsNotificaciones_3">
 
-                                            <h4>Precio de venta</h4>
+                                            <%--<h4>Precio de venta</h4>--%>
 
                                             <div class="modal-body panel panel-default" style="padding: 0; position: inherit; background: #e9e9e9; color: #333333;">
                                                 <table class="table" style="margin-bottom: 0;">
 
-                                                    <tr>
+                                                    <tr class="tr_border">
                                                         <td>
-                                                            <h4>Cálculo Mercadería</h4>
+                                                            <h4>Cálculo Precio Mercadería</h4>
                                                         </td>
 
                                                         <td>Peso neto: 
+                                                            <h3 style="margin: 0;"><label runat="server" id="notif_lblPesoNeto1" class="notif_lblPesoNeto label label-default">0</label></h3>
                                                         </td>
-                                                        <td>X 
-                                                        </td>
-                                                        <td>Total Mercadería: 
+                                                        <td>X Precio Mercadería: 
+                                                            <h3 style="margin: 0;"><label runat="server" id="notif_lblMercaderia" class="label label-default">0</label></h3>
                                                         </td>
                                                         <td></td>
                                                         <td></td>
+                                                        <td>=</td>
 
                                                         <td>
                                                             <h3>
-                                                                <label class="label label-warning">0</label></h3>
+                                                                <label runat="server" id="notif_lblPrecioMercaderia" class="label label-warning">0</label></h3>
                                                         </td>
-
-
                                                     </tr>
 
-                                                    <tr>
+                                                    <tr class="tr_border">
                                                         <td>
-                                                            <h4>Cálculo Flete</h4>
+                                                            <h4>Cálculo Precio Flete</h4>
                                                         </td>
 
                                                         <td>Peso neto: 
+                                                            <h3 style="margin: 0;"><label runat="server" id="notif_lblPesoNeto2" class="notif_lblPesoNeto label label-default">0</label></h3>
                                                         </td>
-                                                        <td>X 
-                                                        </td>
-                                                        <td>Precio Flete: 
+                                                        
+                                                        <td>X Precio Flete: 
+                                                             <asp:TextBox ID="notif_txbPrecioFlete" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="31" Width="100"></asp:TextBox>
+                                                            <asp:CompareValidator ForeColor="Red" ID="vnotif_txbPrecioFlete" runat="server" ControlToValidate="notif_txbPrecioFlete" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                         </td>
                                                         <td>+ 
                                                         </td>
                                                         <td>% IVA (0 = no aplica): 
-                                                                <asp:TextBox ID="notif_txbIVA" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="34"></asp:TextBox>
+                                                                <asp:TextBox ID="notif_txbIVA" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="34" Width="100"></asp:TextBox>
                                                             <asp:CompareValidator ForeColor="Red" ID="vnotif_txbIVA" runat="server" ControlToValidate="notif_txbIVA" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                         </td>
-
+                                                        <td>=
+                                                        </td>
                                                         <td>
                                                             <h3>
-                                                                <label class="label label-warning">0</label></h3>
+                                                                <label id="notif_lblPrecioFlete" class="label label-warning">0</label></h3>
                                                         </td>
-
 
                                                     </tr>
 
-
-                                                    <tr>
+                                                    <tr class="tr_border">
                                                         <td>
                                                             <h4>Cálculo Precio de Venta</h4>
                                                         </td>
-                                                        <td>Precio de compra: 
-                                                            <h2>
-                                                                <label id="notif_lblPrecioCompra" runat="server" class="label label-danger">0</label></h2>
+                                                        <td>Mercadería + Flete: 
+                                                            <h3 style="margin: 0;"><label id="notif_lblMercaderiaFlete" class="label label-default">0</label></h3>
+
                                                         </td>
 
-
-
-
-
-
-                                                        <td>Precio de flete: 
-                                                        <asp:TextBox ID="notif_txbPrecioFlete" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="31"></asp:TextBox>
-                                                            <asp:CompareValidator ForeColor="Red" ID="vnotif_txbPrecioFlete" runat="server" ControlToValidate="notif_txbPrecioFlete" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
-                                                        </td>
-
-                                                        <td>Precio de descarga: 
-                                                        <asp:TextBox ID="notif_txbPrecioDescarga" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="32"></asp:TextBox>
+                                                        <td>+ Precio de descarga: 
+                                                        <asp:TextBox ID="notif_txbPrecioDescarga" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="32" Width="100"></asp:TextBox>
                                                             <asp:CompareValidator ForeColor="Red" ID="vnotif_txbPrecioDescarga" runat="server" ControlToValidate="notif_txbPrecioDescarga" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                         </td>
+
+                                                        
+                                                        <td>
+                                                       
+                                                        </td>
+
                                                         <%--<td>Ganancia por TON: 
                                                         <asp:TextBox ID="notif_txbGananciaXTon" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="33"></asp:TextBox>
                                                             <asp:CompareValidator ForeColor="Red" ID="vnotif_txbGananciaXTon" runat="server" ControlToValidate="notif_txbGananciaXTon" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                         </td>--%>
                                                         <td>
-                                                            <a class="btn btn-default" style="color: black;" onclick="calcularPrecioVenta();">Calcular</a>
+                                                            <%--<a class="btn btn-default" style="color: black;" onclick="calcularPrecioVenta();">Calcular</a>--%>
                                                         </td>
-                                                        <td>Precio de venta: 
+                                                        <td>
+                                                            =
+                                                        </td>
+                                                        <td>
                                                             <h2>
                                                                 <label id="notif_lblPrecioVenta" class="label label-success">0</label>
                                                             </h2>
@@ -497,13 +485,15 @@
 
                                                 <hr style="margin-top: 5px; margin-bottom: 5px;" />
                                                 <div class="row" style="margin: 0;">
-                                                    <div class="col-md-10 pull-left" style="padding: 10px;">
+                                                    <div class="col-md-9 pull-left" style="padding: 10px;">
                                                         <p class="text-info">1) Precio de compra = Peso neto destino * Precio por tonelada de todas las mercaderías.</p>
                                                         <p class="text-info">2) Precio de venta = Precio de compra + Flete + Descarga + Ganancia + % IVA.</p>
                                                     </div>
 
-                                                    <div class="col-md-2 pull-right" style="padding: 10px;">
-                                                        <a id="lnkGuardarPrecioVenta" class="btn btn-primary" onclick="GuardarPrecioVenta()">Guardar</a>
+                                                    <div class="col-md-3 pull-right" style="padding: 10px;">
+                                                        <a class="btn btn-default" style="color: black;" onclick="calcularPrecioVenta();">Calcular</a>
+
+                                                        <a id="lnkGuardarPrecioVenta" class="btn btn-primary" style="margin-left:30px;" onclick="GuardarPrecioVenta()">Guardar</a>
                                                     </div>
                                                 </div>
 
@@ -869,7 +859,7 @@
     <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbComentarios" runat="server" ClientIDMode="Static" />
 
     <!-- Mercaderia Hdn Fields - Add -->
-    <asp:HiddenField ID="hdn_modalMercaderia_txbNew4" runat="server" ClientIDMode="Static" />
+    <%--<asp:HiddenField ID="hdn_modalMercaderia_txbNew4" runat="server" ClientIDMode="Static" />--%>
     <asp:HiddenField ID="hdn_modalMercaderia_txbNew5" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalMercaderia_txbNew7" runat="server" ClientIDMode="Static" />
     <asp:HiddenField ID="hdn_modalMercaderia_ddlVariedad2" runat="server" ClientIDMode="Static" />

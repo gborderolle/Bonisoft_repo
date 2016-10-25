@@ -48,7 +48,7 @@
                 <asp:DropDownList ID="mercaderias_ddlVariedad2" runat="server" CssClass="form-control" />
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Fecha de corte">
+        <%--<asp:TemplateField HeaderText="Fecha de corte">
             <EditItemTemplate>
                 <asp:TextBox ID="mercaderias_txb4" runat="server" Text='<%# Bind("Fecha_corte", "{0:dd-MM-yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
@@ -58,8 +58,10 @@
             <FooterTemplate>
                 <asp:TextBox ID="mercaderias_txbNew4" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
-        </asp:TemplateField>
+        </asp:TemplateField>--%>
         <asp:TemplateField HeaderText="Precio Compra xTON">
+            <HeaderStyle Width="170" />
+            <ItemStyle Width="170" />
             <EditItemTemplate>
                 <asp:TextBox ID="mercaderias_txb5" runat="server" Text='<%# Bind("Precio_xTonelada_compra") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
                 <asp:CompareValidator ID="vtxb5" runat="server" ControlToValidate="mercaderias_txb5" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
