@@ -307,6 +307,9 @@ function guardarPesadas(isOrigen) {
                             dataType: "json",
                             success: function (response) {
                                 var resultado_1 = response.d;
+
+                                resultado_1 = resultado_1.replace(/,/g, '.');
+
                                 var resultado_2 = resultado_1.split("|");
                                 var ok = resultado_2[0];
                                 var precio_compra_str = resultado_2[1];
@@ -684,6 +687,8 @@ function cargarDatos_PrecioVenta() {
 
                     /* ------------------------ OBTENGO DATOS ------------------------ */
 
+                    datos = datos.replace(/,/g, '.');
+                    
                     var datos_array = datos.split("|");
                     var precio_flete_str = datos_array[0];
                     var iva_str = datos_array[1];
@@ -887,6 +892,8 @@ function ModificarViaje_1(viajeID) {
                 success: function (response) {
                     var datos = response.d;
                     if (datos) {
+
+                        datos = datos.replace(/,/g, '.');
 
                         var datos_array = datos.split("|");
                         var fecha1 = datos_array[0];

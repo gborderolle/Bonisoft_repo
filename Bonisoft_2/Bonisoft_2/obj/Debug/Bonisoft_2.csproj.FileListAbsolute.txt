@@ -377,3 +377,4 @@ C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft_2\Bonisoft_2\bin\Micros
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft_2\Bonisoft_2\obj\Debug\Bonisoft_2.dll
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft_2\Bonisoft_2\obj\Debug\Bonisoft_2.pdb
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_2\Bonisoft_2\obj\Debug\Bonisoft_2.csprojResolveAssemblyReference.cache
+C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft_2\Bonisoft_2\obj\Debug\Bonisoft_2.csprojResolveAssemblyReference.cache

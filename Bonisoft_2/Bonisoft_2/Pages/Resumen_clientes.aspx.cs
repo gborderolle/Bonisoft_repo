@@ -34,8 +34,8 @@ namespace Bonisoft_2.Pages
         protected void grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -68,8 +68,8 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         protected void grid3_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -142,9 +142,9 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         {
             #region DDL Default values
 
-            // Fleteros ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                // Fleteros ----------------------------------------------------
                 Label lbl = e.Row.FindControl("lblFletero") as Label;
                 if (lbl != null)
                 {
@@ -164,12 +164,9 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                         }
                     }
                 }
-            }
 
-            // Camion ----------------------------------------------------
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                Label lbl = e.Row.FindControl("lblCamion") as Label;
+                // Camion ----------------------------------------------------
+                lbl = e.Row.FindControl("lblCamion") as Label;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -188,12 +185,9 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                         }
                     }
                 }
-            }
 
-            // Chofer ----------------------------------------------------
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                Label lbl = e.Row.FindControl("lblChofer") as Label;
+                // Chofer ----------------------------------------------------
+                lbl = e.Row.FindControl("lblChofer") as Label;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -212,12 +206,9 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                         }
                     }
                 }
-            }
 
-            // Proveedor ----------------------------------------------------
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                Label lbl = e.Row.FindControl("lblProveedor") as Label;
+                // Proveedor ----------------------------------------------------
+                lbl = e.Row.FindControl("lblProveedor") as Label;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -236,12 +227,9 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                         }
                     }
                 }
-            }
 
-            // Pesada origen ----------------------------------------------------
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                Label lbl = e.Row.FindControl("lblPesadaOrigen") as Label;
+                // Pesada origen ----------------------------------------------------
+                lbl = e.Row.FindControl("lblPesadaOrigen") as Label;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -260,12 +248,9 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                         }
                     }
                 }
-            }
 
-            // Pesada destino ----------------------------------------------------
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                Label lbl = e.Row.FindControl("lblPesadaDestino") as Label;
+                // Pesada destino ----------------------------------------------------
+                lbl = e.Row.FindControl("lblPesadaDestino") as Label;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -284,8 +269,25 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                         }
                     }
                 }
-            }
 
+                lbl = e.Row.FindControl("Fecha_partida") as Label;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        viaje viaje = (viaje)(e.Row.DataItem);
+                        if (viaje != null)
+                        {
+                            if (viaje.Fecha_partida == DateTime.MinValue)
+                            {
+                                lbl.Text = string.Empty;
+                            }
+                        }
+                    }
+
+                }
+
+            }
             #endregion
         }
 
@@ -317,8 +319,8 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
             // Formas de pago ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                Label lbl = e.Row.FindControl("lblForma") as Label;
-                if (lbl != null)
+                LinkButton lnk = e.Row.FindControl("lblForma") as LinkButton;
+                if (lnk != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
@@ -330,12 +332,29 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                             if (forma != null)
                             {
                                 string nombre = forma.Forma;
-                                lbl.Text = nombre;
-                                //lbl.CommandArgument = "formas," + nombre;
+                                lnk.Text = nombre;
+                                lnk.CommandArgument = "formas," + nombre;
                             }
                         }
                     }
                 }
+
+                Label lbl = e.Row.FindControl("lblFechaPago") as Label;
+                if (lbl != null)
+                {
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    {
+                        cliente_pagos pago = (cliente_pagos)(e.Row.DataItem);
+                        if (pago != null)
+                        {
+                            if (pago.Fecha_pago == DateTime.MinValue)
+                            {
+                                lbl.Text = string.Empty;
+                            }
+                        }
+                    }
+                }
+
             }
 
             #endregion
@@ -365,8 +384,8 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         protected void gridClientes_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -593,8 +612,8 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         public static string Update_Saldos(string clienteID_str)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -656,11 +675,10 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         public static bool IngresarPago(string clienteID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-
 
             bool ret = false;
             if (!string.IsNullOrWhiteSpace(clienteID_str))
@@ -682,12 +700,12 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                         obj.Comentarios = comentarios_str;
                         obj.Fecha_registro = DateTime.Now;
 
-                        DateTime date = DateTime.Now;
+                        DateTime date = DateTime.MinValue;
                         if (!string.IsNullOrWhiteSpace(fecha_str))
                         {
                             if (!DateTime.TryParseExact(fecha_str, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out date))
                             {
-                                date = DateTime.Now;
+                                date = DateTime.MinValue;
                                 Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha_str);
                             }
                         }
@@ -744,8 +762,8 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         public static bool BorrarPago(string pagoID_str)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -795,8 +813,8 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         public static string ModificarPago_1(string pagoID_str)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -831,8 +849,8 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         public static bool ModificarPago_2(string pagoID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 

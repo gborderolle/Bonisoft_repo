@@ -810,31 +810,6 @@ namespace Bonisoft_2.Pages
                 }
             }
 
-            //// Pesada origen ----------------------------------------------------
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    Label lbl = e.Row.FindControl("lbl8") as Label;
-            //    if (lbl != null)
-            //    {
-            //        using (bonisoft_dbEntities context = new bonisoft_dbEntities())
-            //        {
-            //            viaje viaje = (viaje)(e.Row.DataItem);
-            //            if (viaje != null)
-            //            {
-            //                int id = viaje.Pesada_ID;
-            //                pesada pesada = (pesada)context.pesadas.FirstOrDefault(c => c.pesada_ID == id);
-            //                if (pesada != null)
-            //                {
-            //                    lbl.Text = pesada.Origen_lugar + ": " + pesada.Origen_peso_neto;
-            //                    //string nombre = pesada.ToString();
-            //                    //lbl.Text = nombre;
-            //                    //lbl.CommandArgument = "pesadas," + pesada.Nombre_balanza;
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-
             // Pesada destino ----------------------------------------------------
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -855,6 +830,38 @@ namespace Bonisoft_2.Pages
                                 //lbl.Text = nombre;
                                 //lbl.CommandArgument = "pesadas," + pesada.Nombre_balanza;
                             }
+                        }
+                    }
+                }
+            }
+
+            Label lbl1 = e.Row.FindControl("lbl11") as Label;
+            if (lbl1 != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    viaje viaje = (viaje)(e.Row.DataItem);
+                    if (viaje != null)
+                    {
+                        if (viaje.Fecha_partida == DateTime.MinValue)
+                        {
+                            lbl1.Text = string.Empty;
+                        }
+                    }
+                }
+            }
+
+            lbl1 = e.Row.FindControl("lbl12") as Label;
+            if (lbl1 != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    viaje viaje = (viaje)(e.Row.DataItem);
+                    if (viaje != null)
+                    {
+                        if (viaje.Fecha_llegada == DateTime.MinValue)
+                        {
+                            lbl1.Text = string.Empty;
                         }
                     }
                 }
@@ -937,23 +944,23 @@ namespace Bonisoft_2.Pages
 
                                     #region Datetime logic
 
-                                    DateTime date1 = DateTime.Now;
+                                    DateTime date1 = DateTime.MinValue;
                                     if (!string.IsNullOrWhiteSpace(txb11.Text))
                                     {
                                         if (!DateTime.TryParseExact(txb11.Text, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                                         {
-                                            date1 = DateTime.Now;
+                                            date1 = DateTime.MinValue;
                                             Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb11.Text);
                                         }
                                     }
                                     obj.Fecha_partida = date1;
 
-                                    DateTime date2 = DateTime.Now;
+                                    DateTime date2 = DateTime.MinValue;
                                     if (!string.IsNullOrWhiteSpace(txb12.Text))
                                     {
                                         if (!DateTime.TryParseExact(txb12.Text, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
                                         {
-                                            date2 = DateTime.Now;
+                                            date2 = DateTime.MinValue;
                                             Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, txb12.Text);
                                         }
                                     }
@@ -1557,6 +1564,22 @@ namespace Bonisoft_2.Pages
                 }
             }
 
+            Label lbl1 = e.Row.FindControl("lblFechaPartida") as Label;
+            if (lbl1 != null)
+            {
+                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                {
+                    viaje viaje = (viaje)(e.Row.DataItem);
+                    if (viaje != null)
+                    {
+                        if (viaje.Fecha_partida == DateTime.MinValue)
+                        {
+                            lbl1.Text = string.Empty;
+                        }
+                    }
+                }
+            }
+
             #endregion Labels
         }
 
@@ -1788,17 +1811,17 @@ namespace Bonisoft_2.Pages
 
                 if (!string.IsNullOrWhiteSpace(date_start) && !string.IsNullOrWhiteSpace(date_end))
                 {
-                    DateTime date1 = DateTime.Now;
+                    DateTime date1 = DateTime.MinValue;
                     if (!DateTime.TryParseExact(date_start, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                     {
-                        date1 = DateTime.Now;
+                        date1 = DateTime.MinValue;
                         Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, date_start);
                     }
 
-                    DateTime date2 = DateTime.Now;
+                    DateTime date2 = DateTime.MinValue;
                     if (!DateTime.TryParseExact(date_end, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
                     {
-                        date2 = DateTime.Now;
+                        date2 = DateTime.MinValue;
                         Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, date_end);
                     }
 
@@ -2836,23 +2859,23 @@ namespace Bonisoft_2.Pages
             {
                 viaje new_viaje = new viaje();
 
-                DateTime date1 = DateTime.Now;
+                DateTime date1 = DateTime.MinValue;
                 if (!string.IsNullOrWhiteSpace(fecha1))
                 {
                     if (!DateTime.TryParseExact(fecha1, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
                     {
-                        date1 = DateTime.Now;
+                        date1 = DateTime.MinValue;
                         Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha1);
                     }
                 }
                 new_viaje.Fecha_partida = date1;
 
-                DateTime date2 = DateTime.Now;
+                DateTime date2 = DateTime.MinValue;
                 if (!string.IsNullOrWhiteSpace(fecha2))
                 {
                     if (!DateTime.TryParseExact(fecha2, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
                     {
-                        date2 = DateTime.Now;
+                        date2 = DateTime.MinValue;
                         Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha2);
                     }
                 }

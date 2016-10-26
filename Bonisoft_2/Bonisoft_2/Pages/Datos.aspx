@@ -14,8 +14,8 @@
     <!-- STYLES EXTENSION -->
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="/assets/dist/css/pages/InfoBoxes.min.css">
-    <link rel="stylesheet" href="/assets/dist/css/pages/Datos.css">
+    <link rel="stylesheet" href="/assets/dist/css/pages/InfoBoxes.min.css"/>
+    <link rel="stylesheet" href="/assets/dist/css/pages/Datos.css"/>
 
     <!-- AdminLTE Skins. Choose a skin from the css/skins
      folder instead of downloading all of them to reduce the load. -->
@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="/assets/plugins/daterangepicker/daterangepicker.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -75,7 +74,8 @@
     <script src="/assets/dist/js/demo.js"></script>
     <script src="/assets/dist/js/jquery.quicksearch.js"></script>
 
-    <!-- Page JS -->
+    <!-- PAGE JS -->
+    <script type="text/javascript" src="/assets/dist/js/AuxiliarFunctions.js"></script>
     <script type="text/javascript" src="/assets/dist/js/pages/Datos.js"></script>
     <script type="text/javascript" src="/assets/dist/js/jquery.tablesorter.js"></script>
 

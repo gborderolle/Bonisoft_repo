@@ -75,6 +75,7 @@
         <script type="text/javascript" src="/assets/dist/js/jquery-ui.js"></script>
 
         <!-- PAGE SCRIPTS -->
+        <script type="text/javascript" src="/assets/dist/js/AuxiliarFunctions.js"></script>
         <script type="text/javascript" src="/assets/dist/js/pages/Master.js"></script>
         <script type="text/javascript" src="/assets/dist/js/moment.js"></script>
         <script type="text/javascript" src="/ExternalResources/Alert_Messages.js"></script>
@@ -97,7 +98,7 @@
                         <li><a runat="server" href="/Pages/Viajes">Viajes</a></li>
                         <li><a runat="server" href="/Pages/Datos">Base de Datos</a></li>
                         <li><a runat="server" href="/Pages/Resumen_clientes">Resumen de Clientes</a></li>
-                        <li><a runat="server" id="aMenuLogs" clientidmode="Static" style="display:none;" href="/Pages/Menu_logs">Menú de Logs</a></li>
+                        <li><a runat="server" id="aMenuLogs" clientidmode="Static" style="display: none;" href="/Pages/Menu_logs">Menú de Logs</a></li>
                         <%--<li><a runat="server" href="~/">Inicio</a></li>--%>
                         <%-- <li><a runat="server" href="/Pages/Recordatorios">Recordatorios</a></li>
                         <li><a runat="server" href="/Pages/Contabilidad">Contabilidad</a></li>
