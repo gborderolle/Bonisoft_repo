@@ -148,6 +148,7 @@ namespace Bonisoft_2.Pages
                 Label lbl = e.Row.FindControl("lblFletero") as Label;
                 if (lbl != null)
                 {
+                    lbl.Text = string.Empty;
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
@@ -169,7 +170,7 @@ namespace Bonisoft_2.Pages
                 lbl = e.Row.FindControl("lblCamion") as Label;
                 if (lbl != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -190,7 +191,7 @@ namespace Bonisoft_2.Pages
                 lbl = e.Row.FindControl("lblChofer") as Label;
                 if (lbl != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -211,7 +212,7 @@ namespace Bonisoft_2.Pages
                 lbl = e.Row.FindControl("lblProveedor") as Label;
                 if (lbl != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -232,7 +233,7 @@ namespace Bonisoft_2.Pages
                 lbl = e.Row.FindControl("lblPesadaOrigen") as Label;
                 if (lbl != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -253,7 +254,7 @@ namespace Bonisoft_2.Pages
                 lbl = e.Row.FindControl("lblPesadaDestino") as Label;
                 if (lbl != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -270,7 +271,7 @@ namespace Bonisoft_2.Pages
                     }
                 }
 
-                lbl = e.Row.FindControl("Fecha_partida") as Label;
+                lbl = e.Row.FindControl("lblFechaPartida") as Label;
                 if (lbl != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
@@ -322,7 +323,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lnk = e.Row.FindControl("lblForma") as LinkButton;
                 if (lnk != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lnk.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         cliente_pagos pago = (cliente_pagos)(e.Row.DataItem);
                         if (pago != null)

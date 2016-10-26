@@ -62,7 +62,7 @@
                                 <asp:BoundField DataField="Log_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" ItemStyle-CssClass="hiddencol_real" HeaderStyle-CssClass="hiddencol_real" />
                                 <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd-MM-yyyy HH:mm:ss}" HtmlEncode="false" ReadOnly="true" />
                                 <asp:BoundField DataField="Usuario" HeaderText="Usuario" HtmlEncode="false" ReadOnly="true" />
-                                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" HtmlEncode="false" ReadOnly="true" />
+                                <asp:BoundField DataField="Descripcion" HeaderText="Descripción" HtmlEncode="false" ReadOnly="true" />
                                 <asp:BoundField DataField="Dato" HeaderText="ID Objeto" HtmlEncode="false" ReadOnly="true" />
                             </Columns>
                         </asp:GridView>

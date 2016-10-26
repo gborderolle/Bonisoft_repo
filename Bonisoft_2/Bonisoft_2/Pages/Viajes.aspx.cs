@@ -362,6 +362,13 @@ namespace Bonisoft_2.Pages
             }
         }
 
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string date1 = txbFiltro1.Value;
+            string date2 = txbFiltro2.Value;
+            BindGridViajes(date1, date2);
+        }
+
         #endregion Events
 
         #region GridView methods
@@ -648,7 +655,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lbl = e.Row.FindControl("lbl10") as LinkButton;
                 if (lbl != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -672,7 +679,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lbl = e.Row.FindControl("lbl16") as LinkButton;
                 if (lbl != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -696,7 +703,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lbl = e.Row.FindControl("lbl13") as LinkButton;
                 if (lbl != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -720,7 +727,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lbl = e.Row.FindControl("lbl14") as LinkButton;
                 if (lbl != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -744,7 +751,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lbl = e.Row.FindControl("lbl17") as LinkButton;
                 if (lbl != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -768,7 +775,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lbl = e.Row.FindControl("lbl18") as LinkButton;
                 if (lbl != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -792,7 +799,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lbl = e.Row.FindControl("lbl10") as LinkButton;
                 if (lbl != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -816,7 +823,7 @@ namespace Bonisoft_2.Pages
                 Label lbl = e.Row.FindControl("lbl9") as Label;
                 if (lbl != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -1509,6 +1516,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lblProveedor = e.Row.FindControl("lblProveedor") as LinkButton;
                 if (lblProveedor != null)
                 {
+                    lblProveedor.Text = string.Empty;
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
@@ -1528,6 +1536,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lblFletero = e.Row.FindControl("lblFletero") as LinkButton;
                 if (lblFletero != null)
                 {
+                    lblFletero.Text = string.Empty;
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
@@ -1547,6 +1556,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lblCliente = e.Row.FindControl("lblCliente") as LinkButton;
                 if (lblCliente != null)
                 {
+                    lblCliente.Text = string.Empty;
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
@@ -2135,7 +2145,7 @@ namespace Bonisoft_2.Pages
                                     Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, precioDescarga_str);
                                 }
                             }
-                            
+
                             int IVA = 0;
                             if (!string.IsNullOrWhiteSpace(IVA_str))
                             {
@@ -2999,12 +3009,6 @@ namespace Bonisoft_2.Pages
 
         #endregion Web methods
 
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            string date1 = txbFiltro1.Value;
-            string date2 = txbFiltro2.Value;
-            BindGridViajes(date1, date2);
-        }
     }
 }
 
