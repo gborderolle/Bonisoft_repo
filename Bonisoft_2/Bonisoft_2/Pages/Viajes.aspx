@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Viajes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Viajes.aspx.cs" Inherits="Bonisoft_2.Pages.Viajes" EnableEventValidation="false" %>
 
 <%@ Register Src="~/User_Controls/Dinamicos/Mercaderias.ascx" TagPrefix="uc1" TagName="Mercaderias" %>
+<%--<%@ Register Assembly="EditableDropDownList" Namespace="EditableControls" TagPrefix="editable" %>--%> 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
 
@@ -11,15 +12,42 @@
     <!-- PAGE CSS -->
     <link rel="stylesheet" href="/assets/dist/css/pages/Viajes.css" />
     <link rel="stylesheet" href="/assets/dist/css/pages/Modal_styles.css" />
+
+    <%--<link href="assets/plugins/editableDropDownList/css/jquery-ui.css" rel="stylesheet" type="text/css" />--%>
+
+
+<%--    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.core.js" type="text/javascript"></script> 
+    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.widget.js" type="text/javascript"></script> 
+    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.button.js" type="text/javascript"></script> 
+    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.position.js" type="text/javascript"></script> 
+    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.autocomplete.js" type="text/javascript"></script> 
+    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.combobox.js" type="text/javascript"></script> --%>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
+
+    <%--<script src="/assets/plugins/editableDropDownList/js/jquery-1.6.4.min.js" type="text/javascript"></script>--%> 
 
     <!-- PAGE SCRIPTS -->
     <script type="text/javascript" src="/assets/dist/js/jquery.quicksearch.js"></script>
     <script type="text/javascript" src="/assets/dist/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/assets/dist/js/jquery.tablesorter.js"></script>
     <script type="text/javascript" src="/assets/dist/js/popbox.js"></script>
+
+    
+
+    <!-- Editable DropDownList DLL -->
+    <%--
+    <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+    <script src="js/jquery.ui.core.js" type="text/javascript"></script>
+    <script src="js/jquery.ui.widget.js" type="text/javascript"></script>
+    <script src="js/jquery.ui.button.js" type="text/javascript"></script>
+    <script src="js/jquery.ui.position.js" type="text/javascript"></script>
+    <script src="js/jquery.ui.autocomplete.js" type="text/javascript"></script> 
+    <script src="js/jquery.ui.combobox.js" type="text/javascript"></script> 
+        --%>
 
     <!-- PAGE JS -->
     <script type="text/javascript" src="/assets/dist/js/AuxiliarFunctions.js"></script>
@@ -161,6 +189,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Proveedor: 
+                                                    <%--<editable:EditableDropDownList ID="modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="3" />--%>
                                                 <asp:DropDownList ID="modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="3" />
                                                 </td>
                                                 <td>Cliente: 

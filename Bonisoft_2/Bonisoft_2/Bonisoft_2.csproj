@@ -46,6 +46,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EditableDropDownList">
+      <HintPath>ExternalResources\EditableDropDownList.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -323,6 +326,36 @@
     <Content Include="assets\dist\js\pages\Listados.js" />
     <Content Include="assets\dist\js\pages\Resumen_clientes.js" />
     <Content Include="assets\dist\js\popbox.js" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-icons_222222_256x240.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-icons_228ef1_256x240.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-icons_454545_256x240.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-icons_888888_256x240.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-icons_ef8c08_256x240.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-icons_ffd27a_256x240.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\img\ui-icons_ffffff_256x240.png" />
+    <Content Include="assets\plugins\editableDropDownList\css\jquery-ui.css" />
+    <Content Include="assets\plugins\editableDropDownList\js\jquery-1.6.4.min.js" />
+    <Content Include="assets\plugins\editableDropDownList\js\jquery-1.8.2.min.js" />
+    <Content Include="assets\plugins\editableDropDownList\js\jquery-ui-1.8.24.custom.min.js" />
+    <Content Include="assets\plugins\editableDropDownList\js\jquery.ui.autocomplete.js" />
+    <Content Include="assets\plugins\editableDropDownList\js\jquery.ui.button.js" />
+    <Content Include="assets\plugins\editableDropDownList\js\jquery.ui.combobox.js" />
+    <Content Include="assets\plugins\editableDropDownList\js\jquery.ui.core.js" />
+    <Content Include="assets\plugins\editableDropDownList\js\jquery.ui.position.js" />
+    <Content Include="assets\plugins\editableDropDownList\js\jquery.ui.widget.js" />
     <Content Include="ExternalResources\Alert_Messages.js" />
     <Content Include="assets\dist\js\pages\Viajes.js" />
     <Content Include="assets\plugins\bootstrap-slider\bootstrap-slider.js" />
