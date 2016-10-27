@@ -15,14 +15,10 @@
 
     <%--<link href="assets/plugins/editableDropDownList/css/jquery-ui.css" rel="stylesheet" type="text/css" />--%>
 
+    <%--<script type="text/javascript" src="/assets/dist/js/jquery-3.1.1.min.js"></script>--%> 
+    <%--<script type="text/javascript" src="/assets/dist/js/jquery-ui.js"></script>--%>
 
-<%--    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.core.js" type="text/javascript"></script> 
-    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.widget.js" type="text/javascript"></script> 
-    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.button.js" type="text/javascript"></script> 
-    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.position.js" type="text/javascript"></script> 
-    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.autocomplete.js" type="text/javascript"></script> 
-    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.combobox.js" type="text/javascript"></script> --%>
-
+    
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
@@ -41,12 +37,12 @@
     <%--
     <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
-    <script src="js/jquery.ui.core.js" type="text/javascript"></script>
-    <script src="js/jquery.ui.widget.js" type="text/javascript"></script>
-    <script src="js/jquery.ui.button.js" type="text/javascript"></script>
-    <script src="js/jquery.ui.position.js" type="text/javascript"></script>
-    <script src="js/jquery.ui.autocomplete.js" type="text/javascript"></script> 
-    <script src="js/jquery.ui.combobox.js" type="text/javascript"></script> 
+    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.core.js" type="text/javascript"></script> 
+    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.widget.js" type="text/javascript"></script> 
+    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.button.js" type="text/javascript"></script> 
+    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.position.js" type="text/javascript"></script> 
+    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.autocomplete.js" type="text/javascript"></script> 
+    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.combobox.js" type="text/javascript"></script> 
         --%>
 
     <!-- PAGE JS -->
