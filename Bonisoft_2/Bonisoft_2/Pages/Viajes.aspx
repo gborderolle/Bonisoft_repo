@@ -543,10 +543,10 @@
 
                                 <div class="col-md-5 pull-right" style="margin-right: 10px; margin-bottom: 10px;">
 
-                                      <div style="float: left; margin-right: 5px;">
-                                            <asp:Button ID="btnUpdateViajes" runat="server" Text="Actualizar" CssClass="btn btnUpdate btn-sm"
-                                                OnClick="btnUpdateViajes_Click" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" />
-                                        </div>
+                                    <div style="float: left; margin-right: 5px;">
+                                        <asp:Button ID="btnUpdateViajes" runat="server" Text="Actualizar" CssClass="btn btnUpdate btn-sm"
+                                            OnClick="btnUpdateViajes_Click" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" />
+                                    </div>
 
                                     <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
                                         <div class="input-group ">
@@ -659,7 +659,7 @@
                                                                 <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                                 <asp:CompareValidator ForeColor="Red" ID="vtxbNew3" runat="server" ControlToValidate="txbNew3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                             </FooterTemplate>
-                                                        </asp:TemplateField>                                                   
+                                                        </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="P. destino Nombre/Neto">
                                                             <EditItemTemplate>
                                                                 <asp:TextBox ID="ddlPesadaDestino1" runat="server" Text='<%# Bind("Carga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>

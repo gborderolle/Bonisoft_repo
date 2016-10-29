@@ -41,7 +41,7 @@
                     </div>
 
                     <button type="button" id="btnSubmit" class="btn btn-primary submit" style="font-size: 140%; line-height: 1.1;" onclick="checkSubmit();">
-                        <i class="fa fa-check"></i>Ingresar
+                        <i class="fa fa-check"></i>&nbsp;Ingresar
                     </button>
                     <input type="submit" id="btnSubmit_candidato1" runat="server" onserverclick="btnSubmit_candidato1_ServerClick"
                         style="display: none;" class="btnSubmit_candidato" />

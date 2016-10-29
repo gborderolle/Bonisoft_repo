@@ -1203,6 +1203,7 @@
     <Content Include="Pages\Datos_configuracion.aspx" />
     <Content Include="Pages\Detalles.aspx" />
     <Content Include="Pages\Deudores.aspx" />
+    <Content Include="Pages\ErrorPage.aspx" />
     <Content Include="Pages\Listados.aspx" />
     <Content Include="Pages\Menu_logs.aspx" />
     <Content Include="Pages\Recordatorios.aspx" />
@@ -1408,6 +1409,13 @@
     </Compile>
     <Compile Include="Pages\Deudores.aspx.designer.cs">
       <DependentUpon>Deudores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Listados.aspx.cs">
       <DependentUpon>Listados.aspx</DependentUpon>

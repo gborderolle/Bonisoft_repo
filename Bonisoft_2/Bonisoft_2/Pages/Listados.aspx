@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Listados" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Listados.aspx.cs" Inherits="Bonisoft_2.assets.dist.js.pages.Listados" %>
+
 <%@ Register Src="~/User_Controls/Estaticos/Clientes.ascx" TagPrefix="uc1" TagName="Clientes" %>
 <%@ Register Src="~/User_Controls/Estaticos/Proveedores.ascx" TagPrefix="uc1" TagName="Proveedores" %>
 <%@ Register Src="~/User_Controls/Estaticos/Cuadrillas.ascx" TagPrefix="uc1" TagName="Cuadrillas" %>
@@ -13,12 +14,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
 
-
     <!-- STYLES EXTENSION -->
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="/assets/dist/css/pages/InfoBoxes.min.css">
-    <link rel="stylesheet" href="/assets/dist/css/pages/Datos.css">
+    <link rel="stylesheet" href="/assets/dist/css/pages/InfoBoxes.min.css" />
+    <link rel="stylesheet" href="/assets/dist/css/pages/Datos.css" />
 
     <!-- AdminLTE Skins. Choose a skin from the css/skins
      folder instead of downloading all of them to reduce the load. -->
@@ -102,15 +102,12 @@
 
             <!-- =========================================================== -->
 
-
             <div class="box box-default">
                 <div class="box-header with-border" style="padding-bottom: 0;">
 
                     <div class="row">
                         <div class="col-md-9">
-                            <%--<asp:button id="backButton" runat="server" text="Volver" OnClientClick="JavaScript:window.history.back(1);return false;"></asp:button>--%>
                             <asp:Button ID="backButton" runat="server" Text="Volver" CssClass="btn btn-info pull-left" OnClientClick="JavaScript:window.history.back(1);return false;" />
-
                             <h3 class="box-title">
                                 <label id="lblTableActive" style="font-weight: normal;"></label>
                             </h3>
@@ -129,7 +126,6 @@
                             </form>
                         </div>
                     </div>
-
 
                 </div>
                 <!-- /.box-header -->
