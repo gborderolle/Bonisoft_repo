@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Viajes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Viajes.aspx.cs" Inherits="Bonisoft_2.Pages.Viajes" EnableEventValidation="false" %>
 
 <%@ Register Src="~/User_Controls/Dinamicos/Mercaderias.ascx" TagPrefix="uc1" TagName="Mercaderias" %>
-<%--<%@ Register Assembly="EditableDropDownList" Namespace="EditableControls" TagPrefix="editable" %>--%> 
+<%--<%@ Register Assembly="EditableDropDownList" Namespace="EditableControls" TagPrefix="editable" %>--%>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
 
@@ -15,15 +15,13 @@
 
     <%--<link href="assets/plugins/editableDropDownList/css/jquery-ui.css" rel="stylesheet" type="text/css" />--%>
 
-    <%--<script type="text/javascript" src="/assets/dist/js/jquery-3.1.1.min.js"></script>--%> 
+    <%--<script type="text/javascript" src="/assets/dist/js/jquery-3.1.1.min.js"></script>--%>
     <%--<script type="text/javascript" src="/assets/dist/js/jquery-ui.js"></script>--%>
-
-    
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
 
-    <%--<script src="/assets/plugins/editableDropDownList/js/jquery-1.6.4.min.js" type="text/javascript"></script>--%> 
+    <%--<script src="/assets/plugins/editableDropDownList/js/jquery-1.6.4.min.js" type="text/javascript"></script>--%>
 
     <!-- PAGE SCRIPTS -->
     <script type="text/javascript" src="/assets/dist/js/jquery.quicksearch.js"></script>
@@ -31,7 +29,7 @@
     <script type="text/javascript" src="/assets/dist/js/jquery.tablesorter.js"></script>
     <script type="text/javascript" src="/assets/dist/js/popbox.js"></script>
 
-    
+
 
     <!-- Editable DropDownList DLL -->
     <%--
@@ -43,7 +41,7 @@
     <script src="/assets/plugins/editableDropDownList/js/jquery.ui.position.js" type="text/javascript"></script> 
     <script src="/assets/plugins/editableDropDownList/js/jquery.ui.autocomplete.js" type="text/javascript"></script> 
     <script src="/assets/plugins/editableDropDownList/js/jquery.ui.combobox.js" type="text/javascript"></script> 
-        --%>
+    --%>
 
     <!-- PAGE JS -->
     <script type="text/javascript" src="/assets/dist/js/AuxiliarFunctions.js"></script>
@@ -64,8 +62,8 @@
 
             <div id="tabsViajes">
                 <ul>
-                    <li><a href="#tabsViajes_1" class="tabViajes">Viajes en Curso</a></li>
-                    <li><a href="#tabsViajes_2" class="tabViajes">Histórico</a></li>
+                    <li><a href="#tabsViajes_1" id="aTabsViajes_1" class="tabViajes">Viajes en Curso</a></li>
+                    <li><a href="#tabsViajes_2" id="aTabsViajes_2" class="tabViajes">Histórico</a></li>
                 </ul>
 
                 <!-- Tab Viajes En Curso BEGIN -->
@@ -86,7 +84,13 @@
                                         <a href="#addModal" rel="modal:open" class="btn btn-success pull-left">Iniciar viaje</a>
                                     </div>
 
-                                    <div class="col-md-3 pull-right">
+                                    <div class="col-md-5 pull-right">
+
+                                        <div style="float: left; margin-right: 5px;">
+                                            <asp:Button ID="btnUpdateViajesEnCurso" runat="server" Text="Actualizar" CssClass="btn btnUpdate btn-sm"
+                                                OnClick="btnUpdateViajesEnCurso_Click" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" />
+                                        </div>
+
                                         <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
                                             <div class="input-group ">
                                                 <input type="text" id="txbSearchViajesEnCurso" name="q" class="form-control" placeholder="Buscar...">
@@ -95,15 +99,6 @@
                                                         <i class="fa fa-search"></i>
                                                     </button>
                                                 </span>
-
-                                                <asp:UpdatePanel ID="upUpdateViajesEnCurso" runat="server">
-                                                    <ContentTemplate>
-
-                                                        <asp:Button ID="btnUpdateViajesEnCurso" runat="server" Text="Actualizar" CssClass="btn btnUpdate btn-sm"
-                                                            OnClick="btnUpdateViajesEnCurso_Click" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" />
-
-                                                    </ContentTemplate>
-                                                </asp:UpdatePanel>
 
                                             </div>
                                         </form>
@@ -161,6 +156,9 @@
                                 <asp:Label ID="lblGridViajesEnCursoCount" runat="server" ClientIDMode="Static" Text="# 0" CssClass="lblResultados label label-info"></asp:Label>
 
                             </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="btnUpdateViajesEnCurso" />
+                            </Triggers>
                         </asp:UpdatePanel>
 
                         <!-- Modal Iniciar viaje BEGIN -->
@@ -186,7 +184,7 @@
                                             <tr>
                                                 <td>Proveedor: 
                                                     <%--<editable:EditableDropDownList ID="modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="3" />--%>
-                                                <asp:DropDownList ID="modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="3" />
+                                                    <asp:DropDownList ID="modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="3" />
                                                 </td>
                                                 <td>Cliente: 
                                                 <asp:DropDownList ID="modalAdd_ddlClientes" runat="server" ClientIDMode="Static" CssClass="form-control with_border" TabIndex="4" />
@@ -529,7 +527,7 @@
 
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-8 pull-left" style="margin-right: 10px; margin-bottom: 10px;">
+                                <div class="col-md-6 pull-left" style="margin-right: 10px; margin-bottom: 10px;">
                                     <div class="input-group">
                                         <input type="text" id="txbFiltro1" class="form-control datepicker" placeholder="Desde" runat="server" style="width: 120px;">
                                         <span class="input-group-btn"></span>
@@ -543,7 +541,13 @@
                                 </div>
 
 
-                                <div class="col-md-2 pull-right" style="margin-right: 10px; margin-bottom: 10px;">
+                                <div class="col-md-5 pull-right" style="margin-right: 10px; margin-bottom: 10px;">
+
+                                      <div style="float: left; margin-right: 5px;">
+                                            <asp:Button ID="btnUpdateViajes" runat="server" Text="Actualizar" CssClass="btn btnUpdate btn-sm"
+                                                OnClick="btnUpdateViajes_Click" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" />
+                                        </div>
+
                                     <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
                                         <div class="input-group ">
                                             <input type="text" id="txbSearchViajes" name="q" class="form-control" placeholder="Buscar...">
@@ -655,18 +659,7 @@
                                                                 <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                                 <asp:CompareValidator ForeColor="Red" ID="vtxbNew3" runat="server" ControlToValidate="txbNew3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                             </FooterTemplate>
-                                                        </asp:TemplateField>
-                                                        <%--<asp:TemplateField HeaderText="Pesada origen/Neto">
-                                                            <EditItemTemplate>
-                                                                <asp:TextBox ID="ddlPesadaOrigen1" runat="server" Text='<%# Bind("Carga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lbl8" runat="server" Text='<%# Bind("Pesada_ID") %>'></asp:Label>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:TextBox ID="ddlPesadaOrigen2" runat="server" Text='<%# Bind("Carga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>--%>
+                                                        </asp:TemplateField>                                                   
                                                         <asp:TemplateField HeaderText="P. destino Nombre/Neto">
                                                             <EditItemTemplate>
                                                                 <asp:TextBox ID="ddlPesadaDestino1" runat="server" Text='<%# Bind("Carga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -747,32 +740,8 @@
                                                         <asp:TemplateField HeaderText="Volver a En Curso">
                                                             <HeaderStyle Width="100" />
                                                             <ItemTemplate>
-                                                                <%--<asp:LinkButton ID="btnVolverAEnCurso" runat="server" Text="" CommandName="VolverAEnCurso" ClientIDMode="AutoID"
-                                                                    CommandArgument='VolverAEnCurso' CssClass="btn btn-info btn-xs btn-command btnVolverAEnCurso" CausesValidation="false" OnClientClick='return confirm("Está seguro que desea poner este viaje En Curso?");'><span aria-hidden="true" class="fa fa-plane"></span></asp:LinkButton>--%>
-
                                                                 <a id="btnVolverAEnCurso" role="button" onclick='<%# "volverAEnCurso(" +Eval("Viaje_ID") + ");" %>' class="btn btn-warning btn-xs fa fa-plane"></a>
-
                                                             </ItemTemplate>
-
-                                                            <%--<ItemTemplate>
-                                                                <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" ClientIDMode="AutoID"
-                                                                    CommandArgument='' CssClass="btn btn-info btn-xs btn-command" CausesValidation="false"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
-                                                                <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete" ClientIDMode="AutoID"
-                                                                    OnClientClick='return confirm("Está seguro que desea borrar este registro?");'
-                                                                    CommandArgument='' CssClass="btn btn-danger btn-xs btn-command"><span aria-hidden="true" class="glyphicon glyphicon-remove"></span></asp:LinkButton>
-                                                            </ItemTemplate>
-                                                            <EditItemTemplate>
-                                                                <asp:LinkButton ID="lnkInsert" runat="server" Text="" CommandName="Update" CausesValidation="false" ClientIDMode="AutoID"
-                                                                    CommandArgument='' CssClass="btn btn-success btn-xs btn-command"><span aria-hidden="true" class="glyphicon glyphicon-floppy-disk"></span></asp:LinkButton>
-                                                                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="Cancel" CausesValidation="false" ClientIDMode="AutoID"
-                                                                    CommandArgument='' CssClass="btn btn-warning btn-xs btn-command"><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
-                                                            </EditItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:LinkButton ID="lnkInsert" runat="server" Text="" ValidationGroup="newGrp" CommandName="InsertNew" ClientIDMode="AutoID"
-                                                                    CommandArgument='' CssClass="btn btn-info btn-xs btn-command"><span aria-hidden="true" class="glyphicon glyphicon-plus"></span></asp:LinkButton>
-                                                                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew" ClientIDMode="AutoID"
-                                                                    CommandArgument='' CssClass="btn btn-warning btn-xs btn-command"><span aria-hidden="true" class="glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
-                                                            </FooterTemplate>--%>
                                                         </asp:TemplateField>
                                                     </Columns>
 
@@ -791,6 +760,7 @@
                                             </ContentTemplate>
                                             <Triggers>
                                                 <asp:AsyncPostBackTrigger ControlID="btnSearch" />
+                                                <asp:AsyncPostBackTrigger ControlID="btnUpdateViajes" />
                                             </Triggers>
                                         </asp:UpdatePanel>
 

@@ -4,7 +4,8 @@ table, td, .table tbody > tr > td {
 }
 
 .table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
-    background-color: #428bca;
+    /*background-color: #428bca;*/
+    background-color: #a7d2f7;
 }
 
 .modal-header {

@@ -96,6 +96,14 @@ function bindEvents() {
         VIAJE_ID_SELECTED = $(this).find(".hiddencol").html();
     });
 
+    $("#aTabsViajes_1").click(function () {
+        $("#btnUpdateViajesEnCurso").click();
+    });
+
+    $("#aTabsViajes_2").click(function () {
+        $("#btnUpdateViajes").click();
+    });
+
     // Source: https://www.youtube.com/watch?v=Sy2J7cUv0QM
     var gridViajes = $("#gridViajes tbody tr");
     var gridViajesEnCurso = $("#gridViajesEnCurso tbody tr");
@@ -188,10 +196,12 @@ function BorrarViajeEnCurso(viaje_ID) {
                                     // OK
                                     show_message_info('OK_BorrarViaje');
 
-                                    $(this).dialog("close");
+                                    //$(this).dialog("close");
+                                    $("#dialog_borrarViaje").dialog("close");
 
                                     // Actualizar tabla
-                                    $("#btnUpdateViajesEnCurso").click();
+                                    //$("#btnUpdateViajesEnCurso").click();
+                                    $('#aTabsViajes_1').click();
 
                                     break;
                                 }
@@ -222,7 +232,8 @@ function BorrarViajeEnCurso(viaje_ID) {
                 }
             },
             "Cancelar": function () {
-                $(this).dialog("close");
+                //$(this).dialog("close");
+                $("#dialog_borrarViaje").dialog("close");
                 $("#txbClave").val("");
 
                 return false;
@@ -517,8 +528,12 @@ function NuevoViaje() {
                     modal: true,
                     buttons: {
                         "Aceptar": function () {
-                            $("#btnUpdateViajesEnCurso").click();
-                            $(this).dialog("close");
+                            //$("#btnUpdateViajesEnCurso").click();
+                            //$(this).dialog("close");
+
+                            $('#aTabsViajes_1').click();
+                            $("#dialog").dialog("close");
+
                             $.modal.close();
                             return true;
                         }
@@ -988,8 +1003,12 @@ function ModificarViaje_2() {
                         modal: true,
                         buttons: {
                             "Aceptar": function () {
-                                $("#btnUpdateViajesEnCurso").click();
-                                $(this).dialog("close");
+                                //$("#btnUpdateViajesEnCurso").click();
+                                //$(this).dialog("close");
+
+                                $('#aTabsViajes_1').click();
+                                $("#dialog").dialog("close");
+
                                 $.modal.close();
                                 return true;
                             }
@@ -1081,7 +1100,8 @@ function FinDelViaje() {
 
             },
             "Cancelar": function () {
-                $(this).dialog("close");
+                //$(this).dialog("close");
+                $("#dialog").dialog("close");
                 return false;
             }
         }
@@ -1267,8 +1287,11 @@ function volverAEnCurso(viajeID) {
                             // OK
                             show_message_info('OK_VolverAEnCurso');
 
-                            setTimeout("location.reload(true);", 1000);
-                            $(this).dialog("close");
+                            //$(this).dialog("close");
+                            $("#dialog").dialog("close");
+
+                            //setTimeout("$('#btnUpdateViajes').click();", 1000);
+                            $('#aTabsViajes_1').click();
 
                         }, // end success
                         failure: function (response) {
@@ -1279,7 +1302,8 @@ function volverAEnCurso(viajeID) {
 
                 },
                 "Cancelar": function () {
-                    $(this).dialog("close");
+                    //$(this).dialog("close");
+                    $("#dialog").dialog("close");
                     return false;
                 }
             }
