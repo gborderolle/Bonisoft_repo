@@ -390,7 +390,6 @@ namespace Bonisoft_2.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             foreach (GridViewRow row in gridClientes.Rows)
             {
                 if (row.RowIndex == gridClientes.SelectedIndex)
@@ -408,13 +407,22 @@ namespace Bonisoft_2.Pages
 
                         if (cliente_ID > 0)
                         {
-                            BindGridViajes(cliente_ID);
-                            BindGridPagos(cliente_ID);
+                            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                            {
+                                cliente cliente = (cliente)context.clientes.FirstOrDefault(c => c.cliente_ID == cliente_ID);
+                                if (cliente != null)
+                                {
+                                    lblNombreCliente.Text = cliente.Nombre;
 
-                            hdn_clientID.Value = cliente_ID_str;
+                                    BindGridViajes(cliente_ID);
+                                    BindGridPagos(cliente_ID);
 
-                            gridViajes.UseAccessibleHeader = true;
-                            gridViajes.HeaderRow.TableSection = TableRowSection.TableHeader;
+                                    hdn_clientID.Value = cliente_ID_str;
+
+                                    gridViajes.UseAccessibleHeader = true;
+                                    gridViajes.HeaderRow.TableSection = TableRowSection.TableHeader;
+                                }
+                            }
                         }
                     }
                     row.BackColor = ColorTranslator.FromHtml("#A1DCF2");

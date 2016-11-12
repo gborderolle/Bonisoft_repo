@@ -58,6 +58,15 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.Label lblGridClientesCount;
         
         /// <summary>
+        /// lblNombreCliente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNombreCliente;
+        
+        /// <summary>
         /// upPagos control.
         /// </summary>
         /// <remarks>

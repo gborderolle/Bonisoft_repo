@@ -301,6 +301,7 @@
                                         <div class="row">
                                             <div class="col-md-10 pull-left">
                                                 <h3 id="notificacionesModalLabel">Notificaciones</h3>
+                                                <p style="color: orange; margin: 0;">IMPORTANTE: Expresar todas las unidades de peso en TONELADAS.</p>
                                             </div>
 
                                             <div class="col-md-2 pull-right" style="padding-top: 10px;">
@@ -405,7 +406,7 @@
                                             </div>
 
                                             <div class="modal-body panel panel-default row" style="padding-bottom: 0; padding-top: 0; position: inherit; background: #e9e9e9; color: #333333; margin: 0;">
-                                                <div class="col-md-6 pull-left" style="padding: 10px;">
+                                                <div class="col-md-10 pull-left" style="padding: 10px;">
                                                     Comentarios:
                                                            <asp:TextBox ID="txb_pesadaComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="100"></asp:TextBox>
                                                 </div>

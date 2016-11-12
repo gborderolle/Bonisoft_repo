@@ -90,6 +90,8 @@
 
                 <div class="col-md-9">
 
+                    <h3 style="margin-top: 0;"><asp:Label runat="server" ID="lblNombreCliente"></asp:Label></h3>
+
                     <div id="tabsClientes">
                         <ul>
                             <li><a href="#tabsClientes_1" class="tabsClientes">Pagos</a></li>

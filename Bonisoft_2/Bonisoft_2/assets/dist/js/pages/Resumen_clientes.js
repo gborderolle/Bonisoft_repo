@@ -304,7 +304,6 @@ function bindEvents() {
 
 }
 
-
 function BorrarPago(clienteID) {
 
     if (clienteID > 0) {

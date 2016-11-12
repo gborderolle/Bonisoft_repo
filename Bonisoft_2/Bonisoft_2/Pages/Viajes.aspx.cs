@@ -786,7 +786,8 @@ namespace Bonisoft_2.Pages
                 LinkButton lbl = e.Row.FindControl("lbl18") as LinkButton;
                 if (lbl != null)
                 {
-                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty;
+                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)

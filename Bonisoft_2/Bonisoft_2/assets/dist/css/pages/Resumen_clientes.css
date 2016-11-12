@@ -1,4 +1,7 @@
-﻿
+﻿#gridClientes > tbody > tr > td {
+    font-size: smaller;
+}
+
 .lblResultados{
     float:left;
     font-size: small;
