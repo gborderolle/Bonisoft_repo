@@ -41,14 +41,14 @@
             <HeaderStyle Width="170" />
             <ItemStyle Width="170" />
             <EditItemTemplate>
-                <asp:TextBox ID="mercaderias_txb5" runat="server" Text='<%# Bind("Precio_xTonelada_compra") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="mercaderias_txb5" runat="server" Text='<%# Bind("Precio_xTonelada_compra") %>' CssClass="form-control" MaxLength="30" onkeydown="return isNumberKey(this);"></asp:TextBox>
                 <asp:CompareValidator ID="vtxb5" runat="server" ControlToValidate="mercaderias_txb5" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" ForeColor="Red"/>
             </EditItemTemplate>
             <ItemTemplate>
                 <asp:Label ID="mercaderias_lbl5" runat="server" Text='<%# Bind("Precio_xTonelada_compra", "{0:n2}") %>'></asp:Label>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:TextBox ID="mercaderias_txbNew5" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="mercaderias_txbNew5" runat="server" CssClass="form-control" MaxLength="30" onkeydown="return isNumberKey(this);"></asp:TextBox>
                 <asp:CompareValidator ID="vtxbNew5" runat="server" ControlToValidate="mercaderias_txbNew5" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" ForeColor="Red"/>
             </FooterTemplate>
         </asp:TemplateField>

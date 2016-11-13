@@ -90,7 +90,8 @@
 
                 <div class="col-md-9">
 
-                    <h3 style="margin-top: 0;"><asp:Label runat="server" ID="lblNombreCliente"></asp:Label></h3>
+                    <%--<h3 style="margin-top: 0;">--%>
+                        <asp:Label runat="server" ID="lblNombreCliente">Carlos Gardel</asp:Label>
 
                     <div id="tabsClientes">
                         <ul>

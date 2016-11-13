@@ -1313,3 +1313,10 @@ function volverAEnCurso(viajeID) {
 
 }
 
+function isNumberKey(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    if (charCode == 188)
+        return false;
+
+    return true;
+}

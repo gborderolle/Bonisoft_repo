@@ -394,7 +394,6 @@ namespace Bonisoft_2.Pages
             {
                 if (row.RowIndex == gridClientes.SelectedIndex)
                 {
-
                     string cliente_ID_str = gridClientes.SelectedRow.Cells[0].Text;
                     if (!string.IsNullOrWhiteSpace(cliente_ID_str))
                     {

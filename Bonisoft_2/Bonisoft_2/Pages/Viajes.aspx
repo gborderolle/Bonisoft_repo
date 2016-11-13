@@ -301,7 +301,7 @@
                                         <div class="row">
                                             <div class="col-md-10 pull-left">
                                                 <h3 id="notificacionesModalLabel">Notificaciones</h3>
-                                                <p style="color: orange; margin: 0;">IMPORTANTE: Expresar todas las unidades de peso en TONELADAS.</p>
+                                                <p style="color: orange; margin: 0;">IMPORTANTE: #1- Expresar todas las unidades de peso en TONELADAS. #2- Usar "puntos", no "comas".</p>
                                             </div>
 
                                             <div class="col-md-2 pull-right" style="padding-top: 10px;">
@@ -352,10 +352,10 @@
                                                             <tr>
 
                                                                 <td>Peso bruto: 
-                                                         <asp:TextBox ID="txb_pesada1Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="28"></asp:TextBox>
+                                                         <asp:TextBox ID="txb_pesada1Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="28" onkeydown="return isNumberKey(this);"></asp:TextBox>
                                                                 </td>
                                                                 <td>Peso neto: 
-                                                       <asp:TextBox ID="txb_pesada1Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30" TabIndex="29"></asp:TextBox>
+                                                       <asp:TextBox ID="txb_pesada1Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30" TabIndex="29" onkeydown="return isNumberKey(this);"></asp:TextBox>
                                                                 </td>
 
                                                             </tr>
@@ -385,10 +385,10 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Peso bruto: 
-                                                         <asp:TextBox ID="txb_pesada2Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="28"></asp:TextBox>
+                                                         <asp:TextBox ID="txb_pesada2Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="28" onkeydown="return isNumberKey(this);"></asp:TextBox> 
                                                                 </td>
                                                                 <td>Peso neto: 
-                                                       <asp:TextBox ID="txb_pesada2Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30" TabIndex="29"></asp:TextBox>
+                                                       <asp:TextBox ID="txb_pesada2Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30" TabIndex="29" onkeydown="return isNumberKey(this);"></asp:TextBox>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -494,7 +494,7 @@
                                                 <hr style="margin-top: 5px; margin-bottom: 5px;" />
                                                 <div class="row" style="margin: 0;">
                                                     <div class="col-md-9 pull-left" style="padding: 10px;">
-                                                        <p class="text-info">IMPORTANTE: Para los números decimales usar "puntos", no "comas". Ej: 1.2</p>
+                                                        <%--<p class="text-info">IMPORTANTE: Para los números decimales usar "puntos", no "comas". Ej: 1.2</p>--%>
                                                     </div>
 
                                                     <div class="col-md-3 pull-right" style="padding: 10px;">

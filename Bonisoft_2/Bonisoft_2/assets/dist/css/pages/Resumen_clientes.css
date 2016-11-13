@@ -1,5 +1,6 @@
 ﻿#gridClientes > tbody > tr > td {
     font-size: smaller;
+    border-bottom: 1px #cccccc solid;
 }
 
 .lblResultados{
