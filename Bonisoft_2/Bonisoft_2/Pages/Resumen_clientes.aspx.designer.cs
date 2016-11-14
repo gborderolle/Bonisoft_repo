@@ -22,6 +22,15 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.UpdatePanel upClientes;
         
         /// <summary>
+        /// hdn_lblNombreCliente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_lblNombreCliente;
+        
+        /// <summary>
         /// gridClientes_lblMessage control.
         /// </summary>
         /// <remarks>
@@ -64,7 +73,7 @@ namespace Bonisoft_2.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombreCliente;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblNombreCliente;
         
         /// <summary>
         /// upPagos control.

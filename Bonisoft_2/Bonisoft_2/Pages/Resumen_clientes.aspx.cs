@@ -39,7 +39,6 @@ namespace Bonisoft_2.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             gridPagos.PageIndex = e.NewPageIndex;
 
             string client_ID_str = hdn_clientID.Value;
@@ -384,6 +383,8 @@ namespace Bonisoft_2.Pages
 
         protected void gridClientes_OnSelectedIndexChanged(object sender, EventArgs e)
         {
+            // Source: http://www.codeproject.com/Tips/622720/Fire-GridView-SelectedIndexChanged-Event-without-S
+
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
@@ -411,7 +412,7 @@ namespace Bonisoft_2.Pages
                                 cliente cliente = (cliente)context.clientes.FirstOrDefault(c => c.cliente_ID == cliente_ID);
                                 if (cliente != null)
                                 {
-                                    lblNombreCliente.Text = cliente.Nombre;
+                                    hdn_lblNombreCliente.Value = cliente.Nombre;
 
                                     BindGridViajes(cliente_ID);
                                     BindGridPagos(cliente_ID);
@@ -934,6 +935,10 @@ namespace Bonisoft_2.Pages
 
         #endregion
 
+        protected void upClientes_Load(object sender, EventArgs e)
+        {
+            lblNombreCliente.InnerText = hdn_lblNombreCliente.Value;
+        }
     }
 }
 

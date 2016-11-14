@@ -35,15 +35,15 @@
                 </div>
             </div>
 
-
             <div class="row panel panel-default" style="margin-top: 10px; padding-top: 10px;">
 
                 <div class="col-md-3">
 
                     <div style="text-align: center">
 
-                        <asp:UpdatePanel ID="upClientes" runat="server">
+                        <asp:UpdatePanel ID="upClientes" runat="server" OnLoad="upClientes_Load">
                             <ContentTemplate>
+                                <asp:HiddenField ID="hdn_lblNombreCliente" runat="server" ClientIDMode="Static" />
 
                                 <div class="row" style="margin-bottom: 10px;">
                                     <div class="col-md-7 pull-right">
@@ -91,7 +91,7 @@
                 <div class="col-md-9">
 
                     <%--<h3 style="margin-top: 0;">--%>
-                        <asp:Label runat="server" ID="lblNombreCliente">Carlos Gardel</asp:Label>
+                        <label runat="server" id="lblNombreCliente" class="label label-default"></label></h3>
 
                     <div id="tabsClientes">
                         <ul>
