@@ -247,6 +247,7 @@
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="EnViaje" Type="bit" Nullable="false" />
     <Property Name="Fecha_registro" Type="date" />
+    <Property Name="isFicticio" Type="bit" Nullable="false" />
   </EntityType>
   <EntityContainer Name="bonisoft_dbModelStoreContainer">
     <EntitySet Name="camion" EntityType="Self.camion" Schema="bonisoft_db" store:Type="Tables" />

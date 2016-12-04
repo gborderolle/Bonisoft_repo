@@ -252,6 +252,7 @@
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="EnViaje" Type="bit" Nullable="false" />
           <Property Name="Fecha_registro" Type="date" />
+          <Property Name="isFicticio" Type="bit" Nullable="false" />
         </EntityType>
         <EntityContainer Name="bonisoft_dbModelStoreContainer">
           <EntitySet Name="camion" EntityType="Self.camion" Schema="bonisoft_db" store:Type="Tables" />
@@ -550,6 +551,7 @@
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="EnViaje" Type="Boolean" Nullable="false" />
           <Property Name="Fecha_registro" Type="DateTime" />
+          <Property Name="isFicticio" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -796,6 +798,7 @@
           <EntitySetMapping Name="viajes">
             <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
               <MappingFragment StoreEntitySet="viaje">
+                <ScalarProperty Name="isFicticio" ColumnName="isFicticio" />
                 <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
                 <ScalarProperty Name="EnViaje" ColumnName="EnViaje" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />

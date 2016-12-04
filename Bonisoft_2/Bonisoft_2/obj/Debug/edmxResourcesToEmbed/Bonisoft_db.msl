@@ -240,6 +240,7 @@
     <EntitySetMapping Name="viajes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.viaje">
         <MappingFragment StoreEntitySet="viaje">
+          <ScalarProperty Name="isFicticio" ColumnName="isFicticio" />
           <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
           <ScalarProperty Name="EnViaje" ColumnName="EnViaje" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />

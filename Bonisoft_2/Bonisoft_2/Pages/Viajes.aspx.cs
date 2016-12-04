@@ -1847,7 +1847,7 @@ namespace Bonisoft_2.Pages
                         Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, date_end);
                     }
 
-                    var elements = context.viajes.Where(e => e.Fecha_partida >= date1 && e.Fecha_partida <= date2).OrderByDescending(e => e.Fecha_partida).ToList();
+                    var elements = context.viajes.Where(e => e.Fecha_partida >= date1 && e.Fecha_partida <= date2 && !e.isFicticio).OrderByDescending(e => e.Fecha_partida).ToList();
                     if (elements.Count() > 0)
                     {
                         gridViajes.DataSource = elements;
@@ -1858,7 +1858,7 @@ namespace Bonisoft_2.Pages
                 }
                 else
                 {
-                    var elements = context.viajes.Where(e => e.EnViaje == false).OrderByDescending(e => e.Fecha_partida).ToList();
+                    var elements = context.viajes.Where(e => !e.EnViaje && !e.isFicticio).OrderByDescending(e => e.Fecha_partida).ToList();
                     if (elements.Count() > 0)
                     {
                         gridViajes.DataSource = elements;
@@ -1902,7 +1902,7 @@ namespace Bonisoft_2.Pages
         {
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
-                var elements = context.viajes.Where(e => e.EnViaje == true).OrderByDescending(e => e.Fecha_partida).ToList();
+                var elements = context.viajes.Where(e => e.EnViaje && !e.isFicticio).OrderByDescending(e => e.Fecha_partida).ToList();
                 if (elements.Count() > 0)
                 {
                     gridViajesEnCurso.DataSource = elements;

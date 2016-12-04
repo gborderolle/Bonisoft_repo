@@ -90,13 +90,12 @@
 
                 <div class="col-md-9">
 
-                    <%--<h3 style="margin-top: 0;">--%>
-                        <label runat="server" id="lblNombreCliente" class="label label-default"></label></h3>
+                    <label runat="server" id="lblNombreCliente" class="label label-default"></label>
 
                     <div id="tabsClientes">
                         <ul>
-                            <li><a href="#tabsClientes_1" class="tabsClientes">Pagos</a></li>
-                            <li><a href="#tabsClientes_2" class="tabsClientes">Viajes</a></li>
+                            <li><a href="#tabsClientes_1" class="tabsClientes">Pagos del cliente</a></li>
+                            <li><a href="#tabsClientes_2" class="tabsClientes">Viajes del cliente</a></li>
                         </ul>
 
                         <!-- Tab Viajes BEGIN -->
@@ -108,6 +107,16 @@
                                     <ContentTemplate>
 
                                         <asp:HiddenField ID="hdn_clientID" runat="server" ClientIDMode="Static" />
+
+
+                                        <div class="row">
+                                            <div class="col-md-2 pull-right">
+                                                <%--<a href="#addFicticioModal" rel="modal:open" class="btn btn-warning pull-right">Saldo anterior</a>--%>
+                                            
+                                                <a id="btnAddFicticioModal" role="button" onclick='ViajeFicticio_1();' class="btn btn-sm btn-warning pull-right">Saldo anterior</a>
+                                            
+                                            </div>
+                                        </div>
 
                                         <div class="row" style="margin-bottom: 10px; margin-right: 0; margin-left: 0;">
                                             <h3 class="pull-left" title="Precio de venta total">Saldo inicial:
@@ -157,6 +166,13 @@
 
                                         <div class="row" style="margin-right: 0; margin-left: 0;">
                                             <a href="#addPagoModal" rel="modal:open" class="btn btn-primary pull-right">Ingresar pago</a>
+                                        </div>
+
+                                        <hr style="margin-top: 5px; margin-bottom: 5px;" />
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-md-12 pull-left" style="padding: 10px;">
+                                                <p class="text-info" style="text-align: left;">Importante: El Saldo inicial es la suma del Precio de venta de todos los viajes que corresponden al cliente. </p>
+                                            </div>
                                         </div>
 
                                     </ContentTemplate>
@@ -283,7 +299,7 @@
         <asp:UpdatePanel ID="upAdd" runat="server">
             <ContentTemplate>
                 <div class="modal-body">
-                    <table class="table table-hover">
+                    <table class="table">
                         <tr>
                             <td>Fecha de pago: 
                             <asp:TextBox ID="add_txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:dd-MM-yyyy}" TabIndex="1"></asp:TextBox>
@@ -327,7 +343,7 @@
         <asp:UpdatePanel ID="upEdit" runat="server">
             <ContentTemplate>
                 <div class="modal-body">
-                    <table class="table table-hover">
+                    <table class="table">
                         <tr>
                             <td>Fecha de pago: 
                             <asp:TextBox ID="edit_txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:dd-MM-yyyy}" TabIndex="5"></asp:TextBox>
@@ -361,5 +377,41 @@
         </asp:UpdatePanel>
     </div>
     <!-- Modal modificar pago END -->
+
+    <!-- Modal viaje ficticio BEGIN -->
+    <div id="addFicticioModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true"
+        style="display: none; max-width: 500px; overflow: hidden;" class="modal fade dark in">
+
+        <div class="modal-header">
+            <h3 id="addFicticioModalLabel">Modificar saldo anterior</h3>
+        </div>
+        <asp:UpdatePanel ID="upAddFicticio" runat="server">
+            <ContentTemplate>
+                <%--<asp:Button ID="btnSubmit_upAddFicticio" runat="server" OnClick="btnSubmit_upAddFicticio_Click" Style="display: none" />--%>
+                <div class="modal-body">
+                    <table class="table">
+                        <tr>
+                            <td>Saldo anterior (precio de venta): 
+                                                <asp:TextBox ID="modalAddFicticio_txbSaldo" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30" TabIndex="1" Text="0"></asp:TextBox>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Comentarios: 
+                                                <asp:TextBox ID="modalAddFicticio_txbComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" TabIndex="2" />
+                            </td>
+                        </tr>
+                    </table>
+                    <p style="color: orange; margin: 0;">Importante: El Saldo ingresado se sumará a los viajes ya existentes del cliente.</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cerrar</button>
+                    <a id="aNuevoViajeFicticio" class="btn btn-primary" onclick="ViajeFicticio_2();">Guardar</a>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+    <!-- Modal Viaje ficticio END -->
 
 </asp:Content>

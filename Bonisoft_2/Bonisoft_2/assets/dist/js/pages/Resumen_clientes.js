@@ -361,3 +361,93 @@ function BorrarPago(clienteID) {
 }
 
 
+function ViajeFicticio_1() {
+
+    var hdn_clientID = $("#hdn_clientID");
+    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
+        var clienteID_str = hdn_clientID.val();
+
+        // Ajax call parameters
+        console.log("Ajax call: Resumen_clientes.aspx/ViajeFicticio_1. Params:");
+        console.log("clienteID_str, type: " + type(clienteID_str) + ", value: " + clienteID_str);
+
+        $.ajax({
+            type: "POST",
+            url: "Resumen_clientes.aspx/ViajeFicticio_1",
+            data: '{clienteID_str: "' + clienteID_str + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                var datos = response.d;
+                if (datos) {
+
+                    datos = datos.replace(/,/g, '.');
+
+                    var datos_array = datos.split("|");
+                    var saldo = datos_array[0];
+                    var comentarios = datos_array[1];
+
+                    $("#modalAddFicticio_txbSaldo").val(saldo);
+                    $("#modalAddFicticio_txbComentarios").val(comentarios);
+
+                    $('#addFicticioModal').modal('show');
+
+                } else {
+                    show_message_info('Error_Datos');
+                }
+
+            }, // end success
+            failure: function (response) {
+                show_message_info('Error_Datos');
+            }
+        }); // Ajax
+
+    }
+}
+
+function ViajeFicticio_2() {
+
+    var hdn_clientID = $("#hdn_clientID");
+    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
+        var clienteID_str = hdn_clientID.val();
+
+        var saldo = $("#modalAddFicticio_txbSaldo").val();
+        var comentarios = $("#modalAddFicticio_txbComentarios").val();
+
+        // Ajax call parameters
+        console.log("Ajax call: Resumen_clientes.aspx/ViajeFicticio_2. Params:");
+        console.log("saldo, type: " + type(saldo) + ", value: " + saldo);
+        console.log("comentarios, type: " + type(comentarios) + ", value: " + comentarios);
+        console.log("clienteID_str, type: " + type(clienteID_str) + ", value: " + clienteID_str);
+
+        $.ajax({
+            type: "POST",
+            url: "Resumen_clientes.aspx/ViajeFicticio_2",
+            data: '{saldo_str: "' + saldo + '",comentarios: "' + comentarios + '",clienteID_str: "' + clienteID_str + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                var ok = response.d;
+                if (ok !== null && ok) {
+
+                    show_message_info('OK_ViajeFicticio');
+                    $.modal.close();
+
+                    // Actualizar datos
+                    var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
+                    if (selected_row !== null) {
+                        selected_row.click();
+                    }
+
+                } else {
+                    show_message_info('Error_Datos');
+                }
+
+            }, // end success
+            failure: function (response) {
+                show_message_info('Error_Datos');
+
+            }
+        }); // Ajax
+    }
+}

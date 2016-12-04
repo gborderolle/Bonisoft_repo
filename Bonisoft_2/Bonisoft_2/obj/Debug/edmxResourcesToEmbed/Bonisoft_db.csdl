@@ -270,5 +270,6 @@
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="EnViaje" Type="Boolean" Nullable="false" />
     <Property Name="Fecha_registro" Type="DateTime" />
+    <Property Name="isFicticio" Type="Boolean" Nullable="false" />
   </EntityType>
 </Schema>

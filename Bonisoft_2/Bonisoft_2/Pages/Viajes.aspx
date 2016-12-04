@@ -172,7 +172,7 @@
                                 <ContentTemplate>
                                     <asp:Button ID="btnSubmit_upAdd" runat="server" OnClick="btnSubmit_upAdd_Click" Style="display: none" />
                                     <div class="modal-body">
-                                        <table class="table table-hover">
+                                        <table class="table">
                                             <tr>
                                                 <td>Fecha de inicio: 
                                                 <asp:TextBox ID="modalAdd_txbFecha1" runat="server" ClientIDMode="Static" CssClass="form-control datepicker with_border" MaxLength="30" TabIndex="1"></asp:TextBox>
@@ -239,7 +239,7 @@
                             <asp:UpdatePanel ID="upEdit" runat="server">
                                 <ContentTemplate>
                                     <div class="modal-body">
-                                        <table class="table table-hover">
+                                        <table class="table">
                                             <tr>
                                                 <td>Fecha de inicio: 
                                                 <asp:TextBox ID="modalEdit_txbFecha1" DataFormatString="{dd-mm-yyyy}" runat="server" ClientIDMode="Static" CssClass="form-control datepicker with_border" MaxLength="30" TabIndex="11"></asp:TextBox>
@@ -752,7 +752,7 @@
                                                 <hr style="margin-top: 5px; margin-bottom: 5px;" />
                                                 <div class="row" style="margin: 0;">
                                                     <div class="col-md-9 pull-left" style="padding: 10px;">
-                                                        <p class="text-info" style="text-align: left;">Importante: El filtro de fechas toma en cuenta únicamente la fecha de Partida de los viajes. </p>
+                                                        <p class="text-info" style="text-align: left;">Importante: El filtro de fechas toma en cuenta únicamente la Fecha de partida de los viajes. </p>
                                                     </div>
                                                 </div>
 
