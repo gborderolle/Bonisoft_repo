@@ -94,6 +94,24 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.HiddenField hdn_clientID;
         
         /// <summary>
+        /// hdn_lblNombreCliente2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_lblNombreCliente2;
+        
+        /// <summary>
+        /// lblClientName_1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblClientName_1;
+        
+        /// <summary>
         /// gridPagos_lblMessage control.
         /// </summary>
         /// <remarks>

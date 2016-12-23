@@ -43,7 +43,7 @@
 
                         <asp:UpdatePanel ID="upClientes" runat="server" OnLoad="upClientes_Load">
                             <ContentTemplate>
-                                <asp:HiddenField ID="hdn_lblNombreCliente" runat="server" ClientIDMode="Static" />
+                                <asp:HiddenField ID="hdn_lblNombreCliente" runat="server" ClientIDMode="Static"/>
 
                                 <div class="row" style="margin-bottom: 10px;">
                                     <div class="col-md-7 pull-right">
@@ -90,7 +90,7 @@
 
                 <div class="col-md-9">
 
-                    <label runat="server" id="lblNombreCliente" class="label label-default"></label>
+                    <label runat="server" id="lblNombreCliente" class="label label-default">[Nombre Cliente 1]</label>
 
                     <div id="tabsClientes">
                         <ul>
@@ -103,13 +103,17 @@
 
                             <div style="overflow: auto;">
 
-                                <asp:UpdatePanel ID="upPagos" runat="server">
+                                <asp:UpdatePanel ID="upPagos" runat="server" OnLoad="upClientes_Load2">
                                     <ContentTemplate>
 
                                         <asp:HiddenField ID="hdn_clientID" runat="server" ClientIDMode="Static" />
+                                        <asp:HiddenField ID="hdn_lblNombreCliente2" runat="server" ClientIDMode="Static" />
 
 
                                         <div class="row">
+                                            <asp:Label Text="[Nombre cliente 2a]" runat="server" ID="lblClientName_1" />
+                                            <span id="lblClientName_2">[Nombre cliente 2b]</span>
+
                                             <div class="col-md-2 pull-right">
                                                 <%--<a href="#addFicticioModal" rel="modal:open" class="btn btn-warning pull-right">Saldo anterior</a>--%>
                                             
