@@ -29,8 +29,6 @@
     <script type="text/javascript" src="/assets/dist/js/jquery.tablesorter.js"></script>
     <script type="text/javascript" src="/assets/dist/js/popbox.js"></script>
 
-
-
     <!-- Editable DropDownList DLL -->
     <%--
     <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />

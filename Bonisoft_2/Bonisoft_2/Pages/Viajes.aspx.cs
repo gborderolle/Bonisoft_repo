@@ -2040,7 +2040,6 @@ namespace Bonisoft_2.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             decimal ret = 0;
             if (viaje_ID > 0)
             {
