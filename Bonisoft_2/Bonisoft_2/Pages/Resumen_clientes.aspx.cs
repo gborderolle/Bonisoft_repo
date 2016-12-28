@@ -413,8 +413,7 @@ namespace Bonisoft_2.Pages
                                 cliente cliente = (cliente)context.clientes.FirstOrDefault(c => c.cliente_ID == cliente_ID);
                                 if (cliente != null)
                                 {
-                                    hdn_lblNombreCliente.Value = cliente.Nombre;
-                                    hdn_lblNombreCliente2.Value = cliente.Nombre;
+                                    lblClientName_1.Text = cliente.Nombre;
 
                                     BindGridViajes(cliente_ID);
                                     BindGridPagos(cliente_ID);
@@ -613,16 +612,6 @@ namespace Bonisoft_2.Pages
 
                 }
             }
-        }
-
-        protected void upClientes_Load(object sender, EventArgs e)
-        {
-            lblNombreCliente.InnerText = hdn_lblNombreCliente.Value;
-        }
-
-        protected void upClientes_Load2(object sender, EventArgs e)
-        {
-            lblClientName_1.Text = hdn_lblNombreCliente2.Value;
         }
 
         #endregion General methods

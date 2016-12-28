@@ -22,15 +22,6 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.UpdatePanel upClientes;
         
         /// <summary>
-        /// hdn_lblNombreCliente control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn_lblNombreCliente;
-        
-        /// <summary>
         /// gridClientes_lblMessage control.
         /// </summary>
         /// <remarks>
@@ -67,15 +58,6 @@ namespace Bonisoft_2.Pages {
         protected global::System.Web.UI.WebControls.Label lblGridClientesCount;
         
         /// <summary>
-        /// lblNombreCliente control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblNombreCliente;
-        
-        /// <summary>
         /// upPagos control.
         /// </summary>
         /// <remarks>
@@ -92,15 +74,6 @@ namespace Bonisoft_2.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdn_clientID;
-        
-        /// <summary>
-        /// hdn_lblNombreCliente2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn_lblNombreCliente2;
         
         /// <summary>
         /// lblClientName_1 control.
