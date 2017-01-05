@@ -131,7 +131,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Bonisoft</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Bonisoft - Build: <%=Build_date%></p>
             </footer>
         </div>
     </form>

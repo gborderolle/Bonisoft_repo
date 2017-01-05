@@ -100,8 +100,8 @@ namespace Bonisoft_2.User_Controls
         protected void gridClientes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -118,8 +118,10 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 TextBox txb16 = row.FindControl("txbNew16") as TextBox;
                 TextBox txb17 = row.FindControl("txbNew17") as TextBox;
                 TextBox txb22 = row.FindControl("txbNew22") as TextBox;
-                if (txb1 != null && txb3 != null && txb5 != null && txb7 != null &&                     
-                    txb13 != null && txb15 != null && txb16 != null && txb17 != null && txb22 != null)
+                TextBox txb23 = row.FindControl("txbNew23") as TextBox;
+                TextBox txb24 = row.FindControl("txbNew24") as TextBox;
+                if (txb1 != null && txb3 != null && txb5 != null && txb7 != null &&
+                    txb13 != null && txb15 != null && txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
@@ -133,6 +135,8 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                         obj.Direccion = txb16.Text;
                         obj.Telefono = txb17.Text;
                         obj.Comentarios = txb22.Text;
+                        obj.Email = txb23.Text;
+                        obj.Nro_cuenta = txb24.Text;
 
                         //
                         obj.Forma_de_pago_ID = 0;
@@ -148,18 +152,18 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                         context.SaveChanges();
 
                         #region Guardar log 
-try 
-{
-                        int id = 1;
-                        cliente cliente = (cliente)context.clientes.OrderByDescending(p => p.cliente_ID).FirstOrDefault();
-                        if (cliente != null)
+                        try
                         {
-                            id = cliente.cliente_ID;
-                        }
+                            int id = 1;
+                            cliente cliente = (cliente)context.clientes.OrderByDescending(p => p.cliente_ID).FirstOrDefault();
+                            if (cliente != null)
+                            {
+                                id = cliente.cliente_ID;
+                            }
 
-                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                        string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Agrega cliente", cliente.GetType().Name + ": " + id, userID1, username);
+                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                            string username = HttpContext.Current.Session["UserName"].ToString();
+                            Global_Objects.Logs.AddUserLog("Agrega cliente", cliente.GetType().Name + ": " + id, userID1, username);
                         }
                         catch (Exception ex)
                         {
@@ -205,8 +209,8 @@ try
         protected void gridClientes_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -221,8 +225,10 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
             TextBox txb16 = row.FindControl("txb16") as TextBox;
             TextBox txb17 = row.FindControl("txb17") as TextBox;
             TextBox txb22 = row.FindControl("txb22") as TextBox;
-            if (txb1 != null && txb3 != null && txb5 != null && txb7 != null &&                 
-                txb13 != null && txb15 != null && txb16 != null && txb17 != null && txb22 != null)
+            TextBox txb23 = row.FindControl("txb23") as TextBox;
+            TextBox txb24 = row.FindControl("txb24") as TextBox;
+            if (txb1 != null && txb3 != null && txb5 != null && txb7 != null &&
+                txb13 != null && txb15 != null && txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -237,15 +243,17 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                     obj.Direccion = txb16.Text;
                     obj.Telefono = txb17.Text;
                     obj.Comentarios = txb22.Text;
+                    obj.Email = txb23.Text;
+                    obj.Nro_cuenta = txb24.Text;
 
                     context.SaveChanges();
 
                     #region Guardar log 
-try 
-{
-                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                    string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Modifica cliente", obj.GetType().Name + ": " +obj.cliente_ID, userID1, username);
+                    try
+                    {
+                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                        string username = HttpContext.Current.Session["UserName"].ToString();
+                        Global_Objects.Logs.AddUserLog("Modifica cliente", obj.GetType().Name + ": " + obj.cliente_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -263,8 +271,8 @@ try
         protected void gridClientes_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -277,11 +285,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 context.SaveChanges();
 
                 #region Guardar log 
-try 
-{
-                string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                string username = HttpContext.Current.Session["UserName"].ToString();
-                Global_Objects.Logs.AddUserLog("Borra cliente", obj.GetType().Name + ": " +obj.cliente_ID, userID1, username);
+                try
+                {
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Global_Objects.Logs.AddUserLog("Borra cliente", obj.GetType().Name + ": " + obj.cliente_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {

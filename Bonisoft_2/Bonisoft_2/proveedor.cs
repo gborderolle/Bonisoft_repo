@@ -20,5 +20,7 @@ namespace Bonisoft_2
         public string Direccion { get; set; }
         public string Telefono { get; set; }
         public string Comentarios { get; set; }
+        public string Email { get; set; }
+        public string Nro_cuenta { get; set; }
     }
 }

@@ -81,6 +81,8 @@
     <EntitySetMapping Name="fleteros">
       <EntityTypeMapping TypeName="bonisoft_dbModel.fletero">
         <MappingFragment StoreEntitySet="fletero">
+          <ScalarProperty Name="Nro_cuenta" ColumnName="Nro_cuenta" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Telefono" ColumnName="Telefono" />
           <ScalarProperty Name="Direccion" ColumnName="Direccion" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
@@ -92,6 +94,8 @@
     <EntitySetMapping Name="proveedores">
       <EntityTypeMapping TypeName="bonisoft_dbModel.proveedor">
         <MappingFragment StoreEntitySet="proveedor">
+          <ScalarProperty Name="Nro_cuenta" ColumnName="Nro_cuenta" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
           <ScalarProperty Name="Telefono" ColumnName="Telefono" />
           <ScalarProperty Name="Direccion" ColumnName="Direccion" />
@@ -161,6 +165,8 @@
     <EntitySetMapping Name="clientes">
       <EntityTypeMapping TypeName="bonisoft_dbModel.cliente">
         <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="Nro_cuenta" ColumnName="Nro_cuenta" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
           <ScalarProperty Name="Telefono" ColumnName="Telefono" />
           <ScalarProperty Name="Direccion" ColumnName="Direccion" />

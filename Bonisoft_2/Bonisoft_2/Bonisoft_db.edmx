@@ -65,6 +65,8 @@
           <Property Name="Direccion" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Telefono" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="cliente_pagos">
           <Key>
@@ -108,6 +110,8 @@
           <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Telefono" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="forma_de_pago">
           <Key>
@@ -186,6 +190,8 @@
           <Property Name="Direccion" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Telefono" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="proveedor_carga">
           <Key>
@@ -384,6 +390,8 @@
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Nro_cuenta" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="proveedor">
           <Key>
@@ -395,6 +403,8 @@
           <Property Name="Direccion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Nro_cuenta" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="cargador">
           <Key>
@@ -469,6 +479,8 @@
           <Property Name="Direccion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Nro_cuenta" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
@@ -639,6 +651,8 @@
           <EntitySetMapping Name="fleteros">
             <EntityTypeMapping TypeName="bonisoft_dbModel.fletero">
               <MappingFragment StoreEntitySet="fletero">
+                <ScalarProperty Name="Nro_cuenta" ColumnName="Nro_cuenta" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
@@ -650,6 +664,8 @@
           <EntitySetMapping Name="proveedores">
             <EntityTypeMapping TypeName="bonisoft_dbModel.proveedor">
               <MappingFragment StoreEntitySet="proveedor">
+                <ScalarProperty Name="Nro_cuenta" ColumnName="Nro_cuenta" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
@@ -719,6 +735,8 @@
           <EntitySetMapping Name="clientes">
             <EntityTypeMapping TypeName="bonisoft_dbModel.cliente">
               <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="Nro_cuenta" ColumnName="Nro_cuenta" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />

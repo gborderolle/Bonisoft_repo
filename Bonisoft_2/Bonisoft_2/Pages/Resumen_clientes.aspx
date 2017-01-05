@@ -106,7 +106,7 @@
                                         <asp:HiddenField ID="hdn_clientID" runat="server" ClientIDMode="Static" />
 
                                         <div class="row">
-                                            <h3> <asp:Label Text="[Nombre cliente]" runat="server" ID="lblClientName_1" class="label label- label-default" /></h3>
+                                            <h3 style="margin-left:15px;"> <asp:Label Text="[Nombre cliente]" runat="server" ID="lblClientName_1" class="label label- label-default" /></h3>
 
                                             <div class="col-md-2 pull-right">
                                                 <%--<a href="#addFicticioModal" rel="modal:open" class="btn btn-warning pull-right">Saldo anterior</a>--%>

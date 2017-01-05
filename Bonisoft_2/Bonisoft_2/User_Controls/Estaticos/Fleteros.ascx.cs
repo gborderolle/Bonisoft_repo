@@ -96,8 +96,8 @@ namespace Bonisoft_2.User_Controls.Estaticos
         protected void gridFleteros_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -109,7 +109,9 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 TextBox txb3 = row.FindControl("txbNew3") as TextBox;
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
-                if (txb1 != null && txb2 != null && txb3 != null && txb4 != null)
+                TextBox txb23 = row.FindControl("txbNew23") as TextBox;
+                TextBox txb24 = row.FindControl("txbNew24") as TextBox;
+                if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb23 != null && txb24 != null)
                 {
                     using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                     {
@@ -118,23 +120,25 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                         obj.Comentarios = txb2.Text;
                         obj.Direccion = txb3.Text;
                         obj.Telefono = txb4.Text;
+                        obj.Email = txb23.Text;
+                        obj.Nro_cuenta = txb24.Text;
 
                         context.fleteros.Add(obj);
                         context.SaveChanges();
 
                         #region Guardar log 
-try 
-{
-                        int id = 1;
-                        fletero fletero = (fletero)context.fleteros.OrderByDescending(p => p.Fletero_ID).FirstOrDefault();
-                        if (fletero != null)
+                        try
                         {
-                            id = fletero.Fletero_ID;
-                        }
+                            int id = 1;
+                            fletero fletero = (fletero)context.fleteros.OrderByDescending(p => p.Fletero_ID).FirstOrDefault();
+                            if (fletero != null)
+                            {
+                                id = fletero.Fletero_ID;
+                            }
 
-                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                        string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Agrega fletero", fletero.GetType().Name + ": " + id, userID1, username);
+                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                            string username = HttpContext.Current.Session["UserName"].ToString();
+                            Global_Objects.Logs.AddUserLog("Agrega fletero", fletero.GetType().Name + ": " + id, userID1, username);
                         }
                         catch (Exception ex)
                         {
@@ -166,18 +170,19 @@ try
         protected void gridFleteros_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-
 
             GridViewRow row = gridFleteros.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
             TextBox txb3 = row.FindControl("txb3") as TextBox;
             TextBox txb4 = row.FindControl("txb4") as TextBox;
-            if (txb1 != null && txb2 != null && txb3 != null && txb4 != null)
+            TextBox txb23 = row.FindControl("txb23") as TextBox;
+            TextBox txb24 = row.FindControl("txb24") as TextBox;
+            if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb23 != null && txb24 != null)
             {
                 using (bonisoft_dbEntities context = new bonisoft_dbEntities())
                 {
@@ -187,15 +192,17 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                     obj.Comentarios = txb2.Text;
                     obj.Direccion = txb3.Text;
                     obj.Telefono = txb4.Text;
+                    obj.Email = txb23.Text;
+                    obj.Nro_cuenta = txb24.Text;
 
                     context.SaveChanges();
 
                     #region Guardar log 
-try 
-{
-                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                    string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Modifica fletero", obj.GetType().Name + ": " +obj.Fletero_ID, userID1, username);
+                    try
+                    {
+                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                        string username = HttpContext.Current.Session["UserName"].ToString();
+                        Global_Objects.Logs.AddUserLog("Modifica fletero", obj.GetType().Name + ": " + obj.Fletero_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -213,8 +220,8 @@ try
         protected void gridFleteros_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -227,11 +234,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 context.SaveChanges();
 
                 #region Guardar log 
-try 
-{
-                string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                string username = HttpContext.Current.Session["UserName"].ToString();
-                Global_Objects.Logs.AddUserLog("Borra fletero", obj.GetType().Name + ": " +obj.Fletero_ID, userID1, username);
+                try
+                {
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Global_Objects.Logs.AddUserLog("Borra fletero", obj.GetType().Name + ": " + obj.Fletero_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {
