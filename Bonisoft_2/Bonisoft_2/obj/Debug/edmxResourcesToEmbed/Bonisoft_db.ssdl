@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="bonisoft_dbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="bonisoft_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="camion">
     <Key>
       <PropertyRef Name="Camion_ID" />
@@ -129,7 +129,7 @@
       <PropertyRef Name="Log_ID" />
     </Key>
     <Property Name="Log_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Fecha" Type="datetime" Precision="0" Nullable="false" />
+    <Property Name="Fecha" Type="datetime2" Precision="0" Nullable="false" />
     <Property Name="Usuario_ID" Type="int" Nullable="false" />
     <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
@@ -218,7 +218,6 @@
       <PropertyRef Name="Usuario_ID" />
     </Key>
     <Property Name="Usuario_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Interno_ID" Type="int" Nullable="false" />
     <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Clave" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Rol_usuario_ID" Type="int" Nullable="false" />
@@ -256,26 +255,26 @@
     <Property Name="isFicticio" Type="bit" Nullable="false" />
   </EntityType>
   <EntityContainer Name="bonisoft_dbModelStoreContainer">
-    <EntitySet Name="camion" EntityType="Self.camion" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="camion_ejes" EntityType="Self.camion_ejes" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="cargador" EntityType="Self.cargador" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="chofer" EntityType="Self.chofer" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="cliente" EntityType="Self.cliente" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="cliente_pagos" EntityType="Self.cliente_pagos" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="descarga_viaje" EntityType="Self.descarga_viaje" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="fletero" EntityType="Self.fletero" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="forma_de_pago" EntityType="Self.forma_de_pago" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="lena_tipo" EntityType="Self.lena_tipo" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="log" EntityType="Self.log" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="mercaderia_comprada" EntityType="Self.mercaderia_comprada" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="pesada" EntityType="Self.pesada" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="procesador" EntityType="Self.procesador" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="proveedor_mercaderia" EntityType="Self.proveedor_mercaderia" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="roles_usuario" EntityType="Self.roles_usuario" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="usuario" EntityType="Self.usuario" Schema="bonisoft_db" store:Type="Tables" />
-    <EntitySet Name="viaje" EntityType="Self.viaje" Schema="bonisoft_db" store:Type="Tables" />
+    <EntitySet Name="camion" EntityType="Self.camion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="camion_ejes" EntityType="Self.camion_ejes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cargador" EntityType="Self.cargador" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="chofer" EntityType="Self.chofer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cliente_pagos" EntityType="Self.cliente_pagos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="descarga_viaje" EntityType="Self.descarga_viaje" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fletero" EntityType="Self.fletero" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="forma_de_pago" EntityType="Self.forma_de_pago" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lena_tipo" EntityType="Self.lena_tipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="log" EntityType="Self.log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mercaderia_comprada" EntityType="Self.mercaderia_comprada" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="pesada" EntityType="Self.pesada" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="procesador" EntityType="Self.procesador" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proveedor_mercaderia" EntityType="Self.proveedor_mercaderia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="roles_usuario" EntityType="Self.roles_usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="viaje" EntityType="Self.viaje" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

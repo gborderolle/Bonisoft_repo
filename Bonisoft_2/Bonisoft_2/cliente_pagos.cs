@@ -19,7 +19,7 @@ namespace Bonisoft_2
         public System.DateTime Fecha_registro { get; set; }
         public System.DateTime Fecha_pago { get; set; }
         public int Forma_de_pago_ID { get; set; }
-        public string Comentarios { get; set; }
         public decimal Monto { get; set; }
+        public string Comentarios { get; set; }
     }
 }

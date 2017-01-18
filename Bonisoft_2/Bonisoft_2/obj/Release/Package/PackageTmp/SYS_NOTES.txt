@@ -1,0 +1,25 @@
+﻿Sources:
+
+http://techbrij.com/insert-update-delete-gridview-entity-framework
+
+http://blog.siinet.com/2015/11/22/asp-net-y-bootstrap-gridview/
+
+
+ToString() methods:
+
+camion.cs
+public override string ToString()
+{
+    return Matricula_camion + "(C) - " + Matricula_zorra + "(Z)";
+}
+
+--
+
+pesada.cs
+public override string ToString()
+{
+    return Lugar + ": " + Peso_neto + "(N)";
+}
+
+--
+

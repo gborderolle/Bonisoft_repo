@@ -15,8 +15,8 @@ namespace Bonisoft_2
     public partial class chofer
     {
         public int Chofer_ID { get; set; }
-        public string Comentarios { get; set; }
         public string Nombre_completo { get; set; }
         public string Empresa { get; set; }
+        public string Comentarios { get; set; }
     }
 }

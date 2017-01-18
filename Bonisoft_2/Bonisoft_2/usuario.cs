@@ -15,7 +15,6 @@ namespace Bonisoft_2
     public partial class usuario
     {
         public int Usuario_ID { get; set; }
-        public int Interno_ID { get; set; }
         public string Usuario1 { get; set; }
         public string Clave { get; set; }
         public int Rol_usuario_ID { get; set; }
