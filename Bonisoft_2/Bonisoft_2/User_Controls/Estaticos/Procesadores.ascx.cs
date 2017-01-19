@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bonisoft_2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,7 +23,7 @@ namespace Bonisoft_2.User_Controls.Estaticos
 
         private void BindGrid()
         {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 hdnProcesadoresCount.Value = context.procesadores.Count().ToString();
                 if (context.procesadores.Count() > 0)
@@ -111,7 +112,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
                 if (txb1 != null && txb2 != null && txb3 != null && txb4 != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         procesador obj = new procesador();
                         obj.Nombre = txb1.Text;
@@ -179,7 +180,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
             TextBox txb4 = row.FindControl("txb4") as TextBox;
             if (txb1 != null && txb2 != null && txb3 != null && txb4 != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int procesador_ID = Convert.ToInt32(gridProcesadores.DataKeys[e.RowIndex].Value);
                     procesador obj = context.procesadores.First(x => x.Procesador_ID == procesador_ID);
@@ -220,7 +221,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
 
 
             int procesador_ID = Convert.ToInt32(gridProcesadores.DataKeys[e.RowIndex].Value);
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 procesador obj = context.procesadores.First(x => x.Procesador_ID == procesador_ID);
                 context.procesadores.Remove(obj);

@@ -1,4 +1,5 @@
-﻿using Bonisoft_2.Helpers;
+﻿using Bonisoft_2.Models;
+using Bonisoft_2.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,7 +26,7 @@ namespace Bonisoft_2.User_Controls
 
         private void BindGrid()
         {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 hdnCuadrillasCount.Value = context.cuadrilla_descarga.Count().ToString();
                 if (context.cuadrilla_descarga.Count() > 0)
@@ -113,7 +114,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
                 if (txb1 != null && txb2 != null && txb3 != null && txb4 != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         cuadrilla_descarga obj = new cuadrilla_descarga();
                         obj.Nombre = txb1.Text;
@@ -177,7 +178,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
             TextBox txb4 = row.FindControl("txb4") as TextBox;
             if (txb1 != null && txb2 != null && txb3 != null && txb4 != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int cuadrilla_descarga_ID = Convert.ToInt32(gridCuadrillas.DataKeys[e.RowIndex].Value);
                     cuadrilla_descarga obj = context.cuadrilla_descarga.First(x => x.Cuadrilla_descarga_ID == cuadrilla_descarga_ID);
@@ -218,7 +219,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
 
 
             int cuadrilla_descarga_ID = Convert.ToInt32(gridCuadrillas.DataKeys[e.RowIndex].Value);
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 cuadrilla_descarga obj = context.cuadrilla_descarga.First(x => x.Cuadrilla_descarga_ID == cuadrilla_descarga_ID);
                 context.cuadrilla_descarga.Remove(obj);

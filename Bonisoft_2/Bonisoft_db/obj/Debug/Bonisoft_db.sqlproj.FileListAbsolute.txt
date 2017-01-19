@@ -1,0 +1,9 @@
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_2\Bonisoft_db\bin\Debug\Bonisoft_db.dacpac
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_2\Bonisoft_db\bin\Debug\Bonisoft_db.dll
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_2\Bonisoft_db\bin\Debug\Bonisoft_db.pdb
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_2\Bonisoft_db\obj\Debug\Model.xml
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_2\Bonisoft_db\obj\Debug\refactor.xml
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_2\Bonisoft_db\obj\Debug\postdeploy.sql
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_2\Bonisoft_db\obj\Debug\predeploy.sql
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_2\Bonisoft_db\obj\Debug\Bonisoft_db.dll
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_2\Bonisoft_db\obj\Debug\Bonisoft_db.pdb

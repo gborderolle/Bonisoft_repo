@@ -1069,16 +1069,6 @@
     <Content Include="assets\plugins\iCheck\square\yellow.png" />
     <Content Include="assets\plugins\iCheck\square\_all.css" />
     <Content Include="assets\plugins\jQuery\jquery-2.2.3.min.js" />
-    <Content Include="Bonisoft_db.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Bonisoft_db.edmx</DependentUpon>
-      <LastGenOutput>Bonisoft_db.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Bonisoft_db.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Bonisoft_db.edmx</DependentUpon>
-      <LastGenOutput>Bonisoft_db.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -1088,13 +1078,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EntityDeploy Include="Bonisoft_db.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Bonisoft_db.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Bonisoft_db.edmx.diagram">
-      <DependentUpon>Bonisoft_db.edmx</DependentUpon>
     </Content>
     <Content Include="assets\bootstrap\css\bootstrap.css.map" />
     <Content Include="assets\bootstrap\css\bootstrap.min.css.map" />
@@ -1196,9 +1179,26 @@
     <Content Include="assets\dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="assets\dist\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="assets\dist\fonts\TradeGothicLTStd-Bd2.otf" />
+    <EntityDeploy Include="Models\BonisoftModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BonisoftModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BonisoftModel.edmx.diagram">
+      <DependentUpon>BonisoftModel.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\bonisoft.somee.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Login.aspx" />
+    <Content Include="Models\BonisoftModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BonisoftModel.edmx</DependentUpon>
+      <LastGenOutput>BonisoftModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BonisoftModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BonisoftModel.edmx</DependentUpon>
+      <LastGenOutput>BonisoftModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Pages\Ajustes.aspx" />
     <Content Include="Pages\Contabilidad.aspx" />
     <Content Include="Pages\Datos_configuracion.aspx" />
@@ -1295,60 +1295,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\RouteConfig2.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="camion_ejes.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="cargador.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Bonisoft_db.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Bonisoft_db.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Bonisoft_db.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Bonisoft_db.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Bonisoft_db.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="camion.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="chofer.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="cliente.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="cliente_pagos.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="cuadrilla_descarga.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data Generic\DataAccessContext_MySQL.cs" />
-    <Compile Include="Data Generic\DataAccessObject.cs" />
-    <Compile Include="Data Objects\ExternalMethodsDAO.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="descarga_viaje.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="fletero.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="forma_de_pago.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1358,12 +1310,6 @@
     <Compile Include="Helpers\Extras.cs" />
     <Compile Include="Helpers\TestController.cs" />
     <Compile Include="Helpers\WebFormController.cs" />
-    <Compile Include="lena_tipo.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="log.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1371,10 +1317,85 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="mercaderia_comprada.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
+    <Compile Include="Models\BonisoftModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BonisoftModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BonisoftModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BonisoftModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BonisoftModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\camion.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\camion_ejes.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cargador.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\chofer.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cliente.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cliente_pagos.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cuadrilla_descarga.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\descarga_viaje.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\fletero.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\forma_de_pago.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\lena_tipo.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\log.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\mercaderia_comprada.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pesada.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\procesador.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proveedor.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proveedor_carga.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proveedor_mercaderia.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\roles_usuario.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usuario.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\viaje.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Ajustes.aspx.cs">
       <DependentUpon>Ajustes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1456,12 +1477,6 @@
     <Compile Include="Pages\Viajes.aspx.designer.cs">
       <DependentUpon>Viajes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="procesador.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="roles_usuario.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1518,19 +1533,7 @@
     <Compile Include="Pages\Datos.aspx.designer.cs">
       <DependentUpon>Datos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pesada.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="proveedor.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="proveedor_carga.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="proveedor_mercaderia.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1594,12 +1597,6 @@
     </Compile>
     <Compile Include="User_Controls\Estaticos\Proveedores.ascx.designer.cs">
       <DependentUpon>Proveedores.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="usuario.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="viaje.cs">
-      <DependentUpon>Bonisoft_db.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

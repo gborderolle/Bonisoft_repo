@@ -1,4 +1,5 @@
-﻿using Bonisoft_2.Global_Objects;
+﻿using Bonisoft_2.Models;
+using Bonisoft_2.Global_Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +46,7 @@ namespace Bonisoft_2
             int resultado = 0;
             if (!string.IsNullOrWhiteSpace(username) || !string.IsNullOrWhiteSpace(password))
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     try
                     {

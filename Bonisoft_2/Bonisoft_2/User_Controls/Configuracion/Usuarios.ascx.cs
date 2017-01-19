@@ -1,4 +1,5 @@
-﻿using Bonisoft_2.Helpers;
+﻿using Bonisoft_2.Models;
+using Bonisoft_2.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,7 +26,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
         private void BindGrid()
         {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 hdnUsuarioCount.Value = context.usuarios.Count().ToString();
                 if (context.usuarios.Count() > 0)
@@ -113,7 +114,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 CheckBox chk = row.FindControl("chkNew") as CheckBox;
                 if (txb1 != null && txb2 != null && chk != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         usuario obj = new usuario();
                         obj.Usuario1 = txb1.Text;
@@ -176,7 +177,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
             CheckBox chk = row.FindControl("chk1") as CheckBox;
             if (txb1 != null && txb2 != null && chk != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int Usuario_ID = Convert.ToInt32(gridUsuarios.DataKeys[e.RowIndex].Value);
                     usuario obj = context.usuarios.First(x => x.Usuario_ID == Usuario_ID);
@@ -216,7 +217,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
 
 
             int Usuario_ID = Convert.ToInt32(gridUsuarios.DataKeys[e.RowIndex].Value);
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 usuario obj = context.usuarios.First(x => x.Usuario_ID == Usuario_ID);
                 context.usuarios.Remove(obj);

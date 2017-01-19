@@ -1,4 +1,5 @@
-﻿using Bonisoft_2.Global_Objects;
+﻿using Bonisoft_2.Models;
+using Bonisoft_2.Global_Objects;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -24,7 +25,7 @@ namespace Bonisoft_2.Pages
 
         private void BindGridLogs(string date_start = "", string date_end = "")
         {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 // Logger variables
                 System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);

@@ -1,0 +1,868 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="bonisoftModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="camion">
+          <Key>
+            <PropertyRef Name="Camion_ID" />
+          </Key>
+          <Property Name="Camion_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ejes_ID" Type="int" Nullable="false" />
+          <Property Name="Matricula_camion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Matricula_zorra" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Marca" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Tara" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="camion_ejes">
+          <Key>
+            <PropertyRef Name="Camion_ejes_ID" />
+          </Key>
+          <Property Name="Camion_ejes_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ejes" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cargador">
+          <Key>
+            <PropertyRef Name="Cargador_ID" />
+          </Key>
+          <Property Name="Cargador_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="chofer">
+          <Key>
+            <PropertyRef Name="Chofer_ID" />
+          </Key>
+          <Property Name="Chofer_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_completo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Empresa" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="cliente_ID" />
+          </Key>
+          <Property Name="cliente_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Dueno_nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Dueno_contacto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Encargado_lena_nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Encargado_lena_contacto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Encargado_pagos_nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Encargado_pagos_contacto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Supervisor_lena_nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Supervisor_lena_contacto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Forma_de_pago_ID" Type="int" Nullable="false" />
+          <Property Name="Periodos_liquidacion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Fechas_pago" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RUT" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cliente_pagos">
+          <Key>
+            <PropertyRef Name="Cliente_pagos_ID" />
+          </Key>
+          <Property Name="Cliente_pagos_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cliente_ID" Type="int" Nullable="false" />
+          <Property Name="Fecha_registro" Type="date" Nullable="false" />
+          <Property Name="Fecha_pago" Type="date" Nullable="false" />
+          <Property Name="Forma_de_pago_ID" Type="int" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cuadrilla_descarga">
+          <Key>
+            <PropertyRef Name="Cuadrilla_descarga_ID" />
+          </Key>
+          <Property Name="Cuadrilla_descarga_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="descarga_viaje">
+          <Key>
+            <PropertyRef Name="Descarga_viaje_ID" />
+          </Key>
+          <Property Name="Descarga_viaje_ID" Type="int" Nullable="false" />
+          <Property Name="Viaje_ID" Type="int" Nullable="false" />
+          <Property Name="Cuadrilla_ID" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Demora" Type="int" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="fletero">
+          <Key>
+            <PropertyRef Name="Fletero_ID" />
+          </Key>
+          <Property Name="Fletero_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="forma_de_pago">
+          <Key>
+            <PropertyRef Name="Forma_de_pago_ID" />
+          </Key>
+          <Property Name="Forma_de_pago_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Forma" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lena_tipo">
+          <Key>
+            <PropertyRef Name="Lena_tipo_ID" />
+          </Key>
+          <Property Name="Lena_tipo_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="Log_ID" />
+          </Key>
+          <Property Name="Log_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="Usuario_ID" Type="int" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Dato" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mercaderia_comprada">
+          <Key>
+            <PropertyRef Name="Mercaderia_ID" />
+          </Key>
+          <Property Name="Mercaderia_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Viaje_ID" Type="int" Nullable="false" />
+          <Property Name="Variedad_ID" Type="int" Nullable="false" />
+          <Property Name="Procesador_ID" Type="int" Nullable="false" />
+          <Property Name="Fecha_corte" Type="date" Nullable="false" />
+          <Property Name="Precio_xTonelada_compra" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Precio_xTonelada_venta" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pesada">
+          <Key>
+            <PropertyRef Name="pesada_ID" />
+          </Key>
+          <Property Name="pesada_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Origen_lugar" Type="varchar" MaxLength="100" />
+          <Property Name="Origen_fecha" Type="date" Nullable="false" />
+          <Property Name="Origen_nombre_balanza" Type="varchar" MaxLength="100" />
+          <Property Name="Origen_peso_bruto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Origen_peso_neto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Destino_lugar" Type="varchar" MaxLength="100" />
+          <Property Name="Destino_fecha" Type="date" Nullable="false" />
+          <Property Name="Destino_nombre_balanza" Type="varchar" MaxLength="100" />
+          <Property Name="Destino_peso_bruto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Destino_peso_neto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="procesador">
+          <Key>
+            <PropertyRef Name="Procesador_ID" />
+          </Key>
+          <Property Name="Procesador_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="proveedor">
+          <Key>
+            <PropertyRef Name="Proveedor_ID" />
+          </Key>
+          <Property Name="Proveedor_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RUT" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="proveedor_carga">
+          <Key>
+            <PropertyRef Name="Proveedor_ID" />
+            <PropertyRef Name="Carga_ID" />
+          </Key>
+          <Property Name="Proveedor_ID" Type="int" Nullable="false" />
+          <Property Name="Carga_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="proveedor_mercaderia">
+          <Key>
+            <PropertyRef Name="Proveedor_ID" />
+            <PropertyRef Name="Mercaderia_ID" />
+          </Key>
+          <Property Name="Proveedor_ID" Type="int" Nullable="false" />
+          <Property Name="Mercaderia_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roles_usuario">
+          <Key>
+            <PropertyRef Name="Roles_usuario_ID" />
+          </Key>
+          <Property Name="Roles_usuario_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nivel" Type="int" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="Usuario_ID" />
+          </Key>
+          <Property Name="Usuario_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Rol_usuario_ID" Type="int" Nullable="false" />
+          <Property Name="EsAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="viaje">
+          <Key>
+            <PropertyRef Name="Viaje_ID" />
+          </Key>
+          <Property Name="Viaje_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cliente_ID" Type="int" Nullable="false" />
+          <Property Name="Proveedor_ID" Type="int" Nullable="false" />
+          <Property Name="Precio_compra_por_tonelada" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Precio_valor_total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_viaje" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Saldo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Pesada_ID" Type="int" Nullable="false" />
+          <Property Name="Empresa_de_carga_ID" Type="int" Nullable="false" />
+          <Property Name="Fecha_partida" Type="date" Nullable="false" />
+          <Property Name="Fecha_llegada" Type="date" Nullable="false" />
+          <Property Name="Camion_ID" Type="int" Nullable="false" />
+          <Property Name="Chofer_ID" Type="int" Nullable="false" />
+          <Property Name="Carga" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Descarga" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Fletero_ID" Type="int" Nullable="false" />
+          <Property Name="precio_compra" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="precio_venta" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="precio_flete" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="precio_descarga" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="GananciaXTon" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IVA" Type="int" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="EnViaje" Type="bit" Nullable="false" />
+          <Property Name="Fecha_registro" Type="date" />
+          <Property Name="isFicticio" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="bonisoftModelStoreContainer">
+          <EntitySet Name="camion" EntityType="Self.camion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="camion_ejes" EntityType="Self.camion_ejes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cargador" EntityType="Self.cargador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chofer" EntityType="Self.chofer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cliente_pagos" EntityType="Self.cliente_pagos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="descarga_viaje" EntityType="Self.descarga_viaje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fletero" EntityType="Self.fletero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="forma_de_pago" EntityType="Self.forma_de_pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lena_tipo" EntityType="Self.lena_tipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="log" EntityType="Self.log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mercaderia_comprada" EntityType="Self.mercaderia_comprada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pesada" EntityType="Self.pesada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="procesador" EntityType="Self.procesador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="proveedor_mercaderia" EntityType="Self.proveedor_mercaderia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roles_usuario" EntityType="Self.roles_usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="viaje" EntityType="Self.viaje" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bonisoftModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="camion">
+          <Key>
+            <PropertyRef Name="Camion_ID" />
+          </Key>
+          <Property Name="Camion_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ejes_ID" Type="Int32" Nullable="false" />
+          <Property Name="Matricula_camion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Matricula_zorra" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Marca" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tara" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="camion_ejes">
+          <Key>
+            <PropertyRef Name="Camion_ejes_ID" />
+          </Key>
+          <Property Name="Camion_ejes_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ejes" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cargador">
+          <Key>
+            <PropertyRef Name="Cargador_ID" />
+          </Key>
+          <Property Name="Cargador_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="chofer">
+          <Key>
+            <PropertyRef Name="Chofer_ID" />
+          </Key>
+          <Property Name="Chofer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_completo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Empresa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="cliente_ID" />
+          </Key>
+          <Property Name="cliente_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dueno_nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dueno_contacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Encargado_lena_nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Encargado_lena_contacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Encargado_pagos_nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Encargado_pagos_contacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Supervisor_lena_nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Supervisor_lena_contacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
+          <Property Name="Periodos_liquidacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fechas_pago" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RUT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nro_cuenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cliente_pagos">
+          <Key>
+            <PropertyRef Name="Cliente_pagos_ID" />
+          </Key>
+          <Property Name="Cliente_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
+          <Property Name="Monto" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cuadrilla_descarga">
+          <Key>
+            <PropertyRef Name="Cuadrilla_descarga_ID" />
+          </Key>
+          <Property Name="Cuadrilla_descarga_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="descarga_viaje">
+          <Key>
+            <PropertyRef Name="Descarga_viaje_ID" />
+          </Key>
+          <Property Name="Descarga_viaje_ID" Type="Int32" Nullable="false" />
+          <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
+          <Property Name="Cuadrilla_ID" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Demora" Type="Int32" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="fletero">
+          <Key>
+            <PropertyRef Name="Fletero_ID" />
+          </Key>
+          <Property Name="Fletero_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nro_cuenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="forma_de_pago">
+          <Key>
+            <PropertyRef Name="Forma_de_pago_ID" />
+          </Key>
+          <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Forma" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lena_tipo">
+          <Key>
+            <PropertyRef Name="Lena_tipo_ID" />
+          </Key>
+          <Property Name="Lena_tipo_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="Log_ID" />
+          </Key>
+          <Property Name="Log_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usuario_ID" Type="Int32" Nullable="false" />
+          <Property Name="Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dato" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mercaderia_comprada">
+          <Key>
+            <PropertyRef Name="Mercaderia_ID" />
+          </Key>
+          <Property Name="Mercaderia_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
+          <Property Name="Variedad_ID" Type="Int32" Nullable="false" />
+          <Property Name="Procesador_ID" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_corte" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Precio_xTonelada_compra" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Precio_xTonelada_venta" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pesada">
+          <Key>
+            <PropertyRef Name="pesada_ID" />
+          </Key>
+          <Property Name="pesada_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Origen_lugar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Origen_fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Origen_nombre_balanza" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Origen_peso_bruto" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Origen_peso_neto" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Destino_lugar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Destino_fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Destino_nombre_balanza" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Destino_peso_bruto" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Destino_peso_neto" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="procesador">
+          <Key>
+            <PropertyRef Name="Procesador_ID" />
+          </Key>
+          <Property Name="Procesador_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="proveedor">
+          <Key>
+            <PropertyRef Name="Proveedor_ID" />
+          </Key>
+          <Property Name="Proveedor_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RUT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nro_cuenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="proveedor_carga">
+          <Key>
+            <PropertyRef Name="Proveedor_ID" />
+            <PropertyRef Name="Carga_ID" />
+          </Key>
+          <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
+          <Property Name="Carga_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="proveedor_mercaderia">
+          <Key>
+            <PropertyRef Name="Proveedor_ID" />
+            <PropertyRef Name="Mercaderia_ID" />
+          </Key>
+          <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
+          <Property Name="Mercaderia_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roles_usuario">
+          <Key>
+            <PropertyRef Name="Roles_usuario_ID" />
+          </Key>
+          <Property Name="Roles_usuario_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nivel" Type="Int32" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="Usuario_ID" />
+          </Key>
+          <Property Name="Usuario_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Rol_usuario_ID" Type="Int32" Nullable="false" />
+          <Property Name="EsAdmin" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="viaje">
+          <Key>
+            <PropertyRef Name="Viaje_ID" />
+          </Key>
+          <Property Name="Viaje_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
+          <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
+          <Property Name="Precio_compra_por_tonelada" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Precio_valor_total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_viaje" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Saldo" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Pesada_ID" Type="Int32" Nullable="false" />
+          <Property Name="Empresa_de_carga_ID" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_partida" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_llegada" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Camion_ID" Type="Int32" Nullable="false" />
+          <Property Name="Chofer_ID" Type="Int32" Nullable="false" />
+          <Property Name="Carga" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descarga" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fletero_ID" Type="Int32" Nullable="false" />
+          <Property Name="precio_compra" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="precio_venta" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="precio_flete" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="precio_descarga" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="GananciaXTon" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IVA" Type="Int32" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EnViaje" Type="Boolean" Nullable="false" />
+          <Property Name="Fecha_registro" Type="DateTime" Precision="0" />
+          <Property Name="isFicticio" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="bonisoftEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="camiones" EntityType="Self.camion" />
+          <EntitySet Name="camion_ejes" EntityType="Self.camion_ejes" />
+          <EntitySet Name="cargadores" EntityType="Self.cargador" />
+          <EntitySet Name="choferes" EntityType="Self.chofer" />
+          <EntitySet Name="clientes" EntityType="Self.cliente" />
+          <EntitySet Name="cliente_pagos" EntityType="Self.cliente_pagos" />
+          <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" />
+          <EntitySet Name="descarga_viaje" EntityType="Self.descarga_viaje" />
+          <EntitySet Name="fleteros" EntityType="Self.fletero" />
+          <EntitySet Name="forma_de_pago" EntityType="Self.forma_de_pago" />
+          <EntitySet Name="lena_tipo" EntityType="Self.lena_tipo" />
+          <EntitySet Name="logs" EntityType="Self.log" />
+          <EntitySet Name="mercaderia_comprada" EntityType="Self.mercaderia_comprada" />
+          <EntitySet Name="pesadas" EntityType="Self.pesada" />
+          <EntitySet Name="procesadores" EntityType="Self.procesador" />
+          <EntitySet Name="proveedores" EntityType="Self.proveedor" />
+          <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" />
+          <EntitySet Name="proveedor_mercaderia" EntityType="Self.proveedor_mercaderia" />
+          <EntitySet Name="roles_usuario" EntityType="Self.roles_usuario" />
+          <EntitySet Name="usuarios" EntityType="Self.usuario" />
+          <EntitySet Name="viajes" EntityType="Self.viaje" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bonisoftModelStoreContainer" CdmEntityContainer="bonisoftEntities">
+          <EntitySetMapping Name="camiones">
+            <EntityTypeMapping TypeName="bonisoftModel.camion">
+              <MappingFragment StoreEntitySet="camion">
+                <ScalarProperty Name="Camion_ID" ColumnName="Camion_ID" />
+                <ScalarProperty Name="Ejes_ID" ColumnName="Ejes_ID" />
+                <ScalarProperty Name="Matricula_camion" ColumnName="Matricula_camion" />
+                <ScalarProperty Name="Matricula_zorra" ColumnName="Matricula_zorra" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Tara" ColumnName="Tara" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="camion_ejes">
+            <EntityTypeMapping TypeName="bonisoftModel.camion_ejes">
+              <MappingFragment StoreEntitySet="camion_ejes">
+                <ScalarProperty Name="Camion_ejes_ID" ColumnName="Camion_ejes_ID" />
+                <ScalarProperty Name="Ejes" ColumnName="Ejes" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cargadores">
+            <EntityTypeMapping TypeName="bonisoftModel.cargador">
+              <MappingFragment StoreEntitySet="cargador">
+                <ScalarProperty Name="Cargador_ID" ColumnName="Cargador_ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="choferes">
+            <EntityTypeMapping TypeName="bonisoftModel.chofer">
+              <MappingFragment StoreEntitySet="chofer">
+                <ScalarProperty Name="Chofer_ID" ColumnName="Chofer_ID" />
+                <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="bonisoftModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="cliente_ID" ColumnName="cliente_ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Dueno_nombre" ColumnName="Dueno_nombre" />
+                <ScalarProperty Name="Dueno_contacto" ColumnName="Dueno_contacto" />
+                <ScalarProperty Name="Encargado_lena_nombre" ColumnName="Encargado_lena_nombre" />
+                <ScalarProperty Name="Encargado_lena_contacto" ColumnName="Encargado_lena_contacto" />
+                <ScalarProperty Name="Encargado_pagos_nombre" ColumnName="Encargado_pagos_nombre" />
+                <ScalarProperty Name="Encargado_pagos_contacto" ColumnName="Encargado_pagos_contacto" />
+                <ScalarProperty Name="Supervisor_lena_nombre" ColumnName="Supervisor_lena_nombre" />
+                <ScalarProperty Name="Supervisor_lena_contacto" ColumnName="Supervisor_lena_contacto" />
+                <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
+                <ScalarProperty Name="Periodos_liquidacion" ColumnName="Periodos_liquidacion" />
+                <ScalarProperty Name="Fechas_pago" ColumnName="Fechas_pago" />
+                <ScalarProperty Name="RUT" ColumnName="RUT" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nro_cuenta" ColumnName="Nro_cuenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cliente_pagos">
+            <EntityTypeMapping TypeName="bonisoftModel.cliente_pagos">
+              <MappingFragment StoreEntitySet="cliente_pagos">
+                <ScalarProperty Name="Cliente_pagos_ID" ColumnName="Cliente_pagos_ID" />
+                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+                <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
+                <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />
+                <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cuadrilla_descarga">
+            <EntityTypeMapping TypeName="bonisoftModel.cuadrilla_descarga">
+              <MappingFragment StoreEntitySet="cuadrilla_descarga">
+                <ScalarProperty Name="Cuadrilla_descarga_ID" ColumnName="Cuadrilla_descarga_ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="descarga_viaje">
+            <EntityTypeMapping TypeName="bonisoftModel.descarga_viaje">
+              <MappingFragment StoreEntitySet="descarga_viaje">
+                <ScalarProperty Name="Descarga_viaje_ID" ColumnName="Descarga_viaje_ID" />
+                <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+                <ScalarProperty Name="Cuadrilla_ID" ColumnName="Cuadrilla_ID" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Demora" ColumnName="Demora" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fleteros">
+            <EntityTypeMapping TypeName="bonisoftModel.fletero">
+              <MappingFragment StoreEntitySet="fletero">
+                <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nro_cuenta" ColumnName="Nro_cuenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forma_de_pago">
+            <EntityTypeMapping TypeName="bonisoftModel.forma_de_pago">
+              <MappingFragment StoreEntitySet="forma_de_pago">
+                <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
+                <ScalarProperty Name="Forma" ColumnName="Forma" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lena_tipo">
+            <EntityTypeMapping TypeName="bonisoftModel.lena_tipo">
+              <MappingFragment StoreEntitySet="lena_tipo">
+                <ScalarProperty Name="Lena_tipo_ID" ColumnName="Lena_tipo_ID" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logs">
+            <EntityTypeMapping TypeName="bonisoftModel.log">
+              <MappingFragment StoreEntitySet="log">
+                <ScalarProperty Name="Log_ID" ColumnName="Log_ID" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Dato" ColumnName="Dato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mercaderia_comprada">
+            <EntityTypeMapping TypeName="bonisoftModel.mercaderia_comprada">
+              <MappingFragment StoreEntitySet="mercaderia_comprada">
+                <ScalarProperty Name="Mercaderia_ID" ColumnName="Mercaderia_ID" />
+                <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+                <ScalarProperty Name="Variedad_ID" ColumnName="Variedad_ID" />
+                <ScalarProperty Name="Procesador_ID" ColumnName="Procesador_ID" />
+                <ScalarProperty Name="Fecha_corte" ColumnName="Fecha_corte" />
+                <ScalarProperty Name="Precio_xTonelada_compra" ColumnName="Precio_xTonelada_compra" />
+                <ScalarProperty Name="Precio_xTonelada_venta" ColumnName="Precio_xTonelada_venta" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pesadas">
+            <EntityTypeMapping TypeName="bonisoftModel.pesada">
+              <MappingFragment StoreEntitySet="pesada">
+                <ScalarProperty Name="pesada_ID" ColumnName="pesada_ID" />
+                <ScalarProperty Name="Origen_lugar" ColumnName="Origen_lugar" />
+                <ScalarProperty Name="Origen_fecha" ColumnName="Origen_fecha" />
+                <ScalarProperty Name="Origen_nombre_balanza" ColumnName="Origen_nombre_balanza" />
+                <ScalarProperty Name="Origen_peso_bruto" ColumnName="Origen_peso_bruto" />
+                <ScalarProperty Name="Origen_peso_neto" ColumnName="Origen_peso_neto" />
+                <ScalarProperty Name="Destino_lugar" ColumnName="Destino_lugar" />
+                <ScalarProperty Name="Destino_fecha" ColumnName="Destino_fecha" />
+                <ScalarProperty Name="Destino_nombre_balanza" ColumnName="Destino_nombre_balanza" />
+                <ScalarProperty Name="Destino_peso_bruto" ColumnName="Destino_peso_bruto" />
+                <ScalarProperty Name="Destino_peso_neto" ColumnName="Destino_peso_neto" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="procesadores">
+            <EntityTypeMapping TypeName="bonisoftModel.procesador">
+              <MappingFragment StoreEntitySet="procesador">
+                <ScalarProperty Name="Procesador_ID" ColumnName="Procesador_ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proveedores">
+            <EntityTypeMapping TypeName="bonisoftModel.proveedor">
+              <MappingFragment StoreEntitySet="proveedor">
+                <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RUT" ColumnName="RUT" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nro_cuenta" ColumnName="Nro_cuenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proveedor_carga">
+            <EntityTypeMapping TypeName="bonisoftModel.proveedor_carga">
+              <MappingFragment StoreEntitySet="proveedor_carga">
+                <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
+                <ScalarProperty Name="Carga_ID" ColumnName="Carga_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proveedor_mercaderia">
+            <EntityTypeMapping TypeName="bonisoftModel.proveedor_mercaderia">
+              <MappingFragment StoreEntitySet="proveedor_mercaderia">
+                <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
+                <ScalarProperty Name="Mercaderia_ID" ColumnName="Mercaderia_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles_usuario">
+            <EntityTypeMapping TypeName="bonisoftModel.roles_usuario">
+              <MappingFragment StoreEntitySet="roles_usuario">
+                <ScalarProperty Name="Roles_usuario_ID" ColumnName="Roles_usuario_ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="bonisoftModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Rol_usuario_ID" ColumnName="Rol_usuario_ID" />
+                <ScalarProperty Name="EsAdmin" ColumnName="EsAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viajes">
+            <EntityTypeMapping TypeName="bonisoftModel.viaje">
+              <MappingFragment StoreEntitySet="viaje">
+                <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+                <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
+                <ScalarProperty Name="Precio_compra_por_tonelada" ColumnName="Precio_compra_por_tonelada" />
+                <ScalarProperty Name="Precio_valor_total" ColumnName="Precio_valor_total" />
+                <ScalarProperty Name="Importe_viaje" ColumnName="Importe_viaje" />
+                <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+                <ScalarProperty Name="Pesada_ID" ColumnName="Pesada_ID" />
+                <ScalarProperty Name="Empresa_de_carga_ID" ColumnName="Empresa_de_carga_ID" />
+                <ScalarProperty Name="Fecha_partida" ColumnName="Fecha_partida" />
+                <ScalarProperty Name="Fecha_llegada" ColumnName="Fecha_llegada" />
+                <ScalarProperty Name="Camion_ID" ColumnName="Camion_ID" />
+                <ScalarProperty Name="Chofer_ID" ColumnName="Chofer_ID" />
+                <ScalarProperty Name="Carga" ColumnName="Carga" />
+                <ScalarProperty Name="Descarga" ColumnName="Descarga" />
+                <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />
+                <ScalarProperty Name="precio_compra" ColumnName="precio_compra" />
+                <ScalarProperty Name="precio_venta" ColumnName="precio_venta" />
+                <ScalarProperty Name="precio_flete" ColumnName="precio_flete" />
+                <ScalarProperty Name="precio_descarga" ColumnName="precio_descarga" />
+                <ScalarProperty Name="GananciaXTon" ColumnName="GananciaXTon" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="EnViaje" ColumnName="EnViaje" />
+                <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
+                <ScalarProperty Name="isFicticio" ColumnName="isFicticio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

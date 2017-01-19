@@ -1,4 +1,5 @@
-﻿using Bonisoft_2.Helpers;
+﻿using Bonisoft_2.Models;
+using Bonisoft_2.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,7 +28,7 @@ namespace Bonisoft_2.User_Controls
 
         private void BindGrid()
         {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 hdnClientesCount.Value = context.clientes.Count().ToString();
                 if (context.clientes.Count() > 0)
@@ -123,7 +124,7 @@ namespace Bonisoft_2.User_Controls
                 if (txb1 != null && txb3 != null && txb5 != null && txb7 != null &&
                     txb13 != null && txb15 != null && txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         cliente obj = new cliente();
                         obj.Dueno_nombre = txb1.Text;
@@ -230,7 +231,7 @@ namespace Bonisoft_2.User_Controls
             if (txb1 != null && txb3 != null && txb5 != null && txb7 != null &&
                 txb13 != null && txb15 != null && txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int cliente_ID = Convert.ToInt32(gridClientes.DataKeys[e.RowIndex].Value);
                     cliente obj = context.clientes.First(x => x.cliente_ID == cliente_ID);
@@ -278,7 +279,7 @@ namespace Bonisoft_2.User_Controls
 
 
             int cliente_ID = Convert.ToInt32(gridClientes.DataKeys[e.RowIndex].Value);
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 cliente obj = context.clientes.First(x => x.cliente_ID == cliente_ID);
                 context.clientes.Remove(obj);

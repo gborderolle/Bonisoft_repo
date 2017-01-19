@@ -1,5 +1,6 @@
 ﻿using Bonisoft_2.Global_Objects;
 using Bonisoft_2.Helpers;
+using Bonisoft_2.Models;
 using Bonisoft_2.User_Controls.Configuracion;
 using System;
 using System.Collections.Generic;
@@ -66,7 +67,7 @@ namespace Bonisoft_2.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 string value = hdn_editViaje_viajeID.Value;
                 if (!string.IsNullOrWhiteSpace(value))
@@ -213,7 +214,7 @@ namespace Bonisoft_2.Pages
             string methodName = stackFrame.GetMethod().Name;
 
 
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 int viaje_ID = 0;
                 if (!string.IsNullOrWhiteSpace(hdn_notificaciones_viajeID.Value))
@@ -337,7 +338,7 @@ namespace Bonisoft_2.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 string viaje_ID_str = Mercaderias.Viaje_ID1;
                 if (!string.IsNullOrWhiteSpace(viaje_ID_str))
@@ -427,7 +428,7 @@ namespace Bonisoft_2.Pages
             }
             if (ddl != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.camiones.ToList());
@@ -457,7 +458,7 @@ namespace Bonisoft_2.Pages
             }
             if (ddl != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.choferes.ToList());
@@ -487,7 +488,7 @@ namespace Bonisoft_2.Pages
             }
             if (ddl != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.cargadores.ToList());
@@ -517,7 +518,7 @@ namespace Bonisoft_2.Pages
             }
             if (ddl != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.fleteros.ToList());
@@ -547,7 +548,7 @@ namespace Bonisoft_2.Pages
             }
             if (ddl != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.proveedores.ToList());
@@ -577,7 +578,7 @@ namespace Bonisoft_2.Pages
             }
             if (ddl != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.clientes.ToList());
@@ -607,7 +608,7 @@ namespace Bonisoft_2.Pages
             //}
             //if (ddl != null)
             //{
-            //    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            //    using (bonisoftEntities context = new bonisoftEntities())
             //    {
             //        DataTable dt1 = new DataTable();
             //        dt1 = Extras.ToDataTable(context.pesadas.ToList());
@@ -637,7 +638,7 @@ namespace Bonisoft_2.Pages
             }
             if (ddl != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.pesadas.ToList());
@@ -665,7 +666,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lbl = e.Row.FindControl("lbl10") as LinkButton;
                 if (lbl != null)
                 {
-                    lbl.Text = string.Empty; lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; lbl.Text = string.Empty; using (bonisoftEntities context = new bonisoftEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -689,7 +690,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lbl = e.Row.FindControl("lbl16") as LinkButton;
                 if (lbl != null)
                 {
-                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoftEntities context = new bonisoftEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -713,7 +714,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lbl = e.Row.FindControl("lbl13") as LinkButton;
                 if (lbl != null)
                 {
-                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoftEntities context = new bonisoftEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -737,7 +738,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lbl = e.Row.FindControl("lbl14") as LinkButton;
                 if (lbl != null)
                 {
-                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoftEntities context = new bonisoftEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -761,7 +762,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lbl = e.Row.FindControl("lbl17") as LinkButton;
                 if (lbl != null)
                 {
-                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoftEntities context = new bonisoftEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -786,7 +787,7 @@ namespace Bonisoft_2.Pages
                 if (lbl != null)
                 {
                     lbl.Text = string.Empty;
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -810,7 +811,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lbl = e.Row.FindControl("lbl10") as LinkButton;
                 if (lbl != null)
                 {
-                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoftEntities context = new bonisoftEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -834,7 +835,7 @@ namespace Bonisoft_2.Pages
                 Label lbl = e.Row.FindControl("lbl9") as Label;
                 if (lbl != null)
                 {
-                    lbl.Text = string.Empty; using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    lbl.Text = string.Empty; using (bonisoftEntities context = new bonisoftEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -856,7 +857,7 @@ namespace Bonisoft_2.Pages
             Label lbl1 = e.Row.FindControl("lbl11") as Label;
             if (lbl1 != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     viaje viaje = (viaje)(e.Row.DataItem);
                     if (viaje != null)
@@ -872,7 +873,7 @@ namespace Bonisoft_2.Pages
             lbl1 = e.Row.FindControl("lbl12") as Label;
             if (lbl1 != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     viaje viaje = (viaje)(e.Row.DataItem);
                     if (viaje != null)
@@ -932,7 +933,7 @@ namespace Bonisoft_2.Pages
                                 ddlFleteros2 != null && ddlProveedores2 != null && ddlClientes2 != null
                                 && ddlPesadaDestino2 != null)
                             {
-                                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                                using (bonisoftEntities context = new bonisoftEntities())
                                 {
                                     viaje obj = new viaje();
                                     obj.Carga = txb6.Text;
@@ -1167,7 +1168,7 @@ namespace Bonisoft_2.Pages
                 txb11 != null && txb12 != null && txb3 != null && ddlCargadores2 != null && ddlCamiones2 != null &&
                 ddlFleteros2 != null && ddlProveedores2 != null && ddlClientes2 != null && ddlPesadaDestino2 != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int viaje_ID = Convert.ToInt32(gridViajes.DataKeys[e.RowIndex].Value);
                     viaje obj = context.viajes.First(x => x.Viaje_ID == viaje_ID);
@@ -1321,7 +1322,7 @@ namespace Bonisoft_2.Pages
 
 
             int viaje_ID = Convert.ToInt32(gridViajes.DataKeys[e.RowIndex].Value);
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 viaje obj = context.viajes.First(x => x.Viaje_ID == viaje_ID);
                 context.viajes.Remove(obj);
@@ -1371,7 +1372,7 @@ namespace Bonisoft_2.Pages
             {
                 if (!string.IsNullOrWhiteSpace(e.CommandArgument.ToString()) && !string.IsNullOrWhiteSpace(e.CommandName))
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         if (e.CommandName.Equals("notificar"))
                         {
@@ -1528,7 +1529,7 @@ namespace Bonisoft_2.Pages
                 if (lblProveedor != null)
                 {
                     lblProveedor.Text = string.Empty;
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -1548,7 +1549,7 @@ namespace Bonisoft_2.Pages
                 if (lblFletero != null)
                 {
                     lblFletero.Text = string.Empty;
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -1568,7 +1569,7 @@ namespace Bonisoft_2.Pages
                 if (lblCliente != null)
                 {
                     lblCliente.Text = string.Empty;
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
@@ -1588,7 +1589,7 @@ namespace Bonisoft_2.Pages
             Label lbl1 = e.Row.FindControl("lblFechaPartida") as Label;
             if (lbl1 != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     viaje viaje = (viaje)(e.Row.DataItem);
                     if (viaje != null)
@@ -1613,7 +1614,7 @@ namespace Bonisoft_2.Pages
             // Proveedores --------------------------------------------------
             if (modalAdd_ddlProveedores != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.proveedores.ToList());
@@ -1630,7 +1631,7 @@ namespace Bonisoft_2.Pages
             // Clientes --------------------------------------------------
             if (modalAdd_ddlClientes != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.clientes.ToList());
@@ -1647,7 +1648,7 @@ namespace Bonisoft_2.Pages
             // Empresas de carga --------------------------------------------------
             if (modalAdd_ddlCargadores != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.cargadores.ToList());
@@ -1664,7 +1665,7 @@ namespace Bonisoft_2.Pages
             // Fleteros --------------------------------------------------
             if (modalAdd_ddlFleteros != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.fleteros.ToList());
@@ -1681,7 +1682,7 @@ namespace Bonisoft_2.Pages
             // Camiones --------------------------------------------------
             if (modalAdd_ddlCamiones != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.camiones.ToList());
@@ -1698,7 +1699,7 @@ namespace Bonisoft_2.Pages
             // Choferes --------------------------------------------------
             if (modalAdd_ddlChoferes != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.choferes.ToList());
@@ -1718,7 +1719,7 @@ namespace Bonisoft_2.Pages
             // Proveedores --------------------------------------------------
             if (modalEdit_ddlProveedores != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.proveedores.ToList());
@@ -1735,7 +1736,7 @@ namespace Bonisoft_2.Pages
             // Clientes --------------------------------------------------
             if (modalEdit_ddlClientes != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.clientes.ToList());
@@ -1752,7 +1753,7 @@ namespace Bonisoft_2.Pages
             // Empresas de carga --------------------------------------------------
             if (modalEdit_ddlCargadores != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.cargadores.ToList());
@@ -1769,7 +1770,7 @@ namespace Bonisoft_2.Pages
             // Fleteros --------------------------------------------------
             if (modalEdit_ddlFleteros != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.fleteros.ToList());
@@ -1786,7 +1787,7 @@ namespace Bonisoft_2.Pages
             // Camiones --------------------------------------------------
             if (modalEdit_ddlCamiones != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.camiones.ToList());
@@ -1803,7 +1804,7 @@ namespace Bonisoft_2.Pages
             // Choferes --------------------------------------------------
             if (modalEdit_ddlChoferes != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.choferes.ToList());
@@ -1820,7 +1821,7 @@ namespace Bonisoft_2.Pages
 
         private void BindGrid_Viajes(string date_start = "", string date_end = "")
         {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 // Logger variables
                 System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -1899,7 +1900,7 @@ namespace Bonisoft_2.Pages
 
         public void BindGrid_ViajesEnCurso()
         {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 var elements = context.viajes.Where(e => e.EnViaje && !e.isFicticio).OrderByDescending(e => e.Fecha_partida).ToList();
                 if (elements.Count() > 0)
@@ -1943,7 +1944,7 @@ namespace Bonisoft_2.Pages
         {
             if (viaje != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int pesada_ID = viaje.Pesada_ID;
                     if (pesada_ID > 0)
@@ -1997,7 +1998,7 @@ namespace Bonisoft_2.Pages
         {
             if (viaje != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     notif_Flete2.Text = viaje.precio_flete.ToString();
                     notif_Flete3.Text = viaje.IVA.ToString();
@@ -2042,7 +2043,7 @@ namespace Bonisoft_2.Pages
             decimal ret = 0;
             if (viaje_ID > 0)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     decimal totalCostos = 0;
                     //decimal totalPrecios = 0;
@@ -2119,7 +2120,7 @@ namespace Bonisoft_2.Pages
             string methodName = stackFrame.GetMethod().Name;
 
             bool save_ok = false;
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 if (!string.IsNullOrWhiteSpace(viajeID) && precioFlete_str != null && precioDescarga_str != null &&
                     IVA_str != null && precio_venta_str != null)
@@ -2226,7 +2227,7 @@ namespace Bonisoft_2.Pages
 
             if (!string.IsNullOrWhiteSpace(viajeID_str))
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int viaje_ID = 0;
                     if (!int.TryParse(viajeID_str, out viaje_ID))
@@ -2372,7 +2373,7 @@ namespace Bonisoft_2.Pages
             bool check_ok = false;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int viaje_ID = 0;
                     if (!int.TryParse(viajeID_str, out viaje_ID))
@@ -2406,7 +2407,7 @@ namespace Bonisoft_2.Pages
             decimal costo_mercaderias = 0;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int viaje_ID = 0;
                     if (!int.TryParse(viajeID_str, out viaje_ID))
@@ -2449,7 +2450,7 @@ namespace Bonisoft_2.Pages
             string ret = string.Empty;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int viaje_ID = 0;
                     if (!int.TryParse(viajeID_str, out viaje_ID))
@@ -2504,7 +2505,7 @@ namespace Bonisoft_2.Pages
 
             if (!string.IsNullOrWhiteSpace(viajeID_str))
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int viaje_ID = 0;
                     if (!int.TryParse(viajeID_str, out viaje_ID))
@@ -2587,7 +2588,7 @@ namespace Bonisoft_2.Pages
                 string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
                 string methodName = stackFrame.GetMethod().Name;
 
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int viaje_ID = 0;
                     if (!int.TryParse(viajeID_str, out viaje_ID))
@@ -2633,7 +2634,7 @@ namespace Bonisoft_2.Pages
             int resultado = 0;
             if (!string.IsNullOrWhiteSpace(viajeID_str) && !string.IsNullOrWhiteSpace(userID) && !string.IsNullOrWhiteSpace(clave_str))
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int viaje_ID = 0;
                     if (!int.TryParse(viajeID_str, out viaje_ID))
@@ -2711,7 +2712,7 @@ namespace Bonisoft_2.Pages
             string ret = string.Empty;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int viaje_ID = 0;
                     if (!int.TryParse(viajeID_str, out viaje_ID))
@@ -2748,7 +2749,7 @@ namespace Bonisoft_2.Pages
             bool ret = false;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int viaje_ID = 0;
                     if (!int.TryParse(viajeID_str, out viaje_ID))
@@ -2875,7 +2876,7 @@ namespace Bonisoft_2.Pages
 
 
             bool ret = false;
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 viaje new_viaje = new viaje();
 

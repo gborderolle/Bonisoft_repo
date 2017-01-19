@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bonisoft_2.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
@@ -42,13 +43,13 @@ namespace Bonisoft_2.Global_Objects
         public static void AddUserLog(string message, string object_ID, string userID_str, string username)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
 
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 log new_log = new log();
                 new_log.Fecha = DateTime.Now;

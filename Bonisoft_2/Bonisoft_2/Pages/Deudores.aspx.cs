@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bonisoft_2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,7 +31,7 @@ namespace Bonisoft_2.Pages
             {
                 if (!string.IsNullOrWhiteSpace(e.CommandArgument.ToString()) && !string.IsNullOrWhiteSpace(e.CommandName))
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
 
                     }
@@ -67,7 +68,7 @@ namespace Bonisoft_2.Pages
 
         private void BindGrid()
         {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 var elements = context.clientes.OrderBy(e => e.Nombre).ToList();
                 if (elements.Count() > 0)

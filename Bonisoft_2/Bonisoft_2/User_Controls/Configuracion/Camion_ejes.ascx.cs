@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bonisoft_2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,7 +23,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
         private void BindGrid()
         {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 hdnEjesCount.Value = context.camion_ejes.Count().ToString();
                 if (context.camion_ejes.Count() > 0)
@@ -108,7 +109,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 if (txb1 != null && txb2 != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         camion_ejes obj = new camion_ejes();
                         obj.Ejes = txb1.Text;
@@ -168,7 +169,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
             TextBox txb2 = row.FindControl("txb2") as TextBox;
             if (txb1 != null && txb2 != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int camion_ejes_ID = Convert.ToInt32(gridEjes.DataKeys[e.RowIndex].Value);
                     camion_ejes obj = context.camion_ejes.First(x => x.Camion_ejes_ID == camion_ejes_ID);
@@ -207,7 +208,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
 
 
             int camion_ejes_ID = Convert.ToInt32(gridEjes.DataKeys[e.RowIndex].Value);
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 camion_ejes obj = context.camion_ejes.First(x => x.Camion_ejes_ID == camion_ejes_ID);
                 context.camion_ejes.Remove(obj);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bonisoft_2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,7 +23,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
         private void BindGrid()
         {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 hdnFormaCount.Value = context.forma_de_pago.Count().ToString();
                 if (context.forma_de_pago.Count() > 0)
@@ -109,7 +110,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 if (txb1 != null && txb2 != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         forma_de_pago obj = new forma_de_pago();
                         obj.Forma = txb1.Text;
@@ -169,7 +170,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
             TextBox txb2 = row.FindControl("txb2") as TextBox;
             if (txb1 != null && txb2 != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int forma_de_pago_ID = Convert.ToInt32(gridFormas.DataKeys[e.RowIndex].Value);
                     forma_de_pago obj = context.forma_de_pago.First(x => x.Forma_de_pago_ID == forma_de_pago_ID);
@@ -208,7 +209,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
 
 
             int forma_de_pago_ID = Convert.ToInt32(gridFormas.DataKeys[e.RowIndex].Value);
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 forma_de_pago obj = context.forma_de_pago.First(x => x.Forma_de_pago_ID == forma_de_pago_ID);
                 context.forma_de_pago.Remove(obj);

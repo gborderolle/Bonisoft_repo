@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bonisoft_2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,7 +23,7 @@ namespace Bonisoft_2.User_Controls.Estaticos
 
         private void BindGrid()
         {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 hdnFleterosCount.Value = context.fleteros.Count().ToString();
                 if (context.fleteros.Count() > 0)
@@ -113,7 +114,7 @@ namespace Bonisoft_2.User_Controls.Estaticos
                 TextBox txb24 = row.FindControl("txbNew24") as TextBox;
                 if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb23 != null && txb24 != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         fletero obj = new fletero();
                         obj.Nombre = txb1.Text;
@@ -184,7 +185,7 @@ namespace Bonisoft_2.User_Controls.Estaticos
             TextBox txb24 = row.FindControl("txb24") as TextBox;
             if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb23 != null && txb24 != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int fletero_ID = Convert.ToInt32(gridFleteros.DataKeys[e.RowIndex].Value);
                     fletero obj = context.fleteros.First(x => x.Fletero_ID == fletero_ID);
@@ -227,7 +228,7 @@ namespace Bonisoft_2.User_Controls.Estaticos
 
 
             int fletero_ID = Convert.ToInt32(gridFleteros.DataKeys[e.RowIndex].Value);
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 fletero obj = context.fleteros.First(x => x.Fletero_ID == fletero_ID);
                 context.fleteros.Remove(obj);

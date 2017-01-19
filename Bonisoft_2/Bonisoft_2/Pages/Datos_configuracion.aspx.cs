@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bonisoft_2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,7 +28,7 @@ namespace Bonisoft_2.Pages
             string methodName = stackFrame.GetMethod().Name;
 
             bool isAdmin = false;
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 if (!string.IsNullOrWhiteSpace(userID_str))
                 {

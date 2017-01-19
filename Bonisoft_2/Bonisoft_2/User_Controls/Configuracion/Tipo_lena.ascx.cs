@@ -1,4 +1,5 @@
-﻿using Bonisoft_2.Global_Objects;
+﻿using Bonisoft_2.Models;
+using Bonisoft_2.Global_Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
         private void BindGrid()
         {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 hdnTiposCount.Value = context.lena_tipo.Count().ToString();
                 if (context.lena_tipo.Count() > 0)
@@ -109,7 +110,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 if (txb1 != null && txb2 != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         lena_tipo obj = new lena_tipo();
                         obj.Tipo = txb1.Text;
@@ -169,7 +170,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
             TextBox txb2 = row.FindControl("txb2") as TextBox;
             if (txb1 != null && txb2 != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int lena_tipo_ID = Convert.ToInt32(gridTipos.DataKeys[e.RowIndex].Value);
                     lena_tipo obj = context.lena_tipo.First(x => x.Lena_tipo_ID == lena_tipo_ID);
@@ -208,7 +209,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
 
 
             int lena_tipo_ID = Convert.ToInt32(gridTipos.DataKeys[e.RowIndex].Value);
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 lena_tipo obj = context.lena_tipo.First(x => x.Lena_tipo_ID == lena_tipo_ID);
                 context.lena_tipo.Remove(obj);

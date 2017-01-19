@@ -1,4 +1,5 @@
-﻿using Bonisoft_2.Global_Objects;
+﻿using Bonisoft_2.Models;
+using Bonisoft_2.Global_Objects;
 using Bonisoft_2.Helpers;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
             string methodName = stackFrame.GetMethod().Name;
 
 
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 bool ok = false;
 
@@ -179,7 +180,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                     }
                     if (viaje_ID > 0)
                     {
-                        using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                        using (bonisoftEntities context = new bonisoftEntities())
                         {
                             mercaderia_comprada obj = new mercaderia_comprada();
                             obj.Comentarios = txb7;
@@ -294,7 +295,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
                 string txb5 = hdn_modalMercaderia_txb5.Value;
                 string txb7 = hdn_modalMercaderia_txb7.Value;
 
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int mercaderia_ID = Convert.ToInt32(gridMercaderias.DataKeys[e.RowIndex].Value);
                     mercaderia_comprada obj = context.mercaderia_comprada.First(x => x.Mercaderia_ID == mercaderia_ID);
@@ -355,7 +356,7 @@ namespace Bonisoft_2.User_Controls.Configuracion
 
 
             int mercaderias_ID = Convert.ToInt32(gridMercaderias.DataKeys[e.RowIndex].Value);
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 mercaderia_comprada obj = context.mercaderia_comprada.First(x => x.Mercaderia_ID == mercaderias_ID);
                 context.mercaderia_comprada.Remove(obj);

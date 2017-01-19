@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bonisoft_2.Models;
+using Bonisoft_2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,7 +24,7 @@ namespace Bonisoft_2.User_Controls
 
         private void BindGrid()
         {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 hdnProveedoresCount.Value = context.proveedores.Count().ToString();
                 if (context.proveedores.Count() > 0)
@@ -114,7 +116,7 @@ namespace Bonisoft_2.User_Controls
                 TextBox txb24 = row.FindControl("txbNew24") as TextBox;
                 if (txb1 != null && txb3 != null && txb4 != null && txb5 != null && txb10 != null && txb23 != null && txb24 != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         proveedor obj = new proveedor();
                         obj.Nombre = txb1.Text;
@@ -188,7 +190,7 @@ namespace Bonisoft_2.User_Controls
             TextBox txb24 = row.FindControl("txb24") as TextBox;
             if (txb1 != null && txb3 != null && txb4 != null && txb5 != null && txb10 != null && txb23 != null && txb24 != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int proveedor_ID = Convert.ToInt32(gridProveedores.DataKeys[e.RowIndex].Value);
                     proveedor obj = context.proveedores.First(x => x.Proveedor_ID == proveedor_ID);
@@ -231,7 +233,7 @@ namespace Bonisoft_2.User_Controls
             string methodName = stackFrame.GetMethod().Name;
 
             int proveedor_ID = Convert.ToInt32(gridProveedores.DataKeys[e.RowIndex].Value);
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 proveedor obj = context.proveedores.First(x => x.Proveedor_ID == proveedor_ID);
                 context.proveedores.Remove(obj);

@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [boniadmin]
+    WITH PASSWORD = N'pvcdFxdcOu{tc|7hzbtfHEwumsFT7_&#$!~<zhpu|jvld|uw' MUST_CHANGE, SID = 0xC7106249E1FEEE468846307FE28E5813, DEFAULT_LANGUAGE = [us_english], CHECK_EXPIRATION = ON;
+

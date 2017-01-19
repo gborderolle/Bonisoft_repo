@@ -1,4 +1,5 @@
-﻿using Bonisoft_2.Helpers;
+﻿using Bonisoft_2.Models;
+using Bonisoft_2.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,7 +26,7 @@ namespace Bonisoft_2.User_Controls
 
         private void BindGrid()
         {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 hdnChoferesCount.Value = context.choferes.Count().ToString();
                 if (context.choferes.Count() > 0)
@@ -112,7 +113,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
                 if (txb1 != null && txb2 != null && txb4 != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         chofer obj = new chofer();
                         obj.Nombre_completo = txb1.Text;
@@ -178,7 +179,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
             TextBox txb4 = row.FindControl("txb4") as TextBox;
             if (txb1 != null && txb2 != null && txb4 != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int chofer_ID = Convert.ToInt32(gridChoferes.DataKeys[e.RowIndex].Value);
                     chofer obj = context.choferes.First(x => x.Chofer_ID == chofer_ID);
@@ -218,7 +219,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
 
 
             int chofer_ID = Convert.ToInt32(gridChoferes.DataKeys[e.RowIndex].Value);
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 chofer obj = context.choferes.First(x => x.Chofer_ID == chofer_ID);
                 context.choferes.Remove(obj);

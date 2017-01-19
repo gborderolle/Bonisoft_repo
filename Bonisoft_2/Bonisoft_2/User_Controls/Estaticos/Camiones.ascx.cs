@@ -1,4 +1,5 @@
-﻿using Bonisoft_2.Helpers;
+﻿using Bonisoft_2.Models;
+using Bonisoft_2.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,7 +25,7 @@ namespace Bonisoft_2.Pages
 
         private void BindGrid()
         {
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 hdnCamionesCount.Value = context.camiones.Count().ToString();
                 if (context.camiones.Count() > 0)
@@ -106,7 +107,7 @@ namespace Bonisoft_2.Pages
             }
             if (ddl != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
                     dt1 = Extras.ToDataTable(context.camion_ejes.ToList());
@@ -129,7 +130,7 @@ namespace Bonisoft_2.Pages
                 LinkButton lbl = e.Row.FindControl("lbl3") as LinkButton;
                 if (lbl != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         camion camion = (camion)(e.Row.DataItem);
                         if (camion != null)
@@ -172,7 +173,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 DropDownList ddlEjes2 = row.FindControl("ddlEjes2") as DropDownList;
                 if (txb1 != null && txb2 != null && txb6 != null && txb7 != null && txb9 != null && ddlEjes2 != null)
                 {
-                    using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                    using (bonisoftEntities context = new bonisoftEntities())
                     {
                         camion obj = new camion();
                         obj.Matricula_camion = txb1.Text;
@@ -270,7 +271,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
             DropDownList ddlEjes2 = row.FindControl("ddlEjes1") as DropDownList;
             if (txb1 != null && txb2 != null && txb6 != null && txb7 != null && txb9 != null && ddlEjes2 != null)
             {
-                using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int camion_ID = Convert.ToInt32(gridCamiones.DataKeys[e.RowIndex].Value);
                     camion obj = context.camiones.First(x => x.Camion_ID == camion_ID);
@@ -329,7 +330,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
 
 
             int camion_ID = Convert.ToInt32(gridCamiones.DataKeys[e.RowIndex].Value);
-            using (bonisoft_dbEntities context = new bonisoft_dbEntities())
+            using (bonisoftEntities context = new bonisoftEntities())
             {
                 camion obj = context.camiones.First(x => x.Camion_ID == camion_ID);
                 context.camiones.Remove(obj);
