@@ -66,7 +66,6 @@ namespace Bonisoft_2.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             using (bonisoft_dbEntities context = new bonisoft_dbEntities())
             {
                 string value = hdn_editViaje_viajeID.Value;

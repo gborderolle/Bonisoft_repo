@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bonisoft_2.Global_Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -35,6 +36,12 @@ namespace Bonisoft_2
 
         private void Perform_login(string username, string password, bool isPasswordInput_hashed = false)
         {
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
             int resultado = 0;
             if (!string.IsNullOrWhiteSpace(username) || !string.IsNullOrWhiteSpace(password))
             {
@@ -55,8 +62,9 @@ namespace Bonisoft_2
                             resultado = 2;
                         }
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
+                        Logs.AddErrorLog("Excepcion. Haciendo login. ERROR:", className, methodName, ex.Message);
                         resultado = 3;
                     }
                 }
