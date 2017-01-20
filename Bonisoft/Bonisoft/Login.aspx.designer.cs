@@ -13,48 +13,30 @@ namespace Bonisoft {
     public partial class Login {
         
         /// <summary>
-        /// form1 control.
+        /// txbUser1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txbUser1;
         
         /// <summary>
-        /// txbUser control.
+        /// txbPassword1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbUser;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txbPassword1;
         
         /// <summary>
-        /// txbPassword control.
+        /// btnSubmit_candidato1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbPassword;
-        
-        /// <summary>
-        /// submitButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton submitButton;
-        
-        /// <summary>
-        /// btnLoginCandidate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLoginCandidate;
+        protected global::System.Web.UI.HtmlControls.HtmlInputSubmit btnSubmit_candidato1;
     }
 }

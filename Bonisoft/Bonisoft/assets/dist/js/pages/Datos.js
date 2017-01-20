@@ -1,4 +1,186 @@
 
+$(document).ready(function () {
+
+    $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
+    load_tableSorter();
+    updateCounts();
+    load_quicksearch();
+    
+    $(".info-box").hover(function () {
+        $(this).css("border-color", "#57c8da");
+        $(this).parent().find("span").css("color", "#57c8da");
+    }, function () {
+        $(this).css("border-color", "darkgray");
+        $(this).parent().find("span").css("color", "black");
+    });
+
+});
+
+function load_tableSorter() {
+    $("#gridCamiones").tablesorter();
+    $("#gridChoferes").tablesorter();
+    $("#gridClientes").tablesorter();
+    $("#gridCuadrillas").tablesorter();
+    $("#gridProveedores").tablesorter();
+    $("#gridFleteros").tablesorter();
+    $("#gridCargadores").tablesorter();
+    $("#gridProcesadores").tablesorter();
+
+    // Página Configuración
+    $("#gridInternos").tablesorter();
+    $("#gridTipos").tablesorter();
+    $("#gridFormas").tablesorter();
+    $("#gridEjes").tablesorter();
+    $("#gridUsuarios").tablesorter();
+}
+
+function load_quicksearch() {
+    // Source: https://www.youtube.com/watch?v=Sy2J7cUv0QM
+    var gridClientes = $("#gridClientes tbody tr");
+    var gridProveedores = $("#gridProveedores tbody tr");
+    var gridCuadrillas = $("#gridCuadrillas tbody tr");
+    var gridCargadores = $("#gridCargadores tbody tr");
+    var gridCamiones = $("#gridCamiones tbody tr");
+    var gridChoferes = $("#gridChoferes tbody tr");
+    var gridFleteros = $("#gridFleteros tbody tr");
+    var gridProcesadores = $("#gridProcesadores tbody tr");
+
+    $("#txbSearch").quicksearch(gridClientes);
+    $("#txbSearch").quicksearch(gridProveedores);
+    $("#txbSearch").quicksearch(gridCuadrillas);
+    $("#txbSearch").quicksearch(gridCargadores);
+    $("#txbSearch").quicksearch(gridCamiones);
+    $("#txbSearch").quicksearch(gridChoferes);
+    $("#txbSearch").quicksearch(gridFleteros);
+    $("#txbSearch").quicksearch(gridProcesadores);
+}
+
+$(document).on('click', ".info-box", function () {
+    show_grid($(this));
+
+    $(".info-box").css("background", "white");
+    $(".info-box").css("border-color", "darkgray");
+    $(".info-box").parent().find("span").css("color", "black");
+
+    $(this).css("background", "lightblue");
+    $(this).css("border-color", "#57c8da");
+    $(this).parent().find("span").css("color", "#57c8da");
+});
+
+var prm = Sys.WebForms.PageRequestManager.getInstance();
+if (prm !== null) {
+    prm.add_endRequest(function (sender, e) {
+        if (sender._postBackSettings.panelsToUpdate !== null) {
+            updateCounts();
+        }
+    });
+};
+
+function updateCounts() {
+    var clientes_count = $("#divContent #hdnClientesCount").val();
+    var proveedores_count = $("#divContent #hdnProveedoresCount").val();
+    var cuadrillas_count = $("#divContent #hdnCuadrillasCount").val();
+    var camiones_count = $("#divContent #hdnCamionesCount").val();
+    var choferes_count = $("#divContent #hdnChoferesCount").val();
+    var fleteros_count = $("#divContent #hdnFleterosCount").val();
+    var cargadores_count = $("#divContent #hdnCargadoresCount").val();
+    var procesadores_count = $("#divContent #hdnProcesadoresCount").val();
+
+    // Página Configuración
+    var internos_count = $("#divContent #hdnInternosCount").val();
+    var tipos_count = $("#divContent #hdnTiposCount").val();
+    var formas_count = $("#divContent #hdnFormaCount").val();
+    var ejes_count = $("#divContent #hdnEjesCount").val();
+    var hdnUsuarioCount = $("#divContent #hdnUsuarioCount").val();
+
+    $("#divBoxClientes .info-box-number").text(clientes_count);
+    $("#divBoxProveedores .info-box-number").text(proveedores_count);
+    $("#divBoxCuadrillas .info-box-number").text(cuadrillas_count);
+    $("#divBoxCamiones .info-box-number").text(camiones_count);
+    $("#divBoxChoferes .info-box-number").text(choferes_count);
+    $("#divBoxFleteros .info-box-number").text(fleteros_count);
+    $("#divBoxCargadores .info-box-number").text(cargadores_count);
+    $("#divBoxProcesadores .info-box-number").text(procesadores_count);
+
+    // Página Configuración
+    $("#divBoxInternos .info-box-number").text(internos_count);
+    $("#divBoxTipos .info-box-number").text(tipos_count);
+    $("#divBoxFormas .info-box-number").text(formas_count);
+    $("#divBoxEjes .info-box-number").text(ejes_count);
+    $("#divBoxUsuarios .info-box-number").text(hdnUsuarioCount);
+}
+
+function show_grid(element) {
+    //Find the box parent
+    var table_name = element.find(".info-box-text").text();
+    if (table_name !== null) {
+
+        var firstWord = table_name.substr(0, table_name.indexOf(' '));
+        if (firstWord !== null && firstWord !== "") {
+            table_name = firstWord;
+        }
+
+        $(".divTables").hide();
+        switch (table_name.toLowerCase()) {
+            case "clientes": {
+                $("#divClientes").show();
+                break;
+            }
+            case "proveedores": {
+                $("#divProveedores").show();
+                break;
+            }
+            case "descargadores": {
+                $("#divCuadrillas").show();
+                break;
+            }
+            case "camiones": {
+                $("#divCamiones").show();
+                break;
+            }
+            case "choferes": {
+                $("#divChoferes").show();
+                break;
+            }
+            case "fleteros": {
+                $("#divFleteros").show();
+                break;
+            }
+            case "cargadores": {
+                $("#divCargadores").show();
+                break;
+            }
+            case "procesadores": {
+                $("#divProcesadores").show();
+                break;
+            }
+
+            // Página Configuración
+            case "internos": {
+                $("#divInternos").show();
+                break;
+            }
+            case "tipos": {
+                $("#divTipos").show();
+                break;
+            }
+            case "formas": {
+                $("#divFormas").show();
+                break;
+            }
+            case "ejes": {
+                $("#divEjes").show();
+                break;
+            }
+            case "usuarios": {
+                $("#divUsuarios").show();
+                break;
+            }
+        }
+    }
+
+}
+
 function setlblTableActive(name) {
     $("#lblTableActive").text(name);
 }
@@ -18,7 +200,7 @@ function sidebar_action() {
 	$("body").toggleClass('sidebar-collapse').toggleClass('sidebar-expanded-on-hover');
 }
 
-function box_collapse (element) {
+function box_collapse(element) {
       //Find the box parent
       var box = element.parents(".box").first();
       //Find the body and the footer
@@ -45,71 +227,10 @@ function box_collapse (element) {
 }
 
 $(document).on('click', ".btn-box-tool", function () {
-	box_collapse($(this));
-});
+    box_collapse($(this));
+    load_tableSorter();
 
-$(document).ready(function () {
-    if (QueryString !== null) {
-        if (QueryString.table !== null) {
-            var table = QueryString.table;
-            if (table !== "") {
-                switch (table) {
-                    case "proveedores":
-                        {
-                            setlblTableActive("Proveedores");
-                            break;
-                        }
-                    case "clientes":
-                        {
-                            setlblTableActive("Clientes");
-                            break;
-                        }
-                    case "viajes":
-                        {
-                            setlblTableActive("Viajes");
-                            break;
-                        }
-                    case "choferes":
-                        {
-                            setlblTableActive("Choferes");
-                            break;
-                        }
-                    case "cuadrillas":
-                        {
-                            setlblTableActive("Cuadrillas");
-                            break;
-                        }
-                    case "internos":
-                        {
-                            setlblTableActive("Internos");
-                            break;
-                        }
-                    case "pesadas":
-                        {
-                            setlblTableActive("Pesadas");
-                            break;
-                        }
-                    case "camiones":
-                        {
-                            setlblTableActive("Camiones");
-                            break;
-                        }
-                    case "personas":
-                        {
-                            setlblTableActive("Personas");
-                            break;
-                        }
-                    case "contacto_medio":
-                        {
-                            setlblTableActive("Medios de contacto");
-                            break;
-                        }
-                }
-            }
-        }
-    }
 });
-
 
 var QueryString = function () {
     // This function is anonymous, is executed immediately and 
@@ -157,3 +278,4 @@ $("#txbSearchTable").on('input', function() {
 function updateContainerWithResults(data) {
     $("#resultsContainerElement").html(data);
 }
+

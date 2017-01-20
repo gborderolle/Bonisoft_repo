@@ -1,82 +1,4 @@
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\ApplicationInsights.config
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\roslyn\csc.exe
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\roslyn\Microsoft.CodeAnalysis.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\roslyn\Microsoft.CSharp.Core.targets
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\roslyn\Microsoft.VisualBasic.Core.targets
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\roslyn\System.Collections.Immutable.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\roslyn\System.Reflection.Metadata.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\roslyn\vbc.exe
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\roslyn\VBCSCompiler.exe
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\roslyn\VBCSCompiler.exe.config
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Bonisoft.dll.config
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Bonisoft.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Bonisoft.pdb
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Antlr3.Runtime.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\AspNet.ScriptManager.bootstrap.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\AspNet.ScriptManager.jQuery.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\EntityFramework.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\EntityFramework.SqlServer.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AI.Agent.Intercept.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AI.DependencyCollector.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AI.PerfCounterCollector.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AI.ServerTelemetryChannel.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AI.Web.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AI.WindowsServer.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.ApplicationInsights.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AspNet.FriendlyUrls.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AspNet.Identity.Core.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AspNet.Identity.Owin.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Host.SystemWeb.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Cookies.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Facebook.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Google.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.OAuth.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Twitter.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.ScriptManager.MSAjax.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.ScriptManager.WebForms.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Web.Infrastructure.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Newtonsoft.Json.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Owin.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\System.Web.Optimization.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\System.Web.Providers.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\WebGrease.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AI.DependencyCollector.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AI.ServerTelemetryChannel.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AI.Web.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AI.WindowsServer.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.ApplicationInsights.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\System.Web.Optimization.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Antlr3.Runtime.pdb
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Newtonsoft.Json.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AspNet.FriendlyUrls.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\EntityFramework.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\EntityFramework.SqlServer.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AspNet.Identity.Core.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AspNet.Identity.Owin.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\System.Web.Providers.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Host.SystemWeb.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Facebook.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Cookies.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Google.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Twitter.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.OAuth.xml
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\obj\Debug\Bonisoft.csprojResolveAssemblyReference.cache
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\obj\Debug\Bonisoft.dll
-c:\users\gborderolle-pc\documents\visual studio 2015\Projects\Bonisoft\Bonisoft\obj\Debug\Bonisoft.pdb
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\ApplicationInsights.config
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\roslyn\csc.exe
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -95,6 +17,7 @@ C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Bon
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Antlr3.Runtime.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\AspNet.ScriptManager.bootstrap.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\EditableDropDownList.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\EntityFramework.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\EntityFramework.SqlServer.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.AI.Agent.Intercept.dll
@@ -104,6 +27,7 @@ C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Mic
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.AI.Web.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.AI.WindowsServer.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.ApplicationInsights.dll
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.AspNet.EntityDataSource.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.AspNet.FriendlyUrls.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.AspNet.Identity.EntityFramework.dll
@@ -127,9 +51,17 @@ C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\MyS
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\MySql.Web.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Newtonsoft.Json.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Owin.dll
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\System.Web.Helpers.dll
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\System.Web.Mvc.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\System.Web.Optimization.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\System.Web.Providers.dll
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\System.Web.Razor.dll
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\System.Web.WebPages.Deployment.dll
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\System.Web.WebPages.dll
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\System.Web.WebPages.Razor.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\WebGrease.dll
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\EntityFramework.xml
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\EntityFramework.SqlServer.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.AI.DependencyCollector.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.AI.Web.xml
@@ -139,12 +71,16 @@ C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Mic
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\MySql.Data.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\MySql.Data.Entity.EF6.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\MySql.Web.xml
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\System.Web.Helpers.xml
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\System.Web.Mvc.xml
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\System.Web.Razor.xml
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\System.Web.WebPages.xml
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\System.Web.WebPages.Deployment.xml
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\System.Web.WebPages.Razor.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\System.Web.Optimization.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Antlr3.Runtime.pdb
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Newtonsoft.Json.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.AspNet.FriendlyUrls.xml
-C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\EntityFramework.xml
-C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\EntityFramework.SqlServer.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.AspNet.Identity.EntityFramework.xml

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bonisoft.Models;
+using Bonisoft.Global_Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,45 +12,16 @@ namespace Bonisoft
     public partial class Login : System.Web.UI.Page
     {
         #region Events
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Logout();
-
-            if (!IsPostBack)
-            {
-                string qs_loginToken = Request.QueryString["loginToken"];
-                if (!string.IsNullOrWhiteSpace(qs_loginToken) && !string.IsNullOrWhiteSpace(qs_loginToken))
-                {
-                    //UserToken userToken = UserTokenRepository.GetUserToken(qs_loginToken);
-                    //if (userToken != null)
-                    //{
-                    //    Perform_login(userToken.User, userToken.Password, true, true);
-                    //}
-                    //else
-                    //{
-                    //    ScriptManager.RegisterStartupScript(this, typeof(Page), "ShowErrorMessage", "ShowErrorMessage('" + 2 + "');", true);
-                    //}
-                }
-            }
         }
 
-        private void Logout()
+        protected void btnSubmit_candidato1_ServerClick(object sender, EventArgs e)
         {
-            Session["UserID"] = null;
-            Session["UserName"] = null;
-        }
-
-        protected void submitButton_ServerClick(object sender, EventArgs e)
-        {
-            string username = txbUser.Text;
-            string password = txbPassword.Text;
-            Perform_login(username, password, false);
-        }
-
-        protected void btnLoginCandidate_Click(object sender, EventArgs e)
-        {
-            string username = txbUser.Text;
-            string password = txbPassword.Text;
+            string username = txbUser1.Value;
+            string password = txbPassword1.Value;
             Perform_login(username, password, false);
         }
 
@@ -56,57 +29,56 @@ namespace Bonisoft
 
         #region Methods
 
-        private void Perform_login(string username, string password, bool isPasswordInput_hashed = false, bool isTokenLogin = false)
+        private void Logout()
         {
+            Session["UserID"] = null;
+            Session["UserName"] = null;
+        }
+
+        private void Perform_login(string username, string password, bool isPasswordInput_hashed = false)
+        {
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            int resultado = 0;
             if (!string.IsNullOrWhiteSpace(username) || !string.IsNullOrWhiteSpace(password))
             {
-                bool ok = false;
-                try
+                using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    //string userID = Global.GlobalMethods.CheckLogin(username, password, isPasswordInput_hashed, isTokenLogin);
-                    //if (!string.IsNullOrWhiteSpace(userID))
-                    //{
-                    //    User user = new User(userID, "");
-                    //    if (user != null)
-                    //    {
-                    //        ok = true;
-                    //        Session["UserID"] = user.id;
-                    //        Session["UserName"] = user.userName;
-
-                    //        string returnURL = "Dashboard.aspx";
-                    //        string query_string = Request.QueryString["folioID"];
-                    //        if (!string.IsNullOrWhiteSpace(query_string))
-                    //        {
-                    //            returnURL = "Dashboard.aspx?folioID=" + query_string;
-                    //        }
-
-                    //        Response.Redirect(returnURL, false);
-                    //    }
-                    //}
-                    if (!ok)
+                    try
                     {
-                        ScriptManager.RegisterStartupScript(this, typeof(Page), "ShowErrorMessage", "ShowErrorMessage('" + 2 + "');", true);
+                        usuario usuario = (usuario)context.usuarios.FirstOrDefault(v => v.Usuario1 == username && v.Clave == password);
+                        if (usuario != null)
+                        {
+                            Session["UserID"] = usuario.Usuario_ID;
+                            Session["UserName"] = username;
+
+                            Response.Redirect("Pages/Viajes", false);
+                        }
+                        else
+                        {
+                            resultado = 2;
+                        }
                     }
-                }
-                catch (Exception e)
-                {
-                    ScriptManager.RegisterStartupScript(this, typeof(Page), "ShowErrorMessage", "ShowErrorMessage('" + 3 + "');", true);
-
-                    // #1- Logger variables
-                    System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
-                    string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-                    string methodName = stackFrame.GetMethod().Name;
-
-                    // #2- Logger exception
-                    //Logger.LogError("(%s) (%s) -- Excepcion. Haciendo login. ERROR: %s", className, methodName, e.Message);
+                    catch (Exception ex)
+                    {
+                        Logs.AddErrorLog("Excepcion. Haciendo login. ERROR:", className, methodName, ex.Message);
+                        resultado = 3;
+                    }
                 }
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, typeof(Page), "ShowErrorMessage", "ShowErrorMessage('" + 1 + "');", true);
+                resultado = 1;
             }
+
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "ShowErrorMessage", "ShowErrorMessage('" + resultado + "');", true);
         }
 
         #endregion Methods
+
     }
 }
