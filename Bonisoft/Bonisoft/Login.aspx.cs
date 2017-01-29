@@ -48,7 +48,7 @@ namespace Bonisoft
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    try
+                    //try
                     {
                         usuario usuario = (usuario)context.usuarios.FirstOrDefault(v => v.Usuario1 == username && v.Clave == password);
                         if (usuario != null)
@@ -63,11 +63,11 @@ namespace Bonisoft
                             resultado = 2;
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        Logs.AddErrorLog("Excepcion. Haciendo login. ERROR:", className, methodName, ex.Message);
-                        resultado = 3;
-                    }
+                    //catch (Exception ex)
+                    //{
+                    //    Logs.AddErrorLog("Excepcion. Haciendo login. ERROR:", className, methodName, ex.Message);
+                    //    resultado = 3;
+                    //}
                 }
             }
             else
