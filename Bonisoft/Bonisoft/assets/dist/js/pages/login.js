@@ -14,7 +14,7 @@ function validateLength(oSrc, args) {
     args.IsValid = (args.Value.length > 0);
 }
 
-function ShowErrorMessage(type) {
+function ShowErrorMessage(type, exception_message) {
     if (type === "1") {
         $('#lblMessages').text("Los campos son requeridos.");
     }
@@ -22,7 +22,7 @@ function ShowErrorMessage(type) {
         $('#lblMessages').text("Usuario y/o clave incorrecto.");
     }
     else if (type === "3") {
-        $('#lblMessages').text("Error de conexi\u00F3n con la Base de Datos.");
+        $('#lblMessages').text("Error de conexi\u00F3n con la Base de Datos. \r\n" + exception_message);
     }
     $('#divMessages').show();
 }

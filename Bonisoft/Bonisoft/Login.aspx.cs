@@ -42,6 +42,7 @@ namespace Bonisoft
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
+            string exception_message = string.Empty;
 
             int resultado = 0;
             if (!string.IsNullOrWhiteSpace(username) || !string.IsNullOrWhiteSpace(password))
@@ -66,6 +67,7 @@ namespace Bonisoft
                     catch (Exception ex)
                     {
                         Logs.AddErrorLog("Excepcion. Haciendo login. ERROR:", className, methodName, ex.Message);
+                        exception_message = ex.Message;
                         resultado = 3;
                     }
                 }
@@ -75,7 +77,7 @@ namespace Bonisoft
                 resultado = 1;
             }
 
-            ScriptManager.RegisterStartupScript(this, typeof(Page), "ShowErrorMessage", "ShowErrorMessage('" + resultado + "');", true);
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "ShowErrorMessage", "ShowErrorMessage('" + resultado + "', '" + exception_message + "');", true);
         }
 
         #endregion Methods

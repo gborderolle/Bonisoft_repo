@@ -10,10 +10,6 @@ C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft_2\Bonisoft_db\ob
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft_db\bin\Debug\Bonisoftdb.dacpac
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft_db\bin\Debug\Bonisoft.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft_db\bin\Debug\Bonisoft.pdb
-C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft_db\obj\Debug\Model.xml
-C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft_db\obj\Debug\refactor.xml
-C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft_db\obj\Debug\postdeploy.sql
-C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft_db\obj\Debug\predeploy.sql
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft_db\obj\Debug\Bonisoft.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft_db\obj\Debug\Bonisoft.pdb
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft_db\bin\Debug\Bonisoftdb.dacpac

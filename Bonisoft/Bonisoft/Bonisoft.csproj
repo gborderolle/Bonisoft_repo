@@ -1275,10 +1275,6 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Site.Mobile.Master" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\web.config" />
     <Content Include="Site1.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1308,8 +1304,6 @@
     <Compile Include="Global_Objects\GlobalVariables.cs" />
     <Compile Include="Global_Objects\Logs.cs" />
     <Compile Include="Helpers\Extras.cs" />
-    <Compile Include="Helpers\TestController.cs" />
-    <Compile Include="Helpers\WebFormController.cs" />
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1609,7 +1603,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\images\" />
-    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -96,3 +96,4 @@ C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Mic
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Release\Bonisoft.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Release\Bonisoft.pdb
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Release\Bonisoft.csprojResolveAssemblyReference.cache
