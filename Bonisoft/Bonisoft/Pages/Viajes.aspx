@@ -61,7 +61,7 @@
             <div id="tabsViajes">
                 <ul>
                     <li><a href="#tabsViajes_1" id="aTabsViajes_1" class="tabViajes">Viajes en Curso</a></li>
-                    <li><a href="#tabsViajes_2" id="aTabsViajes_2" class="tabViajes">Histórico</a></li>
+                    <li><a href="#tabsViajes_2" id="aTabsViajes_2" class="tabViajes">Histórico de Viajes</a></li>
                 </ul>
 
                 <!-- Tab Viajes En Curso BEGIN -->
@@ -79,7 +79,7 @@
 
                                 <div class="row" style="margin-bottom: 10px;">
                                     <div class="col-md-2 pull-left">
-                                        <a href="#addModal" rel="modal:open" class="btn btn-success pull-left">Iniciar viaje</a>
+                                        <a href="#addModal" rel="modal:open" class="btn btn-success pull-left">Nuevo viaje</a>
                                     </div>
 
                                     <div class="col-md-5 pull-right">
