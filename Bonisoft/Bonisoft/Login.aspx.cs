@@ -51,6 +51,7 @@ namespace Bonisoft
                 {
                     try
                     {
+                        context.Database.Connection.Open();
                         usuario usuario = (usuario)context.usuarios.FirstOrDefault(v => v.Usuario1 == username && v.Clave == password);
                         if (usuario != null)
                         {
