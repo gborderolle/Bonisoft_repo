@@ -1186,6 +1186,8 @@
     <Content Include="Models\BonisoftModel.edmx.diagram">
       <DependentUpon>BonisoftModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\bonisoft - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\bonisoft - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\bonisoft.somee.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Login.aspx" />
