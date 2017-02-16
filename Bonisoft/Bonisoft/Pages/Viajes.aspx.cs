@@ -233,11 +233,17 @@ namespace Bonisoft.Pages
                         bool save_ok = false;
 
                         // Check si tiene Mercaderías
-                        var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
-                        if (elements.Count() > 0)
+                        if(viaje.Mercaderia_ID != null && viaje.Mercaderia_ID > 0)
                         {
                             save_ok = true;
                         }
+
+                        // Check si tiene Mercaderías
+                        //var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
+                        //if (elements.Count() > 0)
+                        //{
+                        //    save_ok = true;
+                        //}
                         else
                         {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "lnkViajeDestino_Click1", "<script type='text/javascript'>show_message_info('Error_DatosMercaderias'); </script>", false);
@@ -2051,19 +2057,29 @@ namespace Bonisoft.Pages
                     decimal peso_neto_origen = 0;
                     decimal peso_neto_destino = 0;
 
-                    var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
-                    if (elements.Count() > 0)
-                    {
-                        foreach (mercaderia_comprada mercaderia in elements)
-                        {
-                            totalCostos += mercaderia.Precio_xTonelada_compra;
-                            //totalPrecios += mercaderia.Precio_xTonelada_venta;
-                        }
-                    }
+                    //var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
+                    //if (elements.Count() > 0)
+                    //{
+                    //    foreach (mercaderia_comprada mercaderia in elements)
+                    //    {
+                    //        totalCostos += mercaderia.Precio_xTonelada_compra;
+                    //        //totalPrecios += mercaderia.Precio_xTonelada_venta;
+                    //    }
+                    //}
+
 
                     viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                     if (viaje != null)
                     {
+                        if (viaje.Mercaderia_ID != null && viaje.Mercaderia_ID > 0)
+                        {
+                            mercaderia_comprada mercaderia = (mercaderia_comprada)context.mercaderia_comprada.FirstOrDefault(m => m.Mercaderia_ID == viaje.Mercaderia_ID);
+                            if (mercaderia != null)
+                            {
+                                totalCostos += mercaderia.Precio_xTonelada_compra;
+                            }
+                        }
+
                         int pesada_ID = viaje.Pesada_ID;
                         if (pesada_ID > 0)
                         {
@@ -2369,7 +2385,6 @@ namespace Bonisoft.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             bool check_ok = false;
             if (!string.IsNullOrWhiteSpace(viajeID_str))
             {
@@ -2387,7 +2402,7 @@ namespace Bonisoft.Pages
                         viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                         if (viaje != null)
                         {
-                            check_ok = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList().Count > 0;
+                            check_ok = viaje.Mercaderia_ID != null && viaje.Mercaderia_ID > 0;
                         }
                     }
                 }
@@ -2422,13 +2437,11 @@ namespace Bonisoft.Pages
                         if (viaje != null)
                         {
                             decimal totalCostos = 0;
-                            var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
-                            if (elements.Count() > 0)
+
+                            mercaderia_comprada mercaderia = (mercaderia_comprada)context.mercaderia_comprada.FirstOrDefault(m => m.Mercaderia_ID == viaje.Mercaderia_ID);
+                            if(mercaderia != null)
                             {
-                                foreach (mercaderia_comprada mercaderia in elements)
-                                {
-                                    totalCostos += mercaderia.Precio_xTonelada_compra;
-                                }
+                                totalCostos += mercaderia.Precio_xTonelada_compra;
                                 costo_mercaderias = totalCostos;
                             }
                         }
@@ -2465,13 +2478,11 @@ namespace Bonisoft.Pages
                         if (viaje != null)
                         {
                             decimal totalCostos = 0;
-                            var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
-                            if (elements.Count() > 0)
+
+                            mercaderia_comprada mercaderia = (mercaderia_comprada)context.mercaderia_comprada.FirstOrDefault(m => m.Mercaderia_ID == viaje.Mercaderia_ID);
+                            if (mercaderia != null)
                             {
-                                foreach (mercaderia_comprada mercaderia in elements)
-                                {
-                                    totalCostos += mercaderia.Precio_xTonelada_compra;
-                                }
+                                totalCostos += mercaderia.Precio_xTonelada_compra;
                             }
 
                             ret = viaje.precio_flete + "|" + viaje.IVA + "|" + viaje.precio_descarga + "|" + totalCostos; ;
@@ -2519,12 +2530,19 @@ namespace Bonisoft.Pages
                         if (viaje != null)
                         {
                             // Check si tiene Mercaderías
-                            var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
-                            if (elements.Count() > 0)
+                            if (viaje.Mercaderia_ID != null && viaje.Mercaderia_ID > 0)
                             {
                                 ok = true;
                                 result = 1;
                             }
+
+                            // Check si tiene Mercaderías
+                            //var elements = context.mercaderia_comprada.Where(m => m.Viaje_ID == viaje_ID).ToList();
+                            //if (elements.Count() > 0)
+                            //{
+                            //    ok = true;
+                            //    result = 1;
+                            //}
                             else
                             {
                                 result = 2;

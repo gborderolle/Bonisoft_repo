@@ -12,14 +12,12 @@ namespace Bonisoft.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class mercaderia_comprada
+    public partial class sysdiagram
     {
-        public int Mercaderia_ID { get; set; }
-        public int Variedad_ID { get; set; }
-        public int Procesador_ID { get; set; }
-        public System.DateTime Fecha_corte { get; set; }
-        public decimal Precio_xTonelada_compra { get; set; }
-        public decimal Precio_xTonelada_venta { get; set; }
-        public string Comentarios { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

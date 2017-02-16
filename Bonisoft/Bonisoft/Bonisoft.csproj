@@ -1386,6 +1386,9 @@
     <Compile Include="Models\roles_usuario.cs">
       <DependentUpon>BonisoftModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usuario.cs">
       <DependentUpon>BonisoftModel.tt</DependentUpon>
     </Compile>

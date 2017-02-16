@@ -45,7 +45,6 @@ namespace Bonisoft.User_Controls.Configuracion
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             using (bonisoftEntities context = new bonisoftEntities())
             {
                 bool ok = false;
@@ -60,16 +59,16 @@ namespace Bonisoft.User_Controls.Configuracion
                     }
                     if (viaje_ID > 0)
                     {
-                        var elements = context.mercaderia_comprada.Where(e => e.Viaje_ID == viaje_ID).ToList();
-                        if (elements.Count() > 0)
-                        {
-                            gridMercaderias.DataSource = elements;
-                            gridMercaderias.DataBind();
+                        //var elements = context.mercaderia_comprada.Where(e => e.Viaje_ID == viaje_ID).ToList();
+                        //if (elements.Count() > 0)
+                        //{
+                        //    gridMercaderias.DataSource = elements;
+                        //    gridMercaderias.DataBind();
 
-                            hdnMercaderiasCount.Value = elements.Count().ToString();
+                        //    hdnMercaderiasCount.Value = elements.Count().ToString();
 
-                            ok = true;
-                        }
+                        //    ok = true;
+                        //}
                     }
                 }
                 if (!ok)
@@ -211,7 +210,7 @@ namespace Bonisoft.User_Controls.Configuracion
 
                             #endregion
 
-                            obj.Viaje_ID = viaje_ID;
+                            //obj.Viaje_ID = viaje_ID;
 
                             context.mercaderia_comprada.Add(obj);
                             context.SaveChanges();

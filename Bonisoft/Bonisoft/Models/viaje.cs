@@ -17,6 +17,7 @@ namespace Bonisoft.Models
         public int Viaje_ID { get; set; }
         public int Cliente_ID { get; set; }
         public int Proveedor_ID { get; set; }
+        public Nullable<int> Mercaderia_ID { get; set; }
         public decimal Precio_compra_por_tonelada { get; set; }
         public decimal Precio_valor_total { get; set; }
         public decimal Importe_viaje { get; set; }
