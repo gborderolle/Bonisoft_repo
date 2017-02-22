@@ -45,6 +45,69 @@
     <script type="text/javascript" src="/assets/dist/js/AuxiliarFunctions.js"></script>
     <script type="text/javascript" src="/assets/dist/js/pages/Viajes.js"></script>
 
+    <script type="text/javascript"> 
+
+        function newOpcionDDL(tipo) {
+            var valor = prompt("Ingrese el valor a agregar", "");
+            if (valor !== null && valor !== "") {
+
+                // Ajax call parameters
+                console.log("Ajax call: Viajes.aspx/AgregarOpcionDDL. Params:");
+                console.log("tipo, type: " + type(tipo) + ", value: " + tipo);
+                console.log("cliente, type: " + type(valor) + ", value: " + valor);
+
+                // Check existen mercaderías
+                $.ajax({
+                    type: "POST",
+                    url: "Viajes.aspx/AgregarOpcionDDL",
+                    data: '{tipo: "' + tipo + '",valor: "' + valor + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        var resultado = response.d;
+
+                        if (resultado !== null && resultado !== "0")
+                        {
+                            // Add option
+                            var newOption = "<option value='" + resultado + "'>" + valor + " </option>";
+                            switch (tipo) {
+                                case "proveedor": {
+                                    $("#modalAdd_ddlProveedores").append(newOption);
+                                    break;
+                                }
+                                case "cliente": {
+                                    $("#modalAdd_ddlClientes").append(newOption);
+                                    break;
+                                }
+                                case "cargador": {
+                                    $("#modalAdd_ddlCargadores").append(newOption);
+                                    break;
+                                }
+                                case "fletero": {
+                                    $("#modalAdd_ddlFleteros").append(newOption);
+                                    break;
+                                }
+                                case "camion": {
+                                    $("#modalAdd_ddlCamiones").append(newOption);
+                                    break;
+                                }
+                                case "chofer": {
+                                    $("#modalAdd_ddlChoferes").append(newOption);
+                                    break;
+                                }
+                            }
+
+                        }
+
+                    }, // end success
+                    failure: function (response) {
+                    }
+                }); // Ajax
+            }
+        }
+
+    </script>
+
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -139,7 +202,7 @@
                                         <asp:BoundField DataField="Precio_venta" HeaderText="Precio venta" DataFormatString="{0:C0}" HtmlEncode="False" />
                                         <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
 
-                                        <asp:ButtonField CommandName="notificar" ControlStyle-CssClass="btn btn-info btn-xs" ButtonType="Link" Text="" HeaderText="Notificar">
+                                        <asp:ButtonField CommandName="notificar" ControlStyle-CssClass="btn btn-info btn-xs" ButtonType="Link" Text="" HeaderText="Detalles">
                                             <ControlStyle CssClass="btn btn-warning btn-xs fa fa-bullhorn"></ControlStyle>
                                         </asp:ButtonField>
 
@@ -164,7 +227,7 @@
                             style="display: none; max-width: 800px; overflow: hidden;" class="modal fade dark in">
 
                             <div class="modal-header">
-                                <h3 id="addModalLabel">Iniciar viaje</h3>
+                                <h3 id="addModalLabel">Nuevo viaje</h3>
                             </div>
                             <asp:UpdatePanel ID="upAdd" runat="server">
                                 <ContentTemplate>
@@ -182,15 +245,25 @@
                                             <tr>
                                                 <td>Proveedor: 
                                                     <%--<editable:EditableDropDownList ID="modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="3" />--%>
-                                                    <asp:DropDownList ID="modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="3" />
+                                                    <asp:DropDownList ID="modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control" TabIndex="3" />
+                                                <button type="button" name="search" id="plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('proveedor')">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
                                                 </td>
                                                 <td>Cliente: 
-                                                <asp:DropDownList ID="modalAdd_ddlClientes" runat="server" ClientIDMode="Static" CssClass="form-control with_border" TabIndex="4" />
+                                                <asp:DropDownList ID="modalAdd_ddlClientes" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control with_border pull-left" TabIndex="4" />
+                                                    <button type="button" name="search" id="plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cliente')">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </button>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Cargadores: 
-                                                <asp:DropDownList ID="modalAdd_ddlCargadores" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="5" />
+                                                <asp:DropDownList ID="modalAdd_ddlCargadores" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control" TabIndex="5" />
+                                                <button type="button" name="search" id="plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cargador')">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
                                                 </td>
                                                 <td>Lugar de carga: 
                                                 <asp:TextBox ID="modalAdd_txbLugarCarga" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="6" />
@@ -198,15 +271,24 @@
                                             </tr>
                                             <tr>
                                                 <td>Fletero: 
-                                                <asp:DropDownList ID="modalAdd_ddlFleteros" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="7" />
+                                                <asp:DropDownList ID="modalAdd_ddlFleteros" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control" TabIndex="7" />
+                                                <button type="button" name="search" id="plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('fletero')">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
                                                 </td>
                                                 <td>Camión: 
-                                                <asp:DropDownList ID="modalAdd_ddlCamiones" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="8" />
-                                                </td>
+                                                <asp:DropDownList ID="modalAdd_ddlCamiones" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control" TabIndex="8" />
+                                                
+                                                <button type="button" name="search" id="plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('camion')">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button></td>
                                             </tr>
                                             <tr>
                                                 <td>Chofer: 
-                                                <asp:DropDownList ID="modalAdd_ddlChoferes" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="9" />
+                                                <asp:DropDownList ID="modalAdd_ddlChoferes" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control" TabIndex="9" />
+                                                <button type="button" name="search" id="plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('chofer')">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
                                                 </td>
                                                 <td></td>
                                             </tr>
@@ -220,6 +302,7 @@
                                         </table>
                                     </div>
                                     <div class="modal-footer">
+                                        <%--<button class="btn pull-left" data-dismiss="modal" aria-hidden="true" onclick="__doPostBack('<%=upAdd.UniqueID %>', '');">Actualizar listados</button>--%>
                                         <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cerrar</button>
                                         <a id="aNuevoViaje" class="btn btn-primary" onclick="NuevoViaje();">Agregar</a>
                                     </div>

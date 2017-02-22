@@ -3036,6 +3036,369 @@ namespace Bonisoft.Pages
             return ret;
         }
 
+        [WebMethod]
+        public static string AgregarOpcionDDL(string tipo, string valor)
+        {
+            string ID_result = "0";
+            if (!string.IsNullOrWhiteSpace(tipo) && !string.IsNullOrWhiteSpace(valor))
+            {
+                switch (tipo)
+                {
+                    case "proveedor":
+                        {
+                            ID_result = AgregarProveedor(valor);
+                            break;
+                        }
+                    case "cliente":
+                        {
+                            ID_result = AgregarCliente(valor);
+                            break;
+                        }
+                    case "cargador":
+                        {
+                            ID_result = AgregarCargador(valor);
+                            break;
+                        }
+                    case "fletero":
+                        {
+                            ID_result = AgregarFletero(valor);
+                            break;
+                        }
+                    case "camion":
+                        {
+                            ID_result = AgregarCamion(valor);
+                            break;
+                        }
+                    case "chofer":
+                        {
+                            ID_result = AgregarChofer(valor);
+                            break;
+                        }
+                }
+            }
+            return ID_result;
+        }
+
+        private static string AgregarProveedor(string valor)
+        {
+            string ID_result = "0";
+
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            using (bonisoftEntities context = new bonisoftEntities())
+            {
+                proveedor obj = new proveedor();
+                obj.Nombre = valor;
+
+                //
+                obj.RUT = string.Empty;
+                obj.Direccion = string.Empty;
+                obj.Telefono = string.Empty;
+                obj.Comentarios = string.Empty;
+                obj.Email = string.Empty;
+                obj.Nro_cuenta = string.Empty;
+                //
+
+                context.proveedores.Add(obj);
+                context.SaveChanges();
+
+                #region Guardar log 
+                try
+                {
+                    int id = 1;
+                    proveedor proveedor = (proveedor)context.proveedores.OrderByDescending(p => p.Proveedor_ID).FirstOrDefault();
+                    if (proveedor != null)
+                    {
+                        id = proveedor.Proveedor_ID;
+                    }
+
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Logs.AddUserLog("Agrega proveedor", proveedor.GetType().Name + ": " + id, userID1, username);
+
+                    ID_result = id.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                }
+                #endregion
+            }
+
+            return ID_result;
+        }
+
+        private static string AgregarCliente(string valor)
+        {
+            string ID_result = "0";
+
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            using (bonisoftEntities context = new bonisoftEntities())
+            {
+                cliente obj = new cliente();
+                obj.Nombre = valor;
+
+                //
+                obj.Dueno_nombre = string.Empty;
+                obj.Encargado_lena_nombre = string.Empty;
+                obj.Encargado_pagos_nombre = string.Empty;
+                obj.Supervisor_lena_nombre = string.Empty;
+                obj.RUT = string.Empty;
+                obj.Direccion = string.Empty;
+                obj.Telefono = string.Empty;
+                obj.Comentarios = string.Empty;
+                obj.Email = string.Empty;
+                obj.Nro_cuenta = string.Empty;
+                obj.Forma_de_pago_ID = 0;
+                obj.Dueno_contacto = string.Empty;
+                obj.Encargado_lena_contacto = string.Empty;
+                obj.Encargado_pagos_contacto = string.Empty;
+                obj.Supervisor_lena_contacto = string.Empty;
+                obj.Periodos_liquidacion = string.Empty;
+                obj.Fechas_pago = string.Empty;
+                //
+
+                context.clientes.Add(obj);
+                context.SaveChanges();
+
+                #region Guardar log 
+                try
+                {
+                    int id = 1;
+                    cliente cliente = (cliente)context.clientes.OrderByDescending(p => p.cliente_ID).FirstOrDefault();
+                    if (cliente != null)
+                    {
+                        id = cliente.cliente_ID;
+                    }
+
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Logs.AddUserLog("Agrega cliente", cliente.GetType().Name + ": " + id, userID1, username);
+
+                    ID_result = id.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                }
+                #endregion
+            }
+
+            return ID_result;
+        }
+
+        private static string AgregarCargador(string valor)
+        {
+            string ID_result = "0";
+
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            using (bonisoftEntities context = new bonisoftEntities())
+            {
+                cargador obj = new cargador();
+                obj.Nombre = valor;
+
+                //
+                obj.Direccion = string.Empty;
+                obj.Telefono= string.Empty;
+                obj.Comentarios = string.Empty;
+                //
+
+                context.cargadores.Add(obj);
+                context.SaveChanges();
+
+                #region Guardar log 
+                try
+                {
+                    int id = 1;
+                    cargador cargador = (cargador)context.cargadores.OrderByDescending(p => p.Cargador_ID).FirstOrDefault();
+                    if (cargador != null)
+                    {
+                        id = cargador.Cargador_ID;
+                    }
+
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Logs.AddUserLog("Agrega cargador", cargador.GetType().Name + ": " + id, userID1, username);
+
+                    ID_result = id.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                }
+                #endregion
+            }
+
+            return ID_result;
+        }
+
+        private static string AgregarFletero(string valor)
+        {
+            string ID_result = "0";
+
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            using (bonisoftEntities context = new bonisoftEntities())
+            {
+                fletero obj = new fletero();
+                obj.Nombre = valor;
+
+                //
+                obj.Direccion = string.Empty;
+                obj.Telefono = string.Empty;
+                obj.Comentarios = string.Empty;
+                obj.Email = string.Empty;
+                obj.Nro_cuenta = string.Empty;
+                //
+
+                context.fleteros.Add(obj);
+                context.SaveChanges();
+
+                #region Guardar log 
+                try
+                {
+                    int id = 1;
+                    fletero fletero = (fletero)context.fleteros.OrderByDescending(p => p.Fletero_ID).FirstOrDefault();
+                    if (fletero != null)
+                    {
+                        id = fletero.Fletero_ID;
+                    }
+
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Logs.AddUserLog("Agrega fletero", fletero.GetType().Name + ": " + id, userID1, username);
+
+                    ID_result = id.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                }
+                #endregion
+            }
+
+            return ID_result;
+        }
+
+        private static string AgregarCamion(string valor)
+        {
+            string ID_result = "0";
+
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            using (bonisoftEntities context = new bonisoftEntities())
+            {
+                camion obj = new camion();
+                obj.Matricula_camion = valor;
+
+                //
+                obj.Matricula_zorra = string.Empty;
+                obj.Ejes_ID= 0;
+                obj.Marca = string.Empty;
+                obj.Tara = 0;
+                obj.Comentarios = string.Empty;
+                //
+
+                context.camiones.Add(obj);
+                context.SaveChanges();
+
+                #region Guardar log 
+                try
+                {
+                    int id = 1;
+                    camion camion = (camion)context.camiones.OrderByDescending(p => p.Camion_ID).FirstOrDefault();
+                    if (camion != null)
+                    {
+                        id = camion.Camion_ID;
+                    }
+
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Logs.AddUserLog("Agrega camion", camion.GetType().Name + ": " + id, userID1, username);
+
+                    ID_result = id.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                }
+                #endregion
+            }
+
+            return ID_result;
+        }
+
+        private static string AgregarChofer(string valor)
+        {
+            string ID_result = "0";
+
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            using (bonisoftEntities context = new bonisoftEntities())
+            {
+                chofer obj = new chofer();
+                obj.Nombre_completo = valor;
+
+                //
+                obj.Empresa = string.Empty;
+                obj.Comentarios = string.Empty;
+                //
+
+                context.choferes.Add(obj);
+                context.SaveChanges();
+
+                #region Guardar log 
+                try
+                {
+                    int id = 1;
+                    chofer chofer = (chofer)context.choferes.OrderByDescending(p => p.Chofer_ID).FirstOrDefault();
+                    if (chofer != null)
+                    {
+                        id = chofer.Chofer_ID;
+                    }
+
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Logs.AddUserLog("Agrega chofer", chofer.GetType().Name + ": " + id, userID1, username);
+
+                    ID_result = id.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                }
+                #endregion
+            }
+
+            return ID_result;
+        }
+
         #endregion Web methods
 
     }

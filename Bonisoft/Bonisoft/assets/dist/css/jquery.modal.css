@@ -44,6 +44,7 @@
 }
 
 .modal a.close-modal {
+    margin: 15px;
   position: absolute;
   top: -12.5px;
   right: -12.5px;

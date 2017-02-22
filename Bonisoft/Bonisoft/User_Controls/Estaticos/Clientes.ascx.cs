@@ -106,7 +106,6 @@ namespace Bonisoft.User_Controls
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             if (e.CommandName == "InsertNew")
             {
                 GridViewRow row = gridClientes.FooterRow;
@@ -141,12 +140,12 @@ namespace Bonisoft.User_Controls
 
                         //
                         obj.Forma_de_pago_ID = 0;
-                        obj.Dueno_contacto = "";
-                        obj.Encargado_lena_contacto = "";
-                        obj.Encargado_pagos_contacto = "";
-                        obj.Supervisor_lena_contacto = "";
-                        obj.Periodos_liquidacion = "";
-                        obj.Fechas_pago = "";
+                        obj.Dueno_contacto = string.Empty;
+                        obj.Encargado_lena_contacto = string.Empty;
+                        obj.Encargado_pagos_contacto = string.Empty;
+                        obj.Supervisor_lena_contacto = string.Empty;
+                        obj.Periodos_liquidacion = string.Empty;
+                        obj.Fechas_pago = string.Empty;
                         //
 
                         context.clientes.Add(obj);

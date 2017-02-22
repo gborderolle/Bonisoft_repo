@@ -1,4 +1,9 @@
-﻿.btnVolverAEnCurso{
+﻿.modal-ddl{
+    width: 90% !important;
+    float: left;
+}
+
+.btnVolverAEnCurso{
     width: inherit !important;
 }
 
