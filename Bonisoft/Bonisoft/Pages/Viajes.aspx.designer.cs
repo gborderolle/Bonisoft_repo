@@ -310,22 +310,31 @@ namespace Bonisoft.Pages {
         protected global::System.Web.UI.UpdatePanel upNotificaciones;
         
         /// <summary>
-        /// upMercaderias control.
+        /// txbMercaderiaPrecioCompra control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upMercaderias;
+        protected global::System.Web.UI.WebControls.TextBox txbMercaderiaPrecioCompra;
         
         /// <summary>
-        /// Mercaderias control.
+        /// ddlTipoLena control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Bonisoft.User_Controls.Configuracion.Mercaderias Mercaderias;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoLena;
+        
+        /// <summary>
+        /// txbMercaderiaComentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbMercaderiaComentarios;
         
         /// <summary>
         /// txb_pesada1Lugar control.

@@ -336,37 +336,37 @@ namespace Bonisoft.Pages
             ScriptManager.RegisterStartupScript(this, this.GetType(), "btnUpdateViajesEnCurso_Click", sb.ToString(), false);
         }
 
-        protected void upMercaderias_Load(object sender, EventArgs e)
-        {
-            // Logger variables
-            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
-            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-            string methodName = stackFrame.GetMethod().Name;
+        //protected void upMercaderias_Load(object sender, EventArgs e)
+        //{
+        //    // Logger variables
+        //    System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+        //    System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+        //    string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+        //    string methodName = stackFrame.GetMethod().Name;
 
-            using (bonisoftEntities context = new bonisoftEntities())
-            {
-                string viaje_ID_str = Mercaderias.Viaje_ID1;
-                if (!string.IsNullOrWhiteSpace(viaje_ID_str))
-                {
-                    int viaje_ID = 0;
-                    if (!int.TryParse(viaje_ID_str, out viaje_ID))
-                    {
-                        viaje_ID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viaje_ID_str);
-                    }
-                    if (viaje_ID > 0)
-                    {
-                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
-                        if (viaje != null)
-                        {
-                            FillData_Pesadas(viaje);
-                            //FillData_Ventas(viaje);
-                        }
-                    }
-                }
-            }
-        }
+        //    using (bonisoftEntities context = new bonisoftEntities())
+        //    {
+        //        string viaje_ID_str = Mercaderias.Viaje_ID1;
+        //        if (!string.IsNullOrWhiteSpace(viaje_ID_str))
+        //        {
+        //            int viaje_ID = 0;
+        //            if (!int.TryParse(viaje_ID_str, out viaje_ID))
+        //            {
+        //                viaje_ID = 0;
+        //                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viaje_ID_str);
+        //            }
+        //            if (viaje_ID > 0)
+        //            {
+        //                viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
+        //                if (viaje != null)
+        //                {
+        //                    FillData_Pesadas(viaje);
+        //                    //FillData_Ventas(viaje);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -1404,10 +1404,11 @@ namespace Bonisoft.Pages
                                 // http://asp.net-tutorials.com/user-controls/using/
                                 hdn_notificaciones_viajeID.Value = viaje_ID.ToString();
 
-                                Mercaderias.Viaje_ID1 = viaje_ID.ToString();
-                                Mercaderias.BindGrid();
+                                //Mercaderias.Viaje_ID1 = viaje_ID.ToString();
+                                //Mercaderias.BindGrid();
 
                                 FillData_Pesadas(viaje);
+                                FillData_Mercaderia(viaje);
                                 //FillData_Ventas(viaje);
 
                                 //BindGridViajes();
@@ -2000,6 +2001,34 @@ namespace Bonisoft.Pages
             }
         }
 
+        private void FillData_Mercaderia(viaje viaje)
+        {
+            if (viaje != null)
+            {
+                using (bonisoftEntities context = new bonisoftEntities())
+                {
+                    // Fill DDL
+                    ddlTipoLena.DataSource = Extras.ToDataTable(context.lena_tipo.ToList());
+                    ddlTipoLena.DataTextField = "Tipo";
+                    ddlTipoLena.DataValueField = "Lena_tipo_ID";
+                    ddlTipoLena.DataBind();
+                    ddlTipoLena.Items.Insert(0, new ListItem("Elegir", "0"));
+
+                    int Mercaderia_ID = viaje.Mercaderia_ID;
+                    if (Mercaderia_ID > 0)
+                    {
+                        mercaderia_comprada mercaderia_comprada = (mercaderia_comprada)context.mercaderia_comprada.FirstOrDefault(v => v.Mercaderia_ID == Mercaderia_ID);
+                        if (mercaderia_comprada != null)
+                        {
+                            txbMercaderiaPrecioCompra.Text = mercaderia_comprada.Precio_xTonelada_compra.ToString();
+                            txbMercaderiaComentarios.Text = mercaderia_comprada.Comentarios;
+                            ddlTipoLena.SelectedValue = mercaderia_comprada.Mercaderia_ID.ToString();
+                        }
+                    }
+                }
+            }
+        }
+
         private void FillData_Ventas(viaje viaje)
         {
             if (viaje != null)
@@ -2121,7 +2150,6 @@ namespace Bonisoft.Pages
             return ret;
         }
 
-
         #endregion Events
 
         #region Web methods
@@ -2229,14 +2257,13 @@ namespace Bonisoft.Pages
         public static string GuardarPesadas2(string viajeID_str,
             string txb_pesadaLugar1, string txb_pesadaFecha1, string txb_pesadaPeso_bruto1, string txb_pesadaPeso_neto1, string txb_pesadaNombre1,
             string txb_pesadaLugar2, string txb_pesadaFecha2, string txb_pesadaPeso_bruto2, string txb_pesadaPeso_neto2, string txb_pesadaNombre2,
-            string txb_pesadaComentarios)
+            string txb_pesadaComentarios, string txbMercaderiaPrecioCompra, string ddlTipoLena, string txbMercaderiaComentarios)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-
 
             bool save_ok = false;
             decimal precio_compra = 0;
@@ -2364,6 +2391,8 @@ namespace Bonisoft.Pages
                                 }
                             }
 
+                            // Mercadería
+
                             if (save_ok)
                             {
                                 precio_compra = CalcularPrecioCompra(viaje_ID);
@@ -2376,39 +2405,6 @@ namespace Bonisoft.Pages
             return save_ok.ToString() + "|" + precio_compra;
         }
 
-        [WebMethod]
-        public static bool Check_Mercaderias(string viajeID_str)
-        {
-            // Logger variables
-            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
-            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-            string methodName = stackFrame.GetMethod().Name;
-
-            bool check_ok = false;
-            if (!string.IsNullOrWhiteSpace(viajeID_str))
-            {
-                using (bonisoftEntities context = new bonisoftEntities())
-                {
-                    int viaje_ID = 0;
-                    if (!int.TryParse(viajeID_str, out viaje_ID))
-                    {
-                        viaje_ID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viajeID_str);
-                    }
-
-                    if (viaje_ID > 0)
-                    {
-                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
-                        if (viaje != null)
-                        {
-                            check_ok = viaje.Mercaderia_ID != null && viaje.Mercaderia_ID > 0;
-                        }
-                    }
-                }
-            }
-            return check_ok;
-        }
 
         [WebMethod]
         public static decimal Get_CostoMercaderias(string viajeID_str)

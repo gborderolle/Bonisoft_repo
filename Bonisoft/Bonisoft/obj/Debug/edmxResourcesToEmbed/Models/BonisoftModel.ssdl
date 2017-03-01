@@ -239,7 +239,7 @@
     <Property Name="Viaje_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Cliente_ID" Type="int" Nullable="false" />
     <Property Name="Proveedor_ID" Type="int" Nullable="false" />
-    <Property Name="Mercaderia_ID" Type="int" />
+    <Property Name="Mercaderia_ID" Type="int" Nullable="false" />
     <Property Name="Precio_compra_por_tonelada" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="Precio_valor_total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="Importe_viaje" Type="decimal" Precision="10" Scale="2" Nullable="false" />

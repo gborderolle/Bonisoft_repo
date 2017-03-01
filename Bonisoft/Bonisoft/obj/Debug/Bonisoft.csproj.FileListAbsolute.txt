@@ -195,3 +195,4 @@ C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Debug\Bonisoft.csprojResolveAssemblyReference.cache
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Debug\Bonisoft.dll
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Debug\Bonisoft.pdb
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Debug\Bonisoft.csprojResolveAssemblyReference.cache

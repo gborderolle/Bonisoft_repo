@@ -244,7 +244,7 @@
           <Property Name="Viaje_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cliente_ID" Type="int" Nullable="false" />
           <Property Name="Proveedor_ID" Type="int" Nullable="false" />
-          <Property Name="Mercaderia_ID" Type="int" />
+          <Property Name="Mercaderia_ID" Type="int" Nullable="false" />
           <Property Name="Precio_compra_por_tonelada" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Precio_valor_total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Importe_viaje" Type="decimal" Precision="10" Scale="2" Nullable="false" />
@@ -560,7 +560,7 @@
           <Property Name="Viaje_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
           <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
-          <Property Name="Mercaderia_ID" Type="Int32" />
+          <Property Name="Mercaderia_ID" Type="Int32" Nullable="false" />
           <Property Name="Precio_compra_por_tonelada" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Precio_valor_total" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Importe_viaje" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
