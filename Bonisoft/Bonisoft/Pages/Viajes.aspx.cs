@@ -27,6 +27,7 @@ namespace Bonisoft.Pages
                 BindGrid_ViajesEnCurso();
                 BindAddModal();
                 BindEditModal();
+                BindNotificarModal();
             }
             gridViajes.UseAccessibleHeader = true;
             gridViajes.HeaderRow.TableSection = TableRowSection.TableHeader;
@@ -318,6 +319,7 @@ namespace Bonisoft.Pages
 
             BindAddModal();
             BindEditModal();
+            BindNotificarModal();
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");
@@ -1366,6 +1368,8 @@ namespace Bonisoft.Pages
                                 //Mercaderias.Viaje_ID1 = viaje_ID.ToString();
                                 //Mercaderias.BindGrid();
 
+                                BindNotificarModal();
+
                                 FillData_Pesadas(viaje);
                                 FillData_Mercaderia(viaje);
                                 //FillData_Ventas(viaje);
@@ -1785,6 +1789,26 @@ namespace Bonisoft.Pages
             }
         }
 
+        private void BindNotificarModal()
+        {
+            // Tipos de leña --------------------------------------------------
+            if (ddlTipoLena != null)
+            {
+                using (bonisoftEntities context = new bonisoftEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.lena_tipo.ToList());
+
+                    ddlTipoLena.DataSource = dt1;
+                    ddlTipoLena.DataTextField = "Tipo";
+                    ddlTipoLena.DataValueField = "Lena_tipo_ID";
+                    ddlTipoLena.DataBind();
+                    ddlTipoLena.Items.Insert(0, new ListItem("Elegir", "0"));
+
+                }
+            }
+        }
+
         private void BindGrid_Viajes(string date_start = "", string date_end = "")
         {
             using (bonisoftEntities context = new bonisoftEntities())
@@ -2174,9 +2198,10 @@ namespace Bonisoft.Pages
                         viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                         if (viaje != null)
                         {
-                            viaje.Comentarios = txb_pesadaComentarios;
 
-                            #region Origen
+                            #region Pesadas
+
+                            viaje.Pesada_Comentarios = txb_pesadaComentarios;
 
                             viaje.Pesada_Origen_lugar = txb_pesadaLugar1;
 
@@ -2213,10 +2238,6 @@ namespace Bonisoft.Pages
                             }
                             viaje.Pesada_Origen_peso_neto = value;
 
-                            #endregion Origen
-
-                            #region Destino
-
                             viaje.Pesada_Destino_lugar = txb_pesadaLugar2;
 
                             date = viaje.Pesada_Destino_fecha;
@@ -2251,6 +2272,31 @@ namespace Bonisoft.Pages
                                 }
                             }
                             viaje.Pesada_Destino_peso_neto = value;
+
+                            #endregion Destino
+
+                            #region Mercaderia
+
+                            value = viaje.Mercaderia_Precio_xTonelada_compra;
+                            if (!string.IsNullOrWhiteSpace(txbMercaderiaPrecioCompra))
+                            {
+                                if (!decimal.TryParse(txbMercaderiaPrecioCompra, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
+                                {
+                                    value = viaje.Mercaderia_Precio_xTonelada_compra;
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txbMercaderiaPrecioCompra);
+                                }
+                            }
+                            viaje.Mercaderia_Precio_xTonelada_compra = value;
+
+                            int ddl = viaje.Mercaderia_Lena_tipo_ID;
+                            if (!int.TryParse(ddlTipoLena, out ddl))
+                            {
+                                ddl = viaje.Mercaderia_Lena_tipo_ID;
+                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlTipoLena);
+                            }
+                            viaje.Mercaderia_Lena_tipo_ID = ddl;
+
+                            viaje.Mercaderia_Comentarios = txbMercaderiaComentarios;
 
                             #endregion Destino
 

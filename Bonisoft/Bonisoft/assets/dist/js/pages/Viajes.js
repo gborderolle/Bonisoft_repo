@@ -73,8 +73,10 @@ $(document).ready(function () {
                 }).remove();
             }
         });
-    }(jQuery, window, document));
+    }(jQuery, window, document));   
+
 });
+
 
 // attach the event binding function to every partial update
 Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args) {
@@ -119,6 +121,104 @@ function bindEvents() {
         var count = "Resultados: " + $('#gridViajes tr:visible').length;
         $("#lblGridViajesCount").text(count);
     });
+
+    // Copiar texto dinámicamente
+    $("#txbMercaderiaPrecioCompra").keyup(function () {
+        $("#notif_Mercaderia2").text(this.value);
+    });
+
+    $("#txb_pesada2Peso_neto").keyup(function () {
+        $("#notif_Mercaderia1").text(this.value);
+        $("#notif_Flete1").text(this.value);
+    });
+
+    // Permitir sólo números y punto
+    $("#txbMercaderiaPrecioCompra").keydown(function (event) {
+        // Allow: backspace, delete, tab, escape, and enter
+        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || event.keyCode == 110 ||
+            // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) ||
+            // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+            // let it happen, don't do anything
+            return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
+                event.preventDefault();
+            }
+        }
+    });
+    $("#txb_pesada1Peso_bruto").keydown(function (event) {
+        // Allow: backspace, delete, tab, escape, and enter
+        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || event.keyCode == 110 ||
+            // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) ||
+            // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+            // let it happen, don't do anything
+            return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
+                event.preventDefault();
+            }
+        }
+    });
+    $("#txb_pesada1Peso_neto").keydown(function (event) {
+        // Allow: backspace, delete, tab, escape, and enter
+        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || event.keyCode == 110 ||
+            // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) ||
+            // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+            // let it happen, don't do anything
+            return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
+                event.preventDefault();
+            }
+        }
+    });
+    $("#txb_pesada2Peso_bruto").keydown(function (event) {
+        // Allow: backspace, delete, tab, escape, and enter
+        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || event.keyCode == 110 ||
+            // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) ||
+            // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+            // let it happen, don't do anything
+            return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
+                event.preventDefault();
+            }
+        }
+    });
+    $("#txb_pesada2Peso_neto").keydown(function (event) {
+        // Allow: backspace, delete, tab, escape, and enter
+        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || event.keyCode == 110 ||
+            // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) ||
+            // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+            // let it happen, don't do anything
+            return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
+                event.preventDefault();
+            }
+        }
+    });
+
 }
 
 function copiarPesadas(isOrigen) {
@@ -376,9 +476,6 @@ function guardarAmbasPesadas() {
     if (hdn_notificaciones_viajeID !== null && hdn_notificaciones_viajeID.val() !== null && hdn_notificaciones_viajeID.val().length > 0) {
         var viajeID_str = hdn_notificaciones_viajeID.val();
 
-        var ok = response.d;
-        if (ok) {
-
             // Origen
             var txb_pesadaLugar1 = $("#txb_pesada1Lugar").val();
             var txb_pesadaFecha1 = $("#txb_pesada1Fecha").val();
@@ -463,11 +560,6 @@ function guardarAmbasPesadas() {
 
                 }
             }); // Ajax
-
-        } else {
-            show_message_info('Error_DatosMercaderias');
-        }
-
     }
 }
 

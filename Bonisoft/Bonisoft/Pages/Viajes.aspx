@@ -224,22 +224,21 @@
                                                 <td>Proveedor: 
                                                     <%--<editable:EditableDropDownList ID="modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="3" />--%>
                                                     <asp:DropDownList ID="modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control" TabIndex="3" />
-                                                    <button type="button" name="search" id="plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('proveedor')">
+                                                    <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('proveedor')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </td>
                                                 <td>Cliente: 
                                                 <asp:DropDownList ID="modalAdd_ddlClientes" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control with_border pull-left" TabIndex="4" />
-                                                    <button type="button" name="search" id="plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cliente')">
+                                                    <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cliente')">
                                                         <i class="fa fa-plus"></i>
-                                                    </button>
                                                     </button>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Cargadores: 
                                                 <asp:DropDownList ID="modalAdd_ddlCargadores" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control" TabIndex="5" />
-                                                    <button type="button" name="search" id="plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cargador')">
+                                                    <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cargador')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </td>
@@ -250,14 +249,14 @@
                                             <tr>
                                                 <td>Fletero: 
                                                 <asp:DropDownList ID="modalAdd_ddlFleteros" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control" TabIndex="7" />
-                                                    <button type="button" name="search" id="plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('fletero')">
+                                                    <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('fletero')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </td>
                                                 <td>Camión: 
                                                 <asp:DropDownList ID="modalAdd_ddlCamiones" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control" TabIndex="8" />
 
-                                                    <button type="button" name="search" id="plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('camion')">
+                                                    <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('camion')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </td>
@@ -265,7 +264,7 @@
                                             <tr>
                                                 <td>Chofer: 
                                                 <asp:DropDownList ID="modalAdd_ddlChoferes" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control" TabIndex="9" />
-                                                    <button type="button" name="search" id="plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('chofer')">
+                                                    <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('chofer')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </td>
@@ -372,46 +371,48 @@
                                     </div>
 
                                     <div id="tabsNotificaciones">
-                                        <ul>
-                                            <%--<li><a href="#tabsNotificaciones_1" class="tabViajes">#1 Mercaderías</a></li>--%>
-                                            <li><a href="#tabsNotificaciones_2" class="tabViajes">Mercadería y Pesadas</a></li>
-                                            <li><a href="#tabsNotificaciones_3" class="tabViajes" onclick="cargarDatos_PrecioVenta();">Venta</a></li>
-                                        </ul>
 
                                         <div id="tabsNotificaciones_2">
 
-                                            <div class="row">
+                                            <h4 style="padding-left: 30px;">Mercadería</h4>
 
-                                                <h4>Mercadería</h4>
-
-                                                <div class="modal-body panel panel-default" style="padding-bottom: 0; padding-top: 0; margin-bottom: 5px; position: inherit; background: #e9e9e9; color: #333333; position: initial;">
-                                                    <table class="table">
-                                                        <tr>
-                                                            <td>Precio compra por tonelada: 
+                                            <div class="modal-body panel panel-default" style="padding-bottom: 0; padding-top: 0; margin-bottom: 5px; position: inherit; background: #e9e9e9; color: #333333; position: initial;">
+                                                <table class="table">
+                                                    <tr>
+                                                        <td>Precio compra por tonelada: 
                                                         <asp:TextBox ID="txbMercaderiaPrecioCompra" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="21"></asp:TextBox>
-                                                            </td>
-                                                            <td>Tipo de leña: 
-                                                                <asp:DropDownList ID="ddlTipoLena" ClientIDMode="Static" runat="server" CssClass="form-control" />
-                                                                <button type="button" name="search" id="plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('tipo_lena')">
-                                                                    <i class="fa fa-plus"></i>
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Comentarios: 
+                                                        </td>
+                                                        <td>Tipo de leña: 
+                                                                <asp:DropDownList ID="ddlTipoLena" ClientIDMode="Static" runat="server" CssClass="modal-ddl form-control" />
+                                                            <button type="button" name="search" id="mercaderia-plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('tipo_lena')">
+                                                                <i class="fa fa-plus"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <%-- <tr>
+                                                        <td>Comentarios de la mercadería: 
                                                         <asp:TextBox ID="txbMercaderiaComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="100"></asp:TextBox>
-                                                            </td>
-                                                            <td>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>--%>
+                                                </table>
+
+                                                <div class="col-md-10 pull-left" style="padding: 10px;">
+                                                    Comentarios de la mercadería:
+                                                           <asp:TextBox ID="txbMercaderiaComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="100"></asp:TextBox>
                                                 </div>
+
+                                            </div>
+                                            <div class="modal-body panel panel-default row" style="padding-bottom: 0; padding-top: 0; position: inherit; background: #e9e9e9; color: #333333; margin: 0;">
                                             </div>
 
+                                            <hr />
+
+                                            <h4 style="padding-left: 30px;">Pesadas</h4>
                                             <div class="row">
                                                 <div class="col-md-6">
 
-                                                    <h4>Pesada origen</h4>
+                                                    <h4 style="padding-left: 5px">Origen</h4>
                                                     <a id="aOrigenCopiar" style="margin: 5px; color: black;" onclick="copiarPesadas(1);" class="btn btn-xs btn-default pull-right">Copiar de destino</a>
                                                     <div class="modal-body panel panel-default" style="padding-bottom: 0; padding-top: 0; margin-bottom: 5px; position: inherit; background: #e9e9e9; color: #333333; position: initial;">
                                                         <table class="table">
@@ -429,7 +430,7 @@
                                                          <asp:TextBox ID="txb_pesada1Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="28" onkeydown="return isNumberKey(this);"></asp:TextBox>
                                                                 </td>
                                                                 <td>Peso neto: 
-                                                       <asp:TextBox ID="txb_pesada1Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30" TabIndex="29" onkeydown="return isNumberKey(this);"></asp:TextBox>
+                                                       <asp:TextBox ID="txb_pesada1Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="29" onkeydown="return isNumberKey(this);"></asp:TextBox>
                                                                 </td>
 
                                                             </tr>
@@ -440,7 +441,7 @@
 
                                                 <div class="col-md-6">
 
-                                                    <h4>Pesada destino</h4>
+                                                    <h4>Destino</h4>
                                                     <a id="aDestinoCopiar" style="margin: 5px; color: black;" onclick="copiarPesadas(2);" class="btn btn-xs btn-default pull-right">Copiar de origen</a>
                                                     <div class="modal-body panel panel-default" style="padding-bottom: 0; padding-top: 0; margin-bottom: 5px; position: inherit; background: #e9e9e9; color: #333333; position: initial;">
                                                         <table class="table">
@@ -465,22 +466,24 @@
                                                     </div>
 
                                                 </div>
-                                            </div>
 
-                                            <div class="modal-body panel panel-default row" style="padding-bottom: 0; padding-top: 0; position: inherit; background: #e9e9e9; color: #333333; margin: 0;">
-                                                <div class="col-md-10 pull-left" style="padding: 10px;">
-                                                    Comentarios:
+                                                <div class="modal-body panel panel-default row" style="padding-bottom: 0; padding-top: 0; position: inherit; background: #e9e9e9; color: #333333; margin: 0;">
+                                                    <div class="col-md-10 pull-left" style="padding: 10px;">
+                                                        Comentarios de las pesadas:
                                                            <asp:TextBox ID="txb_pesadaComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                                                    </div>
+
+                                                    <%--  <div class="col-md-2 pull-right" style="padding: 2% 0;">
+                                                    <a id="aGuardarPesadas" style="float: right;" onclick="guardarAmbasPesadas();" class="btn btn-primary">Guardar</a>
+                                                </div>--%>
                                                 </div>
 
-                                                <div class="col-md-2 pull-right" style="padding: 2% 0;">
-                                                    <a id="aGuardarPesadas" style="float: right;" onclick="guardarAmbasPesadas();" class="btn btn-primary">Guardar</a>
-                                                </div>
                                             </div>
 
-                                        </div>
+                                            <hr />
+                                            <h4 class="pull-left" style="padding-left: 30px; width: 85%">Cálculo de Venta</h4>
 
-                                        <div id="tabsNotificaciones_3">
+                                            <a class="btn btn-success pull-right" style="margin: 6px; margin-right: 20px;" onclick="calcularPrecioVenta();">Calcular</a>
 
                                             <div class="modal-body panel panel-default" style="padding: 0; position: inherit; background: #e9e9e9; color: #333333;">
                                                 <table class="table" style="margin-bottom: 0;">
@@ -492,7 +495,7 @@
                                                         </td>
                                                         <td>Peso neto: 
                                                             <h3 style="margin: 0;">
-                                                                <label runat="server" id="notif_Mercaderia1" class="notif_lblPesoNeto label label-default">0</label></h3>
+                                                                <label runat="server" ClientIDMode="Static" id="notif_Mercaderia1" class="notif_lblPesoNeto label label-default">0</label></h3>
                                                         </td>
                                                         <td>X Precio Mercadería: 
                                                             <h3 style="margin: 0;">
@@ -513,7 +516,7 @@
                                                         </td>
                                                         <td>Peso neto: 
                                                             <h3 style="margin: 0;">
-                                                                <label runat="server" id="notif_Flete1" class="notif_lblPesoNeto label label-default">0</label></h3>
+                                                                <label runat="server" ClientIDMode="Static" id="notif_Flete1" class="notif_lblPesoNeto label label-default">0</label></h3>
                                                         </td>
                                                         <td>X Precio Flete: 
                                                              <asp:TextBox ID="notif_Flete2" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="31" Width="100"></asp:TextBox>
@@ -554,19 +557,16 @@
                                                 </table>
 
                                                 <hr style="margin-top: 5px; margin-bottom: 5px;" />
-                                                <div class="row" style="margin: 0;">
-                                                    <div class="col-md-9 pull-left" style="padding: 10px;">
-                                                        <%--<p class="text-info">IMPORTANTE: Para los números decimales usar "puntos", no "comas". Ej: 1.2</p>--%>
-                                                    </div>
 
-                                                    <div class="col-md-3 pull-right" style="padding: 10px;">
-                                                        <a class="btn btn-default" style="color: black;" onclick="calcularPrecioVenta();">Recalcular</a>
-
-                                                        <a id="lnkGuardarPrecioVenta" class="btn btn-primary" style="margin-left: 30px;" onclick="GuardarPrecioVenta()">Guardar</a>
-                                                    </div>
+                                                <div class="col-md-3 pull-right" style="padding: 10px;">
+                                                    <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="Javascript:$.modal.close();">Cancelar</button>
+                                                    <a id="lnkGuardarPrecioVenta" class="btn btn-primary" style="margin-left: 30px;" onclick="GuardarPrecioVenta()">Guardar</a>
                                                 </div>
 
+
+
                                             </div>
+
 
                                         </div>
 
