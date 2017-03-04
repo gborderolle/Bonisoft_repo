@@ -373,15 +373,6 @@ namespace Bonisoft.Pages {
         protected global::System.Web.UI.WebControls.TextBox txb_pesada1Peso_neto;
         
         /// <summary>
-        /// txb_pesada1Nombre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txb_pesada1Nombre;
-        
-        /// <summary>
         /// txb_pesada2Lugar control.
         /// </summary>
         /// <remarks>
@@ -416,15 +407,6 @@ namespace Bonisoft.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txb_pesada2Peso_neto;
-        
-        /// <summary>
-        /// txb_pesada2Nombre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txb_pesada2Nombre;
         
         /// <summary>
         /// txb_pesadaComentarios control.

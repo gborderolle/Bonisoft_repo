@@ -1,8 +1,5 @@
 ﻿<%@ Page Title="Viajes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Viajes.aspx.cs" Inherits="Bonisoft.Pages.Viajes" EnableEventValidation="false" %>
 
-<%@ Register Src="~/User_Controls/Dinamicos/Mercaderias.ascx" TagPrefix="uc1" TagName="Mercaderias" %>
-<%--<%@ Register Assembly="EditableDropDownList" Namespace="EditableControls" TagPrefix="editable" %>--%>
-
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
 
     <!-- STYLES EXTENSION -->
@@ -13,33 +10,15 @@
     <link rel="stylesheet" href="/assets/dist/css/pages/Viajes.css" />
     <link rel="stylesheet" href="/assets/dist/css/pages/Modal_styles.css" />
 
-    <%--<link href="assets/plugins/editableDropDownList/css/jquery-ui.css" rel="stylesheet" type="text/css" />--%>
-
-    <%--<script type="text/javascript" src="/assets/dist/js/jquery-3.1.1.min.js"></script>--%>
-    <%--<script type="text/javascript" src="/assets/dist/js/jquery-ui.js"></script>--%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="SubbodyContent" runat="server">
-
-    <%--<script src="/assets/plugins/editableDropDownList/js/jquery-1.6.4.min.js" type="text/javascript"></script>--%>
 
     <!-- PAGE SCRIPTS -->
     <script type="text/javascript" src="/assets/dist/js/jquery.quicksearch.js"></script>
     <script type="text/javascript" src="/assets/dist/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/assets/dist/js/jquery.tablesorter.js"></script>
     <script type="text/javascript" src="/assets/dist/js/popbox.js"></script>
-
-    <!-- Editable DropDownList DLL -->
-    <%--
-    <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
-    <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
-    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.core.js" type="text/javascript"></script> 
-    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.widget.js" type="text/javascript"></script> 
-    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.button.js" type="text/javascript"></script> 
-    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.position.js" type="text/javascript"></script> 
-    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.autocomplete.js" type="text/javascript"></script> 
-    <script src="/assets/plugins/editableDropDownList/js/jquery.ui.combobox.js" type="text/javascript"></script> 
-    --%>
 
     <!-- PAGE JS -->
     <script type="text/javascript" src="/assets/dist/js/AuxiliarFunctions.js"></script>
@@ -202,7 +181,7 @@
                                         <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
 
                                         <asp:ButtonField CommandName="notificar" ControlStyle-CssClass="btn btn-info btn-xs" ButtonType="Link" Text="" HeaderText="Detalles">
-                                            <ControlStyle CssClass="btn btn-warning btn-xs fa fa-address-card-o"></ControlStyle>
+                                            <ControlStyle CssClass="btn btn-warning btn-xs glyphicon glyphicon-wrench"></ControlStyle>
                                         </asp:ButtonField>
 
                                         <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
@@ -399,20 +378,6 @@
                                             <li><a href="#tabsNotificaciones_3" class="tabViajes" onclick="cargarDatos_PrecioVenta();">Venta</a></li>
                                         </ul>
 
-                                        <%-- <div id="tabsNotificaciones_1">
-
-                                            <h4>Asignar mercaderías</h4>
-
-                                            <div class="divTables" id="divMercaderias" style="display: block;">
-                                                <asp:UpdatePanel ID="upMercaderias" runat="server" OnLoad="upMercaderias_Load">
-                                                    <ContentTemplate>
-                                                        <uc1:Mercaderias runat="server" ID="Mercaderias" />
-                                                    </ContentTemplate>
-                                                </asp:UpdatePanel>
-                                            </div>
-
-                                        </div>--%>
-
                                         <div id="tabsNotificaciones_2">
 
                                             <div class="row">
@@ -422,11 +387,14 @@
                                                 <div class="modal-body panel panel-default" style="padding-bottom: 0; padding-top: 0; margin-bottom: 5px; position: inherit; background: #e9e9e9; color: #333333; position: initial;">
                                                     <table class="table">
                                                         <tr>
-                                                            <td>Precio compra / Tonelada: 
+                                                            <td>Precio compra por tonelada: 
                                                         <asp:TextBox ID="txbMercaderiaPrecioCompra" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="21"></asp:TextBox>
                                                             </td>
                                                             <td>Tipo de leña: 
                                                                 <asp:DropDownList ID="ddlTipoLena" ClientIDMode="Static" runat="server" CssClass="form-control" />
+                                                                <button type="button" name="search" id="plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('tipo_lena')">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -465,11 +433,6 @@
                                                                 </td>
 
                                                             </tr>
-                                                            <tr>
-                                                                <td>Nombre balanza: 
-                                                        <asp:TextBox ID="txb_pesada1Nombre" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="25"></asp:TextBox>
-                                                                </td>
-                                                            </tr>
                                                         </table>
                                                     </div>
 
@@ -497,13 +460,6 @@
                                                        <asp:TextBox ID="txb_pesada2Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30" TabIndex="29" onkeydown="return isNumberKey(this);"></asp:TextBox>
                                                                 </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td>Nombre balanza: 
-                                                        <asp:TextBox ID="txb_pesada2Nombre" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="30"></asp:TextBox>
-                                                                </td>
-                                                                <td></td>
-                                                            </tr>
-
                                                         </table>
 
                                                     </div>
@@ -765,17 +721,6 @@
                                                             <FooterTemplate>
                                                                 <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                                 <asp:CompareValidator ForeColor="Red" ID="vtxbNew3" runat="server" ControlToValidate="txbNew3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="P. destino Nombre/Neto">
-                                                            <EditItemTemplate>
-                                                                <asp:TextBox ID="ddlPesadaDestino1" runat="server" Text='<%# Bind("Carga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lbl9" runat="server" Text='<%# Bind("Pesada_ID") %>'></asp:Label>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:TextBox ID="ddlPesadaDestino2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                                             </FooterTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Cargadores">

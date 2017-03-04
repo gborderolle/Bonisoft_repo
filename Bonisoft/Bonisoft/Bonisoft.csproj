@@ -1217,7 +1217,6 @@
     <Content Include="User_Controls\Configuracion\Camion_ejes.ascx" />
     <Content Include="User_Controls\Configuracion\Formas_pago.ascx" />
     <Content Include="User_Controls\Configuracion\Usuarios.ascx" />
-    <Content Include="User_Controls\Dinamicos\Mercaderias.ascx" />
     <Content Include="User_Controls\Configuracion\Tipo_lena.ascx" />
     <Content Include="User_Controls\Estaticos\Camiones.ascx" />
     <Content Include="Pages\Datos.aspx" />
@@ -1365,12 +1364,6 @@
     <Compile Include="Models\log.cs">
       <DependentUpon>BonisoftModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\mercaderia_comprada.cs">
-      <DependentUpon>BonisoftModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\pesada.cs">
-      <DependentUpon>BonisoftModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\procesador.cs">
       <DependentUpon>BonisoftModel.tt</DependentUpon>
     </Compile>
@@ -1378,9 +1371,6 @@
       <DependentUpon>BonisoftModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\proveedor_carga.cs">
-      <DependentUpon>BonisoftModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\proveedor_mercaderia.cs">
       <DependentUpon>BonisoftModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\roles_usuario.cs">
@@ -1504,13 +1494,6 @@
     <Compile Include="User_Controls\Configuracion\Usuarios.ascx.designer.cs">
       <DependentUpon>Usuarios.ascx</DependentUpon>
     </Compile>
-    <Compile Include="User_Controls\Dinamicos\Mercaderias.ascx.cs">
-      <DependentUpon>Mercaderias.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User_Controls\Dinamicos\Mercaderias.ascx.designer.cs">
-      <DependentUpon>Mercaderias.ascx</DependentUpon>
-    </Compile>
     <Compile Include="User_Controls\Configuracion\Tipo_lena.ascx.cs">
       <DependentUpon>Tipo_lena.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1608,6 +1591,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\images\" />
+    <Folder Include="User_Controls\Dinamicos\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

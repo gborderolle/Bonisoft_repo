@@ -17,12 +17,10 @@ namespace Bonisoft.Models
         public int Viaje_ID { get; set; }
         public int Cliente_ID { get; set; }
         public int Proveedor_ID { get; set; }
-        public int Mercaderia_ID { get; set; }
         public decimal Precio_compra_por_tonelada { get; set; }
         public decimal Precio_valor_total { get; set; }
         public decimal Importe_viaje { get; set; }
         public decimal Saldo { get; set; }
-        public int Pesada_ID { get; set; }
         public int Empresa_de_carga_ID { get; set; }
         public System.DateTime Fecha_partida { get; set; }
         public System.DateTime Fecha_llegada { get; set; }
@@ -41,5 +39,20 @@ namespace Bonisoft.Models
         public bool EnViaje { get; set; }
         public Nullable<System.DateTime> Fecha_registro { get; set; }
         public bool isFicticio { get; set; }
+        public int Mercaderia_Lena_tipo_ID { get; set; }
+        public int Mercaderia_Procesador_ID { get; set; }
+        public System.DateTime Mercaderia_Fecha_corte { get; set; }
+        public decimal Mercaderia_Precio_xTonelada_compra { get; set; }
+        public decimal Mercaderia_Precio_xTonelada_venta { get; set; }
+        public string Mercaderia_Comentarios { get; set; }
+        public string Pesada_Origen_lugar { get; set; }
+        public System.DateTime Pesada_Origen_fecha { get; set; }
+        public decimal Pesada_Origen_peso_bruto { get; set; }
+        public decimal Pesada_Origen_peso_neto { get; set; }
+        public string Pesada_Destino_lugar { get; set; }
+        public System.DateTime Pesada_Destino_fecha { get; set; }
+        public decimal Pesada_Destino_peso_bruto { get; set; }
+        public decimal Pesada_Destino_peso_neto { get; set; }
+        public string Pesada_Comentarios { get; set; }
     }
 }
