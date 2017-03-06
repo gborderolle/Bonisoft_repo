@@ -233,7 +233,7 @@ namespace Bonisoft.Pages
                         bool save_ok = false;
 
                         // Check si tiene Mercaderías
-                        if(viaje.Mercaderia_Precio_xTonelada_compra > 0 || viaje.Mercaderia_Precio_xTonelada_venta > 0)
+                        if (viaje.Mercaderia_Precio_xTonelada_compra > 0 || viaje.Mercaderia_Precio_xTonelada_venta > 0)
                         {
                             save_ok = true;
                         }
@@ -1372,7 +1372,7 @@ namespace Bonisoft.Pages
 
                                 FillData_Pesadas(viaje);
                                 FillData_Mercaderia(viaje);
-                                //FillData_Ventas(viaje);
+                                FillData_Ventas(viaje);
 
                                 //BindGridViajes();
 
@@ -1530,6 +1530,26 @@ namespace Bonisoft.Pages
                             {
                                 lblFletero.Text = fletero.Nombre;
                                 lblFletero.CommandArgument = "fleteros," + fletero.Nombre;
+                            }
+                        }
+                    }
+                }
+
+                LinkButton lblChofer = e.Row.FindControl("lblChofer") as LinkButton;
+                if (lblChofer != null)
+                {
+                    lblChofer.Text = string.Empty;
+                    using (bonisoftEntities context = new bonisoftEntities())
+                    {
+                        viaje viaje = (viaje)(e.Row.DataItem);
+                        if (viaje != null)
+                        {
+                            int id = viaje.Chofer_ID;
+                            chofer chofer = (chofer)context.choferes.FirstOrDefault(c => c.Chofer_ID == id);
+                            if (chofer != null)
+                            {
+                                lblChofer.Text = chofer.Nombre_completo;
+                                lblChofer.CommandArgument = "choferes," + chofer.Nombre_completo;
                             }
                         }
                     }
@@ -2002,8 +2022,13 @@ namespace Bonisoft.Pages
                     //decimal precio_mercaderia = totalCostos * peso_neto_destino;
                     //notif_lblPrecioMercaderia.InnerText = precio_mercaderia.ToString();
 
-                    string precio_venta_str = viaje.precio_venta.ToString();
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "FillData_Ventas", "<script type='text/javascript'>$('#notif_lblPrecioVenta').text(" + precio_venta_str + "); </script>", false);
+                    // Precio flete, IVA, Precio descarga
+                    notif_Flete2.Text = viaje.precio_flete.ToString();
+                    notif_Flete3.Text = viaje.IVA.ToString();
+                    notif_Venta2.Text = viaje.precio_descarga.ToString();
+
+                    //string precio_venta_str = viaje.precio_venta.ToString();
+                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "FillData_Ventas", "<script type='text/javascript'>$('#notif_lblPrecioVenta').text(" + precio_venta_str + "); </script>", false);
                 }
             }
         }
@@ -2021,19 +2046,14 @@ namespace Bonisoft.Pages
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    decimal totalCostos = 0;
-                    //decimal totalPrecios = 0;
 
-                    decimal peso_neto_origen = 0;
-                    decimal peso_neto_destino = 0;
 
                     viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                     if (viaje != null)
                     {
-                        totalCostos += viaje.Mercaderia_Precio_xTonelada_compra;
-
-                        peso_neto_origen = viaje.Pesada_Origen_peso_neto;
-                        peso_neto_destino = viaje.Pesada_Destino_peso_neto;
+                        decimal totalCostos = viaje.Mercaderia_Precio_xTonelada_compra;
+                        decimal peso_neto_origen = viaje.Pesada_Origen_peso_neto;
+                        decimal peso_neto_destino = viaje.Pesada_Destino_peso_neto;
 
                         if (peso_neto_destino == 0)
                         {
@@ -2137,7 +2157,6 @@ namespace Bonisoft.Pages
                             if (precio_venta > 0)
                             {
                                 viaje.precio_venta = precio_venta;
-
                                 viaje.precio_flete = precioFlete;
                                 viaje.precio_descarga = precioDescarga;
                                 viaje.IVA = IVA;
@@ -2300,6 +2319,9 @@ namespace Bonisoft.Pages
 
                             #endregion Destino
 
+                            // Guardar precio de compra
+                            viaje.precio_compra = viaje.Pesada_Destino_peso_neto * viaje.Mercaderia_Precio_xTonelada_compra;
+
                             context.SaveChanges();
 
                             #region Guardar log
@@ -2390,7 +2412,7 @@ namespace Bonisoft.Pages
                             decimal totalCostos = 0;
                             totalCostos += viaje.Mercaderia_Precio_xTonelada_compra;
 
-                            ret = viaje.precio_flete + "|" + viaje.IVA + "|" + viaje.precio_descarga + "|" + totalCostos; 
+                            ret = viaje.precio_flete + "|" + viaje.IVA + "|" + viaje.precio_descarga + "|" + totalCostos;
                         }
                     }
                 }
@@ -2407,9 +2429,8 @@ namespace Bonisoft.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             int result = 0;
-            bool ok = false;
+            bool ok = true;
 
             /* 0- Error
              * 1- OK_FINViaje
@@ -2434,6 +2455,7 @@ namespace Bonisoft.Pages
                         if (viaje != null)
                         {
                             // Check si tiene Mercaderías
+                            /*
                             if (viaje.Mercaderia_Precio_xTonelada_compra > 0 || viaje.Mercaderia_Precio_xTonelada_venta > 0)
                             {
                                 ok = true;
@@ -2458,7 +2480,7 @@ namespace Bonisoft.Pages
                                     result = 4;
                                 }
                             }
-
+                            */
                             if (ok)
                             {
                                 viaje.EnViaje = false;
@@ -3106,7 +3128,7 @@ namespace Bonisoft.Pages
 
                 //
                 obj.Direccion = string.Empty;
-                obj.Telefono= string.Empty;
+                obj.Telefono = string.Empty;
                 obj.Comentarios = string.Empty;
                 //
 
@@ -3208,7 +3230,7 @@ namespace Bonisoft.Pages
 
                 //
                 obj.Matricula_zorra = string.Empty;
-                obj.Ejes_ID= 0;
+                obj.Ejes_ID = 0;
                 obj.Marca = string.Empty;
                 obj.Tara = 0;
                 obj.Comentarios = string.Empty;

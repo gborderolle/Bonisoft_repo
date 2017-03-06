@@ -30,15 +30,6 @@
     <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
-  <EntityType Name="chofer">
-    <Key>
-      <PropertyRef Name="Chofer_ID" />
-    </Key>
-    <Property Name="Chofer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre_completo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Empresa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-  </EntityType>
   <EntityType Name="cliente">
     <Key>
       <PropertyRef Name="cliente_ID" />
@@ -189,7 +180,6 @@
     <EntitySet Name="camiones" EntityType="Self.camion" />
     <EntitySet Name="camion_ejes" EntityType="Self.camion_ejes" />
     <EntitySet Name="cargadores" EntityType="Self.cargador" />
-    <EntitySet Name="choferes" EntityType="Self.chofer" />
     <EntitySet Name="clientes" EntityType="Self.cliente" />
     <EntitySet Name="cliente_pagos" EntityType="Self.cliente_pagos" />
     <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" />
@@ -205,6 +195,8 @@
     <EntitySet Name="usuarios" EntityType="Self.usuario" />
     <EntitySet Name="sysdiagrams" EntityType="bonisoftModel.sysdiagram" />
     <EntitySet Name="viajes" EntityType="bonisoftModel.viaje" />
+    <EntitySet Name="proveedor_pagos" EntityType="bonisoftModel.proveedor_pagos" />
+    <EntitySet Name="choferes" EntityType="bonisoftModel.chofer" />
   </EntityContainer>
   <EntityType Name="sysdiagram">
     <Key>
@@ -260,5 +252,27 @@
     <Property Name="Pesada_Destino_peso_bruto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
     <Property Name="Pesada_Destino_peso_neto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
     <Property Name="Pesada_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="proveedor_pagos">
+    <Key>
+      <PropertyRef Name="Proveedor_pagos_ID" />
+    </Key>
+    <Property Name="Proveedor_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
+    <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
+    <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="chofer">
+    <Key>
+      <PropertyRef Name="Chofer_ID" />
+    </Key>
+    <Property Name="Chofer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_completo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Empresa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

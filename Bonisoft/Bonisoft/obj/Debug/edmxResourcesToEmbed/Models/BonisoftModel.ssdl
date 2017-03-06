@@ -38,6 +38,7 @@
     <Property Name="Nombre_completo" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Empresa" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Telefono" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="cliente">
     <Key>
@@ -166,6 +167,18 @@
     <Property Name="Proveedor_ID" Type="int" Nullable="false" />
     <Property Name="Carga_ID" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="proveedor_pagos">
+    <Key>
+      <PropertyRef Name="Proveedor_pagos_ID" />
+    </Key>
+    <Property Name="Proveedor_pagos_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Proveedor_ID" Type="int" Nullable="false" />
+    <Property Name="Fecha_registro" Type="date" Nullable="false" />
+    <Property Name="Fecha_pago" Type="date" Nullable="false" />
+    <Property Name="Forma_de_pago_ID" Type="int" Nullable="false" />
+    <Property Name="Monto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
   <EntityType Name="roles_usuario">
     <Key>
       <PropertyRef Name="Roles_usuario_ID" />
@@ -256,6 +269,7 @@
     <EntitySet Name="procesador" EntityType="Self.procesador" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proveedor_pagos" EntityType="Self.proveedor_pagos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="roles_usuario" EntityType="Self.roles_usuario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />

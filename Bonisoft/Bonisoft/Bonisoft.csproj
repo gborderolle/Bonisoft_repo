@@ -246,6 +246,7 @@
     <Content Include="assets\dist\css\pages\Logs.css" />
     <Content Include="assets\dist\css\pages\Modal_styles.css" />
     <Content Include="assets\dist\css\pages\Resumen_clientes.css" />
+    <Content Include="assets\dist\css\pages\Resumen_proveedores.css" />
     <Content Include="assets\dist\css\popbox.css" />
     <Content Include="assets\dist\css\skins\skin-black-light.css" />
     <Content Include="assets\dist\css\skins\skin-black-light.min.css" />
@@ -325,6 +326,7 @@
     <Content Include="assets\dist\js\pages\Detalles.js" />
     <Content Include="assets\dist\js\pages\Listados.js" />
     <Content Include="assets\dist\js\pages\Resumen_clientes.js" />
+    <Content Include="assets\dist\js\pages\Resumen_proveedores.js" />
     <Content Include="assets\dist\js\popbox.js" />
     <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_diagonals-thick_18_b81900_40x40.png" />
     <Content Include="assets\plugins\editableDropDownList\css\img\ui-bg_diagonals-thick_20_666666_40x40.png" />
@@ -1212,6 +1214,7 @@
     <Content Include="Pages\Recordatorios.aspx" />
     <Content Include="Pages\Registros.aspx" />
     <Content Include="Pages\Resumen_clientes.aspx" />
+    <Content Include="Pages\Resumen_proveedores.aspx" />
     <Content Include="Pages\Viajes.aspx" />
     <Content Include="SYS_NOTES.txt" />
     <Content Include="User_Controls\Configuracion\Camion_ejes.ascx" />
@@ -1373,6 +1376,9 @@
     <Compile Include="Models\proveedor_carga.cs">
       <DependentUpon>BonisoftModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\proveedor_pagos.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\roles_usuario.cs">
       <DependentUpon>BonisoftModel.tt</DependentUpon>
     </Compile>
@@ -1458,6 +1464,13 @@
     </Compile>
     <Compile Include="Pages\Resumen_clientes.aspx.designer.cs">
       <DependentUpon>Resumen_clientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Resumen_proveedores.aspx.cs">
+      <DependentUpon>Resumen_proveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Resumen_proveedores.aspx.designer.cs">
+      <DependentUpon>Resumen_proveedores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Viajes.aspx.cs">
       <DependentUpon>Viajes.aspx</DependentUpon>

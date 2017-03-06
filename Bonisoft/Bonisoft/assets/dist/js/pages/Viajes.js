@@ -123,14 +123,19 @@ function bindEvents() {
     });
 
     // Copiar texto dinámicamente
+    $("#notif_Mercaderia2").text($("#txbMercaderiaPrecioCompra").val());
     $("#txbMercaderiaPrecioCompra").keyup(function () {
         $("#notif_Mercaderia2").text(this.value);
     });
 
+    $("#notif_Flete1").text($("#txb_pesada2Peso_neto").val());
     $("#txb_pesada2Peso_neto").keyup(function () {
         $("#notif_Mercaderia1").text(this.value);
         $("#notif_Flete1").text(this.value);
     });
+
+    // Hacer cálculo de Venta
+    calcularPrecioVenta();
 
     // Permitir sólo números y punto
     $("#txbMercaderiaPrecioCompra").keydown(function (event) {
@@ -468,7 +473,6 @@ function guardarPesadas(isOrigen) {
     }
 }
 
-
 function guardarAmbasPesadas() {
 
     var ok_continue = false;
@@ -562,7 +566,6 @@ function guardarAmbasPesadas() {
             }); // Ajax
     }
 }
-
 
 function NuevoViaje() {
 
@@ -1116,7 +1119,6 @@ function ModificarViaje_2() {
     }
 }
 
-
 function FinDelViaje() {
 
     $('#dialog p').text(hashMessages['Confirmacion']);
@@ -1190,9 +1192,11 @@ function FinDelViaje() {
     }); // Ajax
 }
 
-
 function GuardarPrecioVenta() {
 
+    guardarAmbasPesad
+
+    as();
     calcularPrecioVenta();
 
     var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID").val();

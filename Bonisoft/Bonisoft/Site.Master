@@ -98,6 +98,7 @@
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="/Pages/Viajes">Viajes</a></li>
                         <li><a runat="server" href="/Pages/Datos">Base de Datos</a></li>
+                        <li><a runat="server" href="/Pages/Resumen_proveedores">Resumen de Proveedores</a></li>
                         <li><a runat="server" href="/Pages/Resumen_clientes">Resumen de Clientes</a></li>
                         <li><a runat="server" id="aMenuLogs" clientidmode="Static" style="display: none;" href="/Pages/Menu_logs">Menú de Logs</a></li>
                         <%--<li><a runat="server" href="~/">Inicio</a></li>--%>

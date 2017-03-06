@@ -12,12 +12,14 @@ namespace Bonisoft.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class chofer
+    public partial class proveedor_pagos
     {
-        public int Chofer_ID { get; set; }
-        public string Nombre_completo { get; set; }
-        public string Empresa { get; set; }
+        public int Proveedor_pagos_ID { get; set; }
+        public int Proveedor_ID { get; set; }
+        public System.DateTime Fecha_registro { get; set; }
+        public System.DateTime Fecha_pago { get; set; }
+        public int Forma_de_pago_ID { get; set; }
+        public decimal Monto { get; set; }
         public string Comentarios { get; set; }
-        public string Telefono { get; set; }
     }
 }

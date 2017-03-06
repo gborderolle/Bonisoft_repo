@@ -14,7 +14,7 @@ using Bonisoft.Models;
 
 namespace Bonisoft.Pages
 {
-    public partial class Resumen_clientes : System.Web.UI.Page
+    public partial class Resumen_proveedores : System.Web.UI.Page
     {
         #region Events
 
@@ -22,15 +22,15 @@ namespace Bonisoft.Pages
         {
             if (!IsPostBack)
             {
-                BindGridClientes();
+                BindGridProveedores();
                 BindModalAgregarPago();
                 BindModalModificarPago();
             }
 
-            gridClientes.UseAccessibleHeader = true;
-            gridClientes.HeaderRow.TableSection = TableRowSection.TableHeader;
+            gridProveedores.UseAccessibleHeader = true;
+            gridProveedores.HeaderRow.TableSection = TableRowSection.TableHeader;
 
-            gridClientes_lblMessage.Text = string.Empty;
+            gridProveedores_lblMessage.Text = string.Empty;
         }
 
         protected void grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -43,27 +43,27 @@ namespace Bonisoft.Pages
 
             gridPagos.PageIndex = e.NewPageIndex;
 
-            string client_ID_str = hdn_clientID.Value;
-            if (!string.IsNullOrWhiteSpace(client_ID_str))
+            string proveedor_ID_str = hdn_proveedorID.Value;
+            if (!string.IsNullOrWhiteSpace(proveedor_ID_str))
             {
-                int cliente_ID = 0;
-                if (!int.TryParse(client_ID_str, out cliente_ID))
+                int Proveedor_ID = 0;
+                if (!int.TryParse(proveedor_ID_str, out Proveedor_ID))
                 {
-                    cliente_ID = 0;
-                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, client_ID_str);
+                    Proveedor_ID = 0;
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, proveedor_ID_str);
                 }
 
-                if (cliente_ID > 0)
+                if (Proveedor_ID > 0)
                 {
-                    BindGridPagos(cliente_ID);
+                    BindGridPagos(Proveedor_ID);
                 }
             }
         }
 
         protected void grid2_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gridClientes.PageIndex = e.NewPageIndex;
-            BindGridClientes();
+            gridProveedores.PageIndex = e.NewPageIndex;
+            BindGridProveedores();
         }
 
         protected void grid3_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -74,27 +74,26 @@ namespace Bonisoft.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             gridViajes.PageIndex = e.NewPageIndex;
 
-            string client_ID_str = hdn_clientID.Value;
-            if (!string.IsNullOrWhiteSpace(client_ID_str))
+            string proveedor_ID_str = hdn_proveedorID.Value;
+            if (!string.IsNullOrWhiteSpace(proveedor_ID_str))
             {
-                int cliente_ID = 0;
-                if (!int.TryParse(client_ID_str, out cliente_ID))
+                int proveedor_ID = 0;
+                if (!int.TryParse(proveedor_ID_str, out proveedor_ID))
                 {
-                    cliente_ID = 0;
-                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, client_ID_str);
+                    proveedor_ID = 0;
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, proveedor_ID_str);
                 }
 
-                if (cliente_ID > 0)
+                if (proveedor_ID > 0)
                 {
-                    BindGridViajes(cliente_ID);
+                    BindGridViajes(proveedor_ID);
                 }
             }
         }
 
-        protected void gridClientes_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gridProveedores_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandArgument != null)
             {
@@ -108,7 +107,7 @@ namespace Bonisoft.Pages
             }
         }
 
-        protected void gridClientes_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gridProveedores_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             #region Buttons
 
@@ -135,7 +134,7 @@ namespace Bonisoft.Pages
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridClientes, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridProveedores, "Select$" + e.Row.RowIndex);
             }
         }
 
@@ -209,8 +208,8 @@ namespace Bonisoft.Pages
                     }
                 }
 
-                // Proveedor ----------------------------------------------------
-                lbl = e.Row.FindControl("lblProveedor") as Label;
+                // Cliente ----------------------------------------------------
+                lbl = e.Row.FindControl("lblCliente") as Label;
                 if (lbl != null)
                 {
                     lbl.Text = string.Empty; using (bonisoftEntities context = new bonisoftEntities())
@@ -218,11 +217,11 @@ namespace Bonisoft.Pages
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
                         {
-                            int id = viaje.Proveedor_ID;
-                            proveedor proveedor = (proveedor)context.proveedores.FirstOrDefault(c => c.Proveedor_ID == id);
-                            if (proveedor != null)
+                            int id = viaje.Cliente_ID;
+                            cliente cliente = (cliente)context.clientes.FirstOrDefault(c => c.cliente_ID == id);
+                            if (cliente != null)
                             {
-                                string nombre = proveedor.Nombre;
+                                string nombre = cliente.Nombre;
                                 lbl.Text = nombre;
                                 //lbl.CommandArgument = "proveedores," + proveedor.Nombre;
                             }
@@ -326,7 +325,7 @@ namespace Bonisoft.Pages
                 {
                     lnk.Text = string.Empty; using (bonisoftEntities context = new bonisoftEntities())
                     {
-                        cliente_pagos pago = (cliente_pagos)(e.Row.DataItem);
+                        proveedor_pagos pago = (proveedor_pagos)(e.Row.DataItem);
                         if (pago != null)
                         {
                             int id = pago.Forma_de_pago_ID;
@@ -346,7 +345,7 @@ namespace Bonisoft.Pages
                 {
                     using (bonisoftEntities context = new bonisoftEntities())
                     {
-                        cliente_pagos pago = (cliente_pagos)(e.Row.DataItem);
+                        proveedor_pagos pago = (proveedor_pagos)(e.Row.DataItem);
                         if (pago != null)
                         {
                             if (pago.Fecha_pago == DateTime.MinValue)
@@ -383,7 +382,7 @@ namespace Bonisoft.Pages
             }
         }
 
-        protected void gridClientes_OnSelectedIndexChanged(object sender, EventArgs e)
+        protected void gridProveedores_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             // Source: http://www.codeproject.com/Tips/622720/Fire-GridView-SelectedIndexChanged-Event-without-S
 
@@ -393,33 +392,33 @@ namespace Bonisoft.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-            foreach (GridViewRow row in gridClientes.Rows)
+            foreach (GridViewRow row in gridProveedores.Rows)
             {
-                if (row.RowIndex == gridClientes.SelectedIndex)
+                if (row.RowIndex == gridProveedores.SelectedIndex)
                 {
-                    string cliente_ID_str = gridClientes.SelectedRow.Cells[0].Text;
-                    if (!string.IsNullOrWhiteSpace(cliente_ID_str))
+                    string proveedor_ID_str = gridProveedores.SelectedRow.Cells[0].Text;
+                    if (!string.IsNullOrWhiteSpace(proveedor_ID_str))
                     {
-                        int cliente_ID = 0;
-                        if (!int.TryParse(cliente_ID_str, out cliente_ID))
+                        int proveedor_ID = 0;
+                        if (!int.TryParse(proveedor_ID_str, out proveedor_ID))
                         {
-                            cliente_ID = 0;
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, cliente_ID_str);
+                            proveedor_ID = 0;
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, proveedor_ID_str);
                         }
 
-                        if (cliente_ID > 0)
+                        if (proveedor_ID > 0)
                         {
                             using (bonisoftEntities context = new bonisoftEntities())
                             {
-                                cliente cliente = (cliente)context.clientes.FirstOrDefault(c => c.cliente_ID == cliente_ID);
-                                if (cliente != null)
+                                proveedor proveedor = (proveedor)context.proveedores.FirstOrDefault(c => c.Proveedor_ID == proveedor_ID);
+                                if (proveedor != null)
                                 {
-                                    lblClientName_1.Text = cliente.Nombre;
+                                    lblProveedorName_1.Text = proveedor.Nombre;
 
-                                    BindGridViajes(cliente_ID);
-                                    BindGridPagos(cliente_ID);
+                                    BindGridViajes(proveedor_ID);
+                                    BindGridPagos(proveedor_ID);
 
-                                    hdn_clientID.Value = cliente_ID_str;
+                                    hdn_proveedorID.Value = proveedor_ID_str;
 
                                     gridViajes.UseAccessibleHeader = true;
                                     gridViajes.HeaderRow.TableSection = TableRowSection.TableHeader;
@@ -448,52 +447,52 @@ namespace Bonisoft.Pages
 
         #region General methods
 
-        private void BindGridClientes()
+        private void BindGridProveedores()
         {
             using (bonisoftEntities context = new bonisoftEntities())
             {
-                var elements = context.clientes.OrderBy(e => e.Nombre).ToList();
+                var elements = context.proveedores.OrderBy(e => e.Nombre).ToList();
                 if (elements.Count() > 0)
                 {
-                    gridClientes.DataSource = elements;
-                    gridClientes.DataBind();
+                    gridProveedores.DataSource = elements;
+                    gridProveedores.DataBind();
 
-                    gridClientes.UseAccessibleHeader = true;
-                    gridClientes.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    gridProveedores.UseAccessibleHeader = true;
+                    gridProveedores.HeaderRow.TableSection = TableRowSection.TableHeader;
 
-                    lblGridClientesCount.Text = "# " + elements.Count();
+                    lblgridProveedoresCount.Text = "# " + elements.Count();
                 }
                 else
                 {
-                    var obj = new List<cliente>();
-                    obj.Add(new cliente());
+                    var obj = new List<proveedor>();
+                    obj.Add(new proveedor());
 
                     // Bind the DataTable which contain a blank row to the GridView
-                    gridClientes.DataSource = obj;
-                    gridClientes.DataBind();
-                    int columnsCount = gridClientes.Columns.Count;
-                    gridClientes.Rows[0].Cells.Clear();// clear all the cells in the row
-                    gridClientes.Rows[0].Cells.Add(new TableCell()); //add a new blank cell
-                    gridClientes.Rows[0].Cells[0].ColumnSpan = columnsCount; //set the column span to the new added cell
+                    gridProveedores.DataSource = obj;
+                    gridProveedores.DataBind();
+                    int columnsCount = gridProveedores.Columns.Count;
+                    gridProveedores.Rows[0].Cells.Clear();// clear all the cells in the row
+                    gridProveedores.Rows[0].Cells.Add(new TableCell()); //add a new blank cell
+                    gridProveedores.Rows[0].Cells[0].ColumnSpan = columnsCount; //set the column span to the new added cell
 
                     //You can set the styles here
-                    gridClientes.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
-                    gridClientes.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
-                    gridClientes.Rows[0].Cells[0].Font.Bold = true;
+                    gridProveedores.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+                    gridProveedores.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
+                    gridProveedores.Rows[0].Cells[0].Font.Bold = true;
 
                     //set No Results found to the new added cell
-                    gridClientes.Rows[0].Cells[0].Text = "No hay registros";
+                    gridProveedores.Rows[0].Cells[0].Text = "No hay registros";
                 }
             }
         }
 
-        private void BindGridViajes(int cliente_ID)
+        private void BindGridViajes(int proveedor_ID)
         {
-            if (cliente_ID > 0)
+            if (proveedor_ID > 0)
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    var elements = context.viajes.Where(v => v.Cliente_ID == cliente_ID && !v.isFicticio).ToList();
+                    var elements = context.viajes.Where(v => v.Proveedor_ID == proveedor_ID && !v.isFicticio).ToList();
                     if (elements.Count() > 0)
                     {
                         gridViajes.DataSource = elements;
@@ -531,13 +530,13 @@ namespace Bonisoft.Pages
             }
         }
 
-        private void BindGridPagos(int cliente_ID)
+        private void BindGridPagos(int proveedor_ID)
         {
-            if (cliente_ID > 0)
+            if (proveedor_ID > 0)
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    var elements = context.cliente_pagos.Where(v => v.Cliente_ID == cliente_ID).ToList();
+                    var elements = context.proveedor_pagos.Where(v => v.Proveedor_ID == proveedor_ID).ToList();
                     if (elements.Count() > 0)
                     {
                         gridPagos.DataSource = elements;
@@ -550,8 +549,8 @@ namespace Bonisoft.Pages
                     }
                     else
                     {
-                        var obj = new List<cliente_pagos>();
-                        obj.Add(new cliente_pagos());
+                        var obj = new List<proveedor_pagos>();
+                        obj.Add(new proveedor_pagos());
 
                         /* Grid Viajes */
 
@@ -620,7 +619,7 @@ namespace Bonisoft.Pages
         #region Web methods
 
         [WebMethod]
-        public static string Update_Saldos(string clienteID_str)
+        public static string Update_Saldos(string proveedorID_str)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -629,23 +628,23 @@ namespace Bonisoft.Pages
             string methodName = stackFrame.GetMethod().Name;
 
             string ret = string.Empty;
-            if (!string.IsNullOrWhiteSpace(clienteID_str))
+            if (!string.IsNullOrWhiteSpace(proveedorID_str))
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    int cliente_ID = 0;
-                    if (!int.TryParse(clienteID_str, out cliente_ID))
+                    int proveedor_ID = 0;
+                    if (!int.TryParse(proveedorID_str, out proveedor_ID))
                     {
-                        cliente_ID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
+                        proveedor_ID = 0;
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, proveedorID_str);
                     }
 
-                    if (cliente_ID > 0)
+                    if (proveedor_ID > 0)
                     {
                         #region Cálculo saldo inicial
 
                         decimal saldo_inicial = 0;
-                        var viajes = context.viajes.Where(m => m.Cliente_ID == cliente_ID).ToList();
+                        var viajes = context.viajes.Where(m => m.Proveedor_ID == proveedor_ID).ToList();
                         if (viajes.Count() > 0)
                         {
                             foreach (viaje viaje in viajes)
@@ -660,10 +659,10 @@ namespace Bonisoft.Pages
 
                         decimal saldo_final = 0;
                         decimal total_pagos = 0;
-                        var pagos = context.cliente_pagos.Where(m => m.Cliente_ID == cliente_ID).ToList();
+                        var pagos = context.proveedor_pagos.Where(m => m.Proveedor_ID == proveedor_ID).ToList();
                         if (pagos.Count() > 0)
                         {
-                            foreach (cliente_pagos pago in pagos)
+                            foreach (proveedor_pagos pago in pagos)
                             {
                                 total_pagos += pago.Monto;
                             }
@@ -682,7 +681,7 @@ namespace Bonisoft.Pages
         }
 
         [WebMethod]
-        public static bool IngresarPago(string clienteID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str)
+        public static bool IngresarPago(string proveedorID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -691,22 +690,22 @@ namespace Bonisoft.Pages
             string methodName = stackFrame.GetMethod().Name;
 
             bool ret = false;
-            if (!string.IsNullOrWhiteSpace(clienteID_str))
+            if (!string.IsNullOrWhiteSpace(proveedorID_str))
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    int cliente_ID = 0;
-                    if (!int.TryParse(clienteID_str, out cliente_ID))
+                    int proveedor_ID = 0;
+                    if (!int.TryParse(proveedorID_str, out proveedor_ID))
                     {
-                        cliente_ID = 0;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
+                        proveedor_ID = 0;
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, proveedorID_str);
                     }
 
-                    if (cliente_ID > 0)
+                    if (proveedor_ID > 0)
                     {
-                        cliente_pagos obj = new cliente_pagos();
+                        proveedor_pagos obj = new proveedor_pagos();
 
-                        obj.Cliente_ID = cliente_ID;
+                        obj.Proveedor_ID = proveedor_ID;
                         obj.Comentarios = comentarios_str;
                         obj.Fecha_registro = DateTime.Now;
 
@@ -737,17 +736,17 @@ namespace Bonisoft.Pages
                         }
                         obj.Forma_de_pago_ID = ddl;
 
-                        context.cliente_pagos.Add(obj);
+                        context.proveedor_pagos.Add(obj);
                         context.SaveChanges();
 
                         #region Guardar log 
                         try
                         {
                             int id = 1;
-                            cliente_pagos cliente_pago1 = (cliente_pagos)context.cliente_pagos.OrderByDescending(p => p.Cliente_pagos_ID).FirstOrDefault();
-                            if (cliente_pago1 != null)
+                            proveedor_pagos proveedor_pago1 = (proveedor_pagos)context.proveedor_pagos.OrderByDescending(p => p.Proveedor_pagos_ID).FirstOrDefault();
+                            if (proveedor_pago1 != null)
                             {
-                                id = cliente_pago1.Cliente_pagos_ID;
+                                id = proveedor_pago1.Proveedor_pagos_ID;
                             }
 
                             string userID1 = HttpContext.Current.Session["UserID"].ToString();
@@ -777,7 +776,6 @@ namespace Bonisoft.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             bool ret = false;
             if (!string.IsNullOrWhiteSpace(pagoID_str))
             {
@@ -792,10 +790,10 @@ namespace Bonisoft.Pages
 
                     if (pago_ID_str > 0)
                     {
-                        cliente_pagos pago = (cliente_pagos)context.cliente_pagos.FirstOrDefault(v => v.Cliente_pagos_ID == pago_ID_str);
+                        proveedor_pagos pago = (proveedor_pagos)context.proveedor_pagos.FirstOrDefault(v => v.Proveedor_pagos_ID == pago_ID_str);
                         if (pago != null)
                         {
-                            context.cliente_pagos.Remove(pago);
+                            context.proveedor_pagos.Remove(pago);
                             context.SaveChanges();
 
                             #region Guardar log 
@@ -803,7 +801,7 @@ namespace Bonisoft.Pages
                             {
                                 string userID1 = HttpContext.Current.Session["UserID"].ToString();
                                 string username = HttpContext.Current.Session["UserName"].ToString();
-                                Global_Objects.Logs.AddUserLog("Borra pago", pago.GetType().Name + ": " + pago.Cliente_pagos_ID, userID1, username);
+                                Global_Objects.Logs.AddUserLog("Borra pago", pago.GetType().Name + ": " + pago.Proveedor_pagos_ID, userID1, username);
                             }
                             catch (Exception ex)
                             {
@@ -828,7 +826,6 @@ namespace Bonisoft.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             string ret = string.Empty;
             if (!string.IsNullOrWhiteSpace(pagoID_str))
             {
@@ -843,7 +840,7 @@ namespace Bonisoft.Pages
 
                     if (pago_ID > 0)
                     {
-                        cliente_pagos pago = (cliente_pagos)context.cliente_pagos.FirstOrDefault(v => v.Cliente_pagos_ID == pago_ID);
+                        proveedor_pagos pago = (proveedor_pagos)context.proveedor_pagos.FirstOrDefault(v => v.Proveedor_pagos_ID == pago_ID);
                         if (pago != null)
                         {
                             string fecha = pago.Fecha_pago.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
@@ -878,7 +875,7 @@ namespace Bonisoft.Pages
 
                     if (pago_ID > 0)
                     {
-                        cliente_pagos pago = (cliente_pagos)context.cliente_pagos.FirstOrDefault(v => v.Cliente_pagos_ID == pago_ID);
+                        proveedor_pagos pago = (proveedor_pagos)context.proveedor_pagos.FirstOrDefault(v => v.Proveedor_pagos_ID == pago_ID);
                         if (pago != null)
                         {
                             DateTime date = pago.Fecha_pago;
@@ -917,7 +914,7 @@ namespace Bonisoft.Pages
                             {
                                 string userID1 = HttpContext.Current.Session["UserID"].ToString();
                                 string username = HttpContext.Current.Session["UserName"].ToString();
-                                Global_Objects.Logs.AddUserLog("Modifica pago", pago.GetType().Name + ": " + pago.Cliente_pagos_ID, userID1, username);
+                                Global_Objects.Logs.AddUserLog("Modifica pago", pago.GetType().Name + ": " + pago.Proveedor_pagos_ID, userID1, username);
                             }
                             catch (Exception ex)
                             {
@@ -934,7 +931,7 @@ namespace Bonisoft.Pages
         }
 
         [WebMethod]
-        public static string ViajeFicticio_1(string clienteID_str)
+        public static string ViajeFicticio_1(string proveedorID_str)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -943,32 +940,32 @@ namespace Bonisoft.Pages
             string methodName = stackFrame.GetMethod().Name;
 
             string ret = string.Empty;
-            if (!string.IsNullOrWhiteSpace(clienteID_str))
+            if (!string.IsNullOrWhiteSpace(proveedorID_str))
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    int clienteID = 0;
-                    if (!int.TryParse(clienteID_str, out clienteID))
+                    int proveedor_ID = 0;
+                    if (!int.TryParse(proveedorID_str, out proveedor_ID))
                     {
-                        clienteID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
+                        proveedor_ID = 0;
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, proveedorID_str);
                     }
 
-                    if (clienteID > 0)
+                    if (proveedor_ID > 0)
                     {
-                        cliente cliente = (cliente)context.clientes.FirstOrDefault(v => v.cliente_ID == clienteID);
-                        if (cliente != null)
+                        proveedor proveedor = (proveedor)context.proveedores.FirstOrDefault(v => v.Proveedor_ID == proveedor_ID);
+                        if (proveedor != null)
                         {
                             string saldo = "0";
                             string comentarios = string.Empty;
 
-                            viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Cliente_ID == cliente.cliente_ID && v.isFicticio); 
+                            viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Proveedor_ID == proveedor.Proveedor_ID && v.isFicticio);
                             if (viaje != null)
                             {
                                 saldo = viaje.precio_venta.ToString();
                                 comentarios = viaje.Comentarios;
                             }
-                                ret = saldo + "|" + comentarios;
+                            ret = saldo + "|" + comentarios;
                         }
                     }
                 }
@@ -977,7 +974,7 @@ namespace Bonisoft.Pages
         }
 
         [WebMethod]
-        public static bool ViajeFicticio_2(string saldo_str, string comentarios, string clienteID_str)
+        public static bool ViajeFicticio_2(string saldo_str, string comentarios, string proveedorID_str)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -986,22 +983,22 @@ namespace Bonisoft.Pages
             string methodName = stackFrame.GetMethod().Name;
 
             bool ret = false;
-            if (!string.IsNullOrWhiteSpace(clienteID_str))
+            if (!string.IsNullOrWhiteSpace(proveedorID_str))
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    int clienteID = 0;
-                    if (!int.TryParse(clienteID_str, out clienteID))
+                    int proveedor_ID = 0;
+                    if (!int.TryParse(proveedorID_str, out proveedor_ID))
                     {
-                        clienteID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
+                        proveedor_ID = 0;
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, proveedorID_str);
                     }
 
-                    if (clienteID > 0)
+                    if (proveedor_ID > 0)
                     {
                         bool isNew = false;
                         decimal saldo = 0;
-                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Cliente_ID == clienteID && v.isFicticio);
+                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Proveedor_ID == proveedor_ID && v.isFicticio);
                         if (viaje != null)
                         {
                             saldo = viaje.precio_venta;
@@ -1012,7 +1009,7 @@ namespace Bonisoft.Pages
 
                             viaje = new viaje();
                             viaje.isFicticio = true;
-                            viaje.Cliente_ID = clienteID;
+                            viaje.Proveedor_ID = proveedor_ID;
                         }
                         if (!string.IsNullOrWhiteSpace(saldo_str))
                         {
@@ -1028,13 +1025,12 @@ namespace Bonisoft.Pages
                         if (isNew)
                         {
                             viaje.Fecha_partida = DateTime.MinValue;
-                            viaje.Fecha_llegada= DateTime.MinValue;
+                            viaje.Fecha_llegada = DateTime.MinValue;
                             viaje.Fecha_registro = DateTime.Now;
 
                             viaje.Carga = string.Empty;
                             viaje.Descarga = string.Empty;
                             viaje.EnViaje = false;
-                            viaje.Proveedor_ID = 0;
                             viaje.Empresa_de_carga_ID = 0;
                             viaje.Fletero_ID = 0;
                             viaje.Camion_ID = 0;

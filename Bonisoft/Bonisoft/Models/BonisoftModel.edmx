@@ -43,6 +43,7 @@
           <Property Name="Nombre_completo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Empresa" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="cliente">
           <Key>
@@ -171,6 +172,18 @@
           <Property Name="Proveedor_ID" Type="int" Nullable="false" />
           <Property Name="Carga_ID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="proveedor_pagos">
+          <Key>
+            <PropertyRef Name="Proveedor_pagos_ID" />
+          </Key>
+          <Property Name="Proveedor_pagos_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Proveedor_ID" Type="int" Nullable="false" />
+          <Property Name="Fecha_registro" Type="date" Nullable="false" />
+          <Property Name="Fecha_pago" Type="date" Nullable="false" />
+          <Property Name="Forma_de_pago_ID" Type="int" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
         <EntityType Name="roles_usuario">
           <Key>
             <PropertyRef Name="Roles_usuario_ID" />
@@ -261,6 +274,7 @@
           <EntitySet Name="procesador" EntityType="Self.procesador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="proveedor_carga" EntityType="Self.proveedor_carga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="proveedor_pagos" EntityType="Self.proveedor_pagos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="roles_usuario" EntityType="Self.roles_usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
@@ -298,15 +312,6 @@
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
-        <EntityType Name="chofer">
-          <Key>
-            <PropertyRef Name="Chofer_ID" />
-          </Key>
-          <Property Name="Chofer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre_completo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Empresa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="cliente">
@@ -459,7 +464,6 @@
           <EntitySet Name="camiones" EntityType="Self.camion" />
           <EntitySet Name="camion_ejes" EntityType="Self.camion_ejes" />
           <EntitySet Name="cargadores" EntityType="Self.cargador" />
-          <EntitySet Name="choferes" EntityType="Self.chofer" />
           <EntitySet Name="clientes" EntityType="Self.cliente" />
           <EntitySet Name="cliente_pagos" EntityType="Self.cliente_pagos" />
           <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" />
@@ -475,6 +479,8 @@
           <EntitySet Name="usuarios" EntityType="Self.usuario" />
           <EntitySet Name="sysdiagrams" EntityType="bonisoftModel.sysdiagram" />
           <EntitySet Name="viajes" EntityType="bonisoftModel.viaje" />
+          <EntitySet Name="proveedor_pagos" EntityType="bonisoftModel.proveedor_pagos" />
+          <EntitySet Name="choferes" EntityType="bonisoftModel.chofer" />
         </EntityContainer>
         <EntityType Name="sysdiagram">
           <Key>
@@ -531,6 +537,28 @@
           <Property Name="Pesada_Destino_peso_neto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
           <Property Name="Pesada_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="proveedor_pagos">
+          <Key>
+            <PropertyRef Name="Proveedor_pagos_ID" />
+          </Key>
+          <Property Name="Proveedor_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="chofer">
+          <Key>
+            <PropertyRef Name="Chofer_ID" />
+          </Key>
+          <Property Name="Chofer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_completo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Empresa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -566,16 +594,6 @@
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="choferes">
-            <EntityTypeMapping TypeName="bonisoftModel.chofer">
-              <MappingFragment StoreEntitySet="chofer">
-                <ScalarProperty Name="Chofer_ID" ColumnName="Chofer_ID" />
-                <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
-                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -792,6 +810,30 @@
                 <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
                 <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
                 <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proveedor_pagos">
+            <EntityTypeMapping TypeName="bonisoftModel.proveedor_pagos">
+              <MappingFragment StoreEntitySet="proveedor_pagos">
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
+                <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />
+                <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
+                <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
+                <ScalarProperty Name="Proveedor_pagos_ID" ColumnName="Proveedor_pagos_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="choferes">
+            <EntityTypeMapping TypeName="bonisoftModel.chofer">
+              <MappingFragment StoreEntitySet="chofer">
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
+                <ScalarProperty Name="Chofer_ID" ColumnName="Chofer_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

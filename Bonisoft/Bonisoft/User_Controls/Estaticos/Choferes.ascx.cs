@@ -99,8 +99,8 @@ namespace Bonisoft.User_Controls
         protected void gridChoferes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -111,12 +111,14 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
-                if (txb1 != null && txb2 != null && txb4 != null)
+                TextBox txb5 = row.FindControl("txbNew5") as TextBox;
+                if (txb1 != null && txb2 != null && txb4 != null && txb5 != null)
                 {
                     using (bonisoftEntities context = new bonisoftEntities())
                     {
                         chofer obj = new chofer();
                         obj.Nombre_completo = txb1.Text;
+                        obj.Telefono = txb5.Text;
                         obj.Empresa = txb2.Text;
                         obj.Comentarios = txb4.Text;
 
@@ -124,18 +126,18 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                         context.SaveChanges();
 
                         #region Guardar log 
-try 
-{
-                        int id = 1;
-                        chofer chofer = (chofer)context.choferes.OrderByDescending(p => p.Chofer_ID).FirstOrDefault();
-                        if (chofer != null)
+                        try
                         {
-                            id = chofer.Chofer_ID;
-                        }
+                            int id = 1;
+                            chofer chofer = (chofer)context.choferes.OrderByDescending(p => p.Chofer_ID).FirstOrDefault();
+                            if (chofer != null)
+                            {
+                                id = chofer.Chofer_ID;
+                            }
 
-                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                        string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Agrega chofer", chofer.GetType().Name + ": " + id, userID1, username);
+                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                            string username = HttpContext.Current.Session["UserName"].ToString();
+                            Global_Objects.Logs.AddUserLog("Agrega chofer", chofer.GetType().Name + ": " + id, userID1, username);
                         }
                         catch (Exception ex)
                         {
@@ -167,8 +169,8 @@ try
         protected void gridChoferes_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -177,24 +179,26 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
             TextBox txb4 = row.FindControl("txb4") as TextBox;
-            if (txb1 != null && txb2 != null && txb4 != null)
+            TextBox txb5 = row.FindControl("txb5") as TextBox;
+            if (txb1 != null && txb2 != null && txb4 != null && txb5 != null)
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
                     int chofer_ID = Convert.ToInt32(gridChoferes.DataKeys[e.RowIndex].Value);
                     chofer obj = context.choferes.First(x => x.Chofer_ID == chofer_ID);
                     obj.Nombre_completo = txb1.Text;
+                    obj.Telefono = txb5.Text;
                     obj.Empresa = txb2.Text;
                     obj.Comentarios = txb4.Text;
 
                     context.SaveChanges();
 
                     #region Guardar log 
-try 
-{
-                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                    string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Modifica chofer", obj.GetType().Name + ": " +obj.Chofer_ID, userID1, username);
+                    try
+                    {
+                        string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                        string username = HttpContext.Current.Session["UserName"].ToString();
+                        Global_Objects.Logs.AddUserLog("Modifica chofer", obj.GetType().Name + ": " + obj.Chofer_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -212,11 +216,10 @@ try
         protected void gridChoferes_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-
 
             int chofer_ID = Convert.ToInt32(gridChoferes.DataKeys[e.RowIndex].Value);
             using (bonisoftEntities context = new bonisoftEntities())
@@ -226,11 +229,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 context.SaveChanges();
 
                 #region Guardar log 
-try 
-{
-                string userID1 = HttpContext.Current.Session["UserID"].ToString();
-                string username = HttpContext.Current.Session["UserName"].ToString();
-                Global_Objects.Logs.AddUserLog("Borra chofer", obj.GetType().Name + ": " +obj.Chofer_ID, userID1, username);
+                try
+                {
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Global_Objects.Logs.AddUserLog("Borra chofer", obj.GetType().Name + ": " + obj.Chofer_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {

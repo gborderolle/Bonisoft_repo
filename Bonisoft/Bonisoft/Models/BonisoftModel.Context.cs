@@ -28,7 +28,6 @@ namespace Bonisoft.Models
         public virtual DbSet<camion> camiones { get; set; }
         public virtual DbSet<camion_ejes> camion_ejes { get; set; }
         public virtual DbSet<cargador> cargadores { get; set; }
-        public virtual DbSet<chofer> choferes { get; set; }
         public virtual DbSet<cliente> clientes { get; set; }
         public virtual DbSet<cliente_pagos> cliente_pagos { get; set; }
         public virtual DbSet<cuadrilla_descarga> cuadrilla_descarga { get; set; }
@@ -44,5 +43,7 @@ namespace Bonisoft.Models
         public virtual DbSet<usuario> usuarios { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<viaje> viajes { get; set; }
+        public virtual DbSet<proveedor_pagos> proveedor_pagos { get; set; }
+        public virtual DbSet<chofer> choferes { get; set; }
     }
 }
