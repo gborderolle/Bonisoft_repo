@@ -1,16 +1,18 @@
 ﻿/**** Local variables ****/
-var upClientes = '<%=upClientes.ClientID%>';
+var upProveedores = '<%=upProveedores.ProveedorID%>';
 var PAGO_ID_SELECTED;
-var CLIENTE_ID_SELECTED;
+var PROVEEDOR_ID_SELECTED;
 
 $(document).ready(function () {
     bindEvents();
 
-    // Seleccionar primer cliente
-    var first = $("#gridClientes tbody tr").first();
+    // Seleccionar primer proveedor
+    var first = $("#gridProveedores tbody tr").first();
     if (first != null) {
         first.click();
     }
+
+    $("#gridProveedores tbody tr").css("cursor", "pointer");
 });
 
 // attach the event binding function to every partial update
@@ -21,14 +23,14 @@ Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args
 
 function actualizarSaldos() {
 
-    var hdn_clientID = $("#hdn_clientID");
-    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
-        var clienteID_str = hdn_clientID.val();
+    var hdn_proveedorID = $("#hdn_proveedorID");
+    if (hdn_proveedorID !== null && hdn_proveedorID.val() !== null && hdn_proveedorID.val().length > 0) {
+        var proveedorID_str = hdn_proveedorID.val();
 
         $.ajax({
             type: "POST",
-            url: "Resumen_clientes.aspx/Update_Saldos",
-            data: '{clienteID_str: "' + clienteID_str + '"}',
+            url: "Resumen_proveedores.aspx/Update_Saldos",
+            data: '{proveedorID_str: "' + proveedorID_str + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
@@ -70,12 +72,12 @@ function ModificarPago_1(pagoID) {
         var pagoID_str = pagoID.toString();
 
         // Ajax call parameters
-        console.log("Ajax call: Resumen_clientes.aspx/ModificarPago_1. Params:");
+        console.log("Ajax call: Resumen_proveedores.aspx/ModificarPago_1. Params:");
         console.log("pagoID_str, type: " + type(pagoID_str) + ", value: " + pagoID_str);
 
         $.ajax({
             type: "POST",
-            url: "Resumen_clientes.aspx/ModificarPago_1",
+            url: "Resumen_proveedores.aspx/ModificarPago_1",
             data: '{pagoID_str: "' + pagoID_str + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -112,9 +114,9 @@ function ModificarPago_1(pagoID) {
 
 function ModificarPago_2() {
 
-    var hdn_clientID = $("#hdn_clientID");
-    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
-        var clienteID_str = hdn_clientID.val();
+    var hdn_proveedorID = $("#hdn_proveedorID");
+    if (hdn_proveedorID !== null && hdn_proveedorID.val() !== null && hdn_proveedorID.val().length > 0) {
+        var proveedorID_str = hdn_proveedorID.val();
 
         if (PAGO_ID_SELECTED != null && PAGO_ID_SELECTED != "") {
             var pagoID_str = PAGO_ID_SELECTED;
@@ -125,7 +127,7 @@ function ModificarPago_2() {
             var txbComentarios = $("#edit_txbComentarios").val();
 
             // Ajax call parameters
-            console.log("Ajax call: Resumen_clientes.aspx/ModificarPago_2. Params:");
+            console.log("Ajax call: Resumen_proveedores.aspx/ModificarPago_2. Params:");
             console.log("pagoID_str, type: " + type(pagoID_str) + ", value: " + pagoID_str);
             console.log("txbFecha, type: " + type(txbFecha) + ", value: " + txbFecha);
             console.log("ddlFormas, type: " + type(ddlFormas) + ", value: " + ddlFormas);
@@ -134,7 +136,7 @@ function ModificarPago_2() {
 
             $.ajax({
                 type: "POST",
-                url: "Resumen_clientes.aspx/ModificarPago_2",
+                url: "Resumen_proveedores.aspx/ModificarPago_2",
                 data: '{pagoID_str: "' + pagoID_str + '",fecha_str: "' + txbFecha + '",ddlFormas: "' + ddlFormas + '",monto_str: "' + txbMonto + '",comentarios_str: "' + txbComentarios + '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -165,7 +167,7 @@ function ModificarPago_2() {
                             $.modal.close();
 
                             // Actualizar datos
-                            var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
+                            var selected_row = $(".hiddencol").filter(':contains("' + proveedorID_str + '")');
                             if (selected_row !== null) {
                                 selected_row.click();
                             }
@@ -188,21 +190,21 @@ function ModificarPago_2() {
 
 function IngresarPago() {
 
-    var hdn_clientID = $("#hdn_clientID");
-    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
-        var clienteID_str = hdn_clientID.val();
+    var hdn_proveedorID = $("#hdn_proveedorID");
+    if (hdn_proveedorID !== null && hdn_proveedorID.val() !== null && hdn_proveedorID.val().length > 0) {
+        var proveedorID_str = hdn_proveedorID.val();
 
         var txbFecha = $("#add_txbFecha").val();
         var ddlFormas = $("#add_ddlFormas").val();
         var txbMonto = $("#add_txbMonto").val();
         var txbComentarios = $("#add_txbComentarios").val();
-        
+
         var monto = TryParseFloat(txbMonto, 0);
         if (monto > 0) {
 
             // Ajax call parameters
-            console.log("Ajax call: Resumen_clientes.aspx/IngresarPago. Params:");
-            console.log("clienteID_str, type: " + type(clienteID_str) + ", value: " + clienteID_str);
+            console.log("Ajax call: Resumen_proveedores.aspx/IngresarPago. Params:");
+            console.log("proveedorID_str, type: " + type(proveedorID_str) + ", value: " + proveedorID_str);
             console.log("txbFecha, type: " + type(txbFecha) + ", value: " + txbFecha);
             console.log("ddlFormas, type: " + type(ddlFormas) + ", value: " + ddlFormas);
             console.log("txbMonto, type: " + type(txbMonto) + ", value: " + txbMonto);
@@ -210,8 +212,8 @@ function IngresarPago() {
 
             $.ajax({
                 type: "POST",
-                url: "Resumen_clientes.aspx/IngresarPago",
-                data: '{clienteID_str: "' + clienteID_str + '",fecha_str: "' + txbFecha + '",ddlFormas: "' + ddlFormas + '",monto_str: "' + txbMonto + '",comentarios_str: "' + txbComentarios + '"}',
+                url: "Resumen_proveedores.aspx/IngresarPago",
+                data: '{proveedorID_str: "' + proveedorID_str + '",fecha_str: "' + txbFecha + '",ddlFormas: "' + ddlFormas + '",monto_str: "' + txbMonto + '",comentarios_str: "' + txbComentarios + '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
@@ -240,7 +242,7 @@ function IngresarPago() {
                             $.modal.close();
 
                             // Actualizar datos
-                            var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
+                            var selected_row = $(".hiddencol").filter(':contains("' + proveedorID_str + '")');
                             if (selected_row !== null) {
                                 selected_row.click();
                             }
@@ -266,26 +268,25 @@ function IngresarPago() {
 
 function bindEvents() {
     $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
-    $("#tabsClientes").tabs();
-    $("#gridClientes").tablesorter();
+    $("#tabsProveedores").tabs();
+    $("#gridProveedores").tablesorter();
     $("#gridViajes").tablesorter();
-    $("#gridViajesImprimir").tablesorter();
     $("#gridPagos").tablesorter();
 
     $("#gridPagos tr").click(function () {
         PAGO_ID_SELECTED = $(this).find(".hiddencol").html();
     });
 
-    $("#gridClientes tr").click(function () {
-        CLIENTE_ID_SELECTED = $(this).find(".hiddencol").html();
+    $("#gridProveedores tr").click(function () {
+        PROVEEDOR_ID_SELECTED = $(this).find(".hiddencol").html();
         //$(this).css("background-color", "black");
         //$(this).find("td").css("background-color", "black");
     });
-    
+
 
     // Source: https://www.youtube.com/watch?v=Sy2J7cUv0QM
-    var gridClientes = $("#gridClientes tbody tr");
-    $("#txbSearchClientes").quicksearch(gridClientes);
+    var gridProveedores = $("#gridProveedores tbody tr");
+    $("#txbSearchProveedores").quicksearch(gridProveedores);
 
     var gridViajes = $("#gridViajes tbody tr");
     $("#txbSearchViajes").quicksearch(gridViajes);
@@ -293,9 +294,9 @@ function bindEvents() {
     var gridPagos = $("#gridPagos tbody tr");
     $("#txbSearchPagos").quicksearch(gridPagos);
 
-    $('#txbSearchClientes').keydown(function () {
-        var count = "# " + $('#gridClientes tbody tr:visible').length;
-        $("#lblGridClientesCount").text(count);
+    $('#txbSearchProveedores').keydown(function () {
+        var count = "# " + $('#gridProveedores tbody tr:visible').length;
+        $("#lblgridProveedoresCount").text(count);
     });
 
     $('#txbSearchViajes').keydown(function () {
@@ -305,10 +306,10 @@ function bindEvents() {
 
 }
 
-function BorrarPago(clienteID) {
+function BorrarPago(proveedorID) {
 
-    if (clienteID > 0) {
-        var clienteID_str = clienteID.toString();
+    if (proveedorID > 0) {
+        var proveedorID_str = proveedorID.toString();
 
         $('#dialog p').text(hashMessages['Confirmacion']);
         $("#dialog").dialog({
@@ -325,7 +326,7 @@ function BorrarPago(clienteID) {
                         // Check existen mercaderías
                         $.ajax({
                             type: "POST",
-                            url: "Resumen_clientes.aspx/BorrarPago",
+                            url: "Resumen_proveedores.aspx/BorrarPago",
                             data: '{pagoID_str: "' + pagoID_str + '"}',
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
@@ -335,7 +336,7 @@ function BorrarPago(clienteID) {
                                     show_message_info('OK_PagoBorrado');
 
                                     // Actualizar datos
-                                    var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
+                                    var selected_row = $(".hiddencol").filter(':contains("' + proveedorID_str + '")');
                                     if (selected_row !== null) {
                                         selected_row.click();
                                     }
@@ -364,18 +365,18 @@ function BorrarPago(clienteID) {
 
 function ViajeFicticio_1() {
 
-    var hdn_clientID = $("#hdn_clientID");
-    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
-        var clienteID_str = hdn_clientID.val();
+    var hdn_proveedorID = $("#hdn_proveedorID");
+    if (hdn_proveedorID !== null && hdn_proveedorID.val() !== null && hdn_proveedorID.val().length > 0) {
+        var proveedorID_str = hdn_proveedorID.val();
 
         // Ajax call parameters
-        console.log("Ajax call: Resumen_clientes.aspx/ViajeFicticio_1. Params:");
-        console.log("clienteID_str, type: " + type(clienteID_str) + ", value: " + clienteID_str);
+        console.log("Ajax call: Resumen_proveedores.aspx/ViajeFicticio_1. Params:");
+        console.log("proveedorID_str, type: " + type(proveedorID_str) + ", value: " + proveedorID_str);
 
         $.ajax({
             type: "POST",
-            url: "Resumen_clientes.aspx/ViajeFicticio_1",
-            data: '{clienteID_str: "' + clienteID_str + '"}',
+            url: "Resumen_proveedores.aspx/ViajeFicticio_1",
+            data: '{proveedorID_str: "' + proveedorID_str + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
@@ -408,23 +409,23 @@ function ViajeFicticio_1() {
 
 function ViajeFicticio_2() {
 
-    var hdn_clientID = $("#hdn_clientID");
-    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
-        var clienteID_str = hdn_clientID.val();
+    var hdn_proveedorID = $("#hdn_proveedorID");
+    if (hdn_proveedorID !== null && hdn_proveedorID.val() !== null && hdn_proveedorID.val().length > 0) {
+        var proveedorID_str = hdn_proveedorID.val();
 
         var saldo = $("#modalAddFicticio_txbSaldo").val();
         var comentarios = $("#modalAddFicticio_txbComentarios").val();
 
         // Ajax call parameters
-        console.log("Ajax call: Resumen_clientes.aspx/ViajeFicticio_2. Params:");
+        console.log("Ajax call: Resumen_proveedores.aspx/ViajeFicticio_2. Params:");
         console.log("saldo, type: " + type(saldo) + ", value: " + saldo);
         console.log("comentarios, type: " + type(comentarios) + ", value: " + comentarios);
-        console.log("clienteID_str, type: " + type(clienteID_str) + ", value: " + clienteID_str);
+        console.log("proveedorID_str, type: " + type(proveedorID_str) + ", value: " + proveedorID_str);
 
         $.ajax({
             type: "POST",
-            url: "Resumen_clientes.aspx/ViajeFicticio_2",
-            data: '{saldo_str: "' + saldo + '",comentarios: "' + comentarios + '",clienteID_str: "' + clienteID_str + '"}',
+            url: "Resumen_proveedores.aspx/ViajeFicticio_2",
+            data: '{saldo_str: "' + saldo + '",comentarios: "' + comentarios + '",proveedorID_str: "' + proveedorID_str + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
@@ -435,7 +436,7 @@ function ViajeFicticio_2() {
                     $.modal.close();
 
                     // Actualizar datos
-                    var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
+                    var selected_row = $(".hiddencol").filter(':contains("' + proveedorID_str + '")');
                     if (selected_row !== null) {
                         selected_row.click();
                     }

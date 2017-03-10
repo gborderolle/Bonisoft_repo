@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="bonisoftEntities-Web.config Connection String" description="bonisoftEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.BonisoftModel.csdl|res://*/Models.BonisoftModel.ssdl|res://*/Models.BonisoftModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=localhost;initial catalog=bonisoftdb;persist security info=True;user id=boniadmin;password=123456;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\GBORDEROLLE-PC\\Documents\\GitHub\\Bonisoft_repo\\Bonisoft\\Bonisoft\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='bonisoftEntities']/@connectionString" />
-  </parameter>
-  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="DefaultConnection_ConnectionString" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\GBORDEROLLE-PC\\Documents\\GitHub\\Bonisoft_repo\\Bonisoft\\Bonisoft\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
-  </parameter>
-</parameters>

@@ -80,6 +80,7 @@
           <Property Name="Forma_de_pago_ID" Type="int" Nullable="false" />
           <Property Name="Monto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Viaje_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="cuadrilla_descarga">
           <Key>
@@ -338,18 +339,6 @@
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Nro_cuenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityType Name="cliente_pagos">
-          <Key>
-            <PropertyRef Name="Cliente_pagos_ID" />
-          </Key>
-          <Property Name="Cliente_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
-          <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
-          <Property Name="Monto" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
         <EntityType Name="cuadrilla_descarga">
           <Key>
             <PropertyRef Name="Cuadrilla_descarga_ID" />
@@ -465,7 +454,6 @@
           <EntitySet Name="camion_ejes" EntityType="Self.camion_ejes" />
           <EntitySet Name="cargadores" EntityType="Self.cargador" />
           <EntitySet Name="clientes" EntityType="Self.cliente" />
-          <EntitySet Name="cliente_pagos" EntityType="Self.cliente_pagos" />
           <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" />
           <EntitySet Name="descarga_viaje" EntityType="Self.descarga_viaje" />
           <EntitySet Name="fleteros" EntityType="Self.fletero" />
@@ -481,6 +469,7 @@
           <EntitySet Name="viajes" EntityType="bonisoftModel.viaje" />
           <EntitySet Name="proveedor_pagos" EntityType="bonisoftModel.proveedor_pagos" />
           <EntitySet Name="choferes" EntityType="bonisoftModel.chofer" />
+          <EntitySet Name="cliente_pagos" EntityType="bonisoftModel.cliente_pagos" />
         </EntityContainer>
         <EntityType Name="sysdiagram">
           <Key>
@@ -559,6 +548,19 @@
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="cliente_pagos">
+          <Key>
+            <PropertyRef Name="Cliente_pagos_ID" />
+          </Key>
+          <Property Name="Cliente_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -620,19 +622,6 @@
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Nro_cuenta" ColumnName="Nro_cuenta" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="cliente_pagos">
-            <EntityTypeMapping TypeName="bonisoftModel.cliente_pagos">
-              <MappingFragment StoreEntitySet="cliente_pagos">
-                <ScalarProperty Name="Cliente_pagos_ID" ColumnName="Cliente_pagos_ID" />
-                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
-                <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
-                <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />
-                <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
-                <ScalarProperty Name="Monto" ColumnName="Monto" />
-                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -834,6 +823,20 @@
                 <ScalarProperty Name="Empresa" ColumnName="Empresa" />
                 <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
                 <ScalarProperty Name="Chofer_ID" ColumnName="Chofer_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cliente_pagos">
+            <EntityTypeMapping TypeName="bonisoftModel.cliente_pagos">
+              <MappingFragment StoreEntitySet="cliente_pagos">
+                <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
+                <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />
+                <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
+                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+                <ScalarProperty Name="Cliente_pagos_ID" ColumnName="Cliente_pagos_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,4 +1,13 @@
-﻿.btnVolverAEnCurso{
+﻿#mercaderia-plus-btn{
+    color: #635e5e !important;
+}
+
+.modal-ddl{
+    width: 90% !important;
+    float: left;
+}
+
+.btnVolverAEnCurso{
     width: inherit !important;
 }
 

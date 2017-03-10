@@ -9,7 +9,6 @@
         <EntityTypeShape EntityType="bonisoftModel.camion_ejes" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.cargador" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.cliente" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bonisoftModel.cliente_pagos" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.cuadrilla_descarga" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.descarga_viaje" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.fletero" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
@@ -25,6 +24,7 @@
         <EntityTypeShape EntityType="bonisoftModel.viaje" Width="1.5" PointX="0.75" PointY="9.75" />
         <EntityTypeShape EntityType="bonisoftModel.proveedor_pagos" Width="1.5" PointX="7.375" PointY="12.75" />
         <EntityTypeShape EntityType="bonisoftModel.chofer" Width="1.5" PointX="11.375" PointY="7.75" />
+        <EntityTypeShape EntityType="bonisoftModel.cliente_pagos" Width="1.5" PointX="13.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

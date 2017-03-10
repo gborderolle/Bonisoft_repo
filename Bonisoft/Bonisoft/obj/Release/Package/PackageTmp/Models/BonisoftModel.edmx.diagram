@@ -8,7 +8,6 @@
         <EntityTypeShape EntityType="bonisoftModel.camion" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.camion_ejes" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.cargador" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bonisoftModel.chofer" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.cliente" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.cliente_pagos" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.cuadrilla_descarga" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
@@ -17,15 +16,15 @@
         <EntityTypeShape EntityType="bonisoftModel.forma_de_pago" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.lena_tipo" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.log" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bonisoftModel.mercaderia_comprada" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bonisoftModel.pesada" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.procesador" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.proveedor" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.proveedor_carga" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bonisoftModel.proveedor_mercaderia" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.roles_usuario" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bonisoftModel.usuario" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bonisoftModel.viaje" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bonisoftModel.sysdiagram" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="bonisoftModel.viaje" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="bonisoftModel.proveedor_pagos" Width="1.5" PointX="7.375" PointY="12.75" />
+        <EntityTypeShape EntityType="bonisoftModel.chofer" Width="1.5" PointX="11.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

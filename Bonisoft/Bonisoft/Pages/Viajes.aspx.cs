@@ -721,7 +721,7 @@ namespace Bonisoft.Pages
                             camion camion = (camion)context.camiones.FirstOrDefault(c => c.Camion_ID == id);
                             if (camion != null)
                             {
-                                string nombre = camion.ToString();
+                                string nombre = camion.Matricula_camion;
                                 lbl.Text = nombre;
                                 lbl.CommandArgument = "camiones," + camion.Marca;
                             }
@@ -826,31 +826,6 @@ namespace Bonisoft.Pages
                     }
                 }
             }
-
-            //// Pesada destino ----------------------------------------------------
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    Label lbl = e.Row.FindControl("lbl9") as Label;
-            //    if (lbl != null)
-            //    {
-            //        lbl.Text = string.Empty; using (bonisoftEntities context = new bonisoftEntities())
-            //        {
-            //            viaje viaje = (viaje)(e.Row.DataItem);
-            //            if (viaje != null)
-            //            {
-            //                int id = viaje.Pesada_ID;
-            //                pesada pesada = (pesada)context.pesadas.FirstOrDefault(c => c.pesada_ID == id);
-            //                if (pesada != null)
-            //                {
-            //                    lbl.Text = pesada.Destino_lugar + ": " + pesada.Destino_peso_neto;
-            //                    //string nombre = pesada.ToString();
-            //                    //lbl.Text = nombre;
-            //                    //lbl.CommandArgument = "pesadas," + pesada.Nombre_balanza;
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
 
             Label lbl1 = e.Row.FindControl("lbl11") as Label;
             if (lbl1 != null)
@@ -1294,7 +1269,6 @@ namespace Bonisoft.Pages
             System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-
 
             int viaje_ID = Convert.ToInt32(gridViajes.DataKeys[e.RowIndex].Value);
             using (bonisoftEntities context = new bonisoftEntities())
@@ -2161,6 +2135,19 @@ namespace Bonisoft.Pages
                                 viaje.precio_descarga = precioDescarga;
                                 viaje.IVA = IVA;
 
+                                decimal importe_viaje = viaje.Pesada_Destino_peso_neto * viaje.Mercaderia_Precio_xTonelada_compra;
+                                viaje.Importe_viaje = importe_viaje;
+
+                                #region Edit pago cliente
+
+                                cliente_pagos cliente_pagos = (cliente_pagos)context.cliente_pagos.FirstOrDefault(v => v.Viaje_ID == viajeID_value);
+                                if (cliente_pagos != null)
+                                {
+                                    cliente_pagos.Monto = importe_viaje;
+                                }
+
+                                #endregion
+
                                 context.SaveChanges();
 
                                 #region Guardar log
@@ -2924,12 +2911,27 @@ namespace Bonisoft.Pages
                 #region Guardar log
                 try
                 {
-                    int id = 1;
+                    int id = 0;
                     viaje viaje = (viaje)context.viajes.OrderByDescending(p => p.Viaje_ID).FirstOrDefault();
                     if (viaje != null)
                     {
                         id = viaje.Viaje_ID;
                     }
+
+                    #region Create pago cliente
+
+                    cliente_pagos cliente_pagos = new cliente_pagos();
+                    cliente_pagos.Viaje_ID = id;
+                    cliente_pagos.Fecha_pago = date1;
+                    cliente_pagos.Fecha_registro = DateTime.Now;
+                    cliente_pagos.Forma_de_pago_ID = 0;
+                    cliente_pagos.Monto = 0;
+                    cliente_pagos.Comentarios = "Viaje";
+                    context.cliente_pagos.Add(cliente_pagos);
+
+                    context.SaveChanges();
+
+                    #endregion
 
                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                     string username = HttpContext.Current.Session["UserName"].ToString();

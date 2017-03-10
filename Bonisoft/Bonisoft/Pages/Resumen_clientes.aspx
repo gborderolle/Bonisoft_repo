@@ -93,6 +93,7 @@
                         <ul>
                             <li><a href="#tabsClientes_1" class="tabsClientes">Pagos del cliente</a></li>
                             <li><a href="#tabsClientes_2" class="tabsClientes">Viajes del cliente</a></li>
+                            <li><a href="#tabsClientes_3" class="tabsClientes">Planilla a imprimir</a></li>
                         </ul>
 
                         <!-- Tab Viajes BEGIN -->
@@ -263,6 +264,78 @@
 
 
                         </div>
+
+
+
+                         <div id="tabsClientes_3">
+
+
+                            <div style="overflow: auto;">
+
+                                <asp:UpdatePanel ID="upViajesImprimir" runat="server">
+                                    <ContentTemplate>
+
+                                         <div class="row">
+                                            <div class="col-md-2 pull-right">
+                                                <asp:Button runat="server" ID="btnPrint" CssClass="btn btn-sm btn-warning pull-right" OnClick="PrintAllPages" Text="Imprimir"/>
+                                                <%--<a id="btnPrint" role="button" class="btn btn-sm btn-warning pull-right">Imprimir</a>--%>
+                                            </div>
+                                        </div>
+
+                                        <asp:Label ID="gridViajesImprimirlblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
+                                        <asp:GridView ID="gridViajesImprimir" runat="server" ClientIDMode="Static" HorizontalAlign="Left" HeaderStyle-VerticalAlign="Middle"
+                                            AutoGenerateColumns="false" CssClass="table table-hover table-striped" AllowPaging="true" PageSize="30"
+                                            DataKeyNames="Viaje_ID"
+                                            OnRowDataBound="gridViajesImprimir_RowDataBound"
+                                            OnRowCommand="gridViajesImprimir_RowCommand"
+                                            OnPageIndexChanging="gridViajesImprimir_PageIndexChanging">
+
+                                            <HeaderStyle VerticalAlign="Middle" />
+                                            <RowStyle Font-Size="Smaller" />
+
+                                            <Columns>
+                                                <asp:BoundField DataField="Cliente_ID" HeaderText="ID" HtmlEncode="false" Visible="false"/>
+                                                <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" Visible="false"/>
+                                                <asp:TemplateField HeaderText="FECHA">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblFechaPartida" runat="server" CommandName="View" Text='<%# Eval("Fecha_pago", "{0:dd-MM-yyyy}") %>' />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="MERCADERÍA">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblMercaderia" runat="server" CommandName="View" Text='<%# Eval("Mercaderia_Lena_tipo_ID") %>' />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="KILOS">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblKilos" runat="server" CommandName="View" Text='<%# Eval("Pesada_Destino_peso_neto") %>' />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="VALOR">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblValor" runat="server" CommandName="View" Text='<%# Eval("Mercaderia_Precio_xTonelada_compra") %>' />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <%--<asp:BoundField DataField="Pesada_Destino_peso_neto" HeaderText="KILOS" HtmlEncode="False" />--%>
+                                                <%--<asp:BoundField DataField="Mercaderia_Precio_xTonelada_compra" HeaderText="VALOR" DataFormatString="{0:C0}" HtmlEncode="False" />--%>
+                                                <asp:BoundField DataField="Comentarios" HeaderText="IMPORTE" DataFormatString="{0:C0}" HtmlEncode="False" />
+                                                <asp:BoundField DataField="Monto" HeaderText="PAGO" DataFormatString="{0:C0}" HtmlEncode="False" />
+                                                <asp:BoundField DataField="Mercaderia_Precio_xTonelada_venta" HeaderText="SALDO" DataFormatString="{0:C0}" HtmlEncode="False" />
+                                            </Columns>
+                                        </asp:GridView>
+                                        <asp:Label ID="lblGridViajesImprimirCount" runat="server" ClientIDMode="Static" Text="# 0" CssClass="lblResultados label label-info"></asp:Label>
+
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+
+                            </div>
+
+
+
+                        </div>
+
+
                     </div>
 
                 </div>

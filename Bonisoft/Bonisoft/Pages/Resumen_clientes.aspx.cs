@@ -11,6 +11,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Services;
 using Bonisoft.Models;
+using System.IO;
+using System.Text;
 
 namespace Bonisoft.Pages
 {
@@ -74,7 +76,6 @@ namespace Bonisoft.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             gridViajes.PageIndex = e.NewPageIndex;
 
             string client_ID_str = hdn_clientID.Value;
@@ -90,6 +91,33 @@ namespace Bonisoft.Pages
                 if (cliente_ID > 0)
                 {
                     BindGridViajes(cliente_ID);
+                }
+            }
+        }
+
+        protected void gridViajesImprimir_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            gridViajesImprimir.PageIndex = e.NewPageIndex;
+
+            string client_ID_str = hdn_clientID.Value;
+            if (!string.IsNullOrWhiteSpace(client_ID_str))
+            {
+                int cliente_ID = 0;
+                if (!int.TryParse(client_ID_str, out cliente_ID))
+                {
+                    cliente_ID = 0;
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, client_ID_str);
+                }
+
+                if (cliente_ID > 0)
+                {
+                    BindGridViajesImprimir(cliente_ID);
                 }
             }
         }
@@ -314,6 +342,106 @@ namespace Bonisoft.Pages
             }
         }
 
+        protected void gridViajesImprimir_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            #region DDL Default values
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                // Mercadería ----------------------------------------------------
+                Label lbl = e.Row.FindControl("lblMercaderia") as Label;
+                if (lbl != null)
+                {
+                    lbl.Text = string.Empty;
+                    using (bonisoftEntities context = new bonisoftEntities())
+                    {
+                        cliente_pagos cliente_pagos = (cliente_pagos)(e.Row.DataItem);
+                        if (cliente_pagos != null)
+                        {
+                            int id_v = cliente_pagos.Viaje_ID;
+                            viaje viaje = (viaje)context.viajes.FirstOrDefault(c => c.Viaje_ID == id_v);
+                            if (viaje != null)
+                            {
+                                int id_l = viaje.Mercaderia_Lena_tipo_ID;
+                                lena_tipo lena_tipo = (lena_tipo)context.lena_tipo.FirstOrDefault(c => c.Lena_tipo_ID == id_l);
+                                if (lena_tipo != null)
+                                {
+                                    string nombre = lena_tipo.Tipo;
+                                    lbl.Text = nombre;
+                                }
+                                    
+                            }
+                        }
+                    }
+                }
+
+                // Pesada ----------------------------------------------------
+                lbl = e.Row.FindControl("lblKilos") as Label;
+                if (lbl != null)
+                {
+                    lbl.Text = string.Empty;
+                    using (bonisoftEntities context = new bonisoftEntities())
+                    {
+                        cliente_pagos cliente_pagos = (cliente_pagos)(e.Row.DataItem);
+                        if (cliente_pagos != null)
+                        {
+                            int id_v = cliente_pagos.Viaje_ID;
+                            viaje viaje = (viaje)context.viajes.FirstOrDefault(c => c.Viaje_ID == id_v);
+                            if (viaje != null)
+                            {
+                                decimal peso_neto = viaje.Pesada_Destino_peso_neto;
+                                lbl.Text = peso_neto.ToString();
+                            }
+                        }
+                    }
+                }
+
+                // Valor ----------------------------------------------------
+                lbl = e.Row.FindControl("lblValor") as Label;
+                if (lbl != null)
+                {
+                    lbl.Text = string.Empty;
+                    using (bonisoftEntities context = new bonisoftEntities())
+                    {
+                        cliente_pagos cliente_pagos = (cliente_pagos)(e.Row.DataItem);
+                        if (cliente_pagos != null)
+                        {
+                            int id_v = cliente_pagos.Viaje_ID;
+                            viaje viaje = (viaje)context.viajes.FirstOrDefault(c => c.Viaje_ID == id_v);
+                            if (viaje != null)
+                            {
+                                decimal peso_neto = viaje.Mercaderia_Precio_xTonelada_compra;
+                                lbl.Text = peso_neto.ToString();
+                            }
+                        }
+                    }
+                }
+
+            }
+            #endregion
+        }
+
+        protected void gridViajesImprimir_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandArgument != null)
+            {
+
+            }
+            else if (e.CommandName.Equals("View"))
+            {
+                string[] values = e.CommandArgument.ToString().Split(new char[] { ',' });
+                if (values.Length > 1)
+                {
+                    string tabla = values[0];
+                    string dato = values[1];
+                    if (!string.IsNullOrWhiteSpace(tabla) && !string.IsNullOrWhiteSpace(dato))
+                    {
+                        Response.Redirect("Listados.aspx?tabla=" + tabla + "&dato=" + dato);
+                    }
+                }
+            }
+        }
+
         protected void gridPagos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             #region DDL Default values
@@ -417,6 +545,7 @@ namespace Bonisoft.Pages
                                     lblClientName_1.Text = cliente.Nombre;
 
                                     BindGridViajes(cliente_ID);
+                                    BindGridViajesImprimir(cliente_ID);
                                     BindGridPagos(cliente_ID);
 
                                     hdn_clientID.Value = cliente_ID_str;
@@ -531,6 +660,50 @@ namespace Bonisoft.Pages
             }
         }
 
+        private void BindGridViajesImprimir(int cliente_ID)
+        {
+            if (cliente_ID > 0)
+            {
+                using (bonisoftEntities context = new bonisoftEntities())
+                {
+                    var elements = context.cliente_pagos.Where(v => v.Cliente_ID == cliente_ID).ToList();
+                    if (elements.Count() > 0)
+                    {
+                        gridViajesImprimir.DataSource = elements;
+                        gridViajesImprimir.DataBind();
+
+                        gridViajesImprimir.UseAccessibleHeader = true;
+                        gridViajesImprimir.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+                        lblGridViajesImprimirCount.Text = "# " + elements.Count();
+                    }
+                    else
+                    {
+                        var obj = new List<viaje>();
+                        obj.Add(new viaje());
+
+                        /* Grid Viajes */
+
+                        // Bind the DataTable which contain a blank row to the GridView
+                        gridViajesImprimir.DataSource = obj;
+                        gridViajesImprimir.DataBind();
+                        int columnsCount = gridViajesImprimir.Columns.Count;
+                        gridViajesImprimir.Rows[0].Cells.Clear();// clear all the cells in the row
+                        gridViajesImprimir.Rows[0].Cells.Add(new TableCell()); //add a new blank cell
+                        gridViajesImprimir.Rows[0].Cells[0].ColumnSpan = columnsCount; //set the column span to the new added cell
+
+                        //You can set the styles here
+                        gridViajesImprimir.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+                        gridViajesImprimir.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
+                        gridViajesImprimir.Rows[0].Cells[0].Font.Bold = true;
+
+                        //set No Results found to the new added cell
+                        gridViajesImprimir.Rows[0].Cells[0].Text = "No hay registros";
+                    }
+                }
+            }
+        }
+
         private void BindGridPagos(int cliente_ID)
         {
             if (cliente_ID > 0)
@@ -614,6 +787,60 @@ namespace Bonisoft.Pages
                 }
             }
         }
+
+        protected void PrintCurrentPage(object sender, EventArgs e)
+        {
+            gridViajesImprimir.PagerSettings.Visible = false;
+            gridViajesImprimir.DataBind();
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+            gridViajesImprimir.RenderControl(hw);
+            string gridHTML = sw.ToString().Replace("\"", "'").Replace(System.Environment.NewLine, "");
+            System.Text.StringBuilder sb = new StringBuilder();
+            sb.Append("<script type = 'text/javascript'>");
+            sb.Append("window.onload = new function(){");
+            sb.Append("var printWin = window.open('', '', 'left=0");
+            sb.Append(",top=0,width=1000,height=600,status=0');");
+            sb.Append("printWin.document.write(\"");
+            sb.Append(gridHTML);
+            sb.Append("\");");
+            sb.Append("printWin.document.close();");
+            sb.Append("printWin.focus();");
+            sb.Append("printWin.print();");
+            sb.Append("printWin.close();};");
+            sb.Append("</script>");
+            ClientScript.RegisterStartupScript(this.GetType(), "GridPrint", sb.ToString());
+            gridViajesImprimir.PagerSettings.Visible = true;
+            gridViajesImprimir.DataBind();
+        }
+
+        protected void PrintAllPages(object sender, EventArgs e)
+        {
+            gridViajesImprimir.AllowPaging = false;
+            gridViajesImprimir.DataBind();
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+            gridViajesImprimir.RenderControl(hw);
+            string gridHTML = sw.ToString().Replace("\"", "'").Replace(System.Environment.NewLine, "");
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<script type = 'text/javascript'>");
+            sb.Append("window.onload = new function(){");
+            sb.Append("var printWin = window.open('', '', 'left=0");
+            sb.Append(",top=0,width=1000,height=600,status=0');");
+            sb.Append("printWin.document.write(\"");
+            sb.Append(gridHTML);
+            sb.Append("\");");
+            sb.Append("printWin.document.close();");
+            sb.Append("printWin.focus();");
+            sb.Append("printWin.print();");
+            sb.Append("printWin.close();};");
+            sb.Append("</script>");
+            ClientScript.RegisterStartupScript(this.GetType(), "GridPrint", sb.ToString());
+            gridViajesImprimir.AllowPaging = true;
+            gridViajesImprimir.DataBind();
+        }
+
+
 
         #endregion General methods
 

@@ -1194,9 +1194,7 @@ function FinDelViaje() {
 
 function GuardarPrecioVenta() {
 
-    guardarAmbasPesad
-
-    as();
+    guardarAmbasPesadas();
     calcularPrecioVenta();
 
     var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID").val();

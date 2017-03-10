@@ -75,6 +75,7 @@
     <Property Name="Forma_de_pago_ID" Type="int" Nullable="false" />
     <Property Name="Monto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Viaje_ID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="cuadrilla_descarga">
     <Key>
