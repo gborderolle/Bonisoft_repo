@@ -107,13 +107,14 @@
                                         <asp:HiddenField ID="hdn_clientID" runat="server" ClientIDMode="Static" />
 
                                         <div class="row">
-                                            <h3 style="margin-left:15px;"> <asp:Label Text="[Nombre cliente]" runat="server" ID="lblClientName_1" class="label label- label-default" /></h3>
+                                            <h3 style="margin-left: 15px;">
+                                                <asp:Label Text="[Nombre cliente]" runat="server" ID="lblClientName_1" class="label label- label-default" /></h3>
 
                                             <div class="col-md-2 pull-right">
                                                 <%--<a href="#addFicticioModal" rel="modal:open" class="btn btn-warning pull-right">Saldo anterior</a>--%>
-                                            
+
                                                 <a id="btnAddFicticioModal" role="button" onclick='ViajeFicticio_1();' class="btn btn-sm btn-warning pull-right">Saldo anterior</a>
-                                            
+
                                             </div>
                                         </div>
 
@@ -244,7 +245,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:BoundField DataField="Carga" HeaderText="Lugar carga" />
-                                                
+
                                                 <asp:BoundField DataField="Pesada_Origen_lugar" HeaderText="Pesada origen" HtmlEncode="False" />
                                                 <asp:BoundField DataField="Pesada_Destino_lugar" HeaderText="Pesada destino" HtmlEncode="False" />
 
@@ -267,7 +268,7 @@
 
 
 
-                         <div id="tabsClientes_3">
+                        <div id="tabsClientes_3">
 
 
                             <div style="overflow: auto;">
@@ -275,9 +276,9 @@
                                 <asp:UpdatePanel ID="upViajesImprimir" runat="server">
                                     <ContentTemplate>
 
-                                         <div class="row">
+                                        <div class="row">
                                             <div class="col-md-2 pull-right">
-                                                <asp:Button runat="server" ID="btnPrint" CssClass="btn btn-sm btn-warning pull-right" OnClick="PrintAllPages" Text="Imprimir"/>
+                                                <asp:Button runat="server" ID="btnPrint" CssClass="btn btn-sm btn-warning pull-right" OnClick="PrintAllPages" Text="Imprimir" />
                                                 <%--<a id="btnPrint" role="button" class="btn btn-sm btn-warning pull-right">Imprimir</a>--%>
                                             </div>
                                         </div>
@@ -294,34 +295,43 @@
                                             <RowStyle Font-Size="Smaller" />
 
                                             <Columns>
-                                                <asp:BoundField DataField="Cliente_ID" HeaderText="ID" HtmlEncode="false" Visible="false"/>
-                                                <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" Visible="false"/>
+                                                <asp:BoundField DataField="Cliente_ID" HeaderText="ID" HtmlEncode="false" Visible="false" />
+                                                <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" Visible="false" />
                                                 <asp:TemplateField HeaderText="FECHA">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblFechaPartida" runat="server" CommandName="View" Text='<%# Eval("Fecha_pago", "{0:dd-MM-yyyy}") %>' />
+                                                        <asp:Label ID="lblFechaPago" runat="server" CommandName="View" Text='<%# Eval("Fecha_pago", "{0:dd-MM-yyyy}") %>' />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-
                                                 <asp:TemplateField HeaderText="MERCADERÍA">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblMercaderia" runat="server" CommandName="View" Text='<%# Eval("Mercaderia_Lena_tipo_ID") %>' />
+                                                        <asp:Label ID="lblMercaderia" runat="server" CommandName="View" Text='<%# Eval("Comentarios") %>' />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="KILOS">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblKilos" runat="server" CommandName="View" Text='<%# Eval("Pesada_Destino_peso_neto") %>' />
+                                                        <asp:Label ID="lblKilos" runat="server" CommandName="View" Text='<%# Eval("Comentarios") %>' />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="VALOR">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblValor" runat="server" CommandName="View" Text='<%# Eval("Mercaderia_Precio_xTonelada_compra") %>' />
+                                                        <asp:Label ID="lblValor" runat="server" CommandName="View" Text='<%# Eval("Comentarios") %>' />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="IMPORTE">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblImporte" runat="server" CommandName="View" Text='<%# Eval("Comentarios") %>' />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <%--<asp:BoundField DataField="Pesada_Destino_peso_neto" HeaderText="KILOS" HtmlEncode="False" />--%>
                                                 <%--<asp:BoundField DataField="Mercaderia_Precio_xTonelada_compra" HeaderText="VALOR" DataFormatString="{0:C0}" HtmlEncode="False" />--%>
-                                                <asp:BoundField DataField="Comentarios" HeaderText="IMPORTE" DataFormatString="{0:C0}" HtmlEncode="False" />
+                                                <%--<asp:BoundField DataField="Comentarios" HeaderText="IMPORTE" DataFormatString="{0:C0}" HtmlEncode="False" />--%>
                                                 <asp:BoundField DataField="Monto" HeaderText="PAGO" DataFormatString="{0:C0}" HtmlEncode="False" />
-                                                <asp:BoundField DataField="Mercaderia_Precio_xTonelada_venta" HeaderText="SALDO" DataFormatString="{0:C0}" HtmlEncode="False" />
+                                                <%--<asp:BoundField DataField="Mercaderia_Precio_xTonelada_venta" HeaderText="SALDO" DataFormatString="{0:C0}" HtmlEncode="False" />--%>
+                                                <asp:TemplateField HeaderText="SALDO">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblSaldo" runat="server" CommandName="View" Text='<%# Eval("Comentarios") %>' />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
                                         </asp:GridView>
                                         <asp:Label ID="lblGridViajesImprimirCount" runat="server" ClientIDMode="Static" Text="# 0" CssClass="lblResultados label label-info"></asp:Label>
@@ -365,7 +375,10 @@
                     <table class="table">
                         <tr>
                             <td>Fecha de pago: 
-                            <asp:TextBox ID="add_txbFecha" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" DataFormatString="{0:dd-MM-yyyy}" TabIndex="1"></asp:TextBox>
+                            <asp:TextBox ID="add_txbFecha" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control datepicker" MaxLength="30" DataFormatString="{0:dd-MM-yyyy}" TabIndex="1"></asp:TextBox>
+                                <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="addToday(1)">
+                                    <i class="fa fa-calendar-check-o" title="Hoy"></i>
+                                </button>
                             </td>
                         </tr>
                         <tr>

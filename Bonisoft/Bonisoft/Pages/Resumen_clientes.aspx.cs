@@ -375,7 +375,7 @@ namespace Bonisoft.Pages
                     }
                 }
 
-                // Pesada ----------------------------------------------------
+                // Kilos ----------------------------------------------------
                 lbl = e.Row.FindControl("lblKilos") as Label;
                 if (lbl != null)
                 {
@@ -411,6 +411,26 @@ namespace Bonisoft.Pages
                             if (viaje != null)
                             {
                                 decimal peso_neto = viaje.Mercaderia_Precio_xTonelada_compra;
+                                lbl.Text = peso_neto.ToString();
+                            }
+                        }
+                    }
+                }
+                // Importe ----------------------------------------------------
+                lbl = e.Row.FindControl("lblImporte") as Label;
+                if (lbl != null)
+                {
+                    lbl.Text = string.Empty;
+                    using (bonisoftEntities context = new bonisoftEntities())
+                    {
+                        cliente_pagos cliente_pagos = (cliente_pagos)(e.Row.DataItem);
+                        if (cliente_pagos != null)
+                        {
+                            int id_v = cliente_pagos.Viaje_ID;
+                            viaje viaje = (viaje)context.viajes.FirstOrDefault(c => c.Viaje_ID == id_v);
+                            if (viaje != null)
+                            {
+                                decimal peso_neto = viaje.precio_compra;
                                 lbl.Text = peso_neto.ToString();
                             }
                         }
@@ -679,8 +699,8 @@ namespace Bonisoft.Pages
                     }
                     else
                     {
-                        var obj = new List<viaje>();
-                        obj.Add(new viaje());
+                        var obj = new List<cliente_pagos>();
+                        obj.Add(new cliente_pagos());
 
                         /* Grid Viajes */
 

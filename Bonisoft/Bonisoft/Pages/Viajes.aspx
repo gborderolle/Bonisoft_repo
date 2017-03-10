@@ -26,6 +26,21 @@
 
     <script type="text/javascript">
 
+        function addToday(tipo) {
+            var date = moment(new Date()).format("DD-MM-YYYY");
+            //var date = $.datepicker.formatDate('dd/mm/yy', new Date());
+            switch (tipo) {
+                case 1: {
+                    $("#modalAdd_txbFecha1").val(date);
+                    break;
+                }
+                case 2: {
+                    $("#modalAdd_txbFecha2").val(date);
+                    break;
+                }
+            }
+        }
+
         function newOpcionDDL(tipo) {
             var valor = prompt("Ingrese el valor a agregar", "");
             if (valor !== null && valor !== "") {
@@ -179,7 +194,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Chofer">
+                                        <asp:TemplateField HeaderText="Chofer">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lblChofer" runat="server" CommandName="View" Text='<%# Eval("Chofer_ID") %>' />
                                             </ItemTemplate>
@@ -231,10 +246,16 @@
                                         <table class="table">
                                             <tr>
                                                 <td>Fecha de inicio: 
-                                                <asp:TextBox ID="modalAdd_txbFecha1" runat="server" ClientIDMode="Static" CssClass="form-control datepicker with_border" MaxLength="30" TabIndex="1"></asp:TextBox>
+                                                <asp:TextBox ID="modalAdd_txbFecha1" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control datepicker with_border" MaxLength="30" TabIndex="1"></asp:TextBox>
+                                                    <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="addToday(1)">
+                                                        <i class="fa fa-calendar-check-o" title="Hoy"></i>
+                                                    </button>
                                                 </td>
                                                 <td>Fecha de llegada (tentativa): 
-                                                <asp:TextBox ID="modalAdd_txbFecha2" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" TabIndex="2"></asp:TextBox>
+                                                <asp:TextBox ID="modalAdd_txbFecha2" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control datepicker" MaxLength="30" TabIndex="2"></asp:TextBox>
+                                                    <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="addToday(2)">
+                                                        <i class="fa fa-calendar-check-o" title="Hoy"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <tr>

@@ -2020,8 +2020,6 @@ namespace Bonisoft.Pages
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-
-
                     viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                     if (viaje != null)
                     {
@@ -2138,15 +2136,15 @@ namespace Bonisoft.Pages
                                 decimal importe_viaje = viaje.Pesada_Destino_peso_neto * viaje.Mercaderia_Precio_xTonelada_compra;
                                 viaje.Importe_viaje = importe_viaje;
 
-                                #region Edit pago cliente
+                                //#region Edit pago cliente
 
-                                cliente_pagos cliente_pagos = (cliente_pagos)context.cliente_pagos.FirstOrDefault(v => v.Viaje_ID == viajeID_value);
-                                if (cliente_pagos != null)
-                                {
-                                    cliente_pagos.Monto = importe_viaje;
-                                }
+                                //cliente_pagos cliente_pagos = (cliente_pagos)context.cliente_pagos.FirstOrDefault(v => v.Viaje_ID == viajeID_value);
+                                //if (cliente_pagos != null)
+                                //{
+                                //    cliente_pagos.Monto = importe_viaje;
+                                //}
 
-                                #endregion
+                                //#endregion
 
                                 context.SaveChanges();
 
@@ -2586,6 +2584,19 @@ namespace Bonisoft.Pages
 
                                         context.viajes.Remove(viaje);
 
+                                        #region Borrar cliente pago
+
+                                        List<cliente_pagos> lista_cliente_pagos = (List<cliente_pagos>)context.cliente_pagos.Where(v => v.Viaje_ID == viaje_ID).ToList();
+                                        if (lista_cliente_pagos != null && lista_cliente_pagos.Count > 0)
+                                        {
+                                            foreach (cliente_pagos pago in lista_cliente_pagos)
+                                            {
+                                                context.cliente_pagos.Remove(pago);
+                                            }
+                                        }
+
+                                        #endregion Borrar cliente pago
+
                                         context.SaveChanges();
 
                                         #region Guardar log
@@ -2831,6 +2842,7 @@ namespace Bonisoft.Pages
                 }
                 new_viaje.Proveedor_ID = ddl;
 
+                int cliente_ID = 0;
                 ddl = 0;
                 if (!int.TryParse(cliente, out ddl))
                 {
@@ -2838,6 +2850,7 @@ namespace Bonisoft.Pages
                     Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, cliente);
                 }
                 new_viaje.Cliente_ID = ddl;
+                cliente_ID = ddl;
 
                 ddl = 0;
                 if (!int.TryParse(cargador, out ddl))
@@ -2922,11 +2935,12 @@ namespace Bonisoft.Pages
 
                     cliente_pagos cliente_pagos = new cliente_pagos();
                     cliente_pagos.Viaje_ID = id;
+                    cliente_pagos.Cliente_ID = cliente_ID;
                     cliente_pagos.Fecha_pago = date1;
                     cliente_pagos.Fecha_registro = DateTime.Now;
                     cliente_pagos.Forma_de_pago_ID = 0;
                     cliente_pagos.Monto = 0;
-                    cliente_pagos.Comentarios = "Viaje";
+                    //cliente_pagos.Comentarios = "Viaje";
                     context.cliente_pagos.Add(cliente_pagos);
 
                     context.SaveChanges();

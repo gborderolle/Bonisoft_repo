@@ -21,7 +21,6 @@ C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Bonisoft.p
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Antlr3.Runtime.dll
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\AspNet.ScriptManager.bootstrap.dll
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\AspNet.ScriptManager.jQuery.dll
-C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\EditableDropDownList.dll
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\EntityFramework.dll
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\EntityFramework.SqlServer.dll
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.AI.Agent.Intercept.dll
@@ -98,7 +97,6 @@ C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.OAuth.xml
-C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Debug\Bonisoft.csprojResolveAssemblyReference.cache
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Debug\Bonisoft.dll
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Debug\Bonisoft.pdb
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\ApplicationInsights.config

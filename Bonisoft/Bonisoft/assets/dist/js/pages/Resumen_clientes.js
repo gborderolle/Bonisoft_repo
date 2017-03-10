@@ -19,6 +19,17 @@ Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args
     actualizarSaldos();
 });
 
+function addToday(tipo) {
+    var date = moment(new Date()).format("DD-MM-YYYY");
+    //var date = $.datepicker.formatDate('dd/mm/yy', new Date());
+    switch (tipo) {
+        case 1: {
+            $("#add_txbFecha").val(date);
+            break;
+        }
+    }
+}
+
 function actualizarSaldos() {
 
     var hdn_clientID = $("#hdn_clientID");
