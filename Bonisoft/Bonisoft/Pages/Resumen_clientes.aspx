@@ -107,8 +107,12 @@
                                         <asp:HiddenField ID="hdn_clientID" runat="server" ClientIDMode="Static" />
 
                                         <div class="row">
-                                            <h3 style="margin-left: 15px;">
-                                                <asp:Label Text="[Nombre cliente]" runat="server" ID="lblClientName_1" class="label label- label-default" /></h3>
+                                            <%--<h3 style="margin-left: 15px;">
+                                                <asp:Label Text="[Nombre cliente]" runat="server" ID="lblClientName_1" class="label label- label-default" /></h3>--%>
+                                            <div class="col-md-10 pull-left">
+                                                <h2>
+                                                    <asp:Label Text="[Nombre cliente]" runat="server" ID="lblClientName_1" /></h2>
+                                            </div>
 
                                             <div class="col-md-2 pull-right">
                                                 <%--<a href="#addFicticioModal" rel="modal:open" class="btn btn-warning pull-right">Saldo anterior</a>--%>
@@ -191,6 +195,10 @@
                                     <ContentTemplate>
 
                                         <div class="row" style="margin-bottom: 10px;">
+                                            <div class="col-md-8 pull-left">
+                                                <h2>Datos de los viajes</h2>
+                                            </div>
+
                                             <div class="col-md-4 pull-right">
                                                 <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
                                                     <div class="input-group ">
@@ -266,20 +274,33 @@
 
                         </div>
 
-
-
                         <div id="tabsClientes_3">
-
-
                             <div style="overflow: auto;">
-
                                 <asp:UpdatePanel ID="upViajesImprimir" runat="server">
                                     <ContentTemplate>
 
                                         <div class="row">
+                                            <div class="col-md-6 pull-left" style="margin-right: 10px; margin-bottom: 10px;">
+                                                <div class="input-group">
+                                                    <input type="text" id="txbFiltro1" class="form-control datepicker" placeholder="Desde" runat="server" style="width: 120px;">
+                                                    <span class="input-group-btn"></span>
+
+                                                    <input type="text" id="txbFiltro2" class="form-control datepicker" placeholder="Hasta" runat="server" style="width: 120px;">
+                                                    <span class="input-group-btn"></span>
+
+                                                    <asp:Button ID="btnSearch" runat="server" Text="Filtrar" CssClass="btn btnUpdate btn-sm"
+                                                        OnClick="btnSearch_Click" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" />
+                                                </div>
+                                            </div>
                                             <div class="col-md-2 pull-right">
                                                 <asp:Button runat="server" ID="btnPrint" CssClass="btn btn-sm btn-warning pull-right" OnClick="PrintAllPages" Text="Imprimir" />
                                                 <%--<a id="btnPrint" role="button" class="btn btn-sm btn-warning pull-right">Imprimir</a>--%>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-10 pull-left">
+                                                <h2>
+                                                    <asp:Label Text="[Nombre cliente]" runat="server" ID="lblClientName_2" /></h2>
                                             </div>
                                         </div>
 
@@ -322,11 +343,7 @@
                                                         <asp:Label ID="lblImporte" runat="server" CommandName="View" Text='<%# Eval("Comentarios") %>' />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <%--<asp:BoundField DataField="Pesada_Destino_peso_neto" HeaderText="KILOS" HtmlEncode="False" />--%>
-                                                <%--<asp:BoundField DataField="Mercaderia_Precio_xTonelada_compra" HeaderText="VALOR" DataFormatString="{0:C0}" HtmlEncode="False" />--%>
-                                                <%--<asp:BoundField DataField="Comentarios" HeaderText="IMPORTE" DataFormatString="{0:C0}" HtmlEncode="False" />--%>
-                                                <asp:BoundField DataField="Monto" HeaderText="PAGO" DataFormatString="{0:C0}" HtmlEncode="False" />
-                                                <%--<asp:BoundField DataField="Mercaderia_Precio_xTonelada_venta" HeaderText="SALDO" DataFormatString="{0:C0}" HtmlEncode="False" />--%>
+                                                <asp:BoundField DataField="Monto" HeaderText="PAGO" DataFormatString="{0:0.00}" HtmlEncode="False" />
                                                 <asp:TemplateField HeaderText="SALDO">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblSaldo" runat="server" CommandName="View" Text='<%# Eval("Comentarios") %>' />
@@ -338,6 +355,8 @@
 
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
+
+                                <h2><label class="label label-danger">Sección en construcción. NO USAR.</label></h2>   
 
                             </div>
 

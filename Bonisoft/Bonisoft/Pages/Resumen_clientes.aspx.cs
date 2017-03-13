@@ -35,6 +35,33 @@ namespace Bonisoft.Pages
             gridClientes_lblMessage.Text = string.Empty;
         }
 
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            string client_ID_str = hdn_clientID.Value;
+            if (!string.IsNullOrWhiteSpace(client_ID_str))
+            {
+                int cliente_ID = 0;
+                if (!int.TryParse(client_ID_str, out cliente_ID))
+                {
+                    cliente_ID = 0;
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, client_ID_str);
+                }
+
+                if (cliente_ID > 0)
+                {
+                    string date1 = txbFiltro1.Value;
+                    string date2 = txbFiltro2.Value;
+                    BindGridViajesImprimir(cliente_ID, date1, date2);
+                }
+            }
+        }
+
         protected void grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             // Logger variables
@@ -208,7 +235,7 @@ namespace Bonisoft.Pages
                             camion camion = (camion)context.camiones.FirstOrDefault(c => c.Camion_ID == id);
                             if (camion != null)
                             {
-                                string nombre = camion.ToString();
+                                string nombre = camion.Matricula_zorra;
                                 lbl.Text = nombre;
                                 //lbl.CommandArgument = "camiones," + camion.Marca;
                             }
@@ -369,7 +396,9 @@ namespace Bonisoft.Pages
                                     string nombre = lena_tipo.Tipo;
                                     lbl.Text = nombre;
                                 }
-                                    
+                            }else
+                            {
+                                lbl.Text = cliente_pagos.Comentarios;
                             }
                         }
                     }
@@ -430,9 +459,43 @@ namespace Bonisoft.Pages
                             viaje viaje = (viaje)context.viajes.FirstOrDefault(c => c.Viaje_ID == id_v);
                             if (viaje != null)
                             {
-                                decimal peso_neto = viaje.precio_compra;
-                                lbl.Text = peso_neto.ToString();
+                                decimal precio_compra = viaje.precio_compra;
+                                lbl.Text = precio_compra.ToString();
                             }
+                        }
+                    }
+                }
+
+                // Saldo ----------------------------------------------------
+                lbl = e.Row.FindControl("lblSaldo") as Label;
+                if (lbl != null)
+                {
+                    lbl.Text = string.Empty;
+                    using (bonisoftEntities context = new bonisoftEntities())
+                    {
+                        cliente_pagos cliente_pagos = (cliente_pagos)(e.Row.DataItem);
+                        if (cliente_pagos != null)
+                        {
+                            DateTime fecha_desde = cliente_pagos.Fecha_pago;
+                            int id_hasta = cliente_pagos.Cliente_pagos_ID;
+
+                            int cliente_ID = cliente_pagos.Cliente_ID;
+                            var elements_pagos = context.cliente_pagos.Where(v => v.Cliente_ID == cliente_ID && v.Fecha_pago >= fecha_desde && v.Cliente_pagos_ID <= id_hasta).ToList();
+                            decimal total_pagos = 0;
+                            foreach (cliente_pagos pago in elements_pagos)
+                            {
+                                total_pagos += pago.Monto;
+                            }
+
+                            // && v.Fecha_partida >= fecha_desde && v.Cliente_pagos_ID <= id_hasta
+                            var elements_viajes = context.viajes.Where(v => v.Cliente_ID == cliente_ID).ToList();
+                            decimal total_importes = 0;
+                            foreach (viaje viaje1 in elements_viajes)
+                            {
+                                total_importes += viaje1.precio_compra;
+                            }
+
+                            lbl.Text = (total_importes - total_pagos).ToString();
                         }
                     }
                 }
@@ -562,7 +625,7 @@ namespace Bonisoft.Pages
                                 cliente cliente = (cliente)context.clientes.FirstOrDefault(c => c.cliente_ID == cliente_ID);
                                 if (cliente != null)
                                 {
-                                    lblClientName_1.Text = cliente.Nombre;
+                                    lblClientName_1.Text = lblClientName_2.Text = cliente.Nombre;
 
                                     BindGridViajes(cliente_ID);
                                     BindGridViajesImprimir(cliente_ID);
@@ -680,13 +743,38 @@ namespace Bonisoft.Pages
             }
         }
 
-        private void BindGridViajesImprimir(int cliente_ID)
+        private void BindGridViajesImprimir(int cliente_ID, string date_start = "", string date_end = "")
         {
             if (cliente_ID > 0)
             {
+                // Logger variables
+                System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+                string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+                string methodName = stackFrame.GetMethod().Name;
+
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
                     var elements = context.cliente_pagos.Where(v => v.Cliente_ID == cliente_ID).ToList();
+                    if (!string.IsNullOrWhiteSpace(date_start) && !string.IsNullOrWhiteSpace(date_end))
+                    {
+                        DateTime date1 = DateTime.MinValue;
+                        if (!DateTime.TryParseExact(date_start, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
+                        {
+                            date1 = DateTime.MinValue;
+                            Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, date_start);
+                        }
+
+                        DateTime date2 = DateTime.MinValue;
+                        if (!DateTime.TryParseExact(date_end, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
+                        {
+                            date2 = DateTime.MinValue;
+                            Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, date_end);
+                        }
+
+                        elements = context.cliente_pagos.Where(v => v.Cliente_ID == cliente_ID && (v.Fecha_pago >= date1 && v.Fecha_pago <= date2)).OrderBy(e => e.Fecha_pago).ToList();
+                    }
+
                     if (elements.Count() > 0)
                     {
                         gridViajesImprimir.DataSource = elements;

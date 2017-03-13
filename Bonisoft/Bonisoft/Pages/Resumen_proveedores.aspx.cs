@@ -179,7 +179,7 @@ namespace Bonisoft.Pages
                             camion camion = (camion)context.camiones.FirstOrDefault(c => c.Camion_ID == id);
                             if (camion != null)
                             {
-                                string nombre = camion.ToString();
+                                string nombre = camion.Matricula_camion;
                                 lbl.Text = nombre;
                                 //lbl.CommandArgument = "camiones," + camion.Marca;
                             }

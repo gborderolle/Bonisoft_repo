@@ -10,6 +10,10 @@ var VIAJE_ID_SELECTED;
 
 $(document).ready(function () {
 
+    // Dropdownlist input
+    $(".chzn-select").chosen();
+    $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+
     $('.popbox').popbox();
 
     bindEvents();

@@ -2940,9 +2940,9 @@ namespace Bonisoft.Pages
                     cliente_pagos.Fecha_registro = DateTime.Now;
                     cliente_pagos.Forma_de_pago_ID = 0;
                     cliente_pagos.Monto = 0;
-                    //cliente_pagos.Comentarios = "Viaje";
-                    context.cliente_pagos.Add(cliente_pagos);
+                    cliente_pagos.Comentarios = string.Empty;
 
+                    context.cliente_pagos.Add(cliente_pagos);
                     context.SaveChanges();
 
                     #endregion

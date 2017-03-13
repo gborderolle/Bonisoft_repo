@@ -1,4 +1,8 @@
-﻿.modal-ddl{
+﻿#btnSearch{
+    color: black;
+}
+
+.modal-ddl{
     width: 90% !important;
     float: left;
 }
