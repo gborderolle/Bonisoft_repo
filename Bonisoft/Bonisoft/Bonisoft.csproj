@@ -234,6 +234,7 @@
     <Content Include="assets\bootstrap\js\bootstrap.js" />
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="assets\bootstrap\js\npm.js" />
+    <Content Include="assets\dist\css\chosen.css" />
     <Content Include="assets\dist\css\jquery.modal.css" />
     <Content Include="assets\dist\css\pages\Login.css" />
     <Content Include="assets\dist\css\pages\Datos.css" />
