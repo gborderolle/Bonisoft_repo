@@ -852,6 +852,12 @@ function cargarDatos_PrecioVenta() {
 
                         /* ------------------------ CALCULO SUBTOTALES ------------------------ */
 
+                        // Cambio "," por "."
+                        precio_mercaderia_str = precio_mercaderia_str.replace(/,/g, ".");
+                        precio_flete_str = precio_flete_str.replace(/,/g, ".");
+                        iva_str = iva_str.replace(/,/g, ".");
+                        precio_descarga_str = precio_descarga_str.replace(/,/g, ".");
+
                         // Parseo valores
                         var precioMercaderia = TryParseFloat(precio_mercaderia_str, 0);
                         var precioFlete = TryParseFloat(precio_flete_str, 0);
