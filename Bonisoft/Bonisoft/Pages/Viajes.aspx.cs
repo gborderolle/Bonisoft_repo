@@ -2282,7 +2282,8 @@ namespace Bonisoft.Pages
                             value = viaje.Mercaderia_Precio_xTonelada_compra;
                             if (!string.IsNullOrWhiteSpace(txbMercaderiaPrecioCompra))
                             {
-                                if (!decimal.TryParse(txbMercaderiaPrecioCompra, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
+                                // ISSUE: Replace "," por "."
+                                if (!decimal.TryParse(txbMercaderiaPrecioCompra.Replace(',', '.'), NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                                 {
                                     value = viaje.Mercaderia_Precio_xTonelada_compra;
                                     Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txbMercaderiaPrecioCompra);

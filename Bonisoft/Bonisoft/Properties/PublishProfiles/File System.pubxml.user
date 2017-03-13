@@ -520,7 +520,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/13/2017 16:06:57</publishTime>
     </File>
     <File Include="assets/dist/js/pages/Viajes.js">
-      <publishTime>03/13/2017 16:06:57</publishTime>
+      <publishTime>03/13/2017 17:01:53</publishTime>
     </File>
     <File Include="assets/dist/js/popbox.js">
       <publishTime>03/10/2017 13:58:46</publishTime>
@@ -2845,7 +2845,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/10/2017 13:59:05</publishTime>
     </File>
     <File Include="bin/Bonisoft.dll">
-      <publishTime>03/13/2017 16:30:29</publishTime>
+      <publishTime>03/13/2017 17:51:27</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/10/2017 13:59:06</publishTime>
@@ -3094,7 +3094,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/13/2017 16:06:57</publishTime>
     </File>
     <File Include="Pages/Viajes.aspx">
-      <publishTime>03/13/2017 16:29:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Scripts/ai.0.15.0-build58334.js">
       <publishTime>03/10/2017 13:58:45</publishTime>
