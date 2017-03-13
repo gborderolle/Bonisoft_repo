@@ -4,6 +4,7 @@ var PAGO_ID_SELECTED;
 var PROVEEDOR_ID_SELECTED;
 
 $(document).ready(function () {
+
     bindEvents();
 
     // Seleccionar primer proveedor
@@ -20,6 +21,66 @@ Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args
     bindEvents();
     actualizarSaldos();
 });
+
+function loadInputDDL() {
+    // Dropdownlist input
+    $(".chzn-select").chosen();
+    $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+}
+
+function newOpcionDDL(tipo) {
+    var valor = prompt("Ingrese el valor a agregar", "");
+    if (valor !== null && valor !== "") {
+
+        // Ajax call parameters
+        console.log("Ajax call: Resumen_proveedores.aspx/AgregarOpcionDDL. Params:");
+        console.log("tipo, type: " + type(tipo) + ", value: " + tipo);
+        console.log("cliente, type: " + type(valor) + ", value: " + valor);
+
+        // Check existen mercaderías
+        $.ajax({
+            type: "POST",
+            url: "Resumen_proveedores.aspx/AgregarOpcionDDL",
+            data: '{tipo: "' + tipo + '",valor: "' + valor + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                var resultado = response.d;
+
+                if (resultado !== null && resultado !== "0") {
+                    // Add option
+                    var newOption = "<option value='" + resultado + "'>" + valor + " </option>";
+                    switch (tipo) {
+                        case "forma_pago": {
+                            $("#add_ddlFormas").append(newOption);
+                            $("#edit_ddlFormas").append(newOption);
+                            break;
+                        }
+                    }
+
+                }
+
+            }, // end success
+            failure: function (response) {
+            }
+        }); // Ajax
+    }
+}
+
+function addToday(tipo) {
+    var date = moment(new Date()).format("DD-MM-YYYY");
+    //var date = $.datepicker.formatDate('dd/mm/yy', new Date());
+    switch (tipo) {
+        case 1: {
+            $("#add_txbFecha").val(date);
+            break;
+        }
+        case 2: {
+            $("#edit_txbFecha").val(date);
+            break;
+        }
+    }
+}
 
 function actualizarSaldos() {
 

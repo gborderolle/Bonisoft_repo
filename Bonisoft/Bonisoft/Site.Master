@@ -92,7 +92,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Bonisoft</a>
+                    <a class="navbar-brand" runat="server" href="#">Bonisoft</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -101,11 +101,6 @@
                         <li><a runat="server" href="/Pages/Resumen_proveedores">Resumen de Proveedores</a></li>
                         <li><a runat="server" href="/Pages/Resumen_clientes">Resumen de Clientes</a></li>
                         <li><a runat="server" id="aMenuLogs" clientidmode="Static" style="display: none;" href="/Pages/Menu_logs">Menú de Logs</a></li>
-                        <%--<li><a runat="server" href="~/">Inicio</a></li>--%>
-                        <%-- <li><a runat="server" href="/Pages/Recordatorios">Recordatorios</a></li>
-                        <li><a runat="server" href="/Pages/Contabilidad">Contabilidad</a></li>
-                        <li><a runat="server" href="/Pages/Registros">Registros</a></li>
-                        <li><a runat="server" href="/Pages/Ajustes">Ajustes</a></li>--%>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>

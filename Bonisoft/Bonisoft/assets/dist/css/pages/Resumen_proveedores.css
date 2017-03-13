@@ -3,6 +3,11 @@
     border-bottom: 1px #cccccc solid;
 }
 
+.modal-ddl{
+    width: 90% !important;
+    float: left;
+}
+
 .lblResultados{
     float:left;
     font-size: small;

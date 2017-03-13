@@ -952,6 +952,55 @@ namespace Bonisoft.Pages
 
         #endregion General methods
 
+        #region Static methods
+
+        private static string AgregarFormaPago(string valor)
+        {
+            string ID_result = "0";
+
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            using (bonisoftEntities context = new bonisoftEntities())
+            {
+                forma_de_pago obj = new forma_de_pago();
+                obj.Forma = valor;
+                obj.Comentarios = string.Empty;
+
+                context.forma_de_pago.Add(obj);
+                context.SaveChanges();
+
+                #region Guardar log 
+                try
+                {
+                    int id = 1;
+                    forma_de_pago forma_de_pago = (forma_de_pago)context.forma_de_pago.OrderByDescending(p => p.Forma_de_pago_ID).FirstOrDefault();
+                    if (forma_de_pago != null)
+                    {
+                        id = forma_de_pago.Forma_de_pago_ID;
+                    }
+
+                    string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                    string username = HttpContext.Current.Session["UserName"].ToString();
+                    Logs.AddUserLog("Agrega forma de pago", forma_de_pago.GetType().Name + ": " + id, userID1, username);
+
+                    ID_result = id.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                }
+                #endregion
+            }
+
+            return ID_result;
+        }
+
+        #endregion 
+
         #region Web methods
 
         [WebMethod]
@@ -1428,6 +1477,24 @@ namespace Bonisoft.Pages
                 }
             }
             return ret;
+        }
+
+        [WebMethod]
+        public static string AgregarOpcionDDL(string tipo, string valor)
+        {
+            string ID_result = "0";
+            if (!string.IsNullOrWhiteSpace(tipo) && !string.IsNullOrWhiteSpace(valor))
+            {
+                switch (tipo)
+                {
+                    case "forma_pago":
+                        {
+                            ID_result = AgregarFormaPago(valor);
+                            break;
+                        }
+                }
+            }
+            return ID_result;
         }
 
         #endregion

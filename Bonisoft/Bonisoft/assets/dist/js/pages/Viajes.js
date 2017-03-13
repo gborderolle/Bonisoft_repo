@@ -10,10 +10,6 @@ var VIAJE_ID_SELECTED;
 
 $(document).ready(function () {
 
-    // Dropdownlist input
-    $(".chzn-select").chosen();
-    $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
-
     $('.popbox').popbox();
 
     bindEvents();
@@ -86,6 +82,12 @@ $(document).ready(function () {
 Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args) {
     bindEvents();
 });
+
+function loadInputDDL() {
+    // Dropdownlist input
+    $(".chzn-select").chosen();
+    $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+}
 
 function bindEvents() {
     $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });

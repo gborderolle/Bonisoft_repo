@@ -204,6 +204,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="assets/bootstrap/js/npm.js">
       <publishTime>06/29/2016 06:19:00</publishTime>
     </File>
+    <File Include="assets/dist/css/chosen.css">
+      <publishTime>03/13/2017 00:10:32</publishTime>
+    </File>
     <File Include="assets/dist/css/font-awesome.css">
       <publishTime>08/30/2016 10:10:43</publishTime>
     </File>
@@ -229,13 +232,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/29/2016 03:59:27</publishTime>
     </File>
     <File Include="assets/dist/css/pages/Resumen_clientes.css">
-      <publishTime>11/14/2016 19:44:08</publishTime>
+      <publishTime>03/12/2017 23:11:10</publishTime>
     </File>
     <File Include="assets/dist/css/pages/Resumen_proveedores.css">
-      <publishTime>03/06/2017 18:44:10</publishTime>
+      <publishTime>03/13/2017 13:21:05</publishTime>
     </File>
     <File Include="assets/dist/css/pages/Viajes.css">
-      <publishTime>03/04/2017 11:15:12</publishTime>
+      <publishTime>03/10/2017 10:10:14</publishTime>
     </File>
     <File Include="assets/dist/css/popbox.css">
       <publishTime>10/10/2016 19:44:47</publishTime>
@@ -511,13 +514,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/25/2016 12:57:27</publishTime>
     </File>
     <File Include="assets/dist/js/pages/Resumen_clientes.js">
-      <publishTime>03/06/2017 18:46:09</publishTime>
+      <publishTime>03/13/2017 13:31:14</publishTime>
     </File>
     <File Include="assets/dist/js/pages/Resumen_proveedores.js">
-      <publishTime>03/06/2017 19:11:43</publishTime>
+      <publishTime>03/13/2017 13:31:49</publishTime>
     </File>
     <File Include="assets/dist/js/pages/Viajes.js">
-      <publishTime>03/05/2017 16:00:05</publishTime>
+      <publishTime>03/13/2017 13:31:03</publishTime>
     </File>
     <File Include="assets/dist/js/popbox.js">
       <publishTime>10/10/2016 20:42:40</publishTime>
@@ -2842,7 +2845,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/16/2013 20:06:22</publishTime>
     </File>
     <File Include="bin/Bonisoft.dll">
-      <publishTime>03/08/2017 15:34:42</publishTime>
+      <publishTime>03/13/2017 14:02:50</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/02/2015 09:32:26</publishTime>
@@ -3046,7 +3049,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/19/2017 20:09:57</publishTime>
     </File>
     <File Include="Models/BonisoftModel.edmx.diagram">
-      <publishTime>03/06/2017 19:22:03</publishTime>
+      <publishTime>03/10/2017 10:22:32</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>09/30/2016 15:53:06</publishTime>
@@ -3085,13 +3088,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/19/2017 20:10:00</publishTime>
     </File>
     <File Include="Pages/Resumen_clientes.aspx">
-      <publishTime>03/06/2017 18:06:04</publishTime>
+      <publishTime>03/13/2017 13:52:50</publishTime>
     </File>
     <File Include="Pages/Resumen_proveedores.aspx">
-      <publishTime>03/06/2017 18:45:22</publishTime>
+      <publishTime>03/13/2017 13:39:11</publishTime>
     </File>
     <File Include="Pages/Viajes.aspx">
-      <publishTime>03/06/2017 19:33:06</publishTime>
+      <publishTime>03/13/2017 13:48:26</publishTime>
     </File>
     <File Include="Scripts/ai.0.15.0-build58334.js">
       <publishTime>08/19/2016 18:17:50</publishTime>
@@ -3202,7 +3205,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/06/2017 18:13:12</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>03/06/2017 18:12:21</publishTime>
+      <publishTime>03/13/2017 13:42:00</publishTime>
     </File>
     <File Include="Site.Mobile.Master">
       <publishTime>01/19/2017 20:10:01</publishTime>
@@ -3253,7 +3256,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/19/2017 20:10:05</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/08/2017 15:34:54</publishTime>
+      <publishTime>03/13/2017 14:03:03</publishTime>
     </File>
   </ItemGroup>
 </Project>

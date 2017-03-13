@@ -723,7 +723,7 @@ namespace Bonisoft.Pages
                             {
                                 string nombre = camion.Matricula_camion;
                                 lbl.Text = nombre;
-                                lbl.CommandArgument = "camiones," + camion.Marca;
+                                lbl.CommandArgument = "camiones," + camion.Matricula_camion;
                             }
                         }
                     }
@@ -1064,8 +1064,6 @@ namespace Bonisoft.Pages
                             }
                         }
                         #endregion
-
-
 
                         else if (e.CommandName.Equals("View"))
                         {

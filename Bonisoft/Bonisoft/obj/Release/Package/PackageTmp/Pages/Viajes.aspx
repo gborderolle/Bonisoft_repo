@@ -5,6 +5,7 @@
     <!-- STYLES EXTENSION -->
     <link rel="stylesheet" href="/assets/dist/css/jquery.modal.css" />
     <link rel="stylesheet" href="/assets/dist/css/popbox.css" />
+    <link rel="stylesheet" href="/assets/dist/css/chosen.css" />
 
     <!-- PAGE CSS -->
     <link rel="stylesheet" href="/assets/dist/css/pages/Viajes.css" />
@@ -19,12 +20,28 @@
     <script type="text/javascript" src="/assets/dist/js/jquery.modal.js"></script>
     <script type="text/javascript" src="/assets/dist/js/jquery.tablesorter.js"></script>
     <script type="text/javascript" src="/assets/dist/js/popbox.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/chosen.jquery.js"></script>
 
     <!-- PAGE JS -->
     <script type="text/javascript" src="/assets/dist/js/AuxiliarFunctions.js"></script>
     <script type="text/javascript" src="/assets/dist/js/pages/Viajes.js"></script>
 
     <script type="text/javascript">
+
+        function addToday(tipo) {
+            var date = moment(new Date()).format("DD-MM-YYYY");
+            //var date = $.datepicker.formatDate('dd/mm/yy', new Date());
+            switch (tipo) {
+                case 1: {
+                    $("#modalAdd_txbFecha1").val(date);
+                    break;
+                }
+                case 2: {
+                    $("#modalAdd_txbFecha2").val(date);
+                    break;
+                }
+            }
+        }
 
         function newOpcionDDL(tipo) {
             var valor = prompt("Ingrese el valor a agregar", "");
@@ -51,26 +68,32 @@
                             switch (tipo) {
                                 case "proveedor": {
                                     $("#modalAdd_ddlProveedores").append(newOption);
+                                    $("#modalEdit_ddlProveedores").append(newOption);
                                     break;
                                 }
                                 case "cliente": {
                                     $("#modalAdd_ddlClientes").append(newOption);
+                                    $("#modalEdit_ddlClientes").append(newOption);
                                     break;
                                 }
                                 case "cargador": {
                                     $("#modalAdd_ddlCargadores").append(newOption);
+                                    $("#modalEdit_ddlCargadores").append(newOption);
                                     break;
                                 }
                                 case "fletero": {
                                     $("#modalAdd_ddlFleteros").append(newOption);
+                                    $("#modalEdit_ddlFleteros").append(newOption);
                                     break;
                                 }
                                 case "camion": {
                                     $("#modalAdd_ddlCamiones").append(newOption);
+                                    $("#modalEdit_ddlCamiones").append(newOption);
                                     break;
                                 }
                                 case "chofer": {
                                     $("#modalAdd_ddlChoferes").append(newOption);
+                                    $("#modalEdit_ddlChoferes").append(newOption);
                                     break;
                                 }
                                 case "tipo_lena": {
@@ -114,7 +137,7 @@
 
                     <div style="text-align: center">
 
-                        <asp:UpdatePanel ID="upGridViajesEnCurso" runat="server">
+                        <asp:updatepanel id="upGridViajesEnCurso" runat="server">
                             <ContentTemplate>
 
                                 <asp:HiddenField ID="hdn_notificaciones_viajeID" runat="server" ClientIDMode="Static" />
@@ -158,7 +181,6 @@
 
                                     <Columns>
                                         <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
-                                        <%--<asp:BoundField DataField="Fecha_partida" HeaderText="Fecha partida" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />--%>
                                         <asp:TemplateField HeaderText="Fecha partida">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblFechaPartida" runat="server" CommandName="View" Text='<%# Eval("Fecha_partida", "{0:dd-MM-yyyy}") %>' />
@@ -179,7 +201,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Chofer">
+                                        <asp:TemplateField HeaderText="Chofer">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lblChofer" runat="server" CommandName="View" Text='<%# Eval("Chofer_ID") %>' />
                                             </ItemTemplate>
@@ -215,7 +237,7 @@
                             <Triggers>
                                 <asp:AsyncPostBackTrigger ControlID="btnUpdateViajesEnCurso" />
                             </Triggers>
-                        </asp:UpdatePanel>
+                        </asp:updatepanel>
 
                         <!-- Modal Iniciar viaje BEGIN -->
                         <div id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true"
@@ -224,29 +246,34 @@
                             <div class="modal-header">
                                 <h3 id="addModalLabel">Nuevo viaje</h3>
                             </div>
-                            <asp:UpdatePanel ID="upAdd" runat="server">
+                            <asp:updatepanel id="upAdd" runat="server">
                                 <ContentTemplate>
                                     <asp:Button ID="btnSubmit_upAdd" runat="server" OnClick="btnSubmit_upAdd_Click" Style="display: none" />
                                     <div class="modal-body">
                                         <table class="table">
                                             <tr>
                                                 <td>Fecha de inicio: 
-                                                <asp:TextBox ID="modalAdd_txbFecha1" runat="server" ClientIDMode="Static" CssClass="form-control datepicker with_border" MaxLength="30" TabIndex="1"></asp:TextBox>
+                                                <asp:TextBox ID="modalAdd_txbFecha1" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control datepicker with_border" MaxLength="30" TabIndex="1"></asp:TextBox>
+                                                    <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="addToday(1)">
+                                                        <i class="fa fa-calendar-check-o" title="Hoy"></i>
+                                                    </button>
                                                 </td>
                                                 <td>Fecha de llegada (tentativa): 
-                                                <asp:TextBox ID="modalAdd_txbFecha2" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" TabIndex="2"></asp:TextBox>
+                                                <asp:TextBox ID="modalAdd_txbFecha2" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control datepicker" MaxLength="30" TabIndex="2"></asp:TextBox>
+                                                    <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="addToday(2)">
+                                                        <i class="fa fa-calendar-check-o" title="Hoy"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Proveedor: 
-                                                    <%--<editable:EditableDropDownList ID="modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="3" />--%>
-                                                    <asp:DropDownList ID="modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control" TabIndex="3" />
+                                                    <asp:DropDownList ID="modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="3" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('proveedor')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </td>
                                                 <td>Cliente: 
-                                                <asp:DropDownList ID="modalAdd_ddlClientes" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control with_border pull-left" TabIndex="4" />
+                                                <asp:DropDownList ID="modalAdd_ddlClientes" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control with_border pull-left chzn-select" TabIndex="4" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cliente')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
@@ -254,7 +281,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Cargadores: 
-                                                <asp:DropDownList ID="modalAdd_ddlCargadores" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control" TabIndex="5" />
+                                                <asp:DropDownList ID="modalAdd_ddlCargadores" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="5" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cargador')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
@@ -265,14 +292,13 @@
                                             </tr>
                                             <tr>
                                                 <td>Fletero: 
-                                                <asp:DropDownList ID="modalAdd_ddlFleteros" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control" TabIndex="7" />
+                                                <asp:DropDownList ID="modalAdd_ddlFleteros" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="7" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('fletero')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </td>
                                                 <td>Camión: 
-                                                <asp:DropDownList ID="modalAdd_ddlCamiones" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control" TabIndex="8" />
-
+                                                <asp:DropDownList ID="modalAdd_ddlCamiones" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="8" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('camion')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
@@ -280,7 +306,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Chofer: 
-                                                <asp:DropDownList ID="modalAdd_ddlChoferes" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control" TabIndex="9" />
+                                                <asp:DropDownList ID="modalAdd_ddlChoferes" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="9" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('chofer')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
@@ -302,7 +328,7 @@
                                         <a id="aNuevoViaje" class="btn btn-primary" onclick="NuevoViaje();">Agregar</a>
                                     </div>
                                 </ContentTemplate>
-                            </asp:UpdatePanel>
+                            </asp:updatepanel>
                         </div>
                         <!-- Modal Iniciar viaje END -->
 
@@ -312,7 +338,7 @@
                             <div class="modal-header">
                                 <h3 id="editModalLabel">Modificar viaje</h3>
                             </div>
-                            <asp:UpdatePanel ID="upEdit" runat="server">
+                            <asp:updatepanel id="upEdit" runat="server">
                                 <ContentTemplate>
                                     <div class="modal-body">
                                         <table class="table">
@@ -326,15 +352,25 @@
                                             </tr>
                                             <tr>
                                                 <td>Proveedor: 
-                                                <asp:DropDownList ID="modalEdit_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="13" />
+                                                <asp:DropDownList ID="modalEdit_ddlProveedores" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="13" />
+                                                <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('proveedor')">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+
                                                 </td>
                                                 <td>Cliente: 
-                                                <asp:DropDownList ID="modalEdit_ddlClientes" runat="server" ClientIDMode="Static" CssClass="form-control with_border" TabIndex="14" />
+                                                <asp:DropDownList ID="modalEdit_ddlClientes" runat="server" ClientIDMode="Static" CssClass="form-control with_border chzn-select" TabIndex="14" />
+                                                <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cliente')">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Cargadores: 
-                                                <asp:DropDownList ID="modalEdit_ddlCargadores" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="15" />
+                                                <asp:DropDownList ID="modalEdit_ddlCargadores" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="15" />
+                                                <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cargador')">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
                                                 </td>
                                                 <td>Lugar de carga: 
                                                 <asp:TextBox ID="modalEdit_txbLugarCarga" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="16" />
@@ -342,15 +378,24 @@
                                             </tr>
                                             <tr>
                                                 <td>Fletero: 
-                                                <asp:DropDownList ID="modalEdit_ddlFleteros" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="17" />
+                                                <asp:DropDownList ID="modalEdit_ddlFleteros" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="17" />
+                                                <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('fletero')">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
                                                 </td>
                                                 <td>Camión: 
-                                                <asp:DropDownList ID="modalEdit_ddlCamiones" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="18" />
+                                                <asp:DropDownList ID="modalEdit_ddlCamiones" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="18" />
+                                                <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('camion')">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Chofer: 
-                                                <asp:DropDownList ID="modalEdit_ddlChoferes" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="19" />
+                                                <asp:DropDownList ID="modalEdit_ddlChoferes" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="19" />
+                                                <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('chofer')">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
                                                 </td>
                                                 <td>Comentarios:
                                                     <asp:TextBox ID="modalEdit_txbComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" TabIndex="20" />
@@ -364,13 +409,13 @@
                                         <a id="aModificarViaje" class="btn btn-primary" onclick="ModificarViaje_2();">Guardar</a>
                                     </div>
                                 </ContentTemplate>
-                            </asp:UpdatePanel>
+                            </asp:updatepanel>
                         </div>
                         <!-- Modal Editar END -->
 
                         <!-- Modal Notificaciones BEGIN -->
                         <div id="notificacionesModal" tabindex="-1" role="dialog" aria-labelledby="notificacionesModalLabel" aria-hidden="true" style="display: none; max-width: 1000px; overflow: hidden; margin-top: 40px;" class="modal fade dark in">
-                            <asp:UpdatePanel ID="upNotificaciones" runat="server">
+                            <asp:updatepanel id="upNotificaciones" runat="server">
                                 <ContentTemplate>
 
                                     <div class="modal-header">
@@ -400,7 +445,7 @@
                                                         <asp:TextBox ID="txbMercaderiaPrecioCompra" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="21"></asp:TextBox>
                                                         </td>
                                                         <td>Tipo de leña: 
-                                                                <asp:DropDownList ID="ddlTipoLena" ClientIDMode="Static" runat="server" CssClass="modal-ddl form-control" TabIndex="22" />
+                                                                <asp:DropDownList ID="ddlTipoLena" ClientIDMode="Static" runat="server" CssClass="modal-ddl form-control chzn-select" TabIndex="22" />
                                                             <button type="button" name="search" id="mercaderia-plus-btn" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('tipo_lena')">
                                                                 <i class="fa fa-plus"></i>
                                                             </button>
@@ -585,7 +630,7 @@
 
                                 </ContentTemplate>
 
-                            </asp:UpdatePanel>
+                            </asp:updatepanel>
                         </div>
                         <!-- Modal Notificaciones END -->
 
@@ -609,8 +654,8 @@
                                         <input type="text" id="txbFiltro2" class="form-control datepicker" placeholder="Hasta" runat="server" style="width: 120px;">
                                         <span class="input-group-btn"></span>
 
-                                        <asp:Button ID="btnSearch" runat="server" Text="Filtrar" CssClass="btn btnUpdate btn-sm"
-                                            OnClick="btnSearch_Click" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" />
+                                        <asp:button id="btnSearch" runat="server" text="Filtrar" cssclass="btn btnUpdate btn-sm"
+                                            onclick="btnSearch_Click" usesubmitbehavior="false" clientidmode="Static" causesvalidation="false" />
                                     </div>
                                 </div>
 
@@ -618,8 +663,8 @@
                                 <div class="col-md-5 pull-right" style="margin-right: 10px; margin-bottom: 10px;">
 
                                     <div style="float: left; margin-right: 5px;">
-                                        <asp:Button ID="btnUpdateViajes" runat="server" Text="Actualizar" CssClass="btn btnUpdate btn-sm"
-                                            OnClick="btnUpdateViajes_Click" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" />
+                                        <asp:button id="btnUpdateViajes" runat="server" text="Actualizar" cssclass="btn btnUpdate btn-sm"
+                                            onclick="btnUpdateViajes_Click" usesubmitbehavior="false" clientidmode="Static" causesvalidation="false" />
                                     </div>
 
                                     <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
@@ -641,7 +686,7 @@
 
                                     <div style="text-align: center">
 
-                                        <asp:UpdatePanel ID="upGridViajes" runat="server" UpdateMode="Conditional">
+                                        <asp:updatepanel id="upGridViajes" runat="server" updatemode="Conditional">
                                             <ContentTemplate>
 
                                                 <asp:Label ID="gridViajes_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
@@ -714,7 +759,7 @@
                                                                 <asp:CompareValidator ForeColor="Red" ID="vtxb2" runat="server" ControlToValidate="txb2" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                             </EditItemTemplate>
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Precio_compra", "{0:C0}") %>'></asp:Label>
+                                                                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Precio_compra", "{0:C2}") %>'></asp:Label>
                                                             </ItemTemplate>
                                                             <FooterTemplate>
                                                                 <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -727,7 +772,7 @@
                                                                 <asp:CompareValidator ForeColor="Red" ID="vtxb3" runat="server" ControlToValidate="txb3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
                                                             </EditItemTemplate>
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Precio_venta", "{0:C0}") %>'></asp:Label>
+                                                                <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Precio_venta", "{0:C2}") %>'></asp:Label>
                                                             </ItemTemplate>
                                                             <FooterTemplate>
                                                                 <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -825,7 +870,7 @@
                                                 <asp:AsyncPostBackTrigger ControlID="btnSearch" />
                                                 <asp:AsyncPostBackTrigger ControlID="btnUpdateViajes" />
                                             </Triggers>
-                                        </asp:UpdatePanel>
+                                        </asp:updatepanel>
 
                                     </div>
                                 </div>
@@ -887,55 +932,59 @@
     </div>
 
     <!-- Add Hdn Fields -->
-    <asp:HiddenField ID="hdn_modalAdd_txbFecha1" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalAdd_txbFecha2" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalAdd_ddlProveedores" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalAdd_ddlClientes" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalAdd_ddlCargadores" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalAdd_txbLugarCarga" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalAdd_ddlFleteros" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalAdd_ddlCamiones" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalAdd_ddlChoferes" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalAdd_txbComentarios" runat="server" ClientIDMode="Static" />
+    <asp:hiddenfield id="hdn_modalAdd_txbFecha1" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalAdd_txbFecha2" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalAdd_ddlProveedores" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalAdd_ddlClientes" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalAdd_ddlCargadores" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalAdd_txbLugarCarga" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalAdd_ddlFleteros" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalAdd_ddlCamiones" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalAdd_ddlChoferes" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalAdd_txbComentarios" runat="server" clientidmode="Static" />
 
     <!-- Edit Hdn Fields -->
-    <asp:HiddenField ID="hdn_modalEdit_txbFecha1" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalEdit_txbFecha2" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalEdit_ddlProveedores" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalEdit_ddlClientes" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalEdit_ddlCargadores" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalEdit_txbLugarCarga" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalEdit_ddlFleteros" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalEdit_ddlCamiones" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalEdit_ddlChoferes" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalEdit_txbComentarios" runat="server" ClientIDMode="Static" />
+    <asp:hiddenfield id="hdn_modalEdit_txbFecha1" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalEdit_txbFecha2" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalEdit_ddlProveedores" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalEdit_ddlClientes" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalEdit_ddlCargadores" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalEdit_txbLugarCarga" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalEdit_ddlFleteros" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalEdit_ddlCamiones" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalEdit_ddlChoferes" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalEdit_txbComentarios" runat="server" clientidmode="Static" />
 
     <!-- Notificaciones Hdn Fields - Pesada origen -->
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas1_txbLugar" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas1_txbFecha" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas1_txbPesoBruto" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas1_txbPesoNeto" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas1_txbNombre" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas1_txbComentarios" runat="server" ClientIDMode="Static" />
+    <asp:hiddenfield id="hdn_modalNotificaciones_pesadas1_txbLugar" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalNotificaciones_pesadas1_txbFecha" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalNotificaciones_pesadas1_txbPesoBruto" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalNotificaciones_pesadas1_txbPesoNeto" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalNotificaciones_pesadas1_txbNombre" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalNotificaciones_pesadas1_txbComentarios" runat="server" clientidmode="Static" />
 
     <!-- Notificaciones Hdn Fields - Pesada destino -->
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbLugar" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbFecha" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbPesoBruto" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbPesoNeto" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbNombre" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalNotificaciones_pesadas2_txbComentarios" runat="server" ClientIDMode="Static" />
+    <asp:hiddenfield id="hdn_modalNotificaciones_pesadas2_txbLugar" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalNotificaciones_pesadas2_txbFecha" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalNotificaciones_pesadas2_txbPesoBruto" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalNotificaciones_pesadas2_txbPesoNeto" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalNotificaciones_pesadas2_txbNombre" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalNotificaciones_pesadas2_txbComentarios" runat="server" clientidmode="Static" />
 
     <!-- Mercaderia Hdn Fields - Add -->
     <%--<asp:HiddenField ID="hdn_modalMercaderia_txbNew4" runat="server" ClientIDMode="Static" />--%>
-    <asp:HiddenField ID="hdn_modalMercaderia_txbNew5" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalMercaderia_txbNew7" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalMercaderia_ddlProcesador2" runat="server" ClientIDMode="Static" />
+    <asp:hiddenfield id="hdn_modalMercaderia_txbNew5" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalMercaderia_txbNew7" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalMercaderia_ddlProcesador2" runat="server" clientidmode="Static" />
 
     <!-- Mercaderia Hdn Fields - Edit -->
-    <asp:HiddenField ID="hdn_modalMercaderia_txb4" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalMercaderia_txb5" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalMercaderia_txb7" runat="server" ClientIDMode="Static" />
-    <asp:HiddenField ID="hdn_modalMercaderia_ddlProcesador1" runat="server" ClientIDMode="Static" />
+    <asp:hiddenfield id="hdn_modalMercaderia_txb4" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalMercaderia_txb5" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalMercaderia_txb7" runat="server" clientidmode="Static" />
+    <asp:hiddenfield id="hdn_modalMercaderia_ddlProcesador1" runat="server" clientidmode="Static" />
+
+    <script type="text/javascript">
+        setTimeout(loadInputDDL, 1000);
+    </script>
 
 </asp:Content>

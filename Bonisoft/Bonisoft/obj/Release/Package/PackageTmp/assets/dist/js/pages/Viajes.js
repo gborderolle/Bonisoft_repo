@@ -83,6 +83,12 @@ Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args
     bindEvents();
 });
 
+function loadInputDDL() {
+    // Dropdownlist input
+    $(".chzn-select").chosen();
+    $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+}
+
 function bindEvents() {
     $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
     $("#tabsViajes").tabs();
@@ -1194,9 +1200,7 @@ function FinDelViaje() {
 
 function GuardarPrecioVenta() {
 
-    guardarAmbasPesad
-
-    as();
+    guardarAmbasPesadas();
     calcularPrecioVenta();
 
     var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID").val();

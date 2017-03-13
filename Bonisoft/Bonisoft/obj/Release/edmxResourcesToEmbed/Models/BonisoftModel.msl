@@ -59,19 +59,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="cliente_pagos">
-      <EntityTypeMapping TypeName="bonisoftModel.cliente_pagos">
-        <MappingFragment StoreEntitySet="cliente_pagos">
-          <ScalarProperty Name="Cliente_pagos_ID" ColumnName="Cliente_pagos_ID" />
-          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
-          <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
-          <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />
-          <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
-          <ScalarProperty Name="Monto" ColumnName="Monto" />
-          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="cuadrilla_descarga">
       <EntityTypeMapping TypeName="bonisoftModel.cuadrilla_descarga">
         <MappingFragment StoreEntitySet="cuadrilla_descarga">
@@ -270,6 +257,20 @@
           <ScalarProperty Name="Empresa" ColumnName="Empresa" />
           <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
           <ScalarProperty Name="Chofer_ID" ColumnName="Chofer_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cliente_pagos">
+      <EntityTypeMapping TypeName="bonisoftModel.cliente_pagos">
+        <MappingFragment StoreEntitySet="cliente_pagos">
+          <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+          <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
+          <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />
+          <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
+          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+          <ScalarProperty Name="Cliente_pagos_ID" ColumnName="Cliente_pagos_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
