@@ -44,6 +44,7 @@ namespace Bonisoft.Models
         public virtual DbSet<viaje> viajes { get; set; }
         public virtual DbSet<proveedor_pagos> proveedor_pagos { get; set; }
         public virtual DbSet<chofer> choferes { get; set; }
+        public virtual DbSet<fletero_pagos> fletero_pagos { get; set; }
         public virtual DbSet<cliente_pagos> cliente_pagos { get; set; }
     }
 }

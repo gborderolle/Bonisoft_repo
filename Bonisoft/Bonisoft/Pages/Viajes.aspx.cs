@@ -2134,15 +2134,19 @@ namespace Bonisoft.Pages
                                 decimal importe_viaje = viaje.Pesada_Destino_peso_neto * viaje.Mercaderia_Precio_xTonelada_compra;
                                 viaje.Importe_viaje = importe_viaje;
 
-                                //#region Edit pago cliente
+                                decimal flete_parcial = viaje.Pesada_Destino_peso_neto * precioFlete;
+                                if (IVA > 0)
+                                {
+                                    flete_parcial += flete_parcial * IVA / 100;
+                                }
 
-                                //cliente_pagos cliente_pagos = (cliente_pagos)context.cliente_pagos.FirstOrDefault(v => v.Viaje_ID == viajeID_value);
-                                //if (cliente_pagos != null)
-                                //{
-                                //    cliente_pagos.Monto = importe_viaje;
-                                //}
+                                viaje.precio_flete_total = flete_parcial;
 
-                                //#endregion
+                                // Guardar importe en pagos del cliente
+                                cliente_pagos cliente_pagos = new cliente_pagos();
+                                cliente_pagos.Cliente_ID = viaje.Cliente_ID;
+                                cliente_pagos.Viaje_ID = viajeID_value;
+                                cliente_pagos.Importe_viaje = importe_viaje;
 
                                 context.SaveChanges();
 

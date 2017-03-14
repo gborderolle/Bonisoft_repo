@@ -54,5 +54,6 @@ namespace Bonisoft.Models
         public decimal Pesada_Destino_peso_bruto { get; set; }
         public decimal Pesada_Destino_peso_neto { get; set; }
         public string Pesada_Comentarios { get; set; }
+        public decimal precio_flete_total { get; set; }
     }
 }

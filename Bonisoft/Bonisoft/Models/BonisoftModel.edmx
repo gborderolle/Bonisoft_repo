@@ -78,7 +78,8 @@
           <Property Name="Fecha_registro" Type="date" Nullable="false" />
           <Property Name="Fecha_pago" Type="date" Nullable="false" />
           <Property Name="Forma_de_pago_ID" Type="int" Nullable="false" />
-          <Property Name="Monto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_viaje" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Viaje_ID" Type="int" Nullable="false" />
         </EntityType>
@@ -114,6 +115,19 @@
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="fletero_pagos">
+          <Key>
+            <PropertyRef Name="Fletero_pagos_ID" />
+          </Key>
+          <Property Name="Fletero_pagos_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fletero_ID" Type="int" Nullable="false" />
+          <Property Name="Fecha_registro" Type="date" Nullable="false" />
+          <Property Name="Fecha_pago" Type="date" Nullable="false" />
+          <Property Name="Forma_de_pago_ID" Type="int" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Viaje_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="forma_de_pago">
           <Key>
@@ -236,6 +250,7 @@
           <Property Name="precio_compra" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="precio_venta" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="precio_flete" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="precio_flete_total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="precio_descarga" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="GananciaXTon" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="IVA" Type="int" Nullable="false" />
@@ -269,6 +284,7 @@
           <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="descarga_viaje" EntityType="Self.descarga_viaje" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fletero" EntityType="Self.fletero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fletero_pagos" EntityType="Self.fletero_pagos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="forma_de_pago" EntityType="Self.forma_de_pago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="lena_tipo" EntityType="Self.lena_tipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="log" EntityType="Self.log" Schema="dbo" store:Type="Tables" />
@@ -469,6 +485,7 @@
           <EntitySet Name="viajes" EntityType="bonisoftModel.viaje" />
           <EntitySet Name="proveedor_pagos" EntityType="bonisoftModel.proveedor_pagos" />
           <EntitySet Name="choferes" EntityType="bonisoftModel.chofer" />
+          <EntitySet Name="fletero_pagos" EntityType="bonisoftModel.fletero_pagos" />
           <EntitySet Name="cliente_pagos" EntityType="bonisoftModel.cliente_pagos" />
         </EntityContainer>
         <EntityType Name="sysdiagram">
@@ -525,6 +542,7 @@
           <Property Name="Pesada_Destino_peso_bruto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
           <Property Name="Pesada_Destino_peso_neto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
           <Property Name="Pesada_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="precio_flete_total" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="proveedor_pagos">
           <Key>
@@ -548,6 +566,19 @@
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="fletero_pagos">
+          <Key>
+            <PropertyRef Name="Fletero_pagos_ID" />
+          </Key>
+          <Property Name="Fletero_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fletero_ID" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="cliente_pagos">
           <Key>
             <PropertyRef Name="Cliente_pagos_ID" />
@@ -557,7 +588,8 @@
           <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
-          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Importe_viaje" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
         </EntityType>
@@ -759,6 +791,7 @@
           <EntitySetMapping Name="viajes">
             <EntityTypeMapping TypeName="bonisoftModel.viaje">
               <MappingFragment StoreEntitySet="viaje">
+                <ScalarProperty Name="precio_flete_total" ColumnName="precio_flete_total" />
                 <ScalarProperty Name="Pesada_Comentarios" ColumnName="Pesada_Comentarios" />
                 <ScalarProperty Name="Pesada_Destino_peso_neto" ColumnName="Pesada_Destino_peso_neto" />
                 <ScalarProperty Name="Pesada_Destino_peso_bruto" ColumnName="Pesada_Destino_peso_bruto" />
@@ -826,11 +859,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="fletero_pagos">
+            <EntityTypeMapping TypeName="bonisoftModel.fletero_pagos">
+              <MappingFragment StoreEntitySet="fletero_pagos">
+                <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
+                <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />
+                <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
+                <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />
+                <ScalarProperty Name="Fletero_pagos_ID" ColumnName="Fletero_pagos_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="cliente_pagos">
             <EntityTypeMapping TypeName="bonisoftModel.cliente_pagos">
               <MappingFragment StoreEntitySet="cliente_pagos">
                 <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Importe_viaje" ColumnName="Importe_viaje" />
                 <ScalarProperty Name="Monto" ColumnName="Monto" />
                 <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
                 <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />

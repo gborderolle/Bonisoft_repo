@@ -12,15 +12,14 @@ namespace Bonisoft.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class cliente_pagos
+    public partial class fletero_pagos
     {
-        public int Cliente_pagos_ID { get; set; }
-        public int Cliente_ID { get; set; }
+        public int Fletero_pagos_ID { get; set; }
+        public int Fletero_ID { get; set; }
         public System.DateTime Fecha_registro { get; set; }
         public System.DateTime Fecha_pago { get; set; }
         public int Forma_de_pago_ID { get; set; }
         public decimal Monto { get; set; }
-        public decimal Importe_viaje { get; set; }
         public string Comentarios { get; set; }
         public int Viaje_ID { get; set; }
     }

@@ -109,6 +109,7 @@
                                     break;
                                 }
                             }
+                            $(".chzn-select").trigger("liszt:updated");
 
                         }
 
@@ -201,7 +202,6 @@
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="Carga" HeaderText="Lugar de carga" HtmlEncode="False" />
                                         <asp:BoundField DataField="Pesada_Origen_peso_neto" HeaderText="Kilos neto origen" HtmlEncode="False" />
-                                        <asp:BoundField DataField="Precio_compra" HeaderText="Precio compra" DataFormatString="{0:C2}" HtmlEncode="False" />
 
                                         <asp:TemplateField HeaderText="Fletero">
                                             <ItemTemplate>
@@ -213,8 +213,7 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lblChofer" runat="server" CommandName="View" Text='<%# Eval("Chofer_ID") %>' />
                                             </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:BoundField DataField="precio_flete" HeaderText="Precio flete" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                        </asp:TemplateField>                                        
 
                                         <asp:TemplateField HeaderText="Cliente">
                                             <ItemTemplate>
@@ -222,10 +221,13 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="Pesada_Destino_peso_neto" HeaderText="Kilos neto destino" HtmlEncode="False" />
-                                        <asp:BoundField DataField="Precio_descarga" HeaderText="Descarga" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
 
-                                        <asp:BoundField DataField="Precio_venta" HeaderText="Total viaje" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Precio_compra" HeaderText="Precio compra" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                        <asp:BoundField DataField="precio_flete_total" HeaderText="Precio flete total" DataFormatString="{0:C2}" HtmlEncode="False" />
                                         <asp:BoundField DataField="IVA" HeaderText="IVA" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Precio_descarga" HeaderText="Descarga" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                        <asp:BoundField DataField="Precio_venta" HeaderText="Total viaje" DataFormatString="{0:C2}" HtmlEncode="False" />
+
                                         <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
 
                                         <asp:ButtonField CommandName="notificar" ControlStyle-CssClass="btn btn-info btn-xs" ButtonType="Link" Text="" HeaderText="Detalles">
@@ -589,7 +591,7 @@
                                                             <h3 style="margin: 0;">
                                                                 <label runat="server" clientidmode="Static" id="notif_Flete1" class="notif_lblPesoNeto label label-default">0</label></h3>
                                                         </td>
-                                                        <td><i class="glyphicon glyphicon-asterisk"></i>Precio Flete: 
+                                                        <td><i class="glyphicon glyphicon-asterisk"></i>Precio Flete x Ton: 
                                                              <asp:TextBox ID="notif_Flete2" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="32" Width="100"></asp:TextBox>
                                                         </td>
                                                         <td><i class="glyphicon glyphicon-plus"></i>% IVA (0 = no aplica): 
@@ -768,64 +770,7 @@
                                                                 <asp:DropDownList ID="ddlClientes2" runat="server" CssClass="form-control" />
                                                             </FooterTemplate>
                                                         </asp:TemplateField>
-
-                                                        <asp:BoundField DataField="Precio_compra" HeaderText="Precio compra Mercadería" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
-                                                        <asp:BoundField DataField="Precio_flete" HeaderText="Flete" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
-                                                        <asp:BoundField DataField="Precio_descarga" HeaderText="Descarga" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
-                                                        <asp:BoundField DataField="Precio_venta" HeaderText="Total viaje" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
-
-                                                        <%--<asp:TemplateField HeaderText="Precio compra Mercadería">
-                                                            <EditItemTemplate>
-                                                                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Precio_compra") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                                <asp:CompareValidator ForeColor="Red" ID="vtxb2" runat="server" ControlToValidate="txb2" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Precio_compra", "{0:C2}") %>'></asp:Label>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                                <asp:CompareValidator ForeColor="Red" ID="vtxbNew2" runat="server" ControlToValidate="txbNew2" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>--%>
-                                                        <%--<asp:TemplateField HeaderText="Flete">
-                                                            <EditItemTemplate>
-                                                                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Precio_compra") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                                <asp:CompareValidator ForeColor="Red" ID="vtxb2" runat="server" ControlToValidate="txb2" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Precio_compra", "{0:C2}") %>'></asp:Label>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                                <asp:CompareValidator ForeColor="Red" ID="vtxbNew2" runat="server" ControlToValidate="txbNew2" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Descarga">
-                                                            <EditItemTemplate>
-                                                                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Precio_descarga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                                <asp:CompareValidator ForeColor="Red" ID="vtxb2" runat="server" ControlToValidate="txb2" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Precio_descarga", "{0:C2}") %>'></asp:Label>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                                <asp:CompareValidator ForeColor="Red" ID="vtxbNew2" runat="server" ControlToValidate="txbNew2" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>--%>
-                                                        <%--<asp:TemplateField HeaderText="Total del viaje">
-                                                            <EditItemTemplate>
-                                                                <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("Precio_flete") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                                <asp:CompareValidator ForeColor="Red" ID="vtxb3" runat="server" ControlToValidate="txb3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lbl3" runat="server" Text='<%# Bind("Precio_flete", "{0:C2}") %>'></asp:Label>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                                <asp:CompareValidator ForeColor="Red" ID="vtxbNew3" runat="server" ControlToValidate="txbNew3" Display="Dynamic" SetFocusOnError="true" Text="" ErrorMessage="Se admiten sólo números" Operator="DataTypeCheck" Type="Currency" />
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>--%>
+                                                        
                                                         <asp:TemplateField HeaderText="Cargadores">
                                                             <EditItemTemplate>
                                                                 <asp:DropDownList ID="ddlCargadores1" runat="server" CssClass="form-control" />
@@ -881,6 +826,12 @@
                                                                 <asp:DropDownList ID="ddlChoferes2" runat="server" CssClass="form-control" />
                                                             </FooterTemplate>
                                                         </asp:TemplateField>
+
+                                                        <asp:BoundField DataField="Precio_compra" HeaderText="Precio compra mercadería" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                                        <asp:BoundField DataField="precio_flete_total" HeaderText="Flete" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                                        <asp:BoundField DataField="Precio_descarga" HeaderText="Descarga" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                                        <asp:BoundField DataField="Precio_venta" HeaderText="Total viaje" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
+
                                                         <asp:TemplateField HeaderText="Comentarios">
                                                             <EditItemTemplate>
                                                                 <asp:TextBox ID="txb15" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="100"></asp:TextBox>
