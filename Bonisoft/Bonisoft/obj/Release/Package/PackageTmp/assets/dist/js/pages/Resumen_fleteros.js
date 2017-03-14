@@ -1,13 +1,13 @@
 ﻿/**** Local variables ****/
-var upClientes = '<%=upClientes.ClientID%>';
+var upFleteros = '<%=upFleteros.FleteroID%>';
 var PAGO_ID_SELECTED;
-var CLIENTE_ID_SELECTED;
+var FLETERO_ID_SELECTED;
 
 $(document).ready(function () {
    bindEvents();
 
     // Seleccionar primer cliente
-    var first = $("#gridClientes tbody tr").first();
+    var first = $("#gridFleteros tbody tr").first();
     if (first != null) {
         first.click();
     }
@@ -30,14 +30,14 @@ function newOpcionDDL(tipo) {
     if (valor !== null && valor !== "") {
 
         // Ajax call parameters
-        console.log("Ajax call: Resumen_clientes.aspx/AgregarOpcionDDL. Params:");
+        console.log("Ajax call: Resumen_fleteros.aspx/AgregarOpcionDDL. Params:");
         console.log("tipo, type: " + type(tipo) + ", value: " + tipo);
         console.log("cliente, type: " + type(valor) + ", value: " + valor);
 
         // Check existen mercaderías
         $.ajax({
             type: "POST",
-            url: "Resumen_clientes.aspx/AgregarOpcionDDL",
+            url: "Resumen_fleteros.aspx/AgregarOpcionDDL",
             data: '{tipo: "' + tipo + '",valor: "' + valor + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -55,6 +55,7 @@ function newOpcionDDL(tipo) {
                         }
                     }
                     $(".chzn-select").trigger("liszt:updated");
+
                 }
 
             }, // end success
@@ -81,14 +82,14 @@ function addToday(tipo) {
 
 function actualizarSaldos() {
 
-    var hdn_clientID = $("#hdn_clientID");
-    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
-        var clienteID_str = hdn_clientID.val();
+    var hdn_FleteroID = $("#hdn_FleteroID");
+    if (hdn_FleteroID !== null && hdn_FleteroID.val() !== null && hdn_FleteroID.val().length > 0) {
+        var fleteroID_str = hdn_FleteroID.val();
 
         $.ajax({
             type: "POST",
-            url: "Resumen_clientes.aspx/Update_Saldos",
-            data: '{clienteID_str: "' + clienteID_str + '"}',
+            url: "Resumen_fleteros.aspx/Update_Saldos",
+            data: '{fleteroID_str: "' + fleteroID_str + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
@@ -130,12 +131,12 @@ function ModificarPago_1(pagoID) {
         var pagoID_str = pagoID.toString();
 
         // Ajax call parameters
-        console.log("Ajax call: Resumen_clientes.aspx/ModificarPago_1. Params:");
+        console.log("Ajax call: Resumen_fleteros.aspx/ModificarPago_1. Params:");
         console.log("pagoID_str, type: " + type(pagoID_str) + ", value: " + pagoID_str);
 
         $.ajax({
             type: "POST",
-            url: "Resumen_clientes.aspx/ModificarPago_1",
+            url: "Resumen_fleteros.aspx/ModificarPago_1",
             data: '{pagoID_str: "' + pagoID_str + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -172,9 +173,9 @@ function ModificarPago_1(pagoID) {
 
 function ModificarPago_2() {
 
-    var hdn_clientID = $("#hdn_clientID");
-    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
-        var clienteID_str = hdn_clientID.val();
+    var hdn_FleteroID = $("#hdn_FleteroID");
+    if (hdn_FleteroID !== null && hdn_FleteroID.val() !== null && hdn_FleteroID.val().length > 0) {
+        var fleteroID_str = hdn_FleteroID.val();
 
         if (PAGO_ID_SELECTED != null && PAGO_ID_SELECTED != "") {
             var pagoID_str = PAGO_ID_SELECTED;
@@ -185,7 +186,7 @@ function ModificarPago_2() {
             var txbComentarios = $("#edit_txbComentarios").val();
 
             // Ajax call parameters
-            console.log("Ajax call: Resumen_clientes.aspx/ModificarPago_2. Params:");
+            console.log("Ajax call: Resumen_fleteros.aspx/ModificarPago_2. Params:");
             console.log("pagoID_str, type: " + type(pagoID_str) + ", value: " + pagoID_str);
             console.log("txbFecha, type: " + type(txbFecha) + ", value: " + txbFecha);
             console.log("ddlFormas, type: " + type(ddlFormas) + ", value: " + ddlFormas);
@@ -194,7 +195,7 @@ function ModificarPago_2() {
 
             $.ajax({
                 type: "POST",
-                url: "Resumen_clientes.aspx/ModificarPago_2",
+                url: "Resumen_fleteros.aspx/ModificarPago_2",
                 data: '{pagoID_str: "' + pagoID_str + '",fecha_str: "' + txbFecha + '",ddlFormas: "' + ddlFormas + '",monto_str: "' + txbMonto + '",comentarios_str: "' + txbComentarios + '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -225,7 +226,7 @@ function ModificarPago_2() {
                             $.modal.close();
 
                             // Actualizar datos
-                            var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
+                            var selected_row = $(".hiddencol").filter(':contains("' + fleteroID_str + '")');
                             if (selected_row !== null) {
                                 selected_row.click();
                             }
@@ -248,9 +249,9 @@ function ModificarPago_2() {
 
 function IngresarPago() {
 
-    var hdn_clientID = $("#hdn_clientID");
-    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
-        var clienteID_str = hdn_clientID.val();
+    var hdn_FleteroID = $("#hdn_FleteroID");
+    if (hdn_FleteroID !== null && hdn_FleteroID.val() !== null && hdn_FleteroID.val().length > 0) {
+        var fleteroID_str = hdn_FleteroID.val();
 
         var txbFecha = $("#add_txbFecha").val();
         var ddlFormas = $("#add_ddlFormas").val();
@@ -261,8 +262,8 @@ function IngresarPago() {
         if (monto > 0) {
 
             // Ajax call parameters
-            console.log("Ajax call: Resumen_clientes.aspx/IngresarPago. Params:");
-            console.log("clienteID_str, type: " + type(clienteID_str) + ", value: " + clienteID_str);
+            console.log("Ajax call: Resumen_fleteros.aspx/IngresarPago. Params:");
+            console.log("fleteroID_str, type: " + type(fleteroID_str) + ", value: " + fleteroID_str);
             console.log("txbFecha, type: " + type(txbFecha) + ", value: " + txbFecha);
             console.log("ddlFormas, type: " + type(ddlFormas) + ", value: " + ddlFormas);
             console.log("txbMonto, type: " + type(txbMonto) + ", value: " + txbMonto);
@@ -270,8 +271,8 @@ function IngresarPago() {
 
             $.ajax({
                 type: "POST",
-                url: "Resumen_clientes.aspx/IngresarPago",
-                data: '{clienteID_str: "' + clienteID_str + '",fecha_str: "' + txbFecha + '",ddlFormas: "' + ddlFormas + '",monto_str: "' + txbMonto + '",comentarios_str: "' + txbComentarios + '"}',
+                url: "Resumen_fleteros.aspx/IngresarPago",
+                data: '{fleteroID_str: "' + fleteroID_str + '",fecha_str: "' + txbFecha + '",ddlFormas: "' + ddlFormas + '",monto_str: "' + txbMonto + '",comentarios_str: "' + txbComentarios + '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
@@ -300,7 +301,7 @@ function IngresarPago() {
                             $.modal.close();
 
                             // Actualizar datos
-                            var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
+                            var selected_row = $(".hiddencol").filter(':contains("' + fleteroID_str + '")');
                             if (selected_row !== null) {
                                 selected_row.click();
                             }
@@ -326,8 +327,8 @@ function IngresarPago() {
 
 function bindEvents() {
     $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
-    $("#tabsClientes").tabs();
-    $("#gridClientes").tablesorter();
+    $("#tabsFleteros").tabs();
+    $("#gridFleteros").tablesorter();
     $("#gridViajes").tablesorter();
     $("#gridViajesImprimir").tablesorter();
     $("#gridPagos").tablesorter();
@@ -336,16 +337,16 @@ function bindEvents() {
         PAGO_ID_SELECTED = $(this).find(".hiddencol").html();
     });
 
-    $("#gridClientes tr").click(function () {
-        CLIENTE_ID_SELECTED = $(this).find(".hiddencol").html();
+    $("#gridFleteros tr").click(function () {
+        FLETERO_ID_SELECTED = $(this).find(".hiddencol").html();
         //$(this).css("background-color", "black");
         //$(this).find("td").css("background-color", "black");
     });
     
 
     // Source: https://www.youtube.com/watch?v=Sy2J7cUv0QM
-    var gridClientes = $("#gridClientes tbody tr");
-    $("#txbSearchClientes").quicksearch(gridClientes);
+    var gridFleteros = $("#gridFleteros tbody tr");
+    $("#txbSearchFleteros").quicksearch(gridFleteros);
 
     var gridViajes = $("#gridViajes tbody tr");
     $("#txbSearchViajes").quicksearch(gridViajes);
@@ -353,9 +354,9 @@ function bindEvents() {
     var gridPagos = $("#gridPagos tbody tr");
     $("#txbSearchPagos").quicksearch(gridPagos);
 
-    $('#txbSearchClientes').keydown(function () {
-        var count = "# " + $('#gridClientes tbody tr:visible').length;
-        $("#lblGridClientesCount").text(count);
+    $('#txbSearchFleteros').keydown(function () {
+        var count = "# " + $('#gridFleteros tbody tr:visible').length;
+        $("#lblgridFleterosCount").text(count);
     });
 
     $('#txbSearchViajes').keydown(function () {
@@ -368,7 +369,7 @@ function bindEvents() {
 function BorrarPago(clienteID) {
 
     if (clienteID > 0) {
-        var clienteID_str = clienteID.toString();
+        var fleteroID_str = clienteID.toString();
 
         $('#dialog p').text(hashMessages['Confirmacion']);
         $("#dialog").dialog({
@@ -385,7 +386,7 @@ function BorrarPago(clienteID) {
                         // Check existen mercaderías
                         $.ajax({
                             type: "POST",
-                            url: "Resumen_clientes.aspx/BorrarPago",
+                            url: "Resumen_fleteros.aspx/BorrarPago",
                             data: '{pagoID_str: "' + pagoID_str + '"}',
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
@@ -395,7 +396,7 @@ function BorrarPago(clienteID) {
                                     show_message_info('OK_PagoBorrado');
 
                                     // Actualizar datos
-                                    var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
+                                    var selected_row = $(".hiddencol").filter(':contains("' + fleteroID_str + '")');
                                     if (selected_row !== null) {
                                         selected_row.click();
                                     }
@@ -424,18 +425,18 @@ function BorrarPago(clienteID) {
 
 function ViajeFicticio_1() {
 
-    var hdn_clientID = $("#hdn_clientID");
-    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
-        var clienteID_str = hdn_clientID.val();
+    var hdn_FleteroID = $("#hdn_FleteroID");
+    if (hdn_FleteroID !== null && hdn_FleteroID.val() !== null && hdn_FleteroID.val().length > 0) {
+        var fleteroID_str = hdn_FleteroID.val();
 
         // Ajax call parameters
-        console.log("Ajax call: Resumen_clientes.aspx/ViajeFicticio_1. Params:");
-        console.log("clienteID_str, type: " + type(clienteID_str) + ", value: " + clienteID_str);
+        console.log("Ajax call: Resumen_fleteros.aspx/ViajeFicticio_1. Params:");
+        console.log("fleteroID_str, type: " + type(fleteroID_str) + ", value: " + fleteroID_str);
 
         $.ajax({
             type: "POST",
-            url: "Resumen_clientes.aspx/ViajeFicticio_1",
-            data: '{clienteID_str: "' + clienteID_str + '"}',
+            url: "Resumen_fleteros.aspx/ViajeFicticio_1",
+            data: '{fleteroID_str: "' + fleteroID_str + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
@@ -468,23 +469,23 @@ function ViajeFicticio_1() {
 
 function ViajeFicticio_2() {
 
-    var hdn_clientID = $("#hdn_clientID");
-    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
-        var clienteID_str = hdn_clientID.val();
+    var hdn_FleteroID = $("#hdn_FleteroID");
+    if (hdn_FleteroID !== null && hdn_FleteroID.val() !== null && hdn_FleteroID.val().length > 0) {
+        var fleteroID_str = hdn_FleteroID.val();
 
         var saldo = $("#modalAddFicticio_txbSaldo").val();
         var comentarios = $("#modalAddFicticio_txbComentarios").val();
 
         // Ajax call parameters
-        console.log("Ajax call: Resumen_clientes.aspx/ViajeFicticio_2. Params:");
+        console.log("Ajax call: Resumen_fleteros.aspx/ViajeFicticio_2. Params:");
         console.log("saldo, type: " + type(saldo) + ", value: " + saldo);
         console.log("comentarios, type: " + type(comentarios) + ", value: " + comentarios);
-        console.log("clienteID_str, type: " + type(clienteID_str) + ", value: " + clienteID_str);
+        console.log("fleteroID_str, type: " + type(fleteroID_str) + ", value: " + fleteroID_str);
 
         $.ajax({
             type: "POST",
-            url: "Resumen_clientes.aspx/ViajeFicticio_2",
-            data: '{saldo_str: "' + saldo + '",comentarios: "' + comentarios + '",clienteID_str: "' + clienteID_str + '"}',
+            url: "Resumen_fleteros.aspx/ViajeFicticio_2",
+            data: '{saldo_str: "' + saldo + '",comentarios: "' + comentarios + '",fleteroID_str: "' + fleteroID_str + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
@@ -495,7 +496,7 @@ function ViajeFicticio_2() {
                     $.modal.close();
 
                     // Actualizar datos
-                    var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
+                    var selected_row = $(".hiddencol").filter(':contains("' + fleteroID_str + '")');
                     if (selected_row !== null) {
                         selected_row.click();
                     }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Resumen de Clientes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Resumen_clientes.aspx.cs" Inherits="Bonisoft.Pages.Resumen_clientes" %>
+﻿<%@ Page Title="Resumen de Fleteros" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Resumen_fleteros.aspx.cs" Inherits="Bonisoft.Pages.Resumen_fleteros" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/assets/dist/css/chosen.css" />
 
     <!-- PAGE CSS -->
-    <link rel="stylesheet" href="/assets/dist/css/pages/Resumen_clientes.css" />
+    <link rel="stylesheet" href="/assets/dist/css/pages/Resumen_fleteros.css" />
     <link rel="stylesheet" href="/assets/dist/css/pages/Modal_styles.css" />
 
 </asp:Content>
@@ -22,7 +22,7 @@
 
     <!-- PAGE JS -->
     <script type="text/javascript" src="/assets/dist/js/AuxiliarFunctions.js"></script>
-    <script type="text/javascript" src="/assets/dist/js/pages/Resumen_clientes.js"></script>
+    <script type="text/javascript" src="/assets/dist/js/pages/Resumen_fleteros.js"></script>
 
 </asp:Content>
 
@@ -33,7 +33,7 @@
 
             <div class="row">
                 <div class="col-md-9">
-                    <h1 style="font-size: 24px;">Resumen de Clientes</h1>
+                    <h1 style="font-size: 24px;">Resumen de Fleteros</h1>
                 </div>
             </div>
 
@@ -43,14 +43,14 @@
 
                     <div style="text-align: center">
 
-                        <asp:UpdatePanel ID="upClientes" runat="server">
+                        <asp:UpdatePanel ID="upFleteros" runat="server">
                             <ContentTemplate>
 
                                 <div class="row" style="margin-bottom: 10px;">
                                     <div class="col-md-7 pull-right">
                                         <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
                                             <div class="input-group ">
-                                                <input type="text" id="txbSearchClientes" name="q" class="form-control" placeholder="Buscar...">
+                                                <input type="text" id="txbSearchFleteros" name="q" class="form-control" placeholder="Buscar...">
                                                 <span class="input-group-btn">
                                                     <button type="button" name="search" id="search-btn1" class="btn btn-flat">
                                                         <i class="fa fa-search"></i>
@@ -61,27 +61,27 @@
                                     </div>
                                 </div>
 
-                                <asp:Label ID="gridClientes_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-                                <asp:GridView ID="gridClientes" runat="server" ClientIDMode="Static" HorizontalAlign="Left"
+                                <asp:Label ID="gridFleteros_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
+                                <asp:GridView ID="gridFleteros" runat="server" ClientIDMode="Static" HorizontalAlign="Left"
                                     AutoGenerateColumns="false" CssClass="table table-hover table-striped" AllowPaging="true" PageSize="30"
-                                    DataKeyNames="Cliente_ID"
-                                    OnRowDataBound="gridClientes_RowDataBound"
-                                    OnRowCommand="gridClientes_RowCommand"
-                                    OnSelectedIndexChanged="gridClientes_OnSelectedIndexChanged"
+                                    DataKeyNames="Fletero_ID"
+                                    OnRowDataBound="gridFleteros_RowDataBound"
+                                    OnRowCommand="gridFleteros_RowCommand"
+                                    OnSelectedIndexChanged="gridFleteros_OnSelectedIndexChanged"
                                     OnPageIndexChanging="grid2_PageIndexChanging">
 
                                     <RowStyle HorizontalAlign="Left" />
                                     <Columns>
-                                        <asp:BoundField DataField="cliente_ID" HeaderText="Cliente_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol hiddencol_real" HeaderStyle-CssClass="hiddencol hiddencol_real" />
+                                        <asp:BoundField DataField="Fletero_ID" HeaderText="Fletero_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol hiddencol_real" HeaderStyle-CssClass="hiddencol hiddencol_real" />
                                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" HtmlEncode="false" />
                                     </Columns>
                                 </asp:GridView>
                                 <asp:LinkButton ID="lnkDummy" runat="server"></asp:LinkButton>
-                                <asp:Label ID="lblGridClientesCount" runat="server" ClientIDMode="Static" Text="0" CssClass="lblResultados label label-info"></asp:Label>
+                                <asp:Label ID="lblGridFleterosCount" runat="server" ClientIDMode="Static" Text="0" CssClass="lblResultados label label-info"></asp:Label>
 
                             </ContentTemplate>
                             <Triggers>
-                                <asp:AsyncPostBackTrigger ControlID="gridClientes" EventName="SelectedIndexChanged" />
+                                <asp:AsyncPostBackTrigger ControlID="gridFleteros" EventName="SelectedIndexChanged" />
                             </Triggers>
                         </asp:UpdatePanel>
 
@@ -91,27 +91,27 @@
 
                 <div class="col-md-9">
 
-                    <div id="tabsClientes">
+                    <div id="tabsFleteros">
                         <ul>
-                            <li><a href="#tabsClientes_1" class="tabsClientes">Pagos del cliente</a></li>
-                            <li><a href="#tabsClientes_2" class="tabsClientes">Viajes del cliente</a></li>
-                            <li><a href="#tabsClientes_3" class="tabsClientes">Planilla a imprimir</a></li>
+                            <li><a href="#tabsFleteros_1" class="tabsFleteros">Pagos del fletero</a></li>
+                            <li><a href="#tabsFleteros_2" class="tabsFleteros">Viajes del fletero</a></li>
+                            <li><a href="#tabsFleteros_3" class="tabsFleteros">Planilla a imprimir</a></li>
                         </ul>
 
                         <!-- Tab Viajes BEGIN -->
-                        <div id="tabsClientes_1">
+                        <div id="tabsFleteros_1">
 
                             <div style="overflow: auto;">
 
                                 <asp:UpdatePanel ID="upPagos" runat="server">
                                     <ContentTemplate>
 
-                                        <asp:HiddenField ID="hdn_clientID" runat="server" ClientIDMode="Static" />
+                                        <asp:HiddenField ID="hdn_FleteroID" runat="server" ClientIDMode="Static" />
 
                                         <div class="row">
                                             <div class="col-md-10 pull-left">
                                                 <h2>
-                                                    <asp:Label Text="[Nombre cliente]" runat="server" ID="lblClientName_1" /></h2>
+                                                    <asp:Label Text="[Nombre fletero]" runat="server" ID="lblFleteroName_1" /></h2>
                                             </div>
 
                                             <div class="col-md-2 pull-right">
@@ -130,16 +130,15 @@
                                         <asp:Label ID="gridPagos_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
                                         <asp:GridView ID="gridPagos" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
                                             AutoGenerateColumns="false" CssClass="table table-hover table-striped" AllowPaging="true" PageSize="30"
-                                            DataKeyNames="Cliente_pagos_ID"
+                                            DataKeyNames="Fletero_pagos_ID"
                                             OnRowDataBound="gridPagos_RowDataBound"
                                             OnRowCommand="gridPagos_RowCommand"
                                             OnPageIndexChanging="grid_PageIndexChanging">
 
                                             <Columns>
-                                                <asp:BoundField DataField="Cliente_pagos_ID" HeaderText="ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
-                                                <asp:BoundField DataField="Cliente_ID" HeaderText="Cliente_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol hiddencol_real" HeaderStyle-CssClass="hiddencol hiddencol_real" />
+                                                <asp:BoundField DataField="Fletero_pagos_ID" HeaderText="ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
+                                                <asp:BoundField DataField="Fletero_ID" HeaderText="Fletero_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol hiddencol_real" HeaderStyle-CssClass="hiddencol hiddencol_real" />
                                                 <asp:BoundField DataField="Fecha_registro" HeaderText="Fecha de registro" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
-                                                <%--<asp:BoundField DataField="Fecha_pago" HeaderText="Fecha de pago" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="False" />--%>
                                                 <asp:TemplateField HeaderText="Fecha de pago">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblFechaPago" runat="server" CommandName="View" Text='<%# Eval("Fecha_pago", "{0:dd-MM-yyyy}") %>' />
@@ -156,8 +155,8 @@
 
                                                 <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
                                                     <ItemTemplate>
-                                                        <a id="btnModificar" role="button" onclick='<%# "ModificarPago_1(" +Eval("Cliente_pagos_ID") + " );" %>' class="btn btn-info btn-xs glyphicon glyphicon-pencil"></a>
-                                                        <a id="btnBorrar" role="button" onclick='<%# "BorrarPago(" +Eval("Cliente_ID") + " );" %>' class="btn btn-danger btn-xs glyphicon glyphicon-remove"></a>
+                                                        <a id="btnModificar" role="button" onclick='<%# "ModificarPago_1(" +Eval("Fletero_pagos_ID") + " );" %>' class="btn btn-info btn-xs glyphicon glyphicon-pencil"></a>
+                                                        <a id="btnBorrar" role="button" onclick='<%# "BorrarPago(" +Eval("Fletero_ID") + " );" %>' class="btn btn-danger btn-xs glyphicon glyphicon-remove"></a>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
@@ -173,7 +172,7 @@
                                         <hr style="margin-top: 5px; margin-bottom: 5px;" />
                                         <div class="row" style="margin: 0;">
                                             <div class="col-md-12 pull-left" style="padding: 10px;">
-                                                <p class="text-info" style="text-align: left;">Importante: El Saldo inicial es la suma del Precio de venta de todos los viajes que corresponden al cliente. </p>
+                                                <p class="text-info" style="text-align: left;">Importante: El Saldo inicial es la suma del Precio de venta de todos los viajes que corresponden al fletero. </p>
                                             </div>
                                         </div>
 
@@ -184,7 +183,7 @@
 
                         </div>
 
-                        <div id="tabsClientes_2">
+                        <div id="tabsFleteros_2">
 
 
                             <div style="overflow: auto;">
@@ -271,7 +270,7 @@
 
                         </div>
 
-                        <div id="tabsClientes_3">
+                        <div id="tabsFleteros_3">
                             <div style="overflow: auto;">
                                 <asp:UpdatePanel ID="upViajesImprimir" runat="server">
                                     <ContentTemplate>
@@ -291,12 +290,13 @@
                                             </div>
                                             <div class="col-md-2 pull-right">
                                                 <asp:Button runat="server" ID="btnPrint" CssClass="btn btn-sm btn-warning pull-right" OnClick="PrintAllPages" Text="Imprimir" />
+                                                <%--<a id="btnPrint" role="button" class="btn btn-sm btn-warning pull-right">Imprimir</a>--%>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-10 pull-left">
                                                 <h2>
-                                                    <asp:Label Text="[Nombre cliente]" runat="server" ID="lblClientName_2" /></h2>
+                                                    <asp:Label Text="[Nombre fletero]" runat="server" ID="lblFleteroName_2" /></h2>
                                             </div>
                                         </div>
 
@@ -312,7 +312,7 @@
                                             <RowStyle Font-Size="Smaller" />
 
                                             <Columns>
-                                                <asp:BoundField DataField="Cliente_ID" HeaderText="ID" HtmlEncode="false" Visible="false" />
+                                                <asp:BoundField DataField="Fletero_ID" HeaderText="ID" HtmlEncode="false" Visible="false" />
                                                 <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" Visible="false" />
                                                 <asp:TemplateField HeaderText="FECHA">
                                                     <ItemTemplate>
@@ -336,7 +336,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="IMPORTE">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblImporte" runat="server" CommandName="View" Text='<%# Eval("Importe_viaje") %>' />
+                                                        <asp:Label ID="lblImporte" runat="server" CommandName="View" Text='<%# Eval("Comentarios") %>' />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:BoundField DataField="Monto" HeaderText="PAGO" DataFormatString="{0:0.00}" HtmlEncode="False" />
@@ -488,6 +488,7 @@
         </div>
         <asp:UpdatePanel ID="upAddFicticio" runat="server">
             <ContentTemplate>
+                <%--<asp:Button ID="btnSubmit_upAddFicticio" runat="server" OnClick="btnSubmit_upAddFicticio_Click" Style="display: none" />--%>
                 <div class="modal-body">
                     <table class="table">
                         <tr>
@@ -502,7 +503,7 @@
                             </td>
                         </tr>
                     </table>
-                    <p style="color: orange; margin: 0;">Importante: El Saldo ingresado se sumará a los viajes ya existentes del cliente.</p>
+                    <p style="color: orange; margin: 0;">Importante: El Saldo ingresado se sumará a los viajes ya existentes del fletero.</p>
 
                 </div>
                 <div class="modal-footer">

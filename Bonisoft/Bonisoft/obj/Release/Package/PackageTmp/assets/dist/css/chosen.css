@@ -1,4 +1,9 @@
 /* @group Base */
+
+.active-result{
+    color: black !important;
+}
+
 .chzn-container {
   font-size: 13px;
   position: relative;

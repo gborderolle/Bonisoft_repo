@@ -57,6 +57,7 @@ function newOpcionDDL(tipo) {
                             break;
                         }
                     }
+                    $(".chzn-select").trigger("liszt:updated");
 
                 }
 

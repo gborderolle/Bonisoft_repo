@@ -1,0 +1,123 @@
+﻿#btnSearch{
+    color: black;
+}
+
+.modal-ddl{
+    width: 90% !important;
+    float: left;
+}
+
+#gridClientes > tbody > tr > td {
+    font-size: smaller;
+    border-bottom: 1px #cccccc solid;
+}
+
+.lblResultados{
+    float:left;
+    font-size: small;
+    display:none;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="select"] {
+    max-width: none;
+}
+
+table tr th {
+    /*font-size: 16px;*/
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+    font-weight: 500;
+    line-height: 1.1;
+    background-color: #428bca;
+}
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+    /*background: #d49a9a;*/
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    /*background: #d49a9a;*/
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+    /*background: #da3333;*/
+    /*border-color: darkred;*/
+}
+
+.ui-widget-content .btn{
+    color: whitesmoke;
+}
+
+.ui-widget-content a {
+    color: blue;
+}
+
+#myTabs a {
+    /*font-size: medium;*/
+    color: whitesmoke;
+}
+
+#myTabs a .btn{
+    font-size: small;
+}
+
+#myTabs a .fa{
+    font-size: small;
+}
+
+#MainContent_upAdd input {
+    max-width: 100%;
+}
+
+.btnViajes {
+    padding: 10px 22px 10px 22px;
+    margin: 0px 0px 0px 0px;
+    background: #13AFEB;
+    border-bottom: 1px solid #13AFEB;
+    white-space: nowrap;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #FFF;
+    font-weight: 600;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.ancViajes {
+    padding: 5px 10px 5px 10px;
+    margin: 0px 0px 0px 0px;
+    background: #13AFEB;
+    border-bottom: 1px solid #13AFEB;
+    white-space: nowrap;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #FFF;
+    font-weight: 600;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.modalShow {
+    top: 10%;
+    transition: opacity 0.3s linear, top 0.3s ease-out;
+    opacity: 1;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    z-index: 1050;
+    width: 560px;
+    margin-left: -280px;
+    background-color: #ffffff;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    outline: none;
+    -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+}

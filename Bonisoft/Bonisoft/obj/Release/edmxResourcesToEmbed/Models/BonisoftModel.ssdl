@@ -73,7 +73,8 @@
     <Property Name="Fecha_registro" Type="date" Nullable="false" />
     <Property Name="Fecha_pago" Type="date" Nullable="false" />
     <Property Name="Forma_de_pago_ID" Type="int" Nullable="false" />
-    <Property Name="Monto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Importe_viaje" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Viaje_ID" Type="int" Nullable="false" />
   </EntityType>
@@ -109,6 +110,19 @@
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="fletero_pagos">
+    <Key>
+      <PropertyRef Name="Fletero_pagos_ID" />
+    </Key>
+    <Property Name="Fletero_pagos_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fletero_ID" Type="int" Nullable="false" />
+    <Property Name="Fecha_registro" Type="date" Nullable="false" />
+    <Property Name="Fecha_pago" Type="date" Nullable="false" />
+    <Property Name="Forma_de_pago_ID" Type="int" Nullable="false" />
+    <Property Name="Monto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Viaje_ID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="forma_de_pago">
     <Key>
@@ -231,6 +245,7 @@
     <Property Name="precio_compra" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="precio_venta" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="precio_flete" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="precio_flete_total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="precio_descarga" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="GananciaXTon" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="IVA" Type="int" Nullable="false" />
@@ -264,6 +279,7 @@
     <EntitySet Name="cuadrilla_descarga" EntityType="Self.cuadrilla_descarga" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="descarga_viaje" EntityType="Self.descarga_viaje" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="fletero" EntityType="Self.fletero" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fletero_pagos" EntityType="Self.fletero_pagos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="forma_de_pago" EntityType="Self.forma_de_pago" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="lena_tipo" EntityType="Self.lena_tipo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="log" EntityType="Self.log" Schema="dbo" store:Type="Tables" />
