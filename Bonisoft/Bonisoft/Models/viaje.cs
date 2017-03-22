@@ -32,6 +32,7 @@ namespace Bonisoft.Models
         public decimal precio_compra { get; set; }
         public decimal precio_venta { get; set; }
         public decimal precio_flete { get; set; }
+        public decimal precio_flete_total { get; set; }
         public decimal precio_descarga { get; set; }
         public decimal GananciaXTon { get; set; }
         public int IVA { get; set; }
@@ -54,6 +55,6 @@ namespace Bonisoft.Models
         public decimal Pesada_Destino_peso_bruto { get; set; }
         public decimal Pesada_Destino_peso_neto { get; set; }
         public string Pesada_Comentarios { get; set; }
-        public decimal precio_flete_total { get; set; }
+        public int remito { get; set; }
     }
 }

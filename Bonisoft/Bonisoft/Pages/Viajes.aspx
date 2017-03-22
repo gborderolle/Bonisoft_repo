@@ -190,6 +190,7 @@
 
                                     <Columns>
                                         <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
+                                        <asp:BoundField DataField="remito" HeaderText="Remito" HtmlEncode="false" ReadOnly="true" />
                                         <asp:TemplateField HeaderText="Fecha partida">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblFechaPartida" runat="server" CommandName="View" Text='<%# Eval("Fecha_partida", "{0:dd-MM-yyyy}") %>' />
@@ -213,7 +214,7 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lblChofer" runat="server" CommandName="View" Text='<%# Eval("Chofer_ID") %>' />
                                             </ItemTemplate>
-                                        </asp:TemplateField>                                        
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Cliente">
                                             <ItemTemplate>
@@ -726,6 +727,7 @@
 
                                                     <Columns>
                                                         <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
+                                                        <asp:BoundField DataField="remito" HeaderText="Remito" HtmlEncode="false" ReadOnly="true" />
                                                         <asp:TemplateField HeaderText="Fecha partida">
                                                             <EditItemTemplate>
                                                                 <asp:TextBox ID="txb11" runat="server" Text='<%# Bind("Fecha_partida", "{0:dd-MM-yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
@@ -770,7 +772,7 @@
                                                                 <asp:DropDownList ID="ddlClientes2" runat="server" CssClass="form-control" />
                                                             </FooterTemplate>
                                                         </asp:TemplateField>
-                                                        
+
                                                         <asp:TemplateField HeaderText="Cargadores">
                                                             <EditItemTemplate>
                                                                 <asp:DropDownList ID="ddlCargadores1" runat="server" CssClass="form-control" />

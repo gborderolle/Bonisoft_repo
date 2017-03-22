@@ -58,6 +58,17 @@
                 <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
+        <asp:TemplateField HeaderText="Depto empresa">
+            <EditItemTemplate>
+                <asp:TextBox ID="txb5" runat="server" Text='<%# Bind("Depto_empresa") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+            </EditItemTemplate>
+            <ItemTemplate>
+                <asp:Label ID="lbl5" runat="server" Text='<%# Bind("Depto_empresa") %>'></asp:Label>
+            </ItemTemplate>
+            <FooterTemplate>
+                <asp:TextBox ID="txbNew5" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+            </FooterTemplate>
+        </asp:TemplateField>
          <asp:TemplateField HeaderText="Teléfono">
             <EditItemTemplate>
                 <asp:TextBox ID="txb4" runat="server" Text='<%# Bind("Telefono") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>

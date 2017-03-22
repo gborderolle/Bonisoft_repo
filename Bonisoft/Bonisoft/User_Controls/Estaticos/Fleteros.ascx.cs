@@ -110,9 +110,10 @@ namespace Bonisoft.User_Controls.Estaticos
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 TextBox txb3 = row.FindControl("txbNew3") as TextBox;
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
+                TextBox txb5 = row.FindControl("txbNew5") as TextBox;
                 TextBox txb23 = row.FindControl("txbNew23") as TextBox;
                 TextBox txb24 = row.FindControl("txbNew24") as TextBox;
-                if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb23 != null && txb24 != null)
+                if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb23 != null && txb24 != null)
                 {
                     using (bonisoftEntities context = new bonisoftEntities())
                     {
@@ -123,6 +124,7 @@ namespace Bonisoft.User_Controls.Estaticos
                         obj.Telefono = txb4.Text;
                         obj.Email = txb23.Text;
                         obj.Nro_cuenta = txb24.Text;
+                        obj.Depto_empresa = txb5.Text;
 
                         context.fleteros.Add(obj);
                         context.SaveChanges();
@@ -179,11 +181,12 @@ namespace Bonisoft.User_Controls.Estaticos
             GridViewRow row = gridFleteros.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
-            TextBox txb3 = row.FindControl("txb3") as TextBox;
-            TextBox txb4 = row.FindControl("txb4") as TextBox;
+            TextBox txb3 = row.FindControl("txb3") as TextBox; 
+             TextBox txb4 = row.FindControl("txb4") as TextBox;
+             TextBox txb5 = row.FindControl("txb5") as TextBox;
             TextBox txb23 = row.FindControl("txb23") as TextBox;
             TextBox txb24 = row.FindControl("txb24") as TextBox;
-            if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb23 != null && txb24 != null)
+            if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb23 != null && txb24 != null)
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
@@ -195,6 +198,7 @@ namespace Bonisoft.User_Controls.Estaticos
                     obj.Telefono = txb4.Text;
                     obj.Email = txb23.Text;
                     obj.Nro_cuenta = txb24.Text;
+                    obj.Depto_empresa = txb5.Text;
 
                     context.SaveChanges();
 

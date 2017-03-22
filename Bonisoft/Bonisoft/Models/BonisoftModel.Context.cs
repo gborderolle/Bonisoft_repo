@@ -31,7 +31,6 @@ namespace Bonisoft.Models
         public virtual DbSet<cliente> clientes { get; set; }
         public virtual DbSet<cuadrilla_descarga> cuadrilla_descarga { get; set; }
         public virtual DbSet<descarga_viaje> descarga_viaje { get; set; }
-        public virtual DbSet<fletero> fleteros { get; set; }
         public virtual DbSet<forma_de_pago> forma_de_pago { get; set; }
         public virtual DbSet<lena_tipo> lena_tipo { get; set; }
         public virtual DbSet<log> logs { get; set; }
@@ -41,10 +40,11 @@ namespace Bonisoft.Models
         public virtual DbSet<roles_usuario> roles_usuario { get; set; }
         public virtual DbSet<usuario> usuarios { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<viaje> viajes { get; set; }
         public virtual DbSet<proveedor_pagos> proveedor_pagos { get; set; }
         public virtual DbSet<chofer> choferes { get; set; }
         public virtual DbSet<fletero_pagos> fletero_pagos { get; set; }
         public virtual DbSet<cliente_pagos> cliente_pagos { get; set; }
+        public virtual DbSet<fletero> fleteros { get; set; }
+        public virtual DbSet<viaje> viajes { get; set; }
     }
 }
