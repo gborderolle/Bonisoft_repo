@@ -181,68 +181,72 @@
                                 </div>
 
                                 <asp:Label ID="gridViajesEnCurso_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-                                <asp:GridView ID="gridViajesEnCurso" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
-                                    AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped" PageSize="30"
-                                    DataKeyNames="Viaje_ID"
-                                    OnRowDataBound="gridViajesEnCurso_RowDataBound"
-                                    OnRowCommand="gridViajesEnCurso_RowCommand"
-                                    OnPageIndexChanging="grid2_PageIndexChanging">
 
-                                    <Columns>
-                                        <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
-                                        <asp:BoundField DataField="remito" HeaderText="Remito" HtmlEncode="false" ReadOnly="true" />
-                                        <asp:TemplateField HeaderText="Fecha partida">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblFechaPartida" runat="server" CommandName="View" Text='<%# Eval("Fecha_partida", "{0:dd-MM-yyyy}") %>' />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Proveedor">
-                                            <ItemTemplate>
-                                                <asp:LinkButton ID="lblProveedor" runat="server" CommandName="View" Text='<%# Eval("Proveedor_ID") %>' />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:BoundField DataField="Carga" HeaderText="Lugar de carga" HtmlEncode="False" />
-                                        <asp:BoundField DataField="Pesada_Origen_peso_neto" HeaderText="Kilos neto origen" HtmlEncode="False" />
+                                <div style="overflow: auto;">
+                                    <asp:GridView ID="gridViajesEnCurso" runat="server" ClientIDMode="Static" HorizontalAlign="Center"
+                                        AutoGenerateColumns="false" AllowPaging="true" CssClass="table table-hover table-striped" PageSize="30"
+                                        DataKeyNames="Viaje_ID"
+                                        OnRowDataBound="gridViajesEnCurso_RowDataBound"
+                                        OnRowCommand="gridViajesEnCurso_RowCommand"
+                                        OnPageIndexChanging="grid2_PageIndexChanging">
 
-                                        <asp:TemplateField HeaderText="Fletero">
-                                            <ItemTemplate>
-                                                <asp:LinkButton ID="lblFletero" runat="server" CommandName="View" Text='<%# Eval("Fletero_ID") %>' />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                        <Columns>
+                                            <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
+                                            <asp:BoundField DataField="remito" HeaderText="Remito" HtmlEncode="false" ReadOnly="true" />
+                                            <asp:TemplateField HeaderText="Fecha partida">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblFechaPartida" runat="server" CommandName="View" Text='<%# Eval("Fecha_partida", "{0:dd-MM-yyyy}") %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Proveedor">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="lblProveedor" runat="server" CommandName="View" Text='<%# Eval("Proveedor_ID") %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="Carga" HeaderText="Lugar de carga" HtmlEncode="False" />
+                                            <asp:BoundField DataField="Pesada_Origen_peso_neto" HeaderText="Kilos neto origen" HtmlEncode="False" />
 
-                                        <asp:TemplateField HeaderText="Chofer">
-                                            <ItemTemplate>
-                                                <asp:LinkButton ID="lblChofer" runat="server" CommandName="View" Text='<%# Eval("Chofer_ID") %>' />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Fletero">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="lblFletero" runat="server" CommandName="View" Text='<%# Eval("Fletero_ID") %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Cliente">
-                                            <ItemTemplate>
-                                                <asp:LinkButton ID="lblCliente" runat="server" CommandName="View" Text='<%# Eval("Cliente_ID") %>' />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:BoundField DataField="Pesada_Destino_peso_neto" HeaderText="Kilos neto destino" HtmlEncode="False" />
+                                            <asp:TemplateField HeaderText="Chofer">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="lblChofer" runat="server" CommandName="View" Text='<%# Eval("Chofer_ID") %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
-                                        <asp:BoundField DataField="Precio_compra" HeaderText="Precio compra" DataFormatString="{0:C2}" HtmlEncode="False" />
-                                        <asp:BoundField DataField="precio_flete_total" HeaderText="Precio flete total" DataFormatString="{0:C2}" HtmlEncode="False" />
-                                        <asp:BoundField DataField="IVA" HeaderText="IVA" HtmlEncode="False" />
-                                        <asp:BoundField DataField="Precio_descarga" HeaderText="Descarga" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
-                                        <asp:BoundField DataField="Precio_venta" HeaderText="Total viaje" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                            <asp:TemplateField HeaderText="Cliente">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="lblCliente" runat="server" CommandName="View" Text='<%# Eval("Cliente_ID") %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="Pesada_Destino_peso_neto" HeaderText="Kilos neto destino" HtmlEncode="False" />
 
-                                        <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
+                                            <asp:BoundField DataField="Precio_compra" HeaderText="Precio compra" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                            <asp:BoundField DataField="precio_flete_total" HeaderText="Precio flete total" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                            <asp:BoundField DataField="IVA" HeaderText="IVA" HtmlEncode="False" />
+                                            <asp:BoundField DataField="Precio_descarga" HeaderText="Descarga" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                            <asp:BoundField DataField="Precio_venta" HeaderText="Total viaje" DataFormatString="{0:C2}" HtmlEncode="False" />
 
-                                        <asp:ButtonField CommandName="notificar" ControlStyle-CssClass="btn btn-info btn-xs" ButtonType="Link" Text="" HeaderText="Detalles">
-                                            <ControlStyle CssClass="btn btn-warning btn-xs glyphicon glyphicon-wrench"></ControlStyle>
-                                        </asp:ButtonField>
+                                            <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
 
-                                        <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
-                                            <ItemTemplate>
-                                                <a id="btnModificar" role="button" onclick='<%# "ModificarViaje_1(" +Eval("Viaje_ID") + ");" %>' class="btn btn-info btn-xs glyphicon glyphicon-pencil"></a>
-                                                <a id="btnBorrar" role="button" onclick='<%# "BorrarViajeEnCurso(" +Eval("Viaje_ID") + ");" %>' class="btn btn-danger btn-xs glyphicon glyphicon-remove"></a>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
+                                            <asp:ButtonField CommandName="notificar" ControlStyle-CssClass="btn btn-info btn-xs" ButtonType="Link" Text="" HeaderText="Detalles">
+                                                <ControlStyle CssClass="btn btn-warning btn-xs glyphicon glyphicon-wrench"></ControlStyle>
+                                            </asp:ButtonField>
+
+                                            <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
+                                                <ItemTemplate>
+                                                    <a id="btnModificar" role="button" onclick='<%# "ModificarViaje_1(" +Eval("Viaje_ID") + ");" %>' class="btn btn-info btn-xs glyphicon glyphicon-pencil"></a>
+                                                    <a id="btnBorrar" role="button" onclick='<%# "BorrarViajeEnCurso(" +Eval("Viaje_ID") + ");" %>' class="btn btn-danger btn-xs glyphicon glyphicon-remove"></a>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
+
                                 <asp:Label ID="lblGridViajesEnCursoCount" runat="server" ClientIDMode="Static" Text="# 0" CssClass="lblResultados label label-info"></asp:Label>
 
                             </ContentTemplate>
@@ -426,7 +430,7 @@
                         <!-- Modal Editar END -->
 
                         <!-- Modal Notificaciones BEGIN -->
-                        <div id="notificacionesModal" tabindex="-1" role="dialog" aria-labelledby="notificacionesModalLabel" aria-hidden="true" style="display: none; max-width: 1000px; overflow: hidden; margin-top: 40px;" class="modal fade dark in">
+                        <div id="notificacionesModal" tabindex="-1" role="dialog" aria-labelledby="notificacionesModalLabel" aria-hidden="true" style="display: none; max-width: 1000px; overflow: hidden; margin-top: 40px; overflow: auto;" class="modal fade dark in">
                             <asp:UpdatePanel ID="upNotificaciones" runat="server">
                                 <ContentTemplate>
 
@@ -708,152 +712,154 @@
                                             <ContentTemplate>
 
                                                 <asp:Label ID="gridViajes_lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-                                                <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False"
-                                                    ShowFooter="False" CssClass="table table-hover table-striped" PageSize="30" AllowPaging="true"
-                                                    DataKeyNames="Viaje_ID"
-                                                    OnRowCommand="gridViajes_RowCommand"
-                                                    OnRowCancelingEdit="gridViajes_RowCancelingEdit"
-                                                    OnRowEditing="gridViajes_RowEditing"
-                                                    OnRowUpdating="gridViajes_RowUpdating"
-                                                    OnRowDeleting="gridViajes_RowDeleting"
-                                                    OnRowDataBound="gridViajes_RowDataBound"
-                                                    OnPageIndexChanging="grid_PageIndexChanging">
+                                                <div style="overflow: auto;">
+                                                    <asp:GridView ID="gridViajes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False"
+                                                        ShowFooter="False" CssClass="table table-hover table-striped" PageSize="30" AllowPaging="true"
+                                                        DataKeyNames="Viaje_ID"
+                                                        OnRowCommand="gridViajes_RowCommand"
+                                                        OnRowCancelingEdit="gridViajes_RowCancelingEdit"
+                                                        OnRowEditing="gridViajes_RowEditing"
+                                                        OnRowUpdating="gridViajes_RowUpdating"
+                                                        OnRowDeleting="gridViajes_RowDeleting"
+                                                        OnRowDataBound="gridViajes_RowDataBound"
+                                                        OnPageIndexChanging="grid_PageIndexChanging">
 
-                                                    <RowStyle Font-Size="Smaller" />
-                                                    <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
-                                                    <EmptyDataTemplate>
-                                                        ¡No hay clientes con los parámetros seleccionados!  
-                                                    </EmptyDataTemplate>
+                                                        <RowStyle Font-Size="Smaller" />
+                                                        <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
+                                                        <EmptyDataTemplate>
+                                                            ¡No hay clientes con los parámetros seleccionados!  
+                                                        </EmptyDataTemplate>
 
-                                                    <Columns>
-                                                        <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
-                                                        <asp:BoundField DataField="remito" HeaderText="Remito" HtmlEncode="false" ReadOnly="true" />
-                                                        <asp:TemplateField HeaderText="Fecha partida">
-                                                            <EditItemTemplate>
-                                                                <asp:TextBox ID="txb11" runat="server" Text='<%# Bind("Fecha_partida", "{0:dd-MM-yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lbl11" runat="server" Text='<%# Bind("Fecha_partida", "{0:dd-MM-yyyy}") %>'></asp:Label>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:TextBox ID="txbNew11" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Fecha llegada">
-                                                            <EditItemTemplate>
-                                                                <asp:TextBox ID="txb12" runat="server" Text='<%# Bind("Fecha_llegada", "{0:dd-MM-yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lbl12" runat="server" Text='<%# Bind("Fecha_llegada", "{0:dd-MM-yyyy}") %>'></asp:Label>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:TextBox ID="txbNew12" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Proveedor">
-                                                            <EditItemTemplate>
-                                                                <asp:DropDownList ID="ddlProveedores1" runat="server" CssClass="form-control" />
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:LinkButton ID="lbl17" runat="server" CommandName="View" Text='<%# Bind("Proveedor_ID") %>'></asp:LinkButton>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:DropDownList ID="ddlProveedores2" runat="server" CssClass="form-control" />
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Cliente">
-                                                            <EditItemTemplate>
-                                                                <asp:DropDownList ID="ddlClientes1" runat="server" CssClass="form-control" />
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:LinkButton ID="lbl18" runat="server" CommandName="View" Text='<%# Bind("Cliente_ID") %>'></asp:LinkButton>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:DropDownList ID="ddlClientes2" runat="server" CssClass="form-control" />
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>
+                                                        <Columns>
+                                                            <asp:BoundField DataField="Viaje_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
+                                                            <asp:BoundField DataField="remito" HeaderText="Remito" HtmlEncode="false" ReadOnly="true" />
+                                                            <asp:TemplateField HeaderText="Fecha partida">
+                                                                <EditItemTemplate>
+                                                                    <asp:TextBox ID="txb11" runat="server" Text='<%# Bind("Fecha_partida", "{0:dd-MM-yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                                                </EditItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbl11" runat="server" Text='<%# Bind("Fecha_partida", "{0:dd-MM-yyyy}") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:TextBox ID="txbNew11" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Fecha llegada">
+                                                                <EditItemTemplate>
+                                                                    <asp:TextBox ID="txb12" runat="server" Text='<%# Bind("Fecha_llegada", "{0:dd-MM-yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                                                </EditItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbl12" runat="server" Text='<%# Bind("Fecha_llegada", "{0:dd-MM-yyyy}") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:TextBox ID="txbNew12" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Proveedor">
+                                                                <EditItemTemplate>
+                                                                    <asp:DropDownList ID="ddlProveedores1" runat="server" CssClass="form-control" />
+                                                                </EditItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="lbl17" runat="server" CommandName="View" Text='<%# Bind("Proveedor_ID") %>'></asp:LinkButton>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:DropDownList ID="ddlProveedores2" runat="server" CssClass="form-control" />
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Cliente">
+                                                                <EditItemTemplate>
+                                                                    <asp:DropDownList ID="ddlClientes1" runat="server" CssClass="form-control" />
+                                                                </EditItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="lbl18" runat="server" CommandName="View" Text='<%# Bind("Cliente_ID") %>'></asp:LinkButton>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:DropDownList ID="ddlClientes2" runat="server" CssClass="form-control" />
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
 
-                                                        <asp:TemplateField HeaderText="Cargadores">
-                                                            <EditItemTemplate>
-                                                                <asp:DropDownList ID="ddlCargadores1" runat="server" CssClass="form-control" />
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:LinkButton ID="lbl10" runat="server" CommandName="View" Text='<%# Bind("Empresa_de_carga_ID") %>'></asp:LinkButton>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:DropDownList ID="ddlCargadores2" runat="server" CssClass="form-control" />
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Lugar carga">
-                                                            <EditItemTemplate>
-                                                                <asp:TextBox ID="txb6" runat="server" Text='<%# Bind("Carga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lbl6" runat="server" Text='<%# Bind("Carga") %>'></asp:Label>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:TextBox ID="txbNew6" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Fletero">
-                                                            <EditItemTemplate>
-                                                                <asp:DropDownList ID="ddlFleteros1" runat="server" CssClass="form-control" />
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:LinkButton ID="lbl16" runat="server" CommandName="View" Text='<%# Bind("Fletero_ID") %>'></asp:LinkButton>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:DropDownList ID="ddlFleteros2" runat="server" CssClass="form-control" />
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Camión">
-                                                            <EditItemTemplate>
-                                                                <asp:DropDownList ID="ddlCamiones1" runat="server" CssClass="form-control" />
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:LinkButton ID="lbl13" runat="server" CommandName="View" Text='<%# Bind("Camion_ID") %>'></asp:LinkButton>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:DropDownList ID="ddlCamiones2" runat="server" CssClass="form-control" />
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Chofer">
-                                                            <EditItemTemplate>
-                                                                <asp:DropDownList ID="ddlChoferes1" runat="server" CssClass="form-control" />
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:LinkButton ID="lbl14" runat="server" CommandName="View" Text='<%# Bind("Chofer_ID") %>'></asp:LinkButton>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:DropDownList ID="ddlChoferes2" runat="server" CssClass="form-control" />
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Cargadores">
+                                                                <EditItemTemplate>
+                                                                    <asp:DropDownList ID="ddlCargadores1" runat="server" CssClass="form-control" />
+                                                                </EditItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="lbl10" runat="server" CommandName="View" Text='<%# Bind("Empresa_de_carga_ID") %>'></asp:LinkButton>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:DropDownList ID="ddlCargadores2" runat="server" CssClass="form-control" />
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Lugar carga">
+                                                                <EditItemTemplate>
+                                                                    <asp:TextBox ID="txb6" runat="server" Text='<%# Bind("Carga") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                                </EditItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbl6" runat="server" Text='<%# Bind("Carga") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:TextBox ID="txbNew6" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Fletero">
+                                                                <EditItemTemplate>
+                                                                    <asp:DropDownList ID="ddlFleteros1" runat="server" CssClass="form-control" />
+                                                                </EditItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="lbl16" runat="server" CommandName="View" Text='<%# Bind("Fletero_ID") %>'></asp:LinkButton>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:DropDownList ID="ddlFleteros2" runat="server" CssClass="form-control" />
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Camión">
+                                                                <EditItemTemplate>
+                                                                    <asp:DropDownList ID="ddlCamiones1" runat="server" CssClass="form-control" />
+                                                                </EditItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="lbl13" runat="server" CommandName="View" Text='<%# Bind("Camion_ID") %>'></asp:LinkButton>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:DropDownList ID="ddlCamiones2" runat="server" CssClass="form-control" />
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Chofer">
+                                                                <EditItemTemplate>
+                                                                    <asp:DropDownList ID="ddlChoferes1" runat="server" CssClass="form-control" />
+                                                                </EditItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="lbl14" runat="server" CommandName="View" Text='<%# Bind("Chofer_ID") %>'></asp:LinkButton>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:DropDownList ID="ddlChoferes2" runat="server" CssClass="form-control" />
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
 
-                                                        <asp:BoundField DataField="Precio_compra" HeaderText="Precio compra mercadería" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
-                                                        <asp:BoundField DataField="precio_flete_total" HeaderText="Flete" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
-                                                        <asp:BoundField DataField="Precio_descarga" HeaderText="Descarga" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
-                                                        <asp:BoundField DataField="Precio_venta" HeaderText="Total viaje" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                                            <asp:BoundField DataField="Precio_compra" HeaderText="Precio compra mercadería" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                                            <asp:BoundField DataField="precio_flete_total" HeaderText="Flete" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                                            <asp:BoundField DataField="Precio_descarga" HeaderText="Descarga" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                                            <asp:BoundField DataField="Precio_venta" HeaderText="Total viaje" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
 
-                                                        <asp:TemplateField HeaderText="Comentarios">
-                                                            <EditItemTemplate>
-                                                                <asp:TextBox ID="txb15" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="100"></asp:TextBox>
-                                                            </EditItemTemplate>
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lbl15" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:TextBox ID="txbNew15" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Volver a En Curso">
-                                                            <HeaderStyle Width="100" />
-                                                            <ItemTemplate>
-                                                                <a id="btnVolverAEnCurso" role="button" onclick='<%# "volverAEnCurso(" +Eval("Viaje_ID") + ");" %>' class="btn btn-warning btn-xs fa fa-plane"></a>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                    </Columns>
+                                                            <asp:TemplateField HeaderText="Comentarios">
+                                                                <EditItemTemplate>
+                                                                    <asp:TextBox ID="txb15" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="100"></asp:TextBox>
+                                                                </EditItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbl15" runat="server" Text='<%# Bind("Comentarios") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:TextBox ID="txbNew15" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Volver a En Curso">
+                                                                <HeaderStyle Width="100" />
+                                                                <ItemTemplate>
+                                                                    <a id="btnVolverAEnCurso" role="button" onclick='<%# "volverAEnCurso(" +Eval("Viaje_ID") + ");" %>' class="btn btn-warning btn-xs fa fa-plane"></a>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        </Columns>
 
-                                                </asp:GridView>
+                                                    </asp:GridView>
+                                                </div>
                                                 <asp:Label ID="lblGridViajesCount" runat="server" ClientIDMode="Static" Text="# 0" CssClass="lblResultados label label-info"></asp:Label>
 
                                                 <hr style="margin-top: 5px; margin-bottom: 5px;" />
