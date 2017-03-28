@@ -233,7 +233,7 @@ namespace Bonisoft.Pages
                         bool save_ok = false;
 
                         // Check si tiene Mercaderías
-                        if (viaje.Mercaderia_Precio_xTonelada_compra > 0 || viaje.Mercaderia_Precio_xTonelada_venta > 0)
+                        if (viaje.Mercaderia_Valor_Proveedor_PorTon > 0 || viaje.Mercaderia_Valor_Cliente_PorTon > 0)
                         {
                             save_ok = true;
                         }
@@ -327,38 +327,6 @@ namespace Bonisoft.Pages
             sb.Append(@"</script>");
             ScriptManager.RegisterStartupScript(this, this.GetType(), "btnUpdateViajesEnCurso_Click", sb.ToString(), false);
         }
-
-        //protected void upMercaderias_Load(object sender, EventArgs e)
-        //{
-        //    // Logger variables
-        //    System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-        //    System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
-        //    string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
-        //    string methodName = stackFrame.GetMethod().Name;
-
-        //    using (bonisoftEntities context = new bonisoftEntities())
-        //    {
-        //        string viaje_ID_str = Mercaderias.Viaje_ID1;
-        //        if (!string.IsNullOrWhiteSpace(viaje_ID_str))
-        //        {
-        //            int viaje_ID = 0;
-        //            if (!int.TryParse(viaje_ID_str, out viaje_ID))
-        //            {
-        //                viaje_ID = 0;
-        //                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, viaje_ID_str);
-        //            }
-        //            if (viaje_ID > 0)
-        //            {
-        //                viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
-        //                if (viaje != null)
-        //                {
-        //                    FillData_Pesadas(viaje);
-        //                    //FillData_Ventas(viaje);
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -1963,8 +1931,8 @@ namespace Bonisoft.Pages
         {
             if (viaje != null)
             {
-                txbMercaderiaPrecioCompra.Text = viaje.Mercaderia_Precio_xTonelada_compra.ToString();
-                txbMercaderiaComentarios.Text = viaje.Mercaderia_Comentarios;
+                txbMercaderiaValorProveedor.Text = viaje.Mercaderia_Valor_Proveedor_PorTon.ToString();
+                txbMercaderia_Proveedor_Comentarios.Text = viaje.Mercaderia_Proveedor_Comentarios;
                 ddlTipoLena.SelectedValue = viaje.Mercaderia_Lena_tipo_ID.ToString();
             }
         }
@@ -1975,9 +1943,11 @@ namespace Bonisoft.Pages
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
+                    txbMercaderiaValorCliente.Text = viaje.Mercaderia_Valor_Cliente_PorTon.ToString();
                     notif_Flete2.Text = viaje.precio_flete.ToString();
                     notif_Flete3.Text = viaje.IVA.ToString();
                     notif_Venta2.Text = viaje.precio_descarga.ToString();
+                    txbMercaderia_Cliente_Comentarios.Text = viaje.Mercaderia_Cliente_Comentarios;
 
                     // Cálculo mercadería
                     decimal peso_neto_origen = 0;
@@ -2021,7 +1991,7 @@ namespace Bonisoft.Pages
                     viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Viaje_ID == viaje_ID);
                     if (viaje != null)
                     {
-                        decimal totalCostos = viaje.Mercaderia_Precio_xTonelada_compra;
+                        decimal totalCostos = viaje.Mercaderia_Valor_Proveedor_PorTon;
                         decimal peso_neto_origen = viaje.Pesada_Origen_peso_neto;
                         decimal peso_neto_destino = viaje.Pesada_Destino_peso_neto;
 
@@ -2059,7 +2029,7 @@ namespace Bonisoft.Pages
         #region Web methods
 
         [WebMethod]
-        public static bool GuardarPrecioVenta(string viajeID, string precioFlete_str, string precioDescarga_str, string IVA_str, string precio_venta_str)
+        public static bool GuardarPrecioVenta(string viajeID, string precioFlete_str, string precioDescarga_str, string IVA_str, string mercaderiaValorCliente_str, string mercaderia_Cliente_Comentarios, string precio_venta_str )
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -2071,7 +2041,7 @@ namespace Bonisoft.Pages
             using (bonisoftEntities context = new bonisoftEntities())
             {
                 if (!string.IsNullOrWhiteSpace(viajeID) && precioFlete_str != null && precioDescarga_str != null &&
-                    IVA_str != null && precio_venta_str != null)
+                    IVA_str != null && mercaderiaValorCliente_str != null && mercaderia_Cliente_Comentarios != null && precio_venta_str != null) 
                 {
                     int viajeID_value = 0;
                     if (!int.TryParse(viajeID, out viajeID_value))
@@ -2114,6 +2084,15 @@ namespace Bonisoft.Pages
                                     Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, IVA_str);
                                 }
                             }
+                            decimal mercaderiaValorCliente = 0;
+                            if (!string.IsNullOrWhiteSpace(mercaderiaValorCliente_str))
+                            {
+                                if (!decimal.TryParse(mercaderiaValorCliente_str, NumberStyles.Number, CultureInfo.InvariantCulture, out mercaderiaValorCliente))
+                                {
+                                    mercaderiaValorCliente = 0;
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, mercaderiaValorCliente_str);
+                                }
+                            }
 
                             decimal precio_venta = 0;
                             if (!string.IsNullOrWhiteSpace(precio_venta_str))
@@ -2130,8 +2109,10 @@ namespace Bonisoft.Pages
                                 viaje.precio_flete = precioFlete;
                                 viaje.precio_descarga = precioDescarga;
                                 viaje.IVA = IVA;
+                                viaje.Mercaderia_Valor_Cliente_PorTon = mercaderiaValorCliente;
+                                viaje.Mercaderia_Cliente_Comentarios = mercaderia_Cliente_Comentarios;
 
-                                decimal importe_viaje = viaje.Pesada_Destino_peso_neto * viaje.Mercaderia_Precio_xTonelada_compra;
+                                decimal importe_viaje = viaje.Pesada_Destino_peso_neto * viaje.Mercaderia_Valor_Proveedor_PorTon;
                                 viaje.Importe_viaje = importe_viaje;
 
                                 decimal flete_parcial = viaje.Pesada_Destino_peso_neto * precioFlete;
@@ -2177,7 +2158,7 @@ namespace Bonisoft.Pages
         public static string GuardarPesadas2(string viajeID_str,
             string txb_pesadaLugar1, string txb_pesadaFecha1, string txb_pesadaPeso_bruto1, string txb_pesadaPeso_neto1, string txb_pesadaNombre1,
             string txb_pesadaLugar2, string txb_pesadaFecha2, string txb_pesadaPeso_bruto2, string txb_pesadaPeso_neto2, string txb_pesadaNombre2,
-            string txb_pesadaComentarios, string txbMercaderiaPrecioCompra, string ddlTipoLena, string txbMercaderiaComentarios)
+            string txb_pesadaComentarios, string txbMercaderiaValorProveedor, string ddlTipoLena, string txbMercaderia_Proveedor_Comentarios)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -2283,17 +2264,17 @@ namespace Bonisoft.Pages
 
                             #region Mercaderia
 
-                            value = viaje.Mercaderia_Precio_xTonelada_compra;
-                            if (!string.IsNullOrWhiteSpace(txbMercaderiaPrecioCompra))
+                            value = viaje.Mercaderia_Valor_Proveedor_PorTon;
+                            if (!string.IsNullOrWhiteSpace(txbMercaderiaValorProveedor))
                             {
                                 // ISSUE: Replace "," por "."
-                                if (!decimal.TryParse(txbMercaderiaPrecioCompra.Replace(',', '.'), NumberStyles.Number, CultureInfo.InvariantCulture, out value))
+                                if (!decimal.TryParse(txbMercaderiaValorProveedor.Replace(',', '.'), NumberStyles.Number, CultureInfo.InvariantCulture, out value))
                                 {
-                                    value = viaje.Mercaderia_Precio_xTonelada_compra;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txbMercaderiaPrecioCompra);
+                                    value = viaje.Mercaderia_Valor_Proveedor_PorTon;
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, txbMercaderiaValorProveedor);
                                 }
                             }
-                            viaje.Mercaderia_Precio_xTonelada_compra = value;
+                            viaje.Mercaderia_Valor_Proveedor_PorTon = value;
 
                             int ddl = viaje.Mercaderia_Lena_tipo_ID;
                             if (!int.TryParse(ddlTipoLena, out ddl))
@@ -2303,12 +2284,12 @@ namespace Bonisoft.Pages
                             }
                             viaje.Mercaderia_Lena_tipo_ID = ddl;
 
-                            viaje.Mercaderia_Comentarios = txbMercaderiaComentarios;
+                            viaje.Mercaderia_Proveedor_Comentarios = txbMercaderia_Proveedor_Comentarios;
 
                             #endregion Destino
 
                             // Guardar precio de compra
-                            viaje.precio_compra = viaje.Pesada_Destino_peso_neto * viaje.Mercaderia_Precio_xTonelada_compra;
+                            viaje.precio_compra = viaje.Pesada_Destino_peso_neto * viaje.Mercaderia_Valor_Proveedor_PorTon;
 
                             context.SaveChanges();
 
@@ -2362,7 +2343,7 @@ namespace Bonisoft.Pages
                         {
                             decimal totalCostos = 0;
 
-                            totalCostos += viaje.Mercaderia_Precio_xTonelada_compra;
+                            totalCostos += viaje.Mercaderia_Valor_Proveedor_PorTon;
                             costo_mercaderias = totalCostos;
                         }
                     }
@@ -2398,7 +2379,7 @@ namespace Bonisoft.Pages
                         if (viaje != null)
                         {
                             decimal totalCostos = 0;
-                            totalCostos += viaje.Mercaderia_Precio_xTonelada_compra;
+                            totalCostos += viaje.Mercaderia_Valor_Proveedor_PorTon;
 
                             ret = viaje.precio_flete + "|" + viaje.IVA + "|" + viaje.precio_descarga + "|" + totalCostos;
                         }
@@ -2901,9 +2882,10 @@ namespace Bonisoft.Pages
                 new_viaje.Mercaderia_Lena_tipo_ID = 0;
                 new_viaje.Mercaderia_Procesador_ID = 0;
                 new_viaje.Mercaderia_Fecha_corte = DateTime.Now;
-                new_viaje.Mercaderia_Precio_xTonelada_compra = 0;
-                new_viaje.Mercaderia_Precio_xTonelada_venta = 0;
-                new_viaje.Mercaderia_Comentarios = string.Empty;
+                new_viaje.Mercaderia_Valor_Proveedor_PorTon = 0;
+                new_viaje.Mercaderia_Valor_Cliente_PorTon = 0;
+                new_viaje.Mercaderia_Proveedor_Comentarios = string.Empty;
+                new_viaje.Mercaderia_Cliente_Comentarios = string.Empty;
 
                 #endregion
 

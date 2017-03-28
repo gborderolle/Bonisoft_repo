@@ -310,13 +310,13 @@ namespace Bonisoft.Pages {
         protected global::System.Web.UI.UpdatePanel upNotificaciones;
         
         /// <summary>
-        /// txbMercaderiaPrecioCompra control.
+        /// txbMercaderiaValorProveedor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbMercaderiaPrecioCompra;
+        protected global::System.Web.UI.WebControls.TextBox txbMercaderiaValorProveedor;
         
         /// <summary>
         /// ddlTipoLena control.
@@ -328,13 +328,13 @@ namespace Bonisoft.Pages {
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoLena;
         
         /// <summary>
-        /// txbMercaderiaComentarios control.
+        /// txbMercaderia_Proveedor_Comentarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbMercaderiaComentarios;
+        protected global::System.Web.UI.WebControls.TextBox txbMercaderia_Proveedor_Comentarios;
         
         /// <summary>
         /// txb_pesada1Lugar control.
@@ -416,6 +416,24 @@ namespace Bonisoft.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txb_pesadaComentarios;
+        
+        /// <summary>
+        /// txbMercaderiaValorCliente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbMercaderiaValorCliente;
+        
+        /// <summary>
+        /// txbMercaderia_Cliente_Comentarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbMercaderia_Cliente_Comentarios;
         
         /// <summary>
         /// notif_Mercaderia1 control.

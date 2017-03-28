@@ -429,6 +429,14 @@
                         </div>
                         <!-- Modal Editar END -->
 
+
+
+
+
+
+
+
+
                         <!-- Modal Notificaciones BEGIN -->
                         <div id="notificacionesModal" tabindex="-1" role="dialog" aria-labelledby="notificacionesModalLabel" aria-hidden="true" style="display: none; max-width: 1000px; overflow: hidden; margin-top: 40px; overflow: auto;" class="modal fade dark in">
                             <asp:UpdatePanel ID="upNotificaciones" runat="server">
@@ -448,17 +456,25 @@
 
                                     </div>
 
-                                    <div id="tabsNotificaciones">
 
-                                        <div id="tabsNotificaciones_2">
+                                    <div id="tabsNotificaciones" style="padding-bottom: 20px;">
+                                        <ul>
+                                            <li><a href="#tabsNotificaciones_1" id="aTabsNotificaciones_1" class="tabViajes">Datos Proveedor</a></li>
+                                            <li><a href="#tabsNotificaciones_2" id="aTabsNotificaciones_2" class="tabViajes">Datos Pesadas</a></li>
+                                            <li><a href="#tabsNotificaciones_3" id="aTabsNotificaciones_3" class="tabViajes">Datos Cliente</a></li>
+                                        </ul>
+
+                                        <!-- Tab Viajes En Curso BEGIN -->
+
+                                        <div id="tabsNotificaciones_1">
 
                                             <h4 style="padding-left: 30px;">Mercadería</h4>
 
                                             <div class="modal-body panel panel-default" style="padding-bottom: 0; padding-top: 0; margin-bottom: 5px; position: inherit; background: #e9e9e9; color: #333333; position: initial;">
                                                 <table class="table">
                                                     <tr>
-                                                        <td>Precio compra por tonelada: 
-                                                        <asp:TextBox ID="txbMercaderiaPrecioCompra" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="21"></asp:TextBox>
+                                                        <td>Valor mercadería proveedor (por tonelada): 
+                                                        <asp:TextBox ID="txbMercaderiaValorProveedor" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="21"></asp:TextBox>
                                                         </td>
                                                         <td>Tipo de leña: 
                                                                 <asp:DropDownList ID="ddlTipoLena" ClientIDMode="Static" runat="server" CssClass="modal-ddl form-control chzn-select" TabIndex="22" />
@@ -470,15 +486,17 @@
                                                 </table>
 
                                                 <div class="col-md-10 pull-left" style="padding: 10px;">
-                                                    Comentarios de la mercadería:
-                                                           <asp:TextBox ID="txbMercaderiaComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="100" TabIndex="23"></asp:TextBox>
+                                                    Comentarios:
+                                                           <asp:TextBox ID="txbMercaderia_Proveedor_Comentarios" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="100" TabIndex="23"></asp:TextBox>
                                                 </div>
 
                                             </div>
                                             <div class="modal-body panel panel-default row" style="padding-bottom: 0; padding-top: 0; position: inherit; background: #e9e9e9; color: #333333; margin: 0;">
                                             </div>
 
-                                            <hr />
+                                        </div>
+
+                                        <div id="tabsNotificaciones_2">
 
                                             <h4 style="padding-left: 30px;">Pesadas</h4>
                                             <div class="row">
@@ -558,7 +576,26 @@
 
                                             </div>
 
-                                            <hr />
+
+                                        </div>
+
+                                        <div id="tabsNotificaciones_3">
+
+                                            <h4 style="padding-left: 30px;">Cliente</h4>
+
+                                            <div class="modal-body panel panel-default" style="padding-bottom: 0; padding-top: 0; margin-bottom: 5px; position: inherit; background: #e9e9e9; color: #333333; position: initial;">
+                                                <table class="table">
+                                                    <tr>
+                                                        <td>Valor mercadería cliente (por tonelada): 
+                                                        <asp:TextBox ID="txbMercaderiaValorCliente" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="21"></asp:TextBox>
+                                                        </td>
+                                                        <td>Comentarios: 
+                                                                                                                          <asp:TextBox ID="txbMercaderia_Cliente_Comentarios" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="100" TabIndex="23"></asp:TextBox>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+
                                             <h4 class="pull-left" style="padding-left: 30px; width: 85%">Cálculo de Venta</h4>
 
                                             <a class="btn btn-success pull-right" style="margin: 6px; margin-right: 20px;" onclick="calcularPrecioVenta();">Calcular</a>
@@ -575,7 +612,7 @@
                                                             <h3 style="margin: 0;">
                                                                 <label runat="server" clientidmode="Static" id="notif_Mercaderia1" class="notif_lblPesoNeto label label-default">0</label></h3>
                                                         </td>
-                                                        <td><i class="glyphicon glyphicon-asterisk"></i>Precio Mercadería: 
+                                                        <td><i class="glyphicon glyphicon-asterisk"></i>Valor mercadería cliente: 
                                                             <h3 style="margin: 0;">
                                                                 <label id="notif_Mercaderia2" class="label label-default">0</label></h3>
                                                         </td>
@@ -642,9 +679,7 @@
                                                 </div>
 
 
-
                                             </div>
-
 
                                         </div>
 

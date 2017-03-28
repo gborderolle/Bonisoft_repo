@@ -120,8 +120,8 @@ namespace Bonisoft.User_Controls
                 TextBox txb22 = row.FindControl("txbNew22") as TextBox;
                 TextBox txb23 = row.FindControl("txbNew23") as TextBox;
                 TextBox txb24 = row.FindControl("txbNew24") as TextBox;
-                if (txb1 != null && txb3 != null && txb5 != null && txb7 != null &&
-                    txb13 != null && txb15 != null && txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null)
+                if (txb1 != null && txb3 != null && txb5 != null && txb13 != null && txb15 != null && 
+                    txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null)
                 {
                     using (bonisoftEntities context = new bonisoftEntities())
                     {
@@ -129,7 +129,8 @@ namespace Bonisoft.User_Controls
                         obj.Dueno_nombre = txb1.Text;
                         obj.Encargado_lena_nombre = txb3.Text;
                         obj.Encargado_pagos_nombre = txb5.Text;
-                        obj.Supervisor_lena_nombre = txb7.Text;
+                        //obj.Supervisor_lena_nombre = txb7.Text;
+                        obj.Supervisor_lena_nombre = string.Empty;
                         obj.Nombre = txb13.Text;
                         obj.RUT = txb15.Text;
                         obj.Direccion = txb16.Text;
@@ -226,8 +227,8 @@ namespace Bonisoft.User_Controls
             TextBox txb22 = row.FindControl("txb22") as TextBox;
             TextBox txb23 = row.FindControl("txb23") as TextBox;
             TextBox txb24 = row.FindControl("txb24") as TextBox;
-            if (txb1 != null && txb3 != null && txb5 != null && txb7 != null &&
-                txb13 != null && txb15 != null && txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null)
+            if (txb1 != null && txb3 != null && txb5 != null && txb13 != null && txb15 != null && 
+                txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null)
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
@@ -236,7 +237,8 @@ namespace Bonisoft.User_Controls
                     obj.Dueno_nombre = txb1.Text;
                     obj.Encargado_lena_nombre = txb3.Text;
                     obj.Encargado_pagos_nombre = txb5.Text;
-                    obj.Supervisor_lena_nombre = txb7.Text;
+                    //obj.Supervisor_lena_nombre = txb7.Text;
+                    obj.Supervisor_lena_nombre = string.Empty;
                     obj.Nombre = txb13.Text;
                     obj.RUT = txb15.Text;
                     obj.Direccion = txb16.Text;

@@ -1122,9 +1122,10 @@ namespace Bonisoft.Pages
                             viaje.Mercaderia_Lena_tipo_ID = 0;
                             viaje.Mercaderia_Procesador_ID = 0;
                             viaje.Mercaderia_Fecha_corte = DateTime.Now;
-                            viaje.Mercaderia_Precio_xTonelada_compra = 0;
-                            viaje.Mercaderia_Precio_xTonelada_venta = 0;
-                            viaje.Mercaderia_Comentarios = string.Empty;
+                            viaje.Mercaderia_Valor_Proveedor_PorTon = 0;
+                            viaje.Mercaderia_Valor_Cliente_PorTon = 0;
+                            viaje.Mercaderia_Proveedor_Comentarios = string.Empty;
+                            viaje.Mercaderia_Cliente_Comentarios = string.Empty;
 
                             #endregion Datos mercadería
 

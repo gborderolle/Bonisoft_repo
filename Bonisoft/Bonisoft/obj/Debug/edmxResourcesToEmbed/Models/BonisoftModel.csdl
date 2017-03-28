@@ -280,9 +280,6 @@
     <Property Name="Mercaderia_Lena_tipo_ID" Type="Int32" Nullable="false" />
     <Property Name="Mercaderia_Procesador_ID" Type="Int32" Nullable="false" />
     <Property Name="Mercaderia_Fecha_corte" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Mercaderia_Precio_xTonelada_compra" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-    <Property Name="Mercaderia_Precio_xTonelada_venta" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-    <Property Name="Mercaderia_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Pesada_Origen_lugar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Pesada_Origen_fecha" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Pesada_Origen_peso_bruto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
@@ -292,6 +289,10 @@
     <Property Name="Pesada_Destino_peso_bruto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
     <Property Name="Pesada_Destino_peso_neto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
     <Property Name="Pesada_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="remito" Type="Int32" Nullable="false" />
+    <Property Name="Remito" Type="Int32" Nullable="false" />
+    <Property Name="Mercaderia_Valor_Proveedor_PorTon" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Mercaderia_Valor_Cliente_PorTon" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Mercaderia_Proveedor_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Mercaderia_Cliente_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

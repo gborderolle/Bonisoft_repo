@@ -43,9 +43,6 @@ namespace Bonisoft.Models
         public int Mercaderia_Lena_tipo_ID { get; set; }
         public int Mercaderia_Procesador_ID { get; set; }
         public System.DateTime Mercaderia_Fecha_corte { get; set; }
-        public decimal Mercaderia_Precio_xTonelada_compra { get; set; }
-        public decimal Mercaderia_Precio_xTonelada_venta { get; set; }
-        public string Mercaderia_Comentarios { get; set; }
         public string Pesada_Origen_lugar { get; set; }
         public System.DateTime Pesada_Origen_fecha { get; set; }
         public decimal Pesada_Origen_peso_bruto { get; set; }
@@ -55,6 +52,10 @@ namespace Bonisoft.Models
         public decimal Pesada_Destino_peso_bruto { get; set; }
         public decimal Pesada_Destino_peso_neto { get; set; }
         public string Pesada_Comentarios { get; set; }
-        public int remito { get; set; }
+        public int Remito { get; set; }
+        public decimal Mercaderia_Valor_Proveedor_PorTon { get; set; }
+        public decimal Mercaderia_Valor_Cliente_PorTon { get; set; }
+        public string Mercaderia_Proveedor_Comentarios { get; set; }
+        public string Mercaderia_Cliente_Comentarios { get; set; }
     }
 }

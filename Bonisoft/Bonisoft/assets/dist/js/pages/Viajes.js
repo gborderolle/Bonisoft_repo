@@ -129,8 +129,8 @@ function bindEvents() {
     });
 
     // Copiar texto dinámicamente
-    $("#notif_Mercaderia2").text($("#txbMercaderiaPrecioCompra").val());
-    $("#txbMercaderiaPrecioCompra").keyup(function () {
+    $("#notif_Mercaderia2").text($("#txbMercaderiaValorCliente").val());
+    $("#txbMercaderiaValorCliente").keyup(function () {
         $("#notif_Mercaderia2").text(this.value);
     });
 
@@ -144,7 +144,7 @@ function bindEvents() {
     calcularPrecioVenta();
 
     // Permitir sólo números y punto
-    $("#txbMercaderiaPrecioCompra").keydown(function (event) {
+    $("#txbMercaderiaValorProveedor").keydown(function (event) {
         // Allow: backspace, delete, tab, escape, and enter
         if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || event.keyCode == 110 ||
             // Allow: Ctrl+A
@@ -523,13 +523,13 @@ function guardarAmbasPesadas() {
             console.log("txb_pesadaComentarios, type: " + type(txb_pesadaComentarios) + ", value: " + txb_pesadaComentarios);
 
             // Mercadería
-            var txbMercaderiaPrecioCompra = $("#txbMercaderiaPrecioCompra").val();
+            var txbMercaderiaValorProveedor = $("#txbMercaderiaValorProveedor").val();
             var ddlTipoLena = $("#ddlTipoLena").val();
-            var txbMercaderiaComentarios = $("#txbMercaderiaComentarios").val();
+            var txbMercaderia_Proveedor_Comentarios = $("#txbMercaderia_Proveedor_Comentarios").val();
 
-            console.log("txbMercaderiaPrecioCompra, type: " + type(txbMercaderiaPrecioCompra) + ", value: " + txbMercaderiaPrecioCompra);
+            console.log("txbMercaderiaValorProveedor, type: " + type(txbMercaderiaValorProveedor) + ", value: " + txbMercaderiaValorProveedor);
             console.log("ddlTipoLena, type: " + type(ddlTipoLena) + ", value: " + ddlTipoLena);
-            console.log("txbMercaderiaComentarios, type: " + type(txbMercaderiaComentarios) + ", value: " + txbMercaderiaComentarios);
+            console.log("txbMercaderia_Proveedor_Comentarios, type: " + type(txbMercaderia_Proveedor_Comentarios) + ", value: " + txbMercaderia_Proveedor_Comentarios);
 
             $.ajax({
                 type: "POST",
@@ -538,7 +538,7 @@ function guardarAmbasPesadas() {
                     'txb_pesadaPeso_bruto1: "' + txb_pesadaPeso_bruto1 + '",txb_pesadaPeso_neto1: "' + txb_pesadaPeso_neto1 + '",txb_pesadaNombre1: "' + txb_pesadaNombre1 + '", ' +
                     'txb_pesadaLugar2: "' + txb_pesadaLugar2 + '",txb_pesadaFecha2: "' + txb_pesadaFecha2 + '", ' +
                     'txb_pesadaPeso_bruto2: "' + txb_pesadaPeso_bruto2 + '",txb_pesadaPeso_neto2: "' + txb_pesadaPeso_neto2 + '",txb_pesadaNombre2: "' + txb_pesadaNombre2 + '", txb_pesadaComentarios: "' + txb_pesadaComentarios + '", ' +
-                'txbMercaderiaPrecioCompra: "' + txbMercaderiaPrecioCompra + '",ddlTipoLena: "' + ddlTipoLena + '", txbMercaderiaComentarios: "' + txbMercaderiaComentarios + '"}',
+                'txbMercaderiaValorProveedor: "' + txbMercaderiaValorProveedor + '",ddlTipoLena: "' + ddlTipoLena + '", txbMercaderia_Proveedor_Comentarios: "' + txbMercaderia_Proveedor_Comentarios + '"}',
 
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -1221,6 +1221,8 @@ function GuardarPrecioVenta() {
     var notif_Venta2 = $("#notif_Venta2").val();
     var notif_Flete3 = $("#notif_Flete3").val();
     var txb_pesada2Peso_neto = $("#txb_pesada2Peso_neto").val();
+    var mercaderiaValorCliente_str = $("#txbMercaderiaValorCliente").val();
+    var txbMercaderia_Cliente_Comentarios = $("#txbMercaderia_Cliente_Comentarios").val();
 
     // Check viaje
     if (hdn_notificaciones_viajeID !== null && hdn_notificaciones_viajeID.length > 0) {
@@ -1254,12 +1256,14 @@ function GuardarPrecioVenta() {
                             console.log("precioDescarga_str, type: " + type(precioDescarga_str) + ", value: " + precioDescarga_str);
                             console.log("IVA_str, type: " + type(IVA_str) + ", value: " + IVA_str);
                             console.log("precio_venta_str, type: " + type(precio_venta_str) + ", value: " + precio_venta_str);
+                            console.log("mercaderiaValorCliente_str, type: " + type(mercaderiaValorCliente_str) + ", value: " + mercaderiaValorCliente_str);
+                            console.log("txbMercaderia_Cliente_Comentarios, type: " + type(txbMercaderia_Cliente_Comentarios) + ", value: " + txbMercaderia_Cliente_Comentarios);
 
                             $.ajax({
                                 type: "POST",
                                 url: "Viajes.aspx/GuardarPrecioVenta",
                                 data: '{viajeID: "' + viajeID + '",precioFlete_str: "' + precioFlete_str + '",precioDescarga_str: "' + precioDescarga_str + '", ' +
-                                    'IVA_str: "' + IVA_str + '", precio_venta_str: "' + precio_venta_str + '"}',
+                                    'IVA_str: "' + IVA_str + '",mercaderiaValorCliente_str: "' + mercaderiaValorCliente_str + '",mercaderia_Cliente_Comentarios: "' + txbMercaderia_Cliente_Comentarios + '", precio_venta_str: "' + precio_venta_str + '"}',
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",
                                 success: function (response) {

@@ -262,9 +262,6 @@
           <Property Name="Mercaderia_Lena_tipo_ID" Type="int" Nullable="false" />
           <Property Name="Mercaderia_Procesador_ID" Type="int" Nullable="false" />
           <Property Name="Mercaderia_Fecha_corte" Type="date" Nullable="false" />
-          <Property Name="Mercaderia_Precio_xTonelada_compra" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="Mercaderia_Precio_xTonelada_venta" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="Mercaderia_Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Pesada_Origen_lugar" Type="varchar" MaxLength="100" />
           <Property Name="Pesada_Origen_fecha" Type="date" Nullable="false" />
           <Property Name="Pesada_Origen_peso_bruto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
@@ -274,7 +271,11 @@
           <Property Name="Pesada_Destino_peso_bruto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="Pesada_Destino_peso_neto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="Pesada_Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="remito" Type="int" Nullable="false" />
+          <Property Name="Remito" Type="int" Nullable="false" />
+          <Property Name="Mercaderia_Valor_Proveedor_PorTon" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Mercaderia_Valor_Cliente_PorTon" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Mercaderia_Proveedor_Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Mercaderia_Cliente_Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityContainer Name="bonisoftModelStoreContainer">
           <EntitySet Name="camion" EntityType="Self.camion" Schema="dbo" store:Type="Tables" />
@@ -583,9 +584,6 @@
           <Property Name="Mercaderia_Lena_tipo_ID" Type="Int32" Nullable="false" />
           <Property Name="Mercaderia_Procesador_ID" Type="Int32" Nullable="false" />
           <Property Name="Mercaderia_Fecha_corte" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Mercaderia_Precio_xTonelada_compra" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Mercaderia_Precio_xTonelada_venta" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Mercaderia_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Pesada_Origen_lugar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Pesada_Origen_fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Pesada_Origen_peso_bruto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
@@ -595,7 +593,11 @@
           <Property Name="Pesada_Destino_peso_bruto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
           <Property Name="Pesada_Destino_peso_neto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
           <Property Name="Pesada_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="remito" Type="Int32" Nullable="false" />
+          <Property Name="Remito" Type="Int32" Nullable="false" />
+          <Property Name="Mercaderia_Valor_Proveedor_PorTon" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Mercaderia_Valor_Cliente_PorTon" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Mercaderia_Proveedor_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Mercaderia_Cliente_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -849,7 +851,11 @@
           <EntitySetMapping Name="viajes">
             <EntityTypeMapping TypeName="bonisoftModel.viaje">
               <MappingFragment StoreEntitySet="viaje">
-                <ScalarProperty Name="remito" ColumnName="remito" />
+                <ScalarProperty Name="Mercaderia_Cliente_Comentarios" ColumnName="Mercaderia_Cliente_Comentarios" />
+                <ScalarProperty Name="Mercaderia_Proveedor_Comentarios" ColumnName="Mercaderia_Proveedor_Comentarios" />
+                <ScalarProperty Name="Mercaderia_Valor_Cliente_PorTon" ColumnName="Mercaderia_Valor_Cliente_PorTon" />
+                <ScalarProperty Name="Mercaderia_Valor_Proveedor_PorTon" ColumnName="Mercaderia_Valor_Proveedor_PorTon" />
+                <ScalarProperty Name="Remito" ColumnName="Remito" />
                 <ScalarProperty Name="Pesada_Comentarios" ColumnName="Pesada_Comentarios" />
                 <ScalarProperty Name="Pesada_Destino_peso_neto" ColumnName="Pesada_Destino_peso_neto" />
                 <ScalarProperty Name="Pesada_Destino_peso_bruto" ColumnName="Pesada_Destino_peso_bruto" />
@@ -859,9 +865,6 @@
                 <ScalarProperty Name="Pesada_Origen_peso_bruto" ColumnName="Pesada_Origen_peso_bruto" />
                 <ScalarProperty Name="Pesada_Origen_fecha" ColumnName="Pesada_Origen_fecha" />
                 <ScalarProperty Name="Pesada_Origen_lugar" ColumnName="Pesada_Origen_lugar" />
-                <ScalarProperty Name="Mercaderia_Comentarios" ColumnName="Mercaderia_Comentarios" />
-                <ScalarProperty Name="Mercaderia_Precio_xTonelada_venta" ColumnName="Mercaderia_Precio_xTonelada_venta" />
-                <ScalarProperty Name="Mercaderia_Precio_xTonelada_compra" ColumnName="Mercaderia_Precio_xTonelada_compra" />
                 <ScalarProperty Name="Mercaderia_Fecha_corte" ColumnName="Mercaderia_Fecha_corte" />
                 <ScalarProperty Name="Mercaderia_Procesador_ID" ColumnName="Mercaderia_Procesador_ID" />
                 <ScalarProperty Name="Mercaderia_Lena_tipo_ID" ColumnName="Mercaderia_Lena_tipo_ID" />
