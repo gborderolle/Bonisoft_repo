@@ -113,7 +113,7 @@
                 <asp:TextBox ID="txbNew5" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Supervisor leña">
+        <%--<asp:TemplateField HeaderText="Supervisor leña">
             <EditItemTemplate>
                 <asp:TextBox ID="txb7" runat="server" Text='<%# Bind("Supervisor_lena_nombre") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
@@ -123,7 +123,7 @@
             <FooterTemplate>
                 <asp:TextBox ID="txbNew7" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
-        </asp:TemplateField>
+        </asp:TemplateField>--%>
         <asp:TemplateField HeaderText="Email">
             <EditItemTemplate>
                 <asp:TextBox ID="txb23" runat="server" Text='<%# Bind("Email") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>

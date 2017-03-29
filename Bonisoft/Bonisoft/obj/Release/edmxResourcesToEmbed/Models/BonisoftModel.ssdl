@@ -110,6 +110,7 @@
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Depto_empresa" Type="varchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="fletero_pagos">
     <Key>
@@ -256,9 +257,6 @@
     <Property Name="Mercaderia_Lena_tipo_ID" Type="int" Nullable="false" />
     <Property Name="Mercaderia_Procesador_ID" Type="int" Nullable="false" />
     <Property Name="Mercaderia_Fecha_corte" Type="date" Nullable="false" />
-    <Property Name="Mercaderia_Precio_xTonelada_compra" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="Mercaderia_Precio_xTonelada_venta" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="Mercaderia_Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Pesada_Origen_lugar" Type="varchar" MaxLength="100" />
     <Property Name="Pesada_Origen_fecha" Type="date" Nullable="false" />
     <Property Name="Pesada_Origen_peso_bruto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
@@ -268,6 +266,11 @@
     <Property Name="Pesada_Destino_peso_bruto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="Pesada_Destino_peso_neto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="Pesada_Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Remito" Type="int" Nullable="false" />
+    <Property Name="Mercaderia_Valor_Proveedor_PorTon" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Mercaderia_Valor_Cliente_PorTon" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Mercaderia_Proveedor_Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Mercaderia_Cliente_Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
   <EntityContainer Name="bonisoftModelStoreContainer">
     <EntitySet Name="camion" EntityType="Self.camion" Schema="dbo" store:Type="Tables" />

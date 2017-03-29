@@ -1,4 +1,17 @@
-﻿#btnPrint{
+﻿.datepicker{
+    display: inline;
+    width:80% !important;
+}
+
+.form-control{
+    width:90%;    
+}
+
+.fa-calendar-check-o {
+    color: #635e5e !important;
+}
+
+#btnPrint{
     margin: 10px;
 }
 
