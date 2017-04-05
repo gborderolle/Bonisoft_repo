@@ -139,7 +139,7 @@ function show_grid(element) {
                 $("#divProveedores").show();
                 break;
             }
-            case "descargadores": {
+            case "changadores": {
                 $("#divCuadrillas").show();
                 break;
             }

@@ -383,7 +383,7 @@
                                                 <td></td>
                                             </tr>
                                             <tr>
-                                                <td>Cargadores: 
+                                                <td>Changadores: 
                                                 <asp:DropDownList ID="modalAdd_ddlCargadores" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="5" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cargador')">
                                                         <i class="fa fa-plus"></i>
@@ -490,7 +490,7 @@
                                                     </button>
                                                 </td>
 
-                                                <td>Cargadores: 
+                                                <td>Changadores: 
                                                 <asp:DropDownList ID="modalEdit_ddlCargadores" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select modalEdit_ddlCargadores" TabIndex="15" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cargador')">
                                                         <i class="fa fa-plus"></i>
@@ -908,7 +908,7 @@
                                                                     <asp:DropDownList ID="ddlClientes2_Barraca" runat="server" CssClass="form-control" />
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Cargadores">
+                                                            <asp:TemplateField HeaderText="Changadores">
                                                                 <EditItemTemplate>
                                                                     <asp:DropDownList ID="ddlCargadores1" runat="server" CssClass="form-control" />
                                                                 </EditItemTemplate>

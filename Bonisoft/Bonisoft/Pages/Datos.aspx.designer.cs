@@ -103,24 +103,6 @@ namespace Bonisoft.Pages {
         protected global::Bonisoft.User_Controls.Choferes Choferes;
         
         /// <summary>
-        /// upCargadores control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upCargadores;
-        
-        /// <summary>
-        /// Cargadores control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Bonisoft.User_Controls.Estaticos.Cargadores Cargadores;
-        
-        /// <summary>
         /// upFleteros control.
         /// </summary>
         /// <remarks>

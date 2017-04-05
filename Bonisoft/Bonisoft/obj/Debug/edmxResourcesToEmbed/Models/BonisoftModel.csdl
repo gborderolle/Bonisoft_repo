@@ -54,6 +54,7 @@
     <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Nro_cuenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="EsBarraca" Type="Boolean" />
+    <Property Name="Razon_social" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="cuadrilla_descarga">
     <Key>
@@ -125,6 +126,7 @@
     <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Nro_cuenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Razon_social" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="proveedor_carga">
     <Key>

@@ -148,7 +148,7 @@
                         <span class="info-box-icon bg-green"><i class="fa fa-thumbs-o-up"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Descargadores</span>
+                            <span class="info-box-text">Changadores</span>
                             <span class="info-box-number">0</span>
                         </div>
                         <!-- /.info-box-content -->
@@ -196,7 +196,7 @@
                     <!-- /.info-box -->
                 </div>
 
-                <div class="col-md-3 col-sm-6 col-xs-12">
+                <%--<div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box" id="divBoxCargadores">
                         <span class="info-box-icon bg-blue"><i class="fa fa-suitcase"></i></span>
 
@@ -207,7 +207,7 @@
                         <!-- /.info-box-content -->
                     </div>
                     <!-- /.info-box --> 
-                </div>               
+                </div>            --%>   
                 <!-- /.col -->
                 
                 <%--<div class="col-md-3 col-sm-6 col-xs-12">
@@ -298,13 +298,13 @@
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>
-                                     <div class="divTables" id="divCargadores" style="display: none;">
+                                     <%--<div class="divTables" id="divCargadores" style="display: none;">
                                         <asp:UpdatePanel ID="upCargadores" runat="server">
                                             <ContentTemplate>
                                                 <uc1:Cargadores runat="server" ID="Cargadores" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
-                                    </div>
+                                    </div>--%>
                                     <div class="divTables" id="divFleteros" style="display: none;">
                                         <asp:UpdatePanel ID="upFleteros" runat="server">
                                             <ContentTemplate>

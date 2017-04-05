@@ -69,6 +69,7 @@
           <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="EsBarraca" Type="bit" />
+          <Property Name="Razon_social" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="cliente_pagos">
           <Key>
@@ -180,6 +181,7 @@
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Razon_social" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="proveedor_carga">
           <Key>
@@ -359,6 +361,7 @@
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Nro_cuenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EsBarraca" Type="Boolean" />
+          <Property Name="Razon_social" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="cuadrilla_descarga">
           <Key>
@@ -430,6 +433,7 @@
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Nro_cuenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Razon_social" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="proveedor_carga">
           <Key>
@@ -643,6 +647,7 @@
           <EntitySetMapping Name="clientes">
             <EntityTypeMapping TypeName="bonisoftModel.cliente">
               <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="Razon_social" ColumnName="Razon_social" />
                 <ScalarProperty Name="EsBarraca" ColumnName="EsBarraca" />
                 <ScalarProperty Name="cliente_ID" ColumnName="cliente_ID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -733,6 +738,7 @@
           <EntitySetMapping Name="proveedores">
             <EntityTypeMapping TypeName="bonisoftModel.proveedor">
               <MappingFragment StoreEntitySet="proveedor">
+                <ScalarProperty Name="Razon_social" ColumnName="Razon_social" />
                 <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="RUT" ColumnName="RUT" />

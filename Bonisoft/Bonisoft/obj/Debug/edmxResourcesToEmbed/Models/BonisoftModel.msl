@@ -37,6 +37,7 @@
     <EntitySetMapping Name="clientes">
       <EntityTypeMapping TypeName="bonisoftModel.cliente">
         <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="Razon_social" ColumnName="Razon_social" />
           <ScalarProperty Name="EsBarraca" ColumnName="EsBarraca" />
           <ScalarProperty Name="cliente_ID" ColumnName="cliente_ID" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -127,6 +128,7 @@
     <EntitySetMapping Name="proveedores">
       <EntityTypeMapping TypeName="bonisoftModel.proveedor">
         <MappingFragment StoreEntitySet="proveedor">
+          <ScalarProperty Name="Razon_social" ColumnName="Razon_social" />
           <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="RUT" ColumnName="RUT" />

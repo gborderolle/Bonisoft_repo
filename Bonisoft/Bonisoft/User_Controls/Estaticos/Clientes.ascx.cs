@@ -114,13 +114,14 @@ namespace Bonisoft.User_Controls
                 TextBox txb5 = row.FindControl("txbNew5") as TextBox;
                 TextBox txb7 = row.FindControl("txbNew7") as TextBox;
                 TextBox txb13 = row.FindControl("txbNew13") as TextBox;
+                TextBox txb14 = row.FindControl("txbNew14") as TextBox;
                 TextBox txb15 = row.FindControl("txbNew15") as TextBox;
                 TextBox txb16 = row.FindControl("txbNew16") as TextBox;
                 TextBox txb17 = row.FindControl("txbNew17") as TextBox;
                 TextBox txb22 = row.FindControl("txbNew22") as TextBox;
                 TextBox txb23 = row.FindControl("txbNew23") as TextBox;
                 TextBox txb24 = row.FindControl("txbNew24") as TextBox;
-                if (txb1 != null && txb3 != null && txb5 != null && txb13 != null && txb15 != null && 
+                if (txb1 != null && txb3 != null && txb5 != null && txb13 != null && txb14 != null && txb15 != null &&
                     txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null)
                 {
                     using (bonisoftEntities context = new bonisoftEntities())
@@ -132,6 +133,7 @@ namespace Bonisoft.User_Controls
                         //obj.Supervisor_lena_nombre = txb7.Text;
                         obj.Supervisor_lena_nombre = string.Empty;
                         obj.Nombre = txb13.Text;
+                        obj.Razon_social = txb14.Text;
                         obj.RUT = txb15.Text;
                         obj.Direccion = txb16.Text;
                         obj.Telefono = txb17.Text;
@@ -223,13 +225,14 @@ namespace Bonisoft.User_Controls
             TextBox txb5 = row.FindControl("txb5") as TextBox;
             TextBox txb7 = row.FindControl("txb7") as TextBox;
             TextBox txb13 = row.FindControl("txb13") as TextBox;
+            TextBox txb14 = row.FindControl("txb14") as TextBox;
             TextBox txb15 = row.FindControl("txb15") as TextBox;
             TextBox txb16 = row.FindControl("txb16") as TextBox;
             TextBox txb17 = row.FindControl("txb17") as TextBox;
             TextBox txb22 = row.FindControl("txb22") as TextBox;
             TextBox txb23 = row.FindControl("txb23") as TextBox;
             TextBox txb24 = row.FindControl("txb24") as TextBox;
-            if (txb1 != null && txb3 != null && txb5 != null && txb13 != null && txb15 != null && 
+            if (txb1 != null && txb3 != null && txb5 != null && txb13 != null && txb14 != null && txb15 != null &&
                 txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null)
             {
                 using (bonisoftEntities context = new bonisoftEntities())
@@ -242,6 +245,7 @@ namespace Bonisoft.User_Controls
                     //obj.Supervisor_lena_nombre = txb7.Text;
                     obj.Supervisor_lena_nombre = string.Empty;
                     obj.Nombre = txb13.Text;
+                    obj.Razon_social = txb14.Text;
                     obj.RUT = txb15.Text;
                     obj.Direccion = txb16.Text;
                     obj.Telefono = txb17.Text;
