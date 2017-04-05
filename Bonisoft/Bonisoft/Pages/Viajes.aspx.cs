@@ -1734,19 +1734,36 @@ namespace Bonisoft.Pages
                 }
             }
 
-            // Clientes --------------------------------------------------
+            // Clientes particulares --------------------------------------------------
             if (modalEdit_ddlClientes != null)
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.clientes.ToList());
+                    dt1 = Extras.ToDataTable(context.clientes.Where(e1 => e1.EsBarraca == null || e1.EsBarraca == false).ToList());
 
                     modalEdit_ddlClientes.DataSource = dt1;
                     modalEdit_ddlClientes.DataTextField = "Nombre";
                     modalEdit_ddlClientes.DataValueField = "Cliente_ID";
                     modalEdit_ddlClientes.DataBind();
                     modalEdit_ddlClientes.Items.Insert(0, new ListItem("Elegir", "0"));
+
+                }
+            }
+
+            // Clientes barracas --------------------------------------------------
+            if (modalEdit_ddlClientes_Barraca != null)
+            {
+                using (bonisoftEntities context = new bonisoftEntities())
+                {
+                    DataTable dt1 = new DataTable();
+                    dt1 = Extras.ToDataTable(context.clientes.Where(e1 => e1.EsBarraca == true).ToList());
+
+                    modalEdit_ddlClientes_Barraca.DataSource = dt1;
+                    modalEdit_ddlClientes_Barraca.DataTextField = "Nombre";
+                    modalEdit_ddlClientes_Barraca.DataValueField = "Cliente_ID";
+                    modalEdit_ddlClientes_Barraca.DataBind();
+                    modalEdit_ddlClientes_Barraca.Items.Insert(0, new ListItem("Elegir", "0"));
 
                 }
             }

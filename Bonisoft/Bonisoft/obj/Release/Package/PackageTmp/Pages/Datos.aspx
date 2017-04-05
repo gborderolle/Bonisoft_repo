@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Base de datos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Datos.aspx.cs" Inherits="Bonisoft.Pages.Datos" %>
 
 <%@ Register Src="~/User_Controls/Estaticos/Clientes.ascx" TagPrefix="uc1" TagName="Clientes" %>
+<%@ Register Src="~/User_Controls/Estaticos/Cliente_Barraca.ascx" TagPrefix="uc1" TagName="Clientes_Barraca" %>
 <%@ Register Src="~/User_Controls/Estaticos/Proveedores.ascx" TagPrefix="uc1" TagName="Proveedores" %>
 <%@ Register Src="~/User_Controls/Estaticos/Cuadrillas.ascx" TagPrefix="uc1" TagName="Cuadrillas" %>
 <%@ Register Src="~/User_Controls/Estaticos/Camiones.ascx" TagPrefix="uc1" TagName="Camiones" %>
@@ -14,8 +15,8 @@
     <!-- STYLES EXTENSION -->
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="/assets/dist/css/pages/InfoBoxes.min.css"/>
-    <link rel="stylesheet" href="/assets/dist/css/pages/Datos.css"/>
+    <link rel="stylesheet" href="/assets/dist/css/pages/InfoBoxes.min.css" />
+    <link rel="stylesheet" href="/assets/dist/css/pages/Datos.css" />
 
     <!-- AdminLTE Skins. Choose a skin from the css/skins
      folder instead of downloading all of them to reduce the load. -->
@@ -108,7 +109,20 @@
                         <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Clientes</span>
+                            <span class="info-box-text">Clientes_Particulares</span>
+                            <span class="info-box-number">0</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box box-selected" id="divBoxClientes_Barraca">
+                        <span class="info-box-icon bg-purple"><i class="fa fa-users"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Clientes_Barracas</span>
                             <span class="info-box-number">0</span>
                         </div>
                         <!-- /.info-box-content -->
@@ -134,26 +148,13 @@
                         <span class="info-box-icon bg-green"><i class="fa fa-thumbs-o-up"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Descargadores</span>
+                            <span class="info-box-text">Changadores</span>
                             <span class="info-box-number">0</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
                     <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box" id="divBoxCargadores">
-                        <span class="info-box-icon bg-blue"><i class="fa fa-suitcase"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Cargadores</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box --> 
-                </div>               
                 <!-- /.col -->
 
                  <div class="col-md-3 col-sm-6 col-xs-12">
@@ -194,6 +195,20 @@
                     </div>
                     <!-- /.info-box -->
                 </div>
+
+                <%--<div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box" id="divBoxCargadores">
+                        <span class="info-box-icon bg-blue"><i class="fa fa-suitcase"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Cargadores</span>
+                            <span class="info-box-number">0</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box --> 
+                </div>            --%>   
+                <!-- /.col -->
                 
                 <%--<div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box" id="divBoxProcesadores">
@@ -255,13 +270,13 @@
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>
-                                    <div class="divTables" id="divProveedores" style="display: none;">
-                                        <asp:UpdatePanel ID="upProveedores" runat="server">
+                                    <div class="divTables" id="divClientes_Barraca" style="display: none;">
+                                        <asp:UpdatePanel ID="upClientes_Barraca" runat="server">
                                             <ContentTemplate>
-                                                <uc1:Proveedores runat="server" ID="Proveedores" />
+                                                <uc1:Clientes_Barraca runat="server" ID="Clientes_Barraca" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
-                                    </div>
+                                    </div>                                    
                                     <div class="divTables" id="divCuadrillas" style="display: none;">
                                         <asp:UpdatePanel ID="upCuadrillas" runat="server">
                                             <ContentTemplate>
@@ -283,20 +298,27 @@
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>
-                                     <div class="divTables" id="divCargadores" style="display: none;">
+                                     <%--<div class="divTables" id="divCargadores" style="display: none;">
                                         <asp:UpdatePanel ID="upCargadores" runat="server">
                                             <ContentTemplate>
                                                 <uc1:Cargadores runat="server" ID="Cargadores" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
-                                    </div>
+                                    </div>--%>
                                     <div class="divTables" id="divFleteros" style="display: none;">
                                         <asp:UpdatePanel ID="upFleteros" runat="server">
                                             <ContentTemplate>
                                                 <uc1:Fleteros runat="server" ID="Fleteros" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
-                                    </div>                                   
+                                    </div>               
+                                    <div class="divTables" id="divProveedores" style="display: none;">
+                                        <asp:UpdatePanel ID="upProveedores" runat="server">
+                                            <ContentTemplate>
+                                                <uc1:Proveedores runat="server" ID="Proveedores" />
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </div>                    
                                     <%--<div class="divTables" id="divProcesadores" style="display: none;">
                                         <asp:UpdatePanel ID="upProcesadores" runat="server">
                                             <ContentTemplate>

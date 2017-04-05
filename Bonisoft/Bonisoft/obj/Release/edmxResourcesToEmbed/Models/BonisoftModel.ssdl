@@ -63,6 +63,8 @@
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="EsBarraca" Type="bit" />
+    <Property Name="Razon_social" Type="varchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="cliente_pagos">
     <Key>
@@ -174,6 +176,7 @@
     <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Razon_social" Type="varchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="proveedor_carga">
     <Key>

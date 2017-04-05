@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Listados" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Listados.aspx.cs" Inherits="Bonisoft.assets.dist.js.pages.Listados" %>
 
 <%@ Register Src="~/User_Controls/Estaticos/Clientes.ascx" TagPrefix="uc1" TagName="Clientes" %>
+<%@ Register Src="~/User_Controls/Estaticos/Cliente_Barraca.ascx" TagPrefix="uc1" TagName="Cliente_Barraca" %>
 <%@ Register Src="~/User_Controls/Estaticos/Proveedores.ascx" TagPrefix="uc1" TagName="Proveedores" %>
 <%@ Register Src="~/User_Controls/Estaticos/Cuadrillas.ascx" TagPrefix="uc1" TagName="Cuadrillas" %>
 <%@ Register Src="~/User_Controls/Estaticos/Camiones.ascx" TagPrefix="uc1" TagName="Camiones" %>
@@ -139,6 +140,13 @@
                                         <asp:UpdatePanel ID="upClientes" runat="server">
                                             <ContentTemplate>
                                                 <uc1:Clientes runat="server" ID="Clientes" />
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </div>
+                                    <div class="divTables" id="divClientes_Barraca" style="display: none;">
+                                        <asp:UpdatePanel ID="upClientes_Barraca" runat="server">
+                                            <ContentTemplate>
+                                                <uc1:Cliente_Barraca runat="server" ID="Clientes_Barraca" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>

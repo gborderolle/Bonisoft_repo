@@ -47,6 +47,17 @@
                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
+                <asp:TemplateField HeaderText="Razón Social">
+            <EditItemTemplate>
+                <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Razon_social") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+            </EditItemTemplate>
+            <ItemTemplate>
+                <asp:Label ID="lbl2" runat="server" Text='<%# Bind("Razon_social") %>'></asp:Label>
+            </ItemTemplate>
+            <FooterTemplate>
+                <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+            </FooterTemplate>
+        </asp:TemplateField>
         <asp:TemplateField HeaderText="RUT">
             <EditItemTemplate>
                 <asp:TextBox ID="txb3" runat="server" Text='<%# Bind("RUT") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>

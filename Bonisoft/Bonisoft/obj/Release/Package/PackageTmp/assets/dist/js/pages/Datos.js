@@ -20,6 +20,7 @@ function load_tableSorter() {
     $("#gridCamiones").tablesorter();
     $("#gridChoferes").tablesorter();
     $("#gridClientes").tablesorter();
+    $("#gridClientes_Barraca").tablesorter();
     $("#gridCuadrillas").tablesorter();
     $("#gridProveedores").tablesorter();
     $("#gridFleteros").tablesorter();
@@ -37,6 +38,7 @@ function load_tableSorter() {
 function load_quicksearch() {
     // Source: https://www.youtube.com/watch?v=Sy2J7cUv0QM
     var gridClientes = $("#gridClientes tbody tr");
+    var gridClientes_Barraca = $("#gridClientes_Barraca tbody tr");
     var gridProveedores = $("#gridProveedores tbody tr");
     var gridCuadrillas = $("#gridCuadrillas tbody tr");
     var gridCargadores = $("#gridCargadores tbody tr");
@@ -46,6 +48,7 @@ function load_quicksearch() {
     var gridProcesadores = $("#gridProcesadores tbody tr");
 
     $("#txbSearch").quicksearch(gridClientes);
+    $("#txbSearch").quicksearch(gridClientes_Barraca);
     $("#txbSearch").quicksearch(gridProveedores);
     $("#txbSearch").quicksearch(gridCuadrillas);
     $("#txbSearch").quicksearch(gridCargadores);
@@ -78,6 +81,7 @@ if (prm !== null) {
 
 function updateCounts() {
     var clientes_count = $("#divContent #hdnClientesCount").val();
+    var clientes_count_barraca = $("#divContent #hdnClientesCount_Barraca").val();
     var proveedores_count = $("#divContent #hdnProveedoresCount").val();
     var cuadrillas_count = $("#divContent #hdnCuadrillasCount").val();
     var camiones_count = $("#divContent #hdnCamionesCount").val();
@@ -94,6 +98,7 @@ function updateCounts() {
     var hdnUsuarioCount = $("#divContent #hdnUsuarioCount").val();
 
     $("#divBoxClientes .info-box-number").text(clientes_count);
+    $("#divBoxClientes_Barraca .info-box-number").text(clientes_count_barraca);
     $("#divBoxProveedores .info-box-number").text(proveedores_count);
     $("#divBoxCuadrillas .info-box-number").text(cuadrillas_count);
     $("#divBoxCamiones .info-box-number").text(camiones_count);
@@ -122,15 +127,19 @@ function show_grid(element) {
 
         $(".divTables").hide();
         switch (table_name.toLowerCase()) {
-            case "clientes": {
+            case "clientes_particulares": {
                 $("#divClientes").show();
+                break;
+            }
+            case "clientes_barracas": {
+                $("#divClientes_Barraca").show();
                 break;
             }
             case "proveedores": {
                 $("#divProveedores").show();
                 break;
             }
-            case "descargadores": {
+            case "changadores": {
                 $("#divCuadrillas").show();
                 break;
             }

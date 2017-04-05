@@ -1,16 +1,16 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Clientes.ascx.cs" Inherits="Bonisoft.User_Controls.Clientes" %>
-<h2>Lista de Clientes Particulares</h2>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Cliente_Barraca.ascx.cs" Inherits="Bonisoft.User_Controls.Cliente_Barraca" %>
+<h2>Lista de Clientes Barracas</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridClientes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
+<asp:GridView ID="gridClientes_Barraca" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
     CssClass="table table-hover table-striped"
     DataKeyNames="Cliente_ID"
-    OnRowCommand="gridClientes_RowCommand"
-    OnRowCancelingEdit="gridClientes_RowCancelingEdit"
-    OnRowEditing="gridClientes_RowEditing"
-    OnRowUpdating="gridClientes_RowUpdating"
-    OnRowDataBound="gridClientes_RowDataBound"
-    OnRowDeleting="gridClientes_RowDeleting">
+    OnRowCommand="gridClientes_Barraca_RowCommand"
+    OnRowCancelingEdit="gridClientes_Barraca_RowCancelingEdit"
+    OnRowEditing="gridClientes_Barraca_RowEditing"
+    OnRowUpdating="gridClientes_Barraca_RowUpdating"
+    OnRowDataBound="gridClientes_Barraca_RowDataBound"
+    OnRowDeleting="gridClientes_Barraca_RowDeleting">
 
     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
     <EmptyDataTemplate>
@@ -47,7 +47,7 @@
                 <asp:TextBox ID="txbNew13" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-                <asp:TemplateField HeaderText="Razón Social">
+        <asp:TemplateField HeaderText="Razón Social">
             <EditItemTemplate>
                 <asp:TextBox ID="txb14" runat="server" Text='<%# Bind("Razon_social") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
@@ -192,5 +192,5 @@
     </Columns>
 
 </asp:GridView>
-<asp:HiddenField ClientIDMode="Static" ID="hdnClientesCount" runat="server" />
+<asp:HiddenField ClientIDMode="Static" ID="hdnClientesCount_Barraca" runat="server" />
 

@@ -579,6 +579,7 @@ function NuevoViaje() {
     var fecha2 = $("#modalAdd_txbFecha2").val();
     var proveedor = $("#modalAdd_ddlProveedores").val();
     var cliente = $("#modalAdd_ddlClientes").val();
+    var cliente_barraca = $("#modalAdd_ddlClientes_Barraca").val();
     var cargador = $("#modalAdd_ddlCargadores").val();
     var lugar_carga = $("#modalAdd_txbLugarCarga").val();
     var fletero = $("#modalAdd_ddlFleteros").val();
@@ -586,25 +587,32 @@ function NuevoViaje() {
     var chofer = $("#modalAdd_ddlChoferes").val();
     var comentarios = $("#modalAdd_txbComentarios").val();
 
+    var esBarraca = false;
+    if ($('input[name=rad_cliente]:checked').val() == "barraca") {
+        esBarraca = true;
+    }
+
     // Ajax call parameters
     console.log("Ajax call: Viajes.aspx/NuevoViaje. Params:");
     console.log("fecha1, type: " + type(fecha1) + ", value: " + fecha1);
     console.log("fecha2, type: " + type(fecha2) + ", value: " + fecha2);
     console.log("proveedor, type: " + type(proveedor) + ", value: " + proveedor);
     console.log("cliente, type: " + type(cliente) + ", value: " + cliente);
+    console.log("cliente_barraca, type: " + type(cliente_barraca) + ", value: " + cliente_barraca);
     console.log("cargador, type: " + type(cargador) + ", value: " + cargador);
     console.log("lugar_carga, type: " + type(lugar_carga) + ", value: " + lugar_carga);
     console.log("fletero, type: " + type(fletero) + ", value: " + fletero);
     console.log("camion, type: " + type(camion) + ", value: " + camion);
     console.log("chofer, type: " + type(chofer) + ", value: " + chofer);
     console.log("comentarios, type: " + type(comentarios) + ", value: " + comentarios);
+    console.log("esBarraca, type: " + type(esBarraca) + ", value: " + esBarraca);
 
     $.ajax({
         type: "POST",
         url: "Viajes.aspx/NuevoViaje",
         data: '{fecha1: "' + fecha1 + '",fecha2: "' + fecha2 + '",proveedor: "' + proveedor +
-            '",cliente: "' + cliente + '",cargador: "' + cargador + '",lugar_carga: "' + lugar_carga + '",fletero: "' + fletero +
-            '",camion: "' + camion + '",chofer: "' + chofer + '",comentarios: "' + comentarios + '"}',
+            '",cliente: "' + cliente + '",cliente_barraca: "' + cliente_barraca + '",cargador: "' + cargador + '",lugar_carga: "' + lugar_carga + '",fletero: "' + fletero +
+            '",camion: "' + camion + '",chofer: "' + chofer + '",comentarios: "' + comentarios + '",esBarraca: "' + esBarraca + '"}',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
@@ -1025,20 +1033,32 @@ function ModificarViaje_1(viajeID) {
                         var camion = datos_array[7];
                         var chofer = datos_array[8];
                         var comentarios = datos_array[9];
+                        var esBarraca = datos_array[10];
 
                         //$("#modalEdit_txbFecha1").val(moment(fecha1, "DD-MM-YYYY").format("DD-MM-YYYY"));
                         //$("#modalEdit_txbFecha2").val(moment(fecha2, "DD-MM-YYYY").format("DD-MM-YYYY"));
 
                         $("#modalEdit_txbFecha1").val(fecha1);
                         $("#modalEdit_txbFecha2").val(fecha2);
-                        $("#modalEdit_ddlProveedores").val(proveedor);
-                        $("#modalEdit_ddlClientes").val(cliente);
-                        $("#modalEdit_ddlCargadores").val(cargador);
-                        $("#modalEdit_txbLugarCarga").val(lugar_carga);
-                        $("#modalEdit_ddlFleteros").val(fletero);
-                        $("#modalEdit_ddlCamiones").val(camion);
-                        $("#modalEdit_ddlChoferes").val(chofer);
                         $("#modalEdit_txbComentarios").val(comentarios);
+
+                        $(".modalEdit_ddlProveedores").val(proveedor).trigger("liszt:updated");
+                        $(".modalEdit_ddlCargadores").val(cargador).trigger("liszt:updated");
+                        $(".modalEdit_txbLugarCarga").val(lugar_carga).trigger("liszt:updated");
+                        $(".modalEdit_ddlFleteros").val(fletero).trigger("liszt:updated");
+                        $(".modalEdit_ddlCamiones").val(camion).trigger("liszt:updated");
+                        $(".modalEdit_ddlChoferes").val(chofer).trigger("liszt:updated");
+
+                        if (esBarraca != "1") {
+                            $('#editModal_rad_cliente_1').prop("checked", true);
+                            $('.modalEdit_ddlClientes_Barraca').val('').prop('disabled', true).trigger('liszt: updated');
+                            $('.modalEdit_ddlClientes').val('').prop('disabled', false).trigger('liszt: updated');
+                        } else {
+                            $('#editModal_rad_cliente_2').prop("checked", true);
+                            $('.modalEdit_ddlClientes_Barraca').val('').prop('disabled', false).trigger('liszt: updated');
+                            $('.modalEdit_ddlClientes').val('').prop('disabled', true).trigger('liszt: updated');
+                        }
+                        $(".chzn-select").trigger("liszt:updated");
 
                         $('#editModal').modal('show');
 
@@ -1066,12 +1086,18 @@ function ModificarViaje_2() {
         var fecha2 = $("#modalEdit_txbFecha2").val();
         var proveedor = $("#modalEdit_ddlProveedores").val();
         var cliente = $("#modalEdit_ddlClientes").val();
+        var cliente_barraca = $("#modalEdit_ddlClientes_Barraca").val();
         var cargador = $("#modalEdit_ddlCargadores").val();
         var lugar_carga = $("#modalEdit_txbLugarCarga").val();
         var fletero = $("#modalEdit_ddlFleteros").val();
         var camion = $("#modalEdit_ddlCamiones").val();
         var chofer = $("#modalEdit_ddlChoferes").val();
         var comentarios = $("#modalEdit_txbComentarios").val();
+
+        var esBarraca = false;
+        if ($('input[name=edit_rad_cliente]:checked').val() == "barraca") {
+            esBarraca = true;
+        }
 
         // Ajax call parameters
         console.log("Ajax call: Viajes.aspx/ModificarViaje_2. Params:");
@@ -1086,13 +1112,14 @@ function ModificarViaje_2() {
         console.log("camion, type: " + type(camion) + ", value: " + camion);
         console.log("chofer, type: " + type(chofer) + ", value: " + chofer);
         console.log("comentarios, type: " + type(comentarios) + ", value: " + comentarios);
+        console.log("esBarraca, type: " + type(esBarraca) + ", value: " + esBarraca);
 
         $.ajax({
             type: "POST",
             url: "Viajes.aspx/ModificarViaje_2",
             data: '{viajeID_str: "' + viajeID_str + '",fecha1: "' + fecha1 + '",fecha2: "' + fecha2 + '",proveedor: "' + proveedor +
-                '",cliente: "' + cliente + '",cargador: "' + cargador + '",lugar_carga: "' + lugar_carga + '",fletero: "' + fletero +
-                '",camion: "' + camion + '",chofer: "' + chofer + '",comentarios: "' + comentarios + '"}',
+                '",cliente: "' + cliente + '",cliente_barraca: "' + cliente_barraca + '",cargador: "' + cargador + '",lugar_carga: "' + lugar_carga + '",fletero: "' + fletero +
+                '",camion: "' + camion + '",chofer: "' + chofer + '",comentarios: "' + comentarios + '",esBarraca: "' + esBarraca + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
