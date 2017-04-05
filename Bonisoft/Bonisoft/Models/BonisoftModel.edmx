@@ -68,6 +68,7 @@
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="EsBarraca" Type="bit" />
         </EntityType>
         <EntityType Name="cliente_pagos">
           <Key>
@@ -357,6 +358,7 @@
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Nro_cuenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EsBarraca" Type="Boolean" />
         </EntityType>
         <EntityType Name="cuadrilla_descarga">
           <Key>
@@ -641,6 +643,7 @@
           <EntitySetMapping Name="clientes">
             <EntityTypeMapping TypeName="bonisoftModel.cliente">
               <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="EsBarraca" ColumnName="EsBarraca" />
                 <ScalarProperty Name="cliente_ID" ColumnName="cliente_ID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Dueno_nombre" ColumnName="Dueno_nombre" />

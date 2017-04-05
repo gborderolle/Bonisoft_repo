@@ -1268,6 +1268,7 @@
     <Content Include="User_Controls\Estaticos\Cargadores.ascx" />
     <Content Include="User_Controls\Estaticos\Choferes.ascx" />
     <Content Include="User_Controls\Estaticos\Clientes.ascx" />
+    <Content Include="User_Controls\Estaticos\Cliente_Barraca.ascx" />
     <Content Include="User_Controls\Estaticos\Cuadrillas.ascx" />
     <Content Include="User_Controls\Estaticos\Fleteros.ascx" />
     <Content Include="User_Controls\Estaticos\Procesadores.ascx" />
@@ -1576,6 +1577,13 @@
     </Compile>
     <Compile Include="User_Controls\Estaticos\Clientes.ascx.designer.cs">
       <DependentUpon>Clientes.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User_Controls\Estaticos\Cliente_Barraca.ascx.cs">
+      <DependentUpon>Cliente_Barraca.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User_Controls\Estaticos\Cliente_Barraca.ascx.designer.cs">
+      <DependentUpon>Cliente_Barraca.ascx</DependentUpon>
     </Compile>
     <Compile Include="User_Controls\Estaticos\Cuadrillas.ascx.cs">
       <DependentUpon>Cuadrillas.ascx</DependentUpon>

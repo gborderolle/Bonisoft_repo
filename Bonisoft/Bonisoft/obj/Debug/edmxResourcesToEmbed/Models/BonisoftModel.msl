@@ -37,6 +37,7 @@
     <EntitySetMapping Name="clientes">
       <EntityTypeMapping TypeName="bonisoftModel.cliente">
         <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="EsBarraca" ColumnName="EsBarraca" />
           <ScalarProperty Name="cliente_ID" ColumnName="cliente_ID" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Dueno_nombre" ColumnName="Dueno_nombre" />

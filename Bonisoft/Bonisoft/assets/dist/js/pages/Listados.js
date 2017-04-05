@@ -11,6 +11,7 @@ function load_quicksearch() {
     var gridCamiones = $("#gridCamiones tbody tr");
     var gridChoferes = $("#gridChoferes tbody tr");
     var gridClientes = $("#gridClientes tbody tr");
+    var gridClientes_Barraca = $("#gridClientes_Barraca tbody tr");
     var gridCuadrillas = $("#gridCuadrillas tbody tr");
     var gridProveedores = $("#gridProveedores tbody tr");
     var gridInternos = $("#gridInternos tbody tr");
@@ -24,6 +25,7 @@ function load_quicksearch() {
     $("#txbSearch").quicksearch(gridCamiones);
     $("#txbSearch").quicksearch(gridChoferes);
     $("#txbSearch").quicksearch(gridClientes);
+    $("#txbSearch").quicksearch(gridClientes_Barraca);
     $("#txbSearch").quicksearch(gridCuadrillas);
     $("#txbSearch").quicksearch(gridProveedores);
     $("#txbSearch").quicksearch(gridInternos);
@@ -43,6 +45,10 @@ function show_tabla() {
             switch (tabla) {
                 case "clientes": {
                     $("#divClientes").show();
+                    break;
+                }
+                case "clientes_barraca": {
+                    $("#divClientes_Barraca").show();
                     break;
                 }
                 case "proveedores": {
@@ -77,7 +83,6 @@ function show_tabla() {
                     $("#divProcesadores").show();
                     break;
                 }
-
                 case "tipos": {
                     $("#divTipos").show();
                     break;

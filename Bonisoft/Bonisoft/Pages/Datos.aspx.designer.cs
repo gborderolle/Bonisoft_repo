@@ -31,22 +31,22 @@ namespace Bonisoft.Pages {
         protected global::Bonisoft.User_Controls.Clientes Clientes;
         
         /// <summary>
-        /// upProveedores control.
+        /// upClientes_Barraca control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upProveedores;
+        protected global::System.Web.UI.UpdatePanel upClientes_Barraca;
         
         /// <summary>
-        /// Proveedores control.
+        /// Clientes_Barraca control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Bonisoft.User_Controls.Proveedores Proveedores;
+        protected global::Bonisoft.User_Controls.Cliente_Barraca Clientes_Barraca;
         
         /// <summary>
         /// upCuadrillas control.
@@ -137,5 +137,23 @@ namespace Bonisoft.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Bonisoft.User_Controls.Estaticos.Fleteros Fleteros;
+        
+        /// <summary>
+        /// upProveedores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upProveedores;
+        
+        /// <summary>
+        /// Proveedores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Bonisoft.User_Controls.Proveedores Proveedores;
     }
 }

@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace Bonisoft.User_Controls
 {
-    public partial class Clientes : System.Web.UI.UserControl
+    public partial class Cliente_Barraca : System.Web.UI.UserControl
     {
         public event Action LoadCompleted = delegate { };
 
@@ -21,8 +21,8 @@ namespace Bonisoft.User_Controls
                 BindGrid();
             }
             lblMessage.Text = "";
-            gridClientes.UseAccessibleHeader = true;
-            gridClientes.HeaderRow.TableSection = TableRowSection.TableHeader;
+            gridClientes_Barraca.UseAccessibleHeader = true;
+            gridClientes_Barraca.HeaderRow.TableSection = TableRowSection.TableHeader;
             //this.LoadCompleted();
         }
 
@@ -30,36 +30,36 @@ namespace Bonisoft.User_Controls
         {
             using (bonisoftEntities context = new bonisoftEntities())
             {
-                hdnClientesCount.Value = context.clientes.Where(e => e.EsBarraca == null || e.EsBarraca == false).Count().ToString();
+                hdnClientesCount_Barraca.Value = context.clientes.Where(e => e.EsBarraca == true).Count().ToString();
                 if (context.clientes.Count() > 0)
                 {
-                    gridClientes.DataSource = context.clientes.Where(e => e.EsBarraca == null || e.EsBarraca == false).ToList();
-                    gridClientes.DataBind();
+                    gridClientes_Barraca.DataSource = context.clientes.Where(e => e.EsBarraca == true).ToList();
+                    gridClientes_Barraca.DataBind();
                 }
                 else
                 {
                     var obj = new List<cliente>();
                     obj.Add(new cliente());
                     // Bind the DataTable which contain a blank row to the GridView
-                    gridClientes.DataSource = obj;
-                    gridClientes.DataBind();
-                    int columnsCount = gridClientes.Columns.Count;
-                    gridClientes.Rows[0].Cells.Clear();// clear all the cells in the row
-                    gridClientes.Rows[0].Cells.Add(new TableCell()); //add a new blank cell
-                    gridClientes.Rows[0].Cells[0].ColumnSpan = columnsCount; //set the column span to the new added cell
+                    gridClientes_Barraca.DataSource = obj;
+                    gridClientes_Barraca.DataBind();
+                    int columnsCount = gridClientes_Barraca.Columns.Count;
+                    gridClientes_Barraca.Rows[0].Cells.Clear();// clear all the cells in the row
+                    gridClientes_Barraca.Rows[0].Cells.Add(new TableCell()); //add a new blank cell
+                    gridClientes_Barraca.Rows[0].Cells[0].ColumnSpan = columnsCount; //set the column span to the new added cell
 
                     //You can set the styles here
-                    gridClientes.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
-                    gridClientes.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
-                    gridClientes.Rows[0].Cells[0].Font.Bold = true;
+                    gridClientes_Barraca.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+                    gridClientes_Barraca.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
+                    gridClientes_Barraca.Rows[0].Cells[0].Font.Bold = true;
                     //set No Results found to the new added cell
-                    gridClientes.Rows[0].Cells[0].Text = "No hay registros";
+                    gridClientes_Barraca.Rows[0].Cells[0].Text = "No hay registros";
                 }
                 ScriptManager.RegisterStartupScript(this, typeof(Page), "updateCounts", "updateCounts();", true);
             }
         }
 
-        protected void gridClientes_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gridClientes_Barraca_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             #region Action buttons
 
@@ -98,7 +98,7 @@ namespace Bonisoft.User_Controls
             #endregion
         }
 
-        protected void gridClientes_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gridClientes_Barraca_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -108,7 +108,7 @@ namespace Bonisoft.User_Controls
 
             if (e.CommandName == "InsertNew")
             {
-                GridViewRow row = gridClientes.FooterRow;
+                GridViewRow row = gridClientes_Barraca.FooterRow;
                 TextBox txb1 = row.FindControl("txbNew1") as TextBox;
                 TextBox txb3 = row.FindControl("txbNew3") as TextBox;
                 TextBox txb5 = row.FindControl("txbNew5") as TextBox;
@@ -120,7 +120,7 @@ namespace Bonisoft.User_Controls
                 TextBox txb22 = row.FindControl("txbNew22") as TextBox;
                 TextBox txb23 = row.FindControl("txbNew23") as TextBox;
                 TextBox txb24 = row.FindControl("txbNew24") as TextBox;
-                if (txb1 != null && txb3 != null && txb5 != null && txb13 != null && txb15 != null && 
+                if (txb1 != null && txb3 != null && txb5 != null && txb13 != null && txb15 != null &&
                     txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null)
                 {
                     using (bonisoftEntities context = new bonisoftEntities())
@@ -149,7 +149,7 @@ namespace Bonisoft.User_Controls
                         obj.Fechas_pago = string.Empty;
                         //
 
-                        obj.EsBarraca = false;
+                        obj.EsBarraca = true;
 
                         context.clientes.Add(obj);
                         context.SaveChanges();
@@ -199,17 +199,19 @@ namespace Bonisoft.User_Controls
             }
         }
 
-        protected void gridClientes_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void gridClientes_Barraca_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            gridClientes.EditIndex = e.NewEditIndex;
+            gridClientes_Barraca.EditIndex = e.NewEditIndex;
             BindGrid();
         }
-        protected void gridClientes_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+
+        protected void gridClientes_Barraca_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            gridClientes.EditIndex = -1;
+            gridClientes_Barraca.EditIndex = -1;
             BindGrid();
         }
-        protected void gridClientes_RowUpdating(object sender, GridViewUpdateEventArgs e)
+
+        protected void gridClientes_Barraca_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -217,7 +219,7 @@ namespace Bonisoft.User_Controls
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-            GridViewRow row = gridClientes.Rows[e.RowIndex];
+            GridViewRow row = gridClientes_Barraca.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb3 = row.FindControl("txb3") as TextBox;
             TextBox txb5 = row.FindControl("txb5") as TextBox;
@@ -229,12 +231,12 @@ namespace Bonisoft.User_Controls
             TextBox txb22 = row.FindControl("txb22") as TextBox;
             TextBox txb23 = row.FindControl("txb23") as TextBox;
             TextBox txb24 = row.FindControl("txb24") as TextBox;
-            if (txb1 != null && txb3 != null && txb5 != null && txb13 != null && txb15 != null && 
+            if (txb1 != null && txb3 != null && txb5 != null && txb13 != null && txb15 != null &&
                 txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null)
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    int cliente_ID = Convert.ToInt32(gridClientes.DataKeys[e.RowIndex].Value);
+                    int cliente_ID = Convert.ToInt32(gridClientes_Barraca.DataKeys[e.RowIndex].Value);
                     cliente obj = context.clientes.First(x => x.cliente_ID == cliente_ID);
                     obj.Dueno_nombre = txb1.Text;
                     obj.Encargado_lena_nombre = txb3.Text;
@@ -265,13 +267,13 @@ namespace Bonisoft.User_Controls
                     #endregion
 
                     lblMessage.Text = "Guardado correctamente.";
-                    gridClientes.EditIndex = -1;
+                    gridClientes_Barraca.EditIndex = -1;
                     BindGrid();
                 }
             }
         }
 
-        protected void gridClientes_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gridClientes_Barraca_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -280,7 +282,7 @@ namespace Bonisoft.User_Controls
             string methodName = stackFrame.GetMethod().Name;
 
 
-            int cliente_ID = Convert.ToInt32(gridClientes.DataKeys[e.RowIndex].Value);
+            int cliente_ID = Convert.ToInt32(gridClientes_Barraca.DataKeys[e.RowIndex].Value);
             using (bonisoftEntities context = new bonisoftEntities())
             {
                 cliente obj = context.clientes.First(x => x.cliente_ID == cliente_ID);
@@ -308,11 +310,11 @@ namespace Bonisoft.User_Controls
         protected void PageDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Recupera la fila.
-            GridViewRow pagerRow = gridClientes.BottomPagerRow;
+            GridViewRow pagerRow = gridClientes_Barraca.BottomPagerRow;
             // Recupera el control DropDownList...
             DropDownList pageList = (DropDownList)pagerRow.Cells[0].FindControl("PageDropDownList");
             //// Se Establece la propiedad PageIndex para visualizar la página seleccionada...
-            gridClientes.PageIndex = pageList.SelectedIndex;
+            gridClientes_Barraca.PageIndex = pageList.SelectedIndex;
             //Quita el mensaje de información si lo hubiera...
             lblMessage.Text = "";
         }

@@ -33,5 +33,6 @@ namespace Bonisoft.Models
         public string Comentarios { get; set; }
         public string Email { get; set; }
         public string Nro_cuenta { get; set; }
+        public Nullable<bool> EsBarraca { get; set; }
     }
 }
