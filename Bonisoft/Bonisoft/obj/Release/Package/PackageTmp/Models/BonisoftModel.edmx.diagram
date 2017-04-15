@@ -22,10 +22,10 @@
         <EntityTypeShape EntityType="bonisoftModel.sysdiagram" Width="1.5" PointX="13.375" PointY="0.75" />
         <EntityTypeShape EntityType="bonisoftModel.proveedor_pagos" Width="1.5" PointX="7.375" PointY="12.75" />
         <EntityTypeShape EntityType="bonisoftModel.chofer" Width="1.5" PointX="11.375" PointY="7.75" />
-        <EntityTypeShape EntityType="bonisoftModel.fletero_pagos" Width="1.5" PointX="13.375" PointY="7.75" />
         <EntityTypeShape EntityType="bonisoftModel.cliente_pagos" Width="1.5" PointX="13.375" PointY="3.75" />
         <EntityTypeShape EntityType="bonisoftModel.fletero" Width="1.5" PointX="0.75" PointY="9.75" />
         <EntityTypeShape EntityType="bonisoftModel.viaje" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="bonisoftModel.fletero_pagos" Width="1.5" PointX="13.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

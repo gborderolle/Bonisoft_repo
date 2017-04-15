@@ -1,13 +1,13 @@
 ﻿/**** Local variables ****/
 var upFleteros = '<%=upFleteros.FleteroID%>';
 var PAGO_ID_SELECTED;
-var FLETERO_ID_SELECTED;
+var CLIENTE_ID_SELECTED;
 
 $(document).ready(function () {
-   bindEvents();
+    bindEvents();
 
     // Seleccionar primer cliente
-    var first = $("#gridFleteros tbody tr").first();
+    var first = $("#gridClientes tbody tr").first();
     if (first != null) {
         first.click();
     }
@@ -19,10 +19,38 @@ Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args
     actualizarSaldos();
 });
 
+function loadDDLEvents() {
+    $(".add_ddlFormas").val('').prop('disabled', true).trigger("liszt:updated");
+    $("#addModal_rad_cliente").on('change', function () {
+        if ($('input[name=add_rad_cliente]:checked').val() == "pago") {
+            $(".add_ddlFormas").val('').prop('disabled', false).trigger("liszt:updated");
+        } else {
+            $(".add_ddlFormas").val('').prop('disabled', true).trigger("liszt:updated");
+        }
+    });
+
+    $("#editModal_rad_cliente").on('change', function () {
+        if ($('input[name=edit_rad_cliente]:checked').val() == "pago") {
+            $(".edit_ddlFormas").val('').prop('disabled', false).trigger("liszt:updated");
+        } else {
+            $(".edit_ddlFormas").val('').prop('disabled', true).trigger("liszt:updated");
+        }
+    });
+}
+
 function loadInputDDL() {
     // Dropdownlist input
     $(".chzn-select").chosen();
     $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+}
+
+function loadFilter_CurrentMonth() {
+    var date = new Date();
+    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+    $(".txbFiltro_saldos1").val(moment(firstDay).format("DD-MM-YYYY"));
+    $(".txbFiltro_saldos2").val(moment(lastDay).format("DD-MM-YYYY"));
 }
 
 function newOpcionDDL(tipo) {
@@ -55,7 +83,6 @@ function newOpcionDDL(tipo) {
                         }
                     }
                     $(".chzn-select").trigger("liszt:updated");
-
                 }
 
             }, // end success
@@ -82,14 +109,14 @@ function addToday(tipo) {
 
 function actualizarSaldos() {
 
-    var hdn_FleteroID = $("#hdn_FleteroID");
-    if (hdn_FleteroID !== null && hdn_FleteroID.val() !== null && hdn_FleteroID.val().length > 0) {
-        var fleteroID_str = hdn_FleteroID.val();
+    var hdn_clientID = $("#hdn_clientID");
+    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
+        var clienteID_str = hdn_clientID.val();
 
         $.ajax({
             type: "POST",
             url: "Resumen_fleteros.aspx/Update_Saldos",
-            data: '{fleteroID_str: "' + fleteroID_str + '"}',
+            data: '{clienteID_str: "' + clienteID_str + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
@@ -111,11 +138,11 @@ function actualizarSaldos() {
 
                         var saldo_final = TryParseFloat(saldo_final_str, 0);
                         if (saldo_final <= 0) {
-                            lblSaldo_final.removeClass("label-danger");
-                            lblSaldo_final.addClass("label-success");
-                        } else {
                             lblSaldo_final.removeClass("label-success");
                             lblSaldo_final.addClass("label-danger");
+                        } else {
+                            lblSaldo_final.removeClass("label-danger");
+                            lblSaldo_final.addClass("label-success");
                         }
                     }
 
@@ -173,9 +200,9 @@ function ModificarPago_1(pagoID) {
 
 function ModificarPago_2() {
 
-    var hdn_FleteroID = $("#hdn_FleteroID");
-    if (hdn_FleteroID !== null && hdn_FleteroID.val() !== null && hdn_FleteroID.val().length > 0) {
-        var fleteroID_str = hdn_FleteroID.val();
+    var hdn_clientID = $("#hdn_clientID");
+    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
+        var clienteID_str = hdn_clientID.val();
 
         if (PAGO_ID_SELECTED != null && PAGO_ID_SELECTED != "") {
             var pagoID_str = PAGO_ID_SELECTED;
@@ -185,6 +212,11 @@ function ModificarPago_2() {
             var txbMonto = $("#edit_txbMonto").val();
             var txbComentarios = $("#edit_txbComentarios").val();
 
+            var esPago = false;
+            if ($('input[name=edit_rad_cliente]:checked').val() == "pago") {
+                esPago = true;
+            }
+
             // Ajax call parameters
             console.log("Ajax call: Resumen_fleteros.aspx/ModificarPago_2. Params:");
             console.log("pagoID_str, type: " + type(pagoID_str) + ", value: " + pagoID_str);
@@ -192,11 +224,12 @@ function ModificarPago_2() {
             console.log("ddlFormas, type: " + type(ddlFormas) + ", value: " + ddlFormas);
             console.log("txbMonto, type: " + type(txbMonto) + ", value: " + txbMonto);
             console.log("txbComentarios, type: " + type(txbComentarios) + ", value: " + txbComentarios);
+            console.log("esPago, type: " + type(esPago) + ", value: " + esPago);
 
             $.ajax({
                 type: "POST",
                 url: "Resumen_fleteros.aspx/ModificarPago_2",
-                data: '{pagoID_str: "' + pagoID_str + '",fecha_str: "' + txbFecha + '",ddlFormas: "' + ddlFormas + '",monto_str: "' + txbMonto + '",comentarios_str: "' + txbComentarios + '"}',
+                data: '{pagoID_str: "' + pagoID_str + '",fecha_str: "' + txbFecha + '",ddlFormas: "' + ddlFormas + '",monto_str: "' + txbMonto + '",comentarios_str: "' + txbComentarios + '",esPago: "' + esPago + '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
@@ -226,7 +259,7 @@ function ModificarPago_2() {
                             $.modal.close();
 
                             // Actualizar datos
-                            var selected_row = $(".hiddencol").filter(':contains("' + fleteroID_str + '")');
+                            var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
                             if (selected_row !== null) {
                                 selected_row.click();
                             }
@@ -249,30 +282,36 @@ function ModificarPago_2() {
 
 function IngresarPago() {
 
-    var hdn_FleteroID = $("#hdn_FleteroID");
-    if (hdn_FleteroID !== null && hdn_FleteroID.val() !== null && hdn_FleteroID.val().length > 0) {
-        var fleteroID_str = hdn_FleteroID.val();
+    var hdn_clientID = $("#hdn_clientID");
+    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
+        var clienteID_str = hdn_clientID.val();
 
         var txbFecha = $("#add_txbFecha").val();
         var ddlFormas = $("#add_ddlFormas").val();
         var txbMonto = $("#add_txbMonto").val();
         var txbComentarios = $("#add_txbComentarios").val();
-        
+
+        var esPago = false;
+        if ($('input[name=add_rad_cliente]:checked').val() == "pago") {
+            esPago = true;
+        }
+
         var monto = TryParseFloat(txbMonto, 0);
         if (monto > 0) {
 
             // Ajax call parameters
             console.log("Ajax call: Resumen_fleteros.aspx/IngresarPago. Params:");
-            console.log("fleteroID_str, type: " + type(fleteroID_str) + ", value: " + fleteroID_str);
+            console.log("clienteID_str, type: " + type(clienteID_str) + ", value: " + clienteID_str);
             console.log("txbFecha, type: " + type(txbFecha) + ", value: " + txbFecha);
             console.log("ddlFormas, type: " + type(ddlFormas) + ", value: " + ddlFormas);
             console.log("txbMonto, type: " + type(txbMonto) + ", value: " + txbMonto);
             console.log("txbComentarios, type: " + type(txbComentarios) + ", value: " + txbComentarios);
+            console.log("esPago, type: " + type(esPago) + ", value: " + esPago);
 
             $.ajax({
                 type: "POST",
                 url: "Resumen_fleteros.aspx/IngresarPago",
-                data: '{fleteroID_str: "' + fleteroID_str + '",fecha_str: "' + txbFecha + '",ddlFormas: "' + ddlFormas + '",monto_str: "' + txbMonto + '",comentarios_str: "' + txbComentarios + '"}',
+                data: '{clienteID_str: "' + clienteID_str + '",fecha_str: "' + txbFecha + '",ddlFormas: "' + ddlFormas + '",monto_str: "' + txbMonto + '",comentarios_str: "' + txbComentarios + '",esPago: "' + esPago + '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
@@ -301,7 +340,7 @@ function IngresarPago() {
                             $.modal.close();
 
                             // Actualizar datos
-                            var selected_row = $(".hiddencol").filter(':contains("' + fleteroID_str + '")');
+                            var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
                             if (selected_row !== null) {
                                 selected_row.click();
                             }
@@ -325,10 +364,11 @@ function IngresarPago() {
     }
 }
 
+
 function bindEvents() {
     $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
-    $("#tabsFleteros").tabs();
-    $("#gridFleteros").tablesorter();
+    $("#tabsClientes").tabs();
+    $("#gridClientes").tablesorter();
     $("#gridViajes").tablesorter();
     $("#gridViajesImprimir").tablesorter();
     $("#gridPagos").tablesorter();
@@ -337,16 +377,16 @@ function bindEvents() {
         PAGO_ID_SELECTED = $(this).find(".hiddencol").html();
     });
 
-    $("#gridFleteros tr").click(function () {
-        FLETERO_ID_SELECTED = $(this).find(".hiddencol").html();
+    $("#gridClientes tr").click(function () {
+        CLIENTE_ID_SELECTED = $(this).find(".hiddencol").html();
         //$(this).css("background-color", "black");
         //$(this).find("td").css("background-color", "black");
     });
-    
+
 
     // Source: https://www.youtube.com/watch?v=Sy2J7cUv0QM
-    var gridFleteros = $("#gridFleteros tbody tr");
-    $("#txbSearchFleteros").quicksearch(gridFleteros);
+    var gridClientes = $("#gridClientes tbody tr");
+    $("#txbSearchClientes").quicksearch(gridClientes);
 
     var gridViajes = $("#gridViajes tbody tr");
     $("#txbSearchViajes").quicksearch(gridViajes);
@@ -354,9 +394,9 @@ function bindEvents() {
     var gridPagos = $("#gridPagos tbody tr");
     $("#txbSearchPagos").quicksearch(gridPagos);
 
-    $('#txbSearchFleteros').keydown(function () {
-        var count = "# " + $('#gridFleteros tbody tr:visible').length;
-        $("#lblgridFleterosCount").text(count);
+    $('#txbSearchClientes').keydown(function () {
+        var count = "# " + $('#gridClientes tbody tr:visible').length;
+        $("#lblGridClientesCount").text(count);
     });
 
     $('#txbSearchViajes').keydown(function () {
@@ -369,7 +409,7 @@ function bindEvents() {
 function BorrarPago(clienteID) {
 
     if (clienteID > 0) {
-        var fleteroID_str = clienteID.toString();
+        var clienteID_str = clienteID.toString();
 
         $('#dialog p').text(hashMessages['Confirmacion']);
         $("#dialog").dialog({
@@ -396,7 +436,7 @@ function BorrarPago(clienteID) {
                                     show_message_info('OK_PagoBorrado');
 
                                     // Actualizar datos
-                                    var selected_row = $(".hiddencol").filter(':contains("' + fleteroID_str + '")');
+                                    var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
                                     if (selected_row !== null) {
                                         selected_row.click();
                                     }
@@ -425,18 +465,18 @@ function BorrarPago(clienteID) {
 
 function ViajeFicticio_1() {
 
-    var hdn_FleteroID = $("#hdn_FleteroID");
-    if (hdn_FleteroID !== null && hdn_FleteroID.val() !== null && hdn_FleteroID.val().length > 0) {
-        var fleteroID_str = hdn_FleteroID.val();
+    var hdn_clientID = $("#hdn_clientID");
+    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
+        var clienteID_str = hdn_clientID.val();
 
         // Ajax call parameters
         console.log("Ajax call: Resumen_fleteros.aspx/ViajeFicticio_1. Params:");
-        console.log("fleteroID_str, type: " + type(fleteroID_str) + ", value: " + fleteroID_str);
+        console.log("clienteID_str, type: " + type(clienteID_str) + ", value: " + clienteID_str);
 
         $.ajax({
             type: "POST",
             url: "Resumen_fleteros.aspx/ViajeFicticio_1",
-            data: '{fleteroID_str: "' + fleteroID_str + '"}',
+            data: '{clienteID_str: "' + clienteID_str + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
@@ -469,9 +509,9 @@ function ViajeFicticio_1() {
 
 function ViajeFicticio_2() {
 
-    var hdn_FleteroID = $("#hdn_FleteroID");
-    if (hdn_FleteroID !== null && hdn_FleteroID.val() !== null && hdn_FleteroID.val().length > 0) {
-        var fleteroID_str = hdn_FleteroID.val();
+    var hdn_clientID = $("#hdn_clientID");
+    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
+        var clienteID_str = hdn_clientID.val();
 
         var saldo = $("#modalAddFicticio_txbSaldo").val();
         var comentarios = $("#modalAddFicticio_txbComentarios").val();
@@ -480,12 +520,12 @@ function ViajeFicticio_2() {
         console.log("Ajax call: Resumen_fleteros.aspx/ViajeFicticio_2. Params:");
         console.log("saldo, type: " + type(saldo) + ", value: " + saldo);
         console.log("comentarios, type: " + type(comentarios) + ", value: " + comentarios);
-        console.log("fleteroID_str, type: " + type(fleteroID_str) + ", value: " + fleteroID_str);
+        console.log("clienteID_str, type: " + type(clienteID_str) + ", value: " + clienteID_str);
 
         $.ajax({
             type: "POST",
             url: "Resumen_fleteros.aspx/ViajeFicticio_2",
-            data: '{saldo_str: "' + saldo + '",comentarios: "' + comentarios + '",fleteroID_str: "' + fleteroID_str + '"}',
+            data: '{saldo_str: "' + saldo + '",comentarios: "' + comentarios + '",clienteID_str: "' + clienteID_str + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
@@ -496,7 +536,7 @@ function ViajeFicticio_2() {
                     $.modal.close();
 
                     // Actualizar datos
-                    var selected_row = $(".hiddencol").filter(':contains("' + fleteroID_str + '")');
+                    var selected_row = $(".hiddencol").filter(':contains("' + clienteID_str + '")');
                     if (selected_row !== null) {
                         selected_row.click();
                     }

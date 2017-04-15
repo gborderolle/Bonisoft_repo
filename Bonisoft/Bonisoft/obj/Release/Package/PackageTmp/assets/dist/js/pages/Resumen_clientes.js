@@ -19,6 +19,25 @@ Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args
     actualizarSaldos();
 });
 
+function loadDDLEvents() {
+    $(".add_ddlFormas").val('').prop('disabled', true).trigger("liszt:updated");
+    $("#addModal_rad_cliente").on('change', function () {
+        if ($('input[name=add_rad_cliente]:checked').val() == "pago") {
+            $(".add_ddlFormas").val('').prop('disabled', false).trigger("liszt:updated");
+        } else {
+            $(".add_ddlFormas").val('').prop('disabled', true).trigger("liszt:updated");
+        }
+    });
+
+    $("#editModal_rad_cliente").on('change', function () {
+        if ($('input[name=edit_rad_cliente]:checked').val() == "pago") {
+            $(".edit_ddlFormas").val('').prop('disabled', false).trigger("liszt:updated");
+        } else {
+            $(".edit_ddlFormas").val('').prop('disabled', true).trigger("liszt:updated");
+        }
+    });
+}
+
 function loadInputDDL() {
     // Dropdownlist input
     $(".chzn-select").chosen();
