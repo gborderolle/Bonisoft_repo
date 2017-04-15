@@ -617,8 +617,7 @@ namespace Bonisoft.Pages
                                     //BindGridPagos(cliente_ID);
 
                                     // Filtrar por fechas del mes corriente por defecto
-
-                                    ScriptManager.RegisterStartupScript(this, this.GetType(), "gridClientes_OnSelectedIndexChanged", "<script type='text/javascript'>loadFilter_CurrentMonth(); </script>", false);
+                                    ScriptManager.RegisterStartupScript(this, this.GetType(), "gridClientes_OnSelectedIndexChanged", "<script type='text/javascript'>loadFilter_CurrentMonth(); loadInputDDL(); loadDDLEvents(); </script>", false);
 
                                     var startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                                     string date1 = startDate.ToString(GlobalVariables.ShortDateTime_format);
