@@ -85,6 +85,33 @@ namespace Bonisoft.Pages {
         protected global::System.Web.UI.WebControls.Label lblClientName_1;
         
         /// <summary>
+        /// txbFiltro_saldos1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txbFiltro_saldos1;
+        
+        /// <summary>
+        /// txbFiltro_saldos2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txbFiltro_saldos2;
+        
+        /// <summary>
+        /// btnSearch_saldos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch_saldos;
+        
+        /// <summary>
         /// gridPagos_lblMessage control.
         /// </summary>
         /// <remarks>

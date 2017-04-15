@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Resumen de Clientes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Resumen_clientes.aspx.cs" Inherits="Bonisoft.Pages.Resumen_clientes" %>
+﻿<%@ Page Title="Resumen de Cl. Particulares" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Resumen_clientes.aspx.cs" Inherits="Bonisoft.Pages.Resumen_clientes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
@@ -24,6 +24,30 @@
     <script type="text/javascript" src="/assets/dist/js/AuxiliarFunctions.js"></script>
     <script type="text/javascript" src="/assets/dist/js/pages/Resumen_clientes.js"></script>
 
+    <script type="text/javascript">
+
+        $(function () {
+            $(".add_ddlFormas").val('').prop('disabled', true).trigger("liszt:updated");
+            $("#addModal_rad_cliente").on('change', function () {
+                if ($('input[name=add_rad_cliente]:checked').val() == "pago") {
+                    $(".add_ddlFormas").val('').prop('disabled', false).trigger("liszt:updated");
+                } else {
+                    $(".add_ddlFormas").val('').prop('disabled', true).trigger("liszt:updated");
+                }
+            });
+
+            $("#editModal_rad_cliente").on('change', function () {
+                if ($('input[name=edit_rad_cliente]:checked').val() == "pago") {
+                    $(".edit_ddlFormas").val('').prop('disabled', false).trigger("liszt:updated");
+                } else {
+                    $(".edit_ddlFormas").val('').prop('disabled', true).trigger("liszt:updated");
+                }
+            });
+        });
+
+    </script>
+
+
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
@@ -33,7 +57,7 @@
 
             <div class="row">
                 <div class="col-md-9">
-                    <h1 style="font-size: 24px;">Resumen de Clientes</h1>
+                    <h1 style="font-size: 24px;">Resumen de Clientes particulares</h1>
                 </div>
             </div>
 
@@ -43,7 +67,7 @@
 
                     <div style="text-align: center">
 
-                        <asp:UpdatePanel ID="upClientes" runat="server">
+                        <asp:updatepanel id="upClientes" runat="server">
                             <ContentTemplate>
 
                                 <div class="row" style="margin-bottom: 10px;">
@@ -83,7 +107,7 @@
                             <Triggers>
                                 <asp:AsyncPostBackTrigger ControlID="gridClientes" EventName="SelectedIndexChanged" />
                             </Triggers>
-                        </asp:UpdatePanel>
+                        </asp:updatepanel>
 
                     </div>
 
@@ -93,8 +117,8 @@
 
                     <div id="tabsClientes">
                         <ul>
-                            <li><a href="#tabsClientes_1" class="tabsClientes">Pagos del cliente</a></li>
-                            <li><a href="#tabsClientes_2" class="tabsClientes">Viajes del cliente</a></li>
+                            <li><a href="#tabsClientes_1" class="tabsClientes">Saldo del cliente</a></li>
+                            <li><a href="#tabsClientes_2" class="tabsClientes">Detalle de viajes</a></li>
                             <li><a href="#tabsClientes_3" class="tabsClientes">Planilla a imprimir</a></li>
                         </ul>
 
@@ -103,27 +127,44 @@
 
                             <div style="overflow: auto;">
 
-                                <asp:UpdatePanel ID="upPagos" runat="server">
+                                <asp:updatepanel id="upPagos" runat="server">
                                     <ContentTemplate>
 
                                         <asp:HiddenField ID="hdn_clientID" runat="server" ClientIDMode="Static" />
 
                                         <div class="row">
-                                            <div class="col-md-10 pull-left">
+                                            <div class="col-md-4 pull-left">
                                                 <h2>
                                                     <asp:Label Text="[Nombre cliente]" runat="server" ID="lblClientName_1" /></h2>
                                             </div>
 
-                                            <div class="col-md-2 pull-right">
-                                                <a id="btnAddFicticioModal" role="button" onclick='ViajeFicticio_1();' class="btn btn-sm btn-warning pull-right">Saldo anterior</a>
+                                            <div class="col-md-6 pull-right">
+                                                <div style="margin-top:10px;">
+                                                    <a id="btnAddFicticioModal" role="button" onclick='ViajeFicticio_1();' class="btn btn-sm btn-info pull-right">Saldo anterior</a>
+                                                    <a href="#addPagoModal" rel="modal:open" class="btn btn-sm btn-info pull-right" style="margin-right:10px;">Ingresar</a>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                        <div class="row">
+                                            <div class="col-md-6 pull-left">
+                                                <div class="input-group">
+                                                    <input type="text" id="txbFiltro_saldos1" class="form-control datepicker txbFiltro_saldos1" placeholder="Desde" runat="server" style="width: 120px;">
+                                                    <span class="input-group-btn"></span>
+
+                                                    <input type="text" id="txbFiltro_saldos2" class="form-control datepicker txbFiltro_saldos2" placeholder="Hasta" runat="server" style="width: 120px;">
+                                                    <span class="input-group-btn"></span>
+
+                                                    <asp:Button ID="btnSearch_saldos" runat="server" Text="Filtrar" CssClass="btn btnUpdate btn-sm"
+                                                        OnClick="btnSearch_Click_saldos" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" />
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="row" style="margin-bottom: 10px; margin-right: 0; margin-left: 0;">
-                                            <h3 class="pull-left" title="Precio de venta total">Saldo inicial:
+                                            <h3 class="pull-left" title="Precio de venta total (lo que nos debe total)">Saldo inicial:
                                                 <label id="lblSaldo_inicial" class="label label-warning">0</label></h3>
-                                            <h3 class="pull-right" title="Saldo final después de pagos">Saldo final:
+                                            <h3 class="pull-right" title="Saldo final después de pagos (verde nos debe / rojo le debemos)">Saldo final:
                                                 <label id="lblSaldo_final" class="label label-success">0</label></h3>
                                         </div>
 
@@ -138,7 +179,7 @@
                                             <Columns>
                                                 <asp:BoundField DataField="Cliente_pagos_ID" HeaderText="ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
                                                 <asp:BoundField DataField="Cliente_ID" HeaderText="Cliente_ID" HtmlEncode="false" ItemStyle-CssClass="hiddencol hiddencol_real" HeaderStyle-CssClass="hiddencol hiddencol_real" />
-                                                <asp:BoundField DataField="Fecha_registro" HeaderText="Fecha de registro" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
+                                                <%--<asp:BoundField DataField="Fecha_registro" HeaderText="Fecha de registro" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />--%>
                                                 <%--<asp:BoundField DataField="Fecha_pago" HeaderText="Fecha de pago" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="False" />--%>
                                                 <asp:TemplateField HeaderText="Fecha de pago">
                                                     <ItemTemplate>
@@ -151,6 +192,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
+                                                <asp:BoundField DataField="Importe_viaje" DataFormatString="{0:C2}" HeaderText="Importe viaje" HtmlEncode="False" />
                                                 <asp:BoundField DataField="Monto" DataFormatString="{0:C2}" HeaderText="Monto" HtmlEncode="False" />
                                                 <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" HtmlEncode="False" />
 
@@ -165,20 +207,16 @@
                                         </asp:GridView>
                                         <asp:Label ID="lblGridPagosCount" runat="server" ClientIDMode="Static" Text="Resultados: 0" CssClass="lblResultados label label-info"></asp:Label>
 
-
-                                        <div class="row" style="margin-right: 0; margin-left: 0;">
-                                            <a href="#addPagoModal" rel="modal:open" class="btn btn-primary pull-right">Ingresar pago</a>
-                                        </div>
-
                                         <hr style="margin-top: 5px; margin-bottom: 5px;" />
                                         <div class="row" style="margin: 0;">
                                             <div class="col-md-12 pull-left" style="padding: 10px;">
                                                 <p class="text-info" style="text-align: left;">Importante: El Saldo inicial es la suma del Precio de venta de todos los viajes que corresponden al cliente. </p>
+                                                <p class="text-info" style="text-align: left;">Por defecto sólo se muestran datos al mes corriente. </p>
                                             </div>
                                         </div>
 
                                     </ContentTemplate>
-                                </asp:UpdatePanel>
+                                </asp:updatepanel>
 
                             </div>
 
@@ -189,7 +227,7 @@
 
                             <div style="overflow: auto;">
 
-                                <asp:UpdatePanel ID="upViajes" runat="server">
+                                <asp:updatepanel id="upViajes" runat="server">
                                     <ContentTemplate>
 
                                         <div class="row" style="margin-bottom: 10px;">
@@ -263,7 +301,7 @@
                                         <asp:Label ID="lblGridViajesCount" runat="server" ClientIDMode="Static" Text="# 0" CssClass="lblResultados label label-info"></asp:Label>
 
                                     </ContentTemplate>
-                                </asp:UpdatePanel>
+                                </asp:updatepanel>
 
                             </div>
 
@@ -273,7 +311,7 @@
 
                         <div id="tabsClientes_3">
                             <div style="overflow: auto;">
-                                <asp:UpdatePanel ID="upViajesImprimir" runat="server">
+                                <asp:updatepanel id="upViajesImprimir" runat="server">
                                     <ContentTemplate>
 
                                         <div class="row">
@@ -350,7 +388,7 @@
                                         <asp:Label ID="lblGridViajesImprimirCount" runat="server" ClientIDMode="Static" Text="# 0" CssClass="lblResultados label label-info"></asp:Label>
 
                                     </ContentTemplate>
-                                </asp:UpdatePanel>
+                                </asp:updatepanel>
 
                                 <h2>
                                     <label class="label label-danger">Sección en construcción. NO USAR.</label></h2>
@@ -383,14 +421,26 @@
     <div id="addPagoModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" style="display: none; max-width: 500px; overflow: hidden;" class="modal fade dark in">
 
         <div class="modal-header">
-            <h3 id="addModalLabel">Agregar pago</h3>
+            <h3 id="addModalLabel">Agregar Importe de viaje o Pago</h3>
         </div>
-        <asp:UpdatePanel ID="upAdd" runat="server">
+        <asp:updatepanel id="upAdd" runat="server">
             <ContentTemplate>
                 <div class="modal-body">
+
+                     <div id="addModal_rad_cliente">
+                        <div class="radio">
+                            <label>
+                                <input id="addModal_rad_cliente_1" type="radio" name="add_rad_cliente" checked="checked" value="importe">Importe de viaje</label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input id="addModal_rad_cliente_2" type="radio" name="add_rad_cliente" value="pago">Pago</label>
+                        </div>
+                    </div>
+
                     <table class="table">
                         <tr>
-                            <td>Fecha de pago: 
+                            <td>Fecha de pago / viaje: 
                             <asp:TextBox ID="add_txbFecha" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control datepicker" MaxLength="30" DataFormatString="{0:dd-MM-yyyy}" TabIndex="1"></asp:TextBox>
                                 <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="addToday(1)">
                                     <i class="fa fa-calendar-check-o" title="Hoy"></i>
@@ -399,7 +449,7 @@
                         </tr>
                         <tr>
                             <td>Forma de pago: 
-                            <asp:DropDownList ID="add_ddlFormas" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="2" />
+                            <asp:DropDownList ID="add_ddlFormas" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select add_ddlFormas" TabIndex="2" />
                                 <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('forma_pago')">
                                     <i class="fa fa-plus"></i>
                                 </button>
@@ -425,7 +475,7 @@
 
                 </div>
             </ContentTemplate>
-        </asp:UpdatePanel>
+        </asp:updatepanel>
     </div>
     <!-- Modal agregar pago END -->
 
@@ -435,12 +485,24 @@
         <div class="modal-header">
             <h3 id="editModalLabel">Modificar pago</h3>
         </div>
-        <asp:UpdatePanel ID="upEdit" runat="server">
+        <asp:updatepanel id="upEdit" runat="server">
             <ContentTemplate>
                 <div class="modal-body">
+
+                     <div id="editModal_rad_cliente">
+                        <div class="radio">
+                            <label>
+                                <input id="editModal_rad_cliente_1" type="radio" name="edit_rad_cliente" checked="checked" value="importe">Importe de viaje</label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input id="editModal_rad_cliente_2" type="radio" name="edit_rad_cliente" value="pago">Pago</label>
+                        </div>
+                    </div>
+
                     <table class="table">
                         <tr>
-                            <td>Fecha de pago: 
+                            <td>Fecha de pago / viaje: 
                             <asp:TextBox ID="edit_txbFecha" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control datepicker" MaxLength="30" DataFormatString="{0:dd-MM-yyyy}" TabIndex="5"></asp:TextBox>
                                 <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="addToday(2)">
                                     <i class="fa fa-calendar-check-o" title="Hoy"></i>
@@ -449,7 +511,7 @@
                         </tr>
                         <tr>
                             <td>Forma de pago: 
-                            <asp:DropDownList ID="edit_ddlFormas" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="6" />
+                            <asp:DropDownList ID="edit_ddlFormas" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select edit_ddlFormas" TabIndex="6" />
                                 <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('forma_pago')">
                                     <i class="fa fa-plus"></i>
                                 </button>
@@ -475,7 +537,7 @@
 
                 </div>
             </ContentTemplate>
-        </asp:UpdatePanel>
+        </asp:updatepanel>
     </div>
     <!-- Modal modificar pago END -->
 
@@ -486,7 +548,7 @@
         <div class="modal-header">
             <h3 id="addFicticioModalLabel">Modificar saldo anterior</h3>
         </div>
-        <asp:UpdatePanel ID="upAddFicticio" runat="server">
+        <asp:updatepanel id="upAddFicticio" runat="server">
             <ContentTemplate>
                 <div class="modal-body">
                     <table class="table">
@@ -510,7 +572,7 @@
                     <a id="aNuevoViajeFicticio" class="btn btn-primary" onclick="ViajeFicticio_2();">Guardar</a>
                 </div>
             </ContentTemplate>
-        </asp:UpdatePanel>
+        </asp:updatepanel>
     </div>
     <!-- Modal Viaje ficticio END -->
 

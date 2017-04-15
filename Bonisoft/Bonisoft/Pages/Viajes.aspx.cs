@@ -2212,10 +2212,10 @@ namespace Bonisoft.Pages
                                 viaje.precio_flete_total = flete_parcial;
 
                                 // Guardar importe en pagos del cliente
-                                cliente_pagos cliente_pagos = new cliente_pagos();
-                                cliente_pagos.Cliente_ID = viaje.Cliente_ID;
-                                cliente_pagos.Viaje_ID = viajeID_value;
-                                cliente_pagos.Importe_viaje = importe_viaje;
+                                //cliente_pagos cliente_pagos = new cliente_pagos();
+                                //cliente_pagos.Cliente_ID = viaje.Cliente_ID;
+                                //cliente_pagos.Viaje_ID = viajeID_value;
+                                //cliente_pagos.Importe_viaje = importe_viaje;
 
                                 context.SaveChanges();
 
@@ -2658,14 +2658,14 @@ namespace Bonisoft.Pages
 
                                         #region Borrar cliente pago
 
-                                        List<cliente_pagos> lista_cliente_pagos = (List<cliente_pagos>)context.cliente_pagos.Where(v => v.Viaje_ID == viaje_ID).ToList();
-                                        if (lista_cliente_pagos != null && lista_cliente_pagos.Count > 0)
-                                        {
-                                            foreach (cliente_pagos pago in lista_cliente_pagos)
-                                            {
-                                                context.cliente_pagos.Remove(pago);
-                                            }
-                                        }
+                                        //List<cliente_pagos> lista_cliente_pagos = (List<cliente_pagos>)context.cliente_pagos.Where(v => v.Viaje_ID == viaje_ID).ToList();
+                                        //if (lista_cliente_pagos != null && lista_cliente_pagos.Count > 0)
+                                        //{
+                                        //    foreach (cliente_pagos pago in lista_cliente_pagos)
+                                        //    {
+                                        //        context.cliente_pagos.Remove(pago);
+                                        //    }
+                                        //}
 
                                         #endregion Borrar cliente pago
 
@@ -3019,16 +3019,16 @@ namespace Bonisoft.Pages
 
                     #region Create pago cliente
 
-                    cliente_pagos cliente_pagos = new cliente_pagos();
-                    cliente_pagos.Viaje_ID = id;
-                    cliente_pagos.Cliente_ID = cliente_ID;
-                    cliente_pagos.Fecha_pago = date1;
-                    cliente_pagos.Fecha_registro = DateTime.Now;
-                    cliente_pagos.Forma_de_pago_ID = 0;
-                    cliente_pagos.Monto = 0;
-                    cliente_pagos.Comentarios = string.Empty;
+                    //cliente_pagos cliente_pagos = new cliente_pagos();
+                    //cliente_pagos.Viaje_ID = id;
+                    //cliente_pagos.Cliente_ID = cliente_ID;
+                    //cliente_pagos.Fecha_pago = date1;
+                    //cliente_pagos.Fecha_registro = DateTime.Now;
+                    //cliente_pagos.Forma_de_pago_ID = 0;
+                    //cliente_pagos.Monto = 0;
+                    //cliente_pagos.Comentarios = string.Empty;
 
-                    context.cliente_pagos.Add(cliente_pagos);
+                    //context.cliente_pagos.Add(cliente_pagos);
                     context.SaveChanges();
 
                     #endregion

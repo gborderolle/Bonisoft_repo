@@ -588,7 +588,7 @@ function NuevoViaje() {
     var comentarios = $("#modalAdd_txbComentarios").val();
 
     var esBarraca = false;
-    if ($('input[name=rad_cliente]:checked').val() == "barraca") {
+    if ($('input[name=add_rad_cliente]:checked').val() == "barraca") {
         esBarraca = true;
     }
 

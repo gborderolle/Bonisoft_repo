@@ -236,8 +236,35 @@
     <Content Include="assets\bootstrap\js\bootstrap.js" />
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="assets\bootstrap\js\npm.js" />
+    <Content Include="assets\dist\css\chosen-sprite%402x.png" />
+    <Content Include="assets\dist\css\chosen-sprite.png" />
     <Content Include="assets\dist\css\chosen.css" />
+    <Content Include="assets\dist\css\images\loginProcess_error.png" />
+    <Content Include="assets\dist\css\images\loginProcess_loading.gif" />
+    <Content Include="assets\dist\css\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="assets\dist\css\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="assets\dist\css\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="assets\dist\css\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="assets\dist\css\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="assets\dist\css\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="assets\dist\css\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="assets\dist\css\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="assets\dist\css\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="assets\dist\css\images\ui-icons_222222_256x240.png" />
+    <Content Include="assets\dist\css\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="assets\dist\css\images\ui-icons_444444_256x240.png" />
+    <Content Include="assets\dist\css\images\ui-icons_555555_256x240.png" />
+    <Content Include="assets\dist\css\images\ui-icons_777620_256x240.png" />
+    <Content Include="assets\dist\css\images\ui-icons_777777_256x240.png" />
+    <Content Include="assets\dist\css\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="assets\dist\css\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="assets\dist\css\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="assets\dist\css\images\ui-icons_ffffff_256x240.png" />
     <Content Include="assets\dist\css\jquery.modal.css" />
+    <Content Include="assets\dist\css\pages\images\asc.gif" />
+    <Content Include="assets\dist\css\pages\images\bg.gif" />
+    <Content Include="assets\dist\css\pages\images\desc.gif" />
+    <Content Include="assets\dist\css\pages\images\style.css" />
     <Content Include="assets\dist\css\pages\Login.css" />
     <Content Include="assets\dist\css\pages\Datos.css" />
     <Content Include="assets\dist\css\font-awesome.css" />
@@ -328,6 +355,7 @@
     <Content Include="assets\dist\js\pages\Datos_configuracion.js" />
     <Content Include="assets\dist\js\pages\Detalles.js" />
     <Content Include="assets\dist\js\pages\Listados.js" />
+    <Content Include="assets\dist\js\pages\Resumen_barracas.js" />
     <Content Include="assets\dist\js\pages\Resumen_clientes.js" />
     <Content Include="assets\dist\js\pages\Resumen_fleteros.js" />
     <Content Include="assets\dist\js\pages\Resumen_proveedores.js" />
@@ -1218,6 +1246,7 @@
     <Content Include="Pages\Menu_logs.aspx" />
     <Content Include="Pages\Recordatorios.aspx" />
     <Content Include="Pages\Registros.aspx" />
+    <Content Include="Pages\Resumen_barracas.aspx" />
     <Content Include="Pages\Resumen_clientes.aspx" />
     <Content Include="Pages\Resumen_fleteros.aspx" />
     <Content Include="Pages\Resumen_proveedores.aspx" />
@@ -1467,6 +1496,13 @@
     </Compile>
     <Compile Include="Pages\Registros.aspx.designer.cs">
       <DependentUpon>Registros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Resumen_barracas.aspx.cs">
+      <DependentUpon>Resumen_barracas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Resumen_barracas.aspx.designer.cs">
+      <DependentUpon>Resumen_barracas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Resumen_clientes.aspx.cs">
       <DependentUpon>Resumen_clientes.aspx</DependentUpon>

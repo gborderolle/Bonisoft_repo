@@ -12,6 +12,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="ApplicationInsights.config">
       <publishTime>08/19/2016 18:17:50</publishTime>
     </File>
+    <File Include="assets/bootstrap.css">
+      <publishTime>12/02/2015 22:29:52</publishTime>
+    </File>
+    <File Include="assets/bootstrap.js">
+      <publishTime>12/02/2015 22:29:52</publishTime>
+    </File>
     <File Include="assets/bootstrap/css/bootstrap.css">
       <publishTime>02/12/2015 22:29:52</publishTime>
     </File>
@@ -204,11 +210,80 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="assets/bootstrap/js/npm.js">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="assets/dist/css/chosen-sprite%402x.png">
+      <publishTime>08/03/2016 23:41:32</publishTime>
+    </File>
+    <File Include="assets/dist/css/chosen-sprite.png">
+      <publishTime>08/03/2016 23:41:32</publishTime>
+    </File>
     <File Include="assets/dist/css/chosen.css">
       <publishTime>03/14/2017 01:58:51</publishTime>
     </File>
     <File Include="assets/dist/css/font-awesome.css">
       <publishTime>08/30/2016 10:10:43</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/loginProcess_error.png">
+      <publishTime>02/12/2016 19:20:08</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/loginProcess_loading.gif">
+      <publishTime>02/12/2016 19:20:08</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-bg_diagonals-thick_18_b81900_40x40.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-bg_diagonals-thick_20_666666_40x40.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-bg_flat_10_000000_40x100.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-bg_glass_100_f6f6f6_1x400.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-bg_glass_100_fdf5ce_1x400.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-bg_gloss-wave_35_f6a828_500x100.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-bg_highlight-soft_100_eeeeee_1x100.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-bg_highlight-soft_75_ffe45c_1x100.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-icons_222222_256x240.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-icons_228ef1_256x240.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-icons_444444_256x240.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-icons_555555_256x240.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-icons_777620_256x240.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-icons_777777_256x240.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-icons_cc0000_256x240.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-icons_ef8c08_256x240.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-icons_ffd27a_256x240.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
+    </File>
+    <File Include="assets/dist/css/images/ui-icons_ffffff_256x240.png">
+      <publishTime>02/12/2016 19:20:07</publishTime>
     </File>
     <File Include="assets/dist/css/jquery-ui.css">
       <publishTime>08/30/2016 10:10:43</publishTime>
@@ -218,6 +293,18 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="assets/dist/css/pages/Datos.css">
       <publishTime>09/28/2016 20:29:36</publishTime>
+    </File>
+    <File Include="assets/dist/css/pages/images/asc.gif">
+      <publishTime>10/15/2010 11:18:20</publishTime>
+    </File>
+    <File Include="assets/dist/css/pages/images/bg.gif">
+      <publishTime>10/15/2010 11:18:20</publishTime>
+    </File>
+    <File Include="assets/dist/css/pages/images/desc.gif">
+      <publishTime>10/15/2010 11:18:20</publishTime>
+    </File>
+    <File Include="assets/dist/css/pages/images/style.css">
+      <publishTime>10/15/2010 11:18:20</publishTime>
     </File>
     <File Include="assets/dist/css/pages/InfoBoxes.min.css">
       <publishTime>08/30/2016 14:45:45</publishTime>
@@ -232,7 +319,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/29/2016 03:59:27</publishTime>
     </File>
     <File Include="assets/dist/css/pages/Resumen_clientes.css">
-      <publishTime>03/12/2017 23:11:10</publishTime>
+      <publishTime>04/13/2017 03:24:07</publishTime>
     </File>
     <File Include="assets/dist/css/pages/Resumen_fleteros.css">
       <publishTime>03/12/2017 23:11:10</publishTime>
@@ -465,8 +552,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="assets/dist/js/AuxiliarFunctions.js">
       <publishTime>10/10/2016 20:51:05</publishTime>
     </File>
+    <File Include="assets/dist/js/chosen.jquery.js">
+      <publishTime>03/27/2013 14:14:36</publishTime>
+    </File>
     <File Include="assets/dist/js/demo.js">
       <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="assets/dist/js/jquery-3.1.1.min.js">
+      <publishTime>10/26/2016 18:26:11</publishTime>
     </File>
     <File Include="assets/dist/js/jquery-ui.js">
       <publishTime>08/30/2016 10:10:43</publishTime>
@@ -516,8 +609,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="assets/dist/js/pages/Master.js">
       <publishTime>10/25/2016 12:57:27</publishTime>
     </File>
+    <File Include="assets/dist/js/pages/Resumen_barracas.js">
+      <publishTime>04/13/2017 03:00:25</publishTime>
+    </File>
     <File Include="assets/dist/js/pages/Resumen_clientes.js">
-      <publishTime>03/14/2017 01:50:07</publishTime>
+      <publishTime>04/13/2017 03:00:25</publishTime>
     </File>
     <File Include="assets/dist/js/pages/Resumen_fleteros.js">
       <publishTime>03/14/2017 01:50:31</publishTime>
@@ -526,7 +622,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/14/2017 01:50:57</publishTime>
     </File>
     <File Include="assets/dist/js/pages/Viajes.js">
-      <publishTime>04/05/2017 02:50:09</publishTime>
+      <publishTime>04/13/2017 01:51:46</publishTime>
     </File>
     <File Include="assets/dist/js/popbox.js">
       <publishTime>10/10/2016 20:42:40</publishTime>
@@ -2851,7 +2947,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/16/2013 20:06:22</publishTime>
     </File>
     <File Include="bin/Bonisoft.dll">
-      <publishTime>04/05/2017 15:25:52</publishTime>
+      <publishTime>04/13/2017 03:24:29</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/02/2015 09:32:26</publishTime>
@@ -3093,8 +3189,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Pages/Registros.aspx">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="Pages/Resumen_barracas.aspx">
+      <publishTime>04/13/2017 03:22:27</publishTime>
+    </File>
     <File Include="Pages/Resumen_clientes.aspx">
-      <publishTime>03/14/2017 01:36:24</publishTime>
+      <publishTime>04/13/2017 03:04:29</publishTime>
     </File>
     <File Include="Pages/Resumen_fleteros.aspx">
       <publishTime>03/14/2017 00:49:01</publishTime>
@@ -3103,7 +3202,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/13/2017 13:39:11</publishTime>
     </File>
     <File Include="Pages/Viajes.aspx">
-      <publishTime>04/05/2017 03:34:56</publishTime>
+      <publishTime>04/13/2017 01:51:47</publishTime>
     </File>
     <File Include="Scripts/ai.0.15.0-build58334.js">
       <publishTime>08/19/2016 18:17:50</publishTime>
@@ -3211,10 +3310,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/19/2016 18:17:36</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>03/14/2017 00:38:52</publishTime>
+      <publishTime>04/13/2017 03:23:21</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/13/2017 00:23:34</publishTime>
     </File>
     <File Include="Site.Mobile.Master">
       <publishTime>01/19/2017 20:10:01</publishTime>

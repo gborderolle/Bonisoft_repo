@@ -31,7 +31,7 @@
         $(function () {
             $(".modalAdd_ddlClientes_Barraca").val('').prop('disabled', true).trigger("liszt:updated");
             $("#addModal_rad_cliente").on('change', function () {
-                if ($('input[name=rad_cliente]:checked').val() == "barraca") {
+                if ($('input[name=add_rad_cliente]:checked').val() == "barraca") {
                     $(".modalAdd_ddlClientes_Barraca").val('').prop('disabled', false).trigger("liszt:updated");
                     $(".modalAdd_ddlClientes").val('').prop('disabled', true).trigger("liszt:updated");
                 } else {
@@ -311,11 +311,11 @@
                                         <div id="addModal_rad_cliente">
                                             <div class="radio">
                                                 <label>
-                                                    <input id="addModal_rad_cliente_1" type="radio" name="rad_cliente" checked="checked" value="particular">Cliente Particular</label>
+                                                    <input id="addModal_rad_cliente_1" type="radio" name="add_rad_cliente" checked="checked" value="particular">Cliente Particular</label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input id="addModal_rad_cliente_2" type="radio" name="rad_cliente" value="barraca">Cliente Barraca</label>
+                                                    <input id="addModal_rad_cliente_2" type="radio" name="add_rad_cliente" value="barraca">Cliente Barraca</label>
                                             </div>
                                         </div>
                                         <table class="table">

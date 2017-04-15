@@ -24,15 +24,15 @@ namespace Bonisoft.Pages
         {
             if (!IsPostBack)
             {
-                BindgridFleteros();
+                BindGridClientes();
                 BindModalAgregarPago();
                 BindModalModificarPago();
             }
 
-            gridFleteros.UseAccessibleHeader = true;
-            gridFleteros.HeaderRow.TableSection = TableRowSection.TableHeader;
+            gridClientes.UseAccessibleHeader = true;
+            gridClientes.HeaderRow.TableSection = TableRowSection.TableHeader;
 
-            gridFleteros_lblMessage.Text = string.Empty;
+            gridClientes_lblMessage.Text = string.Empty;
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -43,21 +43,48 @@ namespace Bonisoft.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-            string fletero_ID_str = hdn_FleteroID.Value;
-            if (!string.IsNullOrWhiteSpace(fletero_ID_str))
+            string client_ID_str = hdn_clientID.Value;
+            if (!string.IsNullOrWhiteSpace(client_ID_str))
             {
-                int fletero_ID = 0;
-                if (!int.TryParse(fletero_ID_str, out fletero_ID))
+                int cliente_ID = 0;
+                if (!int.TryParse(client_ID_str, out cliente_ID))
                 {
-                    fletero_ID = 0;
-                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, fletero_ID_str);
+                    cliente_ID = 0;
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, client_ID_str);
                 }
 
-                if (fletero_ID > 0)
+                if (cliente_ID > 0)
                 {
                     string date1 = txbFiltro1.Value;
                     string date2 = txbFiltro2.Value;
-                    BindGridViajesImprimir(fletero_ID, date1, date2);
+                    BindGridViajesImprimir(cliente_ID, date1, date2);
+                }
+            }
+        }
+
+        protected void btnSearch_Click_saldos(object sender, EventArgs e)
+        {
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            string client_ID_str = hdn_clientID.Value;
+            if (!string.IsNullOrWhiteSpace(client_ID_str))
+            {
+                int cliente_ID = 0;
+                if (!int.TryParse(client_ID_str, out cliente_ID))
+                {
+                    cliente_ID = 0;
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, client_ID_str);
+                }
+
+                if (cliente_ID > 0)
+                {
+                    string date1 = txbFiltro_saldos1.Value;
+                    string date2 = txbFiltro_saldos2.Value;
+                    BindGridPagos(cliente_ID, date1, date2);
                 }
             }
         }
@@ -72,27 +99,27 @@ namespace Bonisoft.Pages
 
             gridPagos.PageIndex = e.NewPageIndex;
 
-            string fletero_ID_str = hdn_FleteroID.Value;
-            if (!string.IsNullOrWhiteSpace(fletero_ID_str))
+            string client_ID_str = hdn_clientID.Value;
+            if (!string.IsNullOrWhiteSpace(client_ID_str))
             {
-                int fletero_ID = 0;
-                if (!int.TryParse(fletero_ID_str, out fletero_ID))
+                int cliente_ID = 0;
+                if (!int.TryParse(client_ID_str, out cliente_ID))
                 {
-                    fletero_ID = 0;
-                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, fletero_ID_str);
+                    cliente_ID = 0;
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, client_ID_str);
                 }
 
-                if (fletero_ID > 0)
+                if (cliente_ID > 0)
                 {
-                    BindGridPagos(fletero_ID);
+                    BindGridPagos(cliente_ID);
                 }
             }
         }
 
         protected void grid2_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gridFleteros.PageIndex = e.NewPageIndex;
-            BindgridFleteros();
+            gridClientes.PageIndex = e.NewPageIndex;
+            BindGridClientes();
         }
 
         protected void grid3_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -105,19 +132,19 @@ namespace Bonisoft.Pages
 
             gridViajes.PageIndex = e.NewPageIndex;
 
-            string fletero_ID_str = hdn_FleteroID.Value;
-            if (!string.IsNullOrWhiteSpace(fletero_ID_str))
+            string client_ID_str = hdn_clientID.Value;
+            if (!string.IsNullOrWhiteSpace(client_ID_str))
             {
-                int fletero_ID = 0;
-                if (!int.TryParse(fletero_ID_str, out fletero_ID))
+                int cliente_ID = 0;
+                if (!int.TryParse(client_ID_str, out cliente_ID))
                 {
-                    fletero_ID = 0;
-                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, fletero_ID_str);
+                    cliente_ID = 0;
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, client_ID_str);
                 }
 
-                if (fletero_ID > 0)
+                if (cliente_ID > 0)
                 {
-                    BindGridViajes(fletero_ID);
+                    BindGridViajes(cliente_ID);
                 }
             }
         }
@@ -132,24 +159,24 @@ namespace Bonisoft.Pages
 
             gridViajesImprimir.PageIndex = e.NewPageIndex;
 
-            string fletero_ID_str = hdn_FleteroID.Value;
-            if (!string.IsNullOrWhiteSpace(fletero_ID_str))
+            string client_ID_str = hdn_clientID.Value;
+            if (!string.IsNullOrWhiteSpace(client_ID_str))
             {
-                int fletero_ID = 0;
-                if (!int.TryParse(fletero_ID_str, out fletero_ID))
+                int cliente_ID = 0;
+                if (!int.TryParse(client_ID_str, out cliente_ID))
                 {
-                    fletero_ID = 0;
-                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, fletero_ID_str);
+                    cliente_ID = 0;
+                    Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, client_ID_str);
                 }
 
-                if (fletero_ID > 0)
+                if (cliente_ID > 0)
                 {
-                    BindGridViajesImprimir(fletero_ID);
+                    BindGridViajesImprimir(cliente_ID);
                 }
             }
         }
 
-        protected void gridFleteros_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gridClientes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandArgument != null)
             {
@@ -163,7 +190,7 @@ namespace Bonisoft.Pages
             }
         }
 
-        protected void gridFleteros_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gridClientes_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             #region Buttons
 
@@ -190,7 +217,7 @@ namespace Bonisoft.Pages
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridFleteros, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gridClientes, "Select$" + e.Row.RowIndex);
             }
         }
 
@@ -285,48 +312,6 @@ namespace Bonisoft.Pages
                     }
                 }
 
-                //// Pesada origen ----------------------------------------------------
-                //lbl = e.Row.FindControl("lblPesadaOrigen") as Label;
-                //if (lbl != null)
-                //{
-                //    lbl.Text = string.Empty; using (bonisoftEntities context = new bonisoftEntities())
-                //    {
-                //        viaje viaje = (viaje)(e.Row.DataItem);
-                //        if (viaje != null)
-                //        {
-                //            int id = viaje.Pesada_ID;
-                //            pesada pesada = (pesada)context.pesadas.FirstOrDefault(c => c.pesada_ID == id);
-                //            if (pesada != null)
-                //            {
-                //                lbl.Text = pesada.Origen_lugar + ": " + pesada.Origen_peso_neto;
-                //                //string nombre = pesada.ToString();
-                //                //lbl.Text = nombre;
-                //            }
-                //        }
-                //    }
-                //}
-
-                //// Pesada destino ----------------------------------------------------
-                //lbl = e.Row.FindControl("lblPesadaDestino") as Label;
-                //if (lbl != null)
-                //{
-                //    lbl.Text = string.Empty; using (bonisoftEntities context = new bonisoftEntities())
-                //    {
-                //        viaje viaje = (viaje)(e.Row.DataItem);
-                //        if (viaje != null)
-                //        {
-                //            int id = viaje.Pesada_ID;
-                //            pesada pesada = (pesada)context.pesadas.FirstOrDefault(c => c.pesada_ID == id);
-                //            if (pesada != null)
-                //            {
-                //                lbl.Text = pesada.Destino_lugar + ": " + pesada.Destino_peso_neto;
-                //                //string nombre = pesada.ToString();
-                //                //lbl.Text = nombre;
-                //            }
-                //        }
-                //    }
-                //}
-
                 lbl = e.Row.FindControl("lblFechaPartida") as Label;
                 if (lbl != null)
                 {
@@ -382,10 +367,10 @@ namespace Bonisoft.Pages
                     lbl.Text = string.Empty;
                     using (bonisoftEntities context = new bonisoftEntities())
                     {
-                        fletero_pagos fletero_pagos = (fletero_pagos)(e.Row.DataItem);
-                        if (fletero_pagos != null)
+                        fletero_pagos cliente_pagos = (fletero_pagos)(e.Row.DataItem);
+                        if (cliente_pagos != null)
                         {
-                            int id_v = fletero_pagos.Viaje_ID;
+                            int id_v = cliente_pagos.Viaje_ID;
                             viaje viaje = (viaje)context.viajes.FirstOrDefault(c => c.Viaje_ID == id_v);
                             if (viaje != null)
                             {
@@ -399,7 +384,7 @@ namespace Bonisoft.Pages
                             }
                             else
                             {
-                                lbl.Text = fletero_pagos.Comentarios;
+                                lbl.Text = cliente_pagos.Comentarios;
                             }
                         }
                     }
@@ -412,10 +397,10 @@ namespace Bonisoft.Pages
                     lbl.Text = string.Empty;
                     using (bonisoftEntities context = new bonisoftEntities())
                     {
-                        fletero_pagos fletero_pagos = (fletero_pagos)(e.Row.DataItem);
-                        if (fletero_pagos != null)
+                        fletero_pagos cliente_pagos = (fletero_pagos)(e.Row.DataItem);
+                        if (cliente_pagos != null)
                         {
-                            int id_v = fletero_pagos.Viaje_ID;
+                            int id_v = cliente_pagos.Viaje_ID;
                             viaje viaje = (viaje)context.viajes.FirstOrDefault(c => c.Viaje_ID == id_v);
                             if (viaje != null)
                             {
@@ -433,10 +418,10 @@ namespace Bonisoft.Pages
                     lbl.Text = string.Empty;
                     using (bonisoftEntities context = new bonisoftEntities())
                     {
-                        fletero_pagos fletero_pagos = (fletero_pagos)(e.Row.DataItem);
-                        if (fletero_pagos != null)
+                        fletero_pagos cliente_pagos = (fletero_pagos)(e.Row.DataItem);
+                        if (cliente_pagos != null)
                         {
-                            int id_v = fletero_pagos.Viaje_ID;
+                            int id_v = cliente_pagos.Viaje_ID;
                             viaje viaje = (viaje)context.viajes.FirstOrDefault(c => c.Viaje_ID == id_v);
                             if (viaje != null)
                             {
@@ -453,10 +438,10 @@ namespace Bonisoft.Pages
                     lbl.Text = string.Empty;
                     using (bonisoftEntities context = new bonisoftEntities())
                     {
-                        fletero_pagos fletero_pagos = (fletero_pagos)(e.Row.DataItem);
-                        if (fletero_pagos != null)
+                        fletero_pagos cliente_pagos = (fletero_pagos)(e.Row.DataItem);
+                        if (cliente_pagos != null)
                         {
-                            int id_v = fletero_pagos.Viaje_ID;
+                            int id_v = cliente_pagos.Viaje_ID;
                             viaje viaje = (viaje)context.viajes.FirstOrDefault(c => c.Viaje_ID == id_v);
                             if (viaje != null)
                             {
@@ -474,22 +459,22 @@ namespace Bonisoft.Pages
                     lbl.Text = string.Empty;
                     using (bonisoftEntities context = new bonisoftEntities())
                     {
-                        fletero_pagos fletero_pagos = (fletero_pagos)(e.Row.DataItem);
-                        if (fletero_pagos != null)
+                        fletero_pagos cliente_pagos = (fletero_pagos)(e.Row.DataItem);
+                        if (cliente_pagos != null)
                         {
-                            DateTime fecha_desde = fletero_pagos.Fecha_pago;
-                            int id_hasta = fletero_pagos.Fletero_pagos_ID;
+                            DateTime fecha_desde = cliente_pagos.Fecha_pago;
+                            int id_hasta = cliente_pagos.Fletero_pagos_ID;
 
-                            int fletero_ID = fletero_pagos.Fletero_ID;
-                            var elements_pagos = context.fletero_pagos.Where(v => v.Fletero_ID == fletero_ID && v.Fecha_pago >= fecha_desde && v.Fletero_pagos_ID <= id_hasta).ToList();
+                            int cliente_ID = cliente_pagos.Fletero_ID;
+                            var elements_pagos = context.fletero_pagos.Where(v => v.Fletero_ID == cliente_ID && v.Fecha_pago >= fecha_desde && v.Fletero_pagos_ID <= id_hasta).ToList();
                             decimal total_pagos = 0;
                             foreach (fletero_pagos pago in elements_pagos)
                             {
                                 total_pagos += pago.Monto;
                             }
 
-                            // && v.Fecha_partida >= fecha_desde && v.Fletero_pagos_ID <= id_hasta
-                            var elements_viajes = context.viajes.Where(v => v.Fletero_ID == fletero_ID).ToList();
+                            // && v.Fecha_partida >= fecha_desde && v.Cliente_pagos_ID <= id_hasta
+                            var elements_viajes = context.viajes.Where(v => v.Fletero_ID == cliente_ID).ToList();
                             decimal total_importes = 0;
                             foreach (viaje viaje1 in elements_viajes)
                             {
@@ -595,7 +580,7 @@ namespace Bonisoft.Pages
             }
         }
 
-        protected void gridFleteros_OnSelectedIndexChanged(object sender, EventArgs e)
+        protected void gridClientes_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             // Source: http://www.codeproject.com/Tips/622720/Fire-GridView-SelectedIndexChanged-Event-without-S
 
@@ -605,34 +590,43 @@ namespace Bonisoft.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-            foreach (GridViewRow row in gridFleteros.Rows)
+            foreach (GridViewRow row in gridClientes.Rows)
             {
-                if (row.RowIndex == gridFleteros.SelectedIndex)
+                if (row.RowIndex == gridClientes.SelectedIndex)
                 {
-                    string fletero_ID_str = gridFleteros.SelectedRow.Cells[0].Text;
-                    if (!string.IsNullOrWhiteSpace(fletero_ID_str))
+                    string cliente_ID_str = gridClientes.SelectedRow.Cells[0].Text;
+                    if (!string.IsNullOrWhiteSpace(cliente_ID_str))
                     {
-                        int fletero_ID = 0;
-                        if (!int.TryParse(fletero_ID_str, out fletero_ID))
+                        int cliente_ID = 0;
+                        if (!int.TryParse(cliente_ID_str, out cliente_ID))
                         {
-                            fletero_ID = 0;
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, fletero_ID_str);
+                            cliente_ID = 0;
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, cliente_ID_str);
                         }
 
-                        if (fletero_ID > 0)
+                        if (cliente_ID > 0)
                         {
                             using (bonisoftEntities context = new bonisoftEntities())
                             {
-                                fletero fletero = (fletero)context.fleteros.FirstOrDefault(c => c.Fletero_ID == fletero_ID);
-                                if (fletero != null)
+                                fletero cliente = (fletero)context.fleteros.FirstOrDefault(c => c.Fletero_ID == cliente_ID);
+                                if (cliente != null)
                                 {
-                                    lblFleteroName_1.Text = lblFleteroName_2.Text = fletero.Nombre;
+                                    lblClientName_1.Text = lblClientName_2.Text = cliente.Nombre;
 
-                                    BindGridViajes(fletero_ID);
-                                    BindGridViajesImprimir(fletero_ID);
-                                    BindGridPagos(fletero_ID);
+                                    BindGridViajes(cliente_ID);
+                                    BindGridViajesImprimir(cliente_ID);
+                                    //BindGridPagos(cliente_ID);
 
-                                    hdn_FleteroID.Value = fletero_ID_str;
+                                    // Filtrar por fechas del mes corriente por defecto
+
+                                    ScriptManager.RegisterStartupScript(this, this.GetType(), "gridClientes_OnSelectedIndexChanged", "<script type='text/javascript'>loadFilter_CurrentMonth(); </script>", false);
+
+                                    var startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                                    string date1 = startDate.ToString(GlobalVariables.ShortDateTime_format);
+                                    string date2 = startDate.AddMonths(1).AddDays(-1).ToString(GlobalVariables.ShortDateTime_format);
+                                    BindGridPagos(cliente_ID, date1, date2);
+
+                                    hdn_clientID.Value = cliente_ID_str;
 
                                     gridViajes.UseAccessibleHeader = true;
                                     gridViajes.HeaderRow.TableSection = TableRowSection.TableHeader;
@@ -661,20 +655,20 @@ namespace Bonisoft.Pages
 
         #region General methods
 
-        private void BindgridFleteros()
+        private void BindGridClientes()
         {
             using (bonisoftEntities context = new bonisoftEntities())
             {
                 var elements = context.fleteros.OrderBy(e => e.Nombre).ToList();
                 if (elements.Count() > 0)
                 {
-                    gridFleteros.DataSource = elements;
-                    gridFleteros.DataBind();
+                    gridClientes.DataSource = elements;
+                    gridClientes.DataBind();
 
-                    gridFleteros.UseAccessibleHeader = true;
-                    gridFleteros.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    gridClientes.UseAccessibleHeader = true;
+                    gridClientes.HeaderRow.TableSection = TableRowSection.TableHeader;
 
-                    lblGridFleterosCount.Text = "# " + elements.Count();
+                    lblGridClientesCount.Text = "# " + elements.Count();
                 }
                 else
                 {
@@ -682,31 +676,31 @@ namespace Bonisoft.Pages
                     obj.Add(new fletero());
 
                     // Bind the DataTable which contain a blank row to the GridView
-                    gridFleteros.DataSource = obj;
-                    gridFleteros.DataBind();
-                    int columnsCount = gridFleteros.Columns.Count;
-                    gridFleteros.Rows[0].Cells.Clear();// clear all the cells in the row
-                    gridFleteros.Rows[0].Cells.Add(new TableCell()); //add a new blank cell
-                    gridFleteros.Rows[0].Cells[0].ColumnSpan = columnsCount; //set the column span to the new added cell
+                    gridClientes.DataSource = obj;
+                    gridClientes.DataBind();
+                    int columnsCount = gridClientes.Columns.Count;
+                    gridClientes.Rows[0].Cells.Clear();// clear all the cells in the row
+                    gridClientes.Rows[0].Cells.Add(new TableCell()); //add a new blank cell
+                    gridClientes.Rows[0].Cells[0].ColumnSpan = columnsCount; //set the column span to the new added cell
 
                     //You can set the styles here
-                    gridFleteros.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
-                    gridFleteros.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
-                    gridFleteros.Rows[0].Cells[0].Font.Bold = true;
+                    gridClientes.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+                    gridClientes.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
+                    gridClientes.Rows[0].Cells[0].Font.Bold = true;
 
                     //set No Results found to the new added cell
-                    gridFleteros.Rows[0].Cells[0].Text = "No hay registros";
+                    gridClientes.Rows[0].Cells[0].Text = "No hay registros";
                 }
             }
         }
 
-        private void BindGridViajes(int fletero_ID)
+        private void BindGridViajes(int cliente_ID)
         {
-            if (fletero_ID > 0)
+            if (cliente_ID > 0)
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    var elements = context.viajes.Where(v => v.Fletero_ID == fletero_ID && !v.isFicticio).ToList();
+                    var elements = context.viajes.Where(v => v.Fletero_ID == cliente_ID && !v.isFicticio).ToList();
                     if (elements.Count() > 0)
                     {
                         gridViajes.DataSource = elements;
@@ -744,9 +738,9 @@ namespace Bonisoft.Pages
             }
         }
 
-        private void BindGridViajesImprimir(int fletero_ID, string date_start = "", string date_end = "")
+        private void BindGridViajesImprimir(int cliente_ID, string date_start = "", string date_end = "")
         {
-            if (fletero_ID > 0)
+            if (cliente_ID > 0)
             {
                 // Logger variables
                 System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -756,7 +750,9 @@ namespace Bonisoft.Pages
 
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    var elements = context.fletero_pagos.Where(v => v.Fletero_ID == fletero_ID).ToList();
+                    var elements = context.fletero_pagos.Where(v => v.Fletero_ID == cliente_ID).ToList();
+
+                    // Filtro por fechas
                     if (!string.IsNullOrWhiteSpace(date_start) && !string.IsNullOrWhiteSpace(date_end))
                     {
                         DateTime date1 = DateTime.MinValue;
@@ -773,7 +769,7 @@ namespace Bonisoft.Pages
                             Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, date_end);
                         }
 
-                        elements = context.fletero_pagos.Where(v => v.Fletero_ID == fletero_ID && (v.Fecha_pago >= date1 && v.Fecha_pago <= date2)).OrderBy(e => e.Fecha_pago).ToList();
+                        elements = context.fletero_pagos.Where(v => v.Fletero_ID == cliente_ID && (v.Fecha_pago >= date1 && v.Fecha_pago <= date2)).OrderBy(e => e.Fecha_pago).ToList();
                     }
 
                     if (elements.Count() > 0)
@@ -813,13 +809,41 @@ namespace Bonisoft.Pages
             }
         }
 
-        private void BindGridPagos(int fletero_ID)
+        private void BindGridPagos(int cliente_ID, string date_start = "", string date_end = "")
         {
-            if (fletero_ID > 0)
+            if (cliente_ID > 0)
             {
+                // Logger variables
+                System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+                System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+                string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+                string methodName = stackFrame.GetMethod().Name;
+
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    var elements = context.fletero_pagos.Where(v => v.Fletero_ID == fletero_ID).ToList();
+                    var elements = context.fletero_pagos.Where(v => v.Fletero_ID == cliente_ID).OrderBy(e => e.Fecha_pago).ToList();
+
+                    // Filtro por fechas
+                    if (!string.IsNullOrWhiteSpace(date_start) && !string.IsNullOrWhiteSpace(date_end))
+                    {
+                        DateTime date1 = DateTime.MinValue;
+                        if (!DateTime.TryParseExact(date_start, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date1))
+                        {
+                            date1 = DateTime.MinValue;
+                            Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, date_start);
+                        }
+
+                        DateTime date2 = DateTime.MinValue;
+                        if (!DateTime.TryParseExact(date_end, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date2))
+                        {
+                            date2 = DateTime.MinValue;
+                            Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, date_end);
+                        }
+
+                        elements = context.fletero_pagos.Where(v => v.Fletero_ID == cliente_ID && (v.Fecha_pago >= date1 && v.Fecha_pago <= date2)).OrderBy(e => e.Fecha_pago).ToList();
+                    }
+
+
                     if (elements.Count() > 0)
                     {
                         gridPagos.DataSource = elements;
@@ -1005,7 +1029,7 @@ namespace Bonisoft.Pages
         #region Web methods
 
         [WebMethod]
-        public static string Update_Saldos(string fleteroID_str)
+        public static string Update_Saldos(string clienteID_str)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -1014,23 +1038,23 @@ namespace Bonisoft.Pages
             string methodName = stackFrame.GetMethod().Name;
 
             string ret = string.Empty;
-            if (!string.IsNullOrWhiteSpace(fleteroID_str))
+            if (!string.IsNullOrWhiteSpace(clienteID_str))
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    int fletero_ID = 0;
-                    if (!int.TryParse(fleteroID_str, out fletero_ID))
+                    int cliente_ID = 0;
+                    if (!int.TryParse(clienteID_str, out cliente_ID))
                     {
-                        fletero_ID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, fleteroID_str);
+                        cliente_ID = 0;
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
                     }
 
-                    if (fletero_ID > 0)
+                    if (cliente_ID > 0)
                     {
                         #region Cálculo saldo inicial
 
                         decimal saldo_inicial = 0;
-                        var viajes = context.viajes.Where(m => m.Fletero_ID == fletero_ID).ToList();
+                        var viajes = context.viajes.Where(m => m.Fletero_ID == cliente_ID).ToList();
                         if (viajes.Count() > 0)
                         {
                             foreach (viaje viaje in viajes)
@@ -1045,7 +1069,7 @@ namespace Bonisoft.Pages
 
                         decimal saldo_final = 0;
                         decimal total_pagos = 0;
-                        var pagos = context.fletero_pagos.Where(m => m.Fletero_ID == fletero_ID).ToList();
+                        var pagos = context.fletero_pagos.Where(m => m.Fletero_ID == cliente_ID).ToList();
                         if (pagos.Count() > 0)
                         {
                             foreach (fletero_pagos pago in pagos)
@@ -1067,7 +1091,7 @@ namespace Bonisoft.Pages
         }
 
         [WebMethod]
-        public static bool IngresarPago(string fleteroID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str)
+        public static bool IngresarPago(string clienteID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str, bool esPago)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -1076,22 +1100,22 @@ namespace Bonisoft.Pages
             string methodName = stackFrame.GetMethod().Name;
 
             bool ret = false;
-            if (!string.IsNullOrWhiteSpace(fleteroID_str))
+            if (!string.IsNullOrWhiteSpace(clienteID_str))
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    int fletero_ID = 0;
-                    if (!int.TryParse(fleteroID_str, out fletero_ID))
+                    int cliente_ID = 0;
+                    if (!int.TryParse(clienteID_str, out cliente_ID))
                     {
-                        fletero_ID = 0;
-                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, fleteroID_str);
+                        cliente_ID = 0;
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
                     }
 
-                    if (fletero_ID > 0)
+                    if (cliente_ID > 0)
                     {
                         fletero_pagos obj = new fletero_pagos();
 
-                        obj.Fletero_ID = fletero_ID;
+                        obj.Fletero_ID = cliente_ID;
                         obj.Comentarios = comentarios_str;
                         obj.Fecha_registro = DateTime.Now;
 
@@ -1112,13 +1136,24 @@ namespace Bonisoft.Pages
                             value = 0;
                             Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, monto_str);
                         }
-                        obj.Monto = value;
+
+                        if (esPago)
+                        {
+                            obj.Monto = value;
+                        }
+                        else
+                        {
+                            obj.Importe_viaje = value;
+                        }
 
                         int ddl = 0;
-                        if (!int.TryParse(ddlFormas, out ddl))
+                        if (esPago)
                         {
-                            ddl = 0;
-                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFormas);
+                            if (!int.TryParse(ddlFormas, out ddl))
+                            {
+                                ddl = 0;
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFormas);
+                            }
                         }
                         obj.Forma_de_pago_ID = ddl;
 
@@ -1129,10 +1164,10 @@ namespace Bonisoft.Pages
                         try
                         {
                             int id = 1;
-                            fletero_pagos fletero_pago1 = (fletero_pagos)context.fletero_pagos.OrderByDescending(p => p.Fletero_pagos_ID).FirstOrDefault();
-                            if (fletero_pago1 != null)
+                            fletero_pagos cliente_pago1 = (fletero_pagos)context.fletero_pagos.OrderByDescending(p => p.Fletero_pagos_ID).FirstOrDefault();
+                            if (cliente_pago1 != null)
                             {
-                                id = fletero_pago1.Fletero_pagos_ID;
+                                id = cliente_pago1.Fletero_pagos_ID;
                             }
 
                             string userID1 = HttpContext.Current.Session["UserID"].ToString();
@@ -1162,6 +1197,136 @@ namespace Bonisoft.Pages
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
+            bool ret = false;
+            if (!string.IsNullOrWhiteSpace(pagoID_str))
+            {
+                using (bonisoftEntities context = new bonisoftEntities())
+                {
+                    int pago_ID_str = 0;
+                    if (!int.TryParse(pagoID_str, out pago_ID_str))
+                    {
+                        pago_ID_str = 0;
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, pagoID_str);
+                    }
+
+                    if (pago_ID_str > 0)
+                    {
+                        fletero_pagos pago = (fletero_pagos)context.fletero_pagos.FirstOrDefault(v => v.Fletero_pagos_ID == pago_ID_str);
+                        if (pago != null)
+                        {
+                            context.fletero_pagos.Remove(pago);
+                            context.SaveChanges();
+
+                            #region Guardar log 
+                            try
+                            {
+                                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                                string username = HttpContext.Current.Session["UserName"].ToString();
+                                Global_Objects.Logs.AddUserLog("Borra pago", pago.GetType().Name + ": " + pago.Fletero_pagos_ID, userID1, username);
+                            }
+                            catch (Exception ex)
+                            {
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                            }
+                            #endregion
+
+                            ret = true;
+                        }
+                    }
+                }
+            }
+            return ret;
+        }
+
+        [WebMethod]
+        public static bool IngresarImporte(string clienteID_str, string fecha_str, string monto_str, string comentarios_str)
+        {
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            bool ret = false;
+            if (!string.IsNullOrWhiteSpace(clienteID_str))
+            {
+                using (bonisoftEntities context = new bonisoftEntities())
+                {
+                    int cliente_ID = 0;
+                    if (!int.TryParse(clienteID_str, out cliente_ID))
+                    {
+                        cliente_ID = 0;
+                        Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
+                    }
+
+                    if (cliente_ID > 0)
+                    {
+                        fletero_pagos obj = new fletero_pagos();
+
+                        obj.Fletero_pagos_ID = cliente_ID;
+                        obj.Comentarios = comentarios_str;
+                        obj.Fecha_registro = DateTime.Now;
+
+                        DateTime date = DateTime.MinValue;
+                        if (!string.IsNullOrWhiteSpace(fecha_str))
+                        {
+                            if (!DateTime.TryParseExact(fecha_str, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out date))
+                            {
+                                date = DateTime.MinValue;
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha_str);
+                            }
+                        }
+                        obj.Fecha_pago = date;
+
+                        decimal value = 0;
+                        if (!decimal.TryParse(monto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
+                        {
+                            value = 0;
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, monto_str);
+                        }
+                        obj.Monto = value;
+
+                        obj.Forma_de_pago_ID = 0;
+
+                        context.fletero_pagos.Add(obj);
+                        context.SaveChanges();
+
+                        #region Guardar log 
+                        try
+                        {
+                            int id = 1;
+                            fletero_pagos cliente_pago1 = (fletero_pagos)context.fletero_pagos.OrderByDescending(p => p.Fletero_pagos_ID).FirstOrDefault();
+                            if (cliente_pago1 != null)
+                            {
+                                id = cliente_pago1.Fletero_pagos_ID;
+                            }
+
+                            string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                            string username = HttpContext.Current.Session["UserName"].ToString();
+                            Global_Objects.Logs.AddUserLog("Agrega pago", obj.GetType().Name + ": " + id, userID1, username);
+                        }
+                        catch (Exception ex)
+                        {
+                            Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                        }
+                        #endregion
+
+                        ret = true;
+                    }
+                }
+            }
+
+            return ret;
+        }
+
+        [WebMethod]
+        public static bool BorrarImporte(string pagoID_str)
+        {
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
 
             bool ret = false;
             if (!string.IsNullOrWhiteSpace(pagoID_str))
@@ -1241,7 +1406,7 @@ namespace Bonisoft.Pages
         }
 
         [WebMethod]
-        public static bool ModificarPago_2(string pagoID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str)
+        public static bool ModificarPago_2(string pagoID_str, string fecha_str, string ddlFormas, string monto_str, string comentarios_str, bool esPago)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -1277,13 +1442,95 @@ namespace Bonisoft.Pages
                             }
                             pago.Fecha_pago = date;
 
-                            int ddl = pago.Forma_de_pago_ID;
-                            if (!int.TryParse(ddlFormas, out ddl))
+                            int ddl = 0;
+                            if (esPago)
                             {
                                 ddl = pago.Forma_de_pago_ID;
-                                Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFormas);
+                                if (!int.TryParse(ddlFormas, out ddl))
+                                {
+                                    ddl = pago.Forma_de_pago_ID;
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlFormas);
+                                }
                             }
                             pago.Forma_de_pago_ID = ddl;
+
+                            decimal value = pago.Monto;
+                            if (!decimal.TryParse(monto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
+                            {
+                                value = pago.Monto;
+                                Logs.AddErrorLog("Excepcion. Convirtiendo decimal. ERROR:", className, methodName, monto_str);
+                            }
+
+                            if (esPago)
+                            {
+                                pago.Monto = value;
+                            }
+                            else
+                            {
+                                pago.Importe_viaje = value;
+                            }
+
+                            pago.Comentarios = comentarios_str;
+
+                            context.SaveChanges();
+
+                            #region Guardar log 
+                            try
+                            {
+                                string userID1 = HttpContext.Current.Session["UserID"].ToString();
+                                string username = HttpContext.Current.Session["UserName"].ToString();
+                                Global_Objects.Logs.AddUserLog("Modifica pago", pago.GetType().Name + ": " + pago.Fletero_pagos_ID, userID1, username);
+                            }
+                            catch (Exception ex)
+                            {
+                                Global_Objects.Logs.AddErrorLog("Excepcion. Guardando log. ERROR:", className, methodName, ex.Message);
+                            }
+                            #endregion
+
+                            ret = true;
+                        }
+                    }
+                }
+            }
+            return ret;
+        }
+
+        [WebMethod]
+        public static bool ModificarImporte_2(string pagoID_str, string fecha_str, string monto_str, string comentarios_str)
+        {
+            // Logger variables
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
+            string methodName = stackFrame.GetMethod().Name;
+
+            bool ret = false;
+            if (!string.IsNullOrWhiteSpace(pagoID_str))
+            {
+                using (bonisoftEntities context = new bonisoftEntities())
+                {
+                    int pago_ID = 0;
+                    if (!int.TryParse(pagoID_str, out pago_ID))
+                    {
+                        pago_ID = 0;
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, pagoID_str);
+                    }
+
+                    if (pago_ID > 0)
+                    {
+                        fletero_pagos pago = (fletero_pagos)context.fletero_pagos.FirstOrDefault(v => v.Fletero_pagos_ID == pago_ID);
+                        if (pago != null)
+                        {
+                            DateTime date = pago.Fecha_pago;
+                            if (!string.IsNullOrWhiteSpace(fecha_str))
+                            {
+                                if (!DateTime.TryParseExact(fecha_str, GlobalVariables.ShortDateTime_format, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                                {
+                                    date = pago.Fecha_pago;
+                                    Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, fecha_str);
+                                }
+                            }
+                            pago.Fecha_pago = date;
 
                             decimal value = pago.Monto;
                             if (!decimal.TryParse(monto_str, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
@@ -1319,7 +1566,7 @@ namespace Bonisoft.Pages
         }
 
         [WebMethod]
-        public static string ViajeFicticio_1(string fleteroID_str)
+        public static string ViajeFicticio_1(string clienteID_str)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -1328,26 +1575,26 @@ namespace Bonisoft.Pages
             string methodName = stackFrame.GetMethod().Name;
 
             string ret = string.Empty;
-            if (!string.IsNullOrWhiteSpace(fleteroID_str))
+            if (!string.IsNullOrWhiteSpace(clienteID_str))
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    int fleteroID = 0;
-                    if (!int.TryParse(fleteroID_str, out fleteroID))
+                    int clienteID = 0;
+                    if (!int.TryParse(clienteID_str, out clienteID))
                     {
-                        fleteroID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, fleteroID_str);
+                        clienteID = 0;
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
                     }
 
-                    if (fleteroID > 0)
+                    if (clienteID > 0)
                     {
-                        fletero fletero = (fletero)context.fleteros.FirstOrDefault(v => v.Fletero_ID == fleteroID);
-                        if (fletero != null)
+                        fletero cliente = (fletero)context.fleteros.FirstOrDefault(v => v.Fletero_ID == clienteID);
+                        if (cliente != null)
                         {
                             string saldo = "0";
                             string comentarios = string.Empty;
 
-                            viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Fletero_ID == fletero.Fletero_ID && v.isFicticio);
+                            viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Fletero_ID == cliente.Fletero_ID && v.isFicticio);
                             if (viaje != null)
                             {
                                 saldo = viaje.precio_venta.ToString();
@@ -1362,7 +1609,7 @@ namespace Bonisoft.Pages
         }
 
         [WebMethod]
-        public static bool ViajeFicticio_2(string saldo_str, string comentarios, string fleteroID_str)
+        public static bool ViajeFicticio_2(string saldo_str, string comentarios, string clienteID_str)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -1371,22 +1618,22 @@ namespace Bonisoft.Pages
             string methodName = stackFrame.GetMethod().Name;
 
             bool ret = false;
-            if (!string.IsNullOrWhiteSpace(fleteroID_str))
+            if (!string.IsNullOrWhiteSpace(clienteID_str))
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
-                    int fleteroID = 0;
-                    if (!int.TryParse(fleteroID_str, out fleteroID))
+                    int clienteID = 0;
+                    if (!int.TryParse(clienteID_str, out clienteID))
                     {
-                        fleteroID = 0;
-                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, fleteroID_str);
+                        clienteID = 0;
+                        Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, clienteID_str);
                     }
 
-                    if (fleteroID > 0)
+                    if (clienteID > 0)
                     {
                         bool isNew = false;
                         decimal saldo = 0;
-                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Fletero_ID == fleteroID && v.isFicticio);
+                        viaje viaje = (viaje)context.viajes.FirstOrDefault(v => v.Fletero_ID == clienteID && v.isFicticio);
                         if (viaje != null)
                         {
                             saldo = viaje.precio_venta;
@@ -1397,7 +1644,7 @@ namespace Bonisoft.Pages
 
                             viaje = new viaje();
                             viaje.isFicticio = true;
-                            viaje.Fletero_ID = fleteroID;
+                            viaje.Fletero_ID = clienteID;
                         }
                         if (!string.IsNullOrWhiteSpace(saldo_str))
                         {
