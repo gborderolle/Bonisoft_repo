@@ -121,8 +121,9 @@ namespace Bonisoft.User_Controls
                 TextBox txb22 = row.FindControl("txbNew22") as TextBox;
                 TextBox txb23 = row.FindControl("txbNew23") as TextBox;
                 TextBox txb24 = row.FindControl("txbNew24") as TextBox;
+                TextBox txb20 = row.FindControl("txbNew20") as TextBox;
                 if (txb1 != null && txb3 != null && txb5 != null && txb13 != null && txb14 != null && txb15 != null &&
-                    txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null)
+                    txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null && txb20 != null)
                 {
                     using (bonisoftEntities context = new bonisoftEntities())
                     {
@@ -140,6 +141,7 @@ namespace Bonisoft.User_Controls
                         obj.Comentarios = txb22.Text;
                         obj.Email = txb23.Text;
                         obj.Nro_cuenta = txb24.Text;
+                        obj.Depto = txb20.Text;
 
                         //
                         obj.Forma_de_pago_ID = 0;
@@ -234,8 +236,9 @@ namespace Bonisoft.User_Controls
             TextBox txb22 = row.FindControl("txb22") as TextBox;
             TextBox txb23 = row.FindControl("txb23") as TextBox;
             TextBox txb24 = row.FindControl("txb24") as TextBox;
+            TextBox txb20 = row.FindControl("txb20") as TextBox;
             if (txb1 != null && txb3 != null && txb5 != null && txb13 != null && txb14 != null && txb15 != null &&
-                txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null)
+                txb16 != null && txb17 != null && txb22 != null && txb23 != null && txb24 != null && txb20 != null)
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
@@ -254,6 +257,7 @@ namespace Bonisoft.User_Controls
                     obj.Comentarios = txb22.Text;
                     obj.Email = txb23.Text;
                     obj.Nro_cuenta = txb24.Text;
+                    obj.Depto = txb20.Text;
 
                     context.SaveChanges();
 

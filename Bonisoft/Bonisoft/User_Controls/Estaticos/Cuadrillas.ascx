@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Cuadrillas.ascx.cs" Inherits="Bonisoft.User_Controls.Cuadrillas" %>
-<h2>Lista de Descargadores</h2>
+<h2>Lista de Changadores</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
 <asp:GridView ID="gridCuadrillas" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 

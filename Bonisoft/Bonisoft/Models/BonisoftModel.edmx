@@ -44,6 +44,7 @@
           <Property Name="Empresa" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Telefono" Type="varchar" MaxLength="100" />
+          <Property Name="Depto" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="cliente">
           <Key>
@@ -70,6 +71,7 @@
           <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="EsBarraca" Type="bit" />
           <Property Name="Razon_social" Type="varchar" MaxLength="30" />
+          <Property Name="Depto" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="cliente_pagos">
           <Key>
@@ -84,6 +86,7 @@
           <Property Name="Importe_viaje" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Viaje_ID" Type="int" Nullable="false" />
+          <Property Name="isFicticio" Type="bit" />
         </EntityType>
         <EntityType Name="cuadrilla_descarga">
           <Key>
@@ -132,6 +135,7 @@
           <Property Name="Importe_viaje" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Viaje_ID" Type="int" Nullable="false" />
+          <Property Name="isFicticio" Type="bit" />
         </EntityType>
         <EntityType Name="forma_de_pago">
           <Key>
@@ -183,6 +187,7 @@
           <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Nro_cuenta" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Razon_social" Type="varchar" MaxLength="30" />
+          <Property Name="Depto" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="proveedor_carga">
           <Key>
@@ -201,8 +206,11 @@
           <Property Name="Fecha_registro" Type="date" Nullable="false" />
           <Property Name="Fecha_pago" Type="date" Nullable="false" />
           <Property Name="Forma_de_pago_ID" Type="int" Nullable="false" />
-          <Property Name="Monto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_viaje" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Viaje_ID" Type="int" Nullable="false" />
+          <Property Name="isFicticio" Type="bit" />
         </EntityType>
         <EntityType Name="roles_usuario">
           <Key>
@@ -268,19 +276,65 @@
           <Property Name="Mercaderia_Fecha_corte" Type="date" Nullable="false" />
           <Property Name="Pesada_Origen_lugar" Type="varchar" MaxLength="100" />
           <Property Name="Pesada_Origen_fecha" Type="date" Nullable="false" />
-          <Property Name="Pesada_Origen_peso_bruto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="Pesada_Origen_peso_neto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Pesada_Origen_peso_bruto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Pesada_Origen_peso_neto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Pesada_Destino_lugar" Type="varchar" MaxLength="100" />
           <Property Name="Pesada_Destino_fecha" Type="date" Nullable="false" />
-          <Property Name="Pesada_Destino_peso_bruto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="Pesada_Destino_peso_neto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Pesada_Destino_peso_bruto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Pesada_Destino_peso_neto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Pesada_Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Remito" Type="int" Nullable="false" />
           <Property Name="Mercaderia_Valor_Proveedor_PorTon" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Mercaderia_Valor_Cliente_PorTon" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Mercaderia_Proveedor_Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Mercaderia_Cliente_Comentarios" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Cuadrilla_descarga_ID" Type="int" Nullable="false" />
         </EntityType>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_MSSsmaDmDisableConstraints" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="m2ss">
+          <Parameter Name="key_type" Type="char" Mode="In" />
+          <Parameter Name="mode" Type="int" Mode="In" />
+          <Parameter Name="parallel_load" Type="int" Mode="In" />
+          <Parameter Name="minimal_logging" Type="int" Mode="In" />
+          <Parameter Name="error_log" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_MSSsmaDmFixConstraints" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="m2ss">
+          <Parameter Name="key_type" Type="char" Mode="In" />
+          <Parameter Name="mode" Type="int" Mode="In" />
+          <Parameter Name="parallel_load" Type="int" Mode="In" />
+          <Parameter Name="minimal_logging" Type="int" Mode="In" />
+          <Parameter Name="error_log" Type="nvarchar" Mode="InOut" />
+        </Function>
         <EntityContainer Name="bonisoftModelStoreContainer">
           <EntitySet Name="camion" EntityType="Self.camion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="camion_ejes" EntityType="Self.camion_ejes" Schema="dbo" store:Type="Tables" />
@@ -363,6 +417,7 @@
           <Property Name="Nro_cuenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EsBarraca" Type="Boolean" />
           <Property Name="Razon_social" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Depto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="cuadrilla_descarga">
           <Key>
@@ -435,6 +490,7 @@
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Nro_cuenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Razon_social" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Depto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="proveedor_carga">
           <Key>
@@ -479,12 +535,56 @@
           <EntitySet Name="roles_usuario" EntityType="Self.roles_usuario" />
           <EntitySet Name="usuarios" EntityType="Self.usuario" />
           <EntitySet Name="sysdiagrams" EntityType="bonisoftModel.sysdiagram" />
-          <EntitySet Name="proveedor_pagos" EntityType="bonisoftModel.proveedor_pagos" />
           <EntitySet Name="choferes" EntityType="bonisoftModel.chofer" />
-          <EntitySet Name="cliente_pagos" EntityType="bonisoftModel.cliente_pagos" />
           <EntitySet Name="fleteros" EntityType="bonisoftModel.fletero" />
-          <EntitySet Name="viajes" EntityType="bonisoftModel.viaje" />
           <EntitySet Name="fletero_pagos" EntityType="bonisoftModel.fletero_pagos" />
+          <EntitySet Name="viajes" EntityType="bonisoftModel.viaje" />
+          <EntitySet Name="cliente_pagos" EntityType="bonisoftModel.cliente_pagos" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(bonisoftModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(bonisoftModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="sp_MSSsmaDmDisableConstraints">
+            <Parameter Name="key_type" Mode="In" Type="String" />
+            <Parameter Name="mode" Mode="In" Type="Int32" />
+            <Parameter Name="parallel_load" Mode="In" Type="Int32" />
+            <Parameter Name="minimal_logging" Mode="In" Type="Int32" />
+            <Parameter Name="error_log" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_MSSsmaDmFixConstraints">
+            <Parameter Name="key_type" Mode="In" Type="String" />
+            <Parameter Name="mode" Mode="In" Type="Int32" />
+            <Parameter Name="parallel_load" Mode="In" Type="Int32" />
+            <Parameter Name="minimal_logging" Mode="In" Type="Int32" />
+            <Parameter Name="error_log" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="proveedor_pagos" EntityType="bonisoftModel.proveedor_pagos" />
         </EntityContainer>
         <EntityType Name="sysdiagram">
           <Key>
@@ -496,18 +596,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="proveedor_pagos">
-          <Key>
-            <PropertyRef Name="Proveedor_pagos_ID" />
-          </Key>
-          <Property Name="Proveedor_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
-          <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
-          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
-          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="chofer">
           <Key>
             <PropertyRef Name="Chofer_ID" />
@@ -517,20 +605,7 @@
           <Property Name="Empresa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="cliente_pagos">
-          <Key>
-            <PropertyRef Name="Cliente_pagos_ID" />
-          </Key>
-          <Property Name="Cliente_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
-          <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
-          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Importe_viaje" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
+          <Property Name="Depto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="fletero">
           <Key>
@@ -544,6 +619,21 @@
           <Property Name="Email" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Nro_cuenta" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Depto_empresa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="fletero_pagos">
+          <Key>
+            <PropertyRef Name="Fletero_pagos_ID" />
+          </Key>
+          <Property Name="Fletero_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fletero_ID" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Importe_viaje" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
+          <Property Name="isFicticio" Type="Boolean" />
         </EntityType>
         <EntityType Name="viaje">
           <Key>
@@ -580,25 +670,26 @@
           <Property Name="Mercaderia_Fecha_corte" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Pesada_Origen_lugar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Pesada_Origen_fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Pesada_Origen_peso_bruto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
-          <Property Name="Pesada_Origen_peso_neto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <Property Name="Pesada_Origen_peso_bruto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Pesada_Origen_peso_neto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Pesada_Destino_lugar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Pesada_Destino_fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Pesada_Destino_peso_bruto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
-          <Property Name="Pesada_Destino_peso_neto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <Property Name="Pesada_Destino_peso_bruto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Pesada_Destino_peso_neto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Pesada_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Remito" Type="Int32" Nullable="false" />
           <Property Name="Mercaderia_Valor_Proveedor_PorTon" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Mercaderia_Valor_Cliente_PorTon" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Mercaderia_Proveedor_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Mercaderia_Cliente_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Cuadrilla_descarga_ID" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="fletero_pagos">
+        <EntityType Name="cliente_pagos">
           <Key>
-            <PropertyRef Name="Fletero_pagos_ID" />
+            <PropertyRef Name="Cliente_pagos_ID" />
           </Key>
-          <Property Name="Fletero_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Fletero_ID" Type="Int32" Nullable="false" />
+          <Property Name="Cliente_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
           <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
@@ -606,6 +697,33 @@
           <Property Name="Importe_viaje" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
+          <Property Name="isFicticio" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="proveedor_pagos">
+          <Key>
+            <PropertyRef Name="Proveedor_pagos_ID" />
+          </Key>
+          <Property Name="Proveedor_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Importe_viaje" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
+          <Property Name="isFicticio" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -649,6 +767,7 @@
           <EntitySetMapping Name="clientes">
             <EntityTypeMapping TypeName="bonisoftModel.cliente">
               <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="Depto" ColumnName="Depto" />
                 <ScalarProperty Name="Razon_social" ColumnName="Razon_social" />
                 <ScalarProperty Name="EsBarraca" ColumnName="EsBarraca" />
                 <ScalarProperty Name="cliente_ID" ColumnName="cliente_ID" />
@@ -740,6 +859,7 @@
           <EntitySetMapping Name="proveedores">
             <EntityTypeMapping TypeName="bonisoftModel.proveedor">
               <MappingFragment StoreEntitySet="proveedor">
+                <ScalarProperty Name="Depto" ColumnName="Depto" />
                 <ScalarProperty Name="Razon_social" ColumnName="Razon_social" />
                 <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -792,42 +912,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="proveedor_pagos">
-            <EntityTypeMapping TypeName="bonisoftModel.proveedor_pagos">
-              <MappingFragment StoreEntitySet="proveedor_pagos">
-                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-                <ScalarProperty Name="Monto" ColumnName="Monto" />
-                <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
-                <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />
-                <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
-                <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
-                <ScalarProperty Name="Proveedor_pagos_ID" ColumnName="Proveedor_pagos_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="choferes">
             <EntityTypeMapping TypeName="bonisoftModel.chofer">
               <MappingFragment StoreEntitySet="chofer">
+                <ScalarProperty Name="Depto" ColumnName="Depto" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
                 <ScalarProperty Name="Empresa" ColumnName="Empresa" />
                 <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
                 <ScalarProperty Name="Chofer_ID" ColumnName="Chofer_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="cliente_pagos">
-            <EntityTypeMapping TypeName="bonisoftModel.cliente_pagos">
-              <MappingFragment StoreEntitySet="cliente_pagos">
-                <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
-                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-                <ScalarProperty Name="Importe_viaje" ColumnName="Importe_viaje" />
-                <ScalarProperty Name="Monto" ColumnName="Monto" />
-                <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
-                <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />
-                <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
-                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
-                <ScalarProperty Name="Cliente_pagos_ID" ColumnName="Cliente_pagos_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -845,9 +938,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="fletero_pagos">
+            <EntityTypeMapping TypeName="bonisoftModel.fletero_pagos">
+              <MappingFragment StoreEntitySet="fletero_pagos">
+                <ScalarProperty Name="isFicticio" ColumnName="isFicticio" />
+                <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Importe_viaje" ColumnName="Importe_viaje" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
+                <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />
+                <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
+                <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />
+                <ScalarProperty Name="Fletero_pagos_ID" ColumnName="Fletero_pagos_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="viajes">
             <EntityTypeMapping TypeName="bonisoftModel.viaje">
               <MappingFragment StoreEntitySet="viaje">
+                <ScalarProperty Name="Cuadrilla_descarga_ID" ColumnName="Cuadrilla_descarga_ID" />
                 <ScalarProperty Name="Mercaderia_Cliente_Comentarios" ColumnName="Mercaderia_Cliente_Comentarios" />
                 <ScalarProperty Name="Mercaderia_Proveedor_Comentarios" ColumnName="Mercaderia_Proveedor_Comentarios" />
                 <ScalarProperty Name="Mercaderia_Valor_Cliente_PorTon" ColumnName="Mercaderia_Valor_Cliente_PorTon" />
@@ -894,9 +1004,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="fletero_pagos">
-            <EntityTypeMapping TypeName="bonisoftModel.fletero_pagos">
-              <MappingFragment StoreEntitySet="fletero_pagos">
+          <EntitySetMapping Name="cliente_pagos">
+            <EntityTypeMapping TypeName="bonisoftModel.cliente_pagos">
+              <MappingFragment StoreEntitySet="cliente_pagos">
+                <ScalarProperty Name="isFicticio" ColumnName="isFicticio" />
                 <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
                 <ScalarProperty Name="Importe_viaje" ColumnName="Importe_viaje" />
@@ -904,8 +1015,50 @@
                 <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
                 <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />
                 <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
-                <ScalarProperty Name="Fletero_ID" ColumnName="Fletero_ID" />
-                <ScalarProperty Name="Fletero_pagos_ID" ColumnName="Fletero_pagos_ID" />
+                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+                <ScalarProperty Name="Cliente_pagos_ID" ColumnName="Cliente_pagos_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="bonisoftModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="bonisoftModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="bonisoftModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="bonisoftModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bonisoftModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="bonisoftModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bonisoftModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="bonisoftModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="bonisoftModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_MSSsmaDmDisableConstraints" FunctionName="bonisoftModel.Store.sp_MSSsmaDmDisableConstraints" />
+          <FunctionImportMapping FunctionImportName="sp_MSSsmaDmFixConstraints" FunctionName="bonisoftModel.Store.sp_MSSsmaDmFixConstraints" />
+          <EntitySetMapping Name="proveedor_pagos">
+            <EntityTypeMapping TypeName="bonisoftModel.proveedor_pagos">
+              <MappingFragment StoreEntitySet="proveedor_pagos">
+                <ScalarProperty Name="isFicticio" ColumnName="isFicticio" />
+                <ScalarProperty Name="Viaje_ID" ColumnName="Viaje_ID" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Importe_viaje" ColumnName="Importe_viaje" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Forma_de_pago_ID" ColumnName="Forma_de_pago_ID" />
+                <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />
+                <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
+                <ScalarProperty Name="Proveedor_ID" ColumnName="Proveedor_ID" />
+                <ScalarProperty Name="Proveedor_pagos_ID" ColumnName="Proveedor_pagos_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -76,6 +76,24 @@ namespace Bonisoft.Pages {
         protected global::System.Web.UI.WebControls.HiddenField hdn_clientID;
         
         /// <summary>
+        /// hdn_txbMonthpicker control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_txbMonthpicker;
+        
+        /// <summary>
+        /// hdn_SaldoAnterior control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_SaldoAnterior;
+        
+        /// <summary>
         /// lblClientName_1 control.
         /// </summary>
         /// <remarks>
@@ -85,24 +103,6 @@ namespace Bonisoft.Pages {
         protected global::System.Web.UI.WebControls.Label lblClientName_1;
         
         /// <summary>
-        /// txbFiltro_saldos1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txbFiltro_saldos1;
-        
-        /// <summary>
-        /// txbFiltro_saldos2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txbFiltro_saldos2;
-        
-        /// <summary>
         /// btnSearch_saldos control.
         /// </summary>
         /// <remarks>
@@ -110,6 +110,15 @@ namespace Bonisoft.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearch_saldos;
+        
+        /// <summary>
+        /// lblSaldo_inicial control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSaldo_inicial;
         
         /// <summary>
         /// gridPagos_lblMessage control.

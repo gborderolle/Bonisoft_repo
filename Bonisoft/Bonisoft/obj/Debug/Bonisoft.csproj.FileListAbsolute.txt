@@ -95,6 +95,9 @@ C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Debug\Bonisoft.dll
 C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Debug\Bonisoft.pdb
+C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Debug\Bonisoft.csprojResolveAssemblyReference.cache
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Google.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\ApplicationInsights.config
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\roslyn\csc.exe
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -134,8 +137,6 @@ C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Mic
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Host.SystemWeb.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Cookies.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.dll
-C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Facebook.dll
-C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Google.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.OAuth.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.Twitter.dll
@@ -192,4 +193,4 @@ C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Mic
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Debug\Bonisoft.dll
 C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Debug\Bonisoft.pdb
-C:\Users\Gonzalo\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Debug\Bonisoft.csprojResolveAssemblyReference.cache
+C:\Users\GBORDEROLLE-PC\Documents\GitHub\Bonisoft_repo\Bonisoft\Bonisoft\obj\Debug\Bonisoft.csprojResolveAssemblyReference.cache

@@ -13,31 +13,31 @@ namespace Bonisoft.Pages {
     public partial class Resumen_proveedores {
         
         /// <summary>
-        /// upProveedores control.
+        /// upproveedores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upProveedores;
+        protected global::System.Web.UI.UpdatePanel upproveedores;
         
         /// <summary>
-        /// gridProveedores_lblMessage control.
+        /// gridClientes_lblMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label gridProveedores_lblMessage;
+        protected global::System.Web.UI.WebControls.Label gridClientes_lblMessage;
         
         /// <summary>
-        /// gridProveedores control.
+        /// gridClientes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridProveedores;
+        protected global::System.Web.UI.WebControls.GridView gridClientes;
         
         /// <summary>
         /// lnkDummy control.
@@ -49,13 +49,13 @@ namespace Bonisoft.Pages {
         protected global::System.Web.UI.WebControls.LinkButton lnkDummy;
         
         /// <summary>
-        /// lblgridProveedoresCount control.
+        /// lblGridClientesCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblgridProveedoresCount;
+        protected global::System.Web.UI.WebControls.Label lblGridClientesCount;
         
         /// <summary>
         /// upPagos control.
@@ -67,22 +67,58 @@ namespace Bonisoft.Pages {
         protected global::System.Web.UI.UpdatePanel upPagos;
         
         /// <summary>
-        /// hdn_proveedorID control.
+        /// hdn_clientID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn_proveedorID;
+        protected global::System.Web.UI.WebControls.HiddenField hdn_clientID;
         
         /// <summary>
-        /// lblProveedorName_1 control.
+        /// hdn_txbMonthpicker control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProveedorName_1;
+        protected global::System.Web.UI.WebControls.HiddenField hdn_txbMonthpicker;
+        
+        /// <summary>
+        /// hdn_SaldoAnterior control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_SaldoAnterior;
+        
+        /// <summary>
+        /// lblClientName_1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblClientName_1;
+        
+        /// <summary>
+        /// btnSearch_saldos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch_saldos;
+        
+        /// <summary>
+        /// lblSaldo_inicial control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSaldo_inicial;
         
         /// <summary>
         /// gridPagos_lblMessage control.
@@ -146,6 +182,87 @@ namespace Bonisoft.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblGridViajesCount;
+        
+        /// <summary>
+        /// upViajesImprimir control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upViajesImprimir;
+        
+        /// <summary>
+        /// txbFiltro1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txbFiltro1;
+        
+        /// <summary>
+        /// txbFiltro2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txbFiltro2;
+        
+        /// <summary>
+        /// btnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch;
+        
+        /// <summary>
+        /// btnPrint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPrint;
+        
+        /// <summary>
+        /// lblClientName_2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblClientName_2;
+        
+        /// <summary>
+        /// gridViajesImprimirlblMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label gridViajesImprimirlblMessage;
+        
+        /// <summary>
+        /// gridViajesImprimir control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridViajesImprimir;
+        
+        /// <summary>
+        /// lblGridViajesImprimirCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGridViajesImprimirCount;
         
         /// <summary>
         /// upAdd control.

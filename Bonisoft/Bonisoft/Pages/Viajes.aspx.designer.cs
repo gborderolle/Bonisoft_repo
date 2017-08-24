@@ -121,13 +121,13 @@ namespace Bonisoft.Pages {
         protected global::System.Web.UI.WebControls.TextBox modalAdd_txbFecha1;
         
         /// <summary>
-        /// modalAdd_txbFecha2 control.
+        /// modalAdd_txbLugarCarga control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox modalAdd_txbFecha2;
+        protected global::System.Web.UI.WebControls.TextBox modalAdd_txbLugarCarga;
         
         /// <summary>
         /// modalAdd_ddlProveedores control.
@@ -139,13 +139,13 @@ namespace Bonisoft.Pages {
         protected global::System.Web.UI.WebControls.DropDownList modalAdd_ddlProveedores;
         
         /// <summary>
-        /// modalAdd_txbLugarCarga control.
+        /// modalAdd_ddlFleteros control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox modalAdd_txbLugarCarga;
+        protected global::System.Web.UI.WebControls.DropDownList modalAdd_ddlFleteros;
         
         /// <summary>
         /// modalAdd_ddlClientes control.
@@ -164,15 +164,6 @@ namespace Bonisoft.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList modalAdd_ddlClientes_Barraca;
-        
-        /// <summary>
-        /// modalAdd_ddlFleteros control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList modalAdd_ddlFleteros;
         
         /// <summary>
         /// modalAdd_ddlCamiones control.

@@ -55,6 +55,7 @@
     <Property Name="Nro_cuenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="EsBarraca" Type="Boolean" />
     <Property Name="Razon_social" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Depto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="cuadrilla_descarga">
     <Key>
@@ -127,6 +128,7 @@
     <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Nro_cuenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Razon_social" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Depto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="proveedor_carga">
     <Key>
@@ -171,12 +173,56 @@
     <EntitySet Name="roles_usuario" EntityType="Self.roles_usuario" />
     <EntitySet Name="usuarios" EntityType="Self.usuario" />
     <EntitySet Name="sysdiagrams" EntityType="bonisoftModel.sysdiagram" />
-    <EntitySet Name="proveedor_pagos" EntityType="bonisoftModel.proveedor_pagos" />
     <EntitySet Name="choferes" EntityType="bonisoftModel.chofer" />
-    <EntitySet Name="cliente_pagos" EntityType="bonisoftModel.cliente_pagos" />
     <EntitySet Name="fleteros" EntityType="bonisoftModel.fletero" />
-    <EntitySet Name="viajes" EntityType="bonisoftModel.viaje" />
     <EntitySet Name="fletero_pagos" EntityType="bonisoftModel.fletero_pagos" />
+    <EntitySet Name="viajes" EntityType="bonisoftModel.viaje" />
+    <EntitySet Name="cliente_pagos" EntityType="bonisoftModel.cliente_pagos" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(bonisoftModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(bonisoftModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="sp_MSSsmaDmDisableConstraints">
+      <Parameter Name="key_type" Mode="In" Type="String" />
+      <Parameter Name="mode" Mode="In" Type="Int32" />
+      <Parameter Name="parallel_load" Mode="In" Type="Int32" />
+      <Parameter Name="minimal_logging" Mode="In" Type="Int32" />
+      <Parameter Name="error_log" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_MSSsmaDmFixConstraints">
+      <Parameter Name="key_type" Mode="In" Type="String" />
+      <Parameter Name="mode" Mode="In" Type="Int32" />
+      <Parameter Name="parallel_load" Mode="In" Type="Int32" />
+      <Parameter Name="minimal_logging" Mode="In" Type="Int32" />
+      <Parameter Name="error_log" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="proveedor_pagos" EntityType="bonisoftModel.proveedor_pagos" />
   </EntityContainer>
   <EntityType Name="sysdiagram">
     <Key>
@@ -188,18 +234,6 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
-  <EntityType Name="proveedor_pagos">
-    <Key>
-      <PropertyRef Name="Proveedor_pagos_ID" />
-    </Key>
-    <Property Name="Proveedor_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
-    <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
-    <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
-    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-  </EntityType>
   <EntityType Name="chofer">
     <Key>
       <PropertyRef Name="Chofer_ID" />
@@ -209,20 +243,7 @@
     <Property Name="Empresa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="cliente_pagos">
-    <Key>
-      <PropertyRef Name="Cliente_pagos_ID" />
-    </Key>
-    <Property Name="Cliente_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
-    <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
-    <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-    <Property Name="Importe_viaje" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
+    <Property Name="Depto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="fletero">
     <Key>
@@ -236,6 +257,21 @@
     <Property Name="Email" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="Nro_cuenta" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="Depto_empresa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="fletero_pagos">
+    <Key>
+      <PropertyRef Name="Fletero_pagos_ID" />
+    </Key>
+    <Property Name="Fletero_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fletero_ID" Type="Int32" Nullable="false" />
+    <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
+    <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Importe_viaje" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
+    <Property Name="isFicticio" Type="Boolean" />
   </EntityType>
   <EntityType Name="viaje">
     <Key>
@@ -272,25 +308,26 @@
     <Property Name="Mercaderia_Fecha_corte" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Pesada_Origen_lugar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Pesada_Origen_fecha" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Pesada_Origen_peso_bruto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
-    <Property Name="Pesada_Origen_peso_neto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+    <Property Name="Pesada_Origen_peso_bruto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Pesada_Origen_peso_neto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
     <Property Name="Pesada_Destino_lugar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Pesada_Destino_fecha" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Pesada_Destino_peso_bruto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
-    <Property Name="Pesada_Destino_peso_neto" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+    <Property Name="Pesada_Destino_peso_bruto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Pesada_Destino_peso_neto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
     <Property Name="Pesada_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Remito" Type="Int32" Nullable="false" />
     <Property Name="Mercaderia_Valor_Proveedor_PorTon" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
     <Property Name="Mercaderia_Valor_Cliente_PorTon" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
     <Property Name="Mercaderia_Proveedor_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Mercaderia_Cliente_Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Cuadrilla_descarga_ID" Type="Int32" Nullable="false" />
   </EntityType>
-  <EntityType Name="fletero_pagos">
+  <EntityType Name="cliente_pagos">
     <Key>
-      <PropertyRef Name="Fletero_pagos_ID" />
+      <PropertyRef Name="Cliente_pagos_ID" />
     </Key>
-    <Property Name="Fletero_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Fletero_ID" Type="Int32" Nullable="false" />
+    <Property Name="Cliente_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
     <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
@@ -298,5 +335,32 @@
     <Property Name="Importe_viaje" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
     <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
+    <Property Name="isFicticio" Type="Boolean" />
+  </EntityType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="proveedor_pagos">
+    <Key>
+      <PropertyRef Name="Proveedor_pagos_ID" />
+    </Key>
+    <Property Name="Proveedor_pagos_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Proveedor_ID" Type="Int32" Nullable="false" />
+    <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Forma_de_pago_ID" Type="Int32" Nullable="false" />
+    <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Importe_viaje" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Viaje_ID" Type="Int32" Nullable="false" />
+    <Property Name="isFicticio" Type="Boolean" />
   </EntityType>
 </Schema>

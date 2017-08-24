@@ -20,6 +20,9 @@ namespace Bonisoft.Models
         public System.DateTime Fecha_pago { get; set; }
         public int Forma_de_pago_ID { get; set; }
         public decimal Monto { get; set; }
+        public decimal Importe_viaje { get; set; }
         public string Comentarios { get; set; }
+        public int Viaje_ID { get; set; }
+        public Nullable<bool> isFicticio { get; set; }
     }
 }

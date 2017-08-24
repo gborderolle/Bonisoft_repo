@@ -4,6 +4,7 @@ var PAGO_ID_SELECTED;
 var CLIENTE_ID_SELECTED;
 
 $(document).ready(function () {
+    initVariables();
     bindEvents();
 
     // Seleccionar primer cliente
@@ -19,15 +20,25 @@ Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args
     actualizarSaldos();
 });
 
+function setupMonthPicker() {
+
+    // Fecha de pago customización
+    $('#add_txbFecha').datepicker({
+        changeMonth: false,
+        changeYear: false,
+        showButtonPanel: false,
+        dateFormat: 'dd'
+    });
+}
+
+function initVariables() {
+    var d = new Date();
+    var m = d.getMonth() + 1;
+    $("#hdn_txbMonthpicker").val(m);
+}
+
 function loadDDLEvents() {
     $(".add_ddlFormas").val('').prop('disabled', true).trigger("liszt:updated");
-    $("#addModal_rad_cliente").on('change', function () {
-        if ($('input[name=add_rad_cliente]:checked').val() == "pago") {
-            $(".add_ddlFormas").val('').prop('disabled', false).trigger("liszt:updated");
-        } else {
-            $(".add_ddlFormas").val('').prop('disabled', true).trigger("liszt:updated");
-        }
-    });
 
     $("#editModal_rad_cliente").on('change', function () {
         if ($('input[name=edit_rad_cliente]:checked').val() == "pago") {
@@ -93,7 +104,8 @@ function newOpcionDDL(tipo) {
 }
 
 function addToday(tipo) {
-    var date = moment(new Date()).format("DD-MM-YYYY");
+    var date = moment(new Date()).format("DD");
+    //var date = moment(new Date()).format("DD-MM-YYYY");
     //var date = $.datepicker.formatDate('dd/mm/yy', new Date());
     switch (tipo) {
         case 1: {
@@ -107,16 +119,20 @@ function addToday(tipo) {
     }
 }
 
-function actualizarSaldos() {
 
+function actualizarSaldos() {
     var hdn_clientID = $("#hdn_clientID");
-    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
+    var hdn_txbMonthpicker = $("#hdn_txbMonthpicker");
+
+    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0 &&
+        hdn_txbMonthpicker !== null && hdn_txbMonthpicker.val() !== null && hdn_txbMonthpicker.val().length > 0) {
         var clienteID_str = hdn_clientID.val();
+        var month_str = hdn_txbMonthpicker.val();
 
         $.ajax({
             type: "POST",
             url: "Resumen_fleteros.aspx/Update_Saldos",
-            data: '{clienteID_str: "' + clienteID_str + '"}',
+            data: '{clienteID_str: "' + clienteID_str + '",month_str: "' + month_str + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
@@ -127,16 +143,34 @@ function actualizarSaldos() {
                     var saldo_inicial_str = saldos_array[0];
                     var saldo_final_str = saldos_array[1];
 
-                    var lblSaldo_inicial = $("#lblSaldo_inicial");
-                    if (lblSaldo_inicial !== null) {
-                        lblSaldo_inicial.text(saldo_inicial_str);
+                    var saldo_inicial = 0;
+                    var hdn_SaldoAnterior = $("#hdn_SaldoAnterior");
+                    if (hdn_SaldoAnterior !== null) {
+                        //saldo_inicial = hdn_SaldoAnterior.val();
+                        hdn_SaldoAnterior.val(saldo_inicial_str);
                     }
 
+                    var lblSaldo_inicial = $("#lblSaldo_inicial");
                     var lblSaldo_final = $("#lblSaldo_final");
-                    if (lblSaldo_final !== null) {
-                        lblSaldo_final.text(saldo_final_str);
+                    if (lblSaldo_final !== null && lblSaldo_inicial !== null) {
+
+                        // Cambio "," por "." *** reemplazo ***
+                        saldo_final_str = saldo_final_str.replace(/,/g, ".");
+                        saldo_inicial_str = saldo_inicial_str.replace(/,/g, ".");
 
                         var saldo_final = TryParseFloat(saldo_final_str, 0);
+                        var saldo_inicial = TryParseFloat(saldo_inicial_str, 0);
+
+                        saldo_final = saldo_inicial + saldo_final;
+                        saldo_final = saldo_final.toFixed(2); // decimal
+                        saldo_inicial = saldo_inicial.toFixed(2); // decimal
+
+                        //hdn_SaldoAnterior
+
+                        lblSaldo_inicial.text(numberWithCommas(saldo_inicial));
+                        lblSaldo_final.text(numberWithCommas(saldo_final));
+
+                        // Colores final
                         if (saldo_final <= 0) {
                             lblSaldo_final.removeClass("label-success");
                             lblSaldo_final.addClass("label-danger");
@@ -145,7 +179,6 @@ function actualizarSaldos() {
                             lblSaldo_final.addClass("label-success");
                         }
                     }
-
                 }
             }
         }); // Ajax
@@ -245,7 +278,7 @@ function ModificarPago_2() {
                             var monto = TryParseFloat(txbMonto, 0);
                             saldo_final -= monto;
 
-                            lblSaldo_final.text(saldo_final_str);
+                            lblSaldo_final.text(numberWithCommas(saldo_final_str));
 
                             if (saldo_final <= 0) {
                                 lblSaldo_final.removeClass("label-danger");
@@ -281,7 +314,6 @@ function ModificarPago_2() {
 }
 
 function IngresarPago() {
-
     var hdn_clientID = $("#hdn_clientID");
     if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
         var clienteID_str = hdn_clientID.val();
@@ -290,6 +322,25 @@ function IngresarPago() {
         var ddlFormas = $("#add_ddlFormas").val();
         var txbMonto = $("#add_txbMonto").val();
         var txbComentarios = $("#add_txbComentarios").val();
+
+        // setup date format
+        var d = new Date();
+        var n = d.getMonth() + 1;
+        var y = d.getFullYear();
+
+        var txbMonthpicker = $('#txbMonthpicker').MonthPicker('GetSelectedMonth');
+        if (isNaN(txbMonthpicker)) {
+            txbMonthpicker = n;
+        }
+
+        var txbYearpicker = $('#txbMonthpicker').MonthPicker('GetSelectedYear');
+        if (isNaN(txbYearpicker)) {
+            txbYearpicker = y;
+        }
+
+        var format_date = new Date(txbYearpicker, txbMonthpicker - 1, txbFecha);
+        txbFecha = moment(format_date).format("DD-MM-YYYY");
+        //txbFecha = txbFecha + "-" + txbMonthpicker + "-" + txbYearpicker;
 
         var esPago = false;
         if ($('input[name=add_rad_cliente]:checked').val() == "pago") {
@@ -326,7 +377,7 @@ function IngresarPago() {
 
                             saldo_final -= monto;
 
-                            lblSaldo_final.text(saldo_final_str);
+                            lblSaldo_final.text(numberWithCommas(saldo_final_str));
 
                             if (saldo_final <= 0) {
                                 lblSaldo_final.removeClass("label-danger");
@@ -373,6 +424,12 @@ function bindEvents() {
     $("#gridViajesImprimir").tablesorter();
     $("#gridPagos").tablesorter();
 
+    // setup date format
+    var d = new Date();
+    var n = d.getMonth() + 1;
+    var y = d.getFullYear();
+    $('#txbMonthpicker').MonthPicker({ StartYear: y, ShowIcon: true });
+
     $("#gridPagos tr").click(function () {
         PAGO_ID_SELECTED = $(this).find(".hiddencol").html();
     });
@@ -404,6 +461,20 @@ function bindEvents() {
         $("#lblGridViajesCount").text(count);
     });
 
+}
+
+function GetMonthFilter() {
+    var txbMonthpicker = $('#txbMonthpicker').MonthPicker('GetSelectedMonth');
+
+    if (isNaN(txbMonthpicker)) {
+        var d = new Date();
+        var n = d.getMonth() + 1;
+        txbMonthpicker = n;
+    }
+    var hdn_txbMonthpicker = $("#hdn_txbMonthpicker");
+    if (hdn_txbMonthpicker !== null && hdn_txbMonthpicker.val() !== null && txbMonthpicker != null) {
+        hdn_txbMonthpicker.val(txbMonthpicker);
+    }
 }
 
 function BorrarPago(clienteID) {
@@ -462,21 +533,24 @@ function BorrarPago(clienteID) {
     }
 }
 
-
 function ViajeFicticio_1() {
 
     var hdn_clientID = $("#hdn_clientID");
-    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
+    var hdn_txbMonthpicker = $("#hdn_txbMonthpicker");
+    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0
+        && hdn_txbMonthpicker !== null && hdn_txbMonthpicker.val() !== null && hdn_txbMonthpicker.val().length > 0) {
         var clienteID_str = hdn_clientID.val();
+        var month_str = hdn_txbMonthpicker.val();
 
         // Ajax call parameters
         console.log("Ajax call: Resumen_fleteros.aspx/ViajeFicticio_1. Params:");
         console.log("clienteID_str, type: " + type(clienteID_str) + ", value: " + clienteID_str);
+        console.log("month_str, type: " + type(month_str) + ", value: " + month_str);
 
         $.ajax({
             type: "POST",
             url: "Resumen_fleteros.aspx/ViajeFicticio_1",
-            data: '{clienteID_str: "' + clienteID_str + '"}',
+            data: '{clienteID_str: "' + clienteID_str + '",month_str: "' + month_str + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
@@ -510,8 +584,11 @@ function ViajeFicticio_1() {
 function ViajeFicticio_2() {
 
     var hdn_clientID = $("#hdn_clientID");
-    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0) {
+    var hdn_txbMonthpicker = $("#hdn_txbMonthpicker");
+    if (hdn_clientID !== null && hdn_clientID.val() !== null && hdn_clientID.val().length > 0
+        && hdn_txbMonthpicker !== null && hdn_txbMonthpicker.val() !== null && hdn_txbMonthpicker.val().length > 0) {
         var clienteID_str = hdn_clientID.val();
+        var month_str = hdn_txbMonthpicker.val();
 
         var saldo = $("#modalAddFicticio_txbSaldo").val();
         var comentarios = $("#modalAddFicticio_txbComentarios").val();
@@ -521,11 +598,12 @@ function ViajeFicticio_2() {
         console.log("saldo, type: " + type(saldo) + ", value: " + saldo);
         console.log("comentarios, type: " + type(comentarios) + ", value: " + comentarios);
         console.log("clienteID_str, type: " + type(clienteID_str) + ", value: " + clienteID_str);
+        console.log("month_str, type: " + type(month_str) + ", value: " + month_str);
 
         $.ajax({
             type: "POST",
             url: "Resumen_fleteros.aspx/ViajeFicticio_2",
-            data: '{saldo_str: "' + saldo + '",comentarios: "' + comentarios + '",clienteID_str: "' + clienteID_str + '"}',
+            data: '{saldo_str: "' + saldo + '",comentarios: "' + comentarios + '",month_str: "' + month_str + '",clienteID_str: "' + clienteID_str + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
@@ -552,4 +630,8 @@ function ViajeFicticio_2() {
             }
         }); // Ajax
     }
+}
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

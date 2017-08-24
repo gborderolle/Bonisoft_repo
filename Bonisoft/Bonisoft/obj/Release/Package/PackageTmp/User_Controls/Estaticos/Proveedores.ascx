@@ -2,7 +2,7 @@
 <h2>Lista de Proveedores</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridProveedores" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
+<asp:GridView ID="gridProveedores" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True"
     CssClass="table table-hover table-striped"
     DataKeyNames="Proveedor_ID"
     OnRowCommand="gridProveedores_RowCommand"
@@ -35,7 +35,7 @@
     </PagerTemplate>
 
     <Columns>
-       <asp:BoundField DataField="Proveedor_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true"/>
+        <asp:BoundField DataField="Proveedor_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" />
         <asp:TemplateField HeaderText="Nombre">
             <EditItemTemplate>
                 <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Nombre") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -47,7 +47,7 @@
                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-                <asp:TemplateField HeaderText="Razón Social">
+        <asp:TemplateField HeaderText="Razón Social">
             <EditItemTemplate>
                 <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Razon_social") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
@@ -78,6 +78,17 @@
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew4" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+            </FooterTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Depto">
+            <EditItemTemplate>
+                <asp:TextBox ID="txb20" runat="server" Text='<%# Bind("Depto") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+            </EditItemTemplate>
+            <ItemTemplate>
+                <asp:Label ID="lbl20" runat="server" Text='<%# Bind("Depto") %>'></asp:Label>
+            </ItemTemplate>
+            <FooterTemplate>
+                <asp:TextBox ID="txbNew20" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Teléfono">
@@ -124,9 +135,9 @@
                 <asp:TextBox ID="txbNew10" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-         <asp:TemplateField HeaderText="">
+        <asp:TemplateField HeaderText="">
             <ItemTemplate>
-                <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit"  ClientIDMode="AutoID"
+                <asp:LinkButton ID="lnkEdit" runat="server" Text="" CommandName="Edit" ClientIDMode="AutoID"
                     CommandArgument=''><span aria-hidden="true" class="btn btn-info btn-xs glyphicon glyphicon-pencil"></span></asp:LinkButton>
                 <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete" CommandName="Delete" ClientIDMode="AutoID"
                     OnClientClick='return confirm("Está seguro que desea borrar este registro?");'
@@ -139,9 +150,9 @@
                     CommandArgument=''><span aria-hidden="true" class="btn btn-warning btn-xs glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </EditItemTemplate>
             <FooterTemplate>
-                <asp:LinkButton ID="lnkInsert" runat="server" Text="" CommandName="InsertNew"  ClientIDMode="AutoID"
+                <asp:LinkButton ID="lnkInsert" runat="server" Text="" CommandName="InsertNew" ClientIDMode="AutoID"
                     CommandArgument=''><span aria-hidden="true" class="btn btn-success btn-xs glyphicon glyphicon-plus"></span></asp:LinkButton>
-                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew"  ClientIDMode="AutoID"
+                <asp:LinkButton ID="lnkCancel" runat="server" Text="" CommandName="CancelNew" ClientIDMode="AutoID"
                     CommandArgument=''><span aria-hidden="true" class="btn btn-warning btn-xs glyphicon glyphicon-ban-circle"></span></asp:LinkButton>
             </FooterTemplate>
         </asp:TemplateField>

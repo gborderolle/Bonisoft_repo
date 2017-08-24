@@ -112,7 +112,8 @@ namespace Bonisoft.User_Controls
                 TextBox txb2 = row.FindControl("txbNew2") as TextBox;
                 TextBox txb4 = row.FindControl("txbNew4") as TextBox;
                 TextBox txb5 = row.FindControl("txbNew5") as TextBox;
-                if (txb1 != null && txb2 != null && txb4 != null && txb5 != null)
+                TextBox txb20 = row.FindControl("txbNew20") as TextBox;
+                if (txb1 != null && txb2 != null && txb4 != null && txb5 != null && txb20 != null)
                 {
                     using (bonisoftEntities context = new bonisoftEntities())
                     {
@@ -121,6 +122,7 @@ namespace Bonisoft.User_Controls
                         obj.Telefono = txb5.Text;
                         obj.Empresa = txb2.Text;
                         obj.Comentarios = txb4.Text;
+                        obj.Depto = txb20.Text;
 
                         context.choferes.Add(obj);
                         context.SaveChanges();
@@ -174,13 +176,13 @@ namespace Bonisoft.User_Controls
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
-
             GridViewRow row = gridChoferes.Rows[e.RowIndex];
             TextBox txb1 = row.FindControl("txb1") as TextBox;
             TextBox txb2 = row.FindControl("txb2") as TextBox;
             TextBox txb4 = row.FindControl("txb4") as TextBox;
             TextBox txb5 = row.FindControl("txb5") as TextBox;
-            if (txb1 != null && txb2 != null && txb4 != null && txb5 != null)
+            TextBox txb20 = row.FindControl("txb20") as TextBox;
+            if (txb1 != null && txb2 != null && txb4 != null && txb5 != null && txb20 != null)
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
@@ -190,6 +192,7 @@ namespace Bonisoft.User_Controls
                     obj.Telefono = txb5.Text;
                     obj.Empresa = txb2.Text;
                     obj.Comentarios = txb4.Text;
+                    obj.Depto = txb20.Text;
 
                     context.SaveChanges();
 

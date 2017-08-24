@@ -23,5 +23,6 @@ namespace Bonisoft.Models
         public string Email { get; set; }
         public string Nro_cuenta { get; set; }
         public string Razon_social { get; set; }
+        public string Depto { get; set; }
     }
 }

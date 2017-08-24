@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/assets/dist/css/jquery.modal.css" />
     <link rel="stylesheet" href="/assets/dist/css/popbox.css" />
     <link rel="stylesheet" href="/assets/dist/css/chosen.css" />
+    <link rel="stylesheet" href="/assets/dist/css/BootstrapXL.css" />
 
     <!-- PAGE CSS -->
     <link rel="stylesheet" href="/assets/dist/css/pages/Viajes.css" />
@@ -234,13 +235,14 @@
                                                     <asp:Label ID="lblFechaPartida" runat="server" CommandName="View" Text='<%# Eval("Fecha_partida", "{0:dd-MM-yyyy}") %>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Proveedor">
+                                            <asp:TemplateField HeaderText="Prov.">
                                                 <ItemTemplate>
                                                     <asp:LinkButton ID="lblProveedor" runat="server" CommandName="View" Text='<%# Eval("Proveedor_ID") %>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="Carga" HeaderText="Lugar de carga" HtmlEncode="False" />
-                                            <asp:BoundField DataField="Pesada_Origen_peso_neto" HeaderText="Kilos neto origen" HtmlEncode="False" />
+                                            <asp:BoundField DataField="Carga" HeaderText="Lugar carga" HtmlEncode="False" />
+                                            <asp:BoundField DataField="Pesada_Origen_peso_neto" HeaderText="Kilos N. origen" HtmlEncode="False" />
+                                            <asp:BoundField DataField="Precio_compra" HeaderText="Precio compra" DataFormatString="{0:C2}" HtmlEncode="False" />
 
                                             <asp:TemplateField HeaderText="Fletero">
                                                 <ItemTemplate>
@@ -254,34 +256,42 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Cliente particular">
+                                            <asp:TemplateField HeaderText="Cl. particular">
                                                 <ItemTemplate>
                                                     <asp:LinkButton ID="lblCliente" runat="server" CommandName="View" Text='<%# Eval("Cliente_ID") %>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Cliente barraca">
+                                            <asp:TemplateField HeaderText="Cl. barraca">
                                                 <ItemTemplate>
                                                     <asp:LinkButton ID="lblCliente_Barraca" runat="server" CommandName="View" Text='<%# Eval("Cliente_ID") %>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="Pesada_Destino_peso_neto" HeaderText="Kilos neto destino" HtmlEncode="False" />
+                                            <asp:BoundField DataField="Pesada_Destino_peso_neto" HeaderText="Kilos N. destino" DataFormatString="{0:N}" HtmlEncode="False" />
 
-                                            <asp:BoundField DataField="Precio_compra" HeaderText="Precio compra" DataFormatString="{0:C2}" HtmlEncode="False" />
                                             <asp:BoundField DataField="precio_flete_total" HeaderText="Precio flete total" DataFormatString="{0:C2}" HtmlEncode="False" />
                                             <asp:BoundField DataField="IVA" HeaderText="IVA" HtmlEncode="False" />
+                                            <asp:BoundField DataField="Precio_venta" HeaderText="Precio venta" DataFormatString="{0:C2}" HtmlEncode="False" />
                                             <asp:BoundField DataField="Precio_descarga" HeaderText="Descarga" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
-                                            <asp:BoundField DataField="Precio_venta" HeaderText="Total viaje" DataFormatString="{0:C2}" HtmlEncode="False" />
 
-                                            <asp:BoundField DataField="Comentarios" HeaderText="Comentarios" />
+                                            <asp:BoundField DataField="Comentarios" HeaderText="Com." />
 
                                             <asp:ButtonField CommandName="notificar" ControlStyle-CssClass="btn btn-info btn-xs" ButtonType="Link" Text="" HeaderText="Detalles">
                                                 <ControlStyle CssClass="btn btn-warning btn-xs glyphicon glyphicon-wrench"></ControlStyle>
                                             </asp:ButtonField>
 
-                                            <asp:TemplateField HeaderText="Acciones" ControlStyle-CssClass="btn btn-info btn-xs">
+                                            <%--<a id="lnkViajeDestino" class="btn btn-warning" onclick="FinDelViaje();">FIN del Viaje</a>--%>
+
+                                            <asp:TemplateField HeaderText="Archivar" ControlStyle-CssClass="btn btn-success btn-xs">
                                                 <ItemTemplate>
-                                                    <a id="btnModificar" role="button" onclick='<%# "ModificarViaje_1(" +Eval("Viaje_ID") + ");" %>' class="btn btn-info btn-xs glyphicon glyphicon-pencil"></a>
-                                                    <a id="btnBorrar" role="button" onclick='<%# "BorrarViajeEnCurso(" +Eval("Viaje_ID") + ");" %>' class="btn btn-danger btn-xs glyphicon glyphicon-remove"></a>
+                                                    <a id="btnLlegaViaje" role="button" onclick='<%# "FinDelViaje_2(" +Eval("Viaje_ID") + ");" %>' class="btn btn-success btn-xs glyphicon glyphicon-folder-open" title="Llegó"></a>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+
+                                            <asp:TemplateField HeaderText="Mod./Borr." ControlStyle-CssClass="btn btn-info btn-xs">
+                                                <ItemTemplate>
+                                                    <a id="btnModificar" role="button" onclick='<%# "ModificarViaje_1(" +Eval("Viaje_ID") + ");" %>' class="btn btn-info btn-xs glyphicon glyphicon-pencil" title="Modificar"></a>
+                                                    <a id="btnBorrar" role="button" onclick='<%# "BorrarViajeEnCurso(" +Eval("Viaje_ID") + ");" %>' class="btn btn-danger btn-xs glyphicon glyphicon-remove" title="Borrar"></a>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -320,17 +330,21 @@
                                         </div>
                                         <table class="table">
                                             <tr>
-                                                <td>Fecha de inicio: 
-                                                <asp:TextBox ID="modalAdd_txbFecha1" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control datepicker with_border" MaxLength="30" TabIndex="1"></asp:TextBox>
+                                                <td>
+                                                    <div style="color: #ea4040">Fecha de inicio: </div>
+                                                    <asp:TextBox ID="modalAdd_txbFecha1" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control datepicker" MaxLength="30" TabIndex="1"></asp:TextBox>
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="addToday(1)">
                                                         <i class="fa fa-calendar-check-o" title="Hoy"></i>
                                                     </button>
                                                 </td>
-                                                <td>Fecha de llegada (tentativa): 
+                                                <%--<td>Fecha de llegada (tentativa): 
                                                 <asp:TextBox ID="modalAdd_txbFecha2" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control datepicker" MaxLength="30" TabIndex="2"></asp:TextBox>
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="addToday(2)">
                                                         <i class="fa fa-calendar-check-o" title="Hoy"></i>
                                                     </button>
+                                                </td>--%>
+                                                <td>Lugar de carga: 
+                                                <asp:TextBox ID="modalAdd_txbLugarCarga" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="6" />
                                                 </td>
                                             </tr>
                                             <tr>
@@ -340,47 +354,42 @@
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </td>
-                                                <td>Lugar de carga: 
-                                                <asp:TextBox ID="modalAdd_txbLugarCarga" runat="server" ClientIDMode="Static" CssClass="form-control" TabIndex="6" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cliente particular: 
-                                                <asp:DropDownList ID="modalAdd_ddlClientes" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control with_border pull-left chzn-select modalAdd_ddlClientes" TabIndex="4" />
-                                                    <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cliente')">
-                                                        <i class="fa fa-plus"></i>
-                                                    </button>
-                                                </td>
-
-                                                <td>Cliente barraca: 
-                                                <asp:DropDownList ID="modalAdd_ddlClientes_Barraca" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control with_border pull-left chzn-select modalAdd_ddlClientes_Barraca" TabIndex="4" />
-                                                    <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cliente_barraca')">
-                                                        <i class="fa fa-plus"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <td>Fletero: 
                                                 <asp:DropDownList ID="modalAdd_ddlFleteros" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="7" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('fletero')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div style="color: #ea4040">Cliente particular: </div>
+                                                    <asp:DropDownList ID="modalAdd_ddlClientes" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control pull-left chzn-select modalAdd_ddlClientes" TabIndex="4" />
+                                                    <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cliente')">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <div style="color: #ea4040">Cliente barraca: </div>
+                                                    <asp:DropDownList ID="modalAdd_ddlClientes_Barraca" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control pull-left chzn-select modalAdd_ddlClientes_Barraca" TabIndex="4" />
+                                                    <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cliente_barraca')">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td>Camión: 
                                                 <asp:DropDownList ID="modalAdd_ddlCamiones" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="8" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('camion')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </td>
-                                            </tr>
-                                            <tr>
                                                 <td>Chofer: 
                                                 <asp:DropDownList ID="modalAdd_ddlChoferes" runat="server" ClientIDMode="Static" CssClass="modal-ddl form-control chzn-select" TabIndex="9" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('chofer')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </td>
-                                                <td></td>
                                             </tr>
                                             <tr>
                                                 <td>Changadores: 
@@ -389,12 +398,11 @@
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </td>
+
                                                 <td>Comentarios: 
                                                 <asp:TextBox ID="modalAdd_txbComentarios" runat="server" ClientIDMode="Static" CssClass="form-control" EnableViewState="true" TabIndex="10" />
                                                 </td>
-                                                <td></td>
                                             </tr>
-
                                         </table>
                                     </div>
                                     <div class="modal-footer">
@@ -428,8 +436,9 @@
                                         </div>
                                         <table class="table">
                                             <tr>
-                                                <td>Fecha de inicio: 
-                                                <asp:TextBox ID="modalEdit_txbFecha1" DataFormatString="{dd-mm-yyyy}" runat="server" ClientIDMode="Static" CssClass="form-control datepicker with_border" MaxLength="30" TabIndex="11"></asp:TextBox>
+                                                <td>
+                                                    <div style="color: #ea4040">Fecha de inicio: </div>
+                                                    <asp:TextBox ID="modalEdit_txbFecha1" DataFormatString="{dd-mm-yyyy}" runat="server" ClientIDMode="Static" CssClass="form-control datepicker" MaxLength="30" TabIndex="11"></asp:TextBox>
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="addToday(5)">
                                                         <i class="fa fa-calendar-check-o" title="Hoy"></i>
                                                     </button>
@@ -454,14 +463,16 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Cliente particular: 
-                                                <asp:DropDownList ID="modalEdit_ddlClientes" runat="server" ClientIDMode="Static" CssClass="form-control with_border chzn-select modalEdit_ddlClientes" TabIndex="14" />
+                                                <td>
+                                                    <div style="color: #ea4040">Cliente particular: </div>
+                                                    <asp:DropDownList ID="modalEdit_ddlClientes" runat="server" ClientIDMode="Static" CssClass="form-control chzn-select modalEdit_ddlClientes" TabIndex="14" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cliente')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </td>
-                                                <td>Cliente barraca: 
-                                                <asp:DropDownList ID="modalEdit_ddlClientes_Barraca" runat="server" ClientIDMode="Static" CssClass="form-control with_border chzn-select modalEdit_ddlClientes_Barraca" TabIndex="14" />
+                                                <td>
+                                                    <div style="color: #ea4040">Cliente barraca: </div>
+                                                    <asp:DropDownList ID="modalEdit_ddlClientes_Barraca" runat="server" ClientIDMode="Static" CssClass="form-control chzn-select modalEdit_ddlClientes_Barraca" TabIndex="14" />
                                                     <button type="button" name="search" class="btn btn-xs btn-default pull-right" onclick="newOpcionDDL('cliente_barraca')">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
@@ -514,14 +525,6 @@
                         </div>
                         <!-- Modal Editar END -->
 
-
-
-
-
-
-
-
-
                         <!-- Modal Notificaciones BEGIN -->
                         <div id="notificacionesModal" tabindex="-1" role="dialog" aria-labelledby="notificacionesModalLabel" aria-hidden="true" style="display: none; max-width: 1000px; overflow: hidden; margin-top: 40px; overflow: auto;" class="modal fade dark in">
                             <asp:UpdatePanel ID="upNotificaciones" runat="server">
@@ -535,7 +538,7 @@
                                             </div>
 
                                             <div class="col-md-2 pull-right" style="padding-top: 10px;">
-                                                <a id="lnkViajeDestino" class="btn btn-warning" onclick="FinDelViaje();">FIN del Viaje</a>
+                                                <%--<a id="lnkViajeDestino" class="btn btn-warning" onclick="FinDelViaje();">FIN del Viaje</a>--%>
                                             </div>
                                         </div>
 
@@ -558,7 +561,7 @@
                                             <div class="modal-body panel panel-default" style="padding-bottom: 0; padding-top: 0; margin-bottom: 5px; position: inherit; background: #e9e9e9; color: #333333; position: initial;">
                                                 <table class="table">
                                                     <tr>
-                                                        <td>Valor mercadería proveedor (por tonelada): 
+                                                        <td>Valor mercadería proveedor (por kilo): 
                                                         <asp:TextBox ID="txbMercaderiaValorProveedor" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="21"></asp:TextBox>
                                                         </td>
                                                         <td>Tipo de leña: 
@@ -608,7 +611,7 @@
                                                          <asp:TextBox ID="txb_pesada1Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="26" onkeydown="return isNumberKey(this);"></asp:TextBox>
                                                                 </td>
                                                                 <td>Peso neto: 
-                                                       <asp:TextBox ID="txb_pesada1Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="27" onkeydown="return isNumberKey(this);"></asp:TextBox>
+                                                       <asp:TextBox ID="txb_pesada1Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control pull-left" MaxLength="30" TabIndex="27" onkeydown="return isNumberKey(this);"></asp:TextBox>
                                                                 </td>
 
                                                             </tr>
@@ -638,8 +641,9 @@
                                                                 <td>Peso bruto: 
                                                          <asp:TextBox ID="txb_pesada2Peso_bruto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="30" onkeydown="return isNumberKey(this);"></asp:TextBox>
                                                                 </td>
-                                                                <td>Peso neto: 
-                                                       <asp:TextBox ID="txb_pesada2Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control with_border" MaxLength="30" TabIndex="31" onkeydown="return isNumberKey(this);"></asp:TextBox>
+                                                                <td>
+                                                                    <div style="color: #ea4040">Peso neto: </div>
+                                                                    <asp:TextBox ID="txb_pesada2Peso_neto" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="31" onkeydown="return isNumberKey(this);"></asp:TextBox>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -671,8 +675,8 @@
                                             <div class="modal-body panel panel-default" style="padding-bottom: 0; padding-top: 0; margin-bottom: 5px; position: inherit; background: #e9e9e9; color: #333333; position: initial;">
                                                 <table class="table">
                                                     <tr>
-                                                        <td>Valor mercadería cliente (por tonelada): 
-                                                        <asp:TextBox ID="txbMercaderiaValorCliente" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="21"></asp:TextBox>
+                                                        <td>Valor mercadería cliente (por kilo): 
+                                                        <asp:TextBox ID="txbMercaderiaValorCliente" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" TabIndex="21" onkeydown="return isNumberKey(this);"></asp:TextBox>
                                                         </td>
                                                         <td>Comentarios: 
                                                                                                                           <asp:TextBox ID="txbMercaderia_Cliente_Comentarios" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="100" TabIndex="23"></asp:TextBox>
@@ -718,7 +722,7 @@
                                                             <h3 style="margin: 0;">
                                                                 <label runat="server" clientidmode="Static" id="notif_Flete1" class="notif_lblPesoNeto label label-default">0</label></h3>
                                                         </td>
-                                                        <td><i class="glyphicon glyphicon-asterisk"></i>Precio Flete x Ton: 
+                                                        <td><i class="glyphicon glyphicon-asterisk"></i>Precio Flete (por kilo): 
                                                              <asp:TextBox ID="notif_Flete2" runat="server" ClientIDMode="Static" CssClass="form-control" MaxLength="30" Text="0" TabIndex="32" Width="100"></asp:TextBox>
                                                         </td>
                                                         <td><i class="glyphicon glyphicon-plus"></i>% IVA (0 = no aplica): 
@@ -806,7 +810,8 @@
 
                                     <div style="float: left; margin-right: 5px;">
                                         <asp:Button ID="btnUpdateViajes" runat="server" Text="Actualizar" CssClass="btn btnUpdate btn-sm"
-                                            OnClick="btnUpdateViajes_Click" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" />
+                                            OnClick="btnUpdateViajes_Click" UseSubmitBehavior="false" ClientIDMode="Static" CausesValidation="false" Visible="False" />
+
                                     </div>
 
                                     <form action="#" method="get" class="sidebar-form" style="display: block !important; width: 100%;">
@@ -864,7 +869,7 @@
                                                                     <asp:TextBox ID="txbNew11" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Fecha llegada">
+                                                            <%--<asp:TemplateField HeaderText="Fecha llegada">
                                                                 <EditItemTemplate>
                                                                     <asp:TextBox ID="txb12" runat="server" Text='<%# Bind("Fecha_llegada", "{0:dd-MM-yyyy}") %>' CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                                                                 </EditItemTemplate>
@@ -874,8 +879,8 @@
                                                                 <FooterTemplate>
                                                                     <asp:TextBox ID="txbNew12" runat="server" CssClass="form-control datepicker" MaxLength="30"></asp:TextBox>
                                                                 </FooterTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Proveedor">
+                                                            </asp:TemplateField>--%>
+                                                            <asp:TemplateField HeaderText="Prov.">
                                                                 <EditItemTemplate>
                                                                     <asp:DropDownList ID="ddlProveedores1" runat="server" CssClass="form-control" />
                                                                 </EditItemTemplate>
@@ -886,7 +891,7 @@
                                                                     <asp:DropDownList ID="ddlProveedores2" runat="server" CssClass="form-control" />
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Cliente particular">
+                                                            <asp:TemplateField HeaderText="Cl. particular">
                                                                 <EditItemTemplate>
                                                                     <asp:DropDownList ID="ddlClientes1" runat="server" CssClass="form-control" />
                                                                 </EditItemTemplate>
@@ -897,7 +902,7 @@
                                                                     <asp:DropDownList ID="ddlClientes2" runat="server" CssClass="form-control" />
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Cliente barraca">
+                                                            <asp:TemplateField HeaderText="Cl. barraca">
                                                                 <EditItemTemplate>
                                                                     <asp:DropDownList ID="ddlClientes1_Barraca" runat="server" CssClass="form-control" />
                                                                 </EditItemTemplate>
@@ -908,7 +913,7 @@
                                                                     <asp:DropDownList ID="ddlClientes2_Barraca" runat="server" CssClass="form-control" />
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Changadores">
+                                                            <asp:TemplateField HeaderText="Chang.">
                                                                 <EditItemTemplate>
                                                                     <asp:DropDownList ID="ddlCargadores1" runat="server" CssClass="form-control" />
                                                                 </EditItemTemplate>
@@ -964,12 +969,12 @@
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
 
-                                                            <asp:BoundField DataField="Precio_compra" HeaderText="Precio compra mercadería" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                                            <asp:BoundField DataField="Precio_compra" HeaderText="Precio compra" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
                                                             <asp:BoundField DataField="precio_flete_total" HeaderText="Flete" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
                                                             <asp:BoundField DataField="Precio_descarga" HeaderText="Descarga" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
-                                                            <asp:BoundField DataField="Precio_venta" HeaderText="Total viaje" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
+                                                            <asp:BoundField DataField="Precio_venta" HeaderText="Precio venta" ReadOnly="true" DataFormatString="{0:C2}" HtmlEncode="False" />
 
-                                                            <asp:TemplateField HeaderText="Comentarios">
+                                                            <asp:TemplateField HeaderText="Com.">
                                                                 <EditItemTemplate>
                                                                     <asp:TextBox ID="txb15" runat="server" Text='<%# Bind("Comentarios") %>' CssClass="form-control" MaxLength="100"></asp:TextBox>
                                                                 </EditItemTemplate>
@@ -980,10 +985,10 @@
                                                                     <asp:TextBox ID="txbNew15" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Volver a En Curso">
+                                                            <asp:TemplateField HeaderText="Retocar">
                                                                 <HeaderStyle Width="100" />
                                                                 <ItemTemplate>
-                                                                    <a id="btnVolverAEnCurso" role="button" onclick='<%# "volverAEnCurso(" +Eval("Viaje_ID") + ");" %>' class="btn btn-warning btn-xs fa fa-plane"></a>
+                                                                    <a id="btnVolverAEnCurso" role="button" onclick='<%# "volverAEnCurso(" +Eval("Viaje_ID") + ");" %>' class="btn btn-warning btn-xs fa fa-plane" title="Volver viaje a Menú En Curso"></a>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                         </Columns>

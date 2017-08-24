@@ -1,5 +1,4 @@
 ﻿using Bonisoft.Models;
-using Bonisoft.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -115,7 +114,9 @@ namespace Bonisoft.User_Controls
                 TextBox txb10 = row.FindControl("txbNew10") as TextBox;
                 TextBox txb23 = row.FindControl("txbNew23") as TextBox;
                 TextBox txb24 = row.FindControl("txbNew24") as TextBox;
-                if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb10 != null && txb23 != null && txb24 != null)
+                TextBox txb20 = row.FindControl("txbNew20") as TextBox;
+                if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null &&
+                    txb10 != null && txb23 != null && txb24 != null && txb20 != null)
                 {
                     using (bonisoftEntities context = new bonisoftEntities())
                     {
@@ -128,6 +129,7 @@ namespace Bonisoft.User_Controls
                         obj.Comentarios = txb10.Text;
                         obj.Email = txb23.Text;
                         obj.Nro_cuenta = txb24.Text;
+                        obj.Depto = txb20.Text;
 
                         context.proveedores.Add(obj);
                         context.SaveChanges();
@@ -191,7 +193,9 @@ namespace Bonisoft.User_Controls
             TextBox txb10 = row.FindControl("txb10") as TextBox;
             TextBox txb23 = row.FindControl("txb23") as TextBox;
             TextBox txb24 = row.FindControl("txb24") as TextBox;
-            if (txb1 != null && txb2 != null && txb3 != null && txb4 != null && txb5 != null && txb10 != null && txb23 != null && txb24 != null)
+            TextBox txb20 = row.FindControl("txb20") as TextBox;
+            if (txb1 != null && txb2 != null && txb3 != null && txb4 != null &&
+                txb5 != null && txb10 != null && txb23 != null && txb24 != null && txb20 != null)
             {
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
@@ -205,6 +209,7 @@ namespace Bonisoft.User_Controls
                     obj.Comentarios = txb10.Text;
                     obj.Email = txb23.Text;
                     obj.Nro_cuenta = txb24.Text;
+                    obj.Depto = txb20.Text;
 
                     context.SaveChanges();
 

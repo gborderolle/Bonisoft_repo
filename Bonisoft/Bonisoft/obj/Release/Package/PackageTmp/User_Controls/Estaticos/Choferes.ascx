@@ -3,12 +3,12 @@
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
 <asp:GridView ID="gridChoferes" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True"
-    CssClass="table table-hover table-striped" 
+    CssClass="table table-hover table-striped"
     DataKeyNames="Chofer_ID"
-    OnRowCommand="gridChoferes_RowCommand" 
+    OnRowCommand="gridChoferes_RowCommand"
     OnRowCancelingEdit="gridChoferes_RowCancelingEdit"
-    OnRowEditing="gridChoferes_RowEditing" 
-    OnRowUpdating="gridChoferes_RowUpdating" 
+    OnRowEditing="gridChoferes_RowEditing"
+    OnRowUpdating="gridChoferes_RowUpdating"
     OnRowDataBound="gridChoferes_RowDataBound"
     OnRowDeleting="gridChoferes_RowDeleting">
 
@@ -35,7 +35,7 @@
     </PagerTemplate>
 
     <Columns>
-        <asp:BoundField DataField="Chofer_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true"/>
+        <asp:BoundField DataField="Chofer_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" />
         <asp:TemplateField HeaderText="Nombre completo">
             <EditItemTemplate>
                 <asp:TextBox ID="txb1" runat="server" Text='<%# Bind("Nombre_completo") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -47,7 +47,7 @@
                 <asp:TextBox ID="txbNew1" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-       <asp:TemplateField HeaderText="Teléfono">
+        <asp:TemplateField HeaderText="Teléfono">
             <EditItemTemplate>
                 <asp:TextBox ID="txb5" runat="server" Text='<%# Bind("Telefono") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
@@ -58,7 +58,7 @@
                 <asp:TextBox ID="txbNew5" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-          <asp:TemplateField HeaderText="Empresa">
+        <asp:TemplateField HeaderText="Empresa">
             <EditItemTemplate>
                 <asp:TextBox ID="txb2" runat="server" Text='<%# Bind("Empresa") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>
@@ -67,6 +67,17 @@
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew2" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+            </FooterTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Departamento">
+            <EditItemTemplate>
+                <asp:TextBox ID="txb20" runat="server" Text='<%# Bind("Depto") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+            </EditItemTemplate>
+            <ItemTemplate>
+                <asp:Label ID="lbl20" runat="server" Text='<%# Bind("Depto") %>'></asp:Label>
+            </ItemTemplate>
+            <FooterTemplate>
+                <asp:TextBox ID="txbNew20" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Comentarios">

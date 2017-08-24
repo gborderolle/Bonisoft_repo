@@ -343,6 +343,7 @@
     <Content Include="assets\dist\js\jquery.modal.js" />
     <Content Include="assets\dist\js\jquery.quicksearch.js" />
     <Content Include="assets\dist\js\jquery.tablesorter.js" />
+    <Content Include="assets\dist\js\MonthPicker.js" />
     <Content Include="assets\dist\js\pages\Login.js" />
     <Content Include="assets\dist\js\moment.js" />
     <Content Include="assets\dist\js\pages\images\asc.gif" />
@@ -1419,6 +1420,12 @@
       <DependentUpon>BonisoftModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\roles_usuario.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>BonisoftModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>BonisoftModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">

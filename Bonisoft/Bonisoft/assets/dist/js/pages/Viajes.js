@@ -84,6 +84,15 @@ Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args
 });
 
 function loadInputDDL() {
+    // Order options
+    //var my_options = $("#modalAdd_ddlClientes_chzn");
+    //my_options.sort(function (a, b) {
+    //    if (a.text > b.text) return 1;
+    //    else if (a.text < b.text) return -1;
+    //    else return 0
+    //})
+    //$("#modalAdd_ddlClientes_chzn").empty().append(my_options);
+
     // Dropdownlist input
     $(".chzn-select").chosen();
     $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
@@ -131,13 +140,13 @@ function bindEvents() {
     // Copiar texto dinámicamente
     $("#notif_Mercaderia2").text($("#txbMercaderiaValorCliente").val());
     $("#txbMercaderiaValorCliente").keyup(function () {
-        $("#notif_Mercaderia2").text(this.value);
+        $("#notif_Mercaderia2").text(numberWithCommas(this.value));
     });
 
     $("#notif_Flete1").text($("#txb_pesada2Peso_neto").val());
     $("#txb_pesada2Peso_neto").keyup(function () {
-        $("#notif_Mercaderia1").text(this.value);
-        $("#notif_Flete1").text(this.value);
+        $("#notif_Mercaderia1").text(numberWithCommas(this.value));
+        $("#notif_Flete1").text(numberWithCommas(this.value));
     });
 
     // Hacer cálculo de Venta
@@ -238,26 +247,26 @@ function copiarPesadas(isOrigen) {
         var txb_pesada2Fecha = $("#txb_pesada2Fecha").val();
         var txb_pesada2Peso_bruto = $("#txb_pesada2Peso_bruto").val();
         var txb_pesada2Peso_neto = $("#txb_pesada2Peso_neto").val();
-        var txb_pesada2Nombre = $("#txb_pesada2Nombre").val();
+        //var txb_pesada2Nombre = $("#txb_pesada2Nombre").val();
 
         $("#txb_pesada1Lugar").val(txb_pesada2Lugar);
         $("#txb_pesada1Fecha").val(txb_pesada2Fecha);
         $("#txb_pesada1Peso_bruto").val(txb_pesada2Peso_bruto);
         $("#txb_pesada1Peso_neto").val(txb_pesada2Peso_neto);
-        $("#txb_pesada1Nombre").val(txb_pesada2Nombre);
+        //$("#txb_pesada1Nombre").val(txb_pesada2Nombre);
 
     } else {
         var txb_pesada1Lugar = $("#txb_pesada1Lugar").val();
         var txb_pesada1Fecha = $("#txb_pesada1Fecha").val();
         var txb_pesada1Peso_bruto = $("#txb_pesada1Peso_bruto").val();
         var txb_pesada1Peso_neto = $("#txb_pesada1Peso_neto").val();
-        var txb_pesada1Nombre = $("#txb_pesada1Nombre").val();
+        //var txb_pesada1Nombre = $("#txb_pesada1Nombre").val();
 
         $("#txb_pesada2Lugar").val(txb_pesada1Lugar);
         $("#txb_pesada2Fecha").val(txb_pesada1Fecha);
         $("#txb_pesada2Peso_bruto").val(txb_pesada1Peso_bruto);
         $("#txb_pesada2Peso_neto").val(txb_pesada1Peso_neto);
-        $("#txb_pesada2Nombre").val(txb_pesada1Nombre);
+        //$("#txb_pesada2Nombre").val(txb_pesada1Nombre);
     }
 }
 
@@ -378,7 +387,7 @@ function guardarPesadas(isOrigen) {
                     var txb_pesadaFecha = $("#txb_pesada1Fecha").val();
                     var txb_pesadaPeso_bruto = $("#txb_pesada1Peso_bruto").val();
                     var txb_pesadaPeso_neto = $("#txb_pesada1Peso_neto").val();
-                    var txb_pesadaNombre = $("#txb_pesada1Nombre").val();
+                    //var txb_pesadaNombre = $("#txb_pesada1Nombre").val();
                     var txb_pesadaComentarios = $("#txb_pesada1Comentarios").val();
 
                     var hdn_notificacionesPesadaID = "";
@@ -388,7 +397,7 @@ function guardarPesadas(isOrigen) {
                         txb_pesadaFecha = $("#txb_pesada1Fecha").val();
                         txb_pesadaPeso_bruto = $("#txb_pesada1Peso_bruto").val();
                         txb_pesadaPeso_neto = $("#txb_pesada1Peso_neto").val();
-                        txb_pesadaNombre = $("#txb_pesada1Nombre").val();
+                        //txb_pesadaNombre = $("#txb_pesada1Nombre").val();
                         txb_pesadaComentarios = $("#txb_pesada1Comentarios").val();
 
                         hdn_notificacionesPesadaID = $("#hdn_notificacionesPesadaID");
@@ -398,7 +407,7 @@ function guardarPesadas(isOrigen) {
                         txb_pesadaFecha = $("#txb_pesada2Fecha").val();
                         txb_pesadaPeso_bruto = $("#txb_pesada2Peso_bruto").val();
                         txb_pesadaPeso_neto = $("#txb_pesada2Peso_neto").val();
-                        txb_pesadaNombre = $("#txb_pesada2Nombre").val();
+                        //txb_pesadaNombre = $("#txb_pesada2Nombre").val();
                         txb_pesadaComentarios = $("#txb_pesada2Comentarios").val();
 
                         hdn_notificacionesPesadaID = $("#hdn_notificacionesPesadaDestinoID");
@@ -417,14 +426,14 @@ function guardarPesadas(isOrigen) {
                         console.log("txb_pesadaFecha, type: " + type(txb_pesadaFecha) + ", value: " + txb_pesadaFecha);
                         console.log("txb_pesadaPeso_bruto, type: " + type(txb_pesadaPeso_bruto) + ", value: " + txb_pesadaPeso_bruto);
                         console.log("txb_pesadaPeso_neto, type: " + type(txb_pesadaPeso_neto) + ", value: " + txb_pesadaPeso_neto);
-                        console.log("txb_pesadaNombre, type: " + type(txb_pesadaNombre) + ", value: " + txb_pesadaNombre);
+                        //console.log("txb_pesadaNombre, type: " + type(txb_pesadaNombre) + ", value: " + txb_pesadaNombre);
                         console.log("txb_pesadaComentarios, type: " + type(txb_pesadaComentarios) + ", value: " + txb_pesadaComentarios);
 
                         $.ajax({
                             type: "POST",
                             url: "Viajes.aspx/GuardarPesadas",
                             data: '{viajeID_str: "' + viajeID_str + '",isOrigen: "' + isOrigen + '",pesadaID_str: "' + pesadaID_str + '",txb_pesadaLugar_str: "' + txb_pesadaLugar + '",txb_pesadaFecha_str: "' + txb_pesadaFecha + '", ' +
-                                'txb_pesadaPeso_bruto_str: "' + txb_pesadaPeso_bruto + '",txb_pesadaPeso_neto_str: "' + txb_pesadaPeso_neto + '",txb_pesadaNombre_str: "' + txb_pesadaNombre + '", txb_pesadaComentarios_str: "' + txb_pesadaComentarios + '"}',
+                                'txb_pesadaPeso_bruto_str: "' + txb_pesadaPeso_bruto + '",txb_pesadaPeso_neto_str: "' + txb_pesadaPeso_neto + '", txb_pesadaComentarios_str: "' + txb_pesadaComentarios + '"}',
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
                             success: function (response) {
@@ -491,16 +500,22 @@ function guardarAmbasPesadas() {
             var txb_pesadaFecha1 = $("#txb_pesada1Fecha").val();
             var txb_pesadaPeso_bruto1 = $("#txb_pesada1Peso_bruto").val();
             var txb_pesadaPeso_neto1 = $("#txb_pesada1Peso_neto").val();
-            var txb_pesadaNombre1 = $("#txb_pesada1Nombre").val();
+            //var txb_pesadaNombre1 = $("#txb_pesada1Nombre").val();
 
             // Destino
             var txb_pesadaLugar2 = $("#txb_pesada2Lugar").val();
             var txb_pesadaFecha2 = $("#txb_pesada2Fecha").val();
             var txb_pesadaPeso_bruto2 = $("#txb_pesada2Peso_bruto").val();
             var txb_pesadaPeso_neto2 = $("#txb_pesada2Peso_neto").val();
-            var txb_pesadaNombre2 = $("#txb_pesada2Nombre").val();
+            //var txb_pesadaNombre2 = $("#txb_pesada2Nombre").val();
 
             var txb_pesadaComentarios = $("#txb_pesadaComentarios").val();
+
+            // Cambio "," por "." *** reemplazo ***
+            txb_pesadaPeso_bruto1 = txb_pesadaPeso_bruto1.replace(/,/g, ".");
+            txb_pesadaPeso_neto1 = txb_pesadaPeso_neto1.replace(/,/g, ".");
+            txb_pesadaPeso_bruto2 = txb_pesadaPeso_bruto2.replace(/,/g, ".");
+            txb_pesadaPeso_neto2 = txb_pesadaPeso_neto2.replace(/,/g, ".");
 
             // Ajax call parameters
             console.log("Ajax call: Viajes.aspx/GuardarPesadas. Params:");
@@ -512,13 +527,13 @@ function guardarAmbasPesadas() {
             console.log("txb_pesadaFecha1, type: " + type(txb_pesadaFecha1) + ", value: " + txb_pesadaFecha1);
             console.log("txb_pesadaPeso_bruto1, type: " + type(txb_pesadaPeso_bruto1) + ", value: " + txb_pesadaPeso_bruto1);
             console.log("txb_pesadaPeso_neto1, type: " + type(txb_pesadaPeso_neto1) + ", value: " + txb_pesadaPeso_neto1);
-            console.log("txb_pesadaNombre1, type: " + type(txb_pesadaNombre1) + ", value: " + txb_pesadaNombre1);
+            //console.log("txb_pesadaNombre1, type: " + type(txb_pesadaNombre1) + ", value: " + txb_pesadaNombre1);
 
             console.log("txb_pesadaLugar2, type: " + type(txb_pesadaLugar2) + ", value: " + txb_pesadaLugar2);
             console.log("txb_pesadaFecha2, type: " + type(txb_pesadaFecha2) + ", value: " + txb_pesadaFecha2);
             console.log("txb_pesadaPeso_bruto2, type: " + type(txb_pesadaPeso_bruto2) + ", value: " + txb_pesadaPeso_bruto2);
             console.log("txb_pesadaPeso_neto2, type: " + type(txb_pesadaPeso_neto2) + ", value: " + txb_pesadaPeso_neto2);
-            console.log("txb_pesadaNombre2, type: " + type(txb_pesadaNombre2) + ", value: " + txb_pesadaNombre2);
+            //console.log("txb_pesadaNombre2, type: " + type(txb_pesadaNombre2) + ", value: " + txb_pesadaNombre2);
 
             console.log("txb_pesadaComentarios, type: " + type(txb_pesadaComentarios) + ", value: " + txb_pesadaComentarios);
 
@@ -535,9 +550,9 @@ function guardarAmbasPesadas() {
                 type: "POST",
                 url: "Viajes.aspx/GuardarPesadas2",
                 data: '{viajeID_str: "' + viajeID_str + '",txb_pesadaLugar1: "' + txb_pesadaLugar1 + '",txb_pesadaFecha1: "' + txb_pesadaFecha1 + '", ' +
-                    'txb_pesadaPeso_bruto1: "' + txb_pesadaPeso_bruto1 + '",txb_pesadaPeso_neto1: "' + txb_pesadaPeso_neto1 + '",txb_pesadaNombre1: "' + txb_pesadaNombre1 + '", ' +
+                    'txb_pesadaPeso_bruto1: "' + txb_pesadaPeso_bruto1 + '",txb_pesadaPeso_neto1: "' + txb_pesadaPeso_neto1 + '", ' +
                     'txb_pesadaLugar2: "' + txb_pesadaLugar2 + '",txb_pesadaFecha2: "' + txb_pesadaFecha2 + '", ' +
-                    'txb_pesadaPeso_bruto2: "' + txb_pesadaPeso_bruto2 + '",txb_pesadaPeso_neto2: "' + txb_pesadaPeso_neto2 + '",txb_pesadaNombre2: "' + txb_pesadaNombre2 + '", txb_pesadaComentarios: "' + txb_pesadaComentarios + '", ' +
+                    'txb_pesadaPeso_bruto2: "' + txb_pesadaPeso_bruto2 + '",txb_pesadaPeso_neto2: "' + txb_pesadaPeso_neto2 + '",txb_pesadaComentarios: "' + txb_pesadaComentarios + '", ' +
                 'txbMercaderiaValorProveedor: "' + txbMercaderiaValorProveedor + '",ddlTipoLena: "' + ddlTipoLena + '", txbMercaderia_Proveedor_Comentarios: "' + txbMercaderia_Proveedor_Comentarios + '"}',
 
                 contentType: "application/json; charset=utf-8",
@@ -580,7 +595,7 @@ function NuevoViaje() {
     var proveedor = $("#modalAdd_ddlProveedores").val();
     var cliente = $("#modalAdd_ddlClientes").val();
     var cliente_barraca = $("#modalAdd_ddlClientes_Barraca").val();
-    var cargador = $("#modalAdd_ddlCargadores").val();
+    var cargador = $("#modalAdd_ddlCargadores").val(); // Sobrenombre: Changadores / BD: Cuadrillas
     var lugar_carga = $("#modalAdd_txbLugarCarga").val();
     var fletero = $("#modalAdd_ddlFleteros").val();
     var camion = $("#modalAdd_ddlCamiones").val();
@@ -846,17 +861,17 @@ function cargarDatos_PrecioVenta() {
                         if (peso_neto_destino === 0) {
                             peso_neto_destino = peso_neto_origen;
                         }
-                        notif_lblPesoNeto.text(peso_neto_destino);
+                        notif_lblPesoNeto.text(numberWithCommas(peso_neto_destino));
 
                         // Datos Mercaderia
-                        notif_Mercaderia2.text(precio_mercaderia_str);
+                        notif_Mercaderia2.text(numberWithCommas(precio_mercaderia_str));
 
                         // Datos Flete
-                        notif_Flete2.val(precio_flete_str);
-                        notif_Flete3.val(iva_str);
+                        notif_Flete2.val(numberWithCommas(precio_flete_str));
+                        notif_Flete3.val(numberWithCommas(iva_str));
 
                         // Datos Venta
-                        notif_Venta2.val(precio_descarga_str);
+                        notif_Venta2.val(numberWithCommas(precio_descarga_str));
 
                         /* ------------------------ CALCULO SUBTOTALES ------------------------ */
 
@@ -874,8 +889,8 @@ function cargarDatos_PrecioVenta() {
 
                         // Subtotal Mercaderia
                         var valor1 = peso_neto_destino * precioMercaderia;
-                        valor1 = Math.round(valor1 * 100) / 100;
-                        notif_Mercaderia3.text(valor1);
+                        valor1 = Math.round(valor1 * 100) / 100;                        
+                        notif_Mercaderia3.text(numberWithCommas(valor1));
 
                         // Subtotal Flete
                         var valor2 = peso_neto_destino * precioFlete;
@@ -884,16 +899,16 @@ function cargarDatos_PrecioVenta() {
                             valor2 = valor2 + IVA_solo;
                         }
                         valor2 = Math.round(valor2 * 100) / 100;
-                        notif_Flete4.text(valor2);
+                        notif_Flete4.text(numberWithCommas(valor2));
 
                         // Subtotal Venta
                         var valor3 = valor1 + valor2;
                         valor3 = Math.round(valor3 * 100) / 100;
-                        notif_Venta1.text(valor3);
+                        notif_Venta1.text(numberWithCommas(valor3));
 
                         var valor4 = valor3 + precioDescarga;
                         valor4 = Math.round(valor4 * 100) / 100;
-                        notif_Venta3.text(valor4);
+                        notif_Venta3.text(numberWithCommas(valor4));
                     }
                 }
 
@@ -920,9 +935,12 @@ function calcularPrecioVenta() {
         /* ------------------------ OBTENGO CAMPOS ------------------------ */
 
         // Datos Mercaderia
-        var notif_Mercaderia1 = $(".notif_lblPesoNeto").first();
+        //var notif_Mercaderia1 = $(".notif_lblPesoNeto").first();
         var notif_Mercaderia2 = $("#notif_Mercaderia2");
         var notif_Mercaderia3 = $("#notif_Mercaderia3");
+
+        var notif_Mercaderia1 = $("#txb_pesada2Peso_neto");
+
 
         // Datos Flete
         var notif_Flete2 = $("#notif_Flete2");
@@ -942,7 +960,8 @@ function calcularPrecioVenta() {
             /* ------------------------ SETEO DATOS ------------------------ */
 
             // peso neto
-            var peso_neto_destino_str = notif_Mercaderia1.text();
+            //var peso_neto_destino_str = notif_Mercaderia1.text();
+            var peso_neto_destino_str = notif_Mercaderia1.val();
 
             // Datos Mercaderia
             var precio_mercaderia_str = notif_Mercaderia2.text();
@@ -973,7 +992,7 @@ function calcularPrecioVenta() {
             // Subtotal Mercaderia
             var valor1 = peso_neto_destino * precioMercaderia;
             valor1 = Math.round(valor1 * 100) / 100;
-            notif_Mercaderia3.text(valor1);
+            notif_Mercaderia3.text(numberWithCommas(valor1));
 
             // Subtotal Flete
             var valor2 = peso_neto_destino * precioFlete;
@@ -982,16 +1001,16 @@ function calcularPrecioVenta() {
                 valor2 = valor2 + IVA_solo;
             }
             valor2 = Math.round(valor2 * 100) / 100;
-            notif_Flete4.text(valor2);
+            notif_Flete4.text(numberWithCommas(valor2));
 
             // Subtotal Venta
             var valor3 = valor1 + valor2;
             valor3 = Math.round(valor3 * 100) / 100;
-            notif_Venta1.text(valor3);
+            notif_Venta1.text(numberWithCommas(valor3));
 
             var valor4 = valor3 + precioDescarga;
             valor4 = Math.round(valor4 * 100) / 100;
-            notif_Venta3.text(valor4);
+            notif_Venta3.text(numberWithCommas(valor4));
 
         }
     }
@@ -1165,6 +1184,86 @@ function ModificarViaje_2() {
     }
 }
 
+
+function FinDelViaje_2(viajeID) {
+
+    $('#dialog p').text(hashMessages['Confirmacion']);
+    $("#dialog").dialog({
+        open: {},
+        resizable: false,
+        height: 150,
+        modal: true,
+        buttons: {
+            "Confirmar": function () {
+
+                if (viajeID > 0) {
+                    var viajeID_str = viajeID.toString();
+
+                //var hdn_notificaciones_viajeID = $("#hdn_notificaciones_viajeID");
+                //if (hdn_notificaciones_viajeID !== null && hdn_notificaciones_viajeID.val() !== null && hdn_notificaciones_viajeID.val().length > 0) {
+                //    var viajeID_str = hdn_notificaciones_viajeID.val();
+
+                    // Ajax call parameters
+                    console.log("Ajax call: Viajes.aspx/FinDelViaje. Params:");
+                    console.log("viajeID_str, type: " + type(viajeID_str) + ", value: " + viajeID_str);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "Viajes.aspx/FinDelViaje",
+                        data: '{viajeID_str: "' + viajeID_str + '"}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            var result = response.d;
+                            switch (result) {
+                                case 0: {
+                                    show_message_info('Error_Datos');
+                                    break;
+                                }
+
+                                case 1: {
+                                    show_message_info('OK_FINViaje');
+                                    setTimeout("location.reload(true);", 1000);
+                                    break;
+                                }
+
+                                case 2: {
+                                    show_message_info('Error_DatosMercaderias');
+                                    break;
+                                }
+
+                                case 3: {
+                                    show_message_info('Error_DatosPesadas');
+                                    break;
+                                }
+
+                                case 4: {
+                                    show_message_info('Error_DatosPrecioVenta');
+                                    break;
+                                }
+                            }
+
+                        }, // end success
+                        failure: function (response) {
+                            show_message_info('Error_Datos');
+
+                        }
+                    }); // Ajax
+                }
+
+            },
+            "Cancelar": function () {
+                //$(this).dialog("close");
+                $("#dialog").dialog("close");
+                return false;
+            }
+        }
+    }); // Ajax
+}
+
+
+
+
 function FinDelViaje() {
 
     $('#dialog p').text(hashMessages['Confirmacion']);
@@ -1276,6 +1375,12 @@ function GuardarPrecioVenta() {
 
                         if (precio_venta_str !== "" && precio_venta_str !== "0") {
 
+                            // Cambio "," por "."
+                            precioFlete_str = precioFlete_str.replace(/,/g, ".");
+                            precioDescarga_str = precioDescarga_str.replace(/,/g, ".");
+                            precio_venta_str = precio_venta_str.replace(/,/g, ".");
+                            mercaderiaValorCliente_str = mercaderiaValorCliente_str.replace(/,/g, ".");
+
                             // Ajax call parameters
                             console.log("Ajax call: Viajes.aspx/GuardarPrecioVenta. Params:");
                             console.log("viajeID, type: " + type(viajeID) + ", value: " + viajeID);
@@ -1297,6 +1402,9 @@ function GuardarPrecioVenta() {
                                     var precio_venta = response.d;
                                     if (precio_venta !== null) {
                                         show_message_info('OK_Datos');
+
+                                        $("#btnUpdateViajesEnCurso").click();
+                                        $.modal.close();
                                     }
 
                                 }, // end success
@@ -1454,3 +1562,8 @@ function isNumberKey(evt) {
 
     return true;
 }
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+

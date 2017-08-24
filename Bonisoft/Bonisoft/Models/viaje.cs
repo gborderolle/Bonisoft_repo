@@ -57,5 +57,6 @@ namespace Bonisoft.Models
         public decimal Mercaderia_Valor_Cliente_PorTon { get; set; }
         public string Mercaderia_Proveedor_Comentarios { get; set; }
         public string Mercaderia_Cliente_Comentarios { get; set; }
+        public int Cuadrilla_descarga_ID { get; set; }
     }
 }

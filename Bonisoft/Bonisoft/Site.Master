@@ -16,6 +16,13 @@
 
     <!-- STYLES -->
 
+    <style type="text/css">
+        .container-full {
+            margin: 0 auto;
+            width: 90%;
+        }
+    </style>
+
     <!-- Font Awesome -->
     <%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">--%>
     <link rel="stylesheet" href="/assets/dist/css/font-awesome.css"/>
@@ -98,7 +105,7 @@
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="/Pages/Viajes">Viajes</a></li>
                         <li><a runat="server" href="/Pages/Datos">Base de Datos</a></li>
-                        <li><%--<a runat="server" href="/Pages/Resumen_proveedores">Menú Prov.</a>--%></li>
+                        <li><a runat="server" href="/Pages/Resumen_proveedores">Menú Prov.</a></li>
                         <li><a runat="server" href="/Pages/Resumen_fleteros">Menú Fleteros</a></li>
                         <li><a runat="server" href="/Pages/Resumen_clientes">Menú Cl. Part.</a></li>
                         <li><a runat="server" href="/Pages/Resumen_barracas">Menú Cl. Barr.</a></li>
@@ -124,7 +131,7 @@
                 </div>
             </div>
         </div>
-        <div class="container body-content">
+        <div class="container-full body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />

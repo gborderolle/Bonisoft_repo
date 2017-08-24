@@ -95,15 +95,13 @@ namespace Bonisoft.User_Controls
 
             #endregion
         }
-
         protected void gridCuadrillas_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
-
 
             if (e.CommandName == "InsertNew")
             {
@@ -151,7 +149,6 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 }
             }
         }
-
         protected void gridCuadrillas_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gridCuadrillas.EditIndex = e.NewEditIndex;
@@ -165,8 +162,8 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
         protected void gridCuadrillas_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -194,7 +191,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                     {
                         string userID1 = HttpContext.Current.Session["UserID"].ToString();
                         string username = HttpContext.Current.Session["UserName"].ToString();
-                        Global_Objects.Logs.AddUserLog("Modifica descargador", obj.GetType().Name + ": " +obj.Cuadrilla_descarga_ID, userID1, username);
+                        Global_Objects.Logs.AddUserLog("Modifica descargador", obj.GetType().Name + ": " + obj.Cuadrilla_descarga_ID, userID1, username);
                     }
                     catch (Exception ex)
                     {
@@ -208,12 +205,11 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 }
             }
         }
-
         protected void gridCuadrillas_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             // Logger variables
-System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
-                        System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
+            System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
+            System.Diagnostics.StackFrame stackFrame = new System.Diagnostics.StackFrame();
             string className = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
             string methodName = stackFrame.GetMethod().Name;
 
@@ -230,7 +226,7 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 {
                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                     string username = HttpContext.Current.Session["UserName"].ToString();
-                    Global_Objects.Logs.AddUserLog("Borra descargador", obj.GetType().Name + ": " +obj.Cuadrilla_descarga_ID, userID1, username);
+                    Global_Objects.Logs.AddUserLog("Borra descargador", obj.GetType().Name + ": " + obj.Cuadrilla_descarga_ID, userID1, username);
                 }
                 catch (Exception ex)
                 {
@@ -242,7 +238,6 @@ System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(tru
                 lblMessage.Text = "Borrado correctamente.";
             }
         }
-
         protected void PageDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Recupera la fila.

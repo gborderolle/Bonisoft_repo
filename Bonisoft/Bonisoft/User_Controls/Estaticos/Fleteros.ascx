@@ -58,7 +58,7 @@
                 <asp:TextBox ID="txbNew3" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="Depto empresa">
+        <asp:TemplateField HeaderText="Depto">
             <EditItemTemplate>
                 <asp:TextBox ID="txb5" runat="server" Text='<%# Bind("Depto_empresa") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
             </EditItemTemplate>

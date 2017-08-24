@@ -19,5 +19,6 @@ namespace Bonisoft.Models
         public string Empresa { get; set; }
         public string Comentarios { get; set; }
         public string Telefono { get; set; }
+        public string Depto { get; set; }
     }
 }

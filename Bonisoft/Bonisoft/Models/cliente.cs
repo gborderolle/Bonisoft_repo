@@ -35,5 +35,6 @@ namespace Bonisoft.Models
         public string Nro_cuenta { get; set; }
         public Nullable<bool> EsBarraca { get; set; }
         public string Razon_social { get; set; }
+        public string Depto { get; set; }
     }
 }

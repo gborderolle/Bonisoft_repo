@@ -2,7 +2,7 @@
 <h2>Lista de Clientes Barracas</h2>
 
 <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-<asp:GridView ID="gridClientes_Barraca" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True" 
+<asp:GridView ID="gridClientes_Barraca" runat="server" ClientIDMode="Static" HorizontalAlign="Center" AutoGenerateColumns="False" ShowFooter="True"
     CssClass="table table-hover table-striped"
     DataKeyNames="Cliente_ID"
     OnRowCommand="gridClientes_Barraca_RowCommand"
@@ -35,7 +35,7 @@
     </PagerTemplate>
 
     <Columns>
-        <asp:BoundField DataField="Cliente_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true"/>
+        <asp:BoundField DataField="Cliente_ID" HeaderText="ID" HtmlEncode="false" ReadOnly="true" />
         <asp:TemplateField HeaderText="Nombre">
             <EditItemTemplate>
                 <asp:TextBox ID="txb13" runat="server" Text='<%# Bind("Nombre") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
@@ -78,6 +78,17 @@
             </ItemTemplate>
             <FooterTemplate>
                 <asp:TextBox ID="txbNew16" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+            </FooterTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Depto">
+            <EditItemTemplate>
+                <asp:TextBox ID="txb20" runat="server" Text='<%# Bind("Depto") %>' CssClass="form-control" MaxLength="30"></asp:TextBox>
+            </EditItemTemplate>
+            <ItemTemplate>
+                <asp:Label ID="lbl20" runat="server" Text='<%# Bind("Depto") %>'></asp:Label>
+            </ItemTemplate>
+            <FooterTemplate>
+                <asp:TextBox ID="txbNew20" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
             </FooterTemplate>
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Teléfono">

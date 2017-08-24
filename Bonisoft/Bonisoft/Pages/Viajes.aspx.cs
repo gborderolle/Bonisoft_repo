@@ -1,7 +1,6 @@
 ﻿using Bonisoft.Global_Objects;
 using Bonisoft.Helpers;
 using Bonisoft.Models;
-using Bonisoft.User_Controls.Configuracion;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -86,7 +85,7 @@ namespace Bonisoft.Pages
                         {
                             string txbFecha1 = hdn_modalEdit_txbFecha1.Value;
                             string txbFecha2 = hdn_modalEdit_txbFecha2.Value;
-                            string ddlProveedores = hdn_modalEdit_ddlProveedores.Value; 
+                            string ddlProveedores = hdn_modalEdit_ddlProveedores.Value;
                             string ddlClientes = hdn_modalEdit_ddlClientes.Value;
                             string ddlClientes_Barraca = hdn_modalEdit_ddlClientes_Barraca.Value;
                             string ddlCargadores = hdn_modalEdit_ddlCargadores.Value;
@@ -139,25 +138,13 @@ namespace Bonisoft.Pages
                                 }
                                 viaje.Cliente_ID = ddl;
 
-                                /*
-                                 * 
-                                 ddl = viaje.Cliente_ID;
-                                if (!int.TryParse(ddlClientes_Barraca, out ddl))
-                                {
-                                    ddl = viaje.Cliente_ID;
-                                    Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlClientes_Barraca);
-                                }
-                                viaje.Cliente_ID = ddl;
-
-                                 */
-
-                                ddl = viaje.Empresa_de_carga_ID;
+                                ddl = viaje.Cuadrilla_descarga_ID;
                                 if (!int.TryParse(ddlCargadores, out ddl))
                                 {
-                                    ddl = viaje.Empresa_de_carga_ID;
+                                    ddl = viaje.Cuadrilla_descarga_ID;
                                     Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlCargadores);
                                 }
-                                viaje.Empresa_de_carga_ID = ddl;
+                                viaje.Cuadrilla_descarga_ID = ddl;
 
                                 ddl = viaje.Fletero_ID;
                                 if (!int.TryParse(ddlFleteros, out ddl))
@@ -421,7 +408,7 @@ namespace Bonisoft.Pages
                 }//Add Default Item in the DropDownList
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Empresa_de_carga_ID.ToString();
+                    ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Camion_ID.ToString();
                 }
             }
 
@@ -451,7 +438,7 @@ namespace Bonisoft.Pages
                 }//Add Default Item in the DropDownList
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Empresa_de_carga_ID.ToString();
+                    ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Chofer_ID.ToString();
                 }
             }
 
@@ -470,18 +457,18 @@ namespace Bonisoft.Pages
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.cargadores.ToList());
+                    dt1 = Extras.ToDataTable(context.cuadrilla_descarga.ToList());
 
                     ddl.DataSource = dt1;
                     ddl.DataTextField = "Nombre";
-                    ddl.DataValueField = "Cargador_ID";
+                    ddl.DataValueField = "Cuadrilla_descarga_ID";
                     ddl.DataBind();
                     ddl.Items.Insert(0, new ListItem("Elegir", "0"));
 
                 }//Add Default Item in the DropDownList
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Empresa_de_carga_ID.ToString();
+                    ddl.SelectedValue = ((viaje)(e.Row.DataItem)).Cuadrilla_descarga_ID.ToString();
                 }
             }
 
@@ -609,7 +596,7 @@ namespace Bonisoft.Pages
 
             #region DDL Default values
 
-            // Empresa de carga ----------------------------------------------------
+            // Empresa de carga ---------------------------------------------------- // Changadores - Cuadrilla de descarga
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lbl = e.Row.FindControl("lbl10") as LinkButton;
@@ -620,13 +607,13 @@ namespace Bonisoft.Pages
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
                         {
-                            int id = viaje.Empresa_de_carga_ID;
-                            cargador cargador = (cargador)context.cargadores.FirstOrDefault(c => c.Cargador_ID == id);
-                            if (cargador != null)
+                            int id = viaje.Cuadrilla_descarga_ID;
+                            cuadrilla_descarga cuadrilla_descarga = (cuadrilla_descarga)context.cuadrilla_descarga.FirstOrDefault(c => c.Cuadrilla_descarga_ID == id);
+                            if (cuadrilla_descarga != null)
                             {
-                                string nombre = cargador.ToString();
+                                string nombre = cuadrilla_descarga.ToString();
                                 lbl.Text = nombre;
-                                lbl.CommandArgument = "cargadores," + cargador.Nombre;
+                                lbl.CommandArgument = "cuadrillas," + cuadrilla_descarga.Nombre;
                             }
                         }
                     }
@@ -790,13 +777,13 @@ namespace Bonisoft.Pages
                         viaje viaje = (viaje)(e.Row.DataItem);
                         if (viaje != null)
                         {
-                            int id = viaje.Empresa_de_carga_ID;
-                            cargador cargador = (cargador)context.cargadores.FirstOrDefault(c => c.Cargador_ID == id);
-                            if (cargador != null)
+                            int id = viaje.Cuadrilla_descarga_ID;
+                            cuadrilla_descarga cuadrilla_descarga = (cuadrilla_descarga)context.cuadrilla_descarga.FirstOrDefault(c => c.Cuadrilla_descarga_ID == id);
+                            if (cuadrilla_descarga != null)
                             {
-                                string nombre = cargador.Nombre;
+                                string nombre = cuadrilla_descarga.Nombre;
                                 lbl.Text = nombre;
-                                lbl.CommandArgument = "cargadores," + cargador.Nombre;
+                                lbl.CommandArgument = "cuadrillas," + cuadrilla_descarga.Nombre;
                             }
                         }
                     }
@@ -943,7 +930,7 @@ namespace Bonisoft.Pages
                                         ddl = 0;
                                         Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlCargadores2.SelectedValue);
                                     }
-                                    obj.Empresa_de_carga_ID = ddl;
+                                    obj.Cuadrilla_descarga_ID = ddl;
 
                                     ddl = 0;
                                     if (!int.TryParse(ddlCamiones2.SelectedValue, out ddl))
@@ -1151,13 +1138,13 @@ namespace Bonisoft.Pages
 
                     #region DDL logic
 
-                    int ddl1 = obj.Empresa_de_carga_ID;
+                    int ddl1 = obj.Cuadrilla_descarga_ID;
                     if (!int.TryParse(ddlCargadores2.SelectedValue, out ddl1))
                     {
-                        ddl1 = obj.Empresa_de_carga_ID;
+                        ddl1 = obj.Cuadrilla_descarga_ID;
                         Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, ddlCargadores2.SelectedValue);
                     }
-                    obj.Empresa_de_carga_ID = ddl1;
+                    obj.Cuadrilla_descarga_ID = ddl1;
 
                     int ddl2 = obj.Camion_ID;
                     if (!int.TryParse(ddlCamiones2.SelectedValue, out ddl2))
@@ -1353,7 +1340,7 @@ namespace Bonisoft.Pages
 
                                 modalEdit_ddlProveedores.SelectedValue = viaje.Proveedor_ID.ToString();
                                 modalEdit_ddlClientes.SelectedValue = viaje.Cliente_ID.ToString();
-                                modalEdit_ddlCargadores.SelectedValue = viaje.Empresa_de_carga_ID.ToString();
+                                modalEdit_ddlCargadores.SelectedValue = viaje.Cuadrilla_descarga_ID.ToString();
                                 modalEdit_ddlFleteros.SelectedValue = viaje.Fletero_ID.ToString();
                                 modalEdit_ddlCamiones.SelectedValue = viaje.Camion_ID.ToString();
                                 modalEdit_ddlChoferes.SelectedValue = viaje.Chofer_ID.ToString();
@@ -1601,14 +1588,13 @@ namespace Bonisoft.Pages
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.proveedores.ToList());
+                    dt1 = Extras.ToDataTable(context.proveedores.OrderBy(e => e.Nombre).ToList());
 
                     modalAdd_ddlProveedores.DataSource = dt1;
                     modalAdd_ddlProveedores.DataTextField = "Nombre";
                     modalAdd_ddlProveedores.DataValueField = "Proveedor_ID";
                     modalAdd_ddlProveedores.DataBind();
                     modalAdd_ddlProveedores.Items.Insert(0, new ListItem("Elegir", "0"));
-
                 }
             }
 
@@ -1618,14 +1604,13 @@ namespace Bonisoft.Pages
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.clientes.Where(e1 => e1.EsBarraca == null || e1.EsBarraca == false).ToList());
+                    dt1 = Extras.ToDataTable(context.clientes.Where(e1 => e1.EsBarraca == null || e1.EsBarraca == false).OrderBy(e => e.Nombre).ToList());
 
                     modalAdd_ddlClientes.DataSource = dt1;
                     modalAdd_ddlClientes.DataTextField = "Nombre";
                     modalAdd_ddlClientes.DataValueField = "Cliente_ID";
                     modalAdd_ddlClientes.DataBind();
                     modalAdd_ddlClientes.Items.Insert(0, new ListItem("Elegir", "0"));
-
                 }
             }
 
@@ -1635,14 +1620,13 @@ namespace Bonisoft.Pages
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.clientes.Where(e1 => e1.EsBarraca == true).ToList());
+                    dt1 = Extras.ToDataTable(context.clientes.Where(e1 => e1.EsBarraca == true).OrderBy(e => e.Nombre).ToList());
 
                     modalAdd_ddlClientes_Barraca.DataSource = dt1;
                     modalAdd_ddlClientes_Barraca.DataTextField = "Nombre";
                     modalAdd_ddlClientes_Barraca.DataValueField = "Cliente_ID";
                     modalAdd_ddlClientes_Barraca.DataBind();
                     modalAdd_ddlClientes_Barraca.Items.Insert(0, new ListItem("Elegir", "0"));
-
                 }
             }
 
@@ -1652,14 +1636,13 @@ namespace Bonisoft.Pages
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.cargadores.ToList());
+                    dt1 = Extras.ToDataTable(context.cuadrilla_descarga.OrderBy(e => e.Nombre).ToList());
 
                     modalAdd_ddlCargadores.DataSource = dt1;
                     modalAdd_ddlCargadores.DataTextField = "Nombre";
-                    modalAdd_ddlCargadores.DataValueField = "Cargador_ID";
+                    modalAdd_ddlCargadores.DataValueField = "Cuadrilla_descarga_ID";
                     modalAdd_ddlCargadores.DataBind();
                     modalAdd_ddlCargadores.Items.Insert(0, new ListItem("Elegir", "0"));
-
                 }
             }
 
@@ -1669,14 +1652,13 @@ namespace Bonisoft.Pages
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.fleteros.ToList());
+                    dt1 = Extras.ToDataTable(context.fleteros.OrderBy(e => e.Nombre).ToList());
 
                     modalAdd_ddlFleteros.DataSource = dt1;
                     modalAdd_ddlFleteros.DataTextField = "Nombre";
                     modalAdd_ddlFleteros.DataValueField = "Fletero_ID";
                     modalAdd_ddlFleteros.DataBind();
                     modalAdd_ddlFleteros.Items.Insert(0, new ListItem("Elegir", "0"));
-
                 }
             }
 
@@ -1686,14 +1668,13 @@ namespace Bonisoft.Pages
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.camiones.ToList());
+                    dt1 = Extras.ToDataTable(context.camiones.OrderBy(e => e.Matricula_camion).ToList());
 
                     modalAdd_ddlCamiones.DataSource = dt1;
                     modalAdd_ddlCamiones.DataTextField = "Matricula_camion";
                     modalAdd_ddlCamiones.DataValueField = "Camion_ID";
                     modalAdd_ddlCamiones.DataBind();
                     modalAdd_ddlCamiones.Items.Insert(0, new ListItem("Elegir", "0"));
-
                 }
             }
 
@@ -1703,14 +1684,13 @@ namespace Bonisoft.Pages
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.choferes.ToList());
+                    dt1 = Extras.ToDataTable(context.choferes.OrderBy(e => e.Nombre_completo).ToList());
 
                     modalAdd_ddlChoferes.DataSource = dt1;
                     modalAdd_ddlChoferes.DataTextField = "Nombre_completo";
                     modalAdd_ddlChoferes.DataValueField = "Chofer_ID";
                     modalAdd_ddlChoferes.DataBind();
                     modalAdd_ddlChoferes.Items.Insert(0, new ListItem("Elegir", "0"));
-
                 }
             }
         }
@@ -1730,7 +1710,6 @@ namespace Bonisoft.Pages
                     modalEdit_ddlProveedores.DataValueField = "Proveedor_ID";
                     modalEdit_ddlProveedores.DataBind();
                     modalEdit_ddlProveedores.Items.Insert(0, new ListItem("Elegir", "0"));
-
                 }
             }
 
@@ -1747,7 +1726,6 @@ namespace Bonisoft.Pages
                     modalEdit_ddlClientes.DataValueField = "Cliente_ID";
                     modalEdit_ddlClientes.DataBind();
                     modalEdit_ddlClientes.Items.Insert(0, new ListItem("Elegir", "0"));
-
                 }
             }
 
@@ -1774,14 +1752,13 @@ namespace Bonisoft.Pages
                 using (bonisoftEntities context = new bonisoftEntities())
                 {
                     DataTable dt1 = new DataTable();
-                    dt1 = Extras.ToDataTable(context.cargadores.ToList());
+                    dt1 = Extras.ToDataTable(context.cuadrilla_descarga.ToList());
 
                     modalEdit_ddlCargadores.DataSource = dt1;
                     modalEdit_ddlCargadores.DataTextField = "Nombre";
-                    modalEdit_ddlCargadores.DataValueField = "Cargador_ID";
+                    modalEdit_ddlCargadores.DataValueField = "Cuadrilla_descarga_ID";
                     modalEdit_ddlCargadores.DataBind();
                     modalEdit_ddlCargadores.Items.Insert(0, new ListItem("Elegir", "0"));
-
                 }
             }
 
@@ -1798,7 +1775,6 @@ namespace Bonisoft.Pages
                     modalEdit_ddlFleteros.DataValueField = "Fletero_ID";
                     modalEdit_ddlFleteros.DataBind();
                     modalEdit_ddlFleteros.Items.Insert(0, new ListItem("Elegir", "0"));
-
                 }
             }
 
@@ -1885,7 +1861,7 @@ namespace Bonisoft.Pages
                         Logs.AddErrorLog("Excepcion. Convirtiendo datetime. ERROR:", className, methodName, date_end);
                     }
 
-                    var elements = context.viajes.Where(e => e.Fecha_partida >= date1 && e.Fecha_partida <= date2 && !e.isFicticio).OrderByDescending(e => e.Fecha_partida).ToList();
+                    var elements = context.viajes.Where(e => e.Fecha_partida >= date1 && e.Fecha_partida <= date2 && !e.isFicticio).OrderByDescending(e => e.Viaje_ID).ToList();
                     if (elements.Count() > 0)
                     {
                         gridViajes.DataSource = elements;
@@ -1896,7 +1872,7 @@ namespace Bonisoft.Pages
                 }
                 else
                 {
-                    var elements = context.viajes.Where(e => !e.EnViaje && !e.isFicticio).OrderByDescending(e => e.Fecha_partida).ToList();
+                    var elements = context.viajes.Where(e => !e.EnViaje && !e.isFicticio).OrderByDescending(e => e.Viaje_ID).ToList();
                     if (elements.Count() > 0)
                     {
                         gridViajes.DataSource = elements;
@@ -1940,7 +1916,7 @@ namespace Bonisoft.Pages
         {
             using (bonisoftEntities context = new bonisoftEntities())
             {
-                var elements = context.viajes.Where(e => e.EnViaje && !e.isFicticio).OrderByDescending(e => e.Fecha_partida).ToList();
+                var elements = context.viajes.Where(e => e.EnViaje && !e.isFicticio).OrderByDescending(e => e.Viaje_ID).ToList();
                 if (elements.Count() > 0)
                 {
                     gridViajesEnCurso.DataSource = elements;
@@ -2117,7 +2093,8 @@ namespace Bonisoft.Pages
         #region Web methods
 
         [WebMethod]
-        public static bool GuardarPrecioVenta(string viajeID, string precioFlete_str, string precioDescarga_str, string IVA_str, string mercaderiaValorCliente_str, string mercaderia_Cliente_Comentarios, string precio_venta_str )
+        public static bool GuardarPrecioVenta(string viajeID, string precioFlete_str, string precioDescarga_str, string IVA_str, string mercaderiaValorCliente_str, 
+            string mercaderia_Cliente_Comentarios, string precio_venta_str)
         {
             // Logger variables
             System.Diagnostics.StackTrace stackTrace = new System.Diagnostics.StackTrace(true);
@@ -2129,7 +2106,7 @@ namespace Bonisoft.Pages
             using (bonisoftEntities context = new bonisoftEntities())
             {
                 if (!string.IsNullOrWhiteSpace(viajeID) && precioFlete_str != null && precioDescarga_str != null &&
-                    IVA_str != null && mercaderiaValorCliente_str != null && mercaderia_Cliente_Comentarios != null && precio_venta_str != null) 
+                    IVA_str != null && mercaderiaValorCliente_str != null && mercaderia_Cliente_Comentarios != null && precio_venta_str != null)
                 {
                     int viajeID_value = 0;
                     if (!int.TryParse(viajeID, out viajeID_value))
@@ -2212,10 +2189,25 @@ namespace Bonisoft.Pages
                                 viaje.precio_flete_total = flete_parcial;
 
                                 // Guardar importe en pagos del cliente
-                                //cliente_pagos cliente_pagos = new cliente_pagos();
-                                //cliente_pagos.Cliente_ID = viaje.Cliente_ID;
-                                //cliente_pagos.Viaje_ID = viajeID_value;
-                                //cliente_pagos.Importe_viaje = importe_viaje;
+                                cliente_pagos cliente_pagos = context.cliente_pagos.FirstOrDefault(v => v.Viaje_ID == viajeID_value);
+                                if (cliente_pagos != null)
+                                {
+                                    cliente_pagos.Importe_viaje = precio_venta; // Precio Venta - Clientes
+                                }
+
+                                // Guardar importe en pagos del proveedor
+                                proveedor_pagos proveedor_pagos = context.proveedor_pagos.FirstOrDefault(v => v.Viaje_ID == viajeID_value);
+                                if (proveedor_pagos != null)
+                                {
+                                    proveedor_pagos.Importe_viaje = viaje.precio_compra; // Precio Venta - Proveedores
+                                }
+
+                                // Guardar importe en pagos del fletero
+                                fletero_pagos fletero_pagos = context.fletero_pagos.FirstOrDefault(v => v.Viaje_ID == viajeID_value);
+                                if (fletero_pagos != null)
+                                {
+                                    fletero_pagos.Importe_viaje = viaje.precio_flete_total; // Precio Venta - Fleteros
+                                }
 
                                 context.SaveChanges();
 
@@ -2244,8 +2236,8 @@ namespace Bonisoft.Pages
 
         [WebMethod]
         public static string GuardarPesadas2(string viajeID_str,
-            string txb_pesadaLugar1, string txb_pesadaFecha1, string txb_pesadaPeso_bruto1, string txb_pesadaPeso_neto1, string txb_pesadaNombre1,
-            string txb_pesadaLugar2, string txb_pesadaFecha2, string txb_pesadaPeso_bruto2, string txb_pesadaPeso_neto2, string txb_pesadaNombre2,
+            string txb_pesadaLugar1, string txb_pesadaFecha1, string txb_pesadaPeso_bruto1, string txb_pesadaPeso_neto1,
+            string txb_pesadaLugar2, string txb_pesadaFecha2, string txb_pesadaPeso_bruto2, string txb_pesadaPeso_neto2,
             string txb_pesadaComentarios, string txbMercaderiaValorProveedor, string ddlTipoLena, string txbMercaderia_Proveedor_Comentarios)
         {
             // Logger variables
@@ -2653,19 +2645,37 @@ namespace Bonisoft.Pages
                                     if (usuario.Clave.ToLowerInvariant().Equals(clave_str.ToLowerInvariant()))
                                     {
                                         resultado = 1; // OK
-
                                         context.viajes.Remove(viaje);
 
                                         #region Borrar cliente pago
 
-                                        //List<cliente_pagos> lista_cliente_pagos = (List<cliente_pagos>)context.cliente_pagos.Where(v => v.Viaje_ID == viaje_ID).ToList();
-                                        //if (lista_cliente_pagos != null && lista_cliente_pagos.Count > 0)
-                                        //{
-                                        //    foreach (cliente_pagos pago in lista_cliente_pagos)
-                                        //    {
-                                        //        context.cliente_pagos.Remove(pago);
-                                        //    }
-                                        //}
+                                        List<cliente_pagos> lista_cliente_pagos = (List<cliente_pagos>)context.cliente_pagos.Where(v => v.Viaje_ID == viaje_ID).ToList();
+                                        if (lista_cliente_pagos != null && lista_cliente_pagos.Count > 0)
+                                        {
+                                            foreach (cliente_pagos pago in lista_cliente_pagos)
+                                            {
+                                                context.cliente_pagos.Remove(pago);
+                                            }
+                                        }
+
+                                        List<proveedor_pagos> lista_proveedor_pagos = (List<proveedor_pagos>)context.proveedor_pagos.Where(v => v.Viaje_ID == viaje_ID).ToList();
+                                        if (lista_proveedor_pagos != null && lista_proveedor_pagos.Count > 0)
+                                        {
+                                            foreach (proveedor_pagos pago in lista_proveedor_pagos)
+                                            {
+                                                context.proveedor_pagos.Remove(pago);
+                                            }
+                                        }
+
+                                        List<fletero_pagos> lista_fletero_pagos = (List<fletero_pagos>)context.fletero_pagos.Where(v => v.Viaje_ID == viaje_ID).ToList();
+                                        if (lista_fletero_pagos != null && lista_fletero_pagos.Count > 0)
+                                        {
+                                            foreach (fletero_pagos pago in lista_fletero_pagos)
+                                            {
+                                                context.fletero_pagos.Remove(pago);
+                                            }
+                                        }
+
 
                                         #endregion Borrar cliente pago
 
@@ -2742,7 +2752,7 @@ namespace Bonisoft.Pages
 
                             string fecha_1 = viaje.Fecha_partida.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
                             string fecha_2 = viaje.Fecha_llegada.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
-                            ret = fecha_1 + "|" + fecha_2 + "|" + viaje.Proveedor_ID + "|" + viaje.Cliente_ID + "|" + viaje.Empresa_de_carga_ID + "|" + viaje.Carga + "|" + viaje.Fletero_ID + "|" + viaje.Camion_ID + "|" + viaje.Chofer_ID + "|" + viaje.Comentarios + "|" + esBarraca; 
+                            ret = fecha_1 + "|" + fecha_2 + "|" + viaje.Proveedor_ID + "|" + viaje.Cliente_ID + "|" + viaje.Cuadrilla_descarga_ID + "|" + viaje.Carga + "|" + viaje.Fletero_ID + "|" + viaje.Camion_ID + "|" + viaje.Chofer_ID + "|" + viaje.Comentarios + "|" + esBarraca;
                         }
                     }
                 }
@@ -2818,13 +2828,13 @@ namespace Bonisoft.Pages
                             }
                             viaje.Cliente_ID = ddl;
 
-                            ddl = viaje.Empresa_de_carga_ID;
+                            ddl = viaje.Cuadrilla_descarga_ID;
                             if (!int.TryParse(cargador, out ddl))
                             {
-                                ddl = viaje.Empresa_de_carga_ID;
+                                ddl = viaje.Cuadrilla_descarga_ID;
                                 Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, cargador);
                             }
-                            viaje.Empresa_de_carga_ID = ddl;
+                            viaje.Cuadrilla_descarga_ID = ddl;
 
                             ddl = viaje.Fletero_ID;
                             if (!int.TryParse(fletero, out ddl))
@@ -2919,12 +2929,14 @@ namespace Bonisoft.Pages
                 #region DDL logic
 
                 int ddl = 0;
+                int proveedor_ID = 0;
                 if (!int.TryParse(proveedor, out ddl))
                 {
                     ddl = 0;
                     Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, proveedor);
                 }
                 new_viaje.Proveedor_ID = ddl;
+                proveedor_ID = ddl;
 
                 cliente = esBarraca ? cliente_barraca : cliente;
                 int cliente_ID = 0;
@@ -2943,15 +2955,17 @@ namespace Bonisoft.Pages
                     ddl = 0;
                     Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, cargador);
                 }
-                new_viaje.Empresa_de_carga_ID = ddl;
+                new_viaje.Cuadrilla_descarga_ID = ddl; //
 
                 ddl = 0;
+                int fletero_ID = 0;
                 if (!int.TryParse(fletero, out ddl))
                 {
                     ddl = 0;
                     Logs.AddErrorLog("Excepcion. Convirtiendo int. ERROR:", className, methodName, fletero);
                 }
                 new_viaje.Fletero_ID = ddl;
+                fletero_ID = ddl;
 
                 ddl = 0;
                 if (!int.TryParse(camion, out ddl))
@@ -3017,18 +3031,41 @@ namespace Bonisoft.Pages
                         id = viaje.Viaje_ID;
                     }
 
-                    #region Create pago cliente
+                    #region Create pagos
 
-                    //cliente_pagos cliente_pagos = new cliente_pagos();
-                    //cliente_pagos.Viaje_ID = id;
-                    //cliente_pagos.Cliente_ID = cliente_ID;
-                    //cliente_pagos.Fecha_pago = date1;
-                    //cliente_pagos.Fecha_registro = DateTime.Now;
-                    //cliente_pagos.Forma_de_pago_ID = 0;
-                    //cliente_pagos.Monto = 0;
-                    //cliente_pagos.Comentarios = string.Empty;
+                    // Cliente
+                    cliente_pagos cliente_pagos = new cliente_pagos();
+                    cliente_pagos.Viaje_ID = id;
+                    cliente_pagos.Cliente_ID = cliente_ID;
+                    cliente_pagos.Fecha_pago = date1;
+                    cliente_pagos.Fecha_registro = DateTime.Now;
+                    cliente_pagos.Forma_de_pago_ID = 0;
+                    cliente_pagos.Monto = 0;
+                    cliente_pagos.Comentarios = string.Empty;
 
-                    //context.cliente_pagos.Add(cliente_pagos);
+                    // Proveedor
+                    proveedor_pagos proveedor_pagos = new proveedor_pagos();
+                    proveedor_pagos.Viaje_ID = id;
+                    proveedor_pagos.Proveedor_ID = proveedor_ID;
+                    proveedor_pagos.Fecha_pago = date1;
+                    proveedor_pagos.Fecha_registro = DateTime.Now;
+                    proveedor_pagos.Forma_de_pago_ID = 0;
+                    proveedor_pagos.Monto = 0;
+                    proveedor_pagos.Comentarios = string.Empty;
+
+                    // Fletero
+                    fletero_pagos fletero_pagos = new fletero_pagos();
+                    fletero_pagos.Viaje_ID = id;
+                    fletero_pagos.Fletero_ID = fletero_ID;
+                    fletero_pagos.Fecha_pago = date1;
+                    fletero_pagos.Fecha_registro = DateTime.Now;
+                    fletero_pagos.Forma_de_pago_ID = 0;
+                    fletero_pagos.Monto = 0;
+                    fletero_pagos.Comentarios = string.Empty;
+
+                    context.cliente_pagos.Add(cliente_pagos);
+                    context.proveedor_pagos.Add(proveedor_pagos);
+                    context.fletero_pagos.Add(fletero_pagos);
                     context.SaveChanges();
 
                     #endregion
@@ -3287,7 +3324,7 @@ namespace Bonisoft.Pages
         }
 
 
-        private static string AgregarCargador(string valor)
+        private static string AgregarCargador(string valor) // Cuadrilla
         {
             string ID_result = "0";
 
@@ -3299,7 +3336,7 @@ namespace Bonisoft.Pages
 
             using (bonisoftEntities context = new bonisoftEntities())
             {
-                cargador obj = new cargador();
+                cuadrilla_descarga obj = new cuadrilla_descarga();
                 obj.Nombre = valor;
 
                 //
@@ -3308,22 +3345,22 @@ namespace Bonisoft.Pages
                 obj.Comentarios = string.Empty;
                 //
 
-                context.cargadores.Add(obj);
+                context.cuadrilla_descarga.Add(obj);
                 context.SaveChanges();
 
                 #region Guardar log 
                 try
                 {
                     int id = 1;
-                    cargador cargador = (cargador)context.cargadores.OrderByDescending(p => p.Cargador_ID).FirstOrDefault();
-                    if (cargador != null)
+                    cuadrilla_descarga cuadrilla_descarga = (cuadrilla_descarga)context.cuadrilla_descarga.OrderByDescending(p => p.Cuadrilla_descarga_ID).FirstOrDefault();
+                    if (cuadrilla_descarga != null)
                     {
-                        id = cargador.Cargador_ID;
+                        id = cuadrilla_descarga.Cuadrilla_descarga_ID;
                     }
 
                     string userID1 = HttpContext.Current.Session["UserID"].ToString();
                     string username = HttpContext.Current.Session["UserName"].ToString();
-                    Logs.AddUserLog("Agrega cargador", cargador.GetType().Name + ": " + id, userID1, username);
+                    Logs.AddUserLog("Agrega changador / cuadrilla de descarga", cuadrilla_descarga.GetType().Name + ": " + id, userID1, username);
 
                     ID_result = id.ToString();
                 }

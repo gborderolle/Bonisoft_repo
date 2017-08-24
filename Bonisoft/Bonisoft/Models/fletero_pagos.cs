@@ -23,5 +23,6 @@ namespace Bonisoft.Models
         public decimal Importe_viaje { get; set; }
         public string Comentarios { get; set; }
         public int Viaje_ID { get; set; }
+        public Nullable<bool> isFicticio { get; set; }
     }
 }
